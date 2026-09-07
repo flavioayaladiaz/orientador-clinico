@@ -1,0 +1,101 @@
+# Backlog — Orientador Clínico
+
+Backlog de contenido para el proyecto **Orientador Clínico** (antes "UrgenCheck").
+El objetivo ya no es solo checklists: es orientar a médicos con menos experiencia y
+sistematizar procesos clínicos, en el formato que mejor sirva a cada tema
+(checklist paso a paso, algoritmo/árbol de decisión, guía rápida de orientación
+diagnóstica, calculadora, etc).
+
+## Cómo trabaja el agente diario
+
+1. Toma el **primer ítem sin marcar** de este archivo, en el orden en que aparece
+   (primero "Rebranding", luego "Motivos de consulta", luego "Patologías complejas",
+   luego "Procedimientos HALO").
+2. Antes de crear contenido nuevo, revisa si el tema ya está cubierto (total o
+   parcialmente) por una página existente (`checklist-*.html`). Si ya existe,
+   mejórala o complétala en vez de duplicar.
+3. Elige la modalidad más adecuada para el contenido:
+   - **Checklist con cronómetro** para procedimientos y códigos con secuencia de
+     pasos y tiempos críticos (útil para HALO y patologías con "bundle" de manejo).
+   - **Algoritmo / árbol de decisión** para patologías complejas con ramificaciones
+     según presentación clínica.
+   - **Guía de orientación** (diagnóstico diferencial, red flags, estudio inicial)
+     para motivos de consulta frecuentes.
+4. Sigue las convenciones visuales existentes: mismo tema oscuro, tipografías
+   (Syne / DM Sans / DM Mono), paleta de variables CSS (`--teal`, `--red`,
+   `--indigo`, `--amber`, `--emerald`), estilo de tarjetas de `index.html`.
+5. Toda página nueva debe:
+   - Tener una flecha de regreso arriba a la izquierda que lleve a `index.html`
+     (convención ya establecida en las páginas existentes).
+   - Agregarse como tarjeta nueva en `index.html`, dentro de la sección
+     correspondiente (crea la sección si no existe todavía).
+   - Incluir el disclaimer de uso clínico (no reemplaza el juicio clínico ni los
+     protocolos vigentes; verificar dosis y contraindicaciones).
+   - Registrarse en `sw.js` (lista de cache) para que funcione sin conexión.
+6. Marca el ítem como hecho (`[x]`) en este archivo, en el mismo commit.
+7. Un commit por día, mensaje claro (ej: `feat: guía de orientación — dolor torácico`).
+8. Push directo a `main` (no se usan PRs en este proyecto).
+
+Puedes agregar ideas nuevas a este archivo en cualquier momento; el agente las
+tomará en orden la próxima vez que corra.
+
+---
+
+## 0. Rebranding
+
+- [ ] Renombrar el proyecto de "UrgenCheck" a "**Orientador Clínico**" en todo el
+      repo: `index.html` (title, h1, meta description, disclaimer, footer),
+      `manifest.json` (name, short_name), `sw.js` (comentario de cabecera y nombre
+      de cache si incluye "urgencheck"). Mantener el tono y estructura visual
+      actual; solo cambia el nombre/identidad, no la funcionalidad.
+
+## 1. Motivos de consulta
+
+- [ ] Infección urinaria
+- [ ] Gastroenteritis (síndrome diarreico agudo)
+- [ ] Dolor torácico
+- [ ] Lumbago agudo
+- [ ] Dolor abdominal
+- [ ] Cefalea
+- [ ] Policontusiones
+
+## 2. Patologías complejas de urgencia
+
+- [ ] Disección aórtica aguda (especialmente Stanford A o con presentaciones
+      atípicas y malperfusión)
+- [ ] Shock cardiogénico con falla ventricular derecha o biventricular aguda
+      (e infarto de ventrículo derecho)
+- [ ] Status asmático grave con hiperinsuflación dinámica y riesgo de colapso
+      hemodinámico a la intubación
+- [ ] Tormenta tiroidea o crisis tirotoxicósica con inestabilidad hemodinámica
+      y arritmias complejas
+- [ ] Traumatismo craneoencefálico grave con hipertensión endocraneal
+      refractaria y compromiso multisistémico
+- [ ] Cetoacidosis diabética o estado hiperosmolar severo con shock refractario
+      y desequilibrios electrolíticos extremos
+- [ ] Hemorragia digestiva alta masiva por várices esofágicas con shock
+      hemorrágico y falla hepática aguda sobre crónica
+- [ ] Intoxicaciones graves por bloqueadores de canales de calcio o
+      betabloqueadores con shock vasopléjico y cardiogénico
+- [ ] Politraumatizado grave (ya existe `checklist-politrauma_2.html` — revisar
+      y complementar si falta algo en vez de duplicar)
+- [ ] Shock séptico refractario con falla multiorgánica precoz (ya existe
+      `checklist-sepsis_4.html` — revisar si cubre el escenario "refractario"
+      o si conviene ampliarlo)
+
+## 3. Procedimientos HALO
+
+- [ ] Cricotiroidotomía quirúrgica
+- [ ] Toracotomía de reanimación
+- [ ] Histerotomía de reanimación (cesárea perimortem)
+- [ ] Pericardiocentesis de emergencia
+- [ ] Cantotomía lateral y cantólisis
+- [ ] Instalación de sonda de taponamiento esofagogástrico (balón de
+      Sengstaken-Blakemore o Minnesota)
+- [ ] Colocación de marcapasos transvenoso de emergencia
+- [ ] Toracostomía simple (a dedo) y colocación de tubo pleural en paro o
+      shock traumático
+- [ ] Aspiración e irrigación intracavernosa para priapismo isquémico
+- [ ] Artrocentesis diagnóstica de grandes articulaciones en sospecha de
+      artritis séptica
+- [ ] Cistostomía por punción suprapúbica de urgencia

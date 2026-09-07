@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist Fibrinólisis IAMCEST</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --display: 'Syne', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99,102,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(239,68,68,0.06) 0%, transparent 50%);
+  }
+
+  /* GRID BG */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header {
+    margin-bottom: 48px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.25);
+    color: #fca5a5;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+
+  .header-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--red);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--red);
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+
+  h1 span {
+    background: linear-gradient(135deg, #ef4444, #f97316);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    letter-spacing: 0.04em;
+  }
+
+  /* PROGRESS BAR */
+  .progress-bar-track {
+    flex: 1;
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ef4444, #f97316);
+    border-radius: 100px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px rgba(239,68,68,0.5);
+  }
+
+  .progress-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  #progress-pct {
+    color: var(--red);
+    font-weight: 500;
+  }
+
+  /* PROGRESS BOTTOM */
+  .progress-bottom {
+    margin-top: 32px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  /* REFERENCES FOOTER */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.7s both;
+  }
+
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .references-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .references-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .ref-item::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--red);
+  }
+
+  .ref-item a {
+    color: #60a5fa;
+    text-decoration: none;
+  }
+
+  .ref-item a:hover { text-decoration: underline; }
+
+  .ref-validated {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 10px;
+    color: #10b981;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* RESET BTN */
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .section:nth-child(1) { animation-delay: 0.1s; }
+  .section:nth-child(2) { animation-delay: 0.2s; }
+  .section:nth-child(3) { animation-delay: 0.3s; }
+  .section:nth-child(4) { animation-delay: 0.4s; }
+  .section:nth-child(5) { animation-delay: 0.5s; }
+
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    flex: 1;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-chevron {
+    color: var(--text-muted);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  /* COLORS PER SECTION */
+  .s1 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s1 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+
+  .s2 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 { --accent: var(--red); --accent-glow: var(--red-glow); }
+
+  .s3 .section-num { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s3 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+
+  .s4 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s4 { --accent: var(--indigo); --accent-glow: rgba(99,102,241,0.12); }
+
+  .s5 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s5 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+
+  /* CHECKLIST ITEMS */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .check-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .check-item:hover::before { opacity: 1; }
+  .check-item:hover { border-color: rgba(255,255,255,0.12); }
+
+  .check-item.checked {
+    border-color: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.02);
+  }
+
+  .check-item.checked::before { opacity: 0.5; }
+
+  .checkbox {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+    background: transparent;
+  }
+
+  .check-item.checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+
+  .checkmark {
+    opacity: 0;
+    transform: scale(0) rotate(-10deg);
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  .check-item.checked .checkmark { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  .check-label {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-dim);
+    transition: color 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .check-item.checked .check-label {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(100,116,139,0.5);
+  }
+
+  .check-label strong { color: #fff; font-weight: 500; }
+
+  /* WARNING BANNER */
+  .warning-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    color: #fca5a5;
+    line-height: 1.5;
+  }
+
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+  }
+
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+
+  td:first-child { font-weight: 600; color: var(--text); }
+
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+
+  /* TNK TABLE */
+  .tnk-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 14px;
+    font-family: var(--mono);
+    line-height: 1.6;
+  }
+
+  .tnk-note span { color: #a5b4fc; font-weight: 500; }
+
+  td .lt75 { color: #93c5fd; }
+  td .gte75 { color: #fcd34d; }
+
+  /* REPERFUSION CRITERIA */
+  .criteria-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+
+  .criterion {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: rgba(16,185,129,0.05);
+    border: 1px solid rgba(16,185,129,0.15);
+    border-radius: 10px;
+  }
+
+  .criterion-icon { font-size: 18px; flex-shrink: 0; }
+
+  .criterion-text {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .criterion-text strong { color: #6ee7b7; font-weight: 600; }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 40px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    animation: fadeUp 0.5s ease 0.6s both;
+  }
+
+  /* STATUS BADGE */
+  .status-badge {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.3);
+    border-radius: 12px;
+    padding: 12px 18px;
+    font-size: 13px;
+    color: #6ee7b7;
+    font-family: var(--mono);
+    animation: slideIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  .status-badge.show { display: flex; }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTION COMPLETE */
+  .section.all-checked .section-header { background: rgba(255,255,255,0.02); }
+
+  .section-check-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 100px;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <h1>Checklist <span>Fibrinólisis</span><br>IAMCEST</h1>
+
+    <div class="status-badge" id="statusBadge">
+      ✓ &nbsp; Checklist completo — Verificar antes de administrar
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section s1" id="s1">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">Criterios de Ingreso</div>
+        <div class="section-subtitle">Confirmar todos para proceder</div>
+      </div>
+      <span class="section-check-count" id="count-s1">0/3</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="checklist" id="list-s1">
+        <div class="check-item" onclick="toggle(this, 's1')" data-total="3">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>Dolor Torácico:</strong> Sugerente de isquemia con &lt;12 h de evolución</div>
+        </div>
+        <div class="check-item" onclick="toggle(this, 's1')" data-total="3">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>ECG:</strong> Supradesnivel ST ≥0.1 mV en ≥2 derivadas contiguas (ver ajustes en V2–V3)</div>
+        </div>
+        <div class="check-item" onclick="toggle(this, 's1')" data-total="3">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>Tiempo de Traslado:</strong> Tiempo estimado a Hemodinamia para PCI &gt;120 min</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section s2" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Contraindicaciones Absolutas</div>
+        <div class="section-subtitle">Cualquier SÍ anula el fármaco</div>
+      </div>
+      <span class="section-check-count" id="count-s2">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>Marcar cada ítem como <strong>DESCARTADO</strong>. Si alguna respuesta es SÍ, la fibrinólisis está contraindicada de forma absoluta.</span>
+      </div>
+      <div class="checklist" id="list-s2">
+        <div class="check-item" onclick="toggle(this, 's2')" data-total="7">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label">¿Antecedente de ACV hemorrágico o proceso intracraneal?</div>
+        </div>
+        <div class="check-item" onclick="toggle(this, 's2')" data-total="7">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label">¿ACV isquémico en los últimos <strong>6 meses</strong>?</div>
+        </div>
+        <div class="check-item" onclick="toggle(this, 's2')" data-total="7">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label">¿Trauma grave, cirugía mayor o lesión craneal en las últimas <strong>3 semanas</strong>?</div>
+        </div>
+        <div class="check-item" onclick="toggle(this, 's2')" data-total="7">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label">¿Hemorragia gastrointestinal en el último <strong>mes</strong>?</div>
+        </div>
+        <div class="check-item" onclick="toggle(this, 's2')" data-total="7">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label">¿Trastorno hemorrágico conocido (excepto menstruación)?</div>
+        </div>
+        <div class="check-item" onclick="toggle(this, 's2')" data-total="7">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label">¿Sospecha de <strong>disección aórtica</strong>?</div>
+        </div>
+        <div class="check-item" onclick="toggle(this, 's2')" data-total="7">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label">¿Punciones no compresibles en las últimas <strong>24 h</strong> (biopsia hepática, punción lumbar)?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section s3" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Preparación y Adyuvancia</div>
+        <div class="section-subtitle">Ajustada por edad del paciente</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Fármaco</th>
+              <th>Adulto &lt;75 años</th>
+              <th>Adulto ≥75 años</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Aspirina</td>
+              <td><span class="dose-main lt75">250–300 mg masticados</span></td>
+              <td><span class="dose-main gte75">250–300 mg masticados</span></td>
+            </tr>
+            <tr>
+              <td>Clopidogrel</td>
+              <td><span class="dose-main lt75">Carga de 300 mg</span></td>
+              <td><span class="dose-main gte75">Solo 75 mg</span><br><span class="dose-note">Sin carga</span></td>
+            </tr>
+            <tr>
+              <td>Tenecteplasa (TNK)</td>
+              <td><span class="dose-main lt75">Dosis Completa</span><br><span class="dose-note">según peso</span></td>
+              <td><span class="dose-main gte75">Dosis al 50%</span><br><span class="dose-note">según peso</span></td>
+            </tr>
+            <tr>
+              <td>Enoxaparina</td>
+              <td><span class="dose-main lt75">Bolo 30 mg IV + 1 mg/kg SC</span></td>
+              <td><span class="dose-main gte75">Sin bolo IV</span><br><span class="dose-note">0.75 mg/kg SC</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section s4" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Dosificación Tenecteplasa (TNK)</div>
+        <div class="section-subtitle">Según peso corporal</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="tnk-note">
+        💊 Diluir <span>5 mg en 10 ml</span> de agua bidestilada &nbsp;·&nbsp; Administrar como <span>bolo en 10 segundos</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Peso (kg)</th>
+              <th style="color:#93c5fd">Vol. &lt;75 años</th>
+              <th style="color:#fcd34d">Vol. ≥75 años (50%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>&lt; 60 kg</td>
+              <td><span class="dose-main lt75">30 mg</span> <span class="dose-note">(6 ml)</span></td>
+              <td><span class="dose-main gte75">15 mg</span> <span class="dose-note">(3 ml)</span></td>
+            </tr>
+            <tr>
+              <td>60 – 69 kg</td>
+              <td><span class="dose-main lt75">35 mg</span> <span class="dose-note">(7 ml)</span></td>
+              <td><span class="dose-main gte75">17.5 mg</span> <span class="dose-note">(3.5 ml)</span></td>
+            </tr>
+            <tr>
+              <td>70 – 79 kg</td>
+              <td><span class="dose-main lt75">40 mg</span> <span class="dose-note">(8 ml)</span></td>
+              <td><span class="dose-main gte75">20 mg</span> <span class="dose-note">(4 ml)</span></td>
+            </tr>
+            <tr>
+              <td>80 – 89 kg</td>
+              <td><span class="dose-main lt75">45 mg</span> <span class="dose-note">(9 ml)</span></td>
+              <td><span class="dose-main gte75">22.5 mg</span> <span class="dose-note">(4.5 ml)</span></td>
+            </tr>
+            <tr>
+              <td>≥ 90 kg</td>
+              <td><span class="dose-main lt75">50 mg</span> <span class="dose-note">(10 ml)</span></td>
+              <td><span class="dose-main gte75">25 mg</span> <span class="dose-note">(5 ml)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section s5" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Monitorización y Reperfusión</div>
+        <div class="section-subtitle">Seguridad post-administración</div>
+      </div>
+      <span class="section-check-count" id="count-s5">0/2</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="checklist" id="list-s5">
+        <div class="check-item" onclick="toggle(this, 's5')" data-total="2">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>Control de PA:</strong> Mantener &lt;180/110 mmHg durante el procedimiento</div>
+        </div>
+        <div class="check-item" onclick="toggle(this, 's5')" data-total="2">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>Signos de alarma:</strong> Evaluar compromiso de conciencia, cefalea súbita o signos de sangrado activo</div>
+        </div>
+      </div>
+
+      <div class="criteria-grid">
+        <div style="font-family: var(--mono); font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; margin-bottom: 2px;">Criterios de éxito (60–90 min)</div>
+        <div class="criterion">
+          <span class="criterion-icon">📉</span>
+          <div class="criterion-text"><strong>Resolución del ST &gt;50%</strong> en derivadas inicialmente afectadas</div>
+        </div>
+        <div class="criterion">
+          <span class="criterion-icon">🔕</span>
+          <div class="criterion-text"><strong>Cese del dolor anginoso</strong></div>
+        </div>
+        <div class="criterion">
+          <span class="criterion-icon">⚡</span>
+          <div class="criterion-text"><strong>Arritmias de reperfusión</strong> — ej. RIVA (ritmo idioventricular acelerado)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRESS BAR BOTTOM -->
+  <div class="progress-bottom">
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" id="progressBar"></div>
+    </div>
+    <div class="progress-label"><span id="progress-pct">0%</span> completado</div>
+    <button class="reset-btn" onclick="resetAll()">↺ Reiniciar</button>
+  </div>
+
+  <!-- REFERENCES FOOTER -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">O'Gara PT, et al. <em>2013 ACCF/AHA Guideline for the Management of ST-Elevation Myocardial Infarction.</em> J Am Coll Cardiol. 2013;61(4):e78–e140.</div>
+      <div class="ref-item">Lawton JS, et al. <em>2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes.</em> Circulation. 2025. <a href="https://www.ahajournals.org/doi/10.1161/CIR.0000000000001309" target="_blank">DOI: 10.1161/CIR.0000000000001309</a></div>
+      <div class="ref-item">Armstrong PW, et al. <em>Fibrinolysis or Primary PCI in ST-Segment Elevation Myocardial Infarction (STREAM-1).</em> N Engl J Med. 2013;368:1379–1387. — Justifica dosis 50% TNK en ≥75 años por exceso de HIC.</div>
+      <div class="ref-item">Bainey KR, et al. <em>Pharmaco-Invasive Strategy With Half-Dose Tenecteplase in STEMI Patients ≥75 Years: STREAM-1 & 2 Pooled Analysis.</em> Circ Cardiovasc Interv. 2024. <a href="https://www.ahajournals.org/doi/10.1161/CIRCINTERVENTIONS.124.014251" target="_blank">DOI: 10.1161/CIRCINTERVENTIONS.124.014251</a></div>
+      <div class="ref-item">Ibanez B, et al. <em>2017 ESC Guidelines for the Management of Acute Myocardial Infarction in Patients Presenting with ST-Segment Elevation.</em> Eur Heart J. 2018;39(2):119–177.</div>
+      <div class="ref-item">Ministerio de Salud de Chile. <em>Guía Clínica AUGE: Infarto Agudo del Miocardio con Elevación del Segmento ST.</em> MINSAL 2015.</div>
+    </div>
+
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  const state = { s1: 0, s2: 0, s5: 0 };
+  const totals = { s1: 3, s2: 7, s5: 2 };
+  const TOTAL_CHECKS = 12;
+
+  function toggle(el, section) {
+    el.classList.toggle('checked');
+    const checked = el.classList.contains('checked');
+    state[section] = document.querySelectorAll(`#list-${section} .check-item.checked`).length;
+    updateCount(section);
+    updateProgress();
+  }
+
+  function updateCount(section) {
+    const el = document.getElementById(`count-${section}`);
+    if (!el) return;
+    const n = state[section];
+    const t = totals[section];
+    el.textContent = `${n}/${t}`;
+    if (n === t) {
+      el.style.background = 'rgba(16,185,129,0.15)';
+      el.style.borderColor = 'rgba(16,185,129,0.3)';
+      el.style.color = '#6ee7b7';
+    } else {
+      el.style.background = '';
+      el.style.borderColor = '';
+      el.style.color = '';
+    }
+  }
+
+  function updateProgress() {
+    const total = state.s1 + state.s2 + state.s5;
+    const pct = Math.round((total / TOTAL_CHECKS) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+
+    const badge = document.getElementById('statusBadge');
+    if (pct === 100) {
+      badge.classList.add('show');
+    } else {
+      badge.classList.remove('show');
+    }
+  }
+
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.check-item.checked').forEach(el => el.classList.remove('checked'));
+    state.s1 = 0; state.s2 = 0; state.s5 = 0;
+    ['s1','s2','s5'].forEach(s => updateCount(s));
+    updateProgress();
+  }
+</script>
+</body>
+</html>

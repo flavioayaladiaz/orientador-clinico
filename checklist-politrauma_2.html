@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist Reanimación Politrauma</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --violet: #8b5cf6;
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --display: 'Syne', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(239,68,68,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(99,102,241,0.06) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 40px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(26px, 5vw, 42px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+
+  h1 span {
+    background: linear-gradient(135deg, #ef4444, #f97316);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* CLINICAL NOTE */
+  .clinical-update {
+    margin-top: 16px;
+    background: rgba(245,158,11,0.07);
+    border: 1px solid rgba(245,158,11,0.2);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 12.5px;
+    color: #fcd34d;
+    line-height: 1.6;
+    font-family: var(--mono);
+  }
+
+  .clinical-update strong { color: #fff; }
+
+  /* PROGRESS */
+  .progress-bottom {
+    margin-top: 32px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .progress-bar-track {
+    flex: 1;
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ef4444, #f97316);
+    border-radius: 100px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px rgba(239,68,68,0.5);
+  }
+
+  .progress-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  #progress-pct { color: var(--red); font-weight: 500; }
+
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+  /* STATUS BADGE */
+  .status-badge {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.3);
+    border-radius: 12px;
+    padding: 12px 18px;
+    font-size: 13px;
+    color: #6ee7b7;
+    font-family: var(--mono);
+    animation: slideIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .status-badge.show { display: flex; }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section:nth-child(1) { animation-delay: 0.1s; }
+  .section:nth-child(2) { animation-delay: 0.15s; }
+  .section:nth-child(3) { animation-delay: 0.2s; }
+  .section:nth-child(4) { animation-delay: 0.25s; }
+  .section:nth-child(5) { animation-delay: 0.3s; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    flex: 1;
+  }
+
+  .section-subtitle { font-size: 12px; color: var(--text-muted); font-family: var(--mono); margin-top: 2px; }
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section-body { padding: 20px 24px 24px; }
+
+  .section-check-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 100px;
+    transition: all 0.3s;
+  }
+
+  /* SECTION COLORS */
+  .s1 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s1 { --accent: var(--red); --accent-glow: var(--red-glow); }
+
+  .s2 .section-num { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s2 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+
+  .s3 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s3 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+
+  .s4 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s4 { --accent: var(--indigo); --accent-glow: rgba(99,102,241,0.12); }
+
+  .s5 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s5 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .check-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .check-item:hover::before { opacity: 1; }
+  .check-item:hover { border-color: rgba(255,255,255,0.12); }
+
+  .check-item.checked {
+    border-color: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.02);
+  }
+  .check-item.checked::before { opacity: 0.5; }
+
+  .checkbox {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+  }
+
+  .check-item.checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+
+  .checkmark {
+    opacity: 0;
+    transform: scale(0) rotate(-10deg);
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .check-item.checked .checkmark { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  .check-label {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-dim);
+    transition: color 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .check-item.checked .check-label {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(100,116,139,0.5);
+  }
+
+  .check-label strong { color: #fff; font-weight: 500; }
+
+  /* ROLES GRID */
+  .roles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+  }
+
+  .role-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    transition: all 0.2s;
+  }
+
+  .role-card:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-1px); }
+
+  .role-name {
+    font-family: var(--display);
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .role-icon {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .role-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ABC SCORE CALC */
+  .abc-box {
+    background: var(--surface2);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+
+  .abc-title {
+    font-family: var(--display);
+    font-size: 13px;
+    font-weight: 700;
+    color: #fcd34d;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .abc-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .abc-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: rgba(245,158,11,0.06);
+    border: 1px solid rgba(245,158,11,0.15);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+
+  .abc-item:hover { background: rgba(245,158,11,0.12); }
+  .abc-item.active { background: rgba(245,158,11,0.2); border-color: rgba(245,158,11,0.4); }
+
+  .abc-check {
+    width: 20px; height: 20px;
+    border-radius: 5px;
+    border: 2px solid rgba(245,158,11,0.4);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+
+  .abc-item.active .abc-check {
+    background: var(--amber);
+    border-color: var(--amber);
+  }
+
+  .abc-check-mark {
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .abc-item.active .abc-check-mark { opacity: 1; transform: scale(1); }
+
+  .abc-item-label { font-size: 12px; color: var(--text-dim); line-height: 1.3; }
+
+  .abc-result {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    transition: all 0.4s;
+  }
+
+  .abc-result.alert {
+    background: rgba(239,68,68,0.1);
+    border-color: rgba(239,68,68,0.35);
+  }
+
+  .abc-score-num {
+    font-family: var(--display);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-muted);
+    transition: color 0.3s;
+    line-height: 1;
+  }
+
+  .abc-result.alert .abc-score-num { color: var(--red); }
+
+  .abc-score-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    transition: color 0.3s;
+  }
+
+  .abc-result.alert .abc-score-label { color: #fca5a5; }
+
+  /* DRUGS */
+  .drugs-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+
+  .drug-pill {
+    background: rgba(99,102,241,0.1);
+    border: 1px solid rgba(99,102,241,0.25);
+    border-radius: 100px;
+    padding: 7px 14px;
+    font-size: 12px;
+    color: #a5b4fc;
+    font-family: var(--mono);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .drug-pill .drug-icon { font-size: 14px; }
+
+  /* efast table */
+  .efast-table { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+
+  .efast-table th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 11px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+  }
+
+  .efast-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+    font-size: 13px;
+  }
+
+  .efast-table tr:last-child td { border-bottom: none; }
+  .efast-table tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 9px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-family: var(--mono);
+    font-weight: 500;
+  }
+
+  .tag-pos { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.25); }
+  .tag-neg { background: rgba(100,116,139,0.12); color: var(--text-muted); border: 1px solid var(--border); }
+  .tag-stable { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .tag-unstable { background: rgba(239,68,68,0.12); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .tag-action { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); font-weight: 600; }
+
+  /* METAS */
+  .metas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .meta-card {
+    border-radius: 14px;
+    padding: 18px;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .meta-card.sin-tec {
+    background: rgba(59,130,246,0.06);
+    border-color: rgba(59,130,246,0.2);
+  }
+
+  .meta-card.con-tec {
+    background: rgba(239,68,68,0.06);
+    border-color: rgba(239,68,68,0.2);
+  }
+
+  .meta-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .meta-card.sin-tec .meta-label { color: #93c5fd; }
+  .meta-card.con-tec .meta-label { color: #fca5a5; }
+
+  .meta-value {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .meta-note { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+
+  .meta-tag {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 100px;
+  }
+
+  .sin-tec .meta-tag { background: rgba(59,130,246,0.15); color: #93c5fd; }
+  .con-tec .meta-tag { background: rgba(239,68,68,0.15); color: #fca5a5; }
+
+  /* RESUMEN */
+  .resumen-box {
+    background: var(--surface2);
+    border: 1px solid rgba(16,185,129,0.2);
+    border-radius: 14px;
+    padding: 20px;
+  }
+
+  .resumen-script {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    font-style: italic;
+    margin-bottom: 16px;
+  }
+
+  .fill-blank {
+    display: inline-block;
+    background: rgba(99,102,241,0.1);
+    border-bottom: 1.5px solid rgba(99,102,241,0.4);
+    border-radius: 3px;
+    padding: 1px 8px;
+    color: #a5b4fc;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-style: normal;
+    min-width: 60px;
+    cursor: text;
+    outline: none;
+    transition: background 0.2s;
+  }
+
+  .fill-blank:focus, .fill-blank:not(:empty) {
+    background: rgba(99,102,241,0.18);
+    border-bottom-color: #6366f1;
+    color: #c4b5fd;
+  }
+
+  .resumen-hint {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* WARNING */
+  .warning-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    color: #fca5a5;
+    line-height: 1.5;
+  }
+
+  .info-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: rgba(245,158,11,0.07);
+    border: 1px solid rgba(245,158,11,0.2);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 14px;
+    font-size: 12.5px;
+    color: #fcd34d;
+    line-height: 1.5;
+    font-family: var(--mono);
+  }
+
+  /* REFERENCES */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.7s both;
+  }
+
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .references-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--red); }
+
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 20px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    .abc-items { grid-template-columns: 1fr; }
+    .metas-grid { grid-template-columns: 1fr; }
+    .roles-grid { grid-template-columns: 1fr; }
+    .efast-table th, .efast-table td { padding: 9px 10px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <h1>Checklist <span>Reanimación</span><br>en Politrauma</h1>
+  </div>
+
+  <!-- S1: ROLES -->
+  <div class="section s1" id="s1">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">Asignación de Roles</div>
+        <div class="section-subtitle">Equipo de 6 personas · Definir antes de recibir al paciente</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="roles-grid">
+        <div class="role-card">
+          <div class="role-name">
+            <div class="role-icon" style="background:rgba(239,68,68,0.15)">👑</div>
+            Líder
+          </div>
+          <div class="role-desc">Toma de decisiones clínicas, define metas de presión y dirige el Resumen de Salida.</div>
+        </div>
+        <div class="role-card">
+          <div class="role-name">
+            <div class="role-icon" style="background:rgba(59,130,246,0.15)">🫁</div>
+            Vía Aérea
+          </div>
+          <div class="role-desc">Manejo de oxigenación, succión y asiste intubación/ventilación.</div>
+        </div>
+        <div class="role-card">
+          <div class="role-name">
+            <div class="role-icon" style="background:rgba(16,185,129,0.15)">🔊</div>
+            Ecografista
+          </div>
+          <div class="role-desc">Ejecución exclusiva del e-FAST: ventanas pleurales y abdominales.</div>
+        </div>
+        <div class="role-card">
+          <div class="role-name">
+            <div class="role-icon" style="background:rgba(245,158,11,0.15)">📊</div>
+            Monitorización
+          </div>
+          <div class="role-desc">Constantes cada 3 min, temperatura continua, vigilancia de metas PAM/PAS y registro de HGT.</div>
+        </div>
+        <div class="role-card" style="grid-column: span 2;">
+          <div class="role-name">
+            <div class="role-icon" style="background:rgba(99,102,241,0.15)">💉</div>
+            Circulación ×2
+          </div>
+          <div class="role-desc">Accesos vasculares, toma de muestras, administración de PTM, TXA y Calcio.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S2: xABCDE -->
+  <div class="section s2" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Evaluación xABCDE</div>
+        <div class="section-subtitle">Secuencia de evaluación primaria.</div>
+      </div>
+      <span class="section-check-count" id="count-s2">0/6</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="checklist" id="list-s2">
+
+        <div class="check-item" onclick="toggle(this, 's2')" data-total="6">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>[X] Exanguinación:</strong> Control de hemorragias externas catastróficas.</em></div>
+        </div>
+
+        <div class="check-item" onclick="toggle(this, 's2')" data-total="6">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>[A] Vía Aérea:</strong> Permeabilidad + Control cervical</div>
+        </div>
+
+        <div class="check-item" onclick="toggle(this, 's2')" data-total="6">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>[B] Ventilación:</strong> Auscultación bilateral + e-FAST Pleural</div>
+        </div>
+
+        <div class="check-item" onclick="toggle(this, 's2')" data-total="6">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>[C] Circulación:</strong> Calcular Score ABC → activar PTM si ≥2. Administrar <strong>TXA 2g IV bolo</strong> (dentro de 3 h del trauma) + <strong>Gluconato de Calcio 1g IV (si PTM).</strong></div>
+        </div>
+
+        <div class="check-item" onclick="toggle(this, 's2')" data-total="6">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>[D] Déficit Neurológico:</strong> Glasgow-P + HGT.</div>
+        </div>
+
+        <div class="check-item" onclick="toggle(this, 's2')" data-total="6">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>[E] Exposición:</strong> Búsqueda de lesiones ocultas + Prevención de hipotermia.</div>
+        </div>
+
+      </div>
+
+      <!-- ABC SCORE CALCULATOR -->
+      <div style="margin-top:20px;">
+        <div class="abc-box">
+          <div class="abc-title">🩸 Score ABC — Activación de PTM</div>
+          <div class="abc-items">
+            <div class="abc-item" onclick="toggleABC(this)" id="abc1">
+              <div class="abc-check"><svg class="abc-check-mark" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="abc-item-label">Mecanismo <strong>Penetrante</strong></div>
+            </div>
+            <div class="abc-item" onclick="toggleABC(this)" id="abc2">
+              <div class="abc-check"><svg class="abc-check-mark" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="abc-item-label"><strong>PAS ≤ 90</strong> mmHg</div>
+            </div>
+            <div class="abc-item" onclick="toggleABC(this)" id="abc3">
+              <div class="abc-check"><svg class="abc-check-mark" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="abc-item-label"><strong>FC ≥ 120</strong> lpm</div>
+            </div>
+            <div class="abc-item" onclick="toggleABC(this)" id="abc4">
+              <div class="abc-check"><svg class="abc-check-mark" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="abc-item-label">e-FAST <strong>Positivo</strong></div>
+            </div>
+          </div>
+          <div class="abc-result" id="abcResult">
+            <div class="abc-score-num" id="abcNum">0</div>
+            <div class="abc-score-label" id="abcLabel">Score ABC = 0 · PTM no indicada por criterio numérico</div>
+          </div>
+        </div>
+
+        <div class="drugs-row">
+          <div class="drug-pill"><span class="drug-icon">💉</span> TXA 2g IV · bolo único · ≤ 3h post-trauma</div>
+          <div class="drug-pill"><span class="drug-icon">🧪</span> Gluconato Ca²⁺ 1g IV</div>
+          <div class="drug-pill" style="background:rgba(239,68,68,0.08);border-color:rgba(239,68,68,0.2);color:#fca5a5;"><span class="drug-icon">🩸</span> PTM si Score ABC ≥ 2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S3: efast -->
+  <div class="section s3" id="s3">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Protocolo e-FAST y Conducta</div>
+        <div class="section-subtitle">Decisiones según hallazgo + estado hemodinámico</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <table class="efast-table">
+        <thead>
+          <tr>
+            <th>Hallazgo e-FAST</th>
+            <th>Estado Hemodinámico</th>
+            <th>Conducta Inmediata</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag tag-pos">Positivo (+)</span></td>
+            <td><span class="tag tag-unstable">Inestable</span> PAS &lt;90 / PAM &lt;60</td>
+            <td><span class="tag tag-action">PABELLÓN DIRECTO</span><br><span style="font-size:12px;color:var(--text-muted)">Laparotomía de control de daños</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-pos">Positivo (+)</span></td>
+            <td><span class="tag tag-stable">Estable</span></td>
+            <td><span class="tag tag-action">TAC CUERPO COMPLETO</span><br><span style="font-size:12px;color:var(--text-muted)">Pan-TAC</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-neg">Negativo (–)</span></td>
+            <td><span class="tag tag-unstable">Inestable</span></td>
+            <td style="color:var(--text-dim)">Buscar foco pélvico, retroperitoneal o en extremidades</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-pos">Positivo (+)</span></td>
+            <td>PCR <5 minutos</td>
+            <td><span class="tag tag-action">TORACOTOMÍA RESUCITATIVA</span><br><span style="font-size:12px;color:var(--text-muted)">Toracostomía digital bilateral</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- S4: METAS -->
+  <div class="section s4" id="s4">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+		  <div class="section-title">Metas presoras en caso de TEC</div>
+      </div>
+      <span class="section-check-count" id="count-s4">0/2</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="metas-grid" style="margin-bottom:16px;">
+        <div class="meta-card sin-tec">
+          <span class="meta-tag">Escenario A</span>
+          <div class="meta-label">Sin TEC</div>
+          <div class="meta-value">PAS 80–90</div>
+        </div>
+        <div class="meta-card con-tec">
+          <span class="meta-tag">Escenario B</span>
+          <div class="meta-label">Con TEC asociado</div>
+          <div class="meta-value">PAS ≥ 110</div>
+        </div>
+      </div>
+      <div class="checklist" id="list-s4">
+        <div class="check-item" onclick="toggle(this, 's4')" data-total="2">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label">Se confirmó presencia o ausencia de <strong>TEC asociado</strong></div>
+        </div>
+        <div class="check-item" onclick="toggle(this, 's4')" data-total="2">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>Meta de PAS definida y comunicada</strong> al equipo por el Líder</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S5: RESUMEN -->
+  <div class="section s5" id="s5">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Resumen de Salida</div>
+        <div class="section-subtitle">El Líder verbaliza antes del traslado</div>
+      </div>
+      <span class="section-check-count" id="count-s5">0/2</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="resumen-box">
+        <div class="resumen-script">
+          "Equipo, cerramos evaluación: Paciente de
+          <span class="fill-blank" contenteditable="true" data-placeholder="__ años">__ años</span>,
+          trauma por <span class="fill-blank" contenteditable="true" data-placeholder="mecanismo">___</span>,
+          con Score ABC de <span class="fill-blank" contenteditable="true" data-placeholder="0-4">___</span>.
+          Estamos con <span class="fill-blank" contenteditable="true" data-placeholder="PTM/Cristaloides">___</span>,
+          administrados 2g de TXA y 1g de Calcio (si corresponde).
+          Ecografista reporta e-FAST <span class="fill-blank" contenteditable="true" data-placeholder="(+)/(-)">___</span>
+          en <span class="fill-blank" contenteditable="true" data-placeholder="hallazgo">___</span>.
+          Se confirma que, al
+          <span class="fill-blank" contenteditable="true" data-placeholder="tener/no tener">___</span>
+          TEC asociado, la meta es PAS
+          <span class="fill-blank" contenteditable="true" data-placeholder="80-90 / ≥110">___</span>,
+          actualmente en <span class="fill-blank" contenteditable="true" data-placeholder="valor">___</span>.
+          Con antibióticos (si corresponde) y analgesia, trasladamos a
+          <span class="fill-blank" contenteditable="true" data-placeholder="destino">___</span>.
+          ¿Observaciones del equipo?"
+        </div>
+        <div class="resumen-hint">✏️ Haz clic en los espacios azules para completar el resumen</div>
+      </div>
+
+      <div class="checklist" id="list-s5" style="margin-top:14px;">
+        <div class="check-item" onclick="toggle(this, 's5')" data-total="2">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>Resumen verbalizado</strong> en voz alta por el Líder</div>
+        </div>
+        <div class="check-item" onclick="toggle(this, 's5')" data-total="2">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>Equipo confirmó</strong> — sin observaciones pendientes. Traslado autorizado.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRESS BAR BOTTOM -->
+  <div class="progress-bottom">
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" id="progressBar"></div>
+    </div>
+    <div class="progress-label"><span id="progress-pct">0%</span> completado</div>
+    <button class="reset-btn" onclick="resetAll()">↺ Reiniciar</button>
+  </div>
+
+  <div class="status-badge" id="statusBadge">
+    ✓ &nbsp; Checklist completo — Equipo listo para traslado
+  </div>
+
+  <!-- REFERENCES -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">American College of Surgeons. <em>ATLS: Advanced Trauma Life Support, 11th Edition.</em> ACS Committee on Trauma. 2025. — Introduce xABCDE, hipotensión permisiva y reducción de cristaloides.</div>
+      <div class="ref-item">Rossaint R, et al. <em>The European Guideline on Management of Major Bleeding and Coagulopathy Following Trauma: Sixth Edition.</em> Crit Care. 2023;27(1):80. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9977110/" target="_blank">PMC9977110</a></div>
+      <div class="ref-item">Brain Trauma Foundation. <em>Guidelines for the Management of Severe Traumatic Brain Injury, 5th Edition.</em> 2024. — Umbral PAS ≥110 mmHg en TEC para protección cerebral.</div>
+      <div class="ref-item">Nunez TC, et al. <em>Early prediction of massive transfusion in trauma: simple as ABC.</em> J Trauma. 2009;66(2):346–352. — Derivación y validación del Score ABC (corte ≥2).</div>
+      <div class="ref-item">Cotton BA, et al. <em>Multicenter validation of a simplified score to predict massive transfusion in trauma.</em> J Trauma. 2010;69(suppl 1):S33–S39.</div>
+      <div class="ref-item">CRASH-2 Collaborators. <em>Effects of tranexamic acid on death, vascular occlusive events, and blood transfusion in trauma.</em> Lancet. 2010;376:23–32. — Base para TXA en trauma hemorrágico; máximo beneficio ≤1h, eficaz hasta 3h.</div>
+      <div class="ref-item">Rowell SE, et al. <em>Effect of Out-of-Hospital Tranexamic Acid vs Placebo on 6-Month Functional Neurologic Outcomes in Patients With Moderate or Severe TBI (PATCH-Trauma).</em> JAMA. 2023;329(12):1003–1016. — Evidencia para dosis 2g en bolo único.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  const state = { s2: 0, s4: 0, s5: 0 };
+  const totals = { s2: 6, s4: 2, s5: 2 };
+  const TOTAL_CHECKS = 10;
+
+  function toggle(el, section) {
+    el.classList.toggle('checked');
+    state[section] = document.querySelectorAll(`#list-${section} .check-item.checked`).length;
+    updateCount(section);
+    updateProgress();
+  }
+
+  function updateCount(section) {
+    const el = document.getElementById(`count-${section}`);
+    if (!el) return;
+    const n = state[section], t = totals[section];
+    el.textContent = `${n}/${t}`;
+    if (n === t) {
+      el.style.background = 'rgba(16,185,129,0.15)';
+      el.style.borderColor = 'rgba(16,185,129,0.3)';
+      el.style.color = '#6ee7b7';
+    } else {
+      el.style.background = '';
+      el.style.borderColor = '';
+      el.style.color = '';
+    }
+  }
+
+  function updateProgress() {
+    const total = state.s2 + state.s4 + state.s5;
+    const pct = Math.round((total / TOTAL_CHECKS) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+    document.getElementById('statusBadge').classList.toggle('show', pct === 100);
+  }
+
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.check-item.checked').forEach(el => el.classList.remove('checked'));
+    document.querySelectorAll('.abc-item.active').forEach(el => el.classList.remove('active'));
+    state.s2 = 0; state.s4 = 0; state.s5 = 0;
+    ['s2','s4','s5'].forEach(s => updateCount(s));
+    updateProgress();
+    updateABC();
+    document.querySelectorAll('.fill-blank').forEach(el => {
+      el.textContent = el.dataset.placeholder || '___';
+    });
+  }
+
+  // ABC SCORE
+  function toggleABC(el) {
+    el.classList.toggle('active');
+    updateABC();
+  }
+
+  function updateABC() {
+    const score = document.querySelectorAll('.abc-item.active').length;
+    const numEl = document.getElementById('abcNum');
+    const labelEl = document.getElementById('abcLabel');
+    const resultEl = document.getElementById('abcResult');
+    numEl.textContent = score;
+    if (score >= 2) {
+      resultEl.classList.add('alert');
+      labelEl.textContent = `Score ABC = ${score} · ⚠️ ACTIVAR PROTOCOLO TRANSFUSIÓN MASIVA`;
+    } else {
+      resultEl.classList.remove('alert');
+      labelEl.textContent = `Score ABC = ${score} · PTM no indicada por criterio numérico`;
+    }
+  }
+
+  // Fill blanks: clear placeholder on focus
+  document.querySelectorAll('.fill-blank').forEach(el => {
+    if (el.textContent.trim() === el.dataset.placeholder || el.textContent.includes('__')) {
+      el.style.color = 'rgba(165,180,252,0.4)';
+    }
+    el.addEventListener('focus', function() {
+      if (this.textContent.trim() === this.dataset.placeholder || this.textContent.includes('__')) {
+        this.textContent = '';
+        this.style.color = '#c4b5fd';
+      }
+    });
+    el.addEventListener('blur', function() {
+      if (!this.textContent.trim()) {
+        this.textContent = this.dataset.placeholder || '___';
+        this.style.color = 'rgba(165,180,252,0.4)';
+      }
+    });
+  });
+</script>
+</body>
+</html>
