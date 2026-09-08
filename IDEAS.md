@@ -43,7 +43,7 @@ tomará en orden la próxima vez que corra.
 
 ## 0. Rebranding
 
-- [ ] Renombrar el proyecto de "UrgenCheck" a "**Orientador Clínico**" en todo el
+- [x] Renombrar el proyecto de "UrgenCheck" a "**Orientador Clínico**" en todo el
       repo: `index.html` (title, h1, meta description, disclaimer, footer),
       `manifest.json` (name, short_name), `sw.js` (comentario de cabecera y nombre
       de cache si incluye "urgencheck"). Mantener el tono y estructura visual

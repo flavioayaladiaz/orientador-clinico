@@ -1,7 +1,7 @@
 {
-  "name": "UrgenCheck — Checklists de urgencia",
-  "short_name": "UrgenCheck",
-  "description": "Checklists de reanimación con registro de tiempos. Funciona sin conexión.",
+  "name": "Orientador Clínico — Checklists de urgencia",
+  "short_name": "Orientador",
+  "description": "Orientador Clínico: checklists de reanimación con registro de tiempos. Funciona sin conexión.",
   "lang": "es",
   "start_url": "./index.html",
   "scope": "./",

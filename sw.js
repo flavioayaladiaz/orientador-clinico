@@ -1,9 +1,9 @@
-/* UrgenCheck — service worker
+/* Orientador Clínico — service worker
    Estrategia: cache-first con actualización en segundo plano.
    Al subir una nueva versión, cambia CACHE_VERSION y todos los
    dispositivos se actualizarán en su próxima conexión. */
 
-const CACHE_VERSION = "urgencheck-v0.3.1";
+const CACHE_VERSION = "orientador-clinico-v0.4.0";
 const ASSETS = [
   "./",
   "./index.html",
