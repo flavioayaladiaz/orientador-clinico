@@ -107,4 +107,13 @@ en su sección temática, porque el agente recorre el archivo en orden.
 
 - [ ] Síncope — *motivo de consulta* (guía de orientación: diferenciar síncope
       reflejo, ortostático y cardiogénico; red flags de causa arrítmica o
-      estructural; estudio inicial y criterios de hospitalización)
+      estructural; estudio inicial y criterios de hospitalización). Incluir el
+      **Canadian Syncope Risk Score** como calculadora interactiva dentro de la
+      misma página, en la sección de estratificación de riesgo: puntaje que
+      predice eventos adversos graves a 30 días en pacientes que consultan por
+      síncope, para apoyar la decisión de alta versus observación. Implementarlo
+      con sus variables y bandas de riesgo tomadas de la publicación original
+      (Thiruganasambandamoorthy V, et al. CMAJ 2016), dejando explícito que el
+      score complementa —no reemplaza— el juicio clínico, que no aplica a
+      pacientes con causa grave ya identificada en la evaluación inicial, y que
+      el umbral de alta se ajusta al protocolo institucional.
