@@ -99,3 +99,12 @@ tomará en orden la próxima vez que corra.
 - [ ] Artrocentesis diagnóstica de grandes articulaciones en sospecha de
       artritis séptica
 - [ ] Cistostomía por punción suprapúbica de urgencia
+
+## 4. Cola final
+
+Ítems que deben tomarse **al final**, después de todo lo anterior. Van aquí, y no
+en su sección temática, porque el agente recorre el archivo en orden.
+
+- [ ] Síncope — *motivo de consulta* (guía de orientación: diferenciar síncope
+      reflejo, ortostático y cardiogénico; red flags de causa arrítmica o
+      estructural; estudio inicial y criterios de hospitalización)
