@@ -52,7 +52,7 @@ tomará en orden la próxima vez que corra.
 ## 1. Motivos de consulta
 
 - [x] Infección urinaria — `guia-infeccion-urinaria.html`
-- [ ] Gastroenteritis (síndrome diarreico agudo)
+- [x] Gastroenteritis (síndrome diarreico agudo) — `guia-gastroenteritis.html`
 - [ ] Dolor torácico
 - [ ] Lumbago agudo
 - [ ] Dolor abdominal
