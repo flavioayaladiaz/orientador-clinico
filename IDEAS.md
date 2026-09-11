@@ -53,7 +53,7 @@ tomará en orden la próxima vez que corra.
 
 - [x] Infección urinaria — `guia-infeccion-urinaria.html`
 - [x] Gastroenteritis (síndrome diarreico agudo) — `guia-gastroenteritis.html`
-- [ ] Dolor torácico
+- [x] Dolor torácico — `guia-dolor-toracico.html`
 - [ ] Lumbago agudo
 - [ ] Dolor abdominal
 - [ ] Cefalea
