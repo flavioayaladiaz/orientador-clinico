@@ -117,3 +117,6 @@ en su sección temática, porque el agente recorre el archivo en orden.
       score complementa —no reemplaza— el juicio clínico, que no aplica a
       pacientes con causa grave ya identificada en la evaluación inicial, y que
       el umbral de alta se ajusta al protocolo institucional.
+- [ ] Trabajo de parto (de término y pretérmino)
+- [ ] Reanimación neonatal
+- [ ] Reanimación pediátrica (trauma y no trauma)
