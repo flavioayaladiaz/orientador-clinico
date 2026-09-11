@@ -49,7 +49,7 @@ tomará en orden la próxima vez que corra.
       de cache si incluye "urgencheck"). Mantener el tono y estructura visual
       actual; solo cambia el nombre/identidad, no la funcionalidad.
 
-## 1. Motivos de consulta
+## 1. Motivos de consulta frecuentes
 
 - [x] Infección urinaria — `guia-infeccion-urinaria.html`
 - [x] Gastroenteritis (síndrome diarreico agudo) — `guia-gastroenteritis.html`
@@ -77,28 +77,23 @@ tomará en orden la próxima vez que corra.
       hemorrágico y falla hepática aguda sobre crónica
 - [ ] Intoxicaciones graves por bloqueadores de canales de calcio o
       betabloqueadores con shock vasopléjico y cardiogénico
-- [ ] Politraumatizado grave (ya existe `checklist-politrauma_2.html` — revisar
-      y complementar si falta algo en vez de duplicar)
-- [ ] Shock séptico refractario con falla multiorgánica precoz (ya existe
-      `checklist-sepsis_4.html` — revisar si cubre el escenario "refractario"
-      o si conviene ampliarlo)
 
 ## 3. Procedimientos HALO
 
-- [ ] Cricotiroidotomía quirúrgica
-- [ ] Toracotomía de reanimación
+- [ ] Cricotiroidotomía percutánea usando kit con aguja
+- [ ] Toracotomía de reanimación (clamshell y clasica izquierda), con enfasis en las indicaciones, la temporalidad, el instrumental específico con fotos de referencia, intubación monobronquial para aislar el pulmon izquierdo y tubo pleural al lado derecho.
 - [ ] Histerotomía de reanimación (cesárea perimortem)
-- [ ] Pericardiocentesis de emergencia
+- [ ] Pericardiocentesis de emergencia (ecoguiada usando transductor de alta frecuencia en visión paraesternal larga con aguja en plano)
 - [ ] Cantotomía lateral y cantólisis
 - [ ] Instalación de sonda de taponamiento esofagogástrico (balón de
-      Sengstaken-Blakemore o Minnesota)
+      Sengstaken-Blakemore)
 - [ ] Colocación de marcapasos transvenoso de emergencia
 - [ ] Toracostomía simple (a dedo) y colocación de tubo pleural en paro o
       shock traumático
 - [ ] Aspiración e irrigación intracavernosa para priapismo isquémico
 - [ ] Artrocentesis diagnóstica de grandes articulaciones en sospecha de
-      artritis séptica
-- [ ] Cistostomía por punción suprapúbica de urgencia
+      artritis séptica (guiada por ecografía)
+- [ ] Cistostomía por punción suprapúbica de urgencia (usando CistoFix)
 
 ## 4. Cola final
 
