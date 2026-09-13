@@ -55,7 +55,7 @@ tomará en orden la próxima vez que corra.
 - [x] Gastroenteritis (síndrome diarreico agudo) — `guia-gastroenteritis.html`
 - [x] Dolor torácico — `guia-dolor-toracico.html`
 - [x] Lumbago agudo — `guia-lumbago-agudo.html`
-- [ ] Dolor abdominal
+- [x] Dolor abdominal — `guia-dolor-abdominal.html`
 - [ ] Cefalea
 - [ ] Policontusiones
 
