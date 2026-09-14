@@ -56,7 +56,7 @@ tomará en orden la próxima vez que corra.
 - [x] Dolor torácico — `guia-dolor-toracico.html`
 - [x] Lumbago agudo — `guia-lumbago-agudo.html`
 - [x] Dolor abdominal — `guia-dolor-abdominal.html`
-- [ ] Cefalea
+- [x] Cefalea — `guia-cefalea.html`
 - [ ] Policontusiones
 
 ## 2. Patologías complejas de urgencia
