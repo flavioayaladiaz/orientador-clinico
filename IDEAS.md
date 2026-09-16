@@ -61,8 +61,8 @@ tomará en orden la próxima vez que corra.
 
 ## 2. Patologías complejas de urgencia
 
-- [ ] Disección aórtica aguda (especialmente Stanford A o con presentaciones
-      atípicas y malperfusión)
+- [x] Disección aórtica aguda (especialmente Stanford A o con presentaciones
+      atípicas y malperfusión) — `algoritmo-diseccion-aortica.html`
 - [ ] Shock cardiogénico con falla ventricular derecha o biventricular aguda
       (e infarto de ventrículo derecho)
 - [ ] Status asmático grave con hiperinsuflación dinámica y riesgo de colapso
