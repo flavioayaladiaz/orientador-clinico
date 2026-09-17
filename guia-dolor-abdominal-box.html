@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Modo Box · Dolor abdominal</title>
+<meta name="description" content="Modo Box: orientación clínica en dolor abdominal agudo del adulto en urgencia, en formato de un paso a la vez con resultado fijo en pantalla, pensado para usarse junto al paciente.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --surface3: #212a40;
+    --border: rgba(255,255,255,0.07);
+    --border-strong: rgba(255,255,255,0.14);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(245,158,11,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(20,184,166,0.06) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 32px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245,158,11,0.1);
+    border: 1px solid rgba(245,158,11,0.25);
+    color: #fcd34d;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #f59e0b, #14b8a6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  .header-alt {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 9px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.03em;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .header-alt:hover { color: var(--text); border-color: var(--border-strong); }
+
+  /* SECTIONS (referencia completa) */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .s2 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s4 .section-num { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s4 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s5 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s5 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s6 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s6 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s7 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s7 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s8 .section-num { background: rgba(255,255,255,0.06); color: var(--text-dim); border: 1px solid var(--border); }
+  .s8 { --accent: var(--text-dim); --accent-glow: rgba(148,163,184,0.08); }
+
+  .reference-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 34px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .reference-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ============ MODO BOX: wizard, sticky, causas ============ */
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt.on { background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.45); color: #6ee7b7; }
+  .opt:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+
+  .wizard-step { border-radius: 16px; border: 1px solid var(--border); background: var(--surface); margin-bottom: 12px; overflow: hidden; animation: fadeUp 0.5s ease both; }
+  .wizard-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; gap: 10px; flex-wrap: wrap; }
+  .wizard-num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+  .wizard-num .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border-strong); display: inline-block; }
+  .wizard-step.done .wizard-num .dot { background: var(--teal); }
+  .wizard-step.active .wizard-num .dot { background: var(--amber); }
+  .wizard-answer { font-size: 13px; color: #5eead4; font-family: var(--sans); }
+  .wizard-change { font-family: var(--mono); font-size: 11px; color: var(--text-muted); background: none; border: none; cursor: pointer; text-decoration: underline; text-decoration-color: var(--border-strong); }
+  .wizard-change:hover { color: var(--text); }
+  .wizard-body { padding: 0 18px 18px; }
+
+  .panel { border-radius: 18px; border: 1px solid var(--border); background: var(--surface); overflow: hidden; margin-bottom: 16px; }
+  .panel-head { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+  .panel-title { font-family: var(--display); font-weight: 700; font-size: 14.5px; color: #fff; }
+  .panel-sub { font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .panel-body { padding: 18px 20px 22px; }
+
+  .sticky-shell { position: sticky; top: 0; z-index: 5; margin: 0 -24px 18px; padding: 10px 24px 0; background: var(--bg); }
+  .sticky-inner {
+    border-radius: 14px; border: 1px solid var(--border); background: var(--surface3);
+    padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  }
+  .sev-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 0 4px var(--dot-glow, transparent); }
+  .sticky-inner.sev-red { --dot-glow: rgba(239,68,68,0.18); } .sticky-inner.sev-red .sev-dot { background: var(--red); }
+  .sticky-inner.sev-amber { --dot-glow: rgba(245,158,11,0.18); } .sticky-inner.sev-amber .sev-dot { background: var(--amber); }
+  .sticky-inner.sev-green { --dot-glow: rgba(16,185,129,0.18); } .sticky-inner.sev-green .sev-dot { background: var(--emerald); }
+  .sticky-text { flex: 1; min-width: 0; }
+  .sticky-hyp { font-family: var(--display); font-weight: 700; font-size: 14.5px; color: #fff; }
+  .sticky-act { font-size: 12.5px; color: var(--text-dim); margin-top: 2px; line-height: 1.45; }
+  .sticky-act strong { color: #fff; font-weight: 500; }
+  .sticky-reset {
+    font-family: var(--mono); font-size: 11px; color: var(--text-muted); background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 9px; padding: 7px 11px; cursor: pointer; flex-shrink: 0; white-space: nowrap;
+  }
+  .sticky-reset:hover { color: var(--text); border-color: var(--border-strong); }
+
+  .causas-lead { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin: 22px 0 12px; }
+  .causa-card { border-radius: 13px; border: 1px solid var(--border); background: var(--surface2); border-left: 3px solid var(--red); padding: 14px 16px; margin-bottom: 10px; }
+  .causa-title { font-family: var(--display); font-weight: 700; font-size: 14.5px; color: #fff; margin-bottom: 6px; }
+  .causa-row { font-size: 13px; color: var(--text-dim); line-height: 1.55; margin-top: 4px; }
+  .causa-row b { color: var(--text-muted); font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; margin-right: 6px; }
+  .causa-row strong { color: #fff; font-weight: 500; }
+
+  .collapse-toggle {
+    width: 100%; text-align: left; font-family: var(--mono); font-size: 12px; color: var(--text-muted);
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 11px; padding: 12px 14px;
+    cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+  .collapse-toggle:hover { color: var(--text); border-color: var(--border-strong); }
+  .collapse-body { padding-top: 8px; }
+  .collapse-item { font-size: 12.5px; color: var(--text-dim); padding: 9px 4px; border-top: 1px solid var(--border); line-height: 1.5; }
+  .collapse-item:first-child { border-top: none; }
+  .collapse-item b { color: var(--text); font-weight: 500; }
+  .collapse-item strong { color: var(--text); font-weight: 500; }
+
+  /* RESULTADO (misma hipótesis multi-fila que la guía original) */
+  .result {
+    margin-top: 4px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface2);
+    padding: 18px 20px;
+    border-left: 3px solid var(--accent, var(--emerald));
+    margin-bottom: 20px;
+  }
+  .result.placeholder { color: var(--text-muted); font-size: 13px; font-family: var(--mono); line-height: 1.6; }
+  .result-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+  .result-title { font-family: var(--display); font-size: 19px; font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 12px; }
+  .result-row { display: flex; gap: 12px; padding: 9px 0; border-top: 1px solid var(--border); font-size: 13.5px; line-height: 1.55; color: var(--text-dim); }
+  .result-row:first-of-type { border-top: none; padding-top: 2px; }
+  .result-key { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); flex: 0 0 104px; padding-top: 3px; }
+  .result-row strong { color: #fff; font-weight: 500; }
+  .result-row em { color: #fcd34d; font-style: normal; }
+  .result.sev-red { border-left-color: var(--red); }
+  .result.sev-amber { border-left-color: var(--amber); }
+  .result.sev-green { border-left-color: var(--emerald); }
+
+  /* CALCULADORA (Alvarado, sección de referencia) */
+  .calc { background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; margin-top: 16px; }
+  .score-list { display: flex; flex-direction: column; gap: 8px; }
+  .score-item {
+    display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+    font-family: var(--sans); font-size: 13.5px; color: var(--text-dim); background: var(--surface);
+    border: 1px solid var(--border); border-radius: 11px; padding: 11px 14px; cursor: pointer; transition: all 0.18s; line-height: 1.45;
+  }
+  .score-item:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .score-item.on { background: rgba(20,184,166,0.12); border-color: rgba(20,184,166,0.45); color: #5eead4; }
+  .score-item:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+  .score-pts { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-muted); border: 1px solid var(--border); border-radius: 7px; padding: 3px 8px; flex-shrink: 0; margin-left: auto; }
+  .score-item.on .score-pts { color: #5eead4; border-color: rgba(20,184,166,0.4); }
+  .calc-out { margin-top: 14px; border-top: 1px solid var(--border); padding-top: 12px; font-size: 13.5px; line-height: 1.6; color: var(--text-dim); }
+  .calc-out strong { color: #fff; font-weight: 500; }
+  .calc-out em { color: #fcd34d; font-style: normal; }
+  .calc-out .big { font-family: var(--display); font-size: 20px; font-weight: 700; color: #93c5fd; display: block; margin-bottom: 6px; }
+  .calc-out .big.risk-low { color: #6ee7b7; }
+  .calc-out .big.risk-mid { color: #fcd34d; }
+  .calc-out .big.risk-high { color: #fca5a5; }
+  .calc-reset { margin-top: 12px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--text-muted); background: var(--surface); border: 1px solid var(--border); border-radius: 9px; padding: 8px 13px; cursor: pointer; transition: color 0.2s, border-color 0.2s; }
+  .calc-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+  /* BANNERS */
+  .warning-banner, .info-banner {
+    display: flex; gap: 12px; align-items: flex-start; border-radius: 12px; padding: 14px 16px; margin-bottom: 14px; font-size: 13px; line-height: 1.55;
+  }
+  .warning-banner { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #fca5a5; }
+  .info-banner { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.18); color: #bfdbfe; }
+  .warning-banner strong, .info-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 11px; font-size: 13.5px; line-height: 1.55; color: var(--text-dim); }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+
+  .subhead { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin: 20px 0 10px; }
+  .subhead:first-child { margin-top: 0; }
+
+  /* CRONOLOGÍA */
+  .timeline { display: flex; flex-direction: column; gap: 10px; }
+  .tl-item { display: flex; gap: 14px; align-items: flex-start; padding: 13px 15px; background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--red); border-radius: 11px; font-size: 13.5px; line-height: 1.55; color: var(--text-dim); }
+  .tl-time { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: #fca5a5; flex: 0 0 64px; padding-top: 2px; }
+  .tl-item strong { color: #fff; font-weight: 500; }
+  .tl-item em { color: #fcd34d; font-style: normal; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--surface2); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); font-weight: 500; white-space: nowrap; }
+  td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text-dim); vertical-align: top; line-height: 1.5; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; padding: 11px 16px; border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3); background: rgba(20,184,166,0.08); color: #5eead4; text-decoration: none;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px; background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--amber);
+    border-radius: 12px; padding: 18px 20px; font-size: 13px; font-weight: 300; line-height: 1.6; color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer { margin-top: 20px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); padding: 16px 20px; animation: fadeUp 0.5s ease 0.4s both; }
+  .references-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item { font-family: var(--mono); font-size: 10.5px; color: var(--text-muted); line-height: 1.5; padding-left: 14px; position: relative; }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--amber); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer { margin-top: 28px; text-align: center; font-family: var(--mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .sticky-shell { margin: 0 -16px 16px; padding: 8px 16px 0; }
+    .sticky-inner { flex-wrap: wrap; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .opt { width: 100%; }
+    .result-row { flex-direction: column; gap: 4px; }
+    .result-key { flex: none; padding-top: 0; }
+    .tl-item { flex-direction: column; gap: 6px; }
+    .tl-time { flex: none; }
+    .score-item { align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index_mockup.html">← Volver a Modo Box</a>
+    <div class="header-badge">Modo Box · Motivo de consulta</div>
+    <h1>Dolor <span>abdominal</span></h1>
+    <p class="header-sub">
+      Mismo contenido de la guía de dolor abdominal, reorganizado para el box: un paso a la vez, la hipótesis
+      y la acción inmediata fijas en pantalla mientras avanzas, y las causas que matan reordenadas según lo
+      que ya respondiste.
+    </p>
+    <a class="header-alt" href="./guia-dolor-abdominal.html">📄 Ver la guía completa</a>
+  </div>
+
+  <!-- WIZARD -->
+  <div class="wizard-step active" id="step-pat" style="animation-delay:0.06s;">
+    <div class="wizard-head">
+      <div class="wizard-num"><span class="dot"></span>1 · Patrón dominante</div>
+      <div><span class="wizard-answer" id="ans-pat"></span><button class="wizard-change" id="chg-pat" onclick="openStep('pat')" hidden>cambiar</button></div>
+    </div>
+    <div class="wizard-body" id="body-pat">
+      <div class="opts" id="q-pat">
+        <button type="button" class="opt" data-v="brusco">Inicio brusco, máximo desde el primer minuto, con síncope, palidez o mal estado general</button>
+        <button type="button" class="opt" data-v="despro">Dolor intenso y persistente <strong>desproporcionado</strong> a un examen abdominal poco llamativo</button>
+        <button type="button" class="opt" data-v="peritoneal">Dolor difuso con abdomen rígido, rebote y paciente inmóvil</button>
+        <button type="button" class="opt" data-v="hd">Hipocondrio derecho o epigastrio irradiado a dorso o escápula, tras comida grasa</button>
+        <button type="button" class="opt" data-v="epigastrio">Epigastrio, con náuseas y sudoración, o dolor en banda irradiado a dorso</button>
+        <button type="button" class="opt" data-v="fid">Periumbilical que migra a fosa iliaca derecha, con anorexia</button>
+        <button type="button" class="opt" data-v="fii">Fosa iliaca izquierda, sostenido, con cambio del hábito intestinal</button>
+        <button type="button" class="opt" data-v="flanco">Flanco o lumbar, cólico, irradiado a genitales, con inquietud</button>
+        <button type="button" class="opt" data-v="obstruccion">Cólico difuso con vómitos, distensión y ausencia de gases o deposiciones</button>
+        <button type="button" class="opt" data-v="pelvico">Hipogastrio o pelvis, en mujer en edad fértil</button>
+        <button type="button" class="opt" data-v="difuso">Difuso o mal definido, sin foco claro</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wizard-step" id="step-est" style="opacity:.4; pointer-events:none; animation-delay:0.1s;">
+    <div class="wizard-head">
+      <div class="wizard-num"><span class="dot"></span>2 · Estado en el box</div>
+      <div><span class="wizard-answer" id="ans-est"></span><button class="wizard-change" id="chg-est" onclick="openStep('est')" hidden>cambiar</button></div>
+    </div>
+    <div class="wizard-body" id="body-est" hidden>
+      <div class="opts" id="q-est">
+        <button type="button" class="opt" data-v="estable">Estable, afebril, abdomen depresible</button>
+        <button type="button" class="opt" data-v="irritacion">Signos de irritación peritoneal, sin compromiso hemodinámico</button>
+        <button type="button" class="opt" data-v="febril">Fiebre, calofríos o aspecto séptico</button>
+        <button type="button" class="opt" data-v="shock">Hipotensión, taquicardia, mala perfusión o compromiso de conciencia</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="after-wizard" hidden>
+
+    <div class="sticky-shell">
+      <div class="sticky-inner" id="sticky-inner">
+        <span class="sev-dot" id="sticky-dot"></span>
+        <div class="sticky-text">
+          <div class="sticky-hyp" id="sticky-hyp">—</div>
+          <div class="sticky-act" id="sticky-act">—</div>
+        </div>
+        <button class="sticky-reset" type="button" onclick="resetAll()">↺ Nuevo caso</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-title">3 · Afinar con contexto</div>
+        <div class="panel-sub">Opcional — reordena las causas y ajusta la hipótesis en tiempo real</div>
+      </div>
+      <div class="panel-body">
+        <div class="opts" id="q-fac">
+          <button type="button" class="opt" data-v="fertil">Mujer en edad fértil</button>
+          <button type="button" class="opt" data-v="mayor">65 años o más</button>
+          <button type="button" class="opt" data-v="vascular">Fibrilación auricular, cardiopatía embolígena o enfermedad ateroesclerótica conocida</button>
+          <button type="button" class="opt" data-v="cirugia">Cirugía abdominal previa o hernia conocida</button>
+          <button type="button" class="opt" data-v="inmuno">Inmunosupresión, quimioterapia, corticoides o neutropenia</button>
+          <button type="button" class="opt" data-v="cirrosis">Cirrosis con ascitis, o diálisis peritoneal</button>
+          <button type="button" class="opt" data-v="anticoag">Anticoagulación o coagulopatía</button>
+          <button type="button" class="opt" data-v="trauma">Trauma abdominal reciente, aunque parezca menor</button>
+          <button type="button" class="opt" data-v="ninguno">Ninguno de los anteriores</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="result placeholder" id="result"></div>
+
+    <div class="causas-lead">Causas prioritarias según lo seleccionado</div>
+    <div id="causas-top"></div>
+
+    <button class="collapse-toggle" type="button" onclick="toggleOtras()">
+      <span id="otras-label">Ver el resto de causas letales</span>
+      <span id="otras-arrow">▾</span>
+    </button>
+    <div class="collapse-body" id="causas-otras" hidden></div>
+
+    <div class="link-row" style="margin-top:16px;">
+      <a class="cross-link" href="./checklist-sepsis_4.html">→ Checklist de sepsis y shock séptico</a>
+      <a class="cross-link" href="./checklist-politrauma_2.html">→ Checklist de politrauma</a>
+      <a class="cross-link" href="./guia-dolor-toracico.html">→ Guía de dolor torácico</a>
+    </div>
+
+  </div>
+
+  <!-- ================= REFERENCIA COMPLETA (colapsable) ================= -->
+  <div class="reference-label">Referencia completa de la guía</div>
+
+  <!-- 02 · LOS PRIMEROS MINUTOS -->
+  <div class="section s2" id="s2" style="animation-delay:0.12s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Los primeros minutos</div>
+        <div class="section-subtitle">Lo que se hace antes de tener un diagnóstico</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>Tres gestos que cambian el desenlace y se olvidan con frecuencia: <strong>electrocardiograma</strong>
+        en todo dolor epigástrico o supraumbilical del adulto mayor o con factores de riesgo,
+        <strong>prueba de embarazo</strong> en toda mujer en edad fértil, y <strong>examen de genitales y
+        orificios herniarios</strong>. Una torsión testicular y una hernia incarcerada se presentan como
+        dolor abdominal y se pierden por no mirar.</span>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-time">Triage</span>
+          <span><strong>Signos vitales completos, incluida la temperatura y la saturación.</strong> Taquicardia
+          persistente, hipotensión o polipnea en un dolor abdominal obligan a llevar al paciente a un box con
+          monitor antes de seguir la anamnesis. Glicemia capilar si hay compromiso de conciencia, vómitos o
+          diabetes conocida.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">&lt;10 min</span>
+          <span><strong>Electrocardiograma</strong> si el dolor es epigástrico o del hemiabdomen superior en
+          mayores de 50 años, diabéticos o con factores de riesgo cardiovascular. El infarto de cara inferior
+          se presenta con dolor epigástrico, náuseas y sudoración, y el diagnóstico se pierde cuando nadie pide
+          el trazado.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">&lt;10 min</span>
+          <span><strong>Prueba de embarazo</strong> en toda mujer en edad fértil, con independencia de la
+          historia menstrual o de anticoncepción referida. El embarazo ectópico roto se presenta como dolor
+          abdominal con o sin amenorrea reconocida.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">Accesos</span>
+          <span><strong>Dos vías venosas periféricas, exámenes y cruce de sangre</strong> si hay inestabilidad,
+          sospecha de hemorragia o abdomen quirúrgico. Reanimación con cristaloides guiada por respuesta, no por
+          volumen fijo.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">Analgesia</span>
+          <span><strong>Analgesia precoz y titulada, sin esperar el diagnóstico.</strong> La evidencia acumulada
+          muestra que los opioides <strong>no aumentan el error diagnóstico ni retrasan la cirugía necesaria</strong>:
+          el paciente con dolor controlado se deja examinar mejor. Morfina endovenosa titulada es el estándar
+          habitual, con reevaluación del examen tras la dosis. <em>Dosis y protocolo de titulación: verificar con
+          protocolo institucional.</em></span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">Examen</span>
+          <span><strong>Abdomen completo, con el paciente descubierto:</strong> inspección (cicatrices, distensión,
+          equimosis), auscultación, percusión y palpación desde la zona menos dolorosa. Busca defensa involuntaria
+          y dolor a la percusión —más útiles que el rebote provocado—, masa pulsátil, globo vesical y
+          <strong>todos los orificios herniarios</strong>.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">Examen</span>
+          <span><strong>Genitales en el hombre</strong> (torsión testicular, hernia inguinoescrotal) y
+          <strong>evaluación ginecológica</strong> cuando el dolor es pélvico. El tacto rectal no es de rutina:
+          se reserva para sospechas concretas, como hemorragia digestiva, fecaloma o absceso pelviano.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">POCUS</span>
+          <span><strong>Ecografía a pie de cama</strong> cuando está disponible: diámetro aórtico, líquido libre,
+          vía biliar, hidronefrosis, globo vesical y latido cardíaco fetal en la gestante. En el adulto mayor con
+          dolor abdominal o lumbar de inicio brusco, mirar la aorta toma menos de un minuto y no requiere
+          contraste.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">Reevalúa</span>
+          <span><strong>El examen seriado es una herramienta diagnóstica, no una demora.</strong> Repetir el examen
+          a las 2–4 horas, por el mismo médico cuando sea posible, cambia la conducta en una proporción relevante de
+          abdómenes indiferenciados. Deja la hora y el hallazgo escritos en cada revisión.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · LOCALIZACIÓN Y PATRÓN -->
+  <div class="section s4 collapsed" id="s4" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Localización y patrón temporal</div>
+        <div class="section-subtitle">Lo que orienta y lo que engaña</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>El <strong>dolor visceral</strong> es sordo, mal localizado y referido a la línea media según el
+        origen embriológico: intestino anterior al epigastrio, intestino medio al periumbilical, intestino
+        posterior al hipogastrio. Cuando el proceso irrita el peritoneo parietal, el dolor <strong>se localiza,
+        se hace constante y empeora con el movimiento</strong>. Esa migración es más informativa que el punto que
+        el paciente señala al llegar.</span>
+      </div>
+
+      <div class="subhead">Por región</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Región</th><th>Causas frecuentes</th><th>No olvidar</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Hipocondrio derecho</td>
+              <td>Cólico biliar, colecistitis aguda, coledocolitiasis, colangitis, hepatitis</td>
+              <td>Neumonía basal derecha, absceso hepático, síndrome de Fitz-Hugh-Curtis, apendicitis retrocecal alta o del embarazo</td>
+            </tr>
+            <tr>
+              <td>Epigastrio</td>
+              <td>Úlcera péptica, gastritis, pancreatitis aguda, reflujo</td>
+              <td><strong>Infarto de cara inferior</strong>, aneurisma aórtico, perforación contenida, isquemia mesentérica precoz</td>
+            </tr>
+            <tr>
+              <td>Hipocondrio izquierdo</td>
+              <td>Gastritis, patología esplénica, cólico renal alto</td>
+              <td>Ruptura esplénica (trauma, incluso menor, o mononucleosis), infarto esplénico en cardiopatía embolígena</td>
+            </tr>
+            <tr>
+              <td>Fosa iliaca derecha</td>
+              <td>Apendicitis aguda, adenitis mesentérica, ileítis</td>
+              <td>Embarazo ectópico, torsión ovárica, quiste complicado, diverticulitis cecal, hernia incarcerada, cólico ureteral</td>
+            </tr>
+            <tr>
+              <td>Fosa iliaca izquierda</td>
+              <td>Diverticulitis aguda, colitis, constipación</td>
+              <td>Cólico ureteral, patología anexial, isquemia colónica, aneurisma roto con dolor referido</td>
+            </tr>
+            <tr>
+              <td>Flanco o lumbar</td>
+              <td>Cólico renoureteral, pielonefritis aguda</td>
+              <td><strong>Aneurisma aórtico</strong>, infarto renal, hemorragia retroperitoneal en anticoagulados</td>
+            </tr>
+            <tr>
+              <td>Hipogastrio y pelvis</td>
+              <td>Infección urinaria, retención urinaria, patología anexial, enfermedad inflamatoria pélvica</td>
+              <td>Embarazo ectópico, torsión ovárica o testicular, apendicitis pélvica, absceso tuboovárico</td>
+            </tr>
+            <tr>
+              <td>Difuso</td>
+              <td>Gastroenteritis, obstrucción intestinal, íleo, constipación</td>
+              <td>Isquemia mesentérica, peritonitis en cualquier etapa, cetoacidosis, insuficiencia suprarrenal aguda</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Por patrón temporal</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">⚡</span><span><strong>Máximo desde el inicio, en segundos:</strong> perforación, rotura vascular, embolia mesentérica, torsión. Es el patrón que más urge.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🌊</span><span><strong>Cólico, en oleadas:</strong> obstrucción de víscera hueca —intestino, uréter, vía biliar—. El cólico biliar, pese al nombre, suele ser un dolor sostenido de horas.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📈</span><span><strong>Progresivo en horas:</strong> proceso inflamatorio —apendicitis, colecistitis, diverticulitis—. La migración del dolor y la anorexia acompañan.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🍽️</span><span><strong>Relación con la comida:</strong> alivio con la ingesta sugiere úlcera duodenal; dolor posprandial tras comida grasa, patología biliar; dolor posprandial recurrente con baja de peso y miedo a comer, <strong>isquemia mesentérica crónica</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🛏️</span><span><strong>Lo que alivia y lo que agrava:</strong> el paciente con peritonitis permanece inmóvil; el del cólico renal no encuentra posición. Dolor que mejora inclinado hacia adelante orienta a pancreatitis.</span></div>
+      </div>
+
+      <div class="subhead">Signos con nombre: lo que aportan de verdad</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Signo</th><th>Cómo se busca</th><th>Rendimiento</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Defensa involuntaria</td>
+              <td>Contractura que el paciente no controla al palpar suavemente</td>
+              <td>Más útil que el rebote provocado, que es doloroso y poco específico; percute en vez de provocar rebote</td>
+            </tr>
+            <tr>
+              <td>Murphy</td>
+              <td>Interrupción de la inspiración al palpar el hipocondrio derecho</td>
+              <td>Orienta a colecistitis; el <strong>Murphy ecográfico</strong> —dolor al comprimir con el transductor sobre la vesícula— rinde más</td>
+            </tr>
+            <tr>
+              <td>Psoas, obturador y Rovsing</td>
+              <td>Maniobras clásicas de apendicitis</td>
+              <td>Poco sensibles de forma aislada; suman cuando acompañan a un cuadro compatible, no lo descartan si son negativas</td>
+            </tr>
+            <tr>
+              <td>Carnett</td>
+              <td>El dolor <strong>aumenta</strong> al palpar mientras el paciente contrae la musculatura abdominal</td>
+              <td>Positivo orienta a origen en la <strong>pared abdominal</strong> (atrapamiento nervioso, hematoma) y hace menos probable la causa visceral</td>
+            </tr>
+            <tr>
+              <td>Ruidos hidroaéreos</td>
+              <td>Auscultación abdominal</td>
+              <td>Rendimiento bajo: ni su ausencia ni su aumento confirman o descartan obstrucción por sí solos</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · ESTUDIO INICIAL -->
+  <div class="section s5 collapsed" id="s5" style="animation-delay:0.24s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Estudio inicial</div>
+        <div class="section-subtitle">Laboratorio e imagen, con sus límites</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>Ningún examen descarta un abdomen quirúrgico. <strong>Un hemograma sin leucocitosis, una proteína C
+        reactiva normal y un lactato normal conviven con apendicitis, isquemia mesentérica precoz y perforación
+        contenida.</strong> El laboratorio apoya o cambia la probabilidad; el que decide es el cuadro clínico y su
+        evolución.</span>
+      </div>
+
+      <div class="subhead">Laboratorio según sospecha</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Examen</th><th>Cuándo</th><th>Cómo interpretarlo</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Prueba de embarazo</td><td>Toda mujer en edad fértil</td><td>No negociable. Define diferencial, elección de imagen y destino</td></tr>
+            <tr><td>Hemograma</td><td>Prácticamente todo dolor abdominal que se estudia</td><td>Leucocitosis apoya inflamación, pero <strong>su ausencia no descarta</strong>; la anemia aguda orienta a sangrado</td></tr>
+            <tr><td>Proteína C reactiva</td><td>Sospecha inflamatoria o infecciosa</td><td>Sube con horas de latencia: en un cuadro de pocas horas puede ser normal</td></tr>
+            <tr><td>Lipasa</td><td>Dolor epigástrico o en banda</td><td>Más específica que la amilasa; el diagnóstico de pancreatitis usa un valor <strong>mayor a tres veces el límite superior normal</strong> junto al cuadro clínico. La magnitud no mide la gravedad</td></tr>
+            <tr><td>Pruebas hepáticas y bilirrubina</td><td>Dolor en hemiabdomen superior, ictericia, sospecha biliar</td><td>El patrón colestásico orienta a obstrucción de la vía biliar y, con fiebre, a colangitis</td></tr>
+            <tr><td>Función renal y electrolitos</td><td>Vómitos, deshidratación, adulto mayor, uso de contraste</td><td>Define reposición y seguridad de fármacos y contraste</td></tr>
+            <tr><td>Lactato y gases</td><td>Sospecha de isquemia, sepsis o hipoperfusión</td><td>Elevado es un signo de gravedad; <strong>normal no descarta isquemia mesentérica precoz</strong></td></tr>
+            <tr><td>Orina completa</td><td>Dolor en flanco, hipogastrio o síntomas urinarios</td><td>Cuidado con el cierre precoz: la piuria acompaña también a apendicitis pélvica y a procesos vecinos a la vía urinaria</td></tr>
+            <tr><td>Grupo, Rh y pruebas cruzadas</td><td>Sospecha de hemorragia o cirugía probable</td><td>Se pide temprano, no cuando ya se necesita la sangre</td></tr>
+            <tr><td>Troponina y electrocardiograma</td><td>Epigastralgia en mayor de 50 años, diabético o con factores de riesgo</td><td>Descarta la presentación abdominal del síndrome coronario agudo</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Imagen: qué pedir</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Estudio</th><th>Indicación preferente</th><th>Comentario</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Ecografía abdominal</td><td>Sospecha biliar, renal o ginecológica; gestantes; primera línea en el paciente joven y delgado</td><td>Sin radiación y a pie de cama; operador dependiente y limitada por gas intestinal y obesidad</td></tr>
+            <tr><td>Tomografía de abdomen y pelvis con contraste endovenoso</td><td>Abdomen agudo indiferenciado del adulto, sospecha de perforación, obstrucción, diverticulitis, absceso o isquemia</td><td>Es el estudio de mayor rendimiento global. <strong>Un resultado precoz normal no cierra el caso</strong> si la clínica progresa: reevalúa y considera repetirlo</td></tr>
+            <tr><td>Angiotomografía</td><td>Sospecha de isquemia mesentérica, aneurisma o disección</td><td>Requiere protocolo arterial específico: <strong>pídelo diciendo qué sospechas</strong>, no como «tomografía de abdomen»</td></tr>
+            <tr><td>Radiografía simple de abdomen</td><td>Uso muy limitado: sospecha de cuerpo extraño o control de dispositivos</td><td>Bajo rendimiento en el abdomen agudo; no descarta perforación ni obstrucción</td></tr>
+            <tr><td>Radiografía de tórax de pie</td><td>Sospecha de neumoperitoneo o de causa torácica</td><td>El neumoperitoneo puede no verse: una placa normal <strong>no descarta</strong> perforación</td></tr>
+            <tr><td>Resonancia magnética</td><td>Gestante con ecografía no concluyente, si está disponible; patología biliopancreática en estudio dirigido</td><td>Disponibilidad limitada en urgencia. <em>Verificar con protocolo institucional</em></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:16px; margin-bottom:0;">
+        <span class="warning-icon">🩻</span>
+        <span>Cuando el paciente está <strong>inestable</strong>, la imagen que sirve es la que se hace junto a la
+        camilla. El traslado a tomografía de un paciente que no responde a la reanimación es una decisión de
+        riesgo: primero se estabiliza o se lleva a pabellón.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · APENDICITIS Y ALVARADO -->
+  <div class="section s6 collapsed" id="s6" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Apendicitis y puntaje de Alvarado</div>
+        <div class="section-subtitle">Calculadora interactiva</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>El puntaje de Alvarado agrupa síntomas, signos y laboratorio para estimar la probabilidad de
+        apendicitis aguda. <strong>Sirve para ordenar la conducta, no para diagnosticar ni para descartar por sí
+        solo.</strong> Su rendimiento es mejor para identificar al paciente de baja probabilidad —sobre todo en
+        hombres— y menor en mujeres en edad fértil, adultos mayores y niños. No se aplica al paciente con
+        peritonitis evidente: ese ya está clasificado por la clínica.</span>
+      </div>
+
+      <div class="calc">
+        <div class="score-list" id="alv-list">
+          <button type="button" class="score-item" data-p="1">Migración del dolor a la fosa iliaca derecha <span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-p="1">Anorexia <span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-p="1">Náuseas o vómitos <span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-p="2">Dolor a la palpación en la fosa iliaca derecha <span class="score-pts">2</span></button>
+          <button type="button" class="score-item" data-p="1">Dolor de rebote en la fosa iliaca derecha <span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-p="1">Temperatura de 37,3 °C o más <span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-p="2">Leucocitosis mayor a 10.000/mm³ <span class="score-pts">2</span></button>
+          <button type="button" class="score-item" data-p="1">Desviación a izquierda (neutrófilos sobre 75 %) <span class="score-pts">1</span></button>
+        </div>
+        <div class="calc-out" id="alv-out">
+          Marca los elementos presentes para obtener el puntaje y la banda de probabilidad.
+        </div>
+        <button type="button" class="calc-reset" id="alv-reset">Reiniciar</button>
+      </div>
+
+      <div class="subhead">Bandas e interpretación habitual</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Puntaje</th><th>Probabilidad</th><th>Conducta habitual</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>0 – 3</td><td>Baja</td><td>Apendicitis poco probable. Busca activamente otra causa; observación y reevaluación si el cuadro no calza con un diagnóstico alternativo</td></tr>
+            <tr><td>4 – 6</td><td>Intermedia</td><td>Zona de mayor incertidumbre: imagen —ecografía o tomografía según paciente y disponibilidad— y observación con examen seriado. No es un alta directa</td></tr>
+            <tr><td>7 – 10</td><td>Alta</td><td>Evaluación quirúrgica. La necesidad de imagen previa depende del paciente y del protocolo local</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>Los umbrales de alta, de imagen y de derivación quirúrgica varían entre centros, y existen otros
+        puntajes de uso extendido, como el <strong>AIR</strong> y el <strong>AAS</strong>.
+        <em>Verificar con protocolo institucional.</em> Ningún puntaje reemplaza la reevaluación: el paciente
+        con un puntaje bajo y dolor persistente se vuelve a examinar, no se da de alta por el número.</span>
+      </div>
+
+      <div class="subhead">Lo que hay que tener presente</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🧭</span><span>La <strong>posición del apéndice</strong> cambia la presentación: el retrocecal da dolor lumbar y poco dolor a la palpación anterior; el pélvico, síntomas urinarios o diarrea.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🤰</span><span>En la <strong>gestante</strong> el apéndice se desplaza hacia arriba con el útero y la leucocitosis fisiológica confunde. La apendicitis es la urgencia quirúrgica no obstétrica más frecuente del embarazo, y el retraso —no la imagen— es lo que daña al feto.</span></div>
+        <div class="plain-item"><span class="bullet-icon">👵</span><span>En el <strong>adulto mayor</strong> la presentación es larvada, la perforación es más frecuente al momento del diagnóstico y la fiebre y la leucocitosis pueden faltar.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span>El <strong>tratamiento antibiótico exclusivo</strong> de la apendicitis no complicada es una alternativa en pacientes seleccionados, con mayor tasa de recurrencia y necesidad posterior de apendicectomía. Es una decisión compartida con cirugía, no del box. <em>Verificar con protocolo institucional.</em></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · POBLACIONES Y EXTRAABDOMINALES -->
+  <div class="section s7 collapsed" id="s7" style="animation-delay:0.36s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Poblaciones especiales y causas extraabdominales</div>
+        <div class="section-subtitle">Donde el examen clásico falla</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Poblaciones que exigen bajar el umbral</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">👵</span><span><strong>Adulto mayor.</strong> Menos dolor, menos fiebre, menos leucocitosis y más mortalidad. Una proporción alta requiere cirugía y el diagnóstico llega tarde con frecuencia. <strong>Umbral bajo para tomografía</strong> y para observación, y aorta, isquemia mesentérica, obstrucción, colecistitis y síndrome coronario siempre en la lista.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🤰</span><span><strong>Gestante.</strong> Descarta primero causa obstétrica —ectópico, desprendimiento, preeclampsia con compromiso hepático— en coordinación con obstetricia. La ecografía es la primera línea; si no es concluyente, <strong>no se retrasa el diagnóstico por miedo a la radiación</strong>: se elige el estudio necesario con el protocolo correspondiente.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🛡️</span><span><strong>Inmunosuprimido, neutropénico o en corticoides.</strong> Los signos peritoneales se atenúan o desaparecen. Considera enterocolitis neutropénica, colitis por <em>Clostridioides difficile</em>, perforación con examen engañosamente benigno e infecciones oportunistas. La tomografía se pide antes, no después.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫃</span><span><strong>Cirrótico con ascitis.</strong> <strong>Paracentesis diagnóstica precoz</strong> ante dolor, fiebre, encefalopatía o deterioro: ≥250 polimorfonucleares/mm³ definen peritonitis bacteriana espontánea. Siembra el líquido en frascos de hemocultivo junto a la cama.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💧</span><span><strong>Diálisis peritoneal.</strong> Líquido turbio con dolor abdominal es peritonitis asociada al catéter hasta demostrar lo contrario: recuento celular, tinción y cultivo del efluente, y tratamiento según protocolo de la unidad.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔪</span><span><strong>Postoperatorio reciente.</strong> Sospecha filtración anastomótica, absceso o isquemia. Taquicardia persistente sin explicación tras cirugía abdominal es un signo de alarma, aunque el examen impresione aceptable.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Anticoagulado o con coagulopatía.</strong> Hematoma de la vaina del recto y hemorragia retroperitoneal se presentan como dolor abdominal agudo con anemización. El signo de Carnett positivo orienta a la pared.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚑</span><span><strong>Trauma reciente, aunque parezca menor.</strong> La rotura esplénica puede ser diferida. Si el mecanismo es relevante, el manejo pasa a ser el del paciente traumatizado.</span></div>
+      </div>
+
+      <div class="subhead">Causas extraabdominales de dolor abdominal</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Causa</th><th>Pista clínica</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Infarto agudo de miocardio de cara inferior</td><td>Epigastralgia con náuseas y sudoración; adulto mayor, diabético o mujer. Electrocardiograma precoz</td></tr>
+            <tr><td>Tromboembolismo pulmonar</td><td>Dolor en hipocondrio o hemiabdomen superior con disnea, taquicardia o hipoxemia inexplicadas</td></tr>
+            <tr><td>Neumonía de lóbulo inferior</td><td>Dolor abdominal alto con tos, fiebre y polipnea; ausculta el tórax siempre</td></tr>
+            <tr><td>Cetoacidosis diabética</td><td>Dolor con vómitos, polipnea y deshidratación; cede al corregir la acidosis</td></tr>
+            <tr><td>Insuficiencia suprarrenal aguda</td><td>Dolor abdominal con hipotensión, hiponatremia, hiperkalemia e hipoglicemia; corticoides suspendidos</td></tr>
+            <tr><td>Hipercalcemia</td><td>Dolor, constipación, poliuria y compromiso de conciencia; cáncer conocido o hiperparatiroidismo</td></tr>
+            <tr><td>Herpes zóster</td><td>Dolor en banda, unilateral, con hiperestesia que <strong>precede en días al exantema</strong></td></tr>
+            <tr><td>Dolor de pared abdominal</td><td>Dolor localizado y superficial con <strong>signo de Carnett positivo</strong>; atrapamiento nervioso o hematoma</td></tr>
+            <tr><td>Torsión testicular</td><td>Dolor abdominal bajo en el varón joven; <strong>examina siempre los genitales</strong>, el retraso cuesta el testículo</td></tr>
+            <tr><td>Crisis vaso-oclusiva falciforme</td><td>Dolor abdominal recurrente en paciente con anemia de células falciformes</td></tr>
+            <tr><td>Porfiria aguda e intoxicación por plomo</td><td>Dolor intenso recurrente con examen abdominal normal, síntomas neurológicos o psiquiátricos. Poco frecuentes: se consideran tras descartar lo habitual</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./guia-infeccion-urinaria.html">→ Guía de infección urinaria</a>
+        <a class="cross-link" href="./guia-gastroenteritis.html">→ Guía de gastroenteritis aguda</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · DESTINO -->
+  <div class="section s8 collapsed" id="s8" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Destino, alta segura y errores frecuentes</div>
+        <div class="section-subtitle">Antes de firmar el alta</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Criterios habituales de hospitalización u observación prolongada</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Inestabilidad hemodinámica, signos de irritación peritoneal o sospecha de causa quirúrgica o vascular</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Fiebre con foco abdominal, o cualquier criterio de sepsis</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Dolor que no se controla con analgesia adecuada, o vómitos que impiden la hidratación y los fármacos por vía oral</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Adulto mayor, inmunosuprimido, cirrótico, embarazada o paciente con cirugía abdominal reciente, con dolor sin diagnóstico</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Alteraciones de laboratorio o de imagen que exigen tratamiento u observación intrahospitalaria</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Imposibilidad de control cercano, falta de red de apoyo o reconsulta por el mismo cuadro</span></div>
+      </div>
+
+      <div class="subhead">Alta con dolor abdominal indiferenciado</div>
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Una parte importante de los pacientes se va sin diagnóstico específico, y <strong>«dolor abdominal
+        inespecífico» es un diagnóstico legítimo</strong> cuando se han descartado las causas letales, el paciente
+        está sin dolor o con dolor controlado, tolera la vía oral, deambula y tiene control asegurado. Lo que lo
+        vuelve peligroso no es la falta de etiqueta: es el alta sin plazo, sin instrucciones y sin registro.</span>
+      </div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📄</span><span><strong>Deja escrito el examen abdominal y su evolución</strong>, con la hora de cada reevaluación, y qué causas graves se consideraron y por qué se descartaron. Es lo que permite comparar en la siguiente consulta.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🗓️</span><span><strong>Control clínico en 12 a 24 horas</strong> si el dolor persiste, con un lugar concreto donde acudir. El dolor abdominal indiferenciado se reevalúa, no se cierra.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📞</span><span><strong>Instrucciones de retorno inmediato:</strong> dolor que aumenta o se localiza, fiebre, vómitos persistentes, distensión, ausencia de gases o deposiciones, sangre en deposiciones o vómito, desmayo, ictericia o dolor que despierta de noche.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Analgesia indicada por escrito</strong> y advertencia explícita de que el alivio no equivale a curación.</span></div>
+      </div>
+
+      <div class="subhead">Errores frecuentes</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No pedir electrocardiograma</strong> en la epigastralgia del adulto mayor o del diabético.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No pedir prueba de embarazo</strong> apoyándose en la historia menstrual o en el método anticonceptivo referido.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No examinar genitales ni orificios herniarios</strong>: torsión testicular y hernia incarcerada se presentan como dolor abdominal.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Confundir isquemia mesentérica con gastroenteritis</strong> en el adulto mayor con fibrilación auricular, dolor intenso, vómitos y examen poco llamativo.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Descartar por laboratorio:</strong> leucocitos, proteína C reactiva o lactato normales no excluyen apendicitis, isquemia ni perforación.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Tomar una tomografía precoz normal como cierre definitivo</strong> cuando la clínica progresa. Reevalúa y considera repetir el estudio.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Diferir la analgesia «para no enmascarar el abdomen»</strong>: la evidencia no respalda esa práctica y sí prolonga el sufrimiento.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No mirar la aorta</strong> en el adulto mayor con dolor abdominal o lumbar de inicio brusco, y etiquetarlo como cólico renal.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No puncionar la ascitis</strong> del cirrótico con dolor o deterioro, esperando corregir antes la coagulación.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Atribuir el cuadro a «gastritis», «colon irritable» o «constipación»</strong> sin haber descartado lo grave, y no reevaluar de verdad al paciente que reconsulta por tercera vez. La reconsulta es, en sí misma, una bandera roja.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Trasladar a tomografía a un paciente inestable</strong> que aún no responde a la reanimación.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es un mockup de interacción ("Modo Box") sobre el mismo contenido de
+    la guía de dolor abdominal: no reemplaza el juicio clínico ni los protocolos vigentes del servicio. Las
+    conductas, umbrales de imagen, esquemas antibióticos y dosis referidas son orientativos para el adulto:
+    verifica el ajuste por función renal y hepática, las interacciones, el embarazo y las contraindicaciones antes
+    de administrar cualquier fármaco, y contrasta las vías de derivación y los criterios quirúrgicos con el
+    protocolo institucional. Los puntajes incluidos complementan y no reemplazan la evaluación clínica. El dolor
+    abdominal en el paciente pediátrico tiene un diferencial y un enfoque distintos, y se rige por el protocolo
+    correspondiente.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Alvarado A. <em>A Practical Score for the Early Diagnosis of Acute Appendicitis.</em> Ann Emerg Med. 1986;15(5):557–564.</div>
+      <div class="ref-item">Ohle R, et al. <em>The Alvarado Score for Predicting Acute Appendicitis: A Systematic Review.</em> BMC Med. 2011;9:139.</div>
+      <div class="ref-item">Di Saverio S, et al. <em>Diagnosis and Treatment of Acute Appendicitis: 2020 Update of the WSES Jerusalem Guidelines.</em> World J Emerg Surg. 2020;15:27.</div>
+      <div class="ref-item">Manterola C, et al. <em>Analgesia in Patients with Acute Abdominal Pain.</em> Cochrane Database Syst Rev. 2011;(1):CD005660.</div>
+      <div class="ref-item">Bhangu A, et al. <em>Acute Appendicitis: Modern Understanding of Pathogenesis, Diagnosis, and Management.</em> Lancet. 2015;386(10000):1278–1287.</div>
+      <div class="ref-item">Bala M, et al. <em>Acute Mesenteric Ischemia: Updated Guidelines of the World Society of Emergency Surgery.</em> World J Emerg Surg. 2022;17:54.</div>
+      <div class="ref-item">Kiriyama S, Takada T, et al. <em>Tokyo Guidelines 2018: Diagnostic Criteria and Severity Grading of Acute Cholangitis.</em> J Hepatobiliary Pancreat Sci. 2018;25(1):17–30.</div>
+      <div class="ref-item">Yokoe M, et al. <em>Tokyo Guidelines 2018: Diagnostic Criteria and Severity Grading of Acute Cholecystitis.</em> J Hepatobiliary Pancreat Sci. 2018;25(1):41–54.</div>
+      <div class="ref-item">Banks PA, et al. <em>Classification of Acute Pancreatitis — 2012: Revision of the Atlanta Classification and Definitions.</em> Gut. 2013;62(1):102–111.</div>
+      <div class="ref-item">de-Madaria E, et al. <em>Aggressive or Moderate Fluid Resuscitation in Acute Pancreatitis (WATERFALL).</em> N Engl J Med. 2022;387(11):989–1000.</div>
+      <div class="ref-item">Biffl WL, et al. <em>Management of Colonic Diverticulitis: WSES Guidelines.</em> World J Emerg Surg. 2020;15:32.</div>
+      <div class="ref-item">European Association for the Study of the Liver. <em>EASL Clinical Practice Guidelines for the Management of Patients with Decompensated Cirrhosis.</em> J Hepatol. 2018;69(2):406–460. — Criterios de peritonitis bacteriana espontánea.</div>
+      <div class="ref-item">Magidson PD, Martinez JP. <em>Abdominal Pain in the Geriatric Patient.</em> Emerg Med Clin North Am. 2016;34(3):559–574.</div>
+      <div class="ref-item">American College of Radiology. <em>ACR Appropriateness Criteria: Acute Nonlocalized Abdominal Pain; Right Lower Quadrant Pain.</em> Edición vigente. <a href="https://acsearch.acr.org/list" target="_blank" rel="noopener">acsearch.acr.org</a></div>
+      <div class="ref-item">Los umbrales de imagen, los esquemas antibióticos, los criterios quirúrgicos y las vías de derivación deben contrastarse con el protocolo institucional vigente.</div>
+    </div>
+  </div>
+
+  <div class="footer">Modo Box · mockup interno · Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables (referencia) ───────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Estado del wizard ────────────────────────────────────────────
+  const sel = { pat: null, est: null, fac: new Set() };
+  const f = (v) => sel.fac.has(v);
+
+  function bindSingle(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        sel[key] = btn.dataset.v;
+        group.querySelectorAll('.opt').forEach(b => b.classList.toggle('on', b === btn));
+        completeStep(key, btn.textContent.trim());
+        render();
+        renderCausas();
+      });
+    });
+  }
+
+  function bindMulti(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (v === 'ninguno') {
+          sel[key].clear();
+          group.querySelectorAll('.opt').forEach(b => b.classList.remove('on'));
+          btn.classList.add('on');
+          sel[key].add('ninguno');
+        } else {
+          const none = group.querySelector('[data-v="ninguno"]');
+          none.classList.remove('on');
+          sel[key].delete('ninguno');
+          if (sel[key].has(v)) { sel[key].delete(v); btn.classList.remove('on'); }
+          else { sel[key].add(v); btn.classList.add('on'); }
+        }
+        render();
+        renderCausas();
+      });
+    });
+  }
+
+  function completeStep(which, label) {
+    document.getElementById('ans-' + which).textContent = label;
+    document.getElementById('chg-' + which).hidden = false;
+    document.getElementById('body-' + which).hidden = true;
+    document.getElementById('step-' + which).classList.add('done');
+    document.getElementById('step-' + which).classList.remove('active');
+    if (which === 'pat') {
+      const estStep = document.getElementById('step-est');
+      estStep.style.opacity = 1; estStep.style.pointerEvents = 'auto'; estStep.classList.add('active');
+      document.getElementById('body-est').hidden = false;
+    }
+    if (which === 'est') {
+      document.getElementById('after-wizard').hidden = false;
+    }
+  }
+
+  function openStep(which) {
+    document.getElementById('body-' + which).hidden = false;
+    document.getElementById('step-' + which).classList.add('active');
+    document.getElementById('step-' + which).classList.remove('done');
+    document.getElementById('chg-' + which).hidden = true;
+    document.getElementById('ans-' + which).textContent = '';
+    document.querySelectorAll('#q-' + which + ' .opt').forEach(b => b.classList.remove('on'));
+    sel[which] = null;
+    if (which === 'pat') {
+      sel.est = null;
+      document.getElementById('after-wizard').hidden = true;
+      const estStep = document.getElementById('step-est');
+      estStep.style.opacity = .4; estStep.style.pointerEvents = 'none';
+      estStep.classList.remove('active', 'done');
+      document.getElementById('ans-est').textContent = '';
+      document.getElementById('chg-est').hidden = true;
+      document.getElementById('body-est').hidden = true;
+      document.querySelectorAll('#q-est .opt').forEach(b => b.classList.remove('on'));
+    }
+    render();
+  }
+
+  function resetAll() {
+    sel.pat = null; sel.est = null; sel.fac.clear();
+    otrasOpen = false;
+    document.getElementById('after-wizard').hidden = true;
+    document.querySelectorAll('#q-fac .opt').forEach(b => b.classList.remove('on'));
+    ['pat', 'est'].forEach(w => {
+      document.getElementById('ans-' + w).textContent = '';
+      document.getElementById('chg-' + w).hidden = true;
+      document.getElementById('step-' + w).classList.remove('done');
+      document.querySelectorAll('#q-' + w + ' .opt').forEach(b => b.classList.remove('on'));
+    });
+    document.getElementById('step-pat').classList.add('active');
+    document.getElementById('body-pat').hidden = false;
+    const estStep = document.getElementById('step-est');
+    estStep.style.opacity = .4; estStep.style.pointerEvents = 'none'; estStep.classList.remove('active');
+    document.getElementById('body-est').hidden = true;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    render();
+  }
+
+  bindSingle('q-pat', 'pat');
+  bindSingle('q-est', 'est');
+  bindMulti('q-fac', 'fac');
+
+  // ── Clasificador (idéntico al de la guía completa) ─────────────────
+  const BASE_LAB = 'Hemograma, proteína C reactiva, función renal y electrolitos, pruebas hepáticas, lipasa, ' +
+                   'orina completa y prueba de embarazo en la mujer en edad fértil.';
+  const LINK_SEPSIS = '<a class="cross-link" style="margin-top:6px" href="./checklist-sepsis_4.html">→ Checklist de sepsis y shock séptico</a>';
+  const LINK_TORAX = '<a class="cross-link" style="margin-top:6px" href="./guia-dolor-toracico.html">→ Guía de dolor torácico</a>';
+
+  function classify() {
+    const { pat, est } = sel;
+    if (!pat || !est) return null;
+
+    if (est === 'shock' || pat === 'brusco') {
+      return {
+        sev: 'red', tag: 'Emergencia',
+        title: 'Dolor abdominal con compromiso hemodinámico o inicio catastrófico',
+        rows: [
+          ['Conducta', 'Box de reanimación, monitorización, <strong>dos vías gruesas</strong>, grupo y pruebas cruzadas, y <strong>ecografía a pie de cama inmediata</strong>: diámetro aórtico, líquido libre y evaluación cardíaca. Reanimación guiada por respuesta.'],
+          ['Descarta ya', 'Aneurisma aórtico abdominal roto, síndrome aórtico agudo, perforación de víscera hueca, isquemia mesentérica' +
+            (f('fertil') ? ', y <strong>embarazo ectópico roto —prueba de embarazo ahora—</strong>' : '') +
+            (f('anticoag') ? ', con <strong>alto riesgo de hemorragia retroperitoneal en este paciente anticoagulado</strong>' : '') +
+            (f('trauma') ? ', y <strong>lesión de víscera sólida por el trauma referido</strong>' : '') + '.'],
+          ['Imagen', 'Angiotomografía <strong>solo si el paciente responde a la reanimación</strong>. Con hipotensión mantenida, el destino es el pabellón, no el escáner.'],
+          ['Llama ahora', 'Cirugía y, según sospecha, cirugía vascular o radiología intervencionista. Activa desde la sospecha, no desde la confirmación.'],
+          ['Destino', 'Pabellón o unidad de paciente crítico.'],
+          ['Enlace', LINK_SEPSIS]
+        ]
+      };
+    }
+
+    if (pat === 'despro' || (f('vascular') && pat === 'difuso')) {
+      return {
+        sev: 'red', tag: 'Vascular',
+        title: 'Dolor desproporcionado al examen — descarta isquemia mesentérica aguda',
+        rows: [
+          ['Por qué', 'El dolor intenso con un abdomen poco llamativo es <strong>la presentación típica en la fase precoz</strong>' +
+            (f('vascular') ? ', y este paciente tiene una fuente embólica o enfermedad ateroesclerótica conocida.' : '. Busca fibrilación auricular, cardiopatía embolígena, vasculopatía, hipovolemia o bajo gasto.')],
+          ['Imagen', '<strong>Angiotomografía en fase arterial, sin retraso.</strong> Pídela diciendo que sospechas isquemia mesentérica: el protocolo es distinto al de una tomografía abdominal habitual.'],
+          ['Ojo', '<strong>Un lactato normal no descarta.</strong> Se eleva de forma tardía, cuando ya hay necrosis transmural. Tampoco la ausencia de irritación peritoneal descarta: aparece tarde.'],
+          ['Mientras tanto', 'Reanimación con cristaloides, analgesia, sonda nasogástrica si hay vómitos o distensión, corrección de la hipoperfusión y antibiótico según protocolo si hay sospecha de translocación o sepsis.'],
+          ['Llama ahora', 'Cirugía y radiología intervencionista en paralelo a la imagen.'],
+          ['Destino', 'Hospitalización; pabellón o revascularización según hallazgos.']
+        ]
+      };
+    }
+
+    if (pat === 'peritoneal' || est === 'irritacion') {
+      return {
+        sev: 'red', tag: 'Abdomen quirúrgico',
+        title: 'Irritación peritoneal — descarta perforación o peritonitis',
+        rows: [
+          ['Examen', 'Defensa involuntaria, dolor a la percusión, paciente que evita moverse. Revisa <strong>orificios herniarios</strong> y cicatrices: una hernia incarcerada o una brida explican el cuadro.'],
+          ['Estudio', BASE_LAB + ' Agrega lactato, gases y grupo con pruebas cruzadas.'],
+          ['Imagen', '<strong>Tomografía de abdomen y pelvis con contraste endovenoso.</strong> Una radiografía sin neumoperitoneo <strong>no descarta</strong> perforación.'],
+          ['Tratamiento', 'Reanimación, analgesia, régimen cero y <strong>antibiótico de amplio espectro precoz</strong> con cobertura de gramnegativos y anaerobios. <em>Esquema y dosis: verificar con protocolo institucional.</em>'],
+          ['Llama ahora', 'Cirugía desde la sospecha, sin esperar el resultado de la imagen.'],
+          ['Destino', 'Hospitalización; pabellón según hallazgos.'],
+          ['Enlace', LINK_SEPSIS]
+        ]
+      };
+    }
+
+    if (est === 'febril') {
+      const biliar = pat === 'hd';
+      return {
+        sev: 'red', tag: 'Infeccioso',
+        title: biliar ? 'Fiebre con dolor en hipocondrio derecho — descarta colangitis'
+                      : 'Dolor abdominal febril — busca el foco y trátalo como sepsis abdominal',
+        rows: [
+          ['Conducta', 'Hemocultivos, <strong>antibiótico precoz</strong> y reanimación según la respuesta. El control del foco —drenaje o cirugía— es parte del tratamiento, no un paso posterior.'],
+          ['Piensa en', biliar
+            ? 'Colangitis aguda (fiebre, ictericia y dolor en hipocondrio derecho; con hipotensión y confusión, forma grave), colecistitis aguda y absceso hepático.'
+            : 'Apendicitis complicada, diverticulitis con absceso, colangitis, colecistitis, pielonefritis, absceso intraabdominal' +
+              (f('cirrosis') ? ', y <strong>peritonitis bacteriana espontánea: paracentesis diagnóstica ahora</strong>.' : '.')],
+          ['Estudio', BASE_LAB + ' Agrega lactato, hemocultivos y, ante ictericia, bilirrubina y coagulación.'],
+          ['Imagen', biliar
+            ? 'Ecografía abdominal como primer estudio; tomografía si hay duda diagnóstica o sospecha de complicación.'
+            : 'Tomografía de abdomen y pelvis con contraste, salvo que la ecografía responda la pregunta (vía biliar, riñón, pelvis).'],
+          ['Drenaje', biliar
+            ? 'La colangitis requiere <strong>drenaje biliar urgente</strong>: coordina endoscopia o radiología intervencionista desde el box.'
+            : 'Toda colección requiere drenaje percutáneo o quirúrgico. Coordínalo en paralelo al antibiótico.'],
+          ['Destino', 'Hospitalización.'],
+          ['Enlace', LINK_SEPSIS]
+        ]
+      };
+    }
+
+    if (pat === 'obstruccion') {
+      return {
+        sev: 'amber', tag: 'Obstructivo',
+        title: 'Sospecha de obstrucción intestinal',
+        rows: [
+          ['Confirma', 'Vómitos, distensión, ausencia de gases y deposiciones, y dolor cólico. ' +
+            (f('cirugia') ? '<strong>Cirugía abdominal previa o hernia conocida</strong>: las bridas y las hernias son las causas más frecuentes en el adulto.' : 'Busca hernias en todos los orificios y cicatrices de cirugías previas.')],
+          ['Alarma', 'El dolor cólico que se vuelve <strong>constante</strong>, con fiebre, taquicardia, defensa o acidosis, sugiere <strong>estrangulación</strong>: es quirúrgico y urgente.'],
+          ['Estudio', BASE_LAB + ' Agrega lactato y gases si hay sospecha de compromiso vascular.'],
+          ['Imagen', '<strong>Tomografía de abdomen y pelvis con contraste</strong>: define nivel, causa y signos de sufrimiento intestinal mejor que la radiografía.'],
+          ['Manejo inicial', 'Régimen cero, <strong>sonda nasogástrica</strong> si hay vómitos o distensión importante, reposición hidroelectrolítica y analgesia. Evaluación quirúrgica en todos los casos.'],
+          ['Destino', 'Hospitalización; el manejo conservador de la obstrucción por bridas se decide con cirugía.']
+        ]
+      };
+    }
+
+    if (pat === 'pelvico' || (f('fertil') && pat === 'fid')) {
+      return {
+        sev: 'amber', tag: 'Pélvico',
+        title: 'Dolor pélvico en mujer en edad fértil',
+        rows: [
+          ['Primero', '<strong>Prueba de embarazo siempre</strong>, antes de cualquier otra hipótesis. Con prueba positiva y dolor, el embarazo ectópico es el diagnóstico a descartar, y la inestabilidad obliga a pabellón sin esperar la imagen.'],
+          ['Descarta', 'Embarazo ectópico, <strong>torsión ovárica</strong> (dolor brusco e intenso, a menudo con vómitos; requiere cirugía precoz para salvar el ovario), quiste complicado, enfermedad inflamatoria pélvica y absceso tuboovárico.'],
+          ['No olvides', 'La <strong>apendicitis</strong> sigue en la lista: en la mujer en edad fértil el diagnóstico diferencial ginecológico aumenta la tasa de apendicectomías innecesarias y también la de apendicitis perdidas.'],
+          ['Estudio', BASE_LAB + ' Agrega ecografía transvaginal o pélvica y estudio de infecciones de transmisión sexual si el cuadro lo sugiere.'],
+          ['Destino', 'Evaluación ginecológica. Hospitalización si hay inestabilidad, sospecha de torsión o de ectópico, absceso, o dolor no controlado.']
+        ]
+      };
+    }
+
+    if (pat === 'hd') {
+      return {
+        sev: 'amber', tag: 'Biliar',
+        title: 'Dolor en hipocondrio derecho — patología biliar probable',
+        rows: [
+          ['Distingue', '<strong>Cólico biliar:</strong> dolor sostenido de horas que cede, sin fiebre ni inflamación. <strong>Colecistitis:</strong> dolor persistente con fiebre, Murphy positivo y marcadores inflamatorios. <strong>Colangitis:</strong> agrega ictericia —y en la forma grave, hipotensión y confusión—.'],
+          ['Estudio', BASE_LAB + ' Las pruebas hepáticas con patrón colestásico orientan a coledocolitiasis.'],
+          ['Imagen', '<strong>Ecografía abdominal</strong> como primer estudio: cálculos, pared vesicular, líquido perivesicular, diámetro de la vía biliar y Murphy ecográfico.'],
+          ['Trátalo', 'Analgesia, régimen cero, hidratación; antibiótico si hay colecistitis o colangitis, según protocolo local. La colecistectomía precoz es la conducta habitual en la colecistitis aguda. <em>Oportunidad quirúrgica y esquema: verificar con protocolo institucional.</em>'],
+          ['Ojo', 'En el <strong>diabético y el adulto mayor</strong> considera colecistitis alitiásica y formas complicadas —enfisematosa, gangrenosa— con pocos signos externos.'],
+          ['Destino', 'Cólico biliar simple resuelto: alta con control y derivación a cirugía. Colecistitis o colangitis: hospitalización.']
+        ]
+      };
+    }
+
+    if (pat === 'epigastrio') {
+      return {
+        sev: 'amber', tag: 'Epigástrico',
+        title: 'Dolor epigástrico — descarta primero lo que no es digestivo',
+        rows: [
+          ['Primero', '<strong>Electrocardiograma</strong>' + ((f('mayor') || f('vascular')) ? ' —obligatorio en este paciente—' : ' en mayores de 50 años, diabéticos o con factores de riesgo') + '. El infarto de cara inferior se presenta como epigastralgia con náuseas y sudoración.'],
+          ['Piensa en', 'Pancreatitis aguda, úlcera péptica y su perforación, gastritis, y en el adulto mayor también aneurisma aórtico e isquemia mesentérica precoz.'],
+          ['Estudio', BASE_LAB + ' La lipasa <strong>mayor a tres veces el límite superior normal</strong>, junto al cuadro clínico, apoya pancreatitis; su magnitud no mide gravedad.'],
+          ['Si es pancreatitis', 'Reposición con cristaloides <strong>moderada y guiada por respuesta</strong> —la reanimación agresiva se asoció a más sobrecarga sin mejores desenlaces—, analgesia adecuada, búsqueda de etiología biliar con ecografía y evaluación de gravedad. <strong>Sin antibióticos profilácticos</strong> en la pancreatitis no infectada.'],
+          ['Imagen', 'Ecografía para vía biliar. La tomografía no es necesaria de entrada en la pancreatitis: rinde más pasadas 48–72 horas o ante deterioro.'],
+          ['Destino', 'Según gravedad y tolerancia oral. La falla orgánica persistente define el caso grave y su manejo en unidad de mayor complejidad.'],
+          ['Enlace', LINK_TORAX]
+        ]
+      };
+    }
+
+    if (pat === 'fid') {
+      return {
+        sev: 'amber', tag: 'Fosa iliaca derecha',
+        title: 'Dolor en fosa iliaca derecha — apendicitis hasta demostrar lo contrario',
+        rows: [
+          ['Confirma', 'Dolor periumbilical que migra, anorexia, náuseas, dolor a la palpación y defensa localizada. Usa el <strong>puntaje de Alvarado</strong> de la sección 06 para ordenar la conducta, sabiendo que no descarta por sí solo.'],
+          ['Estudio', BASE_LAB + ' Leucocitos y proteína C reactiva normales <strong>no descartan</strong> apendicitis, sobre todo en las primeras horas.'],
+          ['Imagen', 'Ecografía como primer estudio en el paciente joven y delgado y en la gestante; <strong>tomografía</strong> cuando la ecografía no es concluyente o el paciente no es buen candidato para ella.'],
+          ['Diferencial', 'Adenitis mesentérica, ileítis, cólico ureteral, diverticulitis cecal, hernia incarcerada' +
+            (f('fertil') ? ', y en esta paciente <strong>embarazo ectópico, torsión ovárica y quiste complicado</strong>.' : '.')],
+          ['Manejo', 'Régimen cero, analgesia, hidratación y evaluación quirúrgica. El antibiótico se indica según la conducta definida con cirugía.'],
+          ['Destino', 'Alta solo con baja probabilidad, dolor controlado, otra explicación razonable y <strong>reevaluación asegurada en 12–24 horas</strong>; en caso contrario, observación u hospitalización.']
+        ]
+      };
+    }
+
+    if (pat === 'fii') {
+      return {
+        sev: 'amber', tag: 'Fosa iliaca izquierda',
+        title: 'Dolor en fosa iliaca izquierda — diverticulitis probable',
+        rows: [
+          ['Confirma', 'Dolor sostenido en fosa iliaca izquierda, con o sin fiebre, cambio del hábito intestinal y marcadores inflamatorios elevados. Más frecuente sobre los 50 años.'],
+          ['Estudio', BASE_LAB],
+          ['Imagen', '<strong>Tomografía de abdomen y pelvis con contraste</strong>: distingue la diverticulitis no complicada de la complicada —absceso, perforación, peritonitis—, y esa distinción define el tratamiento.'],
+          ['Tratamiento', 'La diverticulitis <strong>no complicada</strong> en paciente inmunocompetente, sin comorbilidad relevante y que tolera la vía oral, puede manejarse de forma ambulatoria y en casos seleccionados <strong>sin antibióticos</strong>. La complicada requiere hospitalización, antibiótico y drenaje o cirugía. <em>Selección de pacientes y esquema: verificar con protocolo institucional.</em>'],
+          ['No asumas', 'En el adulto mayor considera también <strong>colitis isquémica</strong>, obstrucción por neoplasia y aneurisma aórtico con dolor referido.'],
+          ['Destino', 'Ambulatorio con control en 48–72 horas en casos seleccionados; hospitalización si hay complicación, inmunosupresión, intolerancia oral o falta de red de apoyo.']
+        ]
+      };
+    }
+
+    if (pat === 'flanco') {
+      return {
+        sev: 'amber', tag: 'Flanco',
+        title: 'Dolor en flanco — cólico renoureteral y sus imitadores',
+        rows: [
+          ['Ojo primero', (f('mayor') || f('vascular'))
+            ? '<strong>En este paciente, descarta aneurisma aórtico antes de asumir cólico renal.</strong> El aneurisma roto se presenta con dolor lumbar, hematuria e inquietud: mira la aorta con el ecógrafo.'
+            : 'En mayores de 60 años, el <strong>aneurisma aórtico</strong> imita el cólico renal. Ante un primer episodio en un paciente de esa edad, mira la aorta.'],
+          ['Bandera roja', 'Fiebre con dolor en flanco y sospecha de obstrucción es una <strong>emergencia urológica</strong>: la pionefrosis requiere drenaje, no solo antibiótico.'],
+          ['Estudio', BASE_LAB + ' Orina completa y urocultivo si hay sospecha de infección.'],
+          ['Imagen', 'Tomografía sin contraste para litiasis; ecografía en la gestante y en el paciente joven. Con sospecha vascular, angiotomografía.'],
+          ['Tratamiento', 'Analgesia con antiinflamatorios no esteroidales como base, salvo contraindicación, e hidratación según tolerancia. Deriva a urología ante riñón único, obstrucción con infección, falla renal o dolor incoercible.'],
+          ['Destino', 'Alta con analgesia y control si el dolor cede y no hay infección ni obstrucción relevante.']
+        ]
+      };
+    }
+
+    return {
+      sev: f('mayor') || f('inmuno') || f('cirrosis') ? 'amber' : 'green',
+      tag: 'Indiferenciado',
+      title: 'Dolor abdominal difuso o mal definido',
+      rows: [
+        ['Enfoque', 'Sin foco claro, el trabajo es <strong>descartar las causas letales y observar</strong>. El examen seriado cada 2–4 horas, por el mismo médico cuando sea posible, es la herramienta más rentable de este escenario.'],
+        ['Estudio', BASE_LAB + ' Electrocardiograma si el dolor es del hemiabdomen superior o el paciente tiene factores de riesgo.'],
+        ['Considera', 'Gastroenteritis, íleo, constipación, causas extraabdominales —cetoacidosis, insuficiencia suprarrenal, neumonía basal, herpes zóster— y dolor de pared abdominal con signo de Carnett positivo.'],
+        ['Imagen', 'No siempre necesaria en el paciente joven, estable y con examen tranquilizador. Baja el umbral en adulto mayor, inmunosuprimido, cirrótico, cirugía abdominal previa o dolor que persiste tras la observación.'],
+        ['Destino', '«Dolor abdominal inespecífico» es un diagnóstico aceptable si el paciente está sin dolor o con dolor controlado, tolera la vía oral, deambula y tiene <strong>control asegurado en 12–24 horas</strong> con instrucciones escritas de retorno.']
+      ]
+    };
+  }
+
+  function contextRows(r) {
+    const extra = [];
+    if (f('fertil') && !/pélvico|fértil|ectópico/i.test(r.title)) {
+      extra.push(['Contexto', 'Mujer en edad fértil: <strong>prueba de embarazo antes de cerrar el caso</strong>, con independencia de la historia menstrual. Con prueba positiva, el embarazo ectópico entra en el diferencial de cualquier dolor abdominal.']);
+    }
+    if (f('mayor') && !/mayor/i.test(r.title)) {
+      extra.push(['Contexto', '65 años o más: menos dolor, menos fiebre y menos leucocitosis, con más mortalidad. <strong>Baja el umbral de tomografía y de observación</strong>, y mantén abiertas la isquemia mesentérica, el aneurisma, la obstrucción y el síndrome coronario.']);
+    }
+    if (f('vascular') && !/isquemia|vascular/i.test(r.title)) {
+      extra.push(['Contexto', 'Fibrilación auricular, cardiopatía embolígena o ateroesclerosis: <strong>mantén abierta la isquemia mesentérica</strong> mientras el dolor no tenga explicación, sobre todo si es más intenso que los hallazgos del examen.']);
+    }
+    if (f('cirugia') && !/obstrucción/i.test(r.title)) {
+      extra.push(['Contexto', 'Cirugía abdominal previa o hernia conocida: <strong>revisa todos los orificios herniarios</strong> y considera obstrucción por bridas aunque el cuadro no sea el clásico.']);
+    }
+    if (f('inmuno') && !/infeccioso|peritonitis/i.test(r.title)) {
+      extra.push(['Contexto', 'Inmunosupresión, quimioterapia, corticoides o neutropenia: <strong>los signos peritoneales se atenúan</strong>. Considera enterocolitis neutropénica y colitis infecciosa, y pide imagen antes de lo que pedirías en otro paciente.']);
+    }
+    if (f('cirrosis') && !/peritonitis bacteriana/i.test(r.title)) {
+      extra.push(['Contexto', 'Cirrosis con ascitis o diálisis peritoneal: <strong>paracentesis o estudio del efluente</strong> ante dolor, fiebre o deterioro. En el cirrótico, ≥250 polimorfonucleares/mm³ definen peritonitis bacteriana espontánea, y el abdomen puede estar blando.']);
+    }
+    if (f('anticoag') && !/hemodinámico|catastrófico/i.test(r.title)) {
+      extra.push(['Contexto', 'Anticoagulación o coagulopatía: considera <strong>hematoma de la vaina del recto y hemorragia retroperitoneal</strong> ante dolor de inicio brusco con anemización. El signo de Carnett positivo orienta a la pared abdominal.']);
+    }
+    if (f('trauma') && !/catastrófico|hemodinámico/i.test(r.title)) {
+      extra.push(['Contexto', 'Trauma reciente, aunque haya parecido menor: la <strong>rotura esplénica puede ser diferida</strong>. Si el mecanismo es relevante, el manejo pasa a ser el del paciente traumatizado.']);
+    }
+    return extra;
+  }
+
+  function render() {
+    const box = document.getElementById('result');
+    const r = classify();
+    if (!r) {
+      box.className = 'result placeholder';
+      box.innerHTML = 'Selecciona el patrón y el estado en el box para ver la hipótesis prioritaria, el estudio ' +
+                      'inicial sugerido, lo que hay que descartar en paralelo y el destino probable.';
+      return;
+    }
+    const rows = r.rows.filter(row => row && row[1]);
+    const enlace = rows.length && rows[rows.length - 1][0] === 'Enlace' ? rows.pop() : null;
+    rows.push(...contextRows(r));
+    if (enlace) rows.push(enlace);
+
+    box.className = 'result sev-' + r.sev;
+    box.innerHTML =
+      '<div class="result-tag">' + r.tag + '</div>' +
+      '<div class="result-title">' + r.title + '</div>' +
+      rows.map(([k, v]) =>
+        '<div class="result-row"><div class="result-key">' + k + '</div><div>' + v + '</div></div>'
+      ).join('');
+
+    const sevClass = { red: 'sev-red', amber: 'sev-amber', green: 'sev-green' }[r.sev] || 'sev-green';
+    const inner = document.getElementById('sticky-inner');
+    inner.className = 'sticky-inner ' + sevClass;
+    document.getElementById('sticky-hyp').textContent = r.title;
+    const firstRow = rows.find(row => row[0] !== 'Enlace');
+    document.getElementById('sticky-act').innerHTML = firstRow ? firstRow[1] : '';
+  }
+
+  // ── Causas letales: reordenadas según lo respondido ────────────────
+  var CAUSAS = [
+    { t: 'Aneurisma aórtico abdominal roto', d: 'Mayor de 60 años, dolor abdominal o lumbar de inicio brusco, síncope, hipotensión, masa pulsátil. Se confunde con cólico renal: la tríada de dolor, hematuria y agitación aparece en ambos.', a: 'Reanimación, grupo y pruebas cruzadas, <strong>ecografía a pie de cama</strong> y cirugía vascular de inmediato. Con hipotensión mantenida el destino es el pabellón, no el escáner.', pat: ['brusco', 'flanco'], est: ['shock', 'irritacion'], ctx: ['mayor', 'vascular'] },
+    { t: 'Isquemia mesentérica aguda', d: '<strong>Dolor desproporcionado al examen</strong>, fibrilación auricular o vasculopatía, edad avanzada, vómitos y diarrea precoces. El abdomen se pone peritoneal tarde, cuando ya hay necrosis.', a: '<strong>Angiotomografía en fase arterial sin retraso.</strong> Un lactato normal <strong>no descarta</strong>: se eleva tardíamente. Cirugía y radiología intervencionista desde la sospecha.', pat: ['despro', 'difuso'], est: ['irritacion', 'shock'], ctx: ['vascular', 'mayor'] },
+    { t: 'Perforación de víscera hueca', d: 'Dolor súbito e intenso, abdomen en tabla, paciente inmóvil, defensa involuntaria generalizada.', a: 'Reanimación, <strong>antibiótico precoz de amplio espectro</strong> y cirugía. La tomografía confirma y localiza; la radiografía normal no descarta.', pat: ['peritoneal', 'difuso'], est: ['irritacion', 'shock'], ctx: [] },
+    { t: 'Obstrucción intestinal con estrangulación', d: 'Cirugía previa o hernia, vómitos, distensión, ausencia de gases; el dolor cólico que se hace <strong>constante</strong>, con fiebre, taquicardia o acidosis, sugiere compromiso vascular.', a: 'Sonda nasogástrica si hay vómitos, reposición hidroelectrolítica, tomografía y evaluación quirúrgica urgente.', pat: ['obstruccion'], est: ['febril', 'irritacion'], ctx: ['cirugia'] },
+    { t: 'Colangitis aguda', d: 'Fiebre, ictericia y dolor en hipocondrio derecho (tríada de Charcot); si se agregan hipotensión y compromiso de conciencia (péntada de Reynolds), la mortalidad sin drenaje es muy alta.', a: 'Hemocultivos, antibiótico precoz y <strong>drenaje biliar urgente</strong> —colangiopancreatografía retrógrada endoscópica— coordinado desde el box.', pat: ['hd'], est: ['febril', 'shock'], ctx: [] },
+    { t: 'Embarazo ectópico complicado', d: 'Mujer en edad fértil con dolor pélvico, con o sin amenorrea reconocida; lipotimia, palidez, dolor al movilizar el cuello uterino.', a: '<strong>Prueba de embarazo y ecografía</strong>. Con inestabilidad, pabellón sin esperar confirmación por imagen.', pat: ['pelvico', 'brusco'], est: ['shock', 'irritacion'], ctx: ['fertil'] },
+    { t: 'Pancreatitis aguda grave', d: 'Dolor epigástrico en banda irradiado a dorso, vómitos; la gravedad la marcan la falla orgánica persistente y la respuesta sistémica, no el valor de la lipasa.', a: 'Reposición con cristaloides <strong>moderada y guiada por respuesta</strong>, analgesia, evaluación de gravedad y búsqueda de etiología biliar.', pat: ['epigastrio'], est: ['febril', 'irritacion'], ctx: [] },
+    { t: 'Síndrome coronario agudo de presentación abdominal', d: 'Epigastralgia con náuseas y sudoración en adulto mayor, diabético o mujer; infarto de cara inferior.', a: '<strong>Electrocardiograma en los primeros 10 minutos</strong> y troponina. Ver la guía de dolor torácico.', pat: ['epigastrio'], est: ['estable', 'irritacion'], ctx: ['mayor', 'vascular'] },
+    { t: 'Peritonitis bacteriana espontánea', d: 'Cirrótico con ascitis y dolor, fiebre, encefalopatía o deterioro sin causa clara. Puede cursar con abdomen blando.', a: '<strong>Paracentesis diagnóstica precoz</strong> con recuento celular y cultivo; ≥250 polimorfonucleares/mm³ define la infección. La alteración de la coagulación no la contraindica de rutina.', pat: ['difuso', 'peritoneal'], est: ['febril'], ctx: ['cirrosis', 'inmuno'] },
+    { t: 'Cetoacidosis diabética', d: 'Dolor abdominal con vómitos, polipnea, deshidratación; puede simular abdomen quirúrgico y remite al corregir la acidosis.', a: 'Glicemia capilar, cetonemia o cetonuria, gases y electrolitos <strong>antes</strong> de indicar cirugía.', pat: ['difuso'], est: ['estable', 'febril'], ctx: [] },
+    { t: 'Hemorragia retroperitoneal o de pared', d: 'Paciente anticoagulado, dolor de inicio brusco, anemización, masa dolorosa en flanco o pared.', a: 'Tomografía, suspensión y reversión de la anticoagulación según protocolo, evaluación quirúrgica o embolización.', pat: ['flanco', 'brusco'], est: ['shock', 'irritacion'], ctx: ['anticoag', 'trauma'] },
+    { t: 'Vólvulo de sigmoides o de ciego', d: 'Distensión importante, dolor cólico, constipación; adulto mayor institucionalizado o con megacolon.', a: 'Tomografía y evaluación quirúrgica o endoscópica urgente; el retraso lleva a isquemia y perforación.', pat: ['fii', 'obstruccion'], est: ['estable', 'irritacion'], ctx: ['mayor'] }
+  ];
+
+  function score(c) {
+    let s = 0;
+    if (sel.pat && c.pat.indexOf(sel.pat) > -1) s += 3;
+    if (sel.est && c.est.indexOf(sel.est) > -1) s += 2;
+    sel.fac.forEach(k => { if (c.ctx.indexOf(k) > -1) s += 1; });
+    return s;
+  }
+
+  var otrasOpen = false;
+
+  function renderCausas() {
+    if (!sel.pat || !sel.est) return;
+    let ranked = CAUSAS.map(c => ({ c, s: score(c) })).sort((a, b) => b.s - a.s);
+    let top = ranked.filter(r => r.s >= 3);
+    let rest = ranked.filter(r => r.s < 3);
+    if (top.length === 0) { top = ranked.slice(0, 1); rest = ranked.slice(1); }
+
+    document.getElementById('causas-top').innerHTML = top.map(r =>
+      '<div class="causa-card">' +
+      '<div class="causa-title">' + r.c.t + '</div>' +
+      '<div class="causa-row"><b>Delata</b>' + r.c.d + '</div>' +
+      '<div class="causa-row"><b>Acción</b>' + r.c.a + '</div>' +
+      '</div>'
+    ).join('');
+
+    document.getElementById('otras-label').textContent = otrasOpen ? 'Ocultar el resto' : 'Ver el resto de causas letales (' + rest.length + ')';
+    document.getElementById('causas-otras').innerHTML = rest.map(r =>
+      '<div class="collapse-item"><b>' + r.c.t + '.</b> ' + r.c.d + '</div>'
+    ).join('') || '<div class="collapse-item">Sin otras causas en la lista.</div>';
+  }
+
+  function toggleOtras() {
+    otrasOpen = !otrasOpen;
+    document.getElementById('causas-otras').hidden = !otrasOpen;
+    document.getElementById('otras-arrow').textContent = otrasOpen ? '▴' : '▾';
+  }
+
+  // ── Puntaje de Alvarado (sección de referencia, sin cambios) ───────
+  const alvList = document.getElementById('alv-list');
+
+  function renderAlvarado() {
+    const out = document.getElementById('alv-out');
+    const marcados = alvList.querySelectorAll('.score-item.on');
+    if (marcados.length === 0) {
+      out.innerHTML = 'Marca los elementos presentes para obtener el puntaje y la banda de probabilidad.';
+      return;
+    }
+    let total = 0;
+    marcados.forEach(b => { total += Number(b.dataset.p); });
+
+    let clase, banda, conducta;
+    if (total <= 3) {
+      clase = 'risk-low'; banda = 'Probabilidad baja';
+      conducta = 'Apendicitis poco probable. Busca activamente otra causa y, si el cuadro no calza con un diagnóstico ' +
+                 'alternativo, observa y <strong>reevalúa el examen</strong> en vez de dar el alta por el número.';
+    } else if (total <= 6) {
+      clase = 'risk-mid'; banda = 'Probabilidad intermedia';
+      conducta = 'Zona de mayor incertidumbre: <strong>imagen</strong> —ecografía o tomografía según el paciente y la ' +
+                 'disponibilidad— y observación con examen seriado. <strong>No es un paciente de alta directa desde el box.</strong>';
+    } else {
+      clase = 'risk-high'; banda = 'Probabilidad alta';
+      conducta = 'Evaluación quirúrgica. La necesidad de imagen previa depende del paciente y del protocolo local; ' +
+                 'régimen cero, analgesia e hidratación mientras se define la conducta.';
+    }
+
+    out.innerHTML =
+      '<span class="big ' + clase + '">Alvarado ' + total + ' / 10 · ' + banda + '</span>' +
+      conducta +
+      '<br><br>El puntaje <strong>complementa y no reemplaza el juicio clínico</strong>, y rinde menos en mujeres en ' +
+      'edad fértil, adultos mayores y niños. Los umbrales de imagen y de derivación quirúrgica varían entre centros. ' +
+      '<em>Verificar con protocolo institucional.</em>';
+  }
+
+  alvList.querySelectorAll('.score-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('on');
+      renderAlvarado();
+    });
+  });
+
+  document.getElementById('alv-reset').addEventListener('click', () => {
+    alvList.querySelectorAll('.score-item').forEach(b => b.classList.remove('on'));
+    renderAlvarado();
+  });
+</script>
+</body>
+</html>

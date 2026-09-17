@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Modo Box · Lumbago agudo</title>
+<meta name="description" content="Modo Box: orientación clínica en lumbago agudo de urgencia, en formato de un paso a la vez con resultado fijo en pantalla, pensado para usarse junto al paciente.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --surface3: #212a40;
+    --border: rgba(255,255,255,0.07);
+    --border-strong: rgba(255,255,255,0.14);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99,102,241,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(245,158,11,0.06) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 32px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(99,102,241,0.1);
+    border: 1px solid rgba(99,102,241,0.25);
+    color: #a5b4fc;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #f59e0b, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  .header-alt {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 9px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.03em;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .header-alt:hover { color: var(--text); border-color: var(--border-strong); }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .s1 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s1 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s2 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s3 .section-num { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s3 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s4 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s4 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s5 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s5 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s6 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s6 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s7 .section-num { background: rgba(239,68,68,0.10); color: #fecaca; border: 1px solid rgba(239,68,68,0.18); }
+  .s7 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s8 .section-num { background: rgba(255,255,255,0.06); color: var(--text-dim); border: 1px solid var(--border); }
+  .s8 { --accent: var(--text-dim); --accent-glow: rgba(148,163,184,0.08); }
+
+  .reference-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 34px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .reference-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* ============ MODO BOX: wizard, sticky, causas ============ */
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt.on { background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.45); color: #6ee7b7; }
+  .opt:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+
+  .wizard-step { border-radius: 16px; border: 1px solid var(--border); background: var(--surface); margin-bottom: 12px; overflow: hidden; animation: fadeUp 0.5s ease both; }
+  .wizard-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; gap: 10px; flex-wrap: wrap; }
+  .wizard-num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+  .wizard-num .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border-strong); display: inline-block; }
+  .wizard-step.done .wizard-num .dot { background: var(--teal); }
+  .wizard-step.active .wizard-num .dot { background: var(--amber); }
+  .wizard-answer { font-size: 13px; color: #5eead4; font-family: var(--sans); }
+  .wizard-change { font-family: var(--mono); font-size: 11px; color: var(--text-muted); background: none; border: none; cursor: pointer; text-decoration: underline; text-decoration-color: var(--border-strong); }
+  .wizard-change:hover { color: var(--text); }
+  .wizard-body { padding: 0 18px 18px; }
+
+  .panel { border-radius: 18px; border: 1px solid var(--border); background: var(--surface); overflow: hidden; margin-bottom: 16px; }
+  .panel-head { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+  .panel-title { font-family: var(--display); font-weight: 700; font-size: 14.5px; color: #fff; }
+  .panel-sub { font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .panel-body { padding: 18px 20px 22px; }
+
+  .sticky-shell { position: sticky; top: 0; z-index: 5; margin: 0 -24px 18px; padding: 10px 24px 0; background: var(--bg); }
+  .sticky-inner {
+    border-radius: 14px; border: 1px solid var(--border); background: var(--surface3);
+    padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  }
+  .sev-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 0 4px var(--dot-glow, transparent); }
+  .sticky-inner.sev-red { --dot-glow: rgba(239,68,68,0.18); } .sticky-inner.sev-red .sev-dot { background: var(--red); }
+  .sticky-inner.sev-amber { --dot-glow: rgba(245,158,11,0.18); } .sticky-inner.sev-amber .sev-dot { background: var(--amber); }
+  .sticky-inner.sev-green { --dot-glow: rgba(16,185,129,0.18); } .sticky-inner.sev-green .sev-dot { background: var(--emerald); }
+  .sticky-text { flex: 1; min-width: 0; }
+  .sticky-hyp { font-family: var(--display); font-weight: 700; font-size: 14.5px; color: #fff; }
+  .sticky-act { font-size: 12.5px; color: var(--text-dim); margin-top: 2px; line-height: 1.45; }
+  .sticky-act strong { color: #fff; font-weight: 500; }
+  .sticky-reset {
+    font-family: var(--mono); font-size: 11px; color: var(--text-muted); background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 9px; padding: 7px 11px; cursor: pointer; flex-shrink: 0; white-space: nowrap;
+  }
+  .sticky-reset:hover { color: var(--text); border-color: var(--border-strong); }
+
+  .causas-lead { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin: 22px 0 12px; }
+  .causa-card { border-radius: 13px; border: 1px solid var(--border); background: var(--surface2); border-left: 3px solid var(--red); padding: 14px 16px; margin-bottom: 10px; }
+  .causa-title { font-family: var(--display); font-weight: 700; font-size: 14.5px; color: #fff; margin-bottom: 6px; }
+  .causa-row { font-size: 13px; color: var(--text-dim); line-height: 1.55; margin-top: 4px; }
+  .causa-row b { color: var(--text-muted); font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; margin-right: 6px; }
+  .causa-row strong { color: #fff; font-weight: 500; }
+
+  .collapse-toggle {
+    width: 100%; text-align: left; font-family: var(--mono); font-size: 12px; color: var(--text-muted);
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 11px; padding: 12px 14px;
+    cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+  .collapse-toggle:hover { color: var(--text); border-color: var(--border-strong); }
+  .collapse-body { padding-top: 8px; }
+  .collapse-item { font-size: 12.5px; color: var(--text-dim); padding: 9px 4px; border-top: 1px solid var(--border); line-height: 1.5; }
+  .collapse-item:first-child { border-top: none; }
+  .collapse-item b { color: var(--text); font-weight: 500; }
+  .collapse-item strong { color: var(--text); font-weight: 500; }
+
+  .result {
+    margin-top: 4px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface2);
+    padding: 18px 20px;
+    border-left: 3px solid var(--accent, var(--emerald));
+    margin-bottom: 20px;
+  }
+  .result.placeholder { color: var(--text-muted); font-size: 13px; font-family: var(--mono); line-height: 1.6; }
+
+  .result-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .result-title {
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .result-row {
+    display: flex;
+    gap: 12px;
+    padding: 9px 0;
+    border-top: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .result-row:first-of-type { border-top: none; padding-top: 2px; }
+  .result-key {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    flex: 0 0 104px;
+    padding-top: 3px;
+  }
+  .result-row strong { color: #fff; font-weight: 500; }
+  .result-row em { color: #fcd34d; font-style: normal; }
+
+  .result.sev-red { border-left-color: var(--red); }
+  .result.sev-amber { border-left-color: var(--amber); }
+  .result.sev-green { border-left-color: var(--emerald); }
+
+  /* SELECTOR DE RAÍZ (sección de referencia, sin cambios) */
+  .root-picker { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .root-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .root-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .root-btn.on {
+    background: rgba(99,102,241,0.14);
+    border-color: rgba(99,102,241,0.45);
+    color: #a5b4fc;
+  }
+  .root-btn:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
+
+  .root-out {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface2);
+    padding: 16px 18px;
+    border-left: 3px solid var(--indigo);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .root-out.placeholder { color: var(--text-muted); font-family: var(--mono); font-size: 13px; }
+
+  /* BANNERS */
+  .warning-banner, .info-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    color: #fca5a5;
+  }
+  .info-banner {
+    background: rgba(59,130,246,0.06);
+    border: 1px solid rgba(59,130,246,0.18);
+    color: #bfdbfe;
+  }
+  .warning-banner strong, .info-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* CRONOLOGÍA */
+  .timeline { display: flex; flex-direction: column; gap: 10px; }
+  .tl-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 13px 15px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .tl-time {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: #fca5a5;
+    flex: 0 0 64px;
+    padding-top: 2px;
+  }
+  .tl-item strong { color: #fff; font-weight: 500; }
+  .tl-item em { color: #fcd34d; font-style: normal; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--amber); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .sticky-shell { margin: 0 -16px 16px; padding: 8px 16px 0; }
+    .sticky-inner { flex-wrap: wrap; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .opt { width: 100%; }
+    .result-row { flex-direction: column; gap: 4px; }
+    .result-key { flex: none; padding-top: 0; }
+    .tl-item { flex-direction: column; gap: 6px; }
+    .tl-time { flex: none; }
+    .root-btn { flex: 1; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index_mockup.html">← Volver a Modo Box</a>
+    <div class="header-badge">Modo Box · Motivo de consulta</div>
+    <h1>Lumbago <span>agudo</span></h1>
+    <p class="header-sub">
+      Mismo contenido de la guía de lumbago agudo, reorganizado para el box: un paso a la vez, la hipótesis
+      y la acción inmediata fijas en pantalla mientras avanzas, y las banderas rojas reordenadas según lo
+      que ya respondiste.
+    </p>
+    <a class="header-alt" href="./guia-lumbago-agudo.html">📄 Ver la guía completa</a>
+  </div>
+
+  <!-- WIZARD -->
+  <div class="wizard-step active" id="step-pat" style="animation-delay:0.06s;">
+    <div class="wizard-head">
+      <div class="wizard-num"><span class="dot"></span>1 · Patrón dominante</div>
+      <div><span class="wizard-answer" id="ans-pat"></span><button class="wizard-change" id="chg-pat" onclick="openStep('pat')" hidden>cambiar</button></div>
+    </div>
+    <div class="wizard-body" id="body-pat">
+      <div class="opts" id="q-pat">
+        <button type="button" class="opt" data-v="mecanico">Dolor lumbar que cambia con la postura y el movimiento, sin irradiación bajo la rodilla</button>
+        <button type="button" class="opt" data-v="radicular">Irradiación bajo la rodilla en un territorio definido (ciática), con parestesias o debilidad</button>
+        <button type="button" class="opt" data-v="cauda">Alteración esfinteriana, anestesia en silla de montar o déficit de ambas piernas</button>
+        <button type="button" class="opt" data-v="vascular">Inicio brusco, desgarrador, con síncope, palidez o mal estado general</button>
+        <button type="button" class="opt" data-v="claudicacion">Dolor en las piernas al caminar que cede al sentarse o al inclinarse hacia adelante</button>
+        <button type="button" class="opt" data-v="inflamatorio">Comienzo insidioso en menor de 45 años, rigidez matinal prolongada, mejora con el movimiento</button>
+        <button type="button" class="opt" data-v="visceral">Dolor lumbar con fiebre, síntomas urinarios, digestivos o ginecológicos</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wizard-step" id="step-est" style="opacity:.4; pointer-events:none; animation-delay:0.1s;">
+    <div class="wizard-head">
+      <div class="wizard-num"><span class="dot"></span>2 · Estado en el box</div>
+      <div><span class="wizard-answer" id="ans-est"></span><button class="wizard-change" id="chg-est" onclick="openStep('est')" hidden>cambiar</button></div>
+    </div>
+    <div class="wizard-body" id="body-est" hidden>
+      <div class="opts" id="q-est">
+        <button type="button" class="opt" data-v="estable">Estable, afebril, sin déficit neurológico</button>
+        <button type="button" class="opt" data-v="deficit">Déficit neurológico focal, o debilidad que progresa</button>
+        <button type="button" class="opt" data-v="febril">Fiebre, calofríos o aspecto séptico</button>
+        <button type="button" class="opt" data-v="shock">Hipotensión, mala perfusión o dolor incoercible</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="after-wizard" hidden>
+
+    <div class="sticky-shell">
+      <div class="sticky-inner" id="sticky-inner">
+        <span class="sev-dot" id="sticky-dot"></span>
+        <div class="sticky-text">
+          <div class="sticky-hyp" id="sticky-hyp">—</div>
+          <div class="sticky-act" id="sticky-act">—</div>
+        </div>
+        <button class="sticky-reset" type="button" onclick="resetAll()">↺ Nuevo caso</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-title">3 · Afinar con contexto</div>
+        <div class="panel-sub">Opcional — reordena las causas y ajusta la hipótesis en tiempo real</div>
+      </div>
+      <div class="panel-body">
+        <div class="opts" id="q-fac">
+          <button type="button" class="opt" data-v="cancer">Cáncer activo o antecedente de cáncer</button>
+          <button type="button" class="opt" data-v="inmuno">Inmunosupresión, diabetes, drogas endovenosas, diálisis, bacteriemia o procedimiento espinal reciente</button>
+          <button type="button" class="opt" data-v="osteo">Mayor de 70 años, osteoporosis o corticoides sistémicos prolongados</button>
+          <button type="button" class="opt" data-v="trauma">Trauma de alta energía, o caída de baja energía en hueso frágil</button>
+          <button type="button" class="opt" data-v="aorta">Mayor de 60 años con factores de riesgo vascular o aneurisma aórtico conocido</button>
+          <button type="button" class="opt" data-v="anticoag">Anticoagulación o coagulopatía</button>
+          <button type="button" class="opt" data-v="gestante">Gestante o puerperio reciente</button>
+          <button type="button" class="opt" data-v="ninguno">Ninguno de los anteriores</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="result placeholder" id="result"></div>
+
+    <div class="causas-lead">Causas prioritarias según lo seleccionado</div>
+    <div id="causas-top"></div>
+
+    <button class="collapse-toggle" type="button" onclick="toggleOtras()">
+      <span id="otras-label">Ver el resto de causas letales</span>
+      <span id="otras-arrow">▾</span>
+    </button>
+    <div class="collapse-body" id="causas-otras" hidden></div>
+
+    <div class="link-row" style="margin-top:16px;">
+      <a class="cross-link" href="./checklist-sepsis_4.html">→ Si hay criterios de sepsis: checklist de sepsis y shock séptico</a>
+    </div>
+
+  </div>
+
+  <!-- ================= REFERENCIA COMPLETA (colapsable) ================= -->
+  <div class="reference-label">Referencia completa de la guía</div>
+
+  <!-- 02 · LO PRIMERO -->
+  <div class="section s2" id="s2" style="animation-delay:0.12s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Lo primero: descartar la urgencia</div>
+        <div class="section-subtitle">Cuatro preguntas y un examen que no se saltan</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>Dos escenarios no toleran la espera y se pierden por no preguntar: el <strong>síndrome de cauda
+        equina</strong> y el <strong>aneurisma aórtico abdominal roto</strong>. El primero se descarta preguntando
+        por micción, defecación y sensibilidad perineal; el segundo, tomando la presión y palpando el abdomen en
+        todo adulto mayor con dolor lumbar de inicio brusco.</span>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-time">Triage</span>
+          <span><strong>Signos vitales completos y escala de dolor.</strong> Fiebre, taquicardia o hipotensión sacan
+          al paciente de la categoría «lumbago mecánico» hasta demostrar lo contrario. Glicemia capilar si hay
+          compromiso de conciencia o sospecha de sepsis.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">Pregunta 1</span>
+          <span><strong>¿Orina y defeca normal?</strong> Retención urinaria, esfuerzo o pérdida de la sensación de
+          micción, incontinencia por rebosamiento o incontinencia fecal nueva. La <strong>retención urinaria</strong>
+          es el hallazgo más frecuente en la cauda equina establecida; la <em>pérdida de la sensación de llenado
+          vesical</em> puede precederla.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">Pregunta 2</span>
+          <span><strong>¿Siente normal al limpiarse o al sentarse?</strong> La anestesia en silla de montar —perineo,
+          genitales, cara interna de los muslos— se pregunta de forma explícita y se <strong>examina</strong>, no se
+          asume por la respuesta.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">Pregunta 3</span>
+          <span><strong>¿Se le doblan las piernas o arrastra un pie?</strong> Debilidad bilateral, caídas, dificultad
+          para subir escaleras o pie caído indican compromiso radicular o medular, no contractura.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">Pregunta 4</span>
+          <span><strong>¿Fiebre, baja de peso, cáncer, drogas endovenosas, corticoides, trauma?</strong> Las banderas
+          rojas se preguntan dirigidamente: casi ninguna aparece sola en el relato espontáneo.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">Examen</span>
+          <span><strong>Neurológico de extremidades inferiores siempre:</strong> fuerza por grupos (dorsiflexión del
+          tobillo y del hallux, flexión plantar, extensión de rodilla), sensibilidad por dermatomas, reflejos rotuliano
+          y aquiliano, marcha en talones y en puntillas, y elevación de la pierna recta. <strong>Documenta el resultado,
+          aunque sea normal:</strong> es la línea base contra la que se comparará la próxima consulta.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">Examen</span>
+          <span><strong>Abdomen y pulsos</strong> en todo mayor de 60 años o con dolor de inicio brusco: masa pulsátil,
+          soplo, asimetría de pulsos femorales. La ecografía a pie de cama mide el diámetro aórtico en menos de un
+          minuto y no requiere contraste.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">Examen</span>
+          <span><strong>Percusión de apófisis espinosas, inspección de la piel y puño-percusión renal.</strong>
+          Dolor exquisito sobre una espinosa orienta a fractura, infección o metástasis; el herpes zóster duele
+          días antes de que aparezca el exantema.</span>
+        </div>
+      </div>
+
+      <div class="subhead">Cuándo tomar exámenes de laboratorio</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span>El lumbago inespecífico <strong>no necesita exámenes</strong>. Se piden cuando hay una bandera roja que orienta a infección, malignidad o compromiso sistémico.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Sospecha de infección espinal:</strong> hemograma, <strong>proteína C reactiva y velocidad de sedimentación</strong> (elevadas en la gran mayoría de las espondilodiscitis; más sensibles que el recuento de leucocitos), función renal y <strong>dos sets de hemocultivos antes del antibiótico</strong>, salvo sepsis que obligue a iniciarlo de inmediato.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Sospecha de malignidad:</strong> hemograma, calcemia, función renal y hepática, fosfatasas alcalinas. Electroforesis de proteínas si el cuadro sugiere mieloma (anemia, hipercalcemia, falla renal, lesiones líticas).</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Retención urinaria sospechada:</strong> mide el <strong>residuo postmiccional</strong> con ecografía o sondeo. Un residuo elevado apoya fuertemente la cauda equina en el contexto clínico adecuado; los umbrales usados en la literatura van de 100 a 200 mL. <em>Umbral local: verificar con protocolo institucional.</em></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · BANDERAS ROJAS -->
+  <div class="section s3" id="s3" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Banderas rojas por causa</div>
+        <div class="section-subtitle">Qué las delata y qué hacer con ellas</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Las banderas rojas <strong>no tienen todas el mismo peso</strong>. Revisiones sistemáticas muestran que
+        muchas, tomadas de forma aislada, generan más falsos positivos que diagnósticos: hasta el 80 % de los pacientes
+        con dolor lumbar tiene al menos una. Las que sí cambian la probabilidad de manera relevante son el
+        <strong>antecedente de cáncer</strong>, la <strong>edad avanzada con corticoides o trauma</strong> para
+        fractura, y la <strong>combinación</strong> de varias en un mismo paciente. Interpreta agrupando, no sumando
+        ítems sueltos.</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Causa</th><th>Lo que la delata</th><th>Conducta inicial</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Síndrome de cauda equina</td>
+              <td>Retención urinaria o pérdida de la sensación de micción, incontinencia por rebosamiento o fecal, anestesia en silla de montar, ciática bilateral, déficit motor bilateral, tono anal disminuido</td>
+              <td><strong>Resonancia magnética urgente</strong> de columna lumbosacra y contacto inmediato con neurocirugía o traumatología de columna. No esperar al día hábil</td>
+            </tr>
+            <tr>
+              <td>Compresión medular metastásica</td>
+              <td>Cáncer conocido, dolor dorsal o lumbar progresivo y nocturno, nivel sensitivo, debilidad de ambas piernas, hiperreflexia y Babinski (compresión sobre el cono medular)</td>
+              <td>Resonancia magnética urgente de <strong>toda la columna</strong>, corticoides según protocolo y derivación a oncología radioterápica o neurocirugía el mismo día</td>
+            </tr>
+            <tr>
+              <td>Aneurisma aórtico abdominal roto o síndrome aórtico</td>
+              <td>Mayor de 60 años, dolor lumbar o abdominal de inicio brusco, síncope, hipotensión, masa pulsátil, asimetría de pulsos. Se confunde con cólico renal y con lumbago mecánico</td>
+              <td>Ecografía a pie de cama inmediata, dos vías gruesas, grupo y pruebas cruzadas, y <strong>cirugía vascular sin demora</strong>. La tomografía solo si el paciente está estable</td>
+            </tr>
+            <tr>
+              <td>Infección espinal (espondilodiscitis, absceso epidural)</td>
+              <td>Fiebre, dolor de reposo y nocturno, dolor a la percusión de una espinosa, drogas endovenosas, catéter o bacteriemia reciente, procedimiento espinal, diabetes, inmunosupresión, diálisis</td>
+              <td>Proteína C reactiva, velocidad de sedimentación, hemocultivos y <strong>resonancia magnética con gadolinio</strong>. El absceso epidural con déficit es una emergencia quirúrgica</td>
+            </tr>
+            <tr>
+              <td>Malignidad (metástasis, mieloma)</td>
+              <td><strong>Antecedente de cáncer</strong> (la bandera roja con mejor rendimiento), baja de peso no explicada, dolor que no alivia con el reposo, dolor nocturno, edad mayor de 50 años, duración mayor a 4 a 6 semanas sin mejoría</td>
+              <td>Estudio dirigido según sospecha: laboratorio, radiografía y resonancia magnética. Urgente solo si hay déficit neurológico o hipercalcemia sintomática</td>
+            </tr>
+            <tr>
+              <td>Fractura vertebral</td>
+              <td>Trauma significativo a cualquier edad; caída de baja energía, esfuerzo o incluso ningún trauma en mayor de 70 años, osteoporosis o uso prolongado de corticoides. Dolor localizado y a la percusión</td>
+              <td>Radiografía de columna como primer paso; <strong>tomografía o resonancia</strong> si la radiografía es normal y la sospecha persiste, o si hay déficit neurológico</td>
+            </tr>
+            <tr>
+              <td>Hematoma epidural espinal</td>
+              <td>Anticoagulación o coagulopatía, punción lumbar o anestesia neuroaxial reciente, dolor de inicio súbito con déficit neurológico que progresa en horas</td>
+              <td>Resonancia magnética urgente, reversión de la anticoagulación según protocolo y neurocirugía inmediata</td>
+            </tr>
+            <tr>
+              <td>Causa visceral referida</td>
+              <td>Pielonefritis y cólico renal, pancreatitis, úlcera penetrante, patología biliar, aneurisma, patología ginecológica y embarazo ectópico, prostatitis, absceso del psoas</td>
+              <td>Orientar el estudio por el sistema comprometido. El dolor lumbar que no se modifica con la posición ni con el movimiento rara vez es mecánico</td>
+            </tr>
+            <tr>
+              <td>Dolor lumbar inflamatorio (espondiloartritis axial)</td>
+              <td>Comienzo insidioso antes de los 40 a 45 años (los criterios de dolor inflamatorio usan 40 años; la clasificación de espondiloartritis axial exige inicio antes de los 45), duración mayor a 3 meses, rigidez matinal prolongada, dolor en la segunda mitad de la noche, <strong>mejora con el ejercicio y no con el reposo</strong>, buena respuesta a antiinflamatorios</td>
+              <td>No es urgencia, pero sí diagnóstico: derivar a reumatología para estudio. Su retraso diagnóstico habitual se mide en años</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <a class="cross-link" href="./checklist-sepsis_4.html">→ Si hay criterios de sepsis: checklist de sepsis y shock séptico</a>
+
+    </div>
+  </div>
+
+  <!-- 04 · EXAMEN Y RAÍCES -->
+  <div class="section s4 collapsed" id="s4" style="animation-delay:0.24s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Examen neurológico y mapa radicular</div>
+        <div class="section-subtitle">Selector interactivo por raíz</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Selecciona la raíz sospechada</div>
+      <div class="root-picker" id="root-picker">
+        <button type="button" class="root-btn" data-v="l3">L3</button>
+        <button type="button" class="root-btn" data-v="l4">L4</button>
+        <button type="button" class="root-btn" data-v="l5">L5</button>
+        <button type="button" class="root-btn" data-v="s1">S1</button>
+      </div>
+      <div class="root-out placeholder" id="root-out">
+        Elige una raíz para ver su dermatoma, el grupo muscular que la representa, el reflejo correspondiente,
+        el disco que suele comprometerla y la maniobra de mayor rendimiento.
+      </div>
+
+      <div class="subhead">Maniobras y lo que realmente aportan</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Maniobra</th><th>Cómo se hace</th><th>Rendimiento</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Elevación de la pierna recta (Lasègue)</td>
+              <td>Paciente en decúbito supino; se eleva la pierna extendida. Es positiva cuando reproduce el <strong>dolor radicular</strong> que baja de la rodilla, típicamente entre los 30° y los 70°</td>
+              <td><strong>Sensible pero poco específica</strong> para hernia discal (sensibilidad en torno al 90 %, especificidad cercana al 25 % en metaanálisis). Sirve para dudar, no para confirmar. El dolor lumbar aislado o el dolor en el muslo posterior <em>no</em> la hacen positiva</td>
+            </tr>
+            <tr>
+              <td>Lasègue cruzado</td>
+              <td>Elevar la pierna <strong>sana</strong> reproduce el dolor en la pierna sintomática</td>
+              <td><strong>Poco sensible y muy específica</strong> (especificidad aproximada del 85 a 90 %). Cuando es positiva, apoya con fuerza una hernia discal con compromiso radicular</td>
+            </tr>
+            <tr>
+              <td>Lasègue invertido (estiramiento femoral)</td>
+              <td>Paciente en decúbito prono; se extiende la cadera con la rodilla flectada</td>
+              <td>Explora las <strong>raíces altas L2, L3 y L4</strong>, que la elevación de la pierna recta no evalúa bien. Útil ante dolor en la cara anterior del muslo</td>
+            </tr>
+            <tr>
+              <td>Marcha en talones y en puntillas</td>
+              <td>Caminar apoyando solo talones (L5, dorsiflexión) y solo puntas (S1, flexión plantar)</td>
+              <td>Tamizaje motor rápido y sensible a debilidades sutiles que el examen en camilla pasa por alto. La flexión plantar se evalúa mejor pidiendo <strong>elevaciones repetidas sobre un pie</strong> que empujando con la mano</td>
+            </tr>
+            <tr>
+              <td>Tono y sensibilidad perineal</td>
+              <td>Sensibilidad en silla de montar y tono del esfínter anal, con consentimiento y acompañamiento</td>
+              <td>Obligatorio ante <strong>cualquier</strong> sospecha de cauda equina. Su omisión es el hallazgo más repetido en los análisis de casos de diagnóstico tardío</td>
+            </tr>
+            <tr>
+              <td>Residuo postmiccional</td>
+              <td>Ecografía vesical o sondeo tras la micción espontánea</td>
+              <td>Objetiva la retención cuando el relato es ambiguo. Un residuo elevado en un paciente con ciática bilateral o alteración perineal obliga a la imagen urgente</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Signos de compromiso medular, no radicular</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>Hiperreflexia, clonus, Babinski o espasticidad</strong> por debajo del nivel del dolor: la lesión está en la médula o el cono, por encima de las raíces lumbares. Cambia la imagen solicitada —<strong>toda la columna</strong>— y la urgencia.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>Nivel sensitivo en el tronco:</strong> orienta a lesión medular torácica. El dolor lumbar puede ser referido y engañar sobre la altura real de la lesión.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · IMÁGENES -->
+  <div class="section s5 collapsed" id="s5" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Imágenes: cuándo sí y cuándo no</div>
+        <div class="section-subtitle">Pedir de más también hace daño</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>En el lumbago inespecífico sin banderas rojas, <strong>no se pide imagen</strong> durante las primeras
+        cuatro a seis semanas. Los ensayos muestran que la imagen precoz no mejora el dolor ni la función, sí aumenta
+        el costo y la irradiación, y <strong>empeora el pronóstico percibido</strong> del paciente al etiquetar
+        hallazgos degenerativos como si fueran la causa.</span>
+      </div>
+
+      <div class="subhead">Imagen urgente, hoy, desde el box</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🚨</span><span><strong>Sospecha de cauda equina:</strong> resonancia magnética lumbosacra urgente. Si no hay resonancia disponible, gestiona el traslado; la tomografía no la reemplaza para evaluar tejido nervioso, aunque puede ser útil si la sospecha es ósea.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚨</span><span><strong>Déficit neurológico grave o progresivo</strong> (pie caído de instalación reciente, debilidad bilateral, nivel sensitivo).</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚨</span><span><strong>Sospecha de infección espinal o absceso epidural:</strong> resonancia con gadolinio, más urgente aún si hay déficit.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚨</span><span><strong>Sospecha de compresión medular metastásica:</strong> resonancia de toda la columna, porque las lesiones suelen ser múltiples y a distintos niveles.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚨</span><span><strong>Sospecha de hematoma epidural</strong> en paciente anticoagulado o tras procedimiento neuroaxial.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚨</span><span><strong>Sospecha de aneurisma aórtico:</strong> ecografía a pie de cama primero; angiotomografía si el paciente está estable.</span></div>
+      </div>
+
+      <div class="subhead">Imagen razonable, no urgente</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🩻</span><span><strong>Radiografía</strong> ante sospecha de fractura vertebral por fragilidad (edad avanzada, corticoides, trauma menor). Si es normal y la sospecha persiste, tomografía o resonancia.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧲</span><span><strong>Resonancia diferida</strong> en radiculopatía que no mejora tras cuatro a seis semanas de manejo conservador, o cuando se está evaluando una intervención (infiltración o cirugía). Antes de ese plazo rara vez cambia la conducta.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧲</span><span><strong>Sospecha de malignidad sin déficit:</strong> estudio dirigido en los días siguientes, coordinado con quien continuará el seguimiento.</span></div>
+      </div>
+
+      <div class="subhead">Por qué la imagen «normal» no tranquiliza tanto como parece</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📊</span><span>Los hallazgos degenerativos son <strong>casi universales con la edad y en personas sin dolor</strong>: en una revisión de poblaciones asintomáticas, la degeneración discal aparece en cerca de un tercio de los adultos de 20 años y en más del 90 % de los de 80. Encontrar una protrusión no significa haber encontrado la causa.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📊</span><span>Lo que importa es la <strong>correlación anatómica</strong>: una hernia que explica el territorio del dolor y del déficit. Si no correlaciona, el hallazgo es ruido y el diagnóstico sigue abierto.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · TRATAMIENTO -->
+  <div class="section s6 collapsed" id="s6" style="animation-delay:0.36s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Tratamiento del lumbago agudo</div>
+        <div class="section-subtitle">Qué funciona, qué no, y con qué dosis</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Las guías actuales ponen <strong>primero lo no farmacológico</strong>: explicar el pronóstico favorable,
+        mantener la actividad y aplicar calor superficial. El fármaco acompaña, no sustituye. Casi todos los efectos
+        analgésicos demostrados en lumbago agudo son <strong>modestos</strong> y de corta duración.</span>
+      </div>
+
+      <div class="subhead">Primera línea: lo que se hace sin receta</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💬</span><span><strong>Educación y tranquilización con contenido:</strong> la mayoría mejora sustancialmente en dos a seis semanas; el dolor intenso no implica daño estructural; el reposo prolongado retrasa la recuperación. Esta conversación es intervención, no relleno.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚶</span><span><strong>Mantener la actividad tolerada y evitar el reposo en cama.</strong> Volver al trabajo y a las actividades habituales de forma gradual mejora el desenlace frente al reposo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔥</span><span><strong>Calor superficial</strong> (compresa o parche térmico): una de las pocas medidas no farmacológicas con evidencia de beneficio en la fase aguda, aunque modesto.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧘</span><span><strong>Ejercicio y terapia física</strong> tienen su rol principal en el dolor subagudo y crónico, no en las primeras 48 horas. La derivación se agenda, no se posterga indefinidamente.</span></div>
+      </div>
+
+      <div class="subhead">Fármacos</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Fármaco</th><th>Dosis habitual en el adulto</th><th>Comentario</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Antiinflamatorios no esteroidales</td>
+              <td><span class="dose-main">Ibuprofeno 400–600 mg cada 8 h</span><br><span class="dose-note">naproxeno 250–500 mg cada 12 h · diclofenaco 50 mg cada 8 h</span></td>
+              <td><strong>Primera línea farmacológica.</strong> Efecto modesto sobre el placebo. Usa la dosis menor eficaz por el menor tiempo posible. Precaución en enfermedad renal crónica, úlcera o sangrado digestivo previo, insuficiencia cardíaca, anticoagulación y adulto mayor</td>
+            </tr>
+            <tr>
+              <td>Paracetamol</td>
+              <td><span class="dose-main">500–1000 mg cada 6–8 h</span><br><span class="dose-note">máximo 3–4 g al día, menor si hay hepatopatía o desnutrición</span></td>
+              <td><strong>No se mostró superior al placebo</strong> en lumbago agudo en un ensayo aleatorizado de referencia. Sigue siendo razonable como coadyuvante o cuando el antiinflamatorio está contraindicado, con expectativas realistas</td>
+            </tr>
+            <tr>
+              <td>Relajantes musculares</td>
+              <td><span class="dose-main">Ciclobenzaprina 5–10 mg en la noche</span><br><span class="dose-note">cursos cortos, idealmente menores a 1–2 semanas</span></td>
+              <td>Beneficio pequeño en los primeros días, a costa de <strong>sedación y mareo</strong>. Advertir sobre conducción. Evitar benzodiazepinas y evitar en el adulto mayor por riesgo de caídas y delirium. <em>Disponibilidad y alternativas locales: verificar con protocolo institucional</em></td>
+            </tr>
+            <tr>
+              <td>Opioides</td>
+              <td><span class="dose-main">No de rutina</span><br><span class="dose-note">si son imprescindibles: dosis mínima, pocos días, sin receta prolongada</span></td>
+              <td>Reservados para dolor intenso refractario a todo lo anterior, y solo tras discutir riesgos. <strong>No mejoran el desenlace funcional</strong> y aumentan efectos adversos, uso prolongado y dependencia</td>
+            </tr>
+            <tr>
+              <td>Corticoides sistémicos</td>
+              <td><span class="dose-main">No indicados en lumbago inespecífico</span></td>
+              <td>Sin beneficio demostrado. En radiculopatía aguda la evidencia es limitada y discordante: a lo sumo mejoría funcional discreta, sin efecto claro sobre el dolor. Caso aparte es la <strong>compresión medular metastásica</strong>, donde sí están indicados</td>
+            </tr>
+            <tr>
+              <td>Gabapentina y pregabalina</td>
+              <td><span class="dose-main">No recomendadas</span></td>
+              <td>Un ensayo aleatorizado no mostró beneficio de pregabalina en ciática, con más efectos adversos. No deben iniciarse de rutina en urgencia</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Ciática (radiculopatía) sin banderas rojas</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📈</span><span><strong>El curso natural es favorable:</strong> la mayoría mejora en semanas con manejo conservador. Analgesia, actividad tolerada, control y explicación del plazo esperable.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔁</span><span><strong>Reevaluación programada a las cuatro a seis semanas.</strong> Si el dolor sigue siendo incapacitante o el déficit persiste, ahí entran la imagen y la evaluación quirúrgica o de infiltración.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>Deriva antes</strong> si aparece déficit motor progresivo, pie caído nuevo, compromiso de varias raíces o cualquier síntoma de cauda equina. El déficit progresivo no espera el plazo conservador.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · CAUDA EQUINA -->
+  <div class="section s7 collapsed" id="s7" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Cauda equina y compresión medular</div>
+        <div class="section-subtitle">El escenario que define el pronóstico</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>El daño esfinteriano y sexual de la cauda equina establecida es en buena parte <strong>irreversible</strong>,
+        y el pronóstico empeora con el tiempo transcurrido hasta la descompresión. Por eso la sospecha —no la
+        confirmación— es la que activa la imagen y la llamada al especialista, a cualquier hora.</span>
+      </div>
+
+      <div class="subhead">Cómo se presenta</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🧩</span><span><strong>Incompleta (con sensibilidad vesical conservada):</strong> dificultad para iniciar la micción, pérdida del deseo miccional, chorro débil, alteración sensitiva perineal. <strong>Es la ventana de oportunidad</strong> y la que más se pasa por alto.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧩</span><span><strong>Con retención establecida:</strong> retención urinaria indolora con incontinencia por rebosamiento, anestesia en silla de montar franca, tono anal disminuido. El pronóstico funcional ya es peor.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧩</span><span><strong>Causas:</strong> hernia discal masiva (la más frecuente), tumor, absceso, hematoma, fractura o estenosis grave. La causa cambia el tratamiento, no la urgencia de la imagen.</span></div>
+      </div>
+
+      <div class="subhead">Qué hacer, en orden</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-time">Paso 1</span>
+          <span><strong>Examen perineal y esfinteriano documentado</strong> y medición del residuo postmiccional. Registra la hora: el tiempo de evolución es dato clínico y también dato médico-legal.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">Paso 2</span>
+          <span><strong>Resonancia magnética urgente</strong> de columna lumbosacra, sin esperar al horario hábil. Si tu centro no dispone, activa el traslado en paralelo a la llamada al especialista, no después.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">Paso 3</span>
+          <span><strong>Contacto con neurocirugía o traumatología de columna</strong> desde la sospecha, con o sin imagen ya tomada. La descompresión quirúrgica precoz es el tratamiento; <em>el plazo exacto y la vía de derivación se rigen por el protocolo institucional.</em></span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">Paso 4</span>
+          <span><strong>Sonda vesical</strong> si hay retención, analgesia adecuada, régimen cero si es probable la cirugía, exámenes preoperatorios y corrección de la anticoagulación según protocolo.</span>
+        </div>
+      </div>
+
+      <div class="subhead">Compresión medular metastásica</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🎯</span><span><strong>Sospéchala en todo paciente oncológico con dolor de espalda nuevo o que cambia</strong>, aún sin déficit: el dolor precede a la debilidad en semanas, y el estado neurológico al momento del tratamiento es el mayor determinante de si el paciente volverá a caminar.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Corticoides</strong> al confirmar o ante alta sospecha con déficit, en paralelo a la imagen: la dexametasona es el fármaco habitual, pero los esquemas de carga y mantención varían de forma relevante entre guías. <em>Dosis: verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span><strong>Resonancia de toda la columna</strong> y decisión conjunta entre oncología radioterápica y neurocirugía el mismo día. Considera además el estado funcional basal y el pronóstico oncológico en la discusión.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · DESTINO Y ERRORES -->
+  <div class="section s8 collapsed" id="s8" style="animation-delay:0.48s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Destino, alta segura y errores frecuentes</div>
+        <div class="section-subtitle">Antes de firmar el alta</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Criterios habituales de hospitalización o de observación prolongada</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Sospecha de cauda equina, compresión medular, infección espinal, hematoma epidural o fractura inestable</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Déficit neurológico nuevo, grave o progresivo, con o sin causa ya identificada</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Fiebre con dolor espinal, o cualquier criterio de sepsis</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Dolor que no se controla con analgesia oral adecuada, o que impide la deambulación mínima necesaria para estar en casa</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Causa visceral o vascular en estudio, o paciente sin red de apoyo ni posibilidad de control cercano</span></div>
+      </div>
+
+      <div class="subhead">Antes del alta</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📄</span><span><strong>Deja escrito el examen neurológico y el interrogatorio esfinteriano</strong>, incluso cuando son normales. Es lo que permite comparar en la siguiente consulta y lo que respalda la decisión de no haber pedido imagen.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📞</span><span><strong>Instrucciones de retorno inmediato:</strong> dificultad o incapacidad para orinar, incontinencia nueva, adormecimiento perineal o genital, debilidad de las piernas, fiebre, dolor que aumenta pese al tratamiento o dolor nocturno que no deja dormir.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🗓️</span><span><strong>Control agendado</strong> en el plazo que corresponda y expectativa explícita del curso esperado. Un alta sin plazo convierte cualquier recurrencia en una nueva consulta de urgencia sin continuidad.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💼</span><span><strong>Reposo laboral acotado y activo:</strong> el objetivo es el retorno gradual, no la inmovilidad. Los reposos prolongados se asocian a peor pronóstico funcional.</span></div>
+      </div>
+
+      <div class="subhead">Errores frecuentes</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No preguntar por la micción ni examinar la región perineal</strong> en un paciente con ciática. Es la omisión que más aparece en los casos de cauda equina diagnosticada tarde.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Atribuir a lumbago mecánico el dolor de inicio brusco en un adulto mayor</strong> sin tomar la presión, palpar el abdomen ni mirar la aorta con el ecógrafo.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Confundir con cólico renal un aneurisma roto:</strong> la asociación de dolor lumbar, hematuria y agitación aparece en ambos, y el diagnóstico erróneo es clásico.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Pedir radiografía o resonancia de rutina</strong> en el lumbago inespecífico de pocos días sin banderas rojas.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar el hallazgo degenerativo como diagnóstico</strong> («tiene artrosis, tiene una hernia») sin correlación anatómica con el dolor. Etiquetar mal aumenta el miedo al movimiento y cronifica.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Indicar reposo en cama y reposos laborales largos</strong>, que empeoran el desenlace funcional.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Usar opioides, benzodiazepinas o corticoides de rutina</strong> en un cuadro donde no han demostrado beneficio y sí daño.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No reevaluar de verdad al paciente que vuelve por tercera vez</strong> con el mismo dolor. La reconsulta es una bandera roja de hecho: obliga a rehacer la historia y el examen, no a repetir el analgésico.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Olvidar la fiebre y la percusión espinal</strong> en usuarios de drogas endovenosas, diabéticos, pacientes en diálisis o con procedimiento espinal reciente.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es un mockup de interacción ("Modo Box") sobre el mismo contenido de
+    la guía de lumbago agudo: no reemplaza el juicio clínico ni los protocolos vigentes del servicio. Las dosis
+    indicadas son referenciales para el adulto sin falla orgánica: verifica el ajuste por función renal y hepática,
+    las interacciones y las contraindicaciones antes de administrar cualquier fármaco. Los plazos quirúrgicos, los
+    umbrales de residuo postmiccional, los esquemas de corticoides y las vías de derivación dependen de la red
+    asistencial local y deben contrastarse con el protocolo institucional. El lumbago en el paciente pediátrico y
+    en la gestante tiene un diferencial distinto y se rige por el protocolo correspondiente.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Qaseem A, et al. <em>Noninvasive Treatments for Acute, Subacute, and Chronic Low Back Pain: A Clinical Practice Guideline From the American College of Physicians.</em> Ann Intern Med. 2017;166(7):514–530.</div>
+      <div class="ref-item">National Institute for Health and Care Excellence. <em>Low Back Pain and Sciatica in Over 16s: Assessment and Management.</em> NICE guideline NG59, 2016 (actualizada 2020).</div>
+      <div class="ref-item">Maher C, Underwood M, Buchbinder R. <em>Non-Specific Low Back Pain.</em> Lancet. 2017;389(10070):736–747.</div>
+      <div class="ref-item">Foster NE, et al. <em>Prevention and Treatment of Low Back Pain: Evidence, Challenges, and Promising Directions.</em> Lancet. 2018;391(10137):2368–2383.</div>
+      <div class="ref-item">Downie A, et al. <em>Red Flags to Screen for Malignancy and Fracture in Patients with Low Back Pain: Systematic Review.</em> BMJ. 2013;347:f7095.</div>
+      <div class="ref-item">Deyo RA, Diehl AK. <em>Cancer as a Cause of Back Pain: Frequency, Clinical Presentation, and Diagnostic Strategies.</em> J Gen Intern Med. 1988;3(3):230–238.</div>
+      <div class="ref-item">Devillé WL, et al. <em>The Test of Lasègue: Systematic Review of the Accuracy in Diagnosing Herniated Discs.</em> Spine. 2000;25(9):1140–1147.</div>
+      <div class="ref-item">Williams CM, et al. <em>Efficacy of Paracetamol for Acute Low-Back Pain: A Double-Blind, Randomised Controlled Trial (PACE).</em> Lancet. 2014;384(9954):1586–1596.</div>
+      <div class="ref-item">Mathieson S, et al. <em>Trial of Pregabalin for Acute and Chronic Sciatica.</em> N Engl J Med. 2017;376(12):1111–1120.</div>
+      <div class="ref-item">Chou R, et al. <em>Imaging Strategies for Low-Back Pain: Systematic Review and Meta-Analysis.</em> Lancet. 2009;373(9662):463–472.</div>
+      <div class="ref-item">Brinjikji W, et al. <em>Systematic Literature Review of Imaging Features of Spinal Degeneration in Asymptomatic Populations.</em> AJNR Am J Neuroradiol. 2015;36(4):811–816.</div>
+      <div class="ref-item">Todd NV, Dickson RA. <em>Standards of Care in Cauda Equina Syndrome.</em> Br J Neurosurg. 2016;30(5):518–522.</div>
+      <div class="ref-item">Berbari EF, et al. <em>2015 IDSA Clinical Practice Guidelines for the Diagnosis and Treatment of Native Vertebral Osteomyelitis in Adults.</em> Clin Infect Dis. 2015;61(6):e26–e46.</div>
+      <div class="ref-item">National Institute for Health and Care Excellence. <em>Spinal Metastases and Metastatic Spinal Cord Compression.</em> NICE guideline NG234, 2023.</div>
+      <div class="ref-item">Sieper J, et al. <em>New Criteria for Inflammatory Back Pain in Patients with Chronic Back Pain (ASAS Expert Criteria).</em> Ann Rheum Dis. 2009;68(6):784–788.</div>
+      <div class="ref-item">Los plazos quirúrgicos, los umbrales de residuo postmiccional, los esquemas de corticoides y las vías de derivación deben contrastarse con el protocolo institucional vigente.</div>
+    </div>
+  </div>
+
+  <div class="footer">Modo Box · mockup interno · Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables (referencia) ───────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Estado del wizard ────────────────────────────────────────────
+  const sel = { pat: null, est: null, fac: new Set() };
+  const f = (v) => sel.fac.has(v);
+
+  function bindSingle(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        sel[key] = btn.dataset.v;
+        group.querySelectorAll('.opt').forEach(b => b.classList.toggle('on', b === btn));
+        completeStep(key, btn.textContent.trim());
+        render();
+        renderCausas();
+      });
+    });
+  }
+
+  function bindMulti(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (v === 'ninguno') {
+          sel[key].clear();
+          group.querySelectorAll('.opt').forEach(b => b.classList.remove('on'));
+          btn.classList.add('on');
+          sel[key].add('ninguno');
+        } else {
+          const none = group.querySelector('[data-v="ninguno"]');
+          none.classList.remove('on');
+          sel[key].delete('ninguno');
+          if (sel[key].has(v)) { sel[key].delete(v); btn.classList.remove('on'); }
+          else { sel[key].add(v); btn.classList.add('on'); }
+        }
+        render();
+        renderCausas();
+      });
+    });
+  }
+
+  function completeStep(which, label) {
+    document.getElementById('ans-' + which).textContent = label;
+    document.getElementById('chg-' + which).hidden = false;
+    document.getElementById('body-' + which).hidden = true;
+    document.getElementById('step-' + which).classList.add('done');
+    document.getElementById('step-' + which).classList.remove('active');
+    if (which === 'pat') {
+      const estStep = document.getElementById('step-est');
+      estStep.style.opacity = 1; estStep.style.pointerEvents = 'auto'; estStep.classList.add('active');
+      document.getElementById('body-est').hidden = false;
+    }
+    if (which === 'est') {
+      document.getElementById('after-wizard').hidden = false;
+    }
+  }
+
+  function openStep(which) {
+    document.getElementById('body-' + which).hidden = false;
+    document.getElementById('step-' + which).classList.add('active');
+    document.getElementById('step-' + which).classList.remove('done');
+    document.getElementById('chg-' + which).hidden = true;
+    document.getElementById('ans-' + which).textContent = '';
+    document.querySelectorAll('#q-' + which + ' .opt').forEach(b => b.classList.remove('on'));
+    sel[which] = null;
+    if (which === 'pat') {
+      sel.est = null;
+      document.getElementById('after-wizard').hidden = true;
+      const estStep = document.getElementById('step-est');
+      estStep.style.opacity = .4; estStep.style.pointerEvents = 'none';
+      estStep.classList.remove('active', 'done');
+      document.getElementById('ans-est').textContent = '';
+      document.getElementById('chg-est').hidden = true;
+      document.getElementById('body-est').hidden = true;
+      document.querySelectorAll('#q-est .opt').forEach(b => b.classList.remove('on'));
+    }
+    render();
+  }
+
+  function resetAll() {
+    sel.pat = null; sel.est = null; sel.fac.clear();
+    otrasOpen = false;
+    document.getElementById('after-wizard').hidden = true;
+    document.querySelectorAll('#q-fac .opt').forEach(b => b.classList.remove('on'));
+    ['pat', 'est'].forEach(w => {
+      document.getElementById('ans-' + w).textContent = '';
+      document.getElementById('chg-' + w).hidden = true;
+      document.getElementById('step-' + w).classList.remove('done');
+      document.querySelectorAll('#q-' + w + ' .opt').forEach(b => b.classList.remove('on'));
+    });
+    document.getElementById('step-pat').classList.add('active');
+    document.getElementById('body-pat').hidden = false;
+    const estStep = document.getElementById('step-est');
+    estStep.style.opacity = .4; estStep.style.pointerEvents = 'none'; estStep.classList.remove('active');
+    document.getElementById('body-est').hidden = true;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    render();
+  }
+
+  bindSingle('q-pat', 'pat');
+  bindSingle('q-est', 'est');
+  bindMulti('q-fac', 'fac');
+
+  // ── Clasificador (idéntico al de la guía completa) ─────────────────
+  const BASE_NEURO = 'Examen neurológico de extremidades inferiores, interrogatorio esfinteriano y sensibilidad ' +
+                     'perineal, todo documentado con la hora.';
+  const LINK_SEPSIS = '<a class="cross-link" style="margin-top:6px" href="./checklist-sepsis_4.html">→ Checklist de sepsis y shock séptico</a>';
+
+  function classify() {
+    const { pat, est } = sel;
+    if (!pat || !est) return null;
+
+    // 1 · Aorta: el inicio brusco con compromiso hemodinámico manda sobre todo lo demás
+    if (est === 'shock' || pat === 'vascular') {
+      return {
+        sev: 'red',
+        tag: 'Emergencia vascular',
+        title: 'Dolor lumbar de inicio brusco con compromiso hemodinámico',
+        rows: [
+          ['Conducta', 'Box de reanimación, monitorización, <strong>dos vías gruesas</strong>, grupo y pruebas cruzadas, y <strong>ecografía a pie de cama inmediata</strong> para medir el diámetro aórtico y buscar líquido libre.'],
+          ['Descarta ya', 'Aneurisma aórtico abdominal roto o en expansión, síndrome aórtico agudo, hemorragia retroperitoneal' + (f('anticoag') ? ' —<strong>alto riesgo en este paciente anticoagulado</strong>—' : '') + ', y en la mujer en edad fértil, embarazo ectópico complicado.'],
+          ['Ojo', '<strong>No asumas cólico renal.</strong> La tríada de dolor lumbar, hematuria y agitación aparece también en el aneurisma roto, y es el error diagnóstico clásico de este escenario.'],
+          ['Imagen', 'Angiotomografía <strong>solo si el paciente está estable</strong>. Con hipotensión mantenida, el destino es el pabellón, no el escáner.'],
+          ['Destino', 'Cirugía vascular de urgencia y unidad de paciente crítico. Activa el equipo desde la sospecha, no desde la confirmación.']
+        ]
+      };
+    }
+
+    // 2 · Cauda equina / compresión medular
+    if (pat === 'cauda' || est === 'deficit') {
+      const onco = f('cancer');
+      return {
+        sev: 'red',
+        tag: 'Emergencia neuroquirúrgica',
+        title: onco ? 'Déficit neurológico en paciente oncológico — descarta compresión medular'
+                    : 'Sospecha de síndrome de cauda equina o compresión medular',
+        rows: [
+          ['Examen', BASE_NEURO + ' Busca tono anal disminuido, anestesia en silla de montar, debilidad bilateral y signos de compromiso medular (hiperreflexia, clonus, Babinski, nivel sensitivo).'],
+          ['Objetiva', 'Mide el <strong>residuo postmiccional</strong> con ecografía o sondeo cuando el relato miccional es ambiguo. Un residuo elevado en este contexto obliga a la imagen urgente. <em>Umbral local: verificar con protocolo institucional.</em>'],
+          ['Imagen', onco
+            ? '<strong>Resonancia magnética urgente de toda la columna</strong>: las metástasis suelen ser múltiples y a distintos niveles, y la imagen limitada al segmento doloroso deja lesiones fuera.'
+            : '<strong>Resonancia magnética urgente</strong> de columna lumbosacra, sin esperar al horario hábil. Si no hay disponibilidad, activa el traslado en paralelo a la interconsulta.'],
+          ['Llama ahora', 'Neurocirugía o traumatología de columna <strong>desde la sospecha</strong>' + (onco ? ', y oncología radioterápica el mismo día.' : '. El pronóstico funcional depende del tiempo hasta la descompresión.')],
+          onco
+            ? ['Corticoides', 'Indicados ante compresión medular metastásica con déficit, en paralelo a la imagen; la dexametasona es el fármaco habitual y los esquemas varían entre guías. <em>Dosis: verificar con protocolo institucional.</em>']
+            : ['Causas', 'Hernia discal masiva (la más frecuente), tumor, absceso epidural, hematoma, fractura o estenosis grave. La causa cambia el tratamiento, no la urgencia de la imagen.'],
+          ['Mientras tanto', 'Sonda vesical si hay retención, analgesia adecuada, régimen cero si la cirugía es probable y corrección de la anticoagulación según protocolo.'],
+          ['Destino', 'Hospitalización. El alta desde el box no es una opción mientras la sospecha esté abierta.']
+        ]
+      };
+    }
+
+    // 3 · Fiebre → infección espinal
+    if (est === 'febril' || (pat === 'visceral' && f('inmuno'))) {
+      return {
+        sev: 'red',
+        tag: 'Infeccioso',
+        title: 'Dolor espinal febril — descarta infección de la columna',
+        rows: [
+          ['Por qué', 'La espondilodiscitis y el absceso epidural se presentan con dolor de reposo y nocturno, dolor a la percusión de una espinosa y fiebre que puede faltar o ser intermitente' + (f('inmuno') ? ', en un paciente con <strong>factor de riesgo presente</strong> (inmunosupresión, drogas endovenosas, diálisis, bacteriemia o procedimiento espinal reciente).' : '. La ausencia de fiebre no descarta.')],
+          ['Estudio', 'Hemograma, <strong>proteína C reactiva y velocidad de sedimentación</strong>, función renal, lactato si hay sospecha de sepsis, y <strong>dos sets de hemocultivos antes del antibiótico</strong> salvo que la gravedad obligue a iniciarlo de inmediato. Sedimento y urocultivo si hay foco urinario.'],
+          ['Imagen', '<strong>Resonancia magnética con gadolinio</strong> del segmento comprometido. Es urgente si hay déficit neurológico: el absceso epidural con compromiso neurológico es una emergencia quirúrgica.'],
+          ['Diferencial', 'Pielonefritis aguda, absceso del psoas, endocarditis con embolia séptica, y en el paciente con dolor de flanco, cólico renal complicado con infección.'],
+          ['Tratamiento', 'Antibiótico dirigido por foco y epidemiología local, idealmente tras los cultivos. <em>Esquema y duración: verificar con protocolo institucional.</em> Contacto con neurocirugía si hay déficit o inestabilidad.'],
+          ['Destino', 'Hospitalización para estudio y tratamiento endovenoso.'],
+          ['Enlace', LINK_SEPSIS]
+        ]
+      };
+    }
+
+    // 4 · Oncológico sin déficit
+    if (f('cancer') && pat !== 'mecanico') {
+      return {
+        sev: 'amber',
+        tag: 'Oncológico',
+        title: 'Dolor lumbar en paciente con cáncer',
+        rows: [
+          ['Por qué', 'El antecedente de cáncer es la bandera roja de mejor rendimiento en dolor lumbar. El dolor <strong>precede en semanas</strong> a la debilidad en la compresión medular metastásica, y el estado neurológico al iniciar el tratamiento define si el paciente volverá a caminar.'],
+          ['Alerta', 'Dolor progresivo, nocturno, que no alivia con el reposo o que cambia de carácter. ' + BASE_NEURO],
+          ['Estudio', 'Laboratorio con hemograma, <strong>calcemia</strong>, función renal y hepática y fosfatasas alcalinas. Imagen dirigida: resonancia si hay sospecha de compromiso del canal.'],
+          ['Umbral', 'Con <strong>cualquier</strong> déficit neurológico, aunque sea sutil, la resonancia de toda la columna pasa a ser urgente y el manejo es el de compresión medular.'],
+          ['Destino', 'Según hallazgos y estado funcional: hospitalización si hay déficit, hipercalcemia sintomática o dolor incontrolable; si no, estudio coordinado con el equipo oncológico tratante en días.']
+        ]
+      };
+    }
+
+    // 5 · Visceral
+    if (pat === 'visceral') {
+      return {
+        sev: 'amber',
+        tag: 'Visceral referido',
+        title: 'Dolor lumbar de probable origen visceral',
+        rows: [
+          ['Clave', 'El dolor lumbar que <strong>no se modifica con la posición ni con el movimiento</strong> rara vez es mecánico. Busca el órgano antes de tratar la contractura.'],
+          ['Diferencial', 'Pielonefritis y cólico renal, pancreatitis, úlcera penetrante, patología biliar, absceso del psoas, prostatitis, patología ginecológica y' + (f('gestante') ? ' <strong>complicaciones del embarazo, incluido el ectópico y el desprendimiento placentario</strong>.' : ' embarazo ectópico en la mujer en edad fértil.')],
+          ['Estudio', 'Orientado al sistema sospechado: sedimento y urocultivo, hemograma, proteína C reactiva, función renal, pruebas hepáticas, lipasa, prueba de embarazo y ecografía. ' + (f('aorta') ? '<strong>Mira la aorta con el ecógrafo</strong> antes de cerrar el caso.' : '')],
+          ['Ojo', 'En el adulto mayor, la aorta entra en el diferencial de todo dolor lumbar de inicio reciente aunque el cuadro parezca urinario.'],
+          ['Destino', 'Según la causa identificada y la gravedad; el lumbago mecánico queda como diagnóstico de descarte.']
+        ]
+      };
+    }
+
+    // 6 · Claudicación neurógena
+    if (pat === 'claudicacion') {
+      return {
+        sev: 'amber',
+        tag: 'Estenosis raquídea',
+        title: 'Claudicación neurógena por estenosis del canal lumbar',
+        rows: [
+          ['Patrón', 'Dolor, pesadez o parestesias en las piernas al caminar o al estar de pie, que <strong>ceden al sentarse o al flectar el tronco</strong> hacia adelante. El paciente tolera mejor caminar apoyado en un carro de supermercado o subir que bajar pendientes.'],
+          ['Diferencial', 'Claudicación <strong>vascular</strong>: aparece a distancias predecibles, cede de pie con el simple reposo y se acompaña de pulsos disminuidos, piel atrófica y frialdad. Palpa pulsos y considera el índice tobillo-brazo.'],
+          ['Examen', BASE_NEURO + ' El examen en reposo puede ser normal: no descarta el cuadro.'],
+          ['Estudio', 'No urgente en ausencia de banderas rojas. La resonancia se reserva para cuando se evalúa una intervención o el manejo conservador fracasa.'],
+          ['Manejo', 'Analgesia, kinesiterapia y control ambulatorio con especialista. <strong>Deriva de urgencia</strong> solo ante déficit progresivo o síntomas de cauda equina.'],
+          ['Destino', 'Alta con control programado e instrucciones de retorno claras.']
+        ]
+      };
+    }
+
+    // 7 · Inflamatorio
+    if (pat === 'inflamatorio') {
+      return {
+        sev: 'green',
+        tag: 'Inflamatorio',
+        title: 'Patrón de dolor lumbar inflamatorio',
+        rows: [
+          ['Criterios', 'Comienzo insidioso antes de los 40 a 45 años, duración mayor a 3 meses, <strong>rigidez matinal prolongada</strong>, dolor en la segunda mitad de la noche que obliga a levantarse, mejoría con el ejercicio y no con el reposo. Los criterios de dolor inflamatorio del grupo ASAS usan el inicio antes de los 40 años; la clasificación de espondiloartritis axial, antes de los 45.'],
+          ['Busca además', 'Dolor glúteo alternante, entesitis (talón), dactilitis, uveítis anterior, psoriasis, enfermedad inflamatoria intestinal y antecedentes familiares.'],
+          ['Estudio', 'No es un estudio de urgencia: proteína C reactiva y velocidad de sedimentación orientan, pero pueden ser normales. La imagen sacroilíaca y el estudio inmunológico se coordinan en el nivel que corresponda.'],
+          ['Por qué importa', 'La espondiloartritis axial tiene un <strong>retraso diagnóstico habitual de años</strong>. Reconocer el patrón y derivar a reumatología es la contribución real de esta consulta.'],
+          ['Destino', 'Alta con analgesia, derivación a reumatología e instrucciones de retorno ante fiebre o déficit neurológico.']
+        ]
+      };
+    }
+
+    // 8 · Radicular
+    if (pat === 'radicular') {
+      return {
+        sev: 'amber',
+        tag: 'Radicular',
+        title: 'Lumbociática con compromiso radicular',
+        rows: [
+          ['Examen', BASE_NEURO + ' Precisa la raíz: dorsiflexión del hallux y del tobillo (L5), flexión plantar y reflejo aquiliano (S1), extensión de rodilla y reflejo rotuliano (L4). Marcha en talones y en puntillas.'],
+          ['Maniobras', 'La <strong>elevación de la pierna recta</strong> es sensible y poco específica; el <strong>Lasègue cruzado</strong> es poco sensible pero muy específico. Para raíces altas (L2 a L4), usa el estiramiento femoral en decúbito prono.'],
+          ['Descarta', '<strong>Cauda equina</strong> con el interrogatorio esfinteriano y la sensibilidad perineal, en cada consulta y no solo en la primera. Ante déficit motor progresivo o pie caído nuevo, deriva sin esperar el plazo conservador.'],
+          ['Imagen', 'No está indicada de entrada sin banderas rojas. La resonancia se reserva para el déficit relevante o para el dolor que no mejora tras <strong>cuatro a seis semanas</strong> de manejo conservador, cuando se evalúa infiltración o cirugía.'],
+          ['Tratamiento', 'Antiinflamatorio no esteroidal como primera línea, con la dosis menor eficaz. <strong>Gabapentina y pregabalina no están recomendadas</strong> en ciática aguda: un ensayo aleatorizado no mostró beneficio y sí más efectos adversos. Corticoides sistémicos con evidencia limitada y discordante. Mantén la actividad tolerada.' + (f('osteo') ? ' <strong>Precaución con los antiinflamatorios</strong> en este paciente mayor o con comorbilidad.' : '')],
+          ['Destino', 'Alta con analgesia, control programado a las 4 a 6 semanas e instrucciones explícitas de retorno inmediato ante síntomas de cauda equina.']
+        ]
+      };
+    }
+
+    // 9 · Mecánico
+    const fract = f('osteo') || f('trauma');
+    return {
+      sev: fract ? 'amber' : 'green',
+      tag: fract ? 'Mecánico con riesgo de fractura' : 'Mecánico probable',
+      title: fract ? 'Dolor lumbar mecánico con riesgo de fractura vertebral'
+                   : 'Lumbago inespecífico sin banderas rojas',
+      rows: [
+        ['Confirma', 'Dolor que cambia con la postura y el movimiento, sin irradiación bajo la rodilla, sin fiebre y con examen neurológico normal. ' + BASE_NEURO],
+        fract
+          ? ['Fractura', 'Edad avanzada, osteoporosis, corticoides prolongados o trauma: busca <strong>dolor exquisito a la percusión de una espinosa</strong> y pérdida de talla. <strong>Radiografía</strong> como primer paso; si es normal y la sospecha persiste, tomografía o resonancia. Con déficit neurológico, imagen avanzada de inmediato.']
+          : ['Imagen', '<strong>No se pide imagen</strong> en las primeras cuatro a seis semanas sin banderas rojas: no mejora el dolor ni la función, y los hallazgos degenerativos incidentales empeoran el pronóstico percibido.'],
+        ['Tratamiento', 'Educación con el pronóstico real, <strong>mantener la actividad tolerada</strong>, evitar el reposo en cama y calor superficial. Antiinflamatorio no esteroidal a la dosis menor eficaz; paracetamol como coadyuvante, sabiendo que no superó al placebo en este cuadro. Relajante muscular solo en curso corto y advirtiendo sobre la sedación.' + (f('osteo') ? ' <strong>En el adulto mayor, evita relajantes musculares y benzodiazepinas</strong> por riesgo de caídas y delirium, y extrema la precaución con los antiinflamatorios.' : '')],
+        ['Evita', 'Opioides, benzodiazepinas y corticoides sistémicos de rutina; reposo en cama; reposos laborales prolongados; y etiquetar el dolor con un hallazgo degenerativo sin correlación clínica.'],
+        ['Destino', 'Alta con analgesia pautada, plazo esperado de mejoría, control agendado e instrucciones de retorno ante síntomas esfinterianos, debilidad, fiebre o dolor que empeora.']
+      ]
+    };
+  }
+
+  // El contexto marcado no debe perderse cuando la rama elegida no lo usa
+  function contextRows(r) {
+    const extra = [];
+    if (f('cancer') && !/oncológico|compresión medular/i.test(r.title)) {
+      extra.push(['Contexto', 'Antecedente o cáncer activo: es la bandera roja de mejor rendimiento en dolor lumbar. <strong>Mantén abierta la metástasis y la compresión medular</strong>, y baja el umbral de imagen ante dolor progresivo, nocturno o cualquier déficit.']);
+    }
+    if (f('inmuno') && !/infección|febril/i.test(r.title)) {
+      extra.push(['Contexto', 'Inmunosupresión, drogas endovenosas, diálisis, bacteriemia o procedimiento espinal reciente: <strong>la infección espinal puede cursar sin fiebre</strong>. Con dolor de reposo o a la percusión espinal, pide proteína C reactiva, velocidad de sedimentación y hemocultivos.']);
+    }
+    if ((f('osteo') || f('trauma')) && !/fractura/i.test(r.title)) {
+      extra.push(['Contexto', 'Edad avanzada, osteoporosis, corticoides prolongados o trauma: <strong>considera fractura vertebral</strong>. Radiografía como primer paso, y tomografía o resonancia si es normal con sospecha persistente.']);
+    }
+    if (f('aorta') && !/vascular|visceral/i.test(r.title)) {
+      extra.push(['Contexto', 'Adulto mayor con riesgo vascular o aneurisma conocido: <strong>mira la aorta con el ecógrafo</strong> y toma la presión antes de cerrar el caso como mecánico. El aneurisma roto se confunde con lumbago y con cólico renal.']);
+    }
+    if (f('anticoag') && !/vascular/i.test(r.title)) {
+      extra.push(['Contexto', 'Anticoagulación o coagulopatía: ante dolor de inicio súbito con déficit que progresa en horas, o tras punción neuroaxial, <strong>descarta hematoma epidural espinal</strong> con resonancia urgente.']);
+    }
+    if (f('gestante') && !/visceral/i.test(r.title)) {
+      extra.push(['Contexto', 'Gestante o puérpera: el dolor lumbar obliga a descartar causa obstétrica y urinaria antes de asumir origen mecánico. La elección de imagen y de fármacos se coordina con el protocolo obstétrico local.']);
+    }
+    return extra;
+  }
+
+  function render() {
+    const box = document.getElementById('result');
+    const r = classify();
+    if (!r) {
+      box.className = 'result placeholder';
+      box.innerHTML = 'Selecciona el patrón y el estado en el box para ver la hipótesis prioritaria, el estudio ' +
+                      'inicial sugerido, lo que hay que descartar en paralelo y el destino probable.';
+      return;
+    }
+    const rows = r.rows.filter(row => row && row[1]);
+    // Los enlaces van siempre al final del bloque
+    const enlace = rows.length && rows[rows.length - 1][0] === 'Enlace' ? rows.pop() : null;
+    rows.push(...contextRows(r));
+    if (enlace) rows.push(enlace);
+
+    box.className = 'result sev-' + r.sev;
+    box.innerHTML =
+      '<div class="result-tag">' + r.tag + '</div>' +
+      '<div class="result-title">' + r.title + '</div>' +
+      rows.map(([k, v]) =>
+        '<div class="result-row"><div class="result-key">' + k + '</div><div>' + v + '</div></div>'
+      ).join('');
+
+    const sevClass = { red: 'sev-red', amber: 'sev-amber', green: 'sev-green' }[r.sev] || 'sev-green';
+    const inner = document.getElementById('sticky-inner');
+    inner.className = 'sticky-inner ' + sevClass;
+    document.getElementById('sticky-hyp').textContent = r.title;
+    const firstRow = rows.find(row => row[0] !== 'Enlace');
+    document.getElementById('sticky-act').innerHTML = firstRow ? firstRow[1] : '';
+  }
+
+  // ── Banderas rojas: reordenadas según lo respondido ────────────────
+  var CAUSAS = [
+    { t: 'Síndrome de cauda equina', d: 'Retención urinaria o pérdida de la sensación de micción, incontinencia por rebosamiento o fecal, anestesia en silla de montar, ciática bilateral, déficit motor bilateral, tono anal disminuido.', a: '<strong>Resonancia magnética urgente</strong> de columna lumbosacra y contacto inmediato con neurocirugía o traumatología de columna. No esperar al día hábil.', pat: ['cauda'], est: ['deficit'], ctx: [] },
+    { t: 'Compresión medular metastásica', d: 'Cáncer conocido, dolor dorsal o lumbar progresivo y nocturno, nivel sensitivo, debilidad de ambas piernas, hiperreflexia y Babinski (compresión sobre el cono medular).', a: 'Resonancia magnética urgente de <strong>toda la columna</strong>, corticoides según protocolo y derivación a oncología radioterápica o neurocirugía el mismo día.', pat: ['cauda', 'radicular'], est: ['deficit'], ctx: ['cancer'] },
+    { t: 'Aneurisma aórtico abdominal roto o síndrome aórtico', d: 'Mayor de 60 años, dolor lumbar o abdominal de inicio brusco, síncope, hipotensión, masa pulsátil, asimetría de pulsos. Se confunde con cólico renal y con lumbago mecánico.', a: 'Ecografía a pie de cama inmediata, dos vías gruesas, grupo y pruebas cruzadas, y <strong>cirugía vascular sin demora</strong>. La tomografía solo si el paciente está estable.', pat: ['vascular'], est: ['shock'], ctx: ['aorta', 'anticoag'] },
+    { t: 'Infección espinal (espondilodiscitis, absceso epidural)', d: 'Fiebre, dolor de reposo y nocturno, dolor a la percusión de una espinosa, drogas endovenosas, catéter o bacteriemia reciente, procedimiento espinal, diabetes, inmunosupresión, diálisis.', a: 'Proteína C reactiva, velocidad de sedimentación, hemocultivos y <strong>resonancia magnética con gadolinio</strong>. El absceso epidural con déficit es una emergencia quirúrgica.', pat: ['visceral'], est: ['febril', 'deficit'], ctx: ['inmuno'] },
+    { t: 'Malignidad (metástasis, mieloma)', d: '<strong>Antecedente de cáncer</strong> (la bandera roja con mejor rendimiento), baja de peso no explicada, dolor que no alivia con el reposo, dolor nocturno, edad mayor de 50 años, duración mayor a 4 a 6 semanas sin mejoría.', a: 'Estudio dirigido según sospecha: laboratorio, radiografía y resonancia magnética. Urgente solo si hay déficit neurológico o hipercalcemia sintomática.', pat: [], est: ['estable'], ctx: ['cancer'] },
+    { t: 'Fractura vertebral', d: 'Trauma significativo a cualquier edad; caída de baja energía, esfuerzo o incluso ningún trauma en mayor de 70 años, osteoporosis o uso prolongado de corticoides. Dolor localizado y a la percusión.', a: 'Radiografía de columna como primer paso; <strong>tomografía o resonancia</strong> si la radiografía es normal y la sospecha persiste, o si hay déficit neurológico.', pat: ['mecanico'], est: ['estable'], ctx: ['osteo', 'trauma'] },
+    { t: 'Hematoma epidural espinal', d: 'Anticoagulación o coagulopatía, punción lumbar o anestesia neuroaxial reciente, dolor de inicio súbito con déficit neurológico que progresa en horas.', a: 'Resonancia magnética urgente, reversión de la anticoagulación según protocolo y neurocirugía inmediata.', pat: [], est: ['deficit'], ctx: ['anticoag'] },
+    { t: 'Causa visceral referida', d: 'Pielonefritis y cólico renal, pancreatitis, úlcera penetrante, patología biliar, aneurisma, patología ginecológica y embarazo ectópico, prostatitis, absceso del psoas.', a: 'Orientar el estudio por el sistema comprometido. El dolor lumbar que no se modifica con la posición ni con el movimiento rara vez es mecánico.', pat: ['visceral'], est: ['estable', 'febril'], ctx: ['gestante', 'aorta'] },
+    { t: 'Dolor lumbar inflamatorio (espondiloartritis axial)', d: 'Comienzo insidioso antes de los 40 a 45 años (los criterios de dolor inflamatorio usan 40 años; la clasificación de espondiloartritis axial exige inicio antes de los 45), duración mayor a 3 meses, rigidez matinal prolongada, dolor en la segunda mitad de la noche, <strong>mejora con el ejercicio y no con el reposo</strong>, buena respuesta a antiinflamatorios.', a: 'No es urgencia, pero sí diagnóstico: derivar a reumatología para estudio. Su retraso diagnóstico habitual se mide en años.', pat: ['inflamatorio'], est: ['estable'], ctx: [] }
+  ];
+
+  function score(c) {
+    let s = 0;
+    if (sel.pat && c.pat.indexOf(sel.pat) > -1) s += 3;
+    if (sel.est && c.est.indexOf(sel.est) > -1) s += 2;
+    sel.fac.forEach(k => { if (c.ctx.indexOf(k) > -1) s += 1; });
+    return s;
+  }
+
+  var otrasOpen = false;
+
+  function renderCausas() {
+    if (!sel.pat || !sel.est) return;
+    let ranked = CAUSAS.map(c => ({ c, s: score(c) })).sort((a, b) => b.s - a.s);
+    let top = ranked.filter(r => r.s >= 3);
+    let rest = ranked.filter(r => r.s < 3);
+    if (top.length === 0) { top = ranked.slice(0, 1); rest = ranked.slice(1); }
+
+    document.getElementById('causas-top').innerHTML = top.map(r =>
+      '<div class="causa-card">' +
+      '<div class="causa-title">' + r.c.t + '</div>' +
+      '<div class="causa-row"><b>Delata</b>' + r.c.d + '</div>' +
+      '<div class="causa-row"><b>Acción</b>' + r.c.a + '</div>' +
+      '</div>'
+    ).join('');
+
+    document.getElementById('otras-label').textContent = otrasOpen ? 'Ocultar el resto' : 'Ver el resto de causas letales (' + rest.length + ')';
+    document.getElementById('causas-otras').innerHTML = rest.map(r =>
+      '<div class="collapse-item"><b>' + r.c.t + '.</b> ' + r.c.d + '</div>'
+    ).join('') || '<div class="collapse-item">Sin otras causas en la lista.</div>';
+  }
+
+  function toggleOtras() {
+    otrasOpen = !otrasOpen;
+    document.getElementById('causas-otras').hidden = !otrasOpen;
+    document.getElementById('otras-arrow').textContent = otrasOpen ? '▴' : '▾';
+  }
+
+  // ── Mapa radicular (sección de referencia, sin cambios) ────────────
+  const RAICES = {
+    l3: {
+      nombre: 'Raíz L3',
+      disco: 'Hernia L2–L3, o L3–L4 en hernias foraminales',
+      dermatoma: 'Cara anterior del muslo, desde la ingle hacia la rodilla',
+      motor: 'Flexión de cadera (psoas) y extensión de rodilla (cuádriceps)',
+      reflejo: 'Rotuliano, disminuido de forma variable',
+      maniobra: 'Estiramiento femoral (Lasègue invertido) en decúbito prono; la elevación de la pierna recta puede ser negativa',
+      ojo: 'La radiculopatía alta es menos frecuente y se confunde con patología de cadera, meralgia parestésica o neuropatía diabética del cuádriceps.'
+    },
+    l4: {
+      nombre: 'Raíz L4',
+      disco: 'Hernia L3–L4',
+      dermatoma: 'Cara anterolateral del muslo, rodilla y <strong>cara medial de la pierna</strong> hasta el maléolo interno',
+      motor: 'Extensión de rodilla (cuádriceps) y dorsiflexión del tobillo (tibial anterior, compartida con L5)',
+      reflejo: '<strong>Rotuliano</strong>, el más representativo de esta raíz',
+      maniobra: 'Estiramiento femoral; la elevación de la pierna recta es menos sensible para raíces altas',
+      ojo: 'La debilidad del cuádriceps se manifiesta como fallo de la rodilla al bajar escaleras, antes que como debilidad evidente en camilla.'
+    },
+    l5: {
+      nombre: 'Raíz L5',
+      disco: 'Hernia L4–L5 (la localización más frecuente junto con L5–S1)',
+      dermatoma: 'Cara lateral de la pierna y <strong>dorso del pie hasta el primer ortejo</strong>',
+      motor: 'Dorsiflexión del hallux (extensor propio), dorsiflexión del tobillo y <strong>abducción de cadera</strong> (glúteo medio, con Trendelenburg si es intensa)',
+      reflejo: '<strong>Sin reflejo confiable</strong>: un examen de reflejos normal no descarta compromiso de L5',
+      maniobra: 'Marcha en talones y fuerza del extensor del hallux, el músculo que primero delata la debilidad',
+      ojo: 'El <strong>pie caído</strong> de instalación reciente es déficit motor relevante: obliga a derivación precoz, no a esperar el plazo conservador. Diferencia la compresión del nervio peroneo en la cabeza del peroné, que respeta la abducción de cadera y la inversión del pie.'
+    },
+    s1: {
+      nombre: 'Raíz S1',
+      disco: 'Hernia L5–S1',
+      dermatoma: 'Cara posterior del muslo y la pierna, <strong>planta y borde lateral del pie</strong>, hasta el quinto ortejo',
+      motor: 'Flexión plantar (gastrocnemio y sóleo) y eversión del pie',
+      reflejo: '<strong>Aquiliano</strong>, disminuido o abolido',
+      maniobra: 'Marcha en puntillas y <strong>elevaciones repetidas sobre un solo pie</strong>: la flexión plantar es tan potente que resiste la mano del examinador aunque esté debilitada',
+      ojo: 'El reflejo aquiliano puede estar disminuido de forma fisiológica en el adulto mayor: interpreta siempre comparando con el lado contralateral.'
+    }
+  };
+
+  const rootPicker = document.getElementById('root-picker');
+  const rootOut = document.getElementById('root-out');
+
+  rootPicker.querySelectorAll('.root-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const v = btn.dataset.v;
+      const yaActiva = btn.classList.contains('on');
+      rootPicker.querySelectorAll('.root-btn').forEach(b => b.classList.remove('on'));
+      if (yaActiva) {
+        rootOut.className = 'root-out placeholder';
+        rootOut.innerHTML = 'Elige una raíz para ver su dermatoma, el grupo muscular que la representa, el reflejo ' +
+                            'correspondiente, el disco que suele comprometerla y la maniobra de mayor rendimiento.';
+        return;
+      }
+      btn.classList.add('on');
+      const r = RAICES[v];
+      rootOut.className = 'root-out';
+      rootOut.innerHTML =
+        '<div class="result-tag">' + r.disco + '</div>' +
+        '<div class="result-title">' + r.nombre + '</div>' +
+        [['Dermatoma', r.dermatoma],
+         ['Motor', r.motor],
+         ['Reflejo', r.reflejo],
+         ['Maniobra', r.maniobra],
+         ['Ojo', r.ojo]]
+          .map(([k, val]) =>
+            '<div class="result-row"><div class="result-key">' + k + '</div><div>' + val + '</div></div>'
+          ).join('');
+    });
+  });
+</script>
+</body>
+</html>

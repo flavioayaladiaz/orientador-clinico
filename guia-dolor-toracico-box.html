@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Modo Box · Dolor torácico</title>
+<meta name="description" content="Modo Box: orientación clínica en dolor torácico de urgencia, en formato de un paso a la vez con resultado fijo en pantalla, pensado para usarse junto al paciente.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --surface3: #212a40;
+    --border: rgba(255,255,255,0.07);
+    --border-strong: rgba(255,255,255,0.14);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(239,68,68,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(99,102,241,0.06) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 32px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.25);
+    color: #fca5a5;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #ef4444, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  .header-alt {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 9px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.03em;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .header-alt:hover { color: var(--text); border-color: var(--border-strong); }
+
+  /* SECTIONS (referencia completa) */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .s2 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s4 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s4 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s5 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s5 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s6 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s6 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s7 .section-num { background: rgba(59,130,246,0.10); color: #bfdbfe; border: 1px solid rgba(59,130,246,0.18); }
+  .s7 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s8 .section-num { background: rgba(255,255,255,0.06); color: var(--text-dim); border: 1px solid var(--border); }
+  .s8 { --accent: var(--text-dim); --accent-glow: rgba(148,163,184,0.08); }
+
+  .reference-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 34px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .reference-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt.on {
+    background: rgba(16,185,129,0.12);
+    border-color: rgba(16,185,129,0.45);
+    color: #6ee7b7;
+  }
+  .opt:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+
+  /* ============ MODO BOX: wizard, sticky, causas ============ */
+  .wizard-step { border-radius: 16px; border: 1px solid var(--border); background: var(--surface); margin-bottom: 12px; overflow: hidden; animation: fadeUp 0.5s ease both; }
+  .wizard-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; gap: 10px; flex-wrap: wrap; }
+  .wizard-num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+  .wizard-num .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border-strong); display: inline-block; }
+  .wizard-step.done .wizard-num .dot { background: var(--teal); }
+  .wizard-step.active .wizard-num .dot { background: var(--amber); }
+  .wizard-answer { font-size: 13px; color: #5eead4; font-family: var(--sans); }
+  .wizard-change { font-family: var(--mono); font-size: 11px; color: var(--text-muted); background: none; border: none; cursor: pointer; text-decoration: underline; text-decoration-color: var(--border-strong); }
+  .wizard-change:hover { color: var(--text); }
+  .wizard-body { padding: 0 18px 18px; }
+
+  .panel { border-radius: 18px; border: 1px solid var(--border); background: var(--surface); overflow: hidden; margin-bottom: 16px; }
+  .panel-head { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+  .panel-title { font-family: var(--display); font-weight: 700; font-size: 14.5px; color: #fff; }
+  .panel-sub { font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .panel-body { padding: 18px 20px 22px; }
+
+  .sticky-shell { position: sticky; top: 0; z-index: 5; margin: 0 -24px 18px; padding: 10px 24px 0; background: var(--bg); }
+  .sticky-inner {
+    border-radius: 14px; border: 1px solid var(--border); background: var(--surface3);
+    padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  }
+  .sev-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 0 4px var(--dot-glow, transparent); }
+  .sticky-inner.sev-red { --dot-glow: rgba(239,68,68,0.18); } .sticky-inner.sev-red .sev-dot { background: var(--red); }
+  .sticky-inner.sev-amber { --dot-glow: rgba(245,158,11,0.18); } .sticky-inner.sev-amber .sev-dot { background: var(--amber); }
+  .sticky-inner.sev-green { --dot-glow: rgba(16,185,129,0.18); } .sticky-inner.sev-green .sev-dot { background: var(--emerald); }
+  .sticky-text { flex: 1; min-width: 0; }
+  .sticky-hyp { font-family: var(--display); font-weight: 700; font-size: 14.5px; color: #fff; }
+  .sticky-act { font-size: 12.5px; color: var(--text-dim); margin-top: 2px; line-height: 1.45; }
+  .sticky-act strong { color: #fff; font-weight: 500; }
+  .sticky-reset {
+    font-family: var(--mono); font-size: 11px; color: var(--text-muted); background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 9px; padding: 7px 11px; cursor: pointer; flex-shrink: 0; white-space: nowrap;
+  }
+  .sticky-reset:hover { color: var(--text); border-color: var(--border-strong); }
+
+  .causas-lead { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin: 22px 0 12px; }
+  .causa-card { border-radius: 13px; border: 1px solid var(--border); background: var(--surface2); border-left: 3px solid var(--red); padding: 14px 16px; margin-bottom: 10px; }
+  .causa-title { font-family: var(--display); font-weight: 700; font-size: 14.5px; color: #fff; margin-bottom: 6px; }
+  .causa-row { font-size: 13px; color: var(--text-dim); line-height: 1.55; margin-top: 4px; }
+  .causa-row b { color: var(--text-muted); font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; margin-right: 6px; }
+  .causa-row strong { color: #fff; font-weight: 500; }
+
+  .collapse-toggle {
+    width: 100%; text-align: left; font-family: var(--mono); font-size: 12px; color: var(--text-muted);
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 11px; padding: 12px 14px;
+    cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+  .collapse-toggle:hover { color: var(--text); border-color: var(--border-strong); }
+  .collapse-body { padding-top: 8px; }
+  .collapse-item { font-size: 12.5px; color: var(--text-dim); padding: 9px 4px; border-top: 1px solid var(--border); line-height: 1.5; }
+  .collapse-item:first-child { border-top: none; }
+  .collapse-item b { color: var(--text); font-weight: 500; }
+  .collapse-item strong { color: var(--text); font-weight: 500; }
+
+  /* RESULTADO (misma hipótesis multi-fila que la guía original) */
+  .result {
+    margin-top: 4px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface2);
+    padding: 18px 20px;
+    border-left: 3px solid var(--accent, var(--emerald));
+    margin-bottom: 20px;
+  }
+  .result.placeholder { color: var(--text-muted); font-size: 13px; font-family: var(--mono); line-height: 1.6; }
+
+  .result-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .result-title {
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .result-row {
+    display: flex;
+    gap: 12px;
+    padding: 9px 0;
+    border-top: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .result-row:first-of-type { border-top: none; padding-top: 2px; }
+  .result-key {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    flex: 0 0 104px;
+    padding-top: 3px;
+  }
+  .result-row strong { color: #fff; font-weight: 500; }
+  .result-row em { color: #fcd34d; font-style: normal; }
+
+  .result.sev-red { border-left-color: var(--red); }
+  .result.sev-amber { border-left-color: var(--amber); }
+  .result.sev-green { border-left-color: var(--emerald); }
+
+  /* CALCULADORA */
+  .calc {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-top: 16px;
+  }
+  .calc-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; }
+  .calc-field { display: flex; flex-direction: column; gap: 6px; }
+  .calc-field label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .calc-field input, .calc-field select {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 9px 11px;
+    min-width: 150px;
+  }
+  .calc-field input:focus, .calc-field select:focus { outline: 2px solid var(--blue); outline-offset: 1px; }
+  .calc-out {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .calc-out strong { color: #fff; font-weight: 500; }
+  .calc-out em { color: #fcd34d; font-style: normal; }
+  .calc-out .big {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: #93c5fd;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .calc-out .big.risk-low { color: #6ee7b7; }
+  .calc-out .big.risk-mid { color: #fcd34d; }
+  .calc-out .big.risk-high { color: #fca5a5; }
+
+  .calc-reset {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 8px 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .calc-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+  /* BANNERS */
+  .warning-banner, .info-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    color: #fca5a5;
+  }
+  .info-banner {
+    background: rgba(59,130,246,0.06);
+    border: 1px solid rgba(59,130,246,0.18);
+    color: #bfdbfe;
+  }
+  .warning-banner strong, .info-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* CRONOLOGÍA DE LOS PRIMEROS MINUTOS */
+  .timeline { display: flex; flex-direction: column; gap: 10px; }
+  .tl-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 13px 15px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .tl-time {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: #fca5a5;
+    flex: 0 0 64px;
+    padding-top: 2px;
+  }
+  .tl-item strong { color: #fff; font-weight: 500; }
+  .tl-item em { color: #fcd34d; font-style: normal; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--amber); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .sticky-shell { margin: 0 -16px 16px; padding: 8px 16px 0; }
+    .sticky-inner { flex-wrap: wrap; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .opt { width: 100%; }
+    .result-row { flex-direction: column; gap: 4px; }
+    .result-key { flex: none; padding-top: 0; }
+    .calc-field, .calc-field input, .calc-field select { width: 100%; }
+    .tl-item { flex-direction: column; gap: 6px; }
+    .tl-time { flex: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index_mockup.html">← Volver a Modo Box</a>
+    <div class="header-badge">Modo Box · Motivo de consulta</div>
+    <h1>Dolor <span>torácico</span></h1>
+    <p class="header-sub">
+      Mismo contenido de la guía de dolor torácico, reorganizado para el box: un paso a la vez, la hipótesis
+      y la acción inmediata fijas en pantalla mientras avanzas, y las causas letales reordenadas según lo
+      que ya respondiste.
+    </p>
+    <a class="header-alt" href="./guia-dolor-toracico.html">📄 Ver la guía completa</a>
+  </div>
+
+  <!-- WIZARD -->
+  <div class="wizard-step active" id="step-pat" style="animation-delay:0.06s;">
+    <div class="wizard-head">
+      <div class="wizard-num"><span class="dot"></span>1 · Patrón dominante</div>
+      <div><span class="wizard-answer" id="ans-pat"></span><button class="wizard-change" id="chg-pat" onclick="openStep('pat')" hidden>cambiar</button></div>
+    </div>
+    <div class="wizard-body" id="body-pat">
+      <div class="opts" id="q-pat">
+        <button type="button" class="opt" data-v="opresivo">Opresivo o retroesternal, con irradiación, esfuerzo o cortejo vegetativo</button>
+        <button type="button" class="opt" data-v="desgarrador">Brusco, máximo desde el inicio, desgarrador o migratorio a dorso</button>
+        <button type="button" class="opt" data-v="pleuritico">Pleurítico con disnea o taquicardia</button>
+        <button type="button" class="opt" data-v="posicional">Pleurítico que mejora sentado e inclinado hacia adelante</button>
+        <button type="button" class="opt" data-v="postvomito">Aparece tras vómitos intensos o instrumentación esofágica</button>
+        <button type="button" class="opt" data-v="urente">Urente o epigástrico, relacionado con las comidas o el decúbito</button>
+        <button type="button" class="opt" data-v="mecanico">Localizado, reproducible a la palpación o con los movimientos</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wizard-step" id="step-hem" style="opacity:.4; pointer-events:none; animation-delay:0.1s;">
+    <div class="wizard-head">
+      <div class="wizard-num"><span class="dot"></span>2 · Estado en el box</div>
+      <div><span class="wizard-answer" id="ans-hem"></span><button class="wizard-change" id="chg-hem" onclick="openStep('hem')" hidden>cambiar</button></div>
+    </div>
+    <div class="wizard-body" id="body-hem" hidden>
+      <div class="opts" id="q-hem">
+        <button type="button" class="opt" data-v="estable">Estable, sin hipoxemia</button>
+        <button type="button" class="opt" data-v="hipoxemia">Hipoxemia o disnea marcada, presión conservada</button>
+        <button type="button" class="opt" data-v="shock">Hipotensión, mala perfusión o síncope asociado</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="after-wizard" hidden>
+
+    <div class="sticky-shell">
+      <div class="sticky-inner" id="sticky-inner">
+        <span class="sev-dot" id="sticky-dot"></span>
+        <div class="sticky-text">
+          <div class="sticky-hyp" id="sticky-hyp">—</div>
+          <div class="sticky-act" id="sticky-act">—</div>
+        </div>
+        <button class="sticky-reset" type="button" onclick="resetAll()">↺ Nuevo caso</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-title">3 · Afinar con contexto</div>
+        <div class="panel-sub">Opcional — reordena las causas y ajusta la hipótesis en tiempo real</div>
+      </div>
+      <div class="panel-body">
+        <div class="opts" id="q-fac">
+          <button type="button" class="opt" data-v="cv">≥65 años o factores de riesgo cardiovascular / enfermedad coronaria conocida</button>
+          <button type="button" class="opt" data-v="tromboembolico">Inmovilización, cirugía o trauma reciente, cáncer activo, trombosis previa, estrógenos</button>
+          <button type="button" class="opt" data-v="aorta">Marfan o aortopatía conocida, aneurisma, cirugía o cateterismo aórtico reciente</button>
+          <button type="button" class="opt" data-v="cocaina">Consumo de cocaína u otros estimulantes</button>
+          <button type="button" class="opt" data-v="gestante">Gestante o puerperio reciente</button>
+          <button type="button" class="opt" data-v="epoc">Joven longilíneo, enfermedad pulmonar crónica o ventilación mecánica</button>
+          <button type="button" class="opt" data-v="ninguno">Ninguno de los anteriores</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="result placeholder" id="result"></div>
+
+    <div class="causas-lead">Causas prioritarias según lo seleccionado</div>
+    <div id="causas-top"></div>
+
+    <button class="collapse-toggle" type="button" onclick="toggleOtras()">
+      <span id="otras-label">Ver el resto de causas letales</span>
+      <span id="otras-arrow">▾</span>
+    </button>
+    <div class="collapse-body" id="causas-otras" hidden></div>
+
+  </div>
+
+  <!-- ================= REFERENCIA COMPLETA (colapsable) ================= -->
+  <div class="reference-label">Referencia completa de la guía</div>
+
+  <!-- 02 · PRIMEROS 10 MINUTOS -->
+  <div class="section s2" id="s2" style="animation-delay:0.12s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Los primeros 10 minutos</div>
+        <div class="section-subtitle">Lo que se hace antes de razonar el diferencial</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>Todo dolor torácico no traumático en un adulto es un <strong>electrocardiograma de 12 derivaciones
+        dentro de los primeros 10 minutos del contacto</strong>, interpretado por alguien capaz de reconocer
+        un infarto con elevación del segmento ST. Esta regla no depende de lo típico que parezca el dolor.</span>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-time">0–3 min</span>
+          <span><strong>Triage y monitorización.</strong> Monitor continuo con desfibrilador accesible, oximetría,
+          presión arterial <strong>en ambos brazos</strong>, frecuencia cardíaca y respiratoria, temperatura y glicemia
+          capilar. Dos vías venosas periféricas si el paciente impresiona grave.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">≤10 min</span>
+          <span><strong>Electrocardiograma de 12 derivaciones</strong> e interpretación inmediata. Si es no diagnóstico
+          y la sospecha persiste, <strong>repítelo a los 15–30 minutos</strong> y ante cualquier cambio del dolor: el
+          electrocardiograma seriado es la herramienta más rentable de toda la evaluación.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">≤10 min</span>
+          <span><strong>Derivaciones adicionales según el trazado:</strong> V7–V9 ante descenso del ST en V1–V3 con onda R
+          dominante (infarto posterior), y V3R–V4R en todo infarto de pared inferior (compromiso del ventrículo derecho).</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">10–20 min</span>
+          <span><strong>Muestras y exámenes iniciales:</strong> troponina de alta sensibilidad, hemograma, función renal,
+          electrolitos, glicemia y pruebas de coagulación. Dímero D solo si vas a usarlo dentro de una regla de decisión,
+          nunca como tamizaje universal.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">10–20 min</span>
+          <span><strong>Ecografía a pie de cama</strong> cuando hay inestabilidad o duda: derrame pericárdico con colapso
+          de cavidades derechas, dilatación del ventrículo derecho, deslizamiento pleural ausente, alteraciones segmentarias
+          de la contractilidad y vena cava inferior. Cambia la conducta en minutos.</span>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">Siempre</span>
+          <span><strong>Anamnesis dirigida en paralelo:</strong> hora exacta de inicio, calidad, irradiación, factores
+          desencadenantes y atenuantes, episodios previos, fármacos (incluidos inhibidores de la fosfodiesterasa 5 y
+          anticoagulantes), consumo de estimulantes y antecedentes familiares de muerte súbita o aortopatía.</span>
+        </div>
+      </div>
+
+      <div class="subhead">Radiografía de tórax</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🩻</span><span>Útil y de bajo costo: neumotórax, neumonía, derrame, congestión, neumomediastino y ensanchamiento mediastínico. Un mediastino normal <strong>no descarta</strong> una disección aórtica.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏱️</span><span>No debe retrasar la activación del código de reperfusión ante un infarto con elevación del segmento ST ni el traslado a tomografía cuando la sospecha de disección es alta.</span></div>
+      </div>
+
+      <div class="subhead">Trampas de los primeros minutos</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Interpretar el alivio con nitroglicerina o con antiácido como criterio diagnóstico:</strong> ninguno de los dos distingue el origen coronario del no coronario.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Un solo electrocardiograma normal</strong> tomado precozmente no descarta isquemia; la oclusión coronaria puede tardar en expresarse.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar oxígeno de rutina.</strong> Solo si la saturación es menor a 90 % o hay dificultad respiratoria; la hiperoxia no aporta beneficio y puede ser perjudicial.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · ELECTROCARDIOGRAMA -->
+  <div class="section s4 collapsed" id="s4" style="animation-delay:0.24s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Electrocardiograma — lo que no se puede perder</div>
+        <div class="section-subtitle">Criterios, equivalentes de oclusión y trampas</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Criterios de elevación del segmento ST (medidos en el punto J, en dos derivaciones contiguas)</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Derivaciones</th><th>Umbral</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Todas excepto V2–V3</td><td><span class="dose-main">≥ 1 mm (0,1 mV)</span></td></tr>
+            <tr><td>V2–V3, hombres ≥ 40 años</td><td><span class="dose-main">≥ 2 mm</span></td></tr>
+            <tr><td>V2–V3, hombres &lt; 40 años</td><td><span class="dose-main">≥ 2,5 mm</span></td></tr>
+            <tr><td>V2–V3, mujeres (cualquier edad)</td><td><span class="dose-main">≥ 1,5 mm</span></td></tr>
+            <tr><td>V7–V9 (posteriores)</td><td><span class="dose-main">≥ 0,5 mm</span> <span class="dose-note">(≥ 1 mm en hombres &lt; 40 años)</span></td></tr>
+            <tr><td>V3R–V4R (derechas)</td><td><span class="dose-main">≥ 0,5 mm</span> <span class="dose-note">(≥ 1 mm en hombres &lt; 30 años)</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Equivalentes de oclusión coronaria: activan reperfusión aunque no cumplan el criterio clásico</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Patrón</th><th>Cómo se ve</th><th>Qué significa</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Infarto posterior</td>
+              <td>Descenso del ST ≥ 0,5 mm en V1–V3 con onda R dominante y T positiva</td>
+              <td>Oclusión de circunfleja o coronaria derecha. Confirma con V7–V9 y trata como infarto con elevación del ST</td>
+            </tr>
+            <tr>
+              <td>de Winter</td>
+              <td>Descenso del ST ascendente ≥ 1 mm en el punto J en las precordiales, con ondas T altas y simétricas, con o sin leve elevación en aVR</td>
+              <td>Oclusión proximal de la descendente anterior. <strong>No es isquemia subendocárdica</strong></td>
+            </tr>
+            <tr>
+              <td>Sgarbossa (bloqueo de rama izquierda o ritmo de marcapasos)</td>
+              <td>Elevación del ST concordante ≥ 1 mm (5 puntos); descenso del ST concordante ≥ 1 mm en V1–V3 (3 puntos); elevación discordante ≥ 5 mm (2 puntos). Puntaje ≥ 3 es específico</td>
+              <td>Criterio modificado de Smith: elevación discordante con razón ST/S ≤ −0,25, más sensible que el umbral fijo de 5 mm</td>
+            </tr>
+            <tr>
+              <td>Elevación en aVR</td>
+              <td>Elevación del ST en aVR ≥ 1 mm con descenso difuso del ST en 6 o más derivaciones</td>
+              <td>Enfermedad del tronco coronario izquierdo o de tres vasos, o isquemia global por desbalance de oferta y demanda. Requiere discusión urgente con cardiología, no siempre lisis</td>
+            </tr>
+            <tr>
+              <td>Wellens</td>
+              <td>Ondas T bifásicas (tipo A) o profundamente invertidas y simétricas (tipo B) en V2–V3, <strong>en período sin dolor</strong>, con onda R conservada y troponina normal o apenas elevada</td>
+              <td>Estenosis crítica proximal de la descendente anterior. <strong>No hagas prueba de esfuerzo:</strong> requiere coronariografía</td>
+            </tr>
+            <tr>
+              <td>Ondas T hiperagudas</td>
+              <td>T anchas, altas y simétricas, desproporcionadas al QRS, en fase muy precoz</td>
+              <td>Fase inicial de oclusión. Repite el trazado en pocos minutos y compara</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Imitadores y trampas de lectura</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔍</span><span><strong>Pericarditis:</strong> elevación cóncava y difusa del ST con descenso del segmento PR, sin imagen especular y sin distribución por territorio coronario. Descenso del PR en derivación II y elevación del PR en aVR.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔍</span><span><strong>Repolarización precoz, hipertrofia ventricular izquierda, bloqueo de rama y síndrome de Brugada</strong> elevan el ST sin oclusión. Compara siempre con un trazado previo si existe.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔍</span><span><strong>Tromboembolismo pulmonar:</strong> taquicardia sinusal (lo más frecuente), inversión de la T en V1–V4, bloqueo incompleto de rama derecha, patrón S1Q3T3 y desviación del eje a la derecha. Sensibilidad baja y especificidad baja: no descarta ni confirma.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔍</span><span><strong>Hiperkalemia, hipotermia (onda J de Osborn), digital y hemorragia subaracnoidea</strong> producen alteraciones llamativas de la repolarización.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No confíes en la lectura automática del equipo</strong> ni en un trazado con mala calidad técnica o con electrodos mal ubicados. Ante un patrón dudoso y un paciente con dolor persistente, pide una segunda opinión y repite el trazado.</span></div>
+      </div>
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>Infarto de pared inferior:</strong> pide siempre V3R–V4R. Si hay compromiso del ventrículo derecho,
+        el paciente es dependiente de precarga: <strong>evita nitratos, morfina en exceso y diuréticos</strong>, aporta volumen
+        con cautela y vigila el bloqueo auriculoventricular.</span>
+      </div>
+
+      <a class="cross-link" href="./checklist-fibrinolisis.html">→ Abrir checklist de fibrinólisis en infarto con elevación del ST</a>
+
+    </div>
+  </div>
+
+  <!-- 05 · TROPONINA -->
+  <div class="section s5 collapsed" id="s5" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Troponina y algoritmos de descarte</div>
+        <div class="section-subtitle">Qué significa el valor, y qué no</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>Los <strong>valores de corte y los deltas de los algoritmos 0/1 h y 0/2 h son específicos de cada ensayo</strong>
+        y no son intercambiables entre laboratorios. Usa la tabla de tu institución: <em>verificar con protocolo institucional</em>.
+        Esta sección explica la lógica, no reemplaza esos números.</span>
+      </div>
+
+      <div class="subhead">Principios</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1️⃣</span><span><strong>La troponina mide daño miocárdico, no su causa.</strong> Elevada significa injuria; el infarto requiere además contexto clínico isquémico y un <strong>patrón de ascenso o descenso</strong> en mediciones seriadas.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2️⃣</span><span><strong>Un infarto con elevación del segmento ST no espera troponina.</strong> El tratamiento de reperfusión se decide con el electrocardiograma y la clínica.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3️⃣</span><span><strong>El cambio importa más que el valor absoluto</strong> en pacientes con elevación crónica (enfermedad renal, insuficiencia cardíaca, fibrilación auricular, edad avanzada).</span></div>
+        <div class="plain-item"><span class="bullet-icon">4️⃣</span><span><strong>Con dolor de inicio muy reciente</strong> (menos de 1 a 2 horas), una primera troponina indetectable no descarta: se requiere la muestra seriada.</span></div>
+        <div class="plain-item"><span class="bullet-icon">5️⃣</span><span><strong>El descarte es clínico, no de laboratorio.</strong> Troponina negativa con electrocardiograma normal descarta infarto, <strong>no</strong> disección aórtica, tromboembolismo pulmonar ni angina inestable de alto riesgo.</span></div>
+      </div>
+
+      <div class="subhead">Lógica del algoritmo 0/1 h de la Sociedad Europea de Cardiología</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Rama</th><th>Condición</th><th>Conducta</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Descarte</td>
+              <td>Valor basal muy bajo (por debajo del umbral del ensayo) con inicio de síntomas hace más de 3 horas, <strong>o</strong> valor basal bajo con delta a 1 hora menor al umbral</td>
+              <td>Infarto muy improbable. Continúa el diferencial no coronario y define riesgo isquémico antes del alta</td>
+            </tr>
+            <tr>
+              <td>Confirmación</td>
+              <td>Valor basal claramente elevado <strong>o</strong> delta a 1 hora significativo</td>
+              <td>Alta probabilidad de infarto sin elevación del ST. Manejo con cardiología y estrategia invasiva según riesgo</td>
+            </tr>
+            <tr>
+              <td>Zona de observación</td>
+              <td>El resto de los pacientes</td>
+              <td>Nueva troponina a las 3 horas, electrocardiograma seriado, ecocardiograma e imagen coronaria según disponibilidad y riesgo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Elevación de troponina sin obstrucción coronaria</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Categoría</th><th>Ejemplos</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Cardíaca no isquémica</td><td>Miocarditis, síndrome de takotsubo, insuficiencia cardíaca descompensada, taquiarritmias, contusión miocárdica, cardioversión o ablación</td></tr>
+            <tr><td>Desbalance oferta–demanda (tipo 2)</td><td>Sepsis, anemia grave, crisis hipertensiva, hipoxemia, taquicardia sostenida, hipotensión prolongada</td></tr>
+            <tr><td>No cardíaca</td><td>Tromboembolismo pulmonar, hipertensión pulmonar, enfermedad renal crónica, accidente cerebrovascular y hemorragia subaracnoidea, rabdomiólisis, ejercicio extremo</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>La elevación de troponina en el tromboembolismo pulmonar o la sepsis es <strong>marcador pronóstico</strong>,
+        no indicación de coronariografía. Confundirla con infarto tipo 1 lleva a anticoagular y antiagregar a un paciente
+        cuyo problema es otro.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · ESTRATIFICACIÓN -->
+  <div class="section s6 collapsed" id="s6" style="animation-delay:0.36s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Estratificación de riesgo — puntaje HEART</div>
+        <div class="section-subtitle">Calculadora interactiva</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>El puntaje HEART estima el riesgo de <strong>eventos cardíacos adversos mayores a 6 semanas</strong>
+        (muerte, infarto o revascularización) en pacientes que consultan por dolor torácico con sospecha de síndrome
+        coronario agudo. <strong>Complementa, no reemplaza, el juicio clínico.</strong> No se aplica a pacientes con
+        infarto con elevación del segmento ST, inestabilidad hemodinámica o con una causa grave ya identificada:
+        esos pacientes ya están estratificados por la clínica.</span>
+      </div>
+
+      <div class="calc">
+        <div class="calc-row">
+          <div class="calc-field">
+            <label for="h-hist">Historia (H)</label>
+            <select id="h-hist">
+              <option value="">— Selecciona —</option>
+              <option value="0">Poco sospechosa (0)</option>
+              <option value="1">Moderadamente sospechosa (1)</option>
+              <option value="2">Altamente sospechosa (2)</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="h-ecg">Electrocardiograma (E)</label>
+            <select id="h-ecg">
+              <option value="">— Selecciona —</option>
+              <option value="0">Normal (0)</option>
+              <option value="1">Alteración inespecífica de la repolarización (1)</option>
+              <option value="2">Desviación significativa del segmento ST (2)</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="h-edad">Edad (A)</label>
+            <select id="h-edad">
+              <option value="">— Selecciona —</option>
+              <option value="0">Menor de 45 años (0)</option>
+              <option value="1">45 a 64 años (1)</option>
+              <option value="2">65 años o más (2)</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="h-fr">Factores de riesgo (R)</label>
+            <select id="h-fr">
+              <option value="">— Selecciona —</option>
+              <option value="0">Ninguno (0)</option>
+              <option value="1">Uno o dos (1)</option>
+              <option value="2">Tres o más, o ateroesclerosis conocida (2)</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="h-trop">Troponina (T)</label>
+            <select id="h-trop">
+              <option value="">— Selecciona —</option>
+              <option value="0">Dentro del límite normal (0)</option>
+              <option value="1">1 a 3 veces el límite normal (1)</option>
+              <option value="2">Más de 3 veces el límite normal (2)</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-out" id="heart-out">
+          Completa los cinco componentes para obtener el puntaje y la banda de riesgo.
+        </div>
+        <button type="button" class="calc-reset" id="heart-reset">Reiniciar</button>
+      </div>
+
+      <div class="subhead">Cómo se puntúa cada componente</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Componente</th><th>0 punto</th><th>1 punto</th><th>2 puntos</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Historia</td><td>Poco sospechosa</td><td>Moderadamente sospechosa</td><td>Altamente sospechosa</td></tr>
+            <tr><td>Electrocardiograma</td><td>Normal</td><td>Alteración inespecífica de la repolarización, bloqueo de rama o cambios por hipertrofia o digital</td><td>Desviación significativa del segmento ST no atribuible a otra causa</td></tr>
+            <tr><td>Edad</td><td>Menor de 45 años</td><td>45 a 64 años</td><td>65 años o más</td></tr>
+            <tr><td>Factores de riesgo</td><td>Ninguno</td><td>Uno o dos</td><td>Tres o más, o ateroesclerosis conocida</td></tr>
+            <tr><td>Troponina</td><td>Normal</td><td>1 a 3 veces el límite</td><td>Más de 3 veces el límite</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Factores de riesgo que cuentan</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📋</span><span>Hipertensión arterial, dislipidemia, diabetes mellitus, obesidad (índice de masa corporal mayor a 30), tabaquismo actual o suspendido hace menos de 3 meses, e historia familiar de enfermedad coronaria precoz (familiar de primer grado antes de los 65 años).</span></div>
+        <div class="plain-item"><span class="bullet-icon">📋</span><span>La <strong>ateroesclerosis conocida</strong> (infarto previo, revascularización coronaria, accidente cerebrovascular o enfermedad arterial periférica) puntúa directamente 2, independientemente del número de factores.</span></div>
+      </div>
+
+      <div class="subhead">Bandas de riesgo</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Puntaje</th><th>Riesgo de evento a 6 semanas</th><th>Conducta habitual</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>0 – 3</td><td>Bajo (aproximadamente 1,7 % en la cohorte original)</td><td>Candidato a alta precoz con seguimiento ambulatorio, siempre que el electrocardiograma y la troponina seriada sean negativos y no quede sospecha de otra causa letal</td></tr>
+            <tr><td>4 – 6</td><td>Intermedio (aproximadamente 16,6 %)</td><td>Observación, troponina seriada y estudio complementario. No es un paciente de alta directa</td></tr>
+            <tr><td>7 – 10</td><td>Alto (aproximadamente 50,1 %)</td><td>Manejo como síndrome coronario agudo, discusión con cardiología y estrategia invasiva según riesgo</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>El puntaje fue derivado y validado con <strong>troponina convencional</strong>. En servicios que usan troponina
+        de alta sensibilidad con algoritmo 0/1 h, HEART se emplea como complemento del algoritmo y con los umbrales de alta
+        definidos localmente: <em>verificar con protocolo institucional</em>. Un puntaje bajo <strong>no autoriza el alta</strong>
+        si el paciente tiene dolor persistente, un electrocardiograma dinámico o una causa no coronaria sin descartar.</span>
+      </div>
+
+      <div class="subhead">Otros puntajes útiles en el box</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🧮</span><span><strong>GRACE</strong> estratifica el riesgo en el síndrome coronario agudo sin elevación del ST ya confirmado y orienta el momento de la estrategia invasiva: riesgo muy alto (inestabilidad, dolor refractario, arritmia maligna, complicación mecánica) implica coronariografía inmediata; alto riesgo, estrategia invasiva precoz.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧮</span><span><strong>ADD-RS</strong> (síndrome aórtico) y <strong>Wells, PERC o YEARS</strong> (tromboembolismo pulmonar) se revisan en la sección 07: son los que evitan tanto la tomografía innecesaria como el alta peligrosa.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · DIFERENCIAL -->
+  <div class="section s7 collapsed" id="s7" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Diferencial y manejo inicial por causa</div>
+        <div class="section-subtitle">Qué hacer una vez orientado</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Síndrome coronario agudo — medidas iniciales</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Medida</th><th>Detalle</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Ácido acetilsalicílico</td><td><span class="dose-main">150 a 300 mg vía oral masticados</span> <span class="dose-note">(formulación no recubierta), salvo alergia o sangrado activo</span></td></tr>
+            <tr><td>Oxígeno</td><td>Solo si la saturación es menor a 90 % o hay dificultad respiratoria</td></tr>
+            <tr><td>Nitroglicerina</td><td><span class="dose-main">0,4 mg sublingual, repetible cada 5 min hasta 3 dosis</span><br><strong>Contraindicada</strong> con presión sistólica menor a 90 mmHg o 30 mmHg bajo la basal, infarto de ventrículo derecho, o uso de inhibidores de la fosfodiesterasa 5 (sildenafilo o vardenafilo en 24 h, tadalafilo en 48 h)</td></tr>
+            <tr><td>Analgesia</td><td>Morfina solo si el dolor persiste pese a nitratos: reduce la absorción de los antiagregantes orales y puede enmascarar la isquemia persistente</td></tr>
+            <tr><td>Antiagregación e inhibidor P2Y12</td><td>Según protocolo local y estrategia de reperfusión. En el síndrome sin elevación del ST con estrategia invasiva precoz <strong>no se recomienda el pretratamiento sistemático</strong>. <em>Verificar con protocolo institucional</em></td></tr>
+            <tr><td>Anticoagulación</td><td>Según estrategia de reperfusión y riesgo de sangrado, definida con cardiología. <em>Verificar con protocolo institucional</em></td></tr>
+            <tr><td>Reperfusión en infarto con elevación del ST</td><td>Angioplastia primaria si el tiempo desde el diagnóstico hasta el paso de la guía es <strong>menor a 120 min</strong>. Si no es alcanzable, <strong>fibrinólisis dentro de los 10 min del diagnóstico</strong> y traslado a centro con hemodinamia</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <a class="cross-link" href="./checklist-fibrinolisis.html">→ Checklist de fibrinólisis: criterios, contraindicaciones y dosis</a>
+
+      <div class="subhead">Síndrome aórtico agudo</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🧮</span><span><strong>Puntaje ADD-RS</strong>, 1 punto por cada categoría en que haya al menos un elemento: <strong>condiciones de riesgo</strong> (Marfan u otra aortopatía, historia familiar de enfermedad aórtica, valvulopatía aórtica conocida, aneurisma torácico conocido, manipulación aórtica reciente); <strong>características del dolor</strong> (inicio brusco, intensidad máxima desde el comienzo, carácter desgarrador); <strong>hallazgos del examen</strong> (déficit de pulso o diferencial de presión sistólica, déficit neurológico focal con dolor, soplo de insuficiencia aórtica nuevo, hipotensión o shock).</span></div>
+        <div class="plain-item"><span class="bullet-icon">➡️</span><span><strong>ADD-RS de 2 o 3:</strong> angiotomografía directa, sin dímero D de por medio. <strong>ADD-RS de 0 o 1 con dímero D negativo</strong> (menor a 500 ng/mL) permite descartar con alta sensibilidad en pacientes seleccionados; con dímero D positivo, imagen.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Manejo mientras se confirma:</strong> analgesia potente, y control de la frecuencia cardíaca <strong>antes</strong> que de la presión, con betabloqueo endovenoso (esmolol o labetalol) buscando frecuencia menor a 60 lpm y presión sistólica de 100 a 120 mmHg. El vasodilatador se agrega <strong>después</strong> del betabloqueo, nunca antes, para no aumentar la fuerza de eyección. <em>Dosis y titulación: verificar con protocolo institucional</em>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span><strong>Tipo A de Stanford</strong> (compromete la aorta ascendente): emergencia quirúrgica, contacto inmediato con cirugía cardíaca. <strong>Tipo B</strong>: manejo médico intensivo, y tratamiento endovascular si hay malperfusión, dolor o hipertensión refractarios, o progresión.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Un dímero D negativo aislado no descarta disección</strong> si la probabilidad clínica es alta, y la anticoagulación o la fibrinólisis indicadas por error en una disección son catastróficas.</span></div>
+      </div>
+
+      <div class="subhead">Tromboembolismo pulmonar</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🧮</span><span>Estima primero la <strong>probabilidad clínica</strong> (Wells o Ginebra). En probabilidad baja, la <strong>regla PERC</strong> permite no pedir dímero D si se cumplen los 8 criterios: edad menor de 50 años, frecuencia cardíaca menor a 100 lpm, saturación de 95 % o más, sin hemoptisis, sin uso de estrógenos, sin trombosis venosa ni embolia previas, sin edema unilateral de extremidad, y sin cirugía o trauma con hospitalización en las últimas 4 semanas.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Dímero D ajustado por edad</strong> en mayores de 50 años: umbral igual a la edad multiplicada por 10 ng/mL. El algoritmo <strong>YEARS</strong> es una alternativa validada que reduce el uso de imagen, incluida una versión para gestantes.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🖥️</span><span><strong>Angiotomografía de arterias pulmonares</strong> como imagen de elección. Con inestabilidad hemodinámica que impide el traslado, la ecocardiografía a pie de cama que muestra sobrecarga del ventrículo derecho sustenta el tratamiento de reperfusión.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Anticoagulación precoz</strong> ante alta sospecha, incluso antes de la confirmación, si el riesgo de sangrado es aceptable. En el tromboembolismo de alto riesgo con shock, se plantea <strong>fibrinólisis sistémica</strong> según protocolo. <em>Esquema y dosis: verificar con protocolo institucional</em>.</span></div>
+      </div>
+
+      <div class="subhead">Neumotórax, taponamiento y rotura esofágica</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Cuadro</th><th>Manejo inicial</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Neumotórax a tensión</td>
+              <td><strong>No esperes la radiografía.</strong> Descompresión con aguja: en el adulto se prefiere el <strong>5.º espacio intercostal en la línea axilar anterior</strong> (alternativa clásica: 2.º espacio intercostal en la línea medioclavicular, con más fallas por grosor de la pared). Luego, toracostomía con tubo pleural</td>
+            </tr>
+            <tr>
+              <td>Neumotórax espontáneo estable</td>
+              <td>Observación con oxígeno, aspiración o drenaje según tamaño, síntomas y protocolo local. <em>Verificar con protocolo institucional</em></td>
+            </tr>
+            <tr>
+              <td>Taponamiento cardíaco</td>
+              <td>Volumen para sostener la precarga mientras se organiza el drenaje. <strong>Pericardiocentesis ecoguiada</strong> o drenaje quirúrgico según causa. En disección aórtica tipo A con taponamiento, el drenaje puede empeorar el cuadro: es una decisión de pabellón</td>
+            </tr>
+            <tr>
+              <td>Rotura esofágica</td>
+              <td>Régimen cero, reanimación con volumen, antibiótico de amplio espectro con cobertura de anaerobios y antifúngico según el caso, analgesia, y contacto <strong>inmediato</strong> con cirugía. La mortalidad depende directamente del retraso diagnóstico</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Causas no letales frecuentes</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Causa</th><th>Claves y manejo</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Pericarditis aguda</td>
+              <td>Dos de cuatro criterios: dolor pleurítico que mejora sentado hacia adelante, frote pericárdico, elevación difusa del ST con descenso del PR, derrame pericárdico nuevo o en aumento. Tratamiento con antiinflamatorio no esteroidal (ibuprofeno 600 mg cada 8 h o ácido acetilsalicílico 750 a 1000 mg cada 8 h) <strong>más colchicina</strong> 0,5 mg cada 12 a 24 h por 3 meses. Evita corticoides como primera línea. Busca derrame y elevación de troponina (miopericarditis)</td>
+            </tr>
+            <tr>
+              <td>Miocarditis</td>
+              <td>Paciente joven, cuadro viral reciente, troponina elevada con coronarias sanas, alteración de la contractilidad. Riesgo de arritmia e insuficiencia cardíaca: monitorización y evaluación por cardiología</td>
+            </tr>
+            <tr>
+              <td>Dolor torácico por cocaína</td>
+              <td>Benzodiazepinas, nitratos y control de la presión. Evita el betabloqueo aislado en la fase aguda por el riesgo teórico de estímulo alfa sin oposición: <em>práctica discutida, verificar con protocolo institucional</em>. Considera disección aórtica y vasoespasmo coronario</td>
+            </tr>
+            <tr>
+              <td>Origen esofágico o gástrico</td>
+              <td>Reflujo, espasmo esofágico o úlcera péptica. Diagnóstico de exclusión en el box: la respuesta al antiácido no descarta isquemia</td>
+            </tr>
+            <tr>
+              <td>Musculoesquelético</td>
+              <td>Dolor reproducible a la palpación, costocondritis, sobreuso o trauma menor. La reproducibilidad reduce la probabilidad de síndrome coronario, pero <strong>no la anula</strong> en pacientes de alto riesgo</td>
+            </tr>
+            <tr>
+              <td>Herpes zóster</td>
+              <td>Dolor urente en banda metamérica que precede al exantema en días. Explora la piel del dorso y el flanco</td>
+            </tr>
+            <tr>
+              <td>Neumonía y pleuritis</td>
+              <td>Fiebre, tos, dolor pleurítico y hallazgos focales. Evalúa gravedad con el puntaje habitual del servicio</td>
+            </tr>
+            <tr>
+              <td>Crisis de angustia</td>
+              <td>Diagnóstico de exclusión. Requiere al menos un electrocardiograma normal y una evaluación de riesgo documentada antes de rotularlo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · CIERRE -->
+  <div class="section s8 collapsed" id="s8" style="animation-delay:0.48s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Destino, alta segura y errores frecuentes</div>
+        <div class="section-subtitle">Antes de firmar el alta</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Criterios habituales de hospitalización o de observación prolongada</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Cambios isquémicos en el electrocardiograma, troponina elevada o con delta significativo</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Dolor persistente o recurrente en el box, o dolor en reposo de reciente comienzo</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Inestabilidad hemodinámica, arritmia, hipoxemia o insuficiencia cardíaca aguda</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Causa letal no coronaria confirmada o no descartada al momento de la decisión</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Riesgo intermedio o alto en la estratificación, o comorbilidad relevante sin red de apoyo ni acceso a control</span></div>
+      </div>
+
+      <div class="subhead">Antes del alta</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📄</span><span><strong>Deja escrito el razonamiento:</strong> qué causas letales se consideraron, con qué se descartaron y qué queda pendiente. Es lo que protege al paciente en la siguiente consulta y también al equipo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔁</span><span><strong>Documenta el último electrocardiograma y la última troponina</strong> con su hora, y deja consignado si el paciente estaba sin dolor al alta.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📞</span><span><strong>Instrucciones de retorno inmediato</strong> ante recurrencia del dolor, dolor en reposo o de mayor duración, disnea, síncope, sudoración fría o palpitaciones sostenidas.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🗓️</span><span><strong>Cierra el seguimiento:</strong> control precoz con quien corresponda y, si procede, la prueba funcional o la imagen coronaria ya solicitada. Un alta sin control agendado deja el diagnóstico abierto sin responsable.</span></div>
+      </div>
+
+      <div class="subhead">Errores frecuentes</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Quedarse con un solo electrocardiograma</strong> en un paciente con dolor que continúa.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Descartar el síndrome coronario porque el dolor es atípico</strong>, reproducible o se alivió con antiácido.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Pedir dímero D a todos</strong>: sin probabilidad clínica previa genera tomografías innecesarias y falsa tranquilidad cuando sale negativo en una disección de alta sospecha.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Anticoagular o trombolizar sin haber pensado en la aorta</strong> ante un dolor de inicio brusco y máximo desde el comienzo.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar nitratos en el infarto de ventrículo derecho</strong> o a un paciente que usó un inhibidor de la fosfodiesterasa 5.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Rotular como ansiedad</strong> en la primera consulta, sin electrocardiograma ni estratificación documentada.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Atribuir toda troponina elevada a un infarto tipo 1</strong> y perder la sepsis, el tromboembolismo o la miocarditis que la explica.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Solicitar prueba de esfuerzo a un paciente con patrón de Wellens</strong> o con dolor en curso.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es un mockup de interacción ("Modo Box") sobre el mismo contenido de
+    la guía de dolor torácico: no reemplaza el juicio clínico ni los protocolos vigentes del servicio. Los
+    umbrales de troponina y los deltas de los algoritmos 0/1 h son específicos de cada ensayo y laboratorio;
+    los esquemas antiagregantes, anticoagulantes y de reperfusión dependen de la red asistencial local. Verifica
+    dosis, ajuste por función renal y contraindicaciones antes de administrar cualquier fármaco. Los puntajes de
+    riesgo complementan, no sustituyen, la evaluación clínica. El manejo pediátrico y el de la gestante deben
+    regirse por el protocolo institucional correspondiente.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Gulati M, et al. <em>2021 AHA/ACC/ASE/CHEST/SAEM/SCCT/SCMR Guideline for the Evaluation and Diagnosis of Chest Pain.</em> Circulation. 2021;144(22):e368–e454.</div>
+      <div class="ref-item">Byrne RA, et al. <em>2023 ESC Guidelines for the Management of Acute Coronary Syndromes.</em> Eur Heart J. 2023;44(38):3720–3826.</div>
+      <div class="ref-item">Thygesen K, et al. <em>Fourth Universal Definition of Myocardial Infarction (2018).</em> Eur Heart J. 2019;40(3):237–269.</div>
+      <div class="ref-item">Smith SW, et al. <em>Diagnosis of ST-Elevation Myocardial Infarction in the Presence of Left Bundle Branch Block with the ST-Elevation to S-Wave Ratio.</em> Ann Emerg Med. 2012;60(6):766–776.</div>
+      <div class="ref-item">de Winter RJ, et al. <em>A New ECG Sign of Proximal LAD Occlusion.</em> N Engl J Med. 2008;359(19):2071–2073.</div>
+      <div class="ref-item">Backus BE, et al. <em>A Prospective Validation of the HEART Score for Chest Pain Patients at the Emergency Department.</em> Int J Cardiol. 2013;168(3):2153–2158.</div>
+      <div class="ref-item">Nazerian P, et al. <em>Diagnostic Accuracy of the Aortic Dissection Detection Risk Score Plus D-Dimer for Acute Aortic Syndromes (ADvISED).</em> Circulation. 2018;137(3):250–258.</div>
+      <div class="ref-item">Mazzolai L, et al. <em>2024 ESC Guidelines for the Management of Peripheral Arterial and Aortic Diseases.</em> Eur Heart J. 2024;45(36):3538–3700.</div>
+      <div class="ref-item">Konstantinides SV, et al. <em>2019 ESC Guidelines for the Diagnosis and Management of Acute Pulmonary Embolism.</em> Eur Heart J. 2020;41(4):543–603.</div>
+      <div class="ref-item">Kline JA, et al. <em>Prospective Multicenter Evaluation of the Pulmonary Embolism Rule-Out Criteria.</em> J Thromb Haemost. 2008;6(5):772–780.</div>
+      <div class="ref-item">van der Hulle T, et al. <em>Simplified Diagnostic Management of Suspected Pulmonary Embolism (the YEARS Study).</em> Lancet. 2017;390(10091):289–297.</div>
+      <div class="ref-item">Adler Y, et al. <em>2015 ESC Guidelines for the Diagnosis and Management of Pericardial Diseases.</em> Eur Heart J. 2015;36(42):2921–2964.</div>
+      <div class="ref-item">American College of Surgeons. <em>Advanced Trauma Life Support (ATLS), Student Course Manual,</em> 10.ª ed. 2018 (descompresión con aguja del neumotórax a tensión).</div>
+      <div class="ref-item">Los umbrales de troponina, los tiempos de reperfusión de la red local y los esquemas farmacológicos deben contrastarse con el protocolo institucional vigente.</div>
+    </div>
+  </div>
+
+  <div class="footer">Modo Box · mockup interno · Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables (referencia) ───────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Estado del wizard ────────────────────────────────────────────
+  const sel = { pat: null, hem: null, fac: new Set() };
+  const f = (v) => sel.fac.has(v);
+
+  function bindSingle(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        sel[key] = btn.dataset.v;
+        group.querySelectorAll('.opt').forEach(b => b.classList.toggle('on', b === btn));
+        completeStep(key, btn.textContent.trim());
+        render();
+        renderCausas();
+      });
+    });
+  }
+
+  function bindMulti(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (v === 'ninguno') {
+          sel[key].clear();
+          group.querySelectorAll('.opt').forEach(b => b.classList.remove('on'));
+          btn.classList.add('on');
+          sel[key].add('ninguno');
+        } else {
+          const none = group.querySelector('[data-v="ninguno"]');
+          none.classList.remove('on');
+          sel[key].delete('ninguno');
+          if (sel[key].has(v)) { sel[key].delete(v); btn.classList.remove('on'); }
+          else { sel[key].add(v); btn.classList.add('on'); }
+        }
+        render();
+        renderCausas();
+      });
+    });
+  }
+
+  function completeStep(which, label) {
+    document.getElementById('ans-' + which).textContent = label;
+    document.getElementById('chg-' + which).hidden = false;
+    document.getElementById('body-' + which).hidden = true;
+    document.getElementById('step-' + which).classList.add('done');
+    document.getElementById('step-' + which).classList.remove('active');
+    if (which === 'pat') {
+      const hemStep = document.getElementById('step-hem');
+      hemStep.style.opacity = 1; hemStep.style.pointerEvents = 'auto'; hemStep.classList.add('active');
+      document.getElementById('body-hem').hidden = false;
+    }
+    if (which === 'hem') {
+      document.getElementById('after-wizard').hidden = false;
+    }
+  }
+
+  function openStep(which) {
+    document.getElementById('body-' + which).hidden = false;
+    document.getElementById('step-' + which).classList.add('active');
+    document.getElementById('step-' + which).classList.remove('done');
+    document.getElementById('chg-' + which).hidden = true;
+    document.getElementById('ans-' + which).textContent = '';
+    document.querySelectorAll('#q-' + which + ' .opt').forEach(b => b.classList.remove('on'));
+    sel[which] = null;
+    if (which === 'pat') {
+      sel.hem = null;
+      document.getElementById('after-wizard').hidden = true;
+      const hemStep = document.getElementById('step-hem');
+      hemStep.style.opacity = .4; hemStep.style.pointerEvents = 'none';
+      hemStep.classList.remove('active', 'done');
+      document.getElementById('ans-hem').textContent = '';
+      document.getElementById('chg-hem').hidden = true;
+      document.getElementById('body-hem').hidden = true;
+      document.querySelectorAll('#q-hem .opt').forEach(b => b.classList.remove('on'));
+    }
+    render();
+  }
+
+  function resetAll() {
+    sel.pat = null; sel.hem = null; sel.fac.clear();
+    otrasOpen = false;
+    document.getElementById('after-wizard').hidden = true;
+    document.querySelectorAll('#q-fac .opt').forEach(b => b.classList.remove('on'));
+    ['pat', 'hem'].forEach(w => {
+      document.getElementById('ans-' + w).textContent = '';
+      document.getElementById('chg-' + w).hidden = true;
+      document.getElementById('step-' + w).classList.remove('done');
+      document.querySelectorAll('#q-' + w + ' .opt').forEach(b => b.classList.remove('on'));
+    });
+    document.getElementById('step-pat').classList.add('active');
+    document.getElementById('body-pat').hidden = false;
+    const hemStep = document.getElementById('step-hem');
+    hemStep.style.opacity = .4; hemStep.style.pointerEvents = 'none'; hemStep.classList.remove('active');
+    document.getElementById('body-hem').hidden = true;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    render();
+  }
+
+  bindSingle('q-pat', 'pat');
+  bindSingle('q-hem', 'hem');
+  bindMulti('q-fac', 'fac');
+
+  // ── Clasificador (idéntico al de la guía completa) ─────────────────
+  const BASE_ECG = 'Electrocardiograma de 12 derivaciones en menos de 10 minutos y repetido a los 15–30 minutos ' +
+                   'o ante cualquier cambio del dolor.';
+  const LINK_FIBRI = '<a class="cross-link" style="margin-top:6px" href="./checklist-fibrinolisis.html">→ Checklist de fibrinólisis en IAMCEST</a>';
+
+  function classify() {
+    const { pat, hem } = sel;
+    if (!pat || !hem) return null;
+
+    // 1 · Inestabilidad hemodinámica: manda sobre el patrón del dolor
+    if (hem === 'shock') {
+      return {
+        sev: 'red',
+        tag: 'Emergencia',
+        title: 'Dolor torácico con hipotensión o mala perfusión',
+        rows: [
+          ['Conducta', 'Box de reanimación, monitor con desfibrilador, dos vías gruesas y ecografía a pie de cama <strong>inmediata</strong>. ' + BASE_ECG + ' Presión en ambos brazos.'],
+          ['Descarta ya', 'Neumotórax a tensión (descomprime sin esperar la radiografía), taponamiento cardíaco, tromboembolismo pulmonar de alto riesgo, infarto extenso o de ventrículo derecho, disección aórtica y rotura esofágica.'],
+          ['Ecografía', 'Derrame pericárdico con colapso de cavidades derechas, dilatación del ventrículo derecho, ausencia de deslizamiento pleural, alteración segmentaria de la contractilidad, vena cava inferior y aorta.'],
+          ['Ojo', '<strong>No uses nitratos ni morfina</strong> mientras la causa sea obstructiva o dependiente de precarga. Reanima con volumen prudente y define el diagnóstico antes de anticoagular o trombolizar.'],
+          ['Destino', 'Unidad de paciente crítico o pabellón según causa. Activa en paralelo cardiología, cirugía cardíaca o cirugía general según la hipótesis.']
+        ]
+      };
+    }
+
+    // 2 · Síndrome aórtico agudo
+    if (pat === 'desgarrador' || (f('aorta') && pat !== 'mecanico')) {
+      return {
+        sev: 'red',
+        tag: 'Vascular',
+        title: 'Sospecha de síndrome aórtico agudo',
+        rows: [
+          ['Por qué', 'Dolor brusco y máximo desde el inicio, migratorio o desgarrador' + (f('aorta') ? ', en un paciente con aortopatía o manipulación aórtica conocida' : '') + '. El patrón es vascular, no isquémico.'],
+          ['Examen', 'Presión en ambos brazos, pulsos de las cuatro extremidades, soplo diastólico nuevo, déficit neurológico focal y signos de taponamiento. ' + BASE_ECG],
+          ['Puntaje', 'Calcula el <strong>ADD-RS</strong>. Con 2 o 3 puntos, <strong>angiotomografía de aorta directa</strong>. Con 0 o 1 punto, dímero D: si es negativo (menor a 500 ng/mL) el descarte es razonable en pacientes seleccionados; si es positivo, imagen.'],
+          ['Manejo', 'Analgesia potente y control de la frecuencia <strong>antes</strong> que de la presión: betabloqueo endovenoso (esmolol o labetalol) con objetivo de frecuencia menor a 60 lpm y presión sistólica de 100 a 120 mmHg; el vasodilatador se agrega después. <em>Dosis: verificar con protocolo institucional.</em>'],
+          ['Trampa', '<strong>No anticoagules ni trombolices</strong> mientras la aorta no esté descartada. Un electrocardiograma con elevación del ST inferior puede deberse a una disección que compromete la coronaria derecha.'],
+          ['Destino', 'Tipo A: cirugía cardíaca de urgencia. Tipo B: unidad crítica con manejo médico intensivo y evaluación endovascular.']
+        ]
+      };
+    }
+
+    // 3 · Rotura esofágica
+    if (pat === 'postvomito') {
+      return {
+        sev: 'red',
+        tag: 'Quirúrgica',
+        title: 'Sospecha de rotura esofágica (síndrome de Boerhaave)',
+        rows: [
+          ['Por qué', 'Dolor torácico intenso tras vómitos o instrumentación esofágica. Busca enfisema subcutáneo cervical, crujido mediastínico y derrame pleural izquierdo.'],
+          ['Estudio', '<strong>Tomografía de tórax con contraste oral hidrosoluble</strong> o esofagograma. Radiografía con neumomediastino o derrame apoya, pero no descarta. Exámenes generales, lactato y hemocultivos.'],
+          ['Manejo', 'Régimen cero, reanimación con volumen, analgesia, <strong>antibiótico de amplio espectro con cobertura de anaerobios</strong> (antifúngico según el caso y protocolo local) y contacto quirúrgico inmediato. <em>Esquema: verificar con protocolo institucional.</em>'],
+          ['Ojo', 'La mortalidad se relaciona directamente con el retraso diagnóstico. Descarta en paralelo infarto y disección, que comparten presentación.'],
+          ['Destino', 'Hospitalización en unidad crítica con manejo quirúrgico o endoscópico.']
+        ]
+      };
+    }
+
+    // 4 · Patrón pleurítico con disnea → tromboembolismo y neumotórax
+    if (pat === 'pleuritico' || (pat !== 'opresivo' && hem === 'hipoxemia')) {
+      const gest = f('gestante');
+      return {
+        sev: 'amber',
+        tag: 'Pleuropulmonar',
+        title: gest ? 'Dolor pleurítico en gestante o puérpera — prioriza el tromboembolismo'
+                    : 'Dolor pleurítico con disnea — descarta tromboembolismo y neumotórax',
+        rows: [
+          ['Estudio', 'Saturación, gases si hay hipoxemia, radiografía de tórax y ecografía pulmonar y cardíaca a pie de cama. ' + BASE_ECG],
+          ['Probabilidad', 'Aplica Wells o Ginebra <strong>antes</strong> de pedir dímero D. En probabilidad baja, la regla <strong>PERC</strong> permite no solicitarlo si se cumplen los 8 criterios. En mayores de 50 años usa el <strong>dímero D ajustado por edad</strong> (edad × 10 ng/mL).' + (gest ? ' En la gestante, usa el algoritmo YEARS adaptado y coordina la imagen con el protocolo local.' : '')],
+          ['Imagen', 'Angiotomografía de arterias pulmonares si la probabilidad es alta o el dímero D es positivo. Con inestabilidad que impide el traslado, la sobrecarga del ventrículo derecho en la ecocardiografía sustenta la reperfusión.'],
+          ['Otras causas', 'Neumotórax' + (f('epoc') ? ' — <strong>riesgo alto en este paciente</strong>: busca ausencia de deslizamiento pleural y punto pulmonar en la ecografía' : ': busca ausencia de deslizamiento pleural en la ecografía') + ', neumonía, pleuritis, derrame y pericarditis. Con dolor pleurítico y fiebre, evalúa foco infeccioso antes de asumir origen embólico.'],
+          ['Tratamiento', 'Anticoagulación precoz ante alta sospecha si el riesgo de sangrado lo permite. <em>Esquema y dosis: verificar con protocolo institucional.</em>'],
+          ['Destino', 'Según gravedad, carga trombótica y comorbilidad; puntaje pronóstico del servicio para definir manejo ambulatorio.']
+        ]
+      };
+    }
+
+    // 5 · Pericarditis / miopericarditis
+    if (pat === 'posicional') {
+      return {
+        sev: 'amber',
+        tag: 'Pericárdico',
+        title: 'Sospecha de pericarditis aguda o miopericarditis',
+        rows: [
+          ['Criterios', 'Dos de cuatro: dolor pleurítico que mejora sentado e inclinado hacia adelante, frote pericárdico, elevación difusa y cóncava del ST con descenso del segmento PR, y derrame pericárdico nuevo o en aumento.'],
+          ['Estudio', BASE_ECG + ' Troponina, proteína C reactiva, hemograma, función renal y <strong>ecocardiograma</strong> (derrame, contractilidad y signos de taponamiento).'],
+          ['Diferencial', 'La elevación difusa del ST se confunde con infarto: busca imagen especular y distribución por territorio. <strong>Si la troponina está elevada, es miopericarditis</strong> y el paciente requiere monitorización.'],
+          ['Tratamiento', 'Antiinflamatorio no esteroidal (ibuprofeno 600 mg cada 8 h o ácido acetilsalicílico 750 a 1000 mg cada 8 h) más <strong>colchicina</strong> 0,5 mg cada 12 a 24 h por 3 meses (0,5 mg al día si el peso es menor a 70 kg o hay intolerancia). Evita corticoides como primera línea. Restricción de ejercicio.'],
+          ['Hospitaliza si', 'Fiebre mayor a 38 °C, curso subagudo, derrame importante o taponamiento, troponina elevada, inmunosupresión, anticoagulación, trauma o falta de respuesta tras una semana de tratamiento.']
+        ]
+      };
+    }
+
+    // 6 · Patrón isquémico
+    if (pat === 'opresivo') {
+      const coca = f('cocaina');
+      const riesgo = f('cv');
+      return {
+        sev: riesgo || coca ? 'red' : 'amber',
+        tag: 'Isquémico',
+        title: coca ? 'Dolor torácico isquémico asociado a estimulantes' : 'Sospecha de síndrome coronario agudo',
+        rows: [
+          ['Prioridad', BASE_ECG + ' Si hay elevación del segmento ST o un equivalente de oclusión, <strong>activa la reperfusión</strong> sin esperar la troponina.'],
+          ['Equivalentes', 'Revisa infarto posterior (V7–V9), de Winter, Sgarbossa en bloqueo de rama izquierda o marcapasos, elevación de aVR con descenso difuso, ondas T hiperagudas y patrón de Wellens. En infarto inferior, pide V3R–V4R.'],
+          ['Estudio', 'Troponina de alta sensibilidad con la seriación de tu protocolo (0/1 h o 0/2 h, con umbrales propios del ensayo), hemograma, función renal, electrolitos, glicemia y coagulación. Radiografía de tórax.'],
+          ['Medidas', 'Ácido acetilsalicílico 150 a 300 mg masticados salvo contraindicación. Oxígeno solo si la saturación es menor a 90 %. Nitroglicerina 0,4 mg sublingual si la presión lo permite, <strong>contraindicada</strong> en infarto de ventrículo derecho, hipotensión o uso reciente de inhibidores de la fosfodiesterasa 5. Antiagregación y anticoagulación según protocolo local.'],
+          ['Riesgo', 'Si no hay elevación del ST, estratifica: puntaje <strong>HEART</strong> en la sección 06 y GRACE para definir el momento de la estrategia invasiva. Un puntaje bajo no autoriza el alta con dolor persistente o electrocardiograma dinámico.'],
+          coca
+            ? ['Estimulantes', 'Benzodiazepinas, nitratos y control de la presión. <strong>Evita el betabloqueo aislado en la fase aguda</strong> por el riesgo teórico de estímulo alfa sin oposición: <em>práctica discutida, verificar con protocolo institucional.</em> Considera además disección aórtica y vasoespasmo.']
+            : ['Paralelo', 'Mantén abierta la disección aórtica y el tromboembolismo pulmonar mientras el cuadro no esté cerrado: son los diagnósticos que más daño causan si se anticoagula por error.'],
+          ['Destino', 'Infarto con elevación del ST: reperfusión inmediata. Sin elevación con troponina positiva: hospitalización y cardiología. Riesgo bajo con estudio negativo: alta con control precoz documentado.'],
+          ['Enlace', LINK_FIBRI]
+        ]
+      };
+    }
+
+    // 7 · Urente / epigástrico
+    if (pat === 'urente') {
+      return {
+        sev: f('cv') ? 'amber' : 'green',
+        tag: 'Digestivo probable',
+        title: 'Patrón urente o epigástrico',
+        rows: [
+          ['Advertencia', '<strong>El alivio con antiácido no descarta isquemia</strong>, y el infarto de pared inferior se presenta con frecuencia como epigastralgia con náuseas. ' + BASE_ECG],
+          ['Estudio', f('cv')
+            ? 'Paciente con factores de riesgo o coronariopatía conocida: trátalo como posible síndrome coronario, con troponina seriada y estratificación formal antes de asumir el origen digestivo.'
+            : 'Adulto sin factores de riesgo y con electrocardiograma normal: el estudio se orienta por la clínica. Considera troponina si el cuadro es dudoso o el dolor persiste.'],
+          ['Diferencial', 'Reflujo, espasmo esofágico, úlcera péptica, patología biliar y pancreatitis. Con dolor tras vómitos intensos, piensa en rotura esofágica.'],
+          ['Tratamiento', 'Sintomático según la hipótesis digestiva y estudio ambulatorio dirigido.'],
+          ['Destino', 'Alta con indicaciones de retorno si el cuadro coronario quedó razonablemente descartado y hay control agendado.']
+        ]
+      };
+    }
+
+    // 8 · Mecánico
+    return {
+      sev: f('cv') ? 'amber' : 'green',
+      tag: 'Musculoesquelético probable',
+      title: 'Dolor localizado y reproducible a la palpación',
+      rows: [
+        ['Advertencia', 'La reproducibilidad a la palpación <strong>reduce</strong> la probabilidad de síndrome coronario, pero <strong>no la anula</strong>' + (f('cv') ? ': este paciente tiene factores de riesgo, así que estratifica formalmente antes de cerrar el caso. ' : '. ') + BASE_ECG],
+        ['Examen', 'Palpación de articulaciones condrocostales, movilidad de la parrilla, antecedentes de esfuerzo o trauma menor. <strong>Revisa la piel</strong> del dorso y el flanco: el herpes zóster duele días antes del exantema.'],
+        ['Estudio', f('cv')
+          ? 'Electrocardiograma, troponina y estratificación de riesgo pese al patrón mecánico.'
+          : 'Habitualmente solo electrocardiograma. Evita estudios en cascada si la evaluación de riesgo es baja y el paciente queda con control.'],
+        ['Tratamiento', 'Analgesia simple, calor local y reposo relativo, con reevaluación si el dolor cambia de carácter.'],
+        ['Destino', 'Alta con indicaciones claras de retorno ante dolor opresivo, de reposo, con disnea o con sudoración.']
+      ]
+    };
+  }
+
+  // El contexto marcado no debe perderse cuando la rama elegida no lo usa
+  function contextRows(r) {
+    const extra = [];
+    if (f('aorta') && !/aórtico/i.test(r.title)) {
+      extra.push(['Contexto', 'Aortopatía conocida o manipulación aórtica reciente: <strong>descarta síndrome aórtico agudo</strong> con el puntaje ADD-RS e imagen antes de cerrar el caso, anticoagular o trombolizar.']);
+    }
+    if (f('tromboembolico') && !/pleurítico|tromboembolismo/i.test(r.title)) {
+      extra.push(['Contexto', 'Factores de riesgo tromboembólico presentes: <strong>mantén abierto el tromboembolismo pulmonar</strong> y aplica una regla de probabilidad clínica antes de descartarlo.']);
+    }
+    if (f('gestante') && !/gestante/i.test(r.title)) {
+      extra.push(['Contexto', 'Gestante o puérpera: el tromboembolismo pulmonar, la disección aórtica y la disección coronaria espontánea se subdiagnostican en este grupo. Coordina imagen y tratamiento con el protocolo obstétrico local.']);
+    }
+    return extra;
+  }
+
+  function render() {
+    const box = document.getElementById('result');
+    const r = classify();
+    if (!r) {
+      box.className = 'result placeholder';
+      box.innerHTML = 'Selecciona el patrón y el estado en el box para ver la hipótesis prioritaria, el estudio ' +
+                      'inicial sugerido, lo que hay que descartar en paralelo y el destino probable.';
+      return;
+    }
+    const rows = r.rows.filter(row => row && row[1]);
+    // Los enlaces van siempre al final del bloque
+    const enlace = rows.length && rows[rows.length - 1][0] === 'Enlace' ? rows.pop() : null;
+    rows.push(...contextRows(r));
+    if (enlace) rows.push(enlace);
+
+    box.className = 'result sev-' + r.sev;
+    box.innerHTML =
+      '<div class="result-tag">' + r.tag + '</div>' +
+      '<div class="result-title">' + r.title + '</div>' +
+      rows.map(([k, v]) =>
+        '<div class="result-row"><div class="result-key">' + k + '</div><div>' + v + '</div></div>'
+      ).join('');
+
+    const sevClass = { red: 'sev-red', amber: 'sev-amber', green: 'sev-green' }[r.sev] || 'sev-green';
+    const inner = document.getElementById('sticky-inner');
+    inner.className = 'sticky-inner ' + sevClass;
+    document.getElementById('sticky-hyp').textContent = r.title;
+    const firstRow = rows.find(row => row[0] !== 'Enlace');
+    document.getElementById('sticky-act').innerHTML = firstRow ? firstRow[1] : '';
+  }
+
+  // ── Causas letales: reordenadas según lo respondido ────────────────
+  var CAUSAS = [
+    { t: 'Síndrome coronario agudo', d: 'Dolor opresivo o equivalente anginoso, cortejo vegetativo, tercer ruido o soplo nuevo, insuficiencia cardíaca aguda, arritmia.', a: 'Electrocardiograma seriado y troponina de alta sensibilidad seriada.', pat: ['opresivo'], est: ['estable', 'hipoxemia', 'shock'], ctx: ['cv', 'cocaina'] },
+    { t: 'Síndrome aórtico agudo', d: 'Dolor de inicio brusco y máximo desde el comienzo, migratorio a dorso o abdomen, asimetría de pulsos o de presión, déficit neurológico focal, soplo diastólico nuevo, síncope.', a: 'Angiotomografía de aorta (ecocardiograma transesofágico si no es trasladable).', pat: ['desgarrador'], est: ['shock', 'estable', 'hipoxemia'], ctx: ['aorta'] },
+    { t: 'Tromboembolismo pulmonar', d: 'Disnea súbita, dolor pleurítico, taquicardia, hipoxemia, signos de trombosis venosa profunda, síncope, dilatación del ventrículo derecho en la ecografía.', a: 'Angiotomografía de arterias pulmonares; probabilidad clínica + dímero D antes de imagen.', pat: ['pleuritico'], est: ['hipoxemia', 'shock'], ctx: ['tromboembolico', 'gestante', 'epoc'] },
+    { t: 'Neumotórax a tensión', d: 'Hipotensión con disnea, murmullo abolido unilateral, timpanismo, desviación traqueal, ingurgitación yugular, ausencia de deslizamiento pleural.', a: '<strong>Diagnóstico clínico:</strong> se descomprime primero y se confirma después.', pat: ['pleuritico'], est: ['shock', 'hipoxemia'], ctx: ['epoc'] },
+    { t: 'Taponamiento cardíaco', d: 'Hipotensión, ingurgitación yugular con pulmón limpio, ruidos apagados, pulso paradójico mayor a 10 mmHg, complejos de bajo voltaje o alternancia eléctrica.', a: 'Ecocardiograma a pie de cama.', pat: ['posicional', 'desgarrador'], est: ['shock'], ctx: ['aorta'] },
+    { t: 'Rotura esofágica (Boerhaave)', d: 'Dolor torácico intenso tras vómitos, enfisema subcutáneo, crujido mediastínico, derrame pleural izquierdo, sepsis de evolución rápida.', a: 'Tomografía de tórax con contraste oral hidrosoluble o esofagograma.', pat: ['postvomito'], est: ['shock', 'estable'], ctx: [] }
+  ];
+
+  function score(c) {
+    let s = 0;
+    if (sel.pat && c.pat.indexOf(sel.pat) > -1) s += 3;
+    if (sel.hem && c.est.indexOf(sel.hem) > -1) s += 2;
+    sel.fac.forEach(k => { if (c.ctx.indexOf(k) > -1) s += 1; });
+    return s;
+  }
+
+  var otrasOpen = false;
+
+  function renderCausas() {
+    if (!sel.pat || !sel.hem) return;
+    let ranked = CAUSAS.map(c => ({ c, s: score(c) })).sort((a, b) => b.s - a.s);
+    let top = ranked.filter(r => r.s >= 3);
+    let rest = ranked.filter(r => r.s < 3);
+    if (top.length === 0) { top = ranked.slice(0, 1); rest = ranked.slice(1); }
+
+    document.getElementById('causas-top').innerHTML = top.map(r =>
+      '<div class="causa-card">' +
+      '<div class="causa-title">' + r.c.t + '</div>' +
+      '<div class="causa-row"><b>Delata</b>' + r.c.d + '</div>' +
+      '<div class="causa-row"><b>Confirmación</b>' + r.c.a + '</div>' +
+      '</div>'
+    ).join('');
+
+    document.getElementById('otras-label').textContent = otrasOpen ? 'Ocultar el resto' : 'Ver el resto de causas letales (' + rest.length + ')';
+    document.getElementById('causas-otras').innerHTML = rest.map(r =>
+      '<div class="collapse-item"><b>' + r.c.t + '.</b> ' + r.c.d + '</div>'
+    ).join('') || '<div class="collapse-item">Sin otras causas en la lista.</div>';
+  }
+
+  function toggleOtras() {
+    otrasOpen = !otrasOpen;
+    document.getElementById('causas-otras').hidden = !otrasOpen;
+    document.getElementById('otras-arrow').textContent = otrasOpen ? '▴' : '▾';
+  }
+
+  // ── Puntaje HEART (sección de referencia, sin cambios) ─────────────
+  const HEART_IDS = ['h-hist', 'h-ecg', 'h-edad', 'h-fr', 'h-trop'];
+
+  function renderHeart() {
+    const out = document.getElementById('heart-out');
+    const vals = HEART_IDS.map(id => document.getElementById(id).value);
+    const faltan = vals.filter(v => v === '').length;
+
+    if (faltan > 0) {
+      const parcial = vals.filter(v => v !== '').reduce((a, v) => a + Number(v), 0);
+      out.innerHTML = faltan === 5
+        ? 'Completa los cinco componentes para obtener el puntaje y la banda de riesgo.'
+        : 'Puntaje parcial <strong>' + parcial + '</strong>. Faltan ' + faltan +
+          ' componente' + (faltan > 1 ? 's' : '') + ' por definir.';
+      return;
+    }
+
+    const total = vals.reduce((a, v) => a + Number(v), 0);
+    let clase, banda, riesgo, conducta;
+
+    if (total <= 3) {
+      clase = 'risk-low';
+      banda = 'Riesgo bajo';
+      riesgo = 'aproximadamente 1,7 % de eventos cardíacos adversos mayores a 6 semanas en la cohorte original';
+      conducta = 'Candidato a alta precoz con seguimiento ambulatorio, <strong>siempre que</strong> el electrocardiograma sea no isquémico, la troponina seriada resulte negativa, el paciente esté sin dolor y no quede pendiente otra causa letal.';
+    } else if (total <= 6) {
+      clase = 'risk-mid';
+      banda = 'Riesgo intermedio';
+      riesgo = 'aproximadamente 16,6 % de eventos a 6 semanas';
+      conducta = 'Observación con troponina y electrocardiograma seriados, y estudio complementario según disponibilidad. <strong>No es un paciente de alta directa desde el box.</strong>';
+    } else {
+      clase = 'risk-high';
+      banda = 'Riesgo alto';
+      riesgo = 'aproximadamente 50,1 % de eventos a 6 semanas';
+      conducta = 'Manejo como síndrome coronario agudo: monitorización, tratamiento antiisquémico según protocolo, discusión con cardiología y estrategia invasiva definida por riesgo.';
+    }
+
+    out.innerHTML =
+      '<span class="big ' + clase + '">HEART ' + total + ' / 10 · ' + banda + '</span>' +
+      '<strong>Riesgo estimado:</strong> ' + riesgo + '.<br>' +
+      conducta +
+      '<br><br>El puntaje <strong>complementa y no reemplaza el juicio clínico</strong>. Fue derivado con troponina ' +
+      'convencional: si tu servicio usa troponina de alta sensibilidad con algoritmo 0/1 h, aplícalo junto a ese ' +
+      'algoritmo y con los umbrales de alta definidos localmente. <em>Verificar con protocolo institucional.</em>';
+  }
+
+  HEART_IDS.forEach(id => document.getElementById(id).addEventListener('change', renderHeart));
+  document.getElementById('heart-reset').addEventListener('click', () => {
+    HEART_IDS.forEach(id => { document.getElementById(id).value = ''; });
+    renderHeart();
+  });
+</script>
+</body>
+</html>

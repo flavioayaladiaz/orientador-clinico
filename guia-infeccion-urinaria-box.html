@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Modo Box · Infección urinaria</title>
+<meta name="description" content="Modo Box: orientación clínica en infección urinaria del adulto en urgencia, en formato de un paso a la vez con resultado fijo en pantalla, pensado para usarse junto al paciente.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --surface3: #212a40;
+    --border: rgba(255,255,255,0.07);
+    --border-strong: rgba(255,255,255,0.14);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(16,185,129,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(20,184,166,0.06) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 32px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.25);
+    color: #6ee7b7;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #10b981, #14b8a6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  .header-alt {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 9px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.03em;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .header-alt:hover { color: var(--text); border-color: var(--border-strong); }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .s1 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s1 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s2 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s2 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s3 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s3 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s4 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s4 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s5 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s5 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s6 .section-num { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s6 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s7 .section-num { background: rgba(255,255,255,0.06); color: var(--text-dim); border: 1px solid var(--border); }
+  .s7 { --accent: var(--text-dim); --accent-glow: rgba(148,163,184,0.08); }
+
+  /* ORIENTADOR INTERACTIVO */
+  .q-block { margin-bottom: 18px; }
+  .q-block:last-of-type { margin-bottom: 0; }
+
+  .q-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt.on {
+    background: rgba(16,185,129,0.12);
+    border-color: rgba(16,185,129,0.45);
+    color: #6ee7b7;
+  }
+  .opt:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+
+  .result {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface2);
+    padding: 18px 20px;
+    border-left: 3px solid var(--accent, var(--emerald));
+  }
+  .result.placeholder { color: var(--text-muted); font-size: 13px; font-family: var(--mono); line-height: 1.6; }
+
+  .result-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .result-title {
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .result-row {
+    display: flex;
+    gap: 12px;
+    padding: 9px 0;
+    border-top: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .result-row:first-of-type { border-top: none; padding-top: 2px; }
+  .result-key {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    flex: 0 0 104px;
+    padding-top: 3px;
+  }
+  .result-row strong { color: #fff; font-weight: 500; }
+  .result-row em { color: #fcd34d; font-style: normal; }
+
+  .result.sev-red { border-left-color: var(--red); }
+  .result.sev-amber { border-left-color: var(--amber); }
+  .result.sev-green { border-left-color: var(--emerald); }
+
+  /* BANNERS */
+  .warning-banner, .info-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    color: #fca5a5;
+  }
+  .info-banner {
+    background: rgba(59,130,246,0.06);
+    border: 1px solid rgba(59,130,246,0.18);
+    color: #bfdbfe;
+  }
+  .warning-banner strong, .info-banner strong { color: #fff; font-weight: 500; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--emerald); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  /* ============ MODO BOX: wizard, sticky, causas ============ */
+  .reference-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 34px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .reference-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .wizard-step { border-radius: 16px; border: 1px solid var(--border); background: var(--surface); margin-bottom: 12px; overflow: hidden; animation: fadeUp 0.5s ease both; }
+  .wizard-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; gap: 10px; flex-wrap: wrap; }
+  .wizard-num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+  .wizard-num .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border-strong); display: inline-block; }
+  .wizard-step.done .wizard-num .dot { background: var(--teal); }
+  .wizard-step.active .wizard-num .dot { background: var(--amber); }
+  .wizard-answer { font-size: 13px; color: #5eead4; font-family: var(--sans); }
+  .wizard-change { font-family: var(--mono); font-size: 11px; color: var(--text-muted); background: none; border: none; cursor: pointer; text-decoration: underline; text-decoration-color: var(--border-strong); }
+  .wizard-change:hover { color: var(--text); }
+  .wizard-body { padding: 0 18px 18px; }
+
+  .panel { border-radius: 18px; border: 1px solid var(--border); background: var(--surface); overflow: hidden; margin-bottom: 16px; }
+  .panel-head { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+  .panel-title { font-family: var(--display); font-weight: 700; font-size: 14.5px; color: #fff; }
+  .panel-sub { font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .panel-body { padding: 18px 20px 22px; }
+
+  .sticky-shell { position: sticky; top: 0; z-index: 5; margin: 0 -24px 18px; padding: 10px 24px 0; background: var(--bg); }
+  .sticky-inner {
+    border-radius: 14px; border: 1px solid var(--border); background: var(--surface3);
+    padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  }
+  .sev-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 0 4px var(--dot-glow, transparent); }
+  .sticky-inner.sev-red { --dot-glow: rgba(239,68,68,0.18); } .sticky-inner.sev-red .sev-dot { background: var(--red); }
+  .sticky-inner.sev-amber { --dot-glow: rgba(245,158,11,0.18); } .sticky-inner.sev-amber .sev-dot { background: var(--amber); }
+  .sticky-inner.sev-green { --dot-glow: rgba(16,185,129,0.18); } .sticky-inner.sev-green .sev-dot { background: var(--emerald); }
+  .sticky-text { flex: 1; min-width: 0; }
+  .sticky-hyp { font-family: var(--display); font-weight: 700; font-size: 14.5px; color: #fff; }
+  .sticky-act { font-size: 12.5px; color: var(--text-dim); margin-top: 2px; line-height: 1.45; }
+  .sticky-act strong { color: #fff; font-weight: 500; }
+  .sticky-reset {
+    font-family: var(--mono); font-size: 11px; color: var(--text-muted); background: var(--surface2);
+    border: 1px solid var(--border); border-radius: 9px; padding: 7px 11px; cursor: pointer; flex-shrink: 0; white-space: nowrap;
+  }
+  .sticky-reset:hover { color: var(--text); border-color: var(--border-strong); }
+
+  .causas-lead { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin: 22px 0 12px; }
+  .causa-card { border-radius: 13px; border: 1px solid var(--border); background: var(--surface2); border-left: 3px solid var(--red); padding: 14px 16px; margin-bottom: 10px; }
+  .causa-title { font-family: var(--display); font-weight: 700; font-size: 14.5px; color: #fff; margin-bottom: 6px; }
+  .causa-row { font-size: 13px; color: var(--text-dim); line-height: 1.55; margin-top: 4px; }
+  .causa-row b { color: var(--text-muted); font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; margin-right: 6px; }
+  .causa-row strong { color: #fff; font-weight: 500; }
+
+  .collapse-toggle {
+    width: 100%; text-align: left; font-family: var(--mono); font-size: 12px; color: var(--text-muted);
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 11px; padding: 12px 14px;
+    cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+  .collapse-toggle:hover { color: var(--text); border-color: var(--border-strong); }
+  .collapse-body { padding-top: 8px; }
+  .collapse-item { font-size: 12.5px; color: var(--text-dim); padding: 9px 4px; border-top: 1px solid var(--border); line-height: 1.5; }
+  .collapse-item:first-child { border-top: none; }
+  .collapse-item b { color: var(--text); font-weight: 500; }
+  .collapse-item strong { color: var(--text); font-weight: 500; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .opt { width: 100%; }
+    .result-row { flex-direction: column; gap: 4px; }
+    .result-key { flex: none; padding-top: 0; }
+    .sticky-shell { margin: 0 -16px 16px; padding: 8px 16px 0; }
+    .sticky-inner { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index_mockup.html">← Volver a Modo Box</a>
+    <div class="header-badge">Modo Box · Motivo de consulta</div>
+    <h1>Infección <span>urinaria</span></h1>
+    <p class="header-sub">
+      Mismo contenido de la guía de infección urinaria, reorganizado para el box: un paso a la vez, la
+      hipótesis y la acción inmediata fijas en pantalla mientras avanzas, y las causas que matan
+      reordenadas según lo que ya respondiste.
+    </p>
+    <a class="header-alt" href="./guia-infeccion-urinaria.html">📄 Ver la guía completa</a>
+  </div>
+
+  <!-- WIZARD -->
+  <div class="wizard-step active" id="step-pac" style="animation-delay:0.06s;">
+    <div class="wizard-head">
+      <div class="wizard-num"><span class="dot"></span>1 · Paciente</div>
+      <div><span class="wizard-answer" id="ans-pac"></span><button class="wizard-change" id="chg-pac" onclick="openStep('pac')" hidden>cambiar</button></div>
+    </div>
+    <div class="wizard-body" id="body-pac">
+      <div class="opts" id="q-pac">
+        <button type="button" class="opt" data-v="mujer">Mujer no gestante</button>
+        <button type="button" class="opt" data-v="gestante">Gestante</button>
+        <button type="button" class="opt" data-v="varon">Varón</button>
+        <button type="button" class="opt" data-v="sonda">Portador de sonda vesical</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wizard-step" id="step-cli" style="opacity:.4; pointer-events:none; animation-delay:0.1s;">
+    <div class="wizard-head">
+      <div class="wizard-num"><span class="dot"></span>2 · Presentación</div>
+      <div><span class="wizard-answer" id="ans-cli"></span><button class="wizard-change" id="chg-cli" onclick="openStep('cli')" hidden>cambiar</button></div>
+    </div>
+    <div class="wizard-body" id="body-cli" hidden>
+      <div class="opts" id="q-cli">
+        <button type="button" class="opt" data-v="baja">Solo síntomas bajos (disuria, polaquiuria, urgencia)</button>
+        <button type="button" class="opt" data-v="alta">Fiebre ≥38 °C, calofríos, dolor lumbar o puñopercusión (+)</button>
+        <button type="button" class="opt" data-v="sepsis">Hipotensión, confusión, taquipnea o mala perfusión</button>
+        <button type="button" class="opt" data-v="asx">Sin síntomas urinarios (urocultivo tomado por otra razón)</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="after-wizard" hidden>
+
+    <div class="sticky-shell">
+      <div class="sticky-inner" id="sticky-inner">
+        <span class="sev-dot" id="sticky-dot"></span>
+        <div class="sticky-text">
+          <div class="sticky-hyp" id="sticky-hyp">—</div>
+          <div class="sticky-act" id="sticky-act">—</div>
+        </div>
+        <button class="sticky-reset" type="button" onclick="resetAll()">↺ Nuevo caso</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-title">3 · Afinar con contexto</div>
+        <div class="panel-sub">Opcional — reordena las causas y ajusta la hipótesis en tiempo real</div>
+      </div>
+      <div class="panel-body">
+        <div class="opts" id="q-fac">
+          <button type="button" class="opt" data-v="obstruccion">Litiasis, uropatía obstructiva o vejiga neurogénica</button>
+          <button type="button" class="opt" data-v="inmuno">Inmunosupresión, trasplante o neutropenia</button>
+          <button type="button" class="opt" data-v="erc">ERC avanzada o riñón único</button>
+          <button type="button" class="opt" data-v="instrum">Instrumentación urológica reciente</button>
+          <button type="button" class="opt" data-v="blee">Antibiótico, hospitalización u organismo BLEE en los últimos 3 meses</button>
+          <button type="button" class="opt" data-v="ninguno">Ninguno</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="result placeholder" id="result"></div>
+
+    <div class="causas-lead">Causas prioritarias según lo seleccionado</div>
+    <div id="causas-top"></div>
+
+    <button class="collapse-toggle" type="button" onclick="toggleOtras()">
+      <span id="otras-label">Ver el resto de causas letales</span>
+      <span id="otras-arrow">▾</span>
+    </button>
+    <div class="collapse-body" id="causas-otras" hidden></div>
+
+    <div class="link-row" style="margin-top:16px;">
+      <a class="cross-link" href="./checklist-sepsis_4.html">→ Abrir checklist de sepsis y shock séptico</a>
+    </div>
+
+  </div>
+
+  <!-- ================= REFERENCIA COMPLETA (colapsable) ================= -->
+  <div class="reference-label">Referencia completa de la guía</div>
+
+  <!-- 02 · CLASIFICACIÓN -->
+  <div class="section s2 collapsed" id="s2" style="animation-delay:0.12s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Síndromes y qué hace «complicada» a una ITU</div>
+        <div class="section-subtitle">La clasificación decide duración y vía</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Síndrome</th><th>Definición operativa</th><th>Implicancia</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Bacteriuria asintomática</td>
+              <td>Urocultivo significativo <strong>sin</strong> síntomas atribuibles al tracto urinario</td>
+              <td><span class="dose-main">No tratar</span><br><span class="dose-note">excepto gestante o procedimiento urológico con sangrado mucoso previsto</span></td>
+            </tr>
+            <tr>
+              <td>Cistitis no complicada</td>
+              <td>Mujer no gestante, sin fiebre ni dolor lumbar, sin alteración anatómica ni funcional</td>
+              <td><span class="dose-main">Ambulatoria, 3–5 días</span><br><span class="dose-note">urocultivo no obligatorio</span></td>
+            </tr>
+            <tr>
+              <td>ITU complicada</td>
+              <td>Cualquier ITU en varón, gestante, sonda, alteración anatómica o funcional, litiasis, inmunosupresión, ERC avanzada, instrumentación reciente</td>
+              <td><span class="dose-main">Urocultivo siempre</span><br><span class="dose-note">tratamiento más prolongado</span></td>
+            </tr>
+            <tr>
+              <td>Pielonefritis aguda</td>
+              <td>Fiebre, calofríos, dolor lumbar o puñopercusión positiva, con o sin síntomas bajos</td>
+              <td><span class="dose-main">Compromiso parenquimatoso</span><br><span class="dose-note">7–14 días; imagen si no responde</span></td>
+            </tr>
+            <tr>
+              <td>ITU asociada a catéter</td>
+              <td>Síntomas sistémicos o locales sin otra causa, en portador de sonda o retirada en las últimas 48 h</td>
+              <td><span class="dose-main">Recambiar o retirar la sonda</span><br><span class="dose-note">el urocultivo aislado no diagnostica</span></td>
+            </tr>
+            <tr>
+              <td>Prostatitis bacteriana aguda</td>
+              <td>Varón con fiebre, síntomas miccionales y próstata dolorosa al tacto rectal</td>
+              <td><span class="dose-main">Antibiótico con penetración prostática</span><br><span class="dose-note">tratamiento prolongado</span></td>
+            </tr>
+            <tr>
+              <td>Urosepsis</td>
+              <td>ITU con disfunción orgánica (hipotensión, confusión, taquipnea, oliguria, lactato elevado)</td>
+              <td><span class="dose-main">Emergencia</span><br><span class="dose-note">antibiótico precoz + descartar obstrucción</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Ojo con la nomenclatura</div>
+      <div class="plain-list">
+        <div class="plain-item">
+          <span class="bullet-icon">🧭</span>
+          <span><strong>«No complicada» es una categoría estrecha:</strong> mujer no gestante, sin comorbilidad urológica.
+          Toda ITU en un varón se maneja como complicada, aunque el cuadro parezca una cistitis simple.</span>
+        </div>
+        <div class="plain-item">
+          <span class="bullet-icon">🧫</span>
+          <span><strong>Piuria sin síntomas no es infección.</strong> El hallazgo aislado de leucocituria o de un
+          urocultivo positivo no justifica antibióticos si el paciente no tiene síntomas atribuibles al tracto urinario.</span>
+        </div>
+        <div class="plain-item">
+          <span class="bullet-icon">🤒</span>
+          <span><strong>En el adulto mayor</strong> la presentación puede ser inespecífica (caída, delirium, decaimiento),
+          pero el delirium aislado con urocultivo positivo y sin fiebre ni síntomas urinarios no confirma ITU:
+          busca activamente otros focos antes de atribuirlo a la orina.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · ESTUDIO -->
+  <div class="section s4 collapsed" id="s4" style="animation-delay:0.24s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Estudio inicial e interpretación</div>
+        <div class="section-subtitle">Qué pedir y qué significa</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">A quién tomar urocultivo</div>
+      <div class="plain-list">
+        <div class="plain-item">
+          <span class="bullet-icon">✅</span>
+          <span><strong>Siempre:</strong> pielonefritis, ITU complicada, varón, gestante, portador de sonda,
+          inmunosupresión, sospecha de urosepsis, fracaso de tratamiento o recurrencia precoz (&lt;4 semanas).</span>
+        </div>
+        <div class="plain-item">
+          <span class="bullet-icon">➖</span>
+          <span><strong>Opcional:</strong> cistitis aguda no complicada típica en mujer sana, si el patrón local de
+          resistencia es conocido y el tratamiento es de primera línea.</span>
+        </div>
+        <div class="plain-item">
+          <span class="bullet-icon">🧪</span>
+          <span><strong>Hemocultivos:</strong> ante fiebre alta con calofríos, sospecha de sepsis o inmunosupresión.
+          Tómalos antes del antibiótico, pero <strong>sin retrasar la primera dosis</strong>.</span>
+        </div>
+        <div class="plain-item">
+          <span class="bullet-icon">🩺</span>
+          <span><strong>Laboratorio general</strong> (hemograma, PCR, creatinina, electrolitos, lactato si hay
+          sospecha de sepsis) en todo cuadro febril o complicado. En la cistitis no complicada no aporta.</span>
+        </div>
+      </div>
+
+      <div class="subhead">Tira reactiva y sedimento</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Hallazgo</th><th>Lectura</th><th>Trampas</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Nitritos (+)</td>
+              <td>Alta especificidad para enterobacterias</td>
+              <td>Falsos negativos con <em>Enterococcus</em>, <em>S. saprophyticus</em>, <em>Pseudomonas</em> y con orina de corta permanencia vesical</td>
+            </tr>
+            <tr>
+              <td>Esterasa leucocitaria (+)</td>
+              <td>Sugiere piuria</td>
+              <td>Sensible pero poco específica: aparece en uretritis, vaginitis, litiasis y contaminación</td>
+            </tr>
+            <tr>
+              <td>Piuria</td>
+              <td>≥10 leucocitos/µL en orina no centrifugada (o ≥5–10 por campo en sedimento centrifugado)</td>
+              <td>Su <strong>ausencia</strong> hace poco probable la ITU; su presencia aislada no la confirma</td>
+            </tr>
+            <tr>
+              <td>Células epiteliales abundantes</td>
+              <td>Muestra probablemente contaminada</td>
+              <td>Repite con técnica de segundo chorro antes de decidir</td>
+            </tr>
+            <tr>
+              <td>Urocultivo</td>
+              <td>≥10⁵ UFC/mL es el umbral clásico</td>
+              <td>En mujer sintomática, recuentos de 10²–10³ UFC/mL de un uropatógeno pueden ser significativos; en muestra por sonda, ≥10³ UFC/mL</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Imágenes</div>
+      <div class="info-banner">
+        <span class="warning-icon">🖥️</span>
+        <span>La mayoría de las pielonefritis no complicadas <strong>no requieren imagen inicial</strong>.
+        Pídela cuando haya sospecha de obstrucción o de complicación local.</span>
+      </div>
+      <div class="plain-list">
+        <div class="plain-item">
+          <span class="bullet-icon">🔎</span>
+          <span><strong>Ecografía renal y vesical:</strong> primera línea, disponible y sin radiación. Útil para
+          hidronefrosis, globo vesical y riñón único. De elección en la gestante.</span>
+        </div>
+        <div class="plain-item">
+          <span class="bullet-icon">🧲</span>
+          <span><strong>TC de abdomen y pelvis:</strong> ante sospecha de absceso, pielonefritis enfisematosa,
+          litiasis obstructiva o fiebre persistente &gt;72 h pese a tratamiento adecuado. El protocolo (con o sin
+          contraste) se define según sospecha y función renal: <em>verificar con protocolo institucional</em>.</span>
+        </div>
+        <div class="plain-item">
+          <span class="bullet-icon">⚡</span>
+          <span><strong>Urgente</strong> en todo paciente séptico, con dolor cólico febril, riñón único o
+          deterioro agudo de la función renal.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · DIFERENCIAL -->
+  <div class="section s5 collapsed" id="s5" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Diagnóstico diferencial</div>
+        <div class="section-subtitle">Lo que se disfraza de ITU</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Cuadro</th><th>Pistas que lo delatan</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Uretritis o cervicitis por ITS</td><td>Pareja nueva, secreción uretral o cervical, disuria de inicio gradual, piuria con urocultivo negativo. Pide estudio para <em>Chlamydia</em> y gonococo</td></tr>
+            <tr><td>Vulvovaginitis</td><td>Prurito, flujo, disuria «externa» al orinar, sin polaquiuria ni urgencia</td></tr>
+            <tr><td>Cólico renal no infeccioso</td><td>Dolor cólico intenso con hematuria y sin fiebre. Si aparece fiebre, asume obstrucción infectada</td></tr>
+            <tr><td>Enfermedad inflamatoria pélvica</td><td>Dolor pélvico bilateral, dolor a la movilización cervical, flujo purulento</td></tr>
+            <tr><td>Apendicitis pélvica o retrocecal</td><td>Dolor migratorio, anorexia, piuria estéril por contigüidad</td></tr>
+            <tr><td>Prostatitis crónica o síndrome de dolor pélvico</td><td>Varón con síntomas &gt;3 meses, cultivos repetidamente negativos</td></tr>
+            <tr><td>Síndrome de vejiga dolorosa</td><td>Urgencia y dolor suprapúbico crónicos, cultivos negativos, sin fiebre</td></tr>
+            <tr><td>Herpes genital</td><td>Disuria intensa con lesiones vesiculosas o ulceradas</td></tr>
+            <tr><td>Vejiga neurogénica o retención urinaria</td><td>Globo vesical, residuo post-miccional elevado, ITU recurrente</td></tr>
+            <tr><td>Neoplasia vesical</td><td>Hematuria indolora, tabaquismo, edad avanzada, síntomas irritativos persistentes</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 · TRATAMIENTO -->
+  <div class="section s6 collapsed" id="s6" style="animation-delay:0.36s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Tratamiento empírico</div>
+        <div class="section-subtitle">Ajustar a resistencia local y a la función renal</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>Las dosis siguientes son las de referencia para un adulto con función renal normal.
+        <strong>La elección empírica depende del antibiograma local</strong> y del formulario de tu servicio:
+        verifica con el protocolo institucional antes de indicar, y ajusta o desescala apenas llegue el urocultivo.</span>
+      </div>
+
+      <div class="subhead">Cistitis aguda no complicada (mujer no gestante)</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Opción</th><th>Dosis</th><th>Notas</th></tr></thead>
+          <tbody>
+            <tr><td>Nitrofurantoína</td><td><span class="dose-main">100 mg c/12 h VO × 5 días</span></td><td>Primera línea. No usar si se sospecha compromiso renal; contraindicada con ClCr &lt;30 mL/min</td></tr>
+            <tr><td>Fosfomicina trometamol</td><td><span class="dose-main">3 g VO por una vez</span></td><td>Cómoda y con buena adherencia. Menor eficacia que un curso de 5 días</td></tr>
+            <tr><td>Cotrimoxazol (TMP-SMX)</td><td><span class="dose-main">160/800 mg c/12 h VO × 3 días</span></td><td>Solo si la resistencia local de <em>E. coli</em> es &lt;20 % y no lo recibió en los últimos 3 meses</td></tr>
+            <tr><td>Cefadroxilo o cefuroximo axetilo</td><td><span class="dose-main">500 mg c/12 h · 250 mg c/12 h VO × 5–7 días</span></td><td>Alternativa cuando las anteriores no son posibles; algo menos eficaces</td></tr>
+            <tr><td>Fluoroquinolonas</td><td><span class="dose-main">Reservar</span></td><td>No usarlas de primera línea en cistitis: presión selectiva y riesgo de tendinopatía, aortopatía y efectos neuropsiquiátricos</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Pielonefritis aguda</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Escenario</th><th>Esquema</th><th>Duración</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Ambulatoria, tolera vía oral</td>
+              <td><span class="dose-main">Ciprofloxacino 500 mg c/12 h VO</span><br><span class="dose-note">o levofloxacino 750 mg/día VO</span><br>Si la resistencia local a quinolonas supera ~10 %, dar una dosis inicial parenteral (ceftriaxona 1 g IV/IM)</td>
+              <td>7 días con quinolona<br><span class="dose-note">10–14 días con betalactámico; 14 días con cotrimoxazol</span></td>
+            </tr>
+            <tr>
+              <td>Hospitalizada, sin factores de resistencia</td>
+              <td><span class="dose-main">Ceftriaxona 1–2 g IV c/24 h</span><br><span class="dose-note">Alternativa: cefotaxima, o aminoglicósido si hay alergia a betalactámicos</span></td>
+              <td>7–10 días, con paso a vía oral guiado por el antibiograma</td>
+            </tr>
+            <tr>
+              <td>Riesgo de BLEE o multirresistencia</td>
+              <td><span class="dose-main">Ertapenem 1 g IV c/24 h</span><br><span class="dose-note">o piperacilina-tazobactam 4,5 g IV c/6–8 h; amikacina como asociado según protocolo local</span></td>
+              <td>Reevaluar y desescalar a las 48–72 h con el cultivo</td>
+            </tr>
+            <tr>
+              <td>Shock séptico de foco urinario</td>
+              <td><span class="dose-main">Antibiótico de amplio espectro en la primera hora</span> + resucitación + <strong>descartar obstrucción</strong></td>
+              <td>Según evolución y foco controlado</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">🧬</span>
+        <span><strong>Factores de riesgo de BLEE:</strong> aislamiento previo de BLEE, antibióticos en los últimos
+        3 meses (especialmente quinolonas o cefalosporinas), hospitalización reciente, residencia de larga estadía,
+        sonda permanente, instrumentación urológica y viaje reciente a zona de alta prevalencia.</span>
+      </div>
+
+      <div class="subhead">Situaciones especiales</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Situación</th><th>Conducta</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Embarazo</td>
+              <td>Tratar <strong>siempre</strong> la bacteriuria asintomática y la cistitis, guiado por urocultivo.
+              Opciones habituales: cefalexina 500 mg c/6–8 h × 5–7 días, o fosfomicina 3 g dosis única.
+              La nitrofurantoína se evita cerca del término (≥38 semanas) y en déficit de G6PD.
+              <strong>Contraindicados</strong> quinolonas y cotrimoxazol (este último especialmente en el primer trimestre y cerca del parto).
+              Solicitar urocultivo de control tras completar el tratamiento. Pielonefritis en gestante: hospitalizar y tratar por vía parenteral</td>
+            </tr>
+            <tr>
+              <td>Varón</td>
+              <td>Toda ITU se considera complicada. Cistitis sin sospecha de compromiso prostático: 7 días.
+              Si hay fiebre o próstata dolorosa, cubre prostatitis con un fármaco de buena penetración prostática
+              (ciprofloxacino 500 mg c/12 h o cotrimoxazol 160/800 mg c/12 h) por 2–4 semanas según evolución y guía local.
+              Evitar el masaje prostático en la fase aguda</td>
+            </tr>
+            <tr>
+              <td>Portador de sonda</td>
+              <td>Recambiar o retirar la sonda antes de iniciar el antibiótico y tomar el urocultivo de la sonda nueva.
+              No tratar bacteriuria asintomática asociada a catéter. Duración habitual: 7 días si la respuesta es rápida,
+              10–14 días si es lenta</td>
+            </tr>
+            <tr>
+              <td>Bacteriuria asintomática</td>
+              <td>Tratar solo en gestantes y antes de procedimientos urológicos con sangrado mucoso previsto.
+              No tratar en adultos mayores, diabéticos, portadores de sonda ni lesionados medulares</td>
+            </tr>
+            <tr>
+              <td>ITU recurrente en mujer</td>
+              <td>≥2 episodios en 6 meses o ≥3 en un año. Manejo con medidas conductuales, hidratación,
+              y evaluación de profilaxis (post-coital o continua) o estrógeno vaginal en la posmenopausia.
+              Derivar a urología si hay hematuria persistente, sospecha de alteración anatómica o falla del manejo</td>
+            </tr>
+            <tr>
+              <td>Falla renal</td>
+              <td>Ajustar dosis por clearance. La nitrofurantoína pierde eficacia y se contraindica con ClCr &lt;30 mL/min;
+              los aminoglicósidos requieren monitorización. <em>Verificar el ajuste exacto con el protocolo institucional o farmacia clínica</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · CIERRE -->
+  <div class="section s7 collapsed" id="s7" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Destino, seguimiento y errores frecuentes</div>
+        <div class="section-subtitle">Antes de dar de alta</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Criterios habituales de hospitalización</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Sepsis, inestabilidad hemodinámica o disfunción orgánica</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Sospecha de obstrucción o de complicación local (absceso, pielonefritis enfisematosa)</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Vómitos o intolerancia oral, deshidratación</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Gestante con pielonefritis</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Inmunosupresión relevante, trasplante renal, riñón único o ERC avanzada</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span>Fracaso del tratamiento ambulatorio o imposibilidad de asegurar tratamiento y control</span></div>
+      </div>
+
+      <div class="subhead">Al alta</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📋</span><span><strong>Deja escrito el plan:</strong> antibiótico, dosis, duración y fecha de término</span></div>
+        <div class="plain-item"><span class="bullet-icon">📞</span><span><strong>Instruye el retorno inmediato</strong> ante fiebre &gt;48 h, dolor lumbar creciente, vómitos o compromiso del estado general</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔬</span><span><strong>Deja definido quién revisa el urocultivo</strong> a las 48–72 h y cómo se contacta al paciente si obliga a cambiar el esquema. Es el punto donde más se pierden pacientes</span></div>
+        <div class="plain-item"><span class="bullet-icon">🤰</span><span><strong>En la gestante,</strong> programa el urocultivo de control post-tratamiento</span></div>
+      </div>
+
+      <div class="subhead">Errores frecuentes</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Tratar bacteriuria asintomática</strong> fuera de las dos indicaciones aceptadas</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Atribuir al foco urinario</strong> un delirium o una fiebre sin buscar otros focos, solo porque el sedimento está alterado</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Usar nitrofurantoína o fosfomicina en pielonefritis:</strong> no alcanzan concentraciones adecuadas en el parénquima renal</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No pensar en obstrucción</strong> ante fiebre con cólico renal, retrasando el drenaje</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Tratar 3 días a un varón</strong> o a una ITU complicada como si fuera una cistitis simple</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No revisar el urocultivo</strong> ni desescalar el antibiótico cuando llega el antibiograma</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es un mockup de interacción ("Modo Box") sobre el mismo contenido de
+    la guía de infección urinaria: no reemplaza el juicio clínico ni los protocolos vigentes del servicio. Las
+    recomendaciones empíricas dependen del patrón de resistencia local. Verifica dosis, ajuste por función renal
+    y contraindicaciones antes de administrar cualquier fármaco.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Gupta K, et al. <em>International Clinical Practice Guidelines for the Treatment of Acute Uncomplicated Cystitis and Pyelonephritis in Women (IDSA / ESCMID).</em> Clin Infect Dis. 2011;52(5):e103–e120.</div>
+      <div class="ref-item">Nicolle LE, et al. <em>Clinical Practice Guideline for the Management of Asymptomatic Bacteriuria: 2019 Update by the IDSA.</em> Clin Infect Dis. 2019;68(10):e83–e110.</div>
+      <div class="ref-item">Hooton TM, et al. <em>Diagnosis, Prevention, and Treatment of Catheter-Associated Urinary Tract Infection in Adults: IDSA Guidelines.</em> Clin Infect Dis. 2010;50(5):625–663.</div>
+      <div class="ref-item">Bonkat G, et al. <em>EAU Guidelines on Urological Infections.</em> European Association of Urology. <a href="https://uroweb.org/guidelines/urological-infections" target="_blank" rel="noopener">uroweb.org</a></div>
+      <div class="ref-item">Anger J, et al. <em>Recurrent Uncomplicated Urinary Tract Infections in Women: AUA/CUA/SUFU Guideline.</em> J Urol. 2019;202(2):282–289.</div>
+      <div class="ref-item">Evans L, et al. <em>Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2021.</em> Crit Care Med. 2021;49(11):e1063–e1143.</div>
+      <div class="ref-item">La elección empírica y los ajustes de dosis deben contrastarse con el mapa de resistencia y el protocolo antimicrobiano local.</div>
+    </div>
+  </div>
+
+  <div class="footer">Modo Box · mockup interno · Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables (referencia) ───────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Estado del wizard ────────────────────────────────────────────
+  const sel = { pac: null, cli: null, fac: new Set() };
+
+  function bindSingle(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        sel[key] = btn.dataset.v;
+        group.querySelectorAll('.opt').forEach(b => b.classList.toggle('on', b === btn));
+        completeStep(key, btn.textContent.trim());
+        render();
+        renderCausas();
+      });
+    });
+  }
+
+  function bindMulti(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (v === 'ninguno') {
+          sel[key].clear();
+          group.querySelectorAll('.opt').forEach(b => b.classList.remove('on'));
+          btn.classList.add('on');
+          sel[key].add('ninguno');
+        } else {
+          const none = group.querySelector('[data-v="ninguno"]');
+          none.classList.remove('on');
+          sel[key].delete('ninguno');
+          if (sel[key].has(v)) { sel[key].delete(v); btn.classList.remove('on'); }
+          else { sel[key].add(v); btn.classList.add('on'); }
+        }
+        render();
+        renderCausas();
+      });
+    });
+  }
+
+  function completeStep(which, label) {
+    document.getElementById('ans-' + which).textContent = label;
+    document.getElementById('chg-' + which).hidden = false;
+    document.getElementById('body-' + which).hidden = true;
+    document.getElementById('step-' + which).classList.add('done');
+    document.getElementById('step-' + which).classList.remove('active');
+    if (which === 'pac') {
+      const cliStep = document.getElementById('step-cli');
+      cliStep.style.opacity = 1; cliStep.style.pointerEvents = 'auto'; cliStep.classList.add('active');
+      document.getElementById('body-cli').hidden = false;
+    }
+    if (which === 'cli') {
+      document.getElementById('after-wizard').hidden = false;
+    }
+  }
+
+  function openStep(which) {
+    document.getElementById('body-' + which).hidden = false;
+    document.getElementById('step-' + which).classList.add('active');
+    document.getElementById('step-' + which).classList.remove('done');
+    document.getElementById('chg-' + which).hidden = true;
+    document.getElementById('ans-' + which).textContent = '';
+    document.querySelectorAll('#q-' + which + ' .opt').forEach(b => b.classList.remove('on'));
+    sel[which] = null;
+    if (which === 'pac') {
+      sel.cli = null;
+      document.getElementById('after-wizard').hidden = true;
+      const cliStep = document.getElementById('step-cli');
+      cliStep.style.opacity = .4; cliStep.style.pointerEvents = 'none';
+      cliStep.classList.remove('active', 'done');
+      document.getElementById('ans-cli').textContent = '';
+      document.getElementById('chg-cli').hidden = true;
+      document.getElementById('body-cli').hidden = true;
+      document.querySelectorAll('#q-cli .opt').forEach(b => b.classList.remove('on'));
+    }
+    render();
+  }
+
+  function resetAll() {
+    sel.pac = null; sel.cli = null; sel.fac.clear();
+    otrasOpen = false;
+    document.getElementById('after-wizard').hidden = true;
+    document.querySelectorAll('#q-fac .opt').forEach(b => b.classList.remove('on'));
+    ['pac', 'cli'].forEach(w => {
+      document.getElementById('ans-' + w).textContent = '';
+      document.getElementById('chg-' + w).hidden = true;
+      document.getElementById('step-' + w).classList.remove('done');
+      document.querySelectorAll('#q-' + w + ' .opt').forEach(b => b.classList.remove('on'));
+    });
+    document.getElementById('step-pac').classList.add('active');
+    document.getElementById('body-pac').hidden = false;
+    const cliStep = document.getElementById('step-cli');
+    cliStep.style.opacity = .4; cliStep.style.pointerEvents = 'none'; cliStep.classList.remove('active');
+    document.getElementById('body-cli').hidden = true;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    render();
+  }
+
+  bindSingle('q-pac', 'pac');
+  bindSingle('q-cli', 'cli');
+  bindMulti('q-fac', 'fac');
+
+  function hasFactor() {
+    return [...sel.fac].some(f => f !== 'ninguno');
+  }
+
+  // ── Clasificador (idéntico al de la guía completa) ─────────────────
+  function classify() {
+    const { pac, cli } = sel;
+    if (!pac || !cli) return null;
+
+    if (cli === 'sepsis') {
+      return {
+        sev: 'red',
+        tag: 'Emergencia',
+        title: 'Urosepsis — ITU con disfunción orgánica',
+        rows: [
+          ['Conducta', 'Reanimación inmediata y antibiótico de amplio espectro dentro de la primera hora. <strong>Descarta obstrucción con imagen urgente</strong>: la pionefrosis exige drenaje, no solo antibióticos.'],
+          ['Estudio', 'Hemocultivos y urocultivo antes del antibiótico (sin retrasarlo), lactato, función renal, hemograma, gases. Ecografía o TC urgente.'],
+          ['Empírico', 'Ceftriaxona 1–2 g IV c/24 h si no hay factores de resistencia. Con riesgo de BLEE o multirresistencia: ertapenem 1 g IV c/24 h o piperacilina-tazobactam 4,5 g IV c/6–8 h. <em>Verificar con protocolo institucional.</em>'],
+          ['Destino', 'Hospitalización. Evaluación por urología si hay obstrucción; unidad de paciente crítico según respuesta.'],
+          ['Enlace', '<a class="cross-link" style="margin-top:6px" href="./checklist-sepsis_4.html">→ Checklist de sepsis y shock séptico</a>']
+        ]
+      };
+    }
+
+    if (cli === 'asx') {
+      const tratar = pac === 'gestante';
+      return {
+        sev: tratar ? 'amber' : 'green',
+        tag: 'Hallazgo de laboratorio',
+        title: 'Bacteriuria asintomática',
+        rows: [
+          ['Conducta', tratar
+            ? 'En la gestante <strong>sí se trata</strong>, guiado por urocultivo y antibiograma. Reduce el riesgo de pielonefritis y de parto prematuro.'
+            : '<strong>No tratar.</strong> Las únicas indicaciones aceptadas son el embarazo y los procedimientos urológicos con sangrado mucoso previsto.'],
+          ['Estudio', tratar
+            ? 'Urocultivo con antibiograma y urocultivo de control al terminar el tratamiento.'
+            : 'Revisa si el urocultivo estaba indicado. Si el paciente tiene fiebre o delirium, busca activamente otro foco antes de atribuirlo a la orina.'],
+          ['Empírico', tratar
+            ? 'Cefalexina 500 mg c/6–8 h VO × 5–7 días, o fosfomicina 3 g VO por una vez, ajustado al antibiograma. Evitar quinolonas y cotrimoxazol.'
+            : 'Ninguno. Tratar aquí selecciona resistencia y expone a efectos adversos sin beneficio demostrado.'],
+          ['Ojo', 'En portadores de sonda, adultos mayores, diabéticos y lesionados medulares la bacteriuria asintomática <strong>no se trata</strong>.']
+        ]
+      };
+    }
+
+    if (cli === 'alta') {
+      const complicada = pac !== 'mujer' || hasFactor();
+      const gest = pac === 'gestante';
+      const sonda = pac === 'sonda';
+      const varon = pac === 'varon';
+      return {
+        sev: 'amber',
+        tag: complicada ? 'Compromiso alto · complicada' : 'Compromiso alto',
+        title: gest ? 'Pielonefritis aguda en el embarazo'
+             : sonda ? 'ITU alta asociada a catéter'
+             : varon ? 'Pielonefritis aguda en el varón (complicada)'
+             : complicada ? 'Pielonefritis aguda complicada'
+             : 'Pielonefritis aguda no complicada',
+        rows: [
+          ['Estudio', 'Urocultivo <strong>siempre</strong>, antes del antibiótico. Hemocultivos si hay fiebre alta con calofríos o sospecha de sepsis. Hemograma, PCR, creatinina y electrolitos.' +
+            (sel.fac.has('obstruccion') || gest ? ' <strong>Ecografía renal y vesical</strong> por sospecha de obstrucción o por embarazo.' : ' Imagen si hay sospecha de obstrucción, litiasis conocida, riñón único o falta de respuesta a 48–72 h.')],
+          ['Empírico', gest
+            ? 'Hospitalizar y tratar por vía parenteral: ceftriaxona 1–2 g IV c/24 h. <strong>Contraindicados</strong> quinolonas y cotrimoxazol.'
+            : (complicada
+              ? 'Ceftriaxona 1–2 g IV c/24 h. Con riesgo de BLEE (antibiótico o ingreso reciente, aislamiento previo, sonda): ertapenem 1 g IV c/24 h o piperacilina-tazobactam 4,5 g IV c/6–8 h.'
+              : 'Si tolera vía oral y está estable: ciprofloxacino 500 mg c/12 h VO. Si la resistencia local a quinolonas supera ~10 %, agrega una dosis inicial de ceftriaxona 1 g IV/IM.')],
+          ['Duración', complicada
+            ? '10–14 días orientativos, ajustados al germen y a la respuesta clínica. <em>Verificar con protocolo institucional.</em>'
+            : '7 días con quinolona; 10–14 días con betalactámico; 14 días con cotrimoxazol.'],
+          ['Destino', gest ? 'Hospitalización.' :
+            (complicada ? 'Umbral bajo de hospitalización; observación al menos hasta comprobar tolerancia oral y respuesta inicial.'
+                        : 'Ambulatorio posible si está estable, tolera vía oral y tiene control asegurado en 48–72 h.')],
+          ['Alertas', 'Fiebre persistente &gt;48–72 h con tratamiento adecuado obliga a buscar absceso, obstrucción o germen resistente.' +
+            (sonda ? ' <strong>Recambia o retira la sonda</strong> antes de iniciar el antibiótico y cultiva de la sonda nueva.' : '') +
+            (varon ? ' Evalúa la próstata: si está dolorosa, cubre prostatitis con un fármaco de penetración prostática por 2–4 semanas.' : '')]
+        ]
+      };
+    }
+
+    // cli === 'baja'
+    if (pac === 'mujer' && !hasFactor()) {
+      return {
+        sev: 'green',
+        tag: 'Vía baja',
+        title: 'Cistitis aguda no complicada',
+        rows: [
+          ['Estudio', 'Diagnóstico clínico. La tira reactiva apoya, pero no es imprescindible. Urocultivo no obligatorio si el cuadro es típico y se usa un fármaco de primera línea.'],
+          ['Empírico', 'Nitrofurantoína 100 mg c/12 h VO × 5 días, o fosfomicina trometamol 3 g VO por una vez. Cotrimoxazol 160/800 mg c/12 h × 3 días solo si la resistencia local es &lt;20 %.'],
+          ['Evitar', 'Fluoroquinolonas como primera línea. Reservarlas para cuadros que las necesiten.'],
+          ['Destino', 'Ambulatorio, con analgesia e hidratación. Control si no mejora en 48–72 h.'],
+          ['Alertas', 'Si aparece fiebre, calofríos o dolor lumbar, reclasifica como pielonefritis. Si hay pareja nueva o secreción, descarta uretritis o cervicitis por infección de transmisión sexual.']
+        ]
+      };
+    }
+
+    if (pac === 'gestante') {
+      return {
+        sev: 'amber',
+        tag: 'Vía baja · embarazo',
+        title: 'Cistitis en la gestante',
+        rows: [
+          ['Estudio', 'Urocultivo <strong>siempre</strong>, antes de iniciar, y urocultivo de control al completar el tratamiento.'],
+          ['Empírico', 'Cefalexina 500 mg c/6–8 h VO × 5–7 días, o fosfomicina trometamol 3 g VO por una vez. La nitrofurantoína es una alternativa, evitándola cerca del término (≥38 semanas) y en déficit de G6PD.'],
+          ['Contraindicado', 'Quinolonas y cotrimoxazol (este último especialmente en el primer trimestre y cerca del parto).'],
+          ['Destino', 'Ambulatorio con control obstétrico. Si aparece fiebre o dolor lumbar, hospitalizar por pielonefritis.'],
+          ['Alertas', 'La bacteriuria asintomática también se trata en el embarazo. Deja programado el control del urocultivo: es el punto donde más pacientes se pierden.']
+        ]
+      };
+    }
+
+    if (pac === 'varon') {
+      return {
+        sev: 'amber',
+        tag: 'Vía baja · complicada',
+        title: 'ITU baja en el varón',
+        rows: [
+          ['Principio', 'Toda ITU en el varón se maneja como <strong>complicada</strong>. Examina la próstata: si está dolorosa o hay fiebre, el cuadro es una prostatitis bacteriana aguda.'],
+          ['Estudio', 'Urocultivo siempre. Evalúa residuo post-miccional y considera ecografía si hay ITU recurrente, chorro obstructivo o sospecha de patología prostática.'],
+          ['Empírico', 'Sin sospecha prostática: nitrofurantoína 100 mg c/12 h o cotrimoxazol 160/800 mg c/12 h × 7 días. Con sospecha de prostatitis: ciprofloxacino 500 mg c/12 h o cotrimoxazol 160/800 mg c/12 h, por 2–4 semanas según evolución. <em>Verificar duración con protocolo institucional.</em>'],
+          ['Ojo', 'La nitrofurantoína no penetra la próstata: no sirve si sospechas prostatitis. Evita el masaje prostático en la fase aguda.'],
+          ['Destino', 'Ambulatorio si está estable y tolera vía oral. Hospitalizar si hay fiebre alta, retención urinaria o compromiso general.']
+        ]
+      };
+    }
+
+    if (pac === 'sonda') {
+      return {
+        sev: 'amber',
+        tag: 'Vía baja · catéter',
+        title: 'ITU asociada a catéter urinario',
+        rows: [
+          ['Antes de tratar', 'Confirma que hay <strong>síntomas atribuibles</strong>. El urocultivo positivo en un portador de sonda sin síntomas es bacteriuria asintomática y no se trata.'],
+          ['Conducta', 'Recambia o retira la sonda antes de iniciar el antibiótico y toma el urocultivo de la sonda nueva. Revisa si la sonda sigue siendo necesaria.'],
+          ['Empírico', 'Guiado por cultivos previos y por el mapa de resistencia local. Ceftriaxona 1–2 g IV c/24 h como base; ertapenem o piperacilina-tazobactam si hay riesgo de BLEE. <em>Verificar con protocolo institucional.</em>'],
+          ['Duración', '7 días si la respuesta es rápida; 10–14 días si es lenta.'],
+          ['Alertas', 'Descarta obstrucción del catéter y globo vesical. En el paciente febril con sonda, busca también otros focos antes de asumir origen urinario.']
+        ]
+      };
+    }
+
+    // mujer con factores de complicación
+    return {
+      sev: 'amber',
+      tag: 'Vía baja · complicada',
+      title: 'ITU baja complicada',
+      rows: [
+        ['Por qué', 'Los factores marcados (alteración anatómica o funcional, inmunosupresión, ERC, instrumentación reciente o riesgo de resistencia) sacan el cuadro de la categoría «no complicada».'],
+        ['Estudio', 'Urocultivo siempre, antes del antibiótico. Función renal. Imagen si hay sospecha de obstrucción o antecedente de litiasis.'],
+        ['Empírico', 'Elección guiada por cultivos previos y resistencia local. Evita esquemas cortos de 3 días. <em>Verificar con protocolo institucional.</em>'],
+        ['Duración', '7 días orientativos, prolongables según germen y respuesta clínica.'],
+        ['Alertas', 'Si aparece fiebre o dolor lumbar, reclasifica como pielonefritis complicada y baja el umbral de hospitalización.']
+      ]
+    };
+  }
+
+  function render() {
+    const box = document.getElementById('result');
+    const r = classify();
+    if (!r) {
+      box.className = 'result placeholder';
+      box.innerHTML = 'Selecciona paciente y presentación para ver el síndrome probable, el estudio inicial ' +
+                      'sugerido y el esquema empírico habitual.';
+      return;
+    }
+    box.className = 'result sev-' + r.sev;
+    box.innerHTML =
+      '<div class="result-tag">' + r.tag + '</div>' +
+      '<div class="result-title">' + r.title + '</div>' +
+      r.rows.map(([k, v]) =>
+        '<div class="result-row"><div class="result-key">' + k + '</div><div>' + v + '</div></div>'
+      ).join('');
+
+    const sevClass = { red: 'sev-red', amber: 'sev-amber', green: 'sev-green' }[r.sev] || 'sev-green';
+    const inner = document.getElementById('sticky-inner');
+    inner.className = 'sticky-inner ' + sevClass;
+    document.getElementById('sticky-hyp').textContent = r.title;
+    const firstRow = r.rows.find(row => row[0] !== 'Enlace');
+    document.getElementById('sticky-act').innerHTML = firstRow ? firstRow[1] : '';
+  }
+
+  // ── Causas letales: reordenadas según lo respondido ────────────────
+  // Extraídas de la sección "Red flags — no es una cistitis ambulatoria"
+  // (banner y lista de la guía completa), texto verbatim.
+  var CAUSAS = [
+    { t: 'Disfunción orgánica — urosepsis', d: 'Hipotensión, alteración de conciencia, taquipnea, oliguria, lactato elevado o llene capilar enlentecido.', a: 'Trátalo como urosepsis: reanimación inmediata y antibiótico de amplio espectro dentro de la primera hora. <strong>Descarta obstrucción con imagen urgente</strong>: la pionefrosis exige drenaje, no solo antibióticos.', pac: [], cli: ['sepsis'], ctx: ['obstruccion', 'inmuno', 'erc'] },
+    { t: 'Sospecha de obstrucción (pionefrosis)', d: 'Cólico renal con fiebre, litiasis conocida, riñón único, hidronefrosis, globo vesical o anuria. <strong>ITU + obstrucción es una emergencia urológica.</strong>', a: 'La pionefrosis no se resuelve con antibióticos: requiere drenaje precoz (nefrostomía percutánea o catéter ureteral) además del tratamiento antimicrobiano. Ante fiebre con cólico renal, litiasis conocida o hidronefrosis, pide imagen urgente y contacta urología sin esperar la respuesta al antibiótico.', pac: [], cli: ['alta', 'sepsis'], ctx: ['obstruccion'] },
+    { t: 'Gestante con fiebre o dolor lumbar', d: 'La pielonefritis en el embarazo se asocia a parto prematuro y sepsis.', a: 'El umbral de hospitalización es bajo. Hospitalizar y tratar por vía parenteral: ceftriaxona 1–2 g IV c/24 h. <strong>Contraindicados</strong> quinolonas y cotrimoxazol.', pac: ['gestante'], cli: ['alta', 'sepsis'], ctx: [] },
+    { t: 'Inmunosupresión, trasplante renal o neutropenia', d: 'Presentación atenuada y mayor riesgo de bacteriemia.', a: '<strong>Hemocultivos</strong> ante fiebre alta con calofríos, sospecha de sepsis o inmunosupresión. Tómalos antes del antibiótico, pero <strong>sin retrasar la primera dosis</strong>.', pac: [], cli: ['alta', 'sepsis'], ctx: ['inmuno'] },
+    { t: 'Diabético con mal control y dolor lumbar intenso', d: 'Considera pielonefritis enfisematosa o necrosis papilar.', a: 'Requiere imagen (TC) y evaluación urológica.', pac: [], cli: ['alta', 'sepsis'], ctx: [] },
+    { t: 'Fiebre persistente &gt;48–72 h con antibiótico adecuado', d: 'Fiebre que no cede pese a un antibiótico adecuado.', a: 'Busca absceso renal o perinefrítico, obstrucción no detectada o germen resistente.', pac: [], cli: ['alta'], ctx: ['blee'] },
+    { t: 'Intolerancia oral, vómitos o incapacidad de tratamiento en casa', d: 'Intolerancia oral, vómitos o incapacidad de asegurar el tratamiento en casa.', a: 'Es una indicación de manejo intrahospitalario tan válida como la gravedad clínica.', pac: [], cli: ['alta', 'baja'], ctx: [] }
+  ];
+
+  function score(c) {
+    let s = 0;
+    if (sel.pac && c.pac.indexOf(sel.pac) > -1) s += 3;
+    if (sel.cli && c.cli.indexOf(sel.cli) > -1) s += 2;
+    sel.fac.forEach(k => { if (c.ctx.indexOf(k) > -1) s += 1; });
+    return s;
+  }
+
+  var otrasOpen = false;
+
+  function renderCausas() {
+    if (!sel.pac || !sel.cli) return;
+    let ranked = CAUSAS.map(c => ({ c, s: score(c) })).sort((a, b) => b.s - a.s);
+    let top = ranked.filter(r => r.s >= 3);
+    let rest = ranked.filter(r => r.s < 3);
+    if (top.length === 0) { top = ranked.slice(0, 1); rest = ranked.slice(1); }
+
+    document.getElementById('causas-top').innerHTML = top.map(r =>
+      '<div class="causa-card">' +
+      '<div class="causa-title">' + r.c.t + '</div>' +
+      '<div class="causa-row"><b>Delata</b>' + r.c.d + '</div>' +
+      '<div class="causa-row"><b>Acción</b>' + r.c.a + '</div>' +
+      '</div>'
+    ).join('');
+
+    document.getElementById('otras-label').textContent = otrasOpen ? 'Ocultar el resto' : 'Ver el resto de causas letales (' + rest.length + ')';
+    document.getElementById('causas-otras').innerHTML = rest.map(r =>
+      '<div class="collapse-item"><b>' + r.c.t + '.</b> ' + r.c.d + '</div>'
+    ).join('') || '<div class="collapse-item">Sin otras causas en la lista.</div>';
+  }
+
+  function toggleOtras() {
+    otrasOpen = !otrasOpen;
+    document.getElementById('causas-otras').hidden = !otrasOpen;
+    document.getElementById('otras-arrow').textContent = otrasOpen ? '▴' : '▾';
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist Sepsis</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --surface3: #212a40;
+    --border: rgba(255,255,255,0.07);
+    --border-strong: rgba(255,255,255,0.14);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --orange: #f97316;
+    --orange-glow: rgba(249,115,22,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --red: #ef4444;
+    --amber: #f59e0b;
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --display: 'Syne', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(20,184,166,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(99,102,241,0.05) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 32px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(20,184,166,0.1);
+    border: 1px solid rgba(20,184,166,0.25);
+    color: #5eead4;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+
+  h1 span {
+    background: linear-gradient(135deg, #14b8a6, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  .header-alt {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 9px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.03em;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .header-alt:hover { color: var(--text); border-color: var(--border-strong); }
+
+  /* STICKY PROGRESS BANNER (Modo Box) */
+  .sticky-shell {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    margin: 0 -24px 20px;
+    padding: 10px 24px 0;
+    background: var(--bg);
+  }
+  .sticky-inner {
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--surface3);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .sticky-dot {
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--teal);
+    box-shadow: 0 0 0 4px var(--teal-glow);
+    transition: all 0.3s;
+  }
+  .sticky-inner.complete { border-color: rgba(16,185,129,0.35); }
+  .sticky-inner.complete .sticky-dot { background: var(--emerald); box-shadow: 0 0 0 4px var(--emerald-glow); }
+  .sticky-text { flex: 1; min-width: 0; }
+  .sticky-phase { font-family: var(--display); font-weight: 700; font-size: 14.5px; color: #fff; }
+  .sticky-inner.complete .sticky-phase { color: #6ee7b7; }
+  .sticky-summary { font-size: 12.5px; color: var(--text-dim); margin-top: 2px; font-family: var(--mono); }
+  .sticky-check { font-size: 15px; flex-shrink: 0; }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:nth-child(1) { animation-delay: 0.1s; }
+  .section:nth-child(2) { animation-delay: 0.2s; }
+  .section:nth-child(3) { animation-delay: 0.3s; }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    flex: 1;
+  }
+  .section-subtitle { font-size: 12px; color: var(--text-muted); font-family: var(--mono); margin-top: 2px; }
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section-body { padding: 20px 24px 24px; }
+
+  .section-check-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 100px;
+    transition: all 0.3s;
+  }
+
+  /* COLORS */
+  .s0 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.25); }
+  .s0 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s1 .section-num { background: rgba(249,115,22,0.15); color: #fdba74; border: 1px solid rgba(249,115,22,0.25); }
+  .s1 { --accent: var(--orange); --accent-glow: var(--orange-glow); }
+  .s2 .section-num { background: rgba(99,102,241,0.15); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.25); }
+  .s2 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+
+  /* CHECKLIST ITEMS */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .check-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .check-item:hover::before { opacity: 1; }
+  .check-item:hover { border-color: rgba(255,255,255,0.12); }
+  .check-item.checked { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+  .check-item.checked::before { opacity: 0.5; }
+
+  .checkbox {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+  }
+  .check-item.checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .checkmark {
+    opacity: 0;
+    transform: scale(0) rotate(-10deg);
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .check-item.checked .checkmark { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  .check-label {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-dim);
+    transition: color 0.2s;
+    position: relative;
+    z-index: 1;
+    flex: 1;
+  }
+  .check-item.checked .check-label {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(100,116,139,0.5);
+  }
+  .check-label strong { color: #fff; font-weight: 500; }
+  .check-label .note {
+    font-size: 12px;
+    color: var(--text-muted);
+    display: block;
+    margin-top: 3px;
+    font-style: italic;
+  }
+
+  /* NEWS2 CALCULATOR */
+  .news2-score-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .news2-total {
+    font-family: var(--display);
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--text-muted);
+    transition: color 0.3s;
+  }
+  .news2-total.warn { color: var(--amber); }
+  .news2-total.alert { color: var(--red); }
+
+  .news2-status {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    transition: all 0.3s;
+    background: rgba(255,255,255,0.05);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+  .news2-status.warn { background: rgba(245,158,11,0.12); color: #fcd34d; border-color: rgba(245,158,11,0.25); }
+  .news2-status.alert { background: rgba(239,68,68,0.12); color: #fca5a5; border-color: rgba(239,68,68,0.25); }
+
+  .news2-params { padding: 4px 0; }
+
+  .news2-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 1px solid var(--border);
+    min-height: 52px;
+    gap: 12px;
+    transition: background 0.15s;
+  }
+  .news2-row:last-child { border-bottom: none; }
+  .news2-row:hover { background: rgba(255,255,255,0.02); }
+
+  .news2-param-name {
+    font-size: 13px;
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+
+  .news2-options {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .news2-btn {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .news2-btn:hover { border-color: rgba(255,255,255,0.15); color: var(--text); }
+  .news2-btn.sel-0 { background: rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.35); color: #6ee7b7; }
+  .news2-btn.sel-1 { background: rgba(245,158,11,0.15); border-color: rgba(245,158,11,0.35); color: #fcd34d; }
+  .news2-btn.sel-2 { background: rgba(249,115,22,0.15); border-color: rgba(249,115,22,0.35); color: #fdba74; }
+  .news2-btn.sel-3 { background: rgba(239,68,68,0.18); border-color: rgba(239,68,68,0.4); color: #fca5a5; }
+
+  /* DYNAMIC FLUIDS TABLE */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); margin-top: 14px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 11px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+  }
+  td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { color: #fff; font-weight: 500; }
+  td .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+  }
+  td .ok { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  td .lim { background: rgba(245,158,11,0.1); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+
+  /* WARNING BANNER */
+  .info-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: rgba(249,115,22,0.07);
+    border: 1px solid rgba(249,115,22,0.2);
+    border-radius: 12px;
+    padding: 13px 16px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: #fdba74;
+    line-height: 1.6;
+  }
+
+  /* PROGRESS */
+  .progress-bottom {
+    margin-top: 32px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .progress-bar-track {
+    flex: 1;
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #14b8a6, #3b82f6);
+    border-radius: 100px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px rgba(20,184,166,0.4);
+  }
+  .progress-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+  #progress-pct { color: var(--teal); font-weight: 500; }
+
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+  .status-badge {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.3);
+    border-radius: 12px;
+    padding: 12px 18px;
+    font-size: 13px;
+    color: #6ee7b7;
+    font-family: var(--mono);
+    animation: slideIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .status-badge.show { display: flex; }
+
+  /* REFERENCES */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--teal); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 20px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(10px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+  /* GATED CONTENT */
+  #protocolo-content {
+    display: none;
+  }
+  #protocolo-content.unlocked {
+    display: block;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  /* LOW SCORE MESSAGE */
+  .low-score-msg {
+    display: none;
+    margin-top: 16px;
+    background: rgba(100,116,139,0.08);
+    border: 1px solid rgba(100,116,139,0.2);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    line-height: 1.6;
+    text-align: center;
+  }
+  .low-score-msg.show { display: block; animation: fadeUp 0.3s ease both; }
+
+  /* UNLOCK BUTTON */
+  .unlock-btn {
+    display: none;
+    width: 100%;
+    margin-top: 16px;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(239,68,68,0.08));
+    border: 1px solid rgba(239,68,68,0.35);
+    border-radius: 14px;
+    color: #fca5a5;
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+    animation: fadeUp 0.4s ease both;
+  }
+  .unlock-btn:hover {
+    background: linear-gradient(135deg, rgba(239,68,68,0.25), rgba(239,68,68,0.15));
+    border-color: rgba(239,68,68,0.55);
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(239,68,68,0.2);
+  }
+  .unlock-btn.show { display: block; }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .sticky-shell { margin: 0 -16px 18px; padding: 8px 16px 0; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    .news2-row { grid-template-columns: 1fr; gap: 8px; padding: 12px 16px; }
+    .news2-options { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index_mockup.html">← Volver a Modo Box</a>
+    <div class="header-badge">Modo Box · Checklist</div>
+    <h1>Checklist <span>Sepsis</span></h1>
+    <p class="header-sub">
+      El mismo checklist del bundle de sepsis, con una barra fija arriba que muestra en todo momento
+      qué fase tiene más pendientes y el avance global — pensada para usarse a pie de cama, donde varias
+      acciones del bundle ocurren en paralelo entre distintos miembros del equipo.
+    </p>
+    <a class="header-alt" href="./checklist-sepsis_4.html">📄 Ver el checklist completo</a>
+  </div>
+
+  <!-- STICKY PROGRESS BANNER -->
+  <div class="sticky-shell">
+    <div class="sticky-inner" id="stickyInner">
+      <span class="sticky-dot" id="stickyDot"></span>
+      <div class="sticky-text">
+        <div class="sticky-phase" id="stickyPhase">—</div>
+        <div class="sticky-summary" id="stickySummary">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ CALCULADORA NEWS2 (siempre visible) ═══════════════ -->
+  <div class="section s0" id="s0-calc" style="animation-delay:0.1s;">
+    <div class="section-header" style="cursor:default; border-bottom: 1px solid var(--border);">
+      <span class="section-num">FASE 0</span>
+      <div>
+        <div class="section-title">Calculadora NEWS2</div>
+        <div class="section-subtitle">Selecciona el valor de cada parámetro · Umbral de activación ≥ 5</div>
+      </div>
+      <div class="news2-score-badge">
+        <div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--text-muted);text-align:right;margin-bottom:2px;">SCORE</div>
+          <div class="news2-total" id="news2Total">0</div>
+        </div>
+        <div class="news2-status" id="news2Status">Sin datos</div>
+      </div>
+    </div>
+    <div class="section-body" style="padding:0;">
+      <div class="news2-params">
+
+          <!-- FR -->
+          <div class="news2-row">
+            <div class="news2-param-name">🫁 Frec. Respiratoria (rpm)</div>
+            <div class="news2-options" data-param="fr">
+              <button class="news2-btn" data-score="3" onclick="selectParam(this,'fr')">≤ 8</button>
+              <button class="news2-btn" data-score="0" onclick="selectParam(this,'fr')">9–11</button>
+              <button class="news2-btn" data-score="0" onclick="selectParam(this,'fr')">12–20 ✓</button>
+              <button class="news2-btn" data-score="2" onclick="selectParam(this,'fr')">21–24</button>
+              <button class="news2-btn" data-score="3" onclick="selectParam(this,'fr')">≥ 25</button>
+            </div>
+          </div>
+
+          <!-- SpO2 -->
+          <div class="news2-row">
+            <div class="news2-param-name">🩺 SpO₂ — Escala 1 (sin EPOC)</div>
+            <div class="news2-options" data-param="spo2">
+              <button class="news2-btn" data-score="3" onclick="selectParam(this,'spo2')">≤ 91%</button>
+              <button class="news2-btn" data-score="2" onclick="selectParam(this,'spo2')">92–93%</button>
+              <button class="news2-btn" data-score="1" onclick="selectParam(this,'spo2')">94–95%</button>
+              <button class="news2-btn" data-score="0" onclick="selectParam(this,'spo2')">≥ 96% ✓</button>
+            </div>
+          </div>
+
+          <!-- O2 -->
+          <div class="news2-row">
+            <div class="news2-param-name">💨 O₂ Suplementario</div>
+            <div class="news2-options" data-param="o2">
+              <button class="news2-btn" data-score="0" onclick="selectParam(this,'o2')">No (aire ambiental) ✓</button>
+              <button class="news2-btn" data-score="2" onclick="selectParam(this,'o2')">Sí (mascarilla/bigotera)</button>
+            </div>
+          </div>
+
+          <!-- PAS -->
+          <div class="news2-row">
+            <div class="news2-param-name">💓 Presión Arterial Sistólica</div>
+            <div class="news2-options" data-param="pas">
+              <button class="news2-btn" data-score="3" onclick="selectParam(this,'pas')">≤ 90</button>
+              <button class="news2-btn" data-score="2" onclick="selectParam(this,'pas')">91–100</button>
+              <button class="news2-btn" data-score="1" onclick="selectParam(this,'pas')">101–110</button>
+              <button class="news2-btn" data-score="0" onclick="selectParam(this,'pas')">111–219 ✓</button>
+              <button class="news2-btn" data-score="3" onclick="selectParam(this,'pas')">≥ 220</button>
+            </div>
+          </div>
+
+          <!-- FC -->
+          <div class="news2-row">
+            <div class="news2-param-name">❤️ Frecuencia Cardíaca (lpm)</div>
+            <div class="news2-options" data-param="fc">
+              <button class="news2-btn" data-score="3" onclick="selectParam(this,'fc')">≤ 40</button>
+              <button class="news2-btn" data-score="1" onclick="selectParam(this,'fc')">41–50</button>
+              <button class="news2-btn" data-score="0" onclick="selectParam(this,'fc')">51–90 ✓</button>
+              <button class="news2-btn" data-score="1" onclick="selectParam(this,'fc')">91–110</button>
+              <button class="news2-btn" data-score="2" onclick="selectParam(this,'fc')">111–130</button>
+              <button class="news2-btn" data-score="3" onclick="selectParam(this,'fc')">≥ 131</button>
+            </div>
+          </div>
+
+          <!-- Conciencia -->
+          <div class="news2-row">
+            <div class="news2-param-name">🧠 Nivel de Conciencia</div>
+            <div class="news2-options" data-param="conc">
+              <button class="news2-btn" data-score="0" onclick="selectParam(this,'conc')">Alerta ✓</button>
+              <button class="news2-btn" data-score="3" onclick="selectParam(this,'conc')">Confusión nueva</button>
+              <button class="news2-btn" data-score="3" onclick="selectParam(this,'conc')">Voz / Dolor / No responde</button>
+            </div>
+          </div>
+
+          <!-- Temperatura -->
+          <div class="news2-row">
+            <div class="news2-param-name">🌡️ Temperatura (°C)</div>
+            <div class="news2-options" data-param="temp">
+              <button class="news2-btn" data-score="3" onclick="selectParam(this,'temp')">≤ 35.0</button>
+              <button class="news2-btn" data-score="1" onclick="selectParam(this,'temp')">35.1–36.0</button>
+              <button class="news2-btn" data-score="0" onclick="selectParam(this,'temp')">36.1–38.0 ✓</button>
+              <button class="news2-btn" data-score="1" onclick="selectParam(this,'temp')">38.1–39.0</button>
+              <button class="news2-btn" data-score="2" onclick="selectParam(this,'temp')">≥ 39.1</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOW SCORE MESSAGE -->
+  <div class="low-score-msg" id="lowScoreMsg">
+    Score NEWS2 &lt; 5 — No cumple criterio de activación de protocolo de sepsis.<br>
+    <span style="color:var(--text-muted);font-size:11px;">Continuar monitoreo y reevaluar si hay cambio clínico.</span>
+  </div>
+
+  <!-- ═══════════════ CONTENIDO BLOQUEADO ═══════════════ -->
+  <div id="protocolo-content">
+
+    <!-- FASE 0 RESTO -->
+    <div class="section s0" id="s0" style="animation-delay:0.1s;">
+      <div class="section-header" onclick="toggleSection('s0')">
+        <span class="section-num">FASE 0</span>
+        <div>
+          <div class="section-title">Identificación y Sospecha Clínica</div>
+          <div class="section-subtitle">Minutos 0–15 · Sin esperar laboratorio</div>
+        </div>
+        <span class="section-check-count" id="count-s0">0/3</span>
+        <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+      </div>
+      <div class="section-body">
+        <!-- CHECKLIST FASE 0 -->
+        <div class="checklist" id="list-s0">
+
+        <div class="check-item" onclick="toggle(this,'s0')" data-total="3">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>NEWS2 ≥ 5 confirmado</strong>
+            <span class="note">Score ≥7 indica alto riesgo de deterioro severo.</span>
+          </div>
+        </div>
+
+        <div class="check-item" onclick="toggle(this,'s0')" data-total="3">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>Perfusión periférica evaluada</strong>
+            <span class="note">CRT &gt; 3 seg, piel moteada, frialdad distal o alteración del sensorio sugieren hipoperfusión.</span>
+          </div>
+        </div>
+
+        <div class="check-item" onclick="toggle(this,'s0')" data-total="3">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>Sepsis Probable o Definida</strong>
+            <span class="note">No esperar laboratorio.</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ FASE 1 ═══════════════ -->
+  <div class="section s1" id="s1">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">FASE 1</span>
+      <div>
+        <div class="section-title">Acción Inmediata — Bundle Sepsis</div>
+        <div class="section-subtitle">Primera hora</div>
+      </div>
+      <span class="section-check-count" id="count-s1">0/5</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="checklist" id="list-s1">
+
+        <div class="check-item" onclick="toggle(this,'s1')" data-total="5">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>Hemocultivos tomados</strong>
+            <span class="note">Antes del antibiótico si es posible. No retrasar el tratamiento por esta causa.</span>
+          </div>
+        </div>
+
+        <div class="check-item" onclick="toggle(this,'s1')" data-total="5">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>Lactato inicial medido</strong>
+            <span class="note">Lactato ≥ 4 mmol/L = indicación de fluidos incluso sin hipotensión. Repetir en 2 h si ≥ 2 mmol/L.</span>
+          </div>
+        </div>
+
+        <div class="check-item" onclick="toggle(this,'s1')" data-total="5">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>Antibióticos administrados</strong>
+            <span class="note">⏱ En &lt; 60 min. Usar dosis de carga si corresponde, betalactámicos x BIC. Ajustar según foco sospechado.</span>
+          </div>
+        </div>
+
+        <div class="check-item" onclick="toggle(this,'s1')" data-total="5">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>Reanimación con fluidos iniciada</strong>
+            <span class="note">30 ml/kg de Ringer Lactato si hipotensión, hipoperfusión o lactato ≥ 4 mmol/L.</span>
+          </div>
+        </div>
+
+        <div class="check-item" onclick="toggle(this,'s1')" data-total="5">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>Foco infeccioso identificado o descartado</strong>
+            <span class="note">Examen físico dirigido + POCUS. Evaluar necesidad de drenaje o cirugía urgente.</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ FASE 2 ═══════════════ -->
+  <div class="section s2" id="s2">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">FASE 2</span>
+      <div>
+        <div class="section-title">Soporte y Monitoreo Dirigido</div>
+        <div class="section-subtitle">Vasopresores · Respuesta a fluidos · Optimización</div>
+      </div>
+      <span class="section-check-count" id="count-s2">0/4</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span>⚡</span>
+        <span>Si <strong>PAM &lt; 65 mmHg persiste</strong> tras bolo de fluidos: iniciar <strong>Noradrenalina periférica</strong> sin esperar vía central. Meta PAM ≥ 65 mmHg (60–65 aceptable en adultos mayores).</span>
+      </div>
+
+      <div class="checklist" id="list-s2">
+
+        <div class="check-item" onclick="toggle(this,'s2')" data-total="4">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>Vasopresores:</strong> Noradrenalina iniciada si PAM &lt; 65 persiste
+            <span class="note">Primera línea en shock séptico. Puede administrarse periféricamente (vena antecubital o proximal).</span>
+          </div>
+        </div>
+
+        <div class="check-item" onclick="toggle(this,'s2')" data-total="4">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>Lactato de control medido</strong> (a las 2 h si inicial ≥ 2 mmol/L)
+            <span class="note">Reducción ≥ 10% orienta respuesta a reanimación.</span>
+          </div>
+        </div>
+
+        <div class="check-item" onclick="toggle(this,'s2')" data-total="4">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>Reevaluación de perfusión:</strong>
+            <span class="note">Si sin mejora tras reanimación inicial, escalar soporte y considerar VMI.</span>
+          </div>
+        </div>
+
+        <div class="check-item" onclick="toggle(this,'s2')" data-total="4">
+          <div class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="check-label"><strong>Evaluación dinámica de respuesta a fluidos:</strong>
+            <span class="note">Usar medidas dinámicas (tabla abajo) para guiar fluidos adicionales y evitar sobrecarga de volumen.</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TABLA MEDIDAS DINÁMICAS -->
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Medida Dinámica</th>
+              <th>Umbral (+)</th>
+              <th>Condición</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>🦵 Elevación pasiva de piernas (PLR)</td>
+              <td>↑ VTI ≥ 10%</td>
+              <td><span class="tag ok">Resp. espontánea ✓</span></td>
+            </tr>
+            <tr>
+              <td>📊 Variación presión de pulso (PPV)</td>
+              <td>PPV &gt; 13%</td>
+              <td><span class="tag lim">Solo VM controlada ⚠</span></td>
+            </tr>
+            <tr>
+              <td>💧 Mini-fluid challenge (100 ml)</td>
+              <td>↑ VTI ≥ 10%</td>
+              <td><span class="tag ok">Útil si PLR no factible ✓</span></td>
+            </tr>
+            <tr>
+              <td> Colapsabilidad VCI</td>
+              <td>Colapso &gt; 50%</td>
+              <td><span class="tag lim">Limitado en VM ⚠</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-bottom">
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" id="progressBar"></div>
+    </div>
+    <div class="progress-label"><span id="progress-pct">0%</span> completado</div>
+    <button class="reset-btn" onclick="resetAll()">↺ Reiniciar</button>
+  </div>
+
+  <div class="status-badge" id="statusBadge">
+    ✓ &nbsp; Checklist completo — Bundle de Sepsis ejecutado
+  </div>
+
+  <!-- REFERENCES -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Evans L, et al. <em>Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2021.</em> Crit Care Med. 2021;49(11):e1063–e1143. <a href="https://www.sccm.org/clinical-resources/guidelines/guidelines/surviving-sepsis-guidelines-2021" target="_blank">sccm.org</a></div>
+      <div class="ref-item">Royal College of Physicians. <em>National Early Warning Score (NEWS) 2: Standardising the Assessment of Acute-Illness Severity in the NHS.</em> RCP London, 2017. — Umbral NEWS2 ≥ 5 para activación de respuesta clínica urgente.</div>
+      <div class="ref-item">Singer M, et al. <em>The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3).</em> JAMA. 2016;315(8):801–810.</div>
+      <div class="ref-item">Monnet X, Marik PE, Teboul JL. <em>Passive Leg Raising for Predicting Fluid Responsiveness: Systematic Review and Meta-Analysis.</em> Intensive Care Med. 2016;42(12):1935–1947.</div>
+      <div class="ref-item">Chaves RCF, et al. <em>Assessment of fluid responsiveness using PPV, SVV, PVI, CVP and IVC variation in mechanically ventilated patients.</em> Crit Care. 2024;28(1):289. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11366151/" target="_blank">PMC11366151</a></div>
+      <div class="ref-item">Lakhal K, et al. <em>Dynamic Monitoring Tools for ED Patients with Circulatory Failure: Narrative Review with Panel-Based Recommendations.</em> Eur J Emerg Med. 2024. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11232941/" target="_blank">PMC11232941</a></div>
+      <div class="ref-item">Ministerio de Salud de Chile. <em>Orientación Técnica: Manejo de Sepsis y Shock Séptico en Servicio de Urgencia.</em> MINSAL 2023.</div>
+    </div>
+  </div>
+
+  </div><!-- /protocolo-content -->
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ─── CHECKLIST ───
+  const state = { s0: 0, s1: 0, s2: 0 };
+  const totals = { s0: 3, s1: 5, s2: 4 };
+  const TOTAL = 12;
+  const phaseNames = { s0: 'Identificación y Sospecha Clínica', s1: 'Acción Inmediata — Bundle Sepsis', s2: 'Soporte y Monitoreo Dirigido' };
+  const phaseOrder = ['s0', 's1', 's2'];
+
+  function toggle(el, sec) {
+    el.classList.toggle('checked');
+    state[sec] = document.querySelectorAll(`#list-${sec} .check-item.checked`).length;
+    updateCount(sec);
+    updateProgress();
+    autoCollapseIfComplete(sec);
+    updateStickyBanner();
+  }
+
+  function updateCount(sec) {
+    const el = document.getElementById(`count-${sec}`);
+    if (!el) return;
+    const n = state[sec], t = totals[sec];
+    el.textContent = `${n}/${t}`;
+    if (n === t) {
+      el.style.cssText = 'background:rgba(16,185,129,0.15);border-color:rgba(16,185,129,0.3);color:#6ee7b7;';
+    } else {
+      el.style.cssText = '';
+    }
+  }
+
+  function updateProgress() {
+    const pct = Math.round((state.s0 + state.s1 + state.s2) / TOTAL * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+    document.getElementById('statusBadge').classList.toggle('show', pct === 100);
+  }
+
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ─── MODO BOX: auto-colapso de fases completas ───
+  // Declutter: cuando TODOS los ítems de una fase quedan marcados, la fase se
+  // colapsa sola. El usuario puede reabrirla en cualquier momento haciendo clic
+  // en su encabezado (toggleSection) — nunca queda bloqueada ni oculta del todo.
+  function autoCollapseIfComplete(sec) {
+    const secEl = document.getElementById(sec);
+    if (!secEl) return;
+    if (state[sec] === totals[sec]) {
+      secEl.classList.add('collapsed');
+    }
+  }
+
+  // ─── MODO BOX: banner de progreso fijo (sticky) ───
+  // La fase "activa" es la que tiene más ítems pendientes (total - marcados).
+  // En caso de empate (p.ej. al inicio, todas en 0/□), se privilegia la primera
+  // fase en orden (s0 → s1 → s2). Si no queda ningún pendiente, se muestra el
+  // estado "Todo completo". No se fuerza avance secuencial: todas las fases
+  // siguen siempre visibles y marcables en paralelo.
+  function updateStickyBanner() {
+    let bestSec = phaseOrder[0];
+    let bestUnfinished = -1;
+    let totalChecked = 0;
+    phaseOrder.forEach(sec => {
+      const checked = state[sec];
+      const total = totals[sec];
+      totalChecked += checked;
+      const unfinished = total - checked;
+      if (unfinished > bestUnfinished) {
+        bestUnfinished = unfinished;
+        bestSec = sec;
+      }
+    });
+
+    const inner = document.getElementById('stickyInner');
+    const phaseEl = document.getElementById('stickyPhase');
+    const summaryEl = document.getElementById('stickySummary');
+    if (!inner || !phaseEl || !summaryEl) return;
+
+    if (bestUnfinished <= 0) {
+      inner.classList.add('complete');
+      phaseEl.textContent = '✓ Todo completo';
+      summaryEl.textContent = `${totalChecked}/${TOTAL} ítems del bundle`;
+    } else {
+      inner.classList.remove('complete');
+      phaseEl.textContent = `Fase actual: ${phaseNames[bestSec]}`;
+      summaryEl.textContent = `${state[bestSec]}/${totals[bestSec]} en esta fase · ${totalChecked}/${TOTAL} total`;
+    }
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.check-item.checked').forEach(el => el.classList.remove('checked'));
+    state.s0 = 0; state.s1 = 0; state.s2 = 0;
+    ['s0','s1','s2'].forEach(s => updateCount(s));
+    updateProgress();
+    // Reset NEWS2
+    document.querySelectorAll('.news2-btn').forEach(b => b.className = 'news2-btn');
+    news2Scores = {};
+    // Re-lock protocol
+    document.getElementById('protocolo-content').classList.remove('unlocked');
+    document.getElementById('lowScoreMsg').classList.remove('show');
+    renderNews2();
+    updateStickyBanner();
+  }
+
+  function unlockProtocol() {
+    const content = document.getElementById('protocolo-content');
+    if (content.classList.contains('unlocked')) return;
+    content.classList.add('unlocked');
+    // Auto-tick first checkbox (NEWS2 ≥ 5)
+    const firstCheck = document.querySelector('#list-s0 .check-item');
+    if (firstCheck && !firstCheck.classList.contains('checked')) {
+      firstCheck.classList.add('checked');
+      state.s0 = document.querySelectorAll('#list-s0 .check-item.checked').length;
+      updateCount('s0');
+      updateProgress();
+      updateStickyBanner();
+    }
+    setTimeout(() => content.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  }
+
+  // ─── NEWS2 CALCULATOR ───
+  let news2Scores = {};
+
+  function selectParam(btn, param) {
+    btn.closest('[data-param]').querySelectorAll('.news2-btn').forEach(b => b.className = 'news2-btn');
+    const score = parseInt(btn.dataset.score);
+    const cls = score === 0 ? 'sel-0' : score === 1 ? 'sel-1' : score === 2 ? 'sel-2' : 'sel-3';
+    btn.className = 'news2-btn ' + cls;
+    news2Scores[param] = score;
+    renderNews2();
+  }
+
+  function renderNews2() {
+    const filled = Object.keys(news2Scores).length;
+    const total = Object.values(news2Scores).reduce((a,b) => a+b, 0);
+    const numEl = document.getElementById('news2Total');
+    const statEl = document.getElementById('news2Status');
+    const lowMsg = document.getElementById('lowScoreMsg');
+    const alreadyUnlocked = document.getElementById('protocolo-content').classList.contains('unlocked');
+
+    numEl.textContent = total;
+
+    if (filled === 0) {
+      numEl.className = 'news2-total';
+      statEl.className = 'news2-status';
+      statEl.textContent = 'Sin datos';
+      lowMsg.classList.remove('show');
+    } else if (total < 5) {
+      numEl.className = 'news2-total';
+      statEl.className = 'news2-status';
+      statEl.textContent = total <= 1 ? 'Bajo riesgo' : 'Riesgo bajo-moderado';
+      if (!alreadyUnlocked) lowMsg.classList.add('show');
+    } else if (total < 7) {
+      numEl.className = 'news2-total warn';
+      statEl.className = 'news2-status warn';
+      statEl.textContent = '⚠ Riesgo alto — Evaluar sepsis';
+      lowMsg.classList.remove('show');
+      unlockProtocol();
+    } else {
+      numEl.className = 'news2-total alert';
+      statEl.className = 'news2-status alert';
+      statEl.textContent = '🚨 Riesgo muy alto — Activar protocolo';
+      lowMsg.classList.remove('show');
+      unlockProtocol();
+    }
+  }
+
+  // Estado inicial del banner fijo
+  updateStickyBanner();
+</script>
+</body>
+</html>
