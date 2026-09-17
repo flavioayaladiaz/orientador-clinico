@@ -116,3 +116,4 @@ en su sección temática, porque el agente recorre el archivo en orden.
 - [ ] Reanimación neonatal
 - [ ] Reanimación pediátrica (trauma y no trauma)
 - [ ] Sedación en el paciente agitado - Combinando la escala BARS para el tratamiento sugerido y sugiriendo ketamina im en casos de agitación peligrosa, haciendo énfasis en aportar oxígeno a alta concentración tras sedar al paciente.
+- [ ] Parocardiorespiratorio (PCR) traumático
