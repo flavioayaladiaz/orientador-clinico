@@ -63,8 +63,8 @@ tomará en orden la próxima vez que corra.
 
 - [x] Disección aórtica aguda (especialmente Stanford A o con presentaciones
       atípicas y malperfusión) — `algoritmo-diseccion-aortica.html`
-- [ ] Shock cardiogénico con falla ventricular derecha o biventricular aguda
-      (e infarto de ventrículo derecho)
+- [x] Shock cardiogénico con falla ventricular derecha o biventricular aguda
+      (e infarto de ventrículo derecho) — `algoritmo-shock-cardiogenico.html`
 - [ ] Status asmático grave con hiperinsuflación dinámica y riesgo de colapso
       hemodinámico a la intubación
 - [ ] Tormenta tiroidea o crisis tirotoxicósica con inestabilidad hemodinámica
