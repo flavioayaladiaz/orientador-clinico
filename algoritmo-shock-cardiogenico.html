@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Algoritmo · Shock cardiogénico y falla de ventrículo derecho</title>
+<meta name="description" content="Árbol de decisión para el shock cardiogénico en urgencia: reconocerlo antes de la hipotensión con la clasificación SCAI, falla ventricular derecha y biventricular aguda, infarto de ventrículo derecho con derivaciones derechas, ecografía a la cabecera, vasoactivos con dosis por peso, intubación de alto riesgo, reperfusión y soporte mecánico.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99,102,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(239,68,68,0.07) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 40px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(99,102,241,0.1);
+    border: 1px solid rgba(99,102,241,0.28);
+    color: #a5b4fc;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #6366f1, #ef4444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .s1 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s1 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s2 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s3 .section-num { background: rgba(239,68,68,0.10); color: #fecaca; border: 1px solid rgba(239,68,68,0.18); }
+  .s3 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s4 .section-num { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s4 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s5 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s5 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s6 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s6 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s7 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s7 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s8 .section-num { background: rgba(245,158,11,0.10); color: #fde68a; border: 1px solid rgba(245,158,11,0.18); }
+  .s8 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s9 .section-num { background: rgba(255,255,255,0.06); color: var(--text-dim); border: 1px solid var(--border); }
+  .s9 { --accent: var(--text-dim); --accent-glow: rgba(148,163,184,0.08); }
+  .s10 .section-num { background: rgba(59,130,246,0.12); color: #bfdbfe; border: 1px solid rgba(59,130,246,0.18); }
+  .s10 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+
+  /* ORIENTADOR INTERACTIVO */
+  .q-block { margin-bottom: 18px; }
+  .q-block:last-of-type { margin-bottom: 0; }
+
+  .q-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt.on {
+    background: rgba(16,185,129,0.12);
+    border-color: rgba(16,185,129,0.45);
+    color: #6ee7b7;
+  }
+  .opt:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+
+  .result {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface2);
+    padding: 18px 20px;
+    border-left: 3px solid var(--accent, var(--emerald));
+  }
+  .result.placeholder { color: var(--text-muted); font-size: 13px; font-family: var(--mono); line-height: 1.6; }
+
+  .result-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .result-title {
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .result-row {
+    display: flex;
+    gap: 12px;
+    padding: 9px 0;
+    border-top: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .result-row:first-of-type { border-top: none; padding-top: 2px; }
+  .result-key {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    flex: 0 0 104px;
+    padding-top: 3px;
+  }
+  .result-row strong { color: #fff; font-weight: 500; }
+  .result-row em { color: #fcd34d; font-style: normal; }
+
+  .result.sev-red { border-left-color: var(--red); }
+  .result.sev-amber { border-left-color: var(--amber); }
+  .result.sev-green { border-left-color: var(--emerald); }
+
+  /* CALCULADORA */
+  .calc {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-top: 16px;
+  }
+  .calc-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .calc-label.second { margin-top: 18px; }
+  .score-list { display: flex; flex-direction: column; gap: 8px; }
+  .score-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .score-item:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .score-item.on {
+    background: rgba(20,184,166,0.12);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .score-item:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+  .score-list.gate .score-item.on {
+    background: rgba(245,158,11,0.12);
+    border-color: rgba(245,158,11,0.45);
+    color: #fcd34d;
+  }
+  .score-list.danger .score-item.on {
+    background: rgba(239,68,68,0.12);
+    border-color: rgba(239,68,68,0.45);
+    color: #fca5a5;
+  }
+  .score-pts {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  .score-item.on .score-pts { color: #5eead4; border-color: rgba(20,184,166,0.4); }
+  .score-list.gate .score-item.on .score-pts { color: #fcd34d; border-color: rgba(245,158,11,0.4); }
+  .score-list.danger .score-item.on .score-pts { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  .calc-out {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .calc-out strong { color: #fff; font-weight: 500; }
+  .calc-out em { color: #fcd34d; font-style: normal; }
+  .calc-out .big {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: #93c5fd;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .calc-out .big.risk-low { color: #6ee7b7; }
+  .calc-out .big.risk-mid { color: #fcd34d; }
+  .calc-out .big.risk-high { color: #fca5a5; }
+
+  .calc-reset {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 8px 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .calc-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+  /* ENTRADA NUMÉRICA */
+  .calc-field { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .calc-field input {
+    font-family: var(--mono);
+    font-size: 15px;
+    color: #fff;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    width: 130px;
+    -moz-appearance: textfield;
+  }
+  .calc-field input:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: rgba(20,184,166,0.45); }
+  .calc-field .unit {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* BANNERS */
+  .warning-banner, .info-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    color: #fca5a5;
+  }
+  .info-banner {
+    background: rgba(59,130,246,0.06);
+    border: 1px solid rgba(59,130,246,0.18);
+    color: #bfdbfe;
+  }
+  .warning-banner strong, .info-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* CRONOLOGÍA */
+  .timeline { display: flex; flex-direction: column; gap: 10px; }
+  .tl-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 13px 15px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .tl-time {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: #fca5a5;
+    flex: 0 0 74px;
+    padding-top: 2px;
+  }
+  .tl-item strong { color: #fff; font-weight: 500; }
+  .tl-item em { color: #fcd34d; font-style: normal; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* ÁRBOL DE DECISIÓN */
+  .flow { display: flex; flex-direction: column; gap: 10px; }
+  .flow-node {
+    position: relative;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--text-muted);
+    background: rgba(255,255,255,0.02);
+    padding: 12px 15px;
+    font-size: 13.5px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .flow-node strong { color: #fff; font-weight: 500; }
+  .flow-node em { color: #fcd34d; font-style: normal; }
+  .flow-q {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .flow-node.stop { border-left-color: var(--red); background: rgba(239,68,68,0.06); }
+  .flow-node.stop .flow-q { color: #fca5a5; }
+  .flow-node.go { border-left-color: var(--emerald); background: rgba(16,185,129,0.05); }
+  .flow-node.go .flow-q { color: #6ee7b7; }
+  .flow-node.hold { border-left-color: var(--amber); background: rgba(245,158,11,0.05); }
+  .flow-node.hold .flow-q { color: #fcd34d; }
+  .flow-node.ask { border-left-color: var(--blue); background: rgba(59,130,246,0.05); }
+  .flow-node.ask .flow-q { color: #93c5fd; }
+  .flow-branch {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 10px;
+    padding-left: 16px;
+    border-left: 2px dashed rgba(255,255,255,0.10);
+  }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--amber); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .opt { width: 100%; }
+    .result-row { flex-direction: column; gap: 4px; }
+    .result-key { flex: none; padding-top: 0; }
+    .tl-item { flex-direction: column; gap: 6px; }
+    .tl-time { flex: none; }
+    .score-item { align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <div class="header-badge">Patología compleja · Algoritmo</div>
+    <h1>Shock cardiogénico <span>y falla ventricular derecha aguda</span></h1>
+    <p class="header-sub">
+      El shock cardiogénico se pierde por dos motivos opuestos. Uno es <strong>llegar tarde</strong>: esperar la
+      hipotensión para llamarlo shock, cuando la caída de gasto llevaba horas anunciándose en el lactato, la diuresis y
+      la piel. El otro es <strong>tratarlo todo igual</strong>: dar volumen y diuréticos por reflejo a un ventrículo que
+      necesita exactamente lo contrario. El corazón derecho es el que más castiga ese reflejo: es
+      <strong>precarga-dependiente pero intolerante a la sobrecarga</strong>, vive de la presión de perfusión sistémica
+      y se colapsa con la ventilación con presión positiva. Este algoritmo está escrito para la primera hora en
+      urgencia: reconocer el shock antes de la hipotensión, separar la falla izquierda de la
+      <strong>derecha y biventricular</strong>, manejar el <strong>infarto de ventrículo derecho</strong>, elegir el
+      vasoactivo, sobrevivir a la intubación y llamar a tiempo a quien puede resolver la causa.
+    </p>
+  </div>
+
+  <!-- 01 · ÁRBOL DE DECISIÓN -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">Árbol de decisión</div>
+        <div class="section-subtitle">Escenario + perfil hemodinámico + contexto</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Este bloque <strong>prioriza la conducta inmediata, no cierra el diagnóstico</strong>. La pregunta que
+        ordena todo el manejo no es «¿cuánto tiene de presión?», sino <strong>¿qué ventrículo está fallando y por
+        qué?</strong>. El mismo número de presión arterial exige maniobras opuestas según la respuesta: volumen en un
+        ventrículo derecho vacío, restricción en uno dilatado; diurético en el congestivo izquierdo, nada de diurético
+        en el derecho precarga-dependiente.</span>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">1 · Escenario dominante</div>
+        <div class="opts" id="q-esc">
+          <button type="button" class="opt" data-v="iamvi">Síndrome coronario agudo con congestión pulmonar: crepitaciones, hipoxemia, falla izquierda dominante</button>
+          <button type="button" class="opt" data-v="iamvd">Infarto de pared inferior con hipotensión, yugulares ingurgitadas y pulmones limpios</button>
+          <button type="button" class="opt" data-v="biv">Congestión sistémica y pulmonar simultáneas: falla biventricular</button>
+          <button type="button" class="opt" data-v="tep">Disnea brusca con ventrículo derecho dilatado y sin isquemia que lo explique: sospecha de tromboembolismo pulmonar</button>
+          <button type="button" class="opt" data-v="hpc">Hipertensión pulmonar conocida o corazón pulmonar crónico descompensado</button>
+          <button type="button" class="opt" data-v="mecanica">Soplo nuevo o deterioro brusco días después de un infarto: sospecha de complicación mecánica</button>
+          <button type="button" class="opt" data-v="miocarditis">Miocardiopatía aguda de reciente comienzo: miocarditis fulminante, takotsubo, miocardiopatía periparto</button>
+          <button type="button" class="opt" data-v="arritmia">Taquiarritmia o bradiarritmia que domina el cuadro</button>
+          <button type="button" class="opt" data-v="tapon">Ingurgitación yugular con derrame pericárdico: sospecha de taponamiento</button>
+          <button type="button" class="opt" data-v="postvm">Colapso inmediato tras la intubación o al conectar a ventilación mecánica</button>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">2 · Perfil hemodinámico actual</div>
+        <div class="opts" id="q-perf">
+          <button type="button" class="opt" data-v="preshock">Normotenso pero hipoperfundido: lactato elevado, oliguria, piel fría, confusión</button>
+          <button type="button" class="opt" data-v="hipo">Hipotensión sostenida, o presión sostenida solo con vasopresor</button>
+          <button type="button" class="opt" data-v="refractario">Empeora pese al vasopresor e inotrópico ya iniciados</button>
+          <button type="button" class="opt" data-v="paro">Paro cardíaco o periparo</button>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">3 · Contexto (marca los que apliquen)</div>
+        <div class="opts" id="q-ctx">
+          <button type="button" class="opt" data-v="sincath">Centro sin hemodinamia ni cirugía cardíaca</button>
+          <button type="button" class="opt" data-v="nitro">Ya recibió nitratos, diuréticos, morfina o betabloqueo en esta consulta</button>
+          <button type="button" class="opt" data-v="vm">Está en ventilación mecánica o va a necesitar intubación</button>
+          <button type="button" class="opt" data-v="hipoxemia">Hipoxemia, hipercapnia o acidosis significativas</button>
+          <button type="button" class="opt" data-v="renal">Insuficiencia renal o hepática conocida</button>
+          <button type="button" class="opt" data-v="embarazo">Embarazo o puerperio</button>
+          <button type="button" class="opt" data-v="ninguno">Ninguno de los anteriores</button>
+        </div>
+      </div>
+
+      <div class="result placeholder" id="result">
+        Selecciona el escenario dominante y el perfil hemodinámico para ver la prioridad, qué hacer en los primeros
+        minutos, qué fármaco corresponde, qué está contraindicado y a quién llamar.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · RECONOCERLO ANTES DE LA HIPOTENSIÓN -->
+  <div class="section s2" id="s2" style="animation-delay:0.12s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Reconocerlo antes de la hipotensión</div>
+        <div class="section-subtitle">Estadios SCAI · calculadora</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>La presión arterial es <strong>el último parámetro en caer</strong>. Un paciente joven con un infarto
+        extenso mantiene la sistólica a costa de una vasoconstricción brutal, y cuando esa compensación cede ya perdió
+        horas de perfusión. El shock cardiogénico se reconoce por <strong>hipoperfusión</strong>, no por el
+        número: piel fría y moteada, relleno capilar lento, oliguria, confusión o agitación,
+        <strong>lactato ≥ 2 mmol/L</strong> o en ascenso, y saturación venosa central baja cuando está disponible.</span>
+      </div>
+
+      <div class="subhead">La definición clásica, y por qué no basta</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📉</span><span><strong>Definición hemodinámica habitual:</strong> presión sistólica menor a 90 mmHg por al menos 30 minutos —o necesidad de vasoactivos para mantenerla— <strong>más</strong> evidencia de hipoperfusión de órganos. En los estudios se agrega índice cardíaco bajo (habitualmente &lt; 2,2 L/min/m²) con presión de llenado elevada.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧭</span><span><strong>El problema clínico:</strong> esa definición identifica al paciente que <em>ya</em> está en shock establecido. La estratificación SCAI existe justamente para nombrar los estadios previos y activar el equipo antes.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚩</span><span><strong>Normotensión no es tranquilidad.</strong> Cerca de un tercio de los shocks cardiogénicos cursan «normotensos» en su fase inicial, con hipoperfusión ya instalada. El lactato y la diuresis mandan sobre el monitor.</span></div>
+      </div>
+
+      <div class="subhead">Estadios SCAI</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Estadio</th><th>Qué describe</th><th>Conducta</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>A · En riesgo</td>
+              <td>Sin signos de shock: infarto extenso, insuficiencia cardíaca aguda, arritmia grave. Perfusión y presión normales</td>
+              <td>Monitorizar, tratar la causa, medir lactato basal y vigilar diuresis</td>
+            </tr>
+            <tr>
+              <td>B · Comenzando</td>
+              <td>Hipotensión relativa o taquicardia <strong>sin hipoperfusión</strong>: sistólica &lt; 90 mmHg, media &lt; 60 mmHg o caída &gt; 30 mmHg respecto de la basal, con lactato normal</td>
+              <td>Vía, monitorización, ecografía a la cabecera, reevaluación estrecha. Cuidado con diuréticos y vasodilatadores</td>
+            </tr>
+            <tr>
+              <td>C · Clásico</td>
+              <td>Hipoperfusión que <strong>requiere intervención</strong> más allá de volumen: vasoactivos, inotrópicos o soporte mecánico. Lactato habitualmente ≥ 2 mmol/L</td>
+              <td>Vasoactivos, tratar la causa sin demora, avisar a la unidad crítica y al equipo de shock</td>
+            </tr>
+            <tr>
+              <td>D · Deteriorándose</td>
+              <td>No responde a la escalada inicial: hay que subir dosis o agregar fármacos y el lactato no baja en 30 minutos</td>
+              <td>Escalar soporte, evaluar soporte mecánico y traslado a centro de mayor complejidad</td>
+            </tr>
+            <tr>
+              <td>E · Extremo</td>
+              <td>Colapso circulatorio, paro o reanimación en curso, con soporte múltiple</td>
+              <td>Reanimación, soporte mecánico si está indicado y disponible, decisión de equipo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Estadio SCAI · marca todo lo que esté presente ahora</div>
+        <div class="score-list danger" id="scai-list">
+          <button type="button" class="score-item" data-stage="1">Riesgo presente (infarto extenso, insuficiencia cardíaca aguda, arritmia grave) sin ningún signo de hipoperfusión<span class="score-pts">A</span></button>
+          <button type="button" class="score-item" data-stage="2">Sistólica &lt; 90 mmHg, media &lt; 60 mmHg o caída &gt; 30 mmHg respecto de la basal<span class="score-pts">B</span></button>
+          <button type="button" class="score-item" data-stage="2">Taquicardia ≥ 100 por minuto sin hipoperfusión<span class="score-pts">B</span></button>
+          <button type="button" class="score-item" data-stage="3">Hipoperfusión: piel fría y moteada, relleno capilar lento, oliguria, confusión<span class="score-pts">C</span></button>
+          <button type="button" class="score-item" data-stage="3">Lactato ≥ 2 mmol/L<span class="score-pts">C</span></button>
+          <button type="button" class="score-item" data-stage="3">Requiere vasopresor, inotrópico o soporte mecánico para sostener la perfusión<span class="score-pts">C</span></button>
+          <button type="button" class="score-item" data-stage="4">No mejora con la escalada inicial: hay que subir dosis o agregar un segundo fármaco<span class="score-pts">D</span></button>
+          <button type="button" class="score-item" data-stage="4">Lactato que no baja o sigue subiendo tras 30 minutos de soporte<span class="score-pts">D</span></button>
+          <button type="button" class="score-item" data-stage="5">Paro cardíaco, reanimación en curso o colapso circulatorio pese a soporte múltiple<span class="score-pts">E</span></button>
+        </div>
+        <div class="calc-out" id="scai-out">Marca los elementos presentes. El estadio corresponde al hallazgo <strong>más grave</strong> marcado, no a la suma.</div>
+        <button type="button" class="calc-reset" id="scai-reset">Limpiar</button>
+      </div>
+
+      <div class="subhead">Lo que hay que pedir en los primeros minutos</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Lactato seriado</strong> (el basal y a los 30–60 minutos: la tendencia vale más que el valor), gases arteriales o venosos, electrolitos, función renal y hepática, hemograma, pruebas de coagulación, troponina y péptidos natriuréticos según disponibilidad.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📈</span><span><strong>Electrocardiograma de 12 derivaciones en menos de 10 minutos</strong>, y en todo infarto de pared inferior agrega <strong>V3R–V4R</strong>. Repítelo ante cualquier cambio.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔊</span><span><strong>Ecografía a la cabecera</strong> (sección 05): es lo que separa falla izquierda, falla derecha, taponamiento e hipovolemia en menos de dos minutos.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏱️</span><span><strong>Diuresis horaria</strong> con sonda vesical y monitorización continua. Línea arterial apenas sea posible: la presión no invasiva es poco fiable en vasoconstricción extrema.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · EL VENTRÍCULO DERECHO -->
+  <div class="section s7" id="s3" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Por qué el ventrículo derecho es otro problema</div>
+        <div class="section-subtitle">Fisiología que cambia la conducta</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>El ventrículo derecho es una cámara de pared delgada diseñada para bombear contra un circuito de baja
+        presión. Tolera mal cualquier aumento brusco de <strong>poscarga</strong> —un émbolo, hipoxemia, hipercapnia,
+        acidosis, presión positiva— y, cuando se dilata, empieza una <strong>espiral</strong> de la que no sale solo.
+        Casi todo lo que se hace mal en el shock derecho se explica por tratarlo como si fuera un ventrículo
+        izquierdo.</span>
+      </div>
+
+      <div class="subhead">La espiral del ventrículo derecho</div>
+      <div class="flow">
+        <div class="flow-node ask">
+          <span class="flow-q">Punto de partida</span>
+          Aumenta la poscarga o cae la contractilidad derecha: el ventrículo <strong>se dilata</strong> para mantener volumen sistólico.
+        </div>
+        <div class="flow-branch">
+          <div class="flow-node hold">
+            <span class="flow-q">Interdependencia ventricular</span>
+            El ventrículo dilatado <strong>desplaza el septum hacia la izquierda</strong> dentro de un pericardio que no cede: el llenado del ventrículo izquierdo cae y con él el gasto cardíaco.
+          </div>
+          <div class="flow-node hold">
+            <span class="flow-q">Perfusión coronaria</span>
+            Cae la presión arterial sistémica y sube la presión dentro del ventrículo derecho: la coronaria derecha —que en condiciones normales lo perfunde en sístole y diástole— <strong>pierde su gradiente</strong>.
+          </div>
+          <div class="flow-node stop">
+            <span class="flow-q">Isquemia derecha</span>
+            Menos perfusión, menos contractilidad, más dilatación. <strong>La espiral se cierra</strong> y el paciente se deteriora en minutos.
+          </div>
+        </div>
+        <div class="flow-node go">
+          <span class="flow-q">Cómo se rompe la espiral</span>
+          <strong>Sostener la presión sistémica</strong> (vasopresor precoz, no tardío), <strong>descargar la poscarga derecha</strong> (oxígeno, corregir hipercapnia y acidosis, tratar la causa), <strong>optimizar la precarga sin sobrecargar</strong> y <strong>mantener el ritmo sinusal y la sincronía auriculoventricular</strong>.
+        </div>
+      </div>
+
+      <div class="subhead">Reglas prácticas</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💧</span><span><strong>Precarga-dependiente, no volumen-ilimitado.</strong> Un ventrículo derecho vacío mejora con volumen; uno ya dilatado empeora con cada bolo. Da <strong>250 mL y reevalúa</strong> (presión, perfusión, ecografía): si no mejora o empeora, <strong>detente</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>El vasopresor va temprano.</strong> En el shock derecho, mantener la presión arterial media no es cosmético: es lo que perfunde el propio ventrículo que está fallando. La noradrenalina es el fármaco de primera línea.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫁</span><span><strong>Todo lo que vasoconstriñe el pulmón es enemigo:</strong> hipoxemia, hipercapnia, acidosis, dolor, agitación, hiperinsuflación dinámica y una presión positiva excesiva. Corregirlos es tratamiento hemodinámico, no solo respiratorio.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫀</span><span><strong>La contracción auricular importa.</strong> En el ventrículo derecho isquémico o dilatado, la patada auricular aporta una fracción del llenado mucho mayor que en condiciones normales: una fibrilación auricular rápida o un ritmo de marcapasos ventricular aislado pueden derrumbar el gasto.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Nitratos, diuréticos y morfina son la trampa clásica</strong> en el ventrículo derecho dependiente de precarga: bajan el llenado y producen hipotensión brusca. Antes de darlos, pregúntate qué ventrículo estás tratando.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · INFARTO DE VENTRÍCULO DERECHO -->
+  <div class="section s3" id="s4" style="animation-delay:0.24s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Infarto de ventrículo derecho</div>
+        <div class="section-subtitle">Derivaciones derechas · volumen · ritmo · reperfusión</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>Hasta la mitad de los infartos de pared inferior comprometen el ventrículo derecho, y una minoría de ellos
+        se presenta con <strong>compromiso hemodinámico</strong>. La tríada clásica es
+        <strong>hipotensión, ingurgitación yugular y pulmones limpios</strong> en un paciente con infarto inferior. Es
+        el escenario donde una dosis de nitroglicerina —el reflejo del dolor torácico— produce una hipotensión
+        brusca y a veces un paro.</span>
+      </div>
+
+      <div class="subhead">Cómo se reconoce</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📈</span><span><strong>Derivaciones derechas en todo infarto inferior:</strong> elevación del ST <strong>≥ 0,5 mm en V3R–V4R</strong> (≥ 1 mm en hombres menores de 30 años). Es el hallazgo más útil y se pierde si nadie las pide. En la serie clásica de Zehender, la elevación en V4R tuvo una sensibilidad cercana al 88 % y una especificidad del 78 % para el compromiso derecho.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏳</span><span><strong>Ventana corta:</strong> la elevación en las derivaciones derechas puede desaparecer en pocas horas. Pídelas en el primer electrocardiograma, no cuando el paciente ya se hipotensó.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔍</span><span><strong>Al examen:</strong> yugulares ingurgitadas con campos pulmonares limpios, signo de Kussmaul, hipotensión desproporcionada al tamaño del infarto, y bradicardia o bloqueo auriculoventricular frecuentes por compromiso del nodo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔊</span><span><strong>En la ecografía:</strong> ventrículo derecho dilatado e hipocontráctil, TAPSE disminuido, vena cava inferior dilatada sin colapso, con función izquierda relativamente conservada y sin derrame pericárdico significativo.</span></div>
+      </div>
+
+      <div class="subhead">Manejo, en este orden</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">Minuto 0</div>
+          <div><strong>Reperfusión: es el tratamiento.</strong> Todo lo demás es soporte mientras llega. Activa hemodinamia con el mismo criterio de tiempo que cualquier infarto con elevación del ST; si no hay disponibilidad y no hay contraindicación, <strong>fibrinólisis y traslado</strong> según el protocolo local.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">Minuto 0</div>
+          <div><strong>Suspende lo que baja la precarga:</strong> nitratos, diuréticos y morfina. Si ya los recibió, anticipa hipotensión y ten el vasopresor preparado.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">Minutos 0–10</div>
+          <div><strong>Volumen titulado:</strong> bolos de <strong>250 mL de cristaloide</strong> reevaluando presión, perfusión y ecografía tras cada uno. Mejora clínica: continúa. Sin mejoría o con más dilatación derecha: <strong>detente y pasa a inotrópico</strong>. La sobrecarga empeora la interdependencia y no es reversible con un diurético en este contexto.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">Minutos 5–15</div>
+          <div><strong>Si sigue hipotenso: noradrenalina</strong> para sostener la presión de perfusión coronaria, y <strong>dobutamina</strong> cuando persiste el bajo gasto con presión ya sostenida. Dosis en la sección 06.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">Continuo</div>
+          <div><strong>Ritmo y sincronía:</strong> la bradicardia sintomática responde con frecuencia a atropina; el bloqueo auriculoventricular de alto grado puede requerir <strong>marcapasos transitorio</strong>, y en este escenario la estimulación que <strong>preserva la sincronía auriculoventricular</strong> es hemodinámicamente superior a la ventricular aislada. Cardiovierte sin demora la taquiarritmia mal tolerada.</div>
+        </div>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span>El volumen total tolerado, el umbral para pasar a inotrópico y la indicación de marcapasos transitorio
+        dependen del paciente y del centro: <em>verificar con protocolo institucional.</em> No existe una cifra única de
+        mililitros que sirva para todos los infartos derechos.</span>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./guia-dolor-toracico.html">→ Guía de orientación: dolor torácico</a>
+        <a class="cross-link" href="./checklist-fibrinolisis.html">→ Checklist: fibrinólisis en IAMCEST</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · ECOGRAFÍA -->
+  <div class="section s5" id="s5" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Ecografía a la cabecera</div>
+        <div class="section-subtitle">Los cinco hallazgos que cambian la conducta</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>No se trata de hacer una ecocardiografía completa: se trata de responder cuatro preguntas en dos minutos.
+        <strong>¿Hay derrame que comprima? ¿Cómo se contrae el ventrículo izquierdo? ¿Está dilatado el derecho? ¿Cómo
+        está el estado de volumen y el pulmón?</strong> La respuesta determina si el próximo paso es volumen, inotrópico,
+        vasopresor, drenaje o pabellón.</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Hallazgo</th><th>Cómo se ve</th><th>Qué implica</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Derrame con compromiso</td>
+              <td>Derrame pericárdico con colapso diastólico de aurícula o ventrículo derecho, vena cava inferior dilatada sin variación</td>
+              <td><strong>Taponamiento:</strong> volumen y vasopresor como puente y <strong>drenaje pericárdico</strong>. No demores la decisión por buscar más imágenes</td>
+            </tr>
+            <tr>
+              <td>Ventrículo izquierdo hipocontráctil</td>
+              <td>Fracción de eyección visiblemente deprimida, global o segmentaria, con líneas B difusas</td>
+              <td>Falla izquierda dominante: <strong>inotrópico con vasopresor si hay hipotensión</strong>, buscar causa isquémica y evitar más volumen</td>
+            </tr>
+            <tr>
+              <td>Ventrículo derecho dilatado</td>
+              <td>Relación de diámetros derecho/izquierdo &gt; 1 en cuatro cámaras, septum aplanado en «D» en el eje corto, TAPSE &lt; 17 mm</td>
+              <td>Falla derecha aguda: <strong>cuidado con el volumen</strong>, vasopresor precoz, buscar tromboembolismo, infarto derecho o hipertensión pulmonar descompensada</td>
+            </tr>
+            <tr>
+              <td>Signo de McConnell</td>
+              <td>Acinesia de la pared libre derecha con ápex que se contrae normalmente</td>
+              <td>Sugiere sobrecarga aguda derecha, típicamente <strong>tromboembolismo pulmonar</strong>. No es específico y no reemplaza la angiotomografía cuando esta es posible</td>
+            </tr>
+            <tr>
+              <td>Vena cava inferior y pulmón</td>
+              <td>Cava colapsable con pulmón seco frente a cava dilatada con líneas B difusas</td>
+              <td>Separa el <strong>vacío</strong> —que tolera volumen— del <strong>congestivo</strong>, que no. Es el hallazgo que evita el bolo equivocado</td>
+            </tr>
+            <tr>
+              <td>Complicación mecánica</td>
+              <td>Soplo nuevo con chorro a través del septum, insuficiencia mitral masiva o derrame con aspecto hemático tras un infarto</td>
+              <td><strong>Comunicación interventricular, rotura de músculo papilar o de pared libre:</strong> llamada inmediata a cirugía cardíaca</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="plain-list" style="margin-top:14px;">
+        <div class="plain-item"><span class="bullet-icon">🧭</span><span>La ecografía a la cabecera <strong>orienta, no certifica</strong>: su rendimiento depende del operador y de la ventana. Ante duda con un paciente que se deteriora, pide <strong>ecocardiografía formal</strong> y no retrases el tratamiento de lo que ya es evidente.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔁</span><span><strong>Repítela después de cada intervención mayor</strong> —bolo de volumen, inicio de inotrópico, intubación—: en el shock, la imagen de hace veinte minutos ya no describe al paciente.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · VASOACTIVOS -->
+  <div class="section s6" id="s6" style="animation-delay:0.36s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Vasoactivos e inotrópicos</div>
+        <div class="section-subtitle">Qué elegir, dosis y calculadora por peso</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Dos decisiones distintas: <strong>sostener la presión</strong> (vasopresor) y <strong>mejorar el gasto</strong>
+        (inotrópico). En el shock cardiogénico con hipotensión, la secuencia habitual es
+        <strong>noradrenalina primero</strong> para recuperar presión de perfusión, y luego el inotrópico si persiste
+        el bajo gasto. Un inotrópico solo, en un paciente hipotenso, puede vasodilatar y empeorar la perfusión
+        coronaria.</span>
+      </div>
+
+      <div class="subhead">Elección</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Noradrenalina</strong> como vasopresor de primera línea. En el estudio SOAP II, la dopamina se asoció a <strong>más arritmias</strong> que la noradrenalina, con mayor mortalidad en el subgrupo de shock cardiogénico: <strong>la dopamina no es la primera opción</strong> en este escenario.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Dobutamina</strong> como inotrópico habitual cuando persiste el bajo gasto con presión ya sostenida. En el ensayo DOREMI, <strong>milrinona y dobutamina</strong> no mostraron diferencias en el desenlace compuesto: la elección se hace por perfil del paciente y disponibilidad.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫁</span><span><strong>En la falla derecha</strong>, el inotrópico ayuda pero la clave es la presión de perfusión y la poscarga pulmonar. La milrinona vasodilata el circuito pulmonar, y también el sistémico: úsala con vasopresor asegurado. Los vasodilatadores pulmonares inhalados son terapia de unidad crítica: <em>verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">⚖️</span><span><strong>Adrenalina</strong> queda como alternativa en el paciente que no responde o en periparo. Frente a noradrenalina en shock cardiogénico posinfarto se asoció a <strong>más shock refractario y acidosis láctica</strong> en un ensayo aleatorizado pequeño (Levy, 2018): no es la elección por defecto.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Ningún vasoactivo trata la causa.</strong> Son un puente a la reperfusión, al drenaje, a la cirugía o al soporte mecánico. Si al subir la dosis nadie está resolviendo la causa, el plan está incompleto.</span></div>
+      </div>
+
+      <div class="subhead">Dosis habituales en el adulto</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Fármaco</th><th>Dosis habitual</th><th>Notas</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Noradrenalina</td>
+              <td><span class="dose-main">0,05–0,5 µg/kg/min IV en infusión continua</span><br><span class="dose-note">titular por presión arterial media, sin techo rígido</span></td>
+              <td><strong>Vasopresor de primera línea.</strong> Por vía central idealmente; por vía periférica gruesa y bien vigilada mientras se consigue el acceso central, según protocolo local</td>
+            </tr>
+            <tr>
+              <td>Dobutamina</td>
+              <td><span class="dose-main">2,5–10 µg/kg/min IV, hasta 20 µg/kg/min</span></td>
+              <td>Inotrópico de elección inicial. Puede producir <strong>taquicardia, arritmias e hipotensión</strong> por vasodilatación: no la uses sola en el hipotenso</td>
+            </tr>
+            <tr>
+              <td>Milrinona</td>
+              <td><span class="dose-main">0,125–0,375 µg/kg/min IV</span><br><span class="dose-note">el bolo de carga suele omitirse por hipotensión</span></td>
+              <td>Inodilatador. Vida media larga y <strong>ajuste en insuficiencia renal</strong>; útil en el paciente betabloqueado o con hipertensión pulmonar, siempre con presión asegurada</td>
+            </tr>
+            <tr>
+              <td>Adrenalina</td>
+              <td><span class="dose-main">0,02–0,3 µg/kg/min IV en infusión</span></td>
+              <td>Alternativa en shock refractario o periparo. Más taquiarritmias y <strong>aumento del lactato</strong>; no es la primera opción en el shock cardiogénico posinfarto</td>
+            </tr>
+            <tr>
+              <td>Vasopresina</td>
+              <td><span class="dose-main">0,03 U/min IV en infusión fija</span></td>
+              <td>Coadyuvante para reducir dosis de catecolaminas. En la falla derecha tiene interés por aumentar la resistencia sistémica <strong>sin aumentar la pulmonar</strong>. <em>Verificar con protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Levosimendán</td>
+              <td><span class="dose-main">0,05–0,2 µg/kg/min IV por 24 h</span><br><span class="dose-note">el bolo se omite si hay hipotensión</span></td>
+              <td>Disponibilidad y esquema muy variables entre centros; produce vasodilatación. <em>Verificar con protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Atropina</td>
+              <td><span class="dose-main">0,5–1 mg IV, repetible cada 3–5 min hasta 3 mg</span></td>
+              <td>Bradicardia sintomática, frecuente en el infarto inferior y derecho. Si no responde, estimulación transcutánea o transvenosa</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Calculadora de dosis por peso</div>
+        <div class="calc-field">
+          <input type="number" id="peso" min="1" max="250" step="0.5" placeholder="Peso" inputmode="decimal" aria-label="Peso en kilogramos">
+          <span class="unit">kg</span>
+        </div>
+        <div class="calc-out" id="peso-out">Ingresa el peso para convertir los rangos de µg/kg/min a µg por minuto y mg por hora.</div>
+        <button type="button" class="calc-reset" id="peso-reset">Limpiar</button>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span>La calculadora entrega <strong>dosis, no velocidad de infusión</strong>: los mililitros por hora dependen de
+        la dilución y de la presentación disponible en tu servicio. Todas las dosis son orientativas para el adulto y
+        deben ajustarse por edad, función renal y hepática, embarazo y comorbilidad, y contrastarse con la preparación
+        estandarizada local antes de administrar: <em>verificar con protocolo institucional.</em></span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · VENTILACIÓN E INTUBACIÓN -->
+  <div class="section s4" id="s7" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Intubar sin matar al ventrículo derecho</div>
+        <div class="section-subtitle">El minuto de mayor riesgo del turno</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>La intubación del paciente en shock derecho o biventricular es un procedimiento de alto riesgo por tres
+        golpes simultáneos: los <strong>hipnóticos vasodilatan y deprimen el inotropismo</strong>, la
+        <strong>presión positiva reduce el retorno venoso y aumenta la poscarga derecha</strong>, y la
+        <strong>hipoxemia, hipercapnia y acidosis</strong> de la apnea vasoconstriñen el lecho pulmonar. Cada uno solo es
+        tolerable; los tres juntos producen el paro periintubación.</span>
+      </div>
+
+      <div class="subhead">Antes de tocar el laringoscopio</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🩺</span><span><strong>Pregúntate si realmente hay que intubar ahora.</strong> Si la ventilación no invasiva u oxígeno de alto flujo sostienen al paciente mientras se resuelve la causa —reperfusión, drenaje, trombólisis—, ganar esos minutos puede ser la mejor decisión hemodinámica. No es lo mismo aplazar que negar: si va a haber intubación, que sea <strong>controlada y no en el colapso</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Vasopresor corriendo antes de la inducción</strong>, no preparado «por si acaso», y dosis de rescate en bolo disponible en la mano. La presión en el momento de la inducción es la que vas a perder.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫁</span><span><strong>Preoxigena en posición semisentada</strong> con el mejor dispositivo disponible y mantén oxígeno durante la apnea. La desaturación en este paciente no es un número: es vasoconstricción pulmonar inmediata.</span></div>
+        <div class="plain-item"><span class="bullet-icon">👥</span><span><strong>El operador más experimentado, primer intento el mejor.</strong> Rol asignado para el vasopresor, para la ecografía y para el registro de tiempos; plan B de vía aérea verbalizado antes de empezar.</span></div>
+      </div>
+
+      <div class="subhead">Fármacos de inducción</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Fármaco</th><th>Dosis en el paciente en shock</th><th>Notas</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Ketamina</td>
+              <td><span class="dose-main">0,5–1 mg/kg IV</span><br><span class="dose-note">dosis reducida respecto de la habitual</span></td>
+              <td>Suele ser la opción más estable hemodinámicamente. En depleción catecolaminérgica extrema también puede producir hipotensión</td>
+            </tr>
+            <tr>
+              <td>Etomidato</td>
+              <td><span class="dose-main">0,1–0,2 mg/kg IV</span><br><span class="dose-note">dosis reducida</span></td>
+              <td>Alternativa con buena estabilidad hemodinámica. Supresión suprarrenal transitoria conocida</td>
+            </tr>
+            <tr>
+              <td>Bloqueador neuromuscular</td>
+              <td><span class="dose-main">Rocuronio 1,2 mg/kg IV o succinilcolina 1,5 mg/kg IV</span></td>
+              <td>No se reduce la dosis del relajante: un bloqueo insuficiente alarga el intento, y el intento largo es lo que mata aquí. Respeta las contraindicaciones de la succinilcolina (hiperpotasemia, entre otras)</td>
+            </tr>
+            <tr>
+              <td>Propofol</td>
+              <td><span class="dose-main">Evitar como inductor</span></td>
+              <td>Vasodilatación y depresión inotrópica marcadas. Si no hay alternativa, dosis muy reducidas y vasopresor en marcha. <em>Verificar con protocolo institucional.</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Después del tubo</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📉</span><span><strong>Volumen corriente bajo (alrededor de 6 mL/kg de peso predicho) y presión meseta &lt; 30 cmH₂O.</strong> El objetivo es la menor presión media de vía aérea que mantenga oxigenación aceptable.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🎚️</span><span><strong>PEEP con criterio:</strong> demasiada empeora la poscarga derecha y el retorno venoso; muy poca deja atelectasias e hipoxemia, que también vasoconstriñen. Se titula mirando presión, perfusión y ecografía, no una tabla.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🌬️</span><span><strong>Evita la hipercapnia y la acidosis</strong> permisivas en el shock derecho: ambas aumentan la resistencia vascular pulmonar. Vigila la hiperinsuflación dinámica si hay broncoespasmo asociado.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚩</span><span><strong>Si el paciente se colapsa al conectar al ventilador:</strong> desconecta, ventila con bolsa a frecuencia baja y volúmenes pequeños, descarta neumotórax e hiperinsuflación, da volumen o vasopresor según el perfil, y reevalúa con ecografía. <strong>La causa más frecuente es la ventilación misma.</strong></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · TRATAR LA CAUSA -->
+  <div class="section s10" id="s8" style="animation-delay:0.48s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Tratar la causa</div>
+        <div class="section-subtitle">Reperfusión, trombólisis, drenaje, cirugía, ritmo</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>El soporte compra tiempo; <strong>la causa decide el desenlace</strong>. En urgencia, la pregunta que
+        define el destino es: ¿esto se resuelve en hemodinamia, en pabellón, con un drenaje, con un trombolítico o con
+        un cardiodesfibrilador?</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Causa</th><th>Qué la resuelve</th><th>Puntos críticos</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Infarto con shock</td>
+              <td><strong>Angioplastia primaria urgente</strong>, sin importar el tiempo de evolución</td>
+              <td>En el ensayo CULPRIT-SHOCK, revascularizar <strong>solo la lesión culpable</strong> en el procedimiento inicial fue mejor que la revascularización multivaso inmediata (muerte o terapia de reemplazo renal a 30 días: 45,9 % frente a 55,4 %)</td>
+            </tr>
+            <tr>
+              <td>Infarto sin hemodinamia disponible</td>
+              <td><strong>Fibrinólisis</strong> si no hay contraindicación, con traslado inmediato para angiografía</td>
+              <td>El traslado se gestiona <strong>en paralelo</strong> con la estabilización, no después. La angioplastia primaria sigue siendo preferible si es alcanzable en los tiempos del protocolo local</td>
+            </tr>
+            <tr>
+              <td>Tromboembolismo pulmonar de alto riesgo</td>
+              <td><strong>Trombólisis sistémica</strong>: alteplasa 100 mg IV en 2 horas es el esquema estándar</td>
+              <td>Con contraindicación o falla de la trombólisis: <strong>tratamiento dirigido por catéter o embolectomía</strong>. Los esquemas acelerados o en bolo durante el paro varían entre centros: <em>verificar con protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Taponamiento cardíaco</td>
+              <td><strong>Drenaje pericárdico</strong>, idealmente ecoguiado</td>
+              <td>Volumen y vasopresor son solo el puente. Si el derrame es secundario a disección aórtica o a rotura de pared libre, el drenaje puede reactivar el sangrado y la conducta se define con cirugía</td>
+            </tr>
+            <tr>
+              <td>Complicación mecánica del infarto</td>
+              <td><strong>Cirugía cardíaca</strong>: comunicación interventricular, rotura de músculo papilar o de pared libre</td>
+              <td>Aparece con más frecuencia entre el segundo y el séptimo día. Llamada inmediata al equipo quirúrgico; el soporte mecánico puede ser el puente al pabellón</td>
+            </tr>
+            <tr>
+              <td>Arritmia como motor</td>
+              <td><strong>Cardioversión eléctrica sincronizada</strong> en la taquiarritmia mal tolerada; marcapasos en la bradiarritmia</td>
+              <td>Corrige en paralelo lo que la sostiene: isquemia, hipoxemia, potasio y magnesio, y fármacos. En la falla derecha, <strong>recuperar el ritmo sinusal</strong> puede cambiar el gasto por sí solo</td>
+            </tr>
+            <tr>
+              <td>Miocarditis fulminante y miocardiopatías agudas</td>
+              <td><strong>Soporte hasta la recuperación</strong>, en centro con capacidad de soporte mecánico</td>
+              <td>Buen pronóstico potencial si se sostiene la perfusión: es un escenario donde el traslado precoz vale especialmente la pena</td>
+            </tr>
+            <tr>
+              <td>Intoxicación por betabloqueadores o calcioantagonistas</td>
+              <td>Antídotos y soporte específicos</td>
+              <td>Tiene un manejo propio (calcio, glucagón, insulina en dosis altas con glucosa, emulsión lipídica según el caso): <em>verificar con protocolo institucional y con toxicología.</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · SOPORTE Y DESTINO -->
+  <div class="section s8" id="s9" style="animation-delay:0.54s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Soporte mecánico, equipo y traslado</div>
+        <div class="section-subtitle">A quién llamar, cuándo y qué decir</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>La decisión de soporte mecánico <strong>no se toma en urgencia en solitario</strong>, pero sí se
+        <strong>anticipa</strong> desde urgencia: identificar temprano al candidato y llamar al equipo es lo que hace
+        posible la opción. La evidencia es heterogénea y la disponibilidad, muy variable entre centros.</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Dispositivo</th><th>Qué dice la evidencia</th><th>En urgencia</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Balón de contrapulsación intraaórtico</td>
+              <td>El ensayo IABP-SHOCK II <strong>no mostró reducción de mortalidad</strong> a 30 días en el shock posinfarto, y el seguimiento a largo plazo tampoco</td>
+              <td>Ya no es un uso rutinario en el shock posinfarto. Su papel queda para indicaciones seleccionadas definidas por el equipo tratante</td>
+            </tr>
+            <tr>
+              <td>Bomba microaxial de flujo continuo</td>
+              <td>El ensayo DanGer Shock (2024) mostró <strong>menor mortalidad a 180 días</strong> en el shock por infarto con elevación del ST (45,8 % frente a 58,5 %), a costa de <strong>más eventos adversos</strong>: sangrado, isquemia de extremidad, hemólisis y necesidad de terapia de reemplazo renal</td>
+              <td>Es una decisión del equipo de shock y de hemodinamia, en un paciente seleccionado. La contribución de urgencia es <strong>identificarlo y activarlos a tiempo</strong></td>
+            </tr>
+            <tr>
+              <td>ECMO venoarterial</td>
+              <td>ECLS-SHOCK (2023) y ECMO-CS <strong>no mostraron beneficio en mortalidad</strong> con su uso sistemático en el shock por infarto, con más complicaciones vasculares y hemorrágicas</td>
+              <td>Reservado a escenarios seleccionados —causa potencialmente reversible o puente a decisión— y a centros con programa. Consulta precoz si el paciente se deteriora pese al soporte</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Activación y traslado</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📞</span><span><strong>Llama con la sospecha, no con el diagnóstico cerrado.</strong> Cardiología o hemodinamia, unidad crítica y —si corresponde— cirugía cardíaca, en paralelo con la estabilización. En el shock, la demora en activar pesa más que cualquier ajuste fino de dosis.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🗒️</span><span><strong>Qué decir en 30 segundos:</strong> edad y antecedentes relevantes; hora de inicio de los síntomas; escenario probable y estadio SCAI; presión, frecuencia, ritmo y lactato; vasoactivos en marcha con dosis; hallazgos de la ecografía; estado de la vía aérea; y qué necesitas exactamente (angiografía, pabellón, cama crítica, traslado).</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚑</span><span><strong>Centro sin hemodinamia:</strong> el traslado es parte del tratamiento. Gestiónalo en paralelo, traslada con monitorización, infusiones en marcha, desfibrilador y médico acompañante, y asegura que el electrocardiograma y las imágenes lleguen al centro receptor.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧾</span><span><strong>Deja escrito con hora:</strong> lactato inicial y de control, presión y perfusión antes y después de cada intervención, volumen administrado, dosis de vasoactivos y a quién se llamó. Es lo que permite al equipo siguiente saber si el paciente está mejorando o no.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🤝</span><span><strong>Conversación con la familia desde temprano.</strong> La mortalidad del shock cardiogénico sigue siendo alta y algunas decisiones —soporte mecánico, techo terapéutico— requieren conocer los valores del paciente. Que esa conversación no llegue recién en el peor momento.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · TRAMPAS -->
+  <div class="section s9" id="s10" style="animation-delay:0.60s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Trampas y errores frecuentes</div>
+        <div class="section-subtitle">Lo que convierte un shock manejable en uno refractario</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Esperar la hipotensión para llamarlo shock.</strong> El lactato, la diuresis y la piel se deterioran antes que el monitor.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No pedir V3R–V4R en el infarto inferior.</strong> Es la omisión que lleva directo a la nitroglicerina en un ventrículo derecho dependiente de precarga.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar volumen «porque está hipotenso» sin mirar el ventrículo derecho.</strong> En el derecho ya dilatado, cada bolo empeora la interdependencia y baja el gasto izquierdo.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Diuréticos o vasodilatadores por reflejo ante la ingurgitación yugular.</strong> En la falla derecha aguda con hipoperfusión, la congestión venosa no se trata igual que la congestión pulmonar del edema agudo izquierdo.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Betabloqueo intravenoso en el paciente con signos de bajo gasto.</strong> Es una indicación clásica en el infarto, y una decisión peligrosa en cuanto hay hipoperfusión, congestión o compromiso derecho.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Inotrópico en el hipotenso sin vasopresor.</strong> Vasodilata, baja la presión de perfusión coronaria y alimenta la espiral.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Intubar «para descansar» sin vasopresor en marcha.</strong> La inducción y la presión positiva llegan juntas y el ventrículo derecho no las tolera.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Subir dosis mientras nadie resuelve la causa.</strong> Los vasoactivos son un puente; si no hay plan de reperfusión, drenaje, cirugía o traslado, el puente no lleva a ninguna parte.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Atribuir la hipotensión a la sedación o al «vasovagal» en un paciente con infarto.</strong> La reevaluación seriada con ecografía es lo que evita perder 40 minutos.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Llamar tarde.</strong> La ventana para hemodinamia, pabellón, soporte mecánico o traslado se cierra mientras se «termina de estabilizar».</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio. Está orientada al adulto
+    con shock cardiogénico y falla ventricular derecha o biventricular aguda no traumática; el paciente pediátrico, el
+    trauma, el embarazo y el shock posoperatorio de cirugía cardíaca tienen consideraciones adicionales y se rigen por
+    sus protocolos específicos. Las <strong>dosis, objetivos hemodinámicos y umbrales referidos son orientativos</strong>:
+    verifica el ajuste por peso, edad, función renal y hepática, interacciones, embarazo y lactancia, y las
+    contraindicaciones antes de administrar cualquier fármaco, así como la dilución y presentación estandarizada de tu
+    servicio. Las indicaciones de reperfusión, trombólisis, marcapasos transitorio, soporte mecánico circulatorio,
+    parámetros ventilatorios y vías de derivación y traslado deben contrastarse con el <strong>protocolo institucional
+    vigente</strong>. La clasificación SCAI y los ensayos citados complementan y no reemplazan la evaluación clínica: se
+    aplican a las poblaciones en que fueron derivados y validados.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Naidu SS, et al. <em>SCAI SHOCK Stage Classification Expert Consensus Update: A Review and Incorporation of Validation Studies.</em> J Am Coll Cardiol. 2022;79(9):933–946. — Estadios A a E y su uso clínico.</div>
+      <div class="ref-item">Baran DA, et al. <em>SCAI Clinical Expert Consensus Statement on the Classification of Cardiogenic Shock.</em> Catheter Cardiovasc Interv. 2019;94(1):29–37. — Propuesta original de la clasificación.</div>
+      <div class="ref-item">Thiele H, et al. <em>PCI Strategies in Patients with Acute Myocardial Infarction and Cardiogenic Shock (CULPRIT-SHOCK).</em> N Engl J Med. 2017;377(25):2419–2432. — Revascularización de la lesión culpable frente a multivaso.</div>
+      <div class="ref-item">Møller JE, et al. <em>Microaxial Flow Pump or Standard Care in Infarct-Related Cardiogenic Shock (DanGer Shock).</em> N Engl J Med. 2024;390(15):1382–1393. — Mortalidad a 180 días y eventos adversos.</div>
+      <div class="ref-item">Thiele H, et al. <em>Extracorporeal Life Support in Infarct-Related Cardiogenic Shock (ECLS-SHOCK).</em> N Engl J Med. 2023;389(14):1286–1297.</div>
+      <div class="ref-item">Thiele H, et al. <em>Intraaortic Balloon Support for Myocardial Infarction with Cardiogenic Shock (IABP-SHOCK II).</em> N Engl J Med. 2012;367(14):1287–1296.</div>
+      <div class="ref-item">De Backer D, et al. <em>Comparison of Dopamine and Norepinephrine in the Treatment of Shock (SOAP II).</em> N Engl J Med. 2010;362(9):779–789. — Arritmias y subgrupo de shock cardiogénico.</div>
+      <div class="ref-item">Mathew R, et al. <em>Milrinone as Compared with Dobutamine in the Treatment of Cardiogenic Shock (DOREMI).</em> N Engl J Med. 2021;385(6):516–525.</div>
+      <div class="ref-item">Levy B, et al. <em>Epinephrine Versus Norepinephrine for Cardiogenic Shock After Acute Myocardial Infarction.</em> J Am Coll Cardiol. 2018;72(2):173–182.</div>
+      <div class="ref-item">Zehender M, et al. <em>Right Ventricular Infarction as an Independent Predictor of Prognosis after Acute Inferior Myocardial Infarction.</em> N Engl J Med. 1993;328(14):981–988. — Rendimiento de la elevación del ST en V4R.</div>
+      <div class="ref-item">Byrne RA, et al. <em>2023 ESC Guidelines for the Management of Acute Coronary Syndromes.</em> Eur Heart J. 2023;44(38):3720–3826. — Derivaciones derechas, reperfusión y shock.</div>
+      <div class="ref-item">McDonagh TA, et al. <em>2021 ESC Guidelines for the Diagnosis and Treatment of Acute and Chronic Heart Failure.</em> Eur Heart J. 2021;42(36):3599–3726. — Perfiles de congestión y perfusión, vasoactivos.</div>
+      <div class="ref-item">Konstantinides SV, et al. <em>2019 ESC Guidelines for the Diagnosis and Management of Acute Pulmonary Embolism.</em> Eur Heart J. 2020;41(4):543–603. — Tromboembolismo de alto riesgo y trombólisis.</div>
+      <div class="ref-item">Las dosis, la preparación de infusiones, los parámetros ventilatorios, la indicación de marcapasos transitorio y de soporte mecánico circulatorio, y las vías de traslado deben contrastarse con el protocolo institucional vigente y con el equipo de cardiología y cuidados críticos de referencia.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Árbol de decisión interactivo ─────────────────────────────────
+  const sel = { esc: null, perf: null, ctx: new Set() };
+
+  function bindSingle(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (sel[key] === v) {
+          sel[key] = null;
+          btn.classList.remove('on');
+        } else {
+          sel[key] = v;
+          group.querySelectorAll('.opt').forEach(b => b.classList.toggle('on', b === btn));
+        }
+        render();
+      });
+    });
+  }
+
+  function bindMulti(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (v === 'ninguno') {
+          sel[key].clear();
+          group.querySelectorAll('.opt').forEach(b => b.classList.remove('on'));
+          btn.classList.add('on');
+          sel[key].add('ninguno');
+        } else {
+          const none = group.querySelector('[data-v="ninguno"]');
+          none.classList.remove('on');
+          sel[key].delete('ninguno');
+          if (sel[key].has(v)) { sel[key].delete(v); btn.classList.remove('on'); }
+          else { sel[key].add(v); btn.classList.add('on'); }
+        }
+        render();
+      });
+    });
+  }
+
+  bindSingle('q-esc', 'esc');
+  bindSingle('q-perf', 'perf');
+  bindMulti('q-ctx', 'ctx');
+
+  const f = (v) => sel.ctx.has(v);
+
+  const ECO = '<strong>Ecografía a la cabecera</strong>: derrame, contractilidad izquierda, tamaño del ventrículo derecho, vena cava y líneas B (sección 05).';
+  const LACTATO = '<strong>Lactato basal y de control</strong>, diuresis horaria, monitorización continua y línea arterial apenas sea posible.';
+  const NORAD = '<strong>Noradrenalina</strong> como vasopresor de primera línea (0,05–0,5 µg/kg/min, titulada); dobutamina si persiste el bajo gasto con presión ya sostenida. Dosis en la sección 06.';
+  const LINK_TORACICO = '<a class="cross-link" style="margin-top:6px" href="./guia-dolor-toracico.html">→ Guía de orientación: dolor torácico</a>';
+
+  function classify() {
+    const { esc, perf } = sel;
+    if (!esc || !perf) return null;
+
+    // 1 · Paro o periparo, sea cual sea el escenario
+    if (perf === 'paro') {
+      const causa = {
+        iamvi: 'isquemia con falla izquierda: reperfusión inmediata si hay circulación de retorno',
+        iamvd: 'infarto derecho: volumen titulado, vasopresor y reperfusión',
+        biv: 'falla biventricular: soporte y causa reversible',
+        tep: 'tromboembolismo pulmonar de alto riesgo: la trombólisis durante la reanimación es una opción a considerar con el equipo',
+        hpc: 'hipertensión pulmonar descompensada: hipoxemia, hipercapnia y acidosis como desencadenantes',
+        mecanica: 'complicación mecánica: cirugía cardíaca inmediata',
+        miocarditis: 'miocardiopatía aguda: puede ser reversible con soporte',
+        arritmia: 'arritmia: desfibrilación o cardioversión sin demora',
+        tapon: 'taponamiento: drenaje pericárdico inmediato',
+        postvm: 'la ventilación misma: desconecta del ventilador y ventila a mano, frecuencia baja'
+      }[esc];
+      return {
+        sev: 'red',
+        tag: 'Catástrofe en curso',
+        title: 'Paro o periparo en shock cardiogénico',
+        rows: [
+          ['Ahora', 'Reanimación de alta calidad y <strong>ecografía en las pausas</strong>, sin interrumpir las compresiones. Busca las causas reversibles que se ven: <strong>taponamiento, neumotórax a tensión, sobrecarga derecha aguda y colapso del ventrículo izquierdo</strong>.'],
+          ['En este caso', 'Causa probable en el escenario marcado: ' + causa + '.'],
+          ['Equipo', '<strong>Activa hemodinamia, unidad crítica y cirugía cardíaca en el mismo minuto</strong> en que inicias la reanimación, no cuando recuperes circulación. Si el centro cuenta con programa de soporte extracorpóreo, la consulta se hace ahora.'],
+          ['Después del retorno', 'Vasopresor en infusión ya titulada, electrocardiograma de 12 derivaciones inmediato, ecografía, y traslado directo a donde se resuelve la causa. Evita la hipotensión y la hipoxemia postparo: repiten el daño.'],
+          ['Realismo', 'Es razonable conversar con el equipo el <strong>techo terapéutico</strong> cuando la causa no es reversible. Documenta las decisiones con hora.']
+        ]
+      };
+    }
+
+    // 2 · Taponamiento
+    if (esc === 'tapon') {
+      return {
+        sev: 'red',
+        tag: 'Obstructivo, no cardiogénico puro',
+        title: 'Taponamiento cardíaco: el shock que se resuelve con una aguja',
+        rows: [
+          ['Ahora', ECO + ' Busca colapso diastólico de cavidades derechas y vena cava dilatada sin variación respiratoria.'],
+          ['Puente', '<strong>Volumen y vasopresor</strong> para sostener la perfusión mientras preparas el drenaje. Mantén al paciente <strong>espontáneamente ventilando</strong> si es posible: la presión positiva puede precipitar el colapso.'],
+          ['Definitivo', '<strong>Drenaje pericárdico, idealmente ecoguiado</strong>, sin esperar más imágenes cuando el compromiso hemodinámico es evidente.'],
+          ['Cuidado', 'Si el derrame es por <strong>disección aórtica o rotura de pared libre</strong>, el drenaje puede reactivar el sangrado: la conducta se decide con cirugía cardíaca. <em>Verificar con protocolo institucional.</em>'],
+          ['Destino', 'Pabellón o unidad crítica según la causa; cirugía cardíaca avisada desde la sospecha.']
+        ]
+      };
+    }
+
+    // 3 · Colapso tras la intubación
+    if (esc === 'postvm') {
+      return {
+        sev: 'red',
+        tag: 'Iatrogenia reversible',
+        title: 'Colapso tras la intubación o al conectar al ventilador',
+        rows: [
+          ['Primero', '<strong>Desconecta del ventilador</strong> y ventila con bolsa a <strong>frecuencia baja y volúmenes pequeños</strong>. En la mayoría de los casos, la causa del colapso es la propia presión positiva sobre un ventrículo derecho que no la tolera.'],
+          ['Descarta', '<strong>Neumotórax a tensión</strong> (descomprime sin esperar radiografía), <strong>hiperinsuflación dinámica</strong>, intubación esofágica o bronquial, y efecto del hipnótico.'],
+          ['Hemodinamia', '<strong>Vasopresor de inmediato</strong> —en bolo de rescate y luego en infusión— y volumen titulado en bolos de 250 mL según el perfil ecográfico. ' + ECO],
+          ['Al reconectar', 'Volumen corriente cercano a 6 mL/kg de peso predicho, <strong>PEEP la mínima suficiente</strong>, presión meseta &lt; 30 cmH₂O, y corrección de hipoxemia, hipercapnia y acidosis: las tres aumentan la poscarga derecha (sección 07).'],
+          ['Después', 'Deja escrito qué se hizo y con qué respuesta: si vuelve a ocurrir, el equipo siguiente necesita saber qué maniobra funcionó.']
+        ]
+      };
+    }
+
+    // 4 · Arritmia
+    if (esc === 'arritmia') {
+      return {
+        sev: 'red',
+        tag: 'Causa tratable en minutos',
+        title: 'Arritmia como motor del shock',
+        rows: [
+          ['Decide primero', '¿La arritmia <strong>causa</strong> el shock o es <strong>consecuencia</strong> de él? Una taquicardia sinusal de 130 en un shock por infarto no se «trata»: se trata la causa. Una fibrilación auricular rápida en una falla derecha aguda sí puede ser el motor.'],
+          ['Mal tolerada', '<strong>Cardioversión eléctrica sincronizada sin demora</strong> en la taquiarritmia con hipoperfusión, con sedación breve y vasopresor disponible. Desfibrila la taquicardia ventricular sin pulso.'],
+          ['Bradiarritmia', '<strong>Atropina 0,5–1 mg IV</strong> repetible hasta 3 mg; si no responde, <strong>estimulación transcutánea</strong> y preparación de marcapasos transvenoso. Frecuente en el infarto inferior y derecho.'],
+          ['En paralelo', 'Corrige lo que la sostiene: isquemia, hipoxemia, <strong>potasio y magnesio</strong>, fármacos y tóxicos. En la falla derecha, recuperar el <strong>ritmo sinusal y la sincronía auriculoventricular</strong> puede cambiar el gasto por sí solo.'],
+          ['No hagas', '<strong>Evita el betabloqueo o el calcioantagonista intravenoso</strong> para «controlar frecuencia» en un paciente con signos de bajo gasto: puedes derrumbar el gasto que queda.'],
+          ['Destino', 'Unidad coronaria o crítica con monitorización; cardiología avisada.']
+        ]
+      };
+    }
+
+    // 5 · Infarto de ventrículo derecho
+    if (esc === 'iamvd') {
+      return {
+        sev: 'red',
+        tag: 'Falla derecha isquémica',
+        title: 'Infarto de ventrículo derecho: precarga, presión y reperfusión',
+        rows: [
+          ['Confirma', '<strong>Pide V3R–V4R ahora:</strong> elevación del ST ≥ 0,5 mm confirma el compromiso derecho y la ventana para verla es corta. ' + ECO],
+          ['Suspende', '<strong>Nada de nitratos, diuréticos ni morfina.</strong> En un ventrículo dependiente de precarga producen hipotensión brusca. Si ya los recibió, anticipa el deterioro con el vasopresor preparado.'],
+          ['Volumen', '<strong>Bolos de 250 mL de cristaloide reevaluando después de cada uno</strong> (presión, perfusión, ecografía). Si no mejora o el ventrículo derecho se dilata más, <strong>detente</strong> y pasa a soporte farmacológico.'],
+          ['Fármacos', NORAD],
+          ['Ritmo', 'Bloqueo auriculoventricular y bradicardia son frecuentes: <strong>atropina</strong> y, si no responde, estimulación. La <strong>sincronía auriculoventricular</strong> importa más aquí que en cualquier otro escenario.'],
+          ['Definitivo', '<strong>Reperfusión urgente: es el tratamiento.</strong> Angioplastia primaria; fibrinólisis y traslado si no hay disponibilidad y no hay contraindicación.'],
+          ['Destino', 'Hemodinamia y luego unidad coronaria o crítica.'],
+          ['Enlace', LINK_TORACICO]
+        ]
+      };
+    }
+
+    // 6 · Tromboembolismo pulmonar
+    if (esc === 'tep') {
+      return {
+        sev: 'red',
+        tag: 'Falla derecha por poscarga',
+        title: 'Sospecha de tromboembolismo pulmonar de alto riesgo',
+        rows: [
+          ['Ahora', ECO + ' Ventrículo derecho dilatado con septum aplanado, TAPSE bajo o signo de McConnell en el contexto clínico adecuado <strong>sostienen la decisión de tratar</strong> cuando el paciente no puede salir del box.'],
+          ['Imagen', '<strong>Angiotomografía de arterias pulmonares</strong> si el paciente tolera el traslado con el equipo acompañándolo. Con inestabilidad que lo impide, se trata con la ecografía y la clínica.'],
+          ['Hemodinamia', '<strong>Volumen con mucha cautela</strong> —el ventrículo derecho ya está sobrecargado; un bolo generoso empeora el cuadro— y ' + NORAD],
+          ['Definitivo', '<strong>Trombólisis sistémica</strong> en el tromboembolismo de alto riesgo: alteplasa 100 mg IV en 2 horas es el esquema estándar. Con contraindicación o falla: <strong>tratamiento dirigido por catéter o embolectomía</strong>. Los esquemas acelerados durante el paro varían: <em>verificar con protocolo institucional.</em>'],
+          ['Oxigenación', 'Corrige hipoxemia, hipercapnia y acidosis: las tres aumentan la resistencia vascular pulmonar. <strong>Evita intubar si puedes sostenerlo sin tubo</strong> (sección 07).'],
+          ['Destino', 'Unidad crítica; equipo de tromboembolismo o consulta precoz si el centro cuenta con uno.']
+        ]
+      };
+    }
+
+    // 7 · Hipertensión pulmonar descompensada
+    if (esc === 'hpc') {
+      return {
+        sev: 'red',
+        tag: 'Falla derecha crónica descompensada',
+        title: 'Hipertensión pulmonar o cor pulmonale descompensado',
+        rows: [
+          ['Busca el gatillo', 'Casi siempre hay uno: <strong>infección, arritmia, anemia, suspensión del tratamiento específico, tromboembolismo, cirugía o embarazo</strong>. Tratarlo es tan importante como el soporte.'],
+          ['Poscarga', 'Optimiza oxigenación y ventilación: <strong>hipoxemia, hipercapnia y acidosis vasoconstriñen el lecho pulmonar</strong>. Analgesia y control de la agitación en el mismo sentido.'],
+          ['Volumen', '<strong>Restrictivo.</strong> Estos pacientes suelen llegar congestivos: el volumen adicional empeora la dilatación derecha. La depleción cuidadosa puede ser parte del tratamiento en el congestivo con perfusión conservada.'],
+          ['Fármacos', NORAD + ' Los <strong>vasodilatadores pulmonares</strong> —inhalados o del tratamiento crónico específico— son terapia de unidad crítica y su manejo se coordina con el equipo tratante: <em>verificar con protocolo institucional.</em> <strong>No suspendas abruptamente</strong> el tratamiento específico crónico sin consultar.'],
+          ['Cuidado', '<strong>Este es el paciente que peor tolera la intubación</strong> de todo el servicio. Evítala si puedes sostenerlo con oxígeno o ventilación no invasiva mientras corriges el gatillo (sección 07).'],
+          ['Destino', 'Unidad crítica, con consulta al centro o equipo de referencia en hipertensión pulmonar.']
+        ]
+      };
+    }
+
+    // 8 · Complicación mecánica
+    if (esc === 'mecanica') {
+      return {
+        sev: 'red',
+        tag: 'Quirúrgico hasta que se demuestre lo contrario',
+        title: 'Sospecha de complicación mecánica del infarto',
+        rows: [
+          ['Sospecha', 'Deterioro brusco con <strong>soplo nuevo</strong>, habitualmente entre el segundo y el séptimo día del infarto —también en quien consulta tarde o no fue reperfundido—: <strong>comunicación interventricular, rotura de músculo papilar con insuficiencia mitral aguda o rotura de pared libre</strong>.'],
+          ['Ahora', ECO + ' Busca chorro a través del septum, insuficiencia mitral masiva o derrame pericárdico de aparición reciente. <strong>Llama a cirugía cardíaca con la sospecha</strong>, no con el informe.'],
+          ['Soporte', NORAD + ' Evita la sobrecarga de volumen. El soporte mecánico circulatorio puede ser el <strong>puente al pabellón</strong> y lo decide el equipo.'],
+          ['Imagen', 'Ecocardiografía formal urgente y coronariografía según lo defina el equipo quirúrgico: la secuencia la marca el centro.'],
+          ['Destino', '<strong>Pabellón de cirugía cardíaca.</strong> Si tu centro no la tiene, el traslado se gestiona en paralelo con la estabilización.']
+        ]
+      };
+    }
+
+    // 9 · Miocardiopatía aguda
+    if (esc === 'miocarditis') {
+      return {
+        sev: 'amber',
+        tag: 'Potencialmente reversible',
+        title: 'Miocardiopatía aguda: miocarditis, takotsubo, periparto',
+        rows: [
+          ['Ahora', ECO + ' ' + LACTATO + ' Electrocardiograma seriado: <strong>las arritmias ventriculares y el bloqueo de alto grado son la causa de muerte precoz</strong> en la miocarditis fulminante, así que la monitorización continua no es opcional.'],
+          ['Descarta', 'Antes de quedarte con el diagnóstico: <strong>isquemia</strong> (la presentación se superpone y muchas veces se define con coronariografía), taponamiento y tromboembolismo.'],
+          ['Soporte', NORAD + ' La clave pronóstica es <strong>sostener la perfusión mientras el miocardio se recupera</strong>: es un escenario donde la consulta precoz a un centro con soporte mecánico vale especialmente la pena.'],
+          ['Cuidado', 'Evita betabloqueo intravenoso y cualquier depresor adicional mientras haya bajo gasto. El tratamiento inmunomodulador tiene indicaciones específicas y no se decide en urgencia: <em>verificar con protocolo institucional.</em>'],
+          ['Destino', 'Unidad crítica o coronaria, con evaluación por cardiología. Traslado precoz si el centro no tiene capacidad de soporte avanzado.']
+        ]
+      };
+    }
+
+    // 10 · Falla biventricular
+    if (esc === 'biv') {
+      return {
+        sev: 'red',
+        tag: 'Los dos ventrículos',
+        title: 'Falla biventricular: congestión sistémica y pulmonar a la vez',
+        rows: [
+          ['Ordena el problema', 'Define <strong>perfusión</strong> (frío o caliente) y <strong>congestión</strong> (húmedo o seco) antes de indicar nada. El <strong>frío y húmedo</strong> —hipoperfundido y congestivo— es el perfil de peor pronóstico y el que más se equivoca con diuréticos en dosis altas.'],
+          ['Ahora', ECO + ' ' + LACTATO],
+          ['Fármacos', NORAD + ' <strong>El diurético no es el tratamiento del bajo gasto:</strong> en el hipoperfundido, primero se recupera perfusión y recién entonces se descongestiona.'],
+          ['Volumen', 'Con ventrículo derecho dilatado y cava plétorica, <strong>el bolo hace daño</strong>. Si el perfil es de vacío relativo, 250 mL y reevaluación.'],
+          ['Busca la causa', 'Isquemia, arritmia, valvulopatía aguda, infección, anemia, crisis hipertensiva o abandono de tratamiento. Sin causa tratada, el soporte solo posterga.'],
+          ['Destino', 'Unidad crítica; cardiología avisada desde el inicio y evaluación de soporte mecánico si se deteriora.']
+        ]
+      };
+    }
+
+    // 11 · Falla izquierda por síndrome coronario
+    if (esc === 'iamvi') {
+      if (perf === 'preshock') {
+        return {
+          sev: 'amber',
+          tag: 'Shock que empieza',
+          title: 'Síndrome coronario con congestión: hipoperfusión sin hipotensión',
+          rows: [
+            ['No esperes', 'La presión normal <strong>no descarta el shock</strong>. Con lactato elevado, oliguria o piel fría, este paciente ya está en un estadio que exige tratar la causa ahora (sección 02).'],
+            ['Ahora', 'Electrocardiograma en menos de 10 minutos con <strong>V3R–V4R si el infarto es inferior</strong>, ' + ECO + ' ' + LACTATO],
+            ['Definitivo', '<strong>Activa reperfusión sin demora:</strong> angioplastia primaria; fibrinólisis y traslado si no hay disponibilidad y no hay contraindicación. En el shock, la reperfusión se indica sin importar el tiempo de evolución.'],
+            ['Cuidado', '<strong>Nada de betabloqueo intravenoso</strong> con signos de bajo gasto o congestión. Nitratos y diuréticos, con mucha cautela y nunca si hay compromiso derecho.'],
+            ['Si empeora', 'Vasopresor precoz antes que tardío: ' + NORAD],
+            ['Destino', 'Hemodinamia y unidad coronaria o crítica; avisa aunque el paciente «se vea bien» en el monitor.'],
+            ['Enlace', LINK_TORACICO]
+          ]
+        };
+      }
+      return {
+        sev: 'red',
+        tag: 'Shock cardiogénico clásico',
+        title: 'Síndrome coronario agudo con shock y falla izquierda',
+        rows: [
+          ['Ahora', 'Electrocardiograma con <strong>V3R–V4R si es inferior</strong>, ' + ECO + ' ' + LACTATO],
+          ['Fármacos', NORAD + ' No uses inotrópico solo en el hipotenso: vasodilata y baja la presión de perfusión coronaria.'],
+          ['Definitivo', '<strong>Angioplastia primaria urgente, sin importar el tiempo de evolución.</strong> En CULPRIT-SHOCK, tratar <strong>solo la lesión culpable</strong> en el procedimiento inicial fue mejor que la revascularización multivaso inmediata. Sin hemodinamia disponible: fibrinólisis si no hay contraindicación, y traslado en paralelo.'],
+          ['Volumen', 'Con congestión pulmonar evidente, <strong>el bolo de volumen empeora</strong>. Reserva los bolos pequeños para el perfil de vacío, guiado por ecografía.'],
+          ['No hagas', '<strong>Sin betabloqueo intravenoso</strong>, sin nitratos si hay hipotensión o compromiso derecho, y sin retrasar la angiografía para «optimizar» primero.'],
+          ['Soporte', 'Si se deteriora pese al soporte farmacológico, la evaluación de <strong>soporte mecánico circulatorio</strong> es del equipo de shock y hemodinamia (sección 09). Actívalos temprano.'],
+          ['Destino', 'Hemodinamia y luego unidad coronaria o crítica.'],
+          ['Enlace', LINK_TORACICO]
+        ]
+      };
+    }
+
+    return null;
+  }
+
+  function perfRows() {
+    const extra = [];
+    if (sel.perf === 'preshock' && sel.esc !== 'iamvi') {
+      extra.push(['Perfil', '<strong>Normotenso pero hipoperfundido:</strong> estás ante un shock que empieza. No esperes la hipotensión para activar el equipo ni para tratar la causa; controla el lactato en 30–60 minutos y usa la tendencia para decidir.']);
+    }
+    if (sel.perf === 'refractario') {
+      extra.push(['Refractario', '<strong>No mejora con la escalada inicial.</strong> Antes de subir otra vez la dosis, revisa lo reversible: causa no tratada, taponamiento, neumotórax, hipovolemia, arritmia, acidosis grave, hipoxemia, hipocalcemia o el propio ventilador. Reevalúa con ecografía y <strong>consulta ahora</strong> por soporte mecánico y traslado (sección 09).']);
+    }
+    return extra;
+  }
+
+  function contextRows() {
+    const extra = [];
+    if (f('nitro')) {
+      extra.push(['Alerta', '<strong>Ya recibió nitratos, diuréticos, morfina o betabloqueo.</strong> Anticipa hipotensión: suspende lo que baja precarga, ten el vasopresor en marcha y reevalúa el perfil con ecografía. El efecto del betabloqueo intravenoso no se revierte esperando.']);
+    }
+    if (f('vm')) {
+      extra.push(['Vía aérea', '<strong>Intubación de alto riesgo:</strong> vasopresor corriendo antes de la inducción, dosis reducidas del hipnótico, operador más experimentado, y presión positiva la mínima suficiente. Revisa la sección 07 antes de empezar.']);
+    }
+    if (f('hipoxemia')) {
+      extra.push(['Poscarga', '<strong>Hipoxemia, hipercapnia y acidosis aumentan la resistencia vascular pulmonar</strong> y empeoran el ventrículo derecho. Corregirlas es tratamiento hemodinámico, no solo respiratorio.']);
+    }
+    if (f('sincath')) {
+      extra.push(['Traslado', '<strong>Centro sin hemodinamia ni cirugía cardíaca:</strong> el traslado es parte del tratamiento y se gestiona en paralelo con la estabilización. Llama con la sospecha, traslada con monitorización, infusiones en marcha, desfibrilador y médico acompañante, y asegura que el electrocardiograma y las imágenes lleguen al centro receptor.']);
+    }
+    if (f('renal')) {
+      extra.push(['Ajustes', '<strong>Insuficiencia renal o hepática:</strong> ajusta los fármacos de eliminación dependiente —la milrinona es el ejemplo típico, con vida media prolongada— y vigila la acumulación. <em>Verificar con protocolo institucional.</em>']);
+    }
+    if (f('embarazo')) {
+      extra.push(['Embarazo', '<strong>Emergencia obstétrica y cardiológica simultánea.</strong> Activa obstetricia y neonatología junto con cardiología; desplazamiento uterino manual o decúbito lateral izquierdo mientras tanto. Considera miocardiopatía periparto, tromboembolismo, preeclampsia y disección coronaria espontánea. Las decisiones sobre fármacos, imagen e interrupción del embarazo se toman en equipo.']);
+    }
+    return extra;
+  }
+
+  function render() {
+    const box = document.getElementById('result');
+    const r = classify();
+    if (!r) {
+      box.className = 'result placeholder';
+      box.innerHTML = 'Selecciona el escenario dominante y el perfil hemodinámico para ver la prioridad, qué hacer en ' +
+                      'los primeros minutos, qué fármaco corresponde, qué está contraindicado y a quién llamar.';
+      return;
+    }
+    const rows = r.rows.filter(row => row && row[1]);
+    const enlace = rows.length && rows[rows.length - 1][0] === 'Enlace' ? rows.pop() : null;
+    rows.push(...perfRows());
+    rows.push(...contextRows());
+    if (enlace) rows.push(enlace);
+
+    box.className = 'result sev-' + r.sev;
+    box.innerHTML =
+      '<div class="result-tag">' + r.tag + '</div>' +
+      '<div class="result-title">' + r.title + '</div>' +
+      rows.map(([k, v]) =>
+        '<div class="result-row"><div class="result-key">' + k + '</div><div>' + v + '</div></div>'
+      ).join('');
+  }
+
+  // ── Estadio SCAI ──────────────────────────────────────────────────
+  const scaiList = document.getElementById('scai-list');
+
+  const SCAI_NOTA = '<br><br>La clasificación <strong>complementa y no reemplaza el juicio clínico</strong>: describe la ' +
+                    'gravedad en este momento y debe reevaluarse tras cada intervención, porque el estadio cambia en ' +
+                    'minutos. El umbral para activar al equipo de shock, la indicación de soporte mecánico y los ' +
+                    'criterios de traslado se definen con el <em>protocolo institucional.</em>';
+
+  const SCAI_INFO = {
+    1: { letra: 'A', nombre: 'En riesgo', clase: 'risk-low',
+         texto: 'Sin signos actuales de shock. <strong>Monitoriza, trata la causa</strong> y vigila lactato y diuresis: este es el estadio en que todavía se puede evitar el resto.' },
+    2: { letra: 'B', nombre: 'Comenzando', clase: 'risk-mid',
+         texto: 'Hipotensión relativa o taquicardia <strong>sin hipoperfusión</strong>. Vía, monitorización, ecografía a la cabecera y reevaluación estrecha. <strong>Mucho cuidado con diuréticos, vasodilatadores y betabloqueo</strong> en este punto.' },
+    3: { letra: 'C', nombre: 'Clásico', clase: 'risk-high',
+         texto: 'Hipoperfusión que requiere intervención más allá del volumen. <strong>Vasoactivos, tratar la causa sin demora y avisar a unidad crítica y al equipo de shock.</strong> Controla el lactato en 30–60 minutos para saber si vas ganando.' },
+    4: { letra: 'D', nombre: 'Deteriorándose', clase: 'risk-high',
+         texto: 'No responde a la escalada inicial. <strong>Revisa lo reversible</strong> (causa no tratada, taponamiento, neumotórax, arritmia, acidosis, el propio ventilador), <strong>escala el soporte y consulta ahora</strong> por soporte mecánico y traslado.' },
+    5: { letra: 'E', nombre: 'Extremo', clase: 'risk-high',
+         texto: 'Colapso circulatorio o paro. <strong>Reanimación, causas reversibles que se ven en la ecografía y activación simultánea</strong> de hemodinamia, unidad crítica y cirugía cardíaca. Decisión de equipo sobre soporte extracorpóreo donde exista programa.' }
+  };
+
+  function renderSCAI() {
+    const out = document.getElementById('scai-out');
+    const marcados = scaiList.querySelectorAll('.score-item.on');
+    if (!marcados.length) {
+      out.innerHTML = 'Marca los elementos presentes. El estadio corresponde al hallazgo <strong>más grave</strong> marcado, no a la suma.';
+      return;
+    }
+    let max = 0;
+    marcados.forEach(b => { max = Math.max(max, parseInt(b.dataset.stage, 10)); });
+    const info = SCAI_INFO[max];
+    out.innerHTML =
+      '<span class="big ' + info.clase + '">SCAI ' + info.letra + ' · ' + info.nombre + '</span>' +
+      info.texto + SCAI_NOTA;
+  }
+
+  scaiList.querySelectorAll('.score-item').forEach(btn => {
+    btn.addEventListener('click', () => { btn.classList.toggle('on'); renderSCAI(); });
+  });
+  document.getElementById('scai-reset').addEventListener('click', () => {
+    scaiList.querySelectorAll('.score-item').forEach(b => b.classList.remove('on'));
+    renderSCAI();
+  });
+
+  // ── Calculadora de dosis por peso ─────────────────────────────────
+  const DROGAS = [
+    { nombre: 'Noradrenalina', min: 0.05, max: 0.5, rango: '0,05–0,5' },
+    { nombre: 'Dobutamina', min: 2.5, max: 20, rango: '2,5–20' },
+    { nombre: 'Milrinona', min: 0.125, max: 0.375, rango: '0,125–0,375' },
+    { nombre: 'Adrenalina', min: 0.02, max: 0.3, rango: '0,02–0,3' },
+    { nombre: 'Levosimendán', min: 0.05, max: 0.2, rango: '0,05–0,2' }
+  ];
+
+  const pesoInput = document.getElementById('peso');
+  const pesoOut = document.getElementById('peso-out');
+
+  function fmt(n) {
+    if (n >= 100) return n.toFixed(0);
+    if (n >= 10) return n.toFixed(1).replace('.', ',');
+    return n.toFixed(2).replace('.', ',');
+  }
+
+  function renderPeso() {
+    const kg = parseFloat(pesoInput.value);
+    if (!kg || kg <= 0 || kg > 250) {
+      pesoOut.innerHTML = 'Ingresa el peso para convertir los rangos de µg/kg/min a µg por minuto y mg por hora.';
+      return;
+    }
+    const filas = DROGAS.map(d => {
+      const minMin = d.min * kg, maxMin = d.max * kg;
+      const minH = minMin * 60 / 1000, maxH = maxMin * 60 / 1000;
+      return '<tr><td>' + d.nombre + '</td>' +
+             '<td><span class="dose-note">' + d.rango + ' µg/kg/min</span></td>' +
+             '<td><span class="dose-main">' + fmt(minMin) + '–' + fmt(maxMin) + ' µg/min</span><br>' +
+             '<span class="dose-note">' + fmt(minH) + '–' + fmt(maxH) + ' mg/h</span></td></tr>';
+    }).join('');
+    pesoOut.innerHTML =
+      '<span class="big">Dosis para ' + fmt(kg) + ' kg</span>' +
+      '<div class="table-wrap" style="margin-top:8px;"><table><thead><tr><th>Fármaco</th><th>Rango</th><th>Equivale a</th></tr></thead><tbody>' +
+      filas +
+      '</tbody></table></div>' +
+      '<div style="margin-top:10px;">Son <strong>dosis, no velocidad de infusión</strong>: los mL/h dependen de la dilución local. ' +
+      'El levosimendán y la milrinona pueden requerir ajuste o esquema distinto según el centro, y el bolo de carga suele omitirse ' +
+      'en el paciente hipotenso. <em>Verificar con protocolo institucional.</em></div>';
+  }
+
+  pesoInput.addEventListener('input', renderPeso);
+  document.getElementById('peso-reset').addEventListener('click', () => {
+    pesoInput.value = '';
+    renderPeso();
+  });
+</script>
+</body>
+</html>
