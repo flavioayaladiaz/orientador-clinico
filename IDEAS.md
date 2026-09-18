@@ -65,8 +65,8 @@ tomará en orden la próxima vez que corra.
       atípicas y malperfusión) — `algoritmo-diseccion-aortica.html`
 - [x] Shock cardiogénico con falla ventricular derecha o biventricular aguda
       (e infarto de ventrículo derecho) — `algoritmo-shock-cardiogenico.html`
-- [ ] Status asmático grave con hiperinsuflación dinámica y riesgo de colapso
-      hemodinámico a la intubación
+- [x] Status asmático grave con hiperinsuflación dinámica y riesgo de colapso
+      hemodinámico a la intubación — `algoritmo-status-asmatico.html`
 - [ ] Tormenta tiroidea o crisis tirotoxicósica con inestabilidad hemodinámica
       y arritmias complejas
 - [ ] Traumatismo craneoencefálico grave con hipertensión endocraneal

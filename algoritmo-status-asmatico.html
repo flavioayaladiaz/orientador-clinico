@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Algoritmo · Status asmático grave e hiperinsuflación dinámica</title>
+<meta name="description" content="Árbol de decisión para la crisis asmática grave en urgencia: reconocer la crisis con riesgo vital y casi fatal, tratamiento de la primera hora con dosis, hiperinsuflación dinámica y auto-PEEP, cómo evitar la intubación, intubación de alto riesgo con calculadora de peso, parámetros de ventilación mecánica, colapso posintubación con DOPES, paro cardiorrespiratorio en el asmático y terapias de rescate.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(20,184,166,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(245,158,11,0.07) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 40px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(20,184,166,0.1);
+    border: 1px solid rgba(20,184,166,0.28);
+    color: #5eead4;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #14b8a6, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .s1 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s1 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s2 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s3 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s3 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s4 .section-num { background: rgba(239,68,68,0.10); color: #fecaca; border: 1px solid rgba(239,68,68,0.18); }
+  .s4 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s5 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s5 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s6 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s6 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s7 .section-num { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s7 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s8 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s8 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s9 .section-num { background: rgba(245,158,11,0.10); color: #fde68a; border: 1px solid rgba(245,158,11,0.18); }
+  .s9 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s10 .section-num { background: rgba(59,130,246,0.12); color: #bfdbfe; border: 1px solid rgba(59,130,246,0.18); }
+  .s10 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s11 .section-num { background: rgba(255,255,255,0.06); color: var(--text-dim); border: 1px solid var(--border); }
+  .s11 { --accent: var(--text-dim); --accent-glow: rgba(148,163,184,0.08); }
+
+  /* ORIENTADOR INTERACTIVO */
+  .q-block { margin-bottom: 18px; }
+  .q-block:last-of-type { margin-bottom: 0; }
+
+  .q-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt.on {
+    background: rgba(16,185,129,0.12);
+    border-color: rgba(16,185,129,0.45);
+    color: #6ee7b7;
+  }
+  .opt:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+
+  .result {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface2);
+    padding: 18px 20px;
+    border-left: 3px solid var(--accent, var(--emerald));
+  }
+  .result.placeholder { color: var(--text-muted); font-size: 13px; font-family: var(--mono); line-height: 1.6; }
+
+  .result-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .result-title {
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .result-row {
+    display: flex;
+    gap: 12px;
+    padding: 9px 0;
+    border-top: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .result-row:first-of-type { border-top: none; padding-top: 2px; }
+  .result-key {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    flex: 0 0 104px;
+    padding-top: 3px;
+  }
+  .result-row strong { color: #fff; font-weight: 500; }
+  .result-row em { color: #fcd34d; font-style: normal; }
+
+  .result.sev-red { border-left-color: var(--red); }
+  .result.sev-amber { border-left-color: var(--amber); }
+  .result.sev-green { border-left-color: var(--emerald); }
+
+  /* CALCULADORA */
+  .calc {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-top: 16px;
+  }
+  .calc-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .calc-label.second { margin-top: 18px; }
+  .score-list { display: flex; flex-direction: column; gap: 8px; }
+  .score-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .score-item:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .score-item.on {
+    background: rgba(20,184,166,0.12);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .score-item:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+  .score-list.gate .score-item.on {
+    background: rgba(245,158,11,0.12);
+    border-color: rgba(245,158,11,0.45);
+    color: #fcd34d;
+  }
+  .score-list.danger .score-item.on {
+    background: rgba(239,68,68,0.12);
+    border-color: rgba(239,68,68,0.45);
+    color: #fca5a5;
+  }
+  .score-pts {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  .score-item.on .score-pts { color: #5eead4; border-color: rgba(20,184,166,0.4); }
+  .score-list.gate .score-item.on .score-pts { color: #fcd34d; border-color: rgba(245,158,11,0.4); }
+  .score-list.danger .score-item.on .score-pts { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  .calc-out {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .calc-out strong { color: #fff; font-weight: 500; }
+  .calc-out em { color: #fcd34d; font-style: normal; }
+  .calc-out .big {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: #93c5fd;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .calc-out .big.risk-low { color: #6ee7b7; }
+  .calc-out .big.risk-mid { color: #fcd34d; }
+  .calc-out .big.risk-high { color: #fca5a5; }
+
+  .calc-reset {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 8px 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .calc-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+  /* ENTRADA NUMÉRICA */
+  .calc-field { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .calc-field input {
+    font-family: var(--mono);
+    font-size: 15px;
+    color: #fff;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    width: 130px;
+    -moz-appearance: textfield;
+  }
+  .calc-field input:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: rgba(20,184,166,0.45); }
+  .calc-field .unit {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .toggle-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .toggle-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .toggle-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .toggle-btn.on {
+    background: rgba(20,184,166,0.12);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .toggle-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+  /* BANNERS */
+  .warning-banner, .info-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    color: #fca5a5;
+  }
+  .info-banner {
+    background: rgba(59,130,246,0.06);
+    border: 1px solid rgba(59,130,246,0.18);
+    color: #bfdbfe;
+  }
+  .warning-banner strong, .info-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* CRONOLOGÍA */
+  .timeline { display: flex; flex-direction: column; gap: 10px; }
+  .tl-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 13px 15px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .tl-time {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: #fca5a5;
+    flex: 0 0 74px;
+    padding-top: 2px;
+  }
+  .tl-item strong { color: #fff; font-weight: 500; }
+  .tl-item em { color: #fcd34d; font-style: normal; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* ÁRBOL DE DECISIÓN */
+  .flow { display: flex; flex-direction: column; gap: 10px; }
+  .flow-node {
+    position: relative;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--text-muted);
+    background: rgba(255,255,255,0.02);
+    padding: 12px 15px;
+    font-size: 13.5px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .flow-node strong { color: #fff; font-weight: 500; }
+  .flow-node em { color: #fcd34d; font-style: normal; }
+  .flow-q {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .flow-node.stop { border-left-color: var(--red); background: rgba(239,68,68,0.06); }
+  .flow-node.stop .flow-q { color: #fca5a5; }
+  .flow-node.go { border-left-color: var(--emerald); background: rgba(16,185,129,0.05); }
+  .flow-node.go .flow-q { color: #6ee7b7; }
+  .flow-node.hold { border-left-color: var(--amber); background: rgba(245,158,11,0.05); }
+  .flow-node.hold .flow-q { color: #fcd34d; }
+  .flow-node.ask { border-left-color: var(--blue); background: rgba(59,130,246,0.05); }
+  .flow-node.ask .flow-q { color: #93c5fd; }
+  .flow-branch {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 10px;
+    padding-left: 16px;
+    border-left: 2px dashed rgba(255,255,255,0.10);
+  }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--amber); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .opt { width: 100%; }
+    .result-row { flex-direction: column; gap: 4px; }
+    .result-key { flex: none; padding-top: 0; }
+    .tl-item { flex-direction: column; gap: 6px; }
+    .tl-time { flex: none; }
+    .score-item { align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <div class="header-badge">Patología compleja · Algoritmo</div>
+    <h1>Status asmático grave <span>e hiperinsuflación dinámica</span></h1>
+    <p class="header-sub">
+      La crisis asmática grave mata por dos mecanismos que se confunden con facilidad. El primero es la
+      <strong>obstrucción que no cede</strong>: el paciente se agota, deja de mover aire y lo que suena a «mejoría»
+      —menos sibilancias— es en realidad un tórax silencioso. El segundo aparece cuando intervenimos: cada ventilación
+      con presión positiva mete aire en unos pulmones que todavía no terminaron de vaciarse, el
+      <strong>atrapamiento aéreo se acumula</strong>, la presión intratorácica sube, el retorno venoso cae y el
+      paciente se hipotensa o entra en paro <strong>minutos después de haber sido intubado</strong>. Este algoritmo
+      está escrito para la primera hora en urgencia: reconocer la crisis con riesgo vital, dar el tratamiento que sí
+      cambia el desenlace, evitar la intubación cuando se puede, sobrevivir a ella cuando es inevitable y resolver el
+      colapso posintubación sin perder tiempo.
+    </p>
+  </div>
+
+  <!-- 01 · ÁRBOL DE DECISIÓN -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">Árbol de decisión</div>
+        <div class="section-subtitle">Escenario + estado ventilatorio + contexto</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Este bloque <strong>prioriza la conducta inmediata, no cierra el diagnóstico</strong>. Las dos preguntas
+        que ordenan todo el manejo son <strong>¿cuánto aire está moviendo?</strong> y <strong>¿se está
+        agotando?</strong>. La saturación tranquiliza tarde y el broncodilatador tarda en llegar donde no entra aire:
+        ninguno de los dos reemplaza mirar el esfuerzo respiratorio, el habla y el nivel de conciencia.</span>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">1 · Escenario dominante</div>
+        <div class="opts" id="q-esc">
+          <button type="button" class="opt" data-v="moderada">Crisis con disnea y sibilancias que habla frases completas, saturación ≥ 92 % y mejora con la primera nebulización</button>
+          <button type="button" class="opt" data-v="grave">Crisis grave: no completa frases, frecuencia respiratoria ≥ 25, pulso ≥ 110, flujo espiratorio máximo 33–50 % del mejor o del predicho</button>
+          <button type="button" class="opt" data-v="vital">Signos de riesgo vital: tórax silencioso, cianosis, esfuerzo respiratorio débil, bradicardia, hipotensión, confusión o somnolencia</button>
+          <button type="button" class="opt" data-v="refractaria">Crisis grave que no mejora tras la primera hora de tratamiento máximo bien administrado</button>
+          <button type="button" class="opt" data-v="casifatal">Casi fatal: PaCO₂ elevada pese al esfuerzo respiratorio, agotamiento evidente o necesidad de ventilación</button>
+          <button type="button" class="opt" data-v="postintubacion">Hipotensión o colapso inmediatamente después de intubar o al conectar al ventilador</button>
+          <button type="button" class="opt" data-v="paro">Paro cardiorrespiratorio</button>
+          <button type="button" class="opt" data-v="dudadx">Duda diagnóstica: sibilancias que pueden no ser asma</button>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">2 · Estado ventilatorio actual</div>
+        <div class="opts" id="q-vent">
+          <button type="button" class="opt" data-v="espontanea">Ventilación espontánea, mantiene la saturación con oxígeno y está lúcido</button>
+          <button type="button" class="opt" data-v="fatiga">Ventilación espontánea con signos de fatiga: habla entrecortada, uso de musculatura accesoria, somnolencia o PaCO₂ en ascenso</button>
+          <button type="button" class="opt" data-v="vni">En ventilación no invasiva o cánula nasal de alto flujo</button>
+          <button type="button" class="opt" data-v="vm">Intubado, en ventilación mecánica</button>
+          <button type="button" class="opt" data-v="hipotension">Hipotensión, con o sin ventilación mecánica</button>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">3 · Contexto (marca los que apliquen)</div>
+        <div class="opts" id="q-ctx">
+          <button type="button" class="opt" data-v="riesgo">Factores de riesgo de asma casi fatal: intubación o unidad crítica previas, hospitalización en el último año, uso excesivo de agonista β₂, corticoide oral reciente o recién suspendido, mala adherencia</button>
+          <button type="button" class="opt" data-v="anafilaxia">Sospecha de anafilaxia o exposición alergénica reciente</button>
+          <button type="button" class="opt" data-v="neumotorax">Dolor pleurítico brusco, asimetría del murmullo o enfisema subcutáneo: sospecha de neumotórax</button>
+          <button type="button" class="opt" data-v="embarazo">Embarazo</button>
+          <button type="button" class="opt" data-v="sinuci">Centro sin unidad crítica ni ventilación mecánica prolongada</button>
+          <button type="button" class="opt" data-v="beta">Hipopotasemia, lactato elevado o temblor marcado tras dosis repetidas de agonista β₂</button>
+          <button type="button" class="opt" data-v="ninguno">Ninguno de los anteriores</button>
+        </div>
+      </div>
+
+      <div class="result placeholder" id="result">
+        Selecciona el escenario dominante y el estado ventilatorio para ver la prioridad, qué hacer en los primeros
+        minutos, qué fármaco corresponde, qué está contraindicado y a quién llamar.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · RECONOCER LA CRISIS CON RIESGO VITAL -->
+  <div class="section s2" id="s2" style="animation-delay:0.12s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Reconocer la crisis con riesgo vital</div>
+        <div class="section-subtitle">Graduación · calculadora</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>Las <strong>sibilancias miden flujo, no gravedad</strong>. Un paciente que sibila ruidosamente todavía
+        mueve aire; uno con <strong>tórax silencioso</strong> ya casi no lo hace. Las dos trampas clásicas son
+        interpretar la desaparición de las sibilancias como mejoría y tranquilizarse con una
+        <strong>PaCO₂ «normal»</strong>: en una crisis grave, el paciente hiperventila y la PaCO₂ debe estar
+        <strong>baja</strong>; que esté normal o alta significa que se está agotando.</span>
+      </div>
+
+      <div class="subhead">Graduación de la crisis en el adulto</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Grado</th><th>Qué se ve</th><th>Conducta</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Moderada</td>
+              <td>Habla frases completas, frecuencia respiratoria &lt; 25, pulso &lt; 110, flujo espiratorio máximo &gt; 50 % del mejor o del predicho, saturación ≥ 92 %</td>
+              <td>Agonista β₂ inhalado repetido, corticoide sistémico precoz, reevaluación en 1 hora</td>
+            </tr>
+            <tr>
+              <td>Grave</td>
+              <td><strong>No completa frases</strong>, frecuencia respiratoria ≥ 25, pulso ≥ 110, flujo espiratorio máximo <strong>33–50 %</strong></td>
+              <td>Tratamiento máximo inhalado con oxígeno, corticoide sistémico, considerar sulfato de magnesio, monitorización continua, avisar a unidad crítica</td>
+            </tr>
+            <tr>
+              <td>Riesgo vital</td>
+              <td><strong>Tórax silencioso</strong>, cianosis, esfuerzo respiratorio débil, bradicardia o arritmia, hipotensión, agotamiento, confusión o somnolencia. Saturación &lt; 92 %, PaO₂ &lt; 60 mmHg, flujo espiratorio máximo &lt; 33 %, o <strong>PaCO₂ normal (35–45 mmHg)</strong></td>
+              <td>Reanimación: oxígeno, nebulización continua, corticoide intravenoso, magnesio, unidad crítica <strong>ahora</strong> y preparación de la vía aérea</td>
+            </tr>
+            <tr>
+              <td>Casi fatal</td>
+              <td><strong>PaCO₂ elevada</strong> o necesidad de ventilación mecánica con presiones de insuflación altas</td>
+              <td>Manejo de vía aérea por el operador más experimentado, ventilación protectora de la hiperinsuflación y traslado a unidad crítica</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Grado de la crisis · marca todo lo que esté presente ahora</div>
+        <div class="score-list danger" id="sev-list">
+          <button type="button" class="score-item" data-stage="1">Habla frases completas, frecuencia respiratoria &lt; 25, pulso &lt; 110<span class="score-pts">MOD</span></button>
+          <button type="button" class="score-item" data-stage="1">Flujo espiratorio máximo &gt; 50 % del mejor personal o del predicho<span class="score-pts">MOD</span></button>
+          <button type="button" class="score-item" data-stage="2">No completa frases en una sola respiración<span class="score-pts">GRAVE</span></button>
+          <button type="button" class="score-item" data-stage="2">Frecuencia respiratoria ≥ 25 por minuto<span class="score-pts">GRAVE</span></button>
+          <button type="button" class="score-item" data-stage="2">Pulso ≥ 110 por minuto<span class="score-pts">GRAVE</span></button>
+          <button type="button" class="score-item" data-stage="2">Flujo espiratorio máximo 33–50 %<span class="score-pts">GRAVE</span></button>
+          <button type="button" class="score-item" data-stage="3">Tórax silencioso, cianosis o esfuerzo respiratorio débil<span class="score-pts">VITAL</span></button>
+          <button type="button" class="score-item" data-stage="3">Bradicardia, arritmia o hipotensión<span class="score-pts">VITAL</span></button>
+          <button type="button" class="score-item" data-stage="3">Agotamiento, confusión o somnolencia<span class="score-pts">VITAL</span></button>
+          <button type="button" class="score-item" data-stage="3">Saturación &lt; 92 % o PaO₂ &lt; 60 mmHg con oxígeno<span class="score-pts">VITAL</span></button>
+          <button type="button" class="score-item" data-stage="3">Flujo espiratorio máximo &lt; 33 %<span class="score-pts">VITAL</span></button>
+          <button type="button" class="score-item" data-stage="3">PaCO₂ normal (35–45 mmHg) en una crisis grave<span class="score-pts">VITAL</span></button>
+          <button type="button" class="score-item" data-stage="4">PaCO₂ elevada (&gt; 45 mmHg) o ya requiere ventilación mecánica<span class="score-pts">CASI FATAL</span></button>
+        </div>
+        <div class="calc-out" id="sev-out">Marca los elementos presentes. El grado corresponde al hallazgo <strong>más grave</strong> marcado, no a la suma.</div>
+        <button type="button" class="calc-reset" id="sev-reset">Limpiar</button>
+      </div>
+
+      <div class="subhead">Quién tiene más probabilidad de morir de esta crisis</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🚩</span><span><strong>Asma casi fatal previa:</strong> intubación o ingreso a unidad crítica por asma en cualquier momento de la vida. Es el antecedente que más pesa y se pregunta siempre.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚩</span><span><strong>Uso de servicios en el último año:</strong> hospitalización o consultas repetidas en urgencia por asma.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚩</span><span><strong>Patrón de fármacos:</strong> consumo excesivo de agonista β₂ de acción corta (del orden de un inhalador al mes o más), <strong>no usar corticoide inhalado</strong> o mala adherencia, y corticoide oral en curso o recién suspendido.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚩</span><span><strong>Alergia alimentaria confirmada</strong>, comorbilidad psiquiátrica o problemas psicosociales, y dificultad de acceso a la atención.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏱️</span><span><strong>Dos historias naturales distintas:</strong> la crisis de <em>instalación lenta</em> en días, con inflamación y tapones de moco, y la de <strong>instalación súbita</strong> en minutos u horas, más broncoespástica, que se deteriora rápido pero también responde rápido. Preguntar por el tiempo de evolución cambia lo que se espera del tratamiento.</span></div>
+      </div>
+
+      <div class="subhead">Qué pedir, y qué no</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📉</span><span><strong>Flujo espiratorio máximo</strong> antes y después del tratamiento, siempre que el paciente pueda soplar. En la crisis con riesgo vital <strong>no se insiste</strong>: la maniobra agota y no cambia la conducta.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Gases arteriales o venosos</strong> si la saturación se mantiene &lt; 92 % pese al oxígeno, si hay signos de riesgo vital o si no responde al tratamiento. No son necesarios en la crisis moderada que mejora.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩻</span><span><strong>Radiografía de tórax solo con indicación:</strong> sospecha de neumotórax o neumomediastino, sospecha de neumonía, falta de respuesta al tratamiento, o paciente que va a ser intubado. No es de rutina y no debe retrasar el tratamiento.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔊</span><span><strong>Ecografía a la cabecera</strong> cuando hay duda: descarta neumotórax (ausencia de deslizamiento pleural), orienta a falla cardíaca (líneas B difusas, función ventricular) y ayuda a evaluar el estado de volumen antes de intubar.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧾</span><span><strong>Electrolitos</strong> tras dosis repetidas de agonista β₂: la <strong>hipopotasemia</strong> es esperable. El <strong>lactato elevado</strong> también lo es y no implica sepsis por sí solo.</span></div>
+      </div>
+
+      <div class="subhead">No todo lo que sibila es asma</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Alternativa</th><th>Lo que la delata</th></tr></thead>
+          <tbody>
+            <tr><td>Insuficiencia cardíaca aguda</td><td>Crepitaciones, ortopnea, ingurgitación yugular, líneas B difusas en la ecografía, péptidos natriuréticos elevados. El «asma cardial» del paciente mayor sin historia previa de asma</td></tr>
+            <tr><td>Anafilaxia</td><td>Inicio en minutos tras exposición, urticaria, angioedema, hipotensión, síntomas digestivos. <strong>El tratamiento es adrenalina intramuscular, no más nebulizaciones</strong></td></tr>
+            <tr><td>Obstrucción de vía aérea alta</td><td><strong>Estridor</strong> más que sibilancias, disfonía, cambio con la posición. Angioedema, cuerpo extraño, absceso, disfunción de cuerdas vocales</td></tr>
+            <tr><td>Tromboembolismo pulmonar</td><td>Disnea brusca con auscultación pobre, hipoxemia desproporcionada, factores de riesgo, sobrecarga derecha en la ecografía</td></tr>
+            <tr><td>Neumotórax</td><td>Dolor pleurítico brusco, asimetría, enfisema subcutáneo. Puede ser <strong>la complicación</strong> de la crisis, no solo su diferencial</td></tr>
+            <tr><td>EPOC reagudizada</td><td>Edad, tabaquismo, hipercapnia crónica conocida. El manejo comparte fármacos pero difiere en objetivos de oxigenación y en el papel de la ventilación no invasiva</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · TRATAMIENTO DE LA PRIMERA HORA -->
+  <div class="section s3" id="s3" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Tratamiento de la primera hora</div>
+        <div class="section-subtitle">Lo que sí cambia el desenlace · dosis</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Tres medidas sostienen todo el manejo: <strong>oxígeno titulado</strong>, <strong>agonista β₂ inhalado
+        repetido</strong> y <strong>corticoide sistémico precoz</strong>. Todo lo demás —magnesio, ipratropio,
+        ventilación no invasiva, terapias de rescate— se agrega sobre esa base, nunca la reemplaza. El corticoide no
+        alivia en los primeros minutos, pero es lo que evita el rebote y la recaída: por eso se da
+        <strong>dentro de la primera hora</strong>, no al final de la observación.</span>
+      </div>
+
+      <div class="subhead">Fármacos y dosis en el adulto</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Medida</th><th>Dosis habitual</th><th>Notas</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Oxígeno</td>
+              <td><span class="dose-main">Titulado a SpO₂ 93–95 %</span><br><span class="dose-note">mascarilla o cánula</span></td>
+              <td>No se busca el 100 %. La nebulización se impulsa con oxígeno en la crisis grave. En el embarazo el objetivo sube: <strong>SpO₂ ≥ 95 %</strong></td>
+            </tr>
+            <tr>
+              <td>Salbutamol nebulizado</td>
+              <td><span class="dose-main">2,5–5 mg cada 20 min × 3 dosis</span><br><span class="dose-note">luego según respuesta</span></td>
+              <td>En la crisis grave puede usarse <strong>nebulización continua</strong> (del orden de 10–15 mg/h). Flujo de oxígeno 6–8 L/min. <em>Verificar la presentación y la dilución del servicio.</em></td>
+            </tr>
+            <tr>
+              <td>Salbutamol en inhalador con aerocámara</td>
+              <td><span class="dose-main">4–10 disparos de 100 µg cada 20 min</span></td>
+              <td>Con técnica correcta es <strong>al menos tan eficaz</strong> como la nebulización en la crisis leve a moderada, y expone a menos aerosol. En la crisis con riesgo vital se prefiere nebulización con oxígeno</td>
+            </tr>
+            <tr>
+              <td>Bromuro de ipratropio</td>
+              <td><span class="dose-main">0,5 mg nebulizado cada 20 min × 3 dosis</span></td>
+              <td>Se agrega al salbutamol en la <strong>crisis grave</strong>, en la primera fase. Reduce ingresos; no aporta en la crisis leve ni como mantención prolongada</td>
+            </tr>
+            <tr>
+              <td>Corticoide sistémico</td>
+              <td><span class="dose-main">Prednisona 40–50 mg vía oral</span><br><span class="dose-note">o hidrocortisona 100 mg IV, o metilprednisolona 40–125 mg IV</span></td>
+              <td><strong>Dentro de la primera hora.</strong> La vía oral es tan eficaz como la intravenosa si el paciente puede tragar y no vomita; la intravenosa se reserva para quien no puede. Curso habitual de <strong>5–7 días</strong> sin descenso gradual</td>
+            </tr>
+            <tr>
+              <td>Sulfato de magnesio</td>
+              <td><span class="dose-main">2 g IV en 20 minutos</span><br><span class="dose-note">dosis única</span></td>
+              <td>En la <strong>crisis grave o con riesgo vital que no responde</strong> al tratamiento inhalado inicial. Vigila hipotensión durante la infusión. El magnesio nebulizado <strong>no</strong> ha mostrado beneficio consistente</td>
+            </tr>
+            <tr>
+              <td>Adrenalina intramuscular</td>
+              <td><span class="dose-main">0,3–0,5 mg (1 mg/mL) en cara anterolateral del muslo</span><br><span class="dose-note">repetible cada 5–15 min</span></td>
+              <td><strong>Obligatoria si hay anafilaxia.</strong> En la crisis casi fatal sin anafilaxia se usa cuando el flujo inspiratorio es tan bajo que el fármaco inhalado no llega: la evidencia es limitada y la decisión es clínica. <em>Verificar con protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Antibióticos</td>
+              <td><span class="dose-main">No de rutina</span></td>
+              <td>La mayoría de los desencadenantes son virales o alergénicos. Solo con evidencia de infección bacteriana (neumonía, sinusitis con criterios)</td>
+            </tr>
+            <tr>
+              <td>Sedantes</td>
+              <td><span class="dose-main">Contraindicados en el paciente que ventila espontáneamente</span></td>
+              <td>Deprimen el impulso respiratorio del paciente que está compensando con todo su esfuerzo. La única sedación aceptable es la de la intubación y la de la ventilación mecánica ya establecida</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Cómo saber si está funcionando</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔁</span><span><strong>Reevalúa a los 15–20 minutos de cada tanda</strong> y de forma estructurada a la hora: habla, esfuerzo respiratorio, frecuencia respiratoria y cardíaca, saturación, y flujo espiratorio máximo si puede soplar. La <strong>tendencia</strong> vale más que cualquier valor aislado.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📈</span><span><strong>Respuesta buena:</strong> flujo espiratorio máximo que sube por encima del 60–70 % del predicho o del mejor personal, síntomas mínimos y saturación estable en aire ambiente, sostenido durante al menos una hora tras la última dosis.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚩</span><span><strong>Respuesta mala:</strong> sin cambio o con deterioro tras el tratamiento máximo. Es el momento de <strong>llamar a unidad crítica y preparar la vía aérea</strong>, no de repetir la misma nebulización una cuarta vez esperando otro resultado.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏠</span><span><strong>Antes de dar de alta:</strong> corticoide oral indicado por escrito, corticoide inhalado iniciado o reanudado, revisión de la técnica del inhalador, plan de acción escrito, control precoz (habitualmente en 2–7 días) e identificación del desencadenante. <em>Los criterios de alta y observación se ajustan al protocolo institucional.</em></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · HIPERINSUFLACIÓN DINÁMICA -->
+  <div class="section s4" id="s4" style="animation-delay:0.24s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Hiperinsuflación dinámica</div>
+        <div class="section-subtitle">La fisiología que produce el colapso</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>El problema del asmático grave <strong>no es meter aire: es sacarlo</strong>. Si la siguiente insuflación
+        empieza antes de que el pulmón termine de vaciarse, queda volumen atrapado. Ese volumen se acumula respiración
+        tras respiración, genera una presión positiva al final de la espiración que nadie programó
+        —<strong>auto-PEEP</strong>— y esa presión <strong>comprime el corazón y las venas cavas</strong>: cae el
+        retorno venoso, cae el gasto, y el paciente se hipotensa. Llevado al extremo, produce paro con actividad
+        eléctrica sin pulso y neumotórax a tensión.</span>
+      </div>
+
+      <div class="subhead">La espiral del atrapamiento aéreo</div>
+      <div class="flow">
+        <div class="flow-node ask">
+          <span class="flow-q">Punto de partida</span>
+          La obstrucción espiratoria <strong>alarga el tiempo que el pulmón necesita para vaciarse</strong>. Con broncoespasmo, edema y tapones de moco, esa constante de tiempo se multiplica.
+        </div>
+        <div class="flow-branch">
+          <div class="flow-node hold">
+            <span class="flow-q">Apilamiento de respiraciones</span>
+            Cada nueva insuflación —espontánea, con bolsa o del ventilador— entra <strong>antes de que salga la anterior</strong>. El volumen pulmonar al final de la espiración sube por encima de la capacidad residual funcional.
+          </div>
+          <div class="flow-node hold">
+            <span class="flow-q">Auto-PEEP</span>
+            El aire atrapado genera <strong>presión positiva intratorácica sostenida</strong>. El paciente tiene que vencerla antes de generar flujo: aumenta el trabajo respiratorio y el diafragma, ya aplanado, trabaja en desventaja mecánica.
+          </div>
+          <div class="flow-node stop">
+            <span class="flow-q">Colapso hemodinámico</span>
+            La presión intratorácica elevada <strong>obstruye el retorno venoso</strong> y comprime el ventrículo derecho: hipotensión, actividad eléctrica sin pulso y riesgo de <strong>barotrauma y neumotórax a tensión</strong>.
+          </div>
+        </div>
+        <div class="flow-node go">
+          <span class="flow-q">Cómo se rompe la espiral</span>
+          <strong>Dar tiempo espiratorio</strong>: bajar la frecuencia respiratoria y el volumen minuto, acortar el tiempo inspiratorio con flujo alto, y <strong>tolerar la hipercapnia</strong>. Ante el colapso: <strong>desconectar y dejar vaciar</strong>. Ninguna de estas maniobras es intuitiva cuando el paciente está hipóxico y el reflejo es ventilar más.
+        </div>
+      </div>
+
+      <div class="subhead">Cómo se mide y se reconoce</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">⏸️</span><span><strong>Pausa espiratoria en el ventilador:</strong> ocluir la rama espiratoria al final de la espiración permite leer la <strong>auto-PEEP</strong>. Requiere un paciente pasivo (sedado, con o sin bloqueo neuromuscular) y subestima la hiperinsuflación cuando hay vías muy colapsadas u ocluidas por moco.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📊</span><span><strong>Curva de flujo-tiempo:</strong> el flujo espiratorio <strong>no vuelve a cero</strong> antes de la siguiente insuflación. Es el signo más directo y no requiere ninguna maniobra.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧮</span><span><strong>Presión meseta</strong> (medida con pausa inspiratoria) por encima de <strong>30 cmH₂O</strong> refleja distensión alveolar y es mejor guía que la presión pico, que en el asmático está alta por la resistencia de la vía aérea y del tubo, no necesariamente por sobredistensión.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔍</span><span><strong>El volumen atrapado al final de la inspiración</strong> —medido dejando espirar pasivamente hasta capacidad residual funcional— es la variable que mejor predice complicaciones en los estudios clásicos de ventilación del asmático. Es una medición de unidad crítica, no de box de urgencia. <em>Verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>La presión pico alta no es, por sí sola, indicación de bajar el volumen corriente.</strong> Lo que hay que mirar es la meseta y la auto-PEEP: en el asmático la pico puede ser muy alta con una meseta aceptable.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · EVITAR LA INTUBACIÓN -->
+  <div class="section s5" id="s5" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Antes de intubar</div>
+        <div class="section-subtitle">Soporte no invasivo y decisión de vía aérea</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>En el asma, el tubo <strong>no trata la obstrucción</strong>: cambia un paciente que se agota por uno con
+        una vía aérea artificial, sedación profunda, presión positiva y riesgo de hiperinsuflación. La mortalidad del
+        asmático ventilado es mucho mayor que la del que no lo es. Por eso la intubación se
+        <strong>evita mientras sea razonable evitarla</strong>, y se hace <strong>sin demora</strong> cuando ya no lo
+        es. Retrasarla hasta el paro es el peor de los dos errores.</span>
+      </div>
+
+      <div class="subhead">Medidas que compran tiempo</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🪑</span><span><strong>Posición sentada, calma y trabajo en equipo.</strong> La agitación aumenta el consumo de oxígeno y el atrapamiento. Acompañar y explicar es parte del tratamiento; sedar para «tranquilizar» al que ventila espontáneamente, no.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💨</span><span><strong>Nebulización continua con oxígeno</strong> más ipratropio en la fase inicial, corticoide sistémico ya administrado y <strong>sulfato de magnesio 2 g IV</strong> si no ha respondido.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🌬️</span><span><strong>Cánula nasal de alto flujo:</strong> mejora el confort y permite nebulizar en paralelo. No descarga el trabajo respiratorio como la presión de soporte y <strong>no debe retrasar la decisión de intubar</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">😷</span><span><strong>Ventilación no invasiva:</strong> la evidencia en asma es <strong>mucho más débil</strong> que en EPOC o edema pulmonar y las guías no la recomiendan de rutina. Si se usa, es en área monitorizada, con presiones bajas, por tiempo corto, con el equipo y el operador listos para intubar, y se abandona ante cualquier deterioro. <em>Verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Ketamina en dosis subdisociativa</strong> (del orden de 0,1–0,3 mg/kg IV, o en infusión) se usa en algunos centros por su efecto broncodilatador y su menor depresión respiratoria; la evidencia de beneficio en la crisis asmática es limitada y no es una alternativa a intubar al paciente que se agota. <em>Verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🎈</span><span><strong>Heliox:</strong> reduce la resistencia al flujo turbulento y puede mejorar el depósito del broncodilatador, pero el beneficio clínico no es consistente, exige equipo específico y limita la fracción de oxígeno. No es un recurso a considerar antes que los anteriores.</span></div>
+      </div>
+
+      <div class="subhead">Cuándo se intuba</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🚨</span><span><strong>Paro o periparo, apnea, o deterioro de conciencia</strong> que impide proteger la vía aérea. Aquí no hay deliberación.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚨</span><span><strong>Agotamiento progresivo:</strong> respiración cada vez más superficial, silencio auscultatorio creciente, esfuerzo que decae, sudoración y confusión. El paciente que «se está quedando dormido» en una crisis grave está claudicando.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚨</span><span><strong>Hipoxemia refractaria</strong> pese a oxígeno en alta concentración, o deterioro clínico sostenido pese al tratamiento máximo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>La decisión es clínica, no gasométrica.</strong> Una PaCO₂ elevada en un paciente lúcido, que mejora y que coopera, puede observarse de cerca; un paciente exhausto se intuba aunque los gases «no estén tan mal». No existe una cifra de PaCO₂ que por sí sola obligue a intubar.</span></div>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./algoritmo-shock-cardiogenico.html">→ Algoritmo: shock cardiogénico y falla derecha</a>
+        <a class="cross-link" href="./guia-dolor-toracico.html">→ Guía de orientación: dolor torácico</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · INTUBACIÓN DE ALTO RIESGO -->
+  <div class="section s6" id="s6" style="animation-delay:0.36s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Intubar sin provocar el colapso</div>
+        <div class="section-subtitle">Secuencia · calculadora de dosis por peso</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>El asmático grave llega a la intubación <strong>hipoxémico, acidótico, hipovolémico por días de mala
+        ingesta y con el tórax lleno de aire atrapado</strong>. La inducción le quita el impulso respiratorio y el tono
+        simpático; la presión positiva le agrega hiperinsuflación. Los dos efectos <strong>llegan juntos</strong>, y por
+        eso la hipotensión posintubación es la regla y no la excepción. Se anticipa, no se improvisa.</span>
+      </div>
+
+      <div class="subhead">Preparación, en este orden</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">Antes</div>
+          <div><strong>El operador más experimentado disponible</strong>, y videolaringoscopio si se dispone. El primer intento debe ser el bueno: este paciente no tolera apneas repetidas ni intentos prolongados.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">Antes</div>
+          <div><strong>Volumen antes de la inducción:</strong> cristaloide <strong>500–1000 mL</strong> (del orden de 10 mL/kg) salvo contraindicación, para amortiguar la caída del retorno venoso.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">Antes</div>
+          <div><strong>Vasopresor listo y accesible:</strong> noradrenalina preparada o dosis de rescate en jeringa. No se busca en el momento en que la presión cae.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">Antes</div>
+          <div><strong>Preoxigenación máxima</strong> con el paciente sentado o semisentado, manteniendo la nebulización si es posible, y oxígeno nasal durante la apnea. La reserva es escasa: la desaturación llega rápido.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">Inducción</div>
+          <div><strong>Ketamina 1–2 mg/kg IV</strong> es el hipnótico de elección por su efecto broncodilatador y su relativa estabilidad hemodinámica. Alternativa: propofol en <strong>dosis reducida</strong> —también broncodilata, pero hipotensa mucho más en este paciente.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">Inducción</div>
+          <div><strong>Bloqueo neuromuscular:</strong> rocuronio <strong>1,2 mg/kg</strong> o succinilcolina <strong>1,5 mg/kg</strong> (atención a la hiperpotasemia y a las contraindicaciones habituales). Una parálisis completa evita la tos, el laringoespasmo y el aumento brusco de la presión en la vía aérea.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">Tubo</div>
+          <div><strong>El tubo más grande razonable (habitualmente 8,0–8,5 mm en el adulto):</strong> reduce la resistencia al flujo y permite aspirar los tapones de moco, que son parte del problema.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">Después</div>
+          <div><strong>Ventila lento a mano: 6–8 por minuto</strong>, volúmenes pequeños y espiración completa antes de la siguiente insuflación. El reflejo de «ventilar bien» al paciente recién intubado es exactamente lo que lo hipotensa.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">Después</div>
+          <div><strong>Sedación y analgesia adecuadas de inmediato</strong>, y bloqueo neuromuscular mientras sea necesario para evitar la asincronía. Confirma posición con capnografía y auscultación, y busca activamente <strong>neumotórax</strong>.</div>
+        </div>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Dosis por peso · ingresa el peso real estimado</div>
+        <div class="calc-field">
+          <input type="number" id="peso" min="20" max="250" step="1" inputmode="decimal" placeholder="70">
+          <span class="unit">kg</span>
+        </div>
+        <div class="calc-out" id="peso-out">Ingresa el peso para ver las dosis de inducción, bloqueo neuromuscular, volumen y magnesio calculadas.</div>
+        <button type="button" class="calc-reset" id="peso-reset">Limpiar</button>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span>Las dosis calculadas son <strong>orientativas y se ajustan al paciente</strong>: en el hipotenso o
+        hipovolémico el hipnótico se reduce, y en la obesidad la dosificación por peso real no aplica a todos los
+        fármacos. <em>Verificar con protocolo institucional</em> la dosificación en obesidad, embarazo, insuficiencia
+        renal o hepática, y las presentaciones y diluciones de tu servicio.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · VENTILACIÓN MECÁNICA -->
+  <div class="section s7" id="s7" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Ventilación mecánica del asmático</div>
+        <div class="section-subtitle">Parámetros · calculadora de peso predicho</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>El objetivo <strong>no es normalizar los gases</strong>: es oxigenar aceptablemente mientras se evita la
+        hiperinsuflación y se espera a que el broncodilatador y el corticoide actúen. Eso significa
+        <strong>ventilar poco y dejar espirar mucho</strong>, y aceptar una PaCO₂ alta. La estrategia se llama
+        <strong>hipercapnia permisiva</strong> y es la que reduce el barotrauma y la hipotensión.</span>
+      </div>
+
+      <div class="subhead">Parámetros iniciales orientativos en el adulto</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Parámetro</th><th>Valor inicial</th><th>Por qué</th></tr></thead>
+          <tbody>
+            <tr><td>Modo</td><td><span class="dose-main">Volumen control</span></td><td>Permite ver directamente presiones, meseta y curvas de flujo. Cualquier modo sirve si se vigilan las mismas variables</td></tr>
+            <tr><td>Volumen corriente</td><td><span class="dose-main">6–8 mL/kg de peso predicho</span></td><td>El peso predicho se calcula por talla y sexo, no por el peso real</td></tr>
+            <tr><td>Frecuencia respiratoria</td><td><span class="dose-main">8–12 por minuto</span></td><td>Es el parámetro que más alarga el tiempo espiratorio. Bajarla es la primera maniobra ante hiperinsuflación</td></tr>
+            <tr><td>Flujo inspiratorio</td><td><span class="dose-main">60–80 L/min, onda cuadrada</span></td><td>Acorta el tiempo inspiratorio y deja más tiempo para espirar. Sube la presión pico, que no es el problema</td></tr>
+            <tr><td>Relación I:E</td><td><span class="dose-main">1:4 a 1:5 o mayor</span></td><td>Consecuencia de la frecuencia y del flujo, no un número que se programe aislado</td></tr>
+            <tr><td>PEEP</td><td><span class="dose-main">0–5 cmH₂O</span></td><td>En el paciente pasivo, una PEEP externa alta puede agravar la hiperinsuflación; en el que dispara el ventilador puede reducir el trabajo de disparo frente a la auto-PEEP. <em>Verificar con protocolo institucional.</em></td></tr>
+            <tr><td>Presión meseta</td><td><span class="dose-main">Objetivo &lt; 30 cmH₂O</span></td><td>Refleja distensión alveolar. Es la presión que guía los ajustes, no la pico</td></tr>
+            <tr><td>FiO₂</td><td><span class="dose-main">La necesaria para SpO₂ 93–95 %</span></td><td>La hipoxemia grave y persistente obliga a buscar otra causa: neumotórax, tapón, atelectasia o intubación selectiva</td></tr>
+            <tr><td>pH tolerado</td><td><span class="dose-main">Habitualmente ≥ 7,15–7,20</span></td><td>Umbral y uso de bicarbonato variables entre centros y según comorbilidad. <em>Verificar con protocolo institucional.</em></td></tr>
+            <tr><td>Sedación</td><td><span class="dose-main">Profunda; bloqueo neuromuscular si es necesario</span></td><td>La asincronía agrava el atrapamiento. Limita la duración del bloqueo: junto a los corticoides se asocia a miopatía del paciente crítico</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Peso predicho y volumen corriente</div>
+        <div class="toggle-row" id="sexo-row">
+          <button type="button" class="toggle-btn" data-sex="h">Hombre</button>
+          <button type="button" class="toggle-btn" data-sex="m">Mujer</button>
+        </div>
+        <div class="calc-label second">Talla</div>
+        <div class="calc-field">
+          <input type="number" id="talla" min="120" max="220" step="1" inputmode="decimal" placeholder="170">
+          <span class="unit">cm</span>
+        </div>
+        <div class="calc-out" id="pbw-out">Elige el sexo e ingresa la talla para calcular el peso predicho y el rango de volumen corriente.</div>
+        <button type="button" class="calc-reset" id="pbw-reset">Limpiar</button>
+      </div>
+
+      <div class="subhead">Si la presión meseta sube o el paciente se hipotensa</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1️⃣</span><span><strong>Baja la frecuencia respiratoria</strong> antes que nada, y acepta que la PaCO₂ suba. Es la maniobra con mayor efecto sobre el atrapamiento.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2️⃣</span><span><strong>Reduce el volumen corriente</strong> dentro del rango y <strong>sube el flujo inspiratorio</strong> para acortar el tiempo de insuflación.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3️⃣</span><span><strong>Revisa la PEEP externa</strong> y bájala en el paciente pasivo. Comprueba la sedación y la sincronía: un paciente que lucha con el ventilador atrapa más aire.</span></div>
+        <div class="plain-item"><span class="bullet-icon">4️⃣</span><span><strong>Descarta lo mecánico:</strong> tubo acodado, mordido u obstruido por secreciones, intubación selectiva del bronquio derecho y, siempre, <strong>neumotórax</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">5️⃣</span><span><strong>Mantén el broncodilatador durante la ventilación</strong>, adaptado al circuito (inhalador con espaciador en línea o nebulización), y sigue con el corticoide sistémico: el tubo no trata la obstrucción.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · COLAPSO POSINTUBACIÓN -->
+  <div class="section s8" id="s8" style="animation-delay:0.48s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Colapso tras la intubación</div>
+        <div class="section-subtitle">DOPES · desconectar y dejar vaciar</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>Ante una caída brusca de la presión arterial o del gasto en un asmático recién intubado, la primera
+        maniobra es <strong>desconectarlo del ventilador</strong> y dejar que el tórax se vacíe durante
+        <strong>30–60 segundos</strong>, comprimiendo suavemente la pared torácica para ayudar la espiración. Si la
+        causa era la hiperinsuflación, la presión se recupera en ese lapso. Si no se recupera, el siguiente sospechoso
+        es el <strong>neumotórax a tensión</strong>, que se descomprime sin esperar la radiografía.</span>
+      </div>
+
+      <div class="subhead">DOPES: las cinco causas, en orden de rapidez</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Letra</th><th>Causa</th><th>Qué hacer</th></tr></thead>
+          <tbody>
+            <tr><td>D</td><td><strong>Desplazamiento</strong> del tubo: extubación, intubación esofágica o selectiva del bronquio derecho</td><td>Capnografía, auscultación, profundidad del tubo, laringoscopia o videolaringoscopia si hay duda</td></tr>
+            <tr><td>O</td><td><strong>Obstrucción</strong>: tapón de moco, tubo acodado o mordido</td><td>Pasar sonda de aspiración, revisar el trayecto, colocar mordedor. Si no pasa la sonda, el tubo está obstruido</td></tr>
+            <tr><td>P</td><td><strong>Neumotórax</strong>, habitualmente a tensión</td><td>Descompresión inmediata guiada por la clínica; ecografía si está a mano y no retrasa. <strong>Bilateral si el paciente está en paro</strong> y la sospecha es alta</td></tr>
+            <tr><td>E</td><td><strong>Equipo</strong>: falla del ventilador, desconexión, fuente de oxígeno, circuito</td><td>Desconectar y <strong>ventilar a mano</strong> con bolsa y oxígeno mientras alguien revisa el equipo</td></tr>
+            <tr><td>S</td><td><strong>Apilamiento de respiraciones</strong> (hiperinsuflación dinámica)</td><td><strong>Desconectar 30–60 segundos</strong> con compresión torácica espiratoria; al reconectar, frecuencia más baja, volumen menor y flujo más alto</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">La secuencia completa, en el box</div>
+      <div class="flow">
+        <div class="flow-node stop">
+          <span class="flow-q">Segundo 0</span>
+          <strong>Desconecta del ventilador</strong> y comprime el tórax para vaciarlo. Oxígeno por el tubo. Nadie ventila mientras tanto.
+        </div>
+        <div class="flow-branch">
+          <div class="flow-node go">
+            <span class="flow-q">Si la presión se recupera</span>
+            Era <strong>hiperinsuflación</strong>. Reconecta con <strong>frecuencia 8–10, volumen corriente en el rango bajo y flujo alto</strong>, revisa sedación y sincronía, y vigila la curva de flujo.
+          </div>
+          <div class="flow-node stop">
+            <span class="flow-q">Si no se recupera</span>
+            Piensa <strong>neumotórax a tensión</strong>: descomprime el lado sospechoso —o ambos si está en paro y la sospecha es alta— y continúa con el resto de DOPES. Revisa además hipovolemia y el efecto del hipnótico: <strong>fluidos y vasopresor</strong> en paralelo.
+          </div>
+        </div>
+        <div class="flow-node ask">
+          <span class="flow-q">Después, siempre</span>
+          <strong>Deja escrito qué ocurrió y qué maniobra funcionó.</strong> Si vuelve a pasar en el traslado o en la unidad crítica, el equipo siguiente necesita saberlo. Revisa los parámetros con los que quedó conectado.
+        </div>
+      </div>
+
+      <div class="plain-list" style="margin-top:14px;">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Ventilar más rápido o con más volumen ante la hipotensión posintubación</strong> es el error que cierra la espiral: empeora exactamente la causa del colapso.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫁</span><span>La <strong>técnica de descompresión torácica</strong>, el sitio de punción y la indicación de tubo pleural inmediato se rigen por el protocolo local y por la disponibilidad de ecografía. <em>Verificar con protocolo institucional.</em></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · PARO EN EL ASMÁTICO -->
+  <div class="section s9" id="s9" style="animation-delay:0.54s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Paro cardiorrespiratorio en el asmático</div>
+        <div class="section-subtitle">Reanimación con dos causas específicas</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>El paro del asmático suele ser <strong>hipóxico y por actividad eléctrica sin pulso</strong>, y tiene dos
+        causas propias que hay que buscar de inmediato: <strong>hiperinsuflación dinámica</strong> y
+        <strong>neumotórax a tensión</strong>. Ambas se tratan con maniobras, no con fármacos.</span>
+      </div>
+
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔌</span><span><strong>Desconecta del ventilador o de la bolsa</strong> y comprime el tórax para vaciarlo: si el paro es por atrapamiento, es la maniobra que puede revertirlo. Repítela si el paciente vuelve a deteriorarse.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫁</span><span><strong>Ventila a frecuencia baja (del orden de 8–10 por minuto) y con volúmenes pequeños</strong> durante la reanimación. Hiperventilar durante el paro es dañino en cualquier paciente y aquí es letal.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🪡</span><span><strong>Descompresión torácica</strong> ante sospecha de neumotórax a tensión; considerarla <strong>bilateral</strong> si la sospecha es alta y no hay respuesta. En el paciente en paro la confirmación por imagen no es un requisito previo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💪</span><span><strong>Compresiones de alta calidad</strong>: pueden requerir más fuerza por la hiperinsuflación torácica. Adrenalina y desfibrilación según el algoritmo estándar de soporte vital avanzado.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔍</span><span><strong>El resto de las causas reversibles sigue vigente</strong>: hipoxia, hipovolemia, hipopotasemia o hiperpotasemia, acidosis, tóxicos, taponamiento, trombosis. La ecografía en las pausas ayuda sin interrumpir las compresiones.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧬</span><span>En centros con programa, el <strong>soporte extracorpóreo</strong> se ha usado en el asma casi fatal refractaria: la consulta se hace <strong>temprano</strong>, no cuando ya no hay nada que ofrecer. <em>Verificar disponibilidad y criterios institucionales.</em></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · REFRACTARIO -->
+  <div class="section s10" id="s10" style="animation-delay:0.60s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Crisis refractaria: rescate, equipo y traslado</div>
+        <div class="section-subtitle">Qué queda cuando lo estándar no alcanza</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Antes de escalar a una terapia de rescate, <strong>revisa lo básico</strong>: ¿el fármaco está llegando
+        —técnica, flujo, circuito—? ¿Recibió el corticoide sistémico y hace cuánto? ¿Hay un
+        <strong>neumotórax, una neumonía o una anafilaxia</strong> no reconocidos? ¿Sigue expuesto al desencadenante?
+        La mayoría de las crisis «refractarias» tienen una explicación en esta lista.</span>
+      </div>
+
+      <div class="subhead">Terapias de rescate</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Medida</th><th>Cómo se usa</th><th>Evidencia y cautelas</th></tr></thead>
+          <tbody>
+            <tr><td>Sulfato de magnesio</td><td>2 g IV en 20 min, dosis única</td><td>Razonable en la crisis grave que no responde al tratamiento inhalado inicial. El beneficio es modesto y no sustituye nada de lo anterior</td></tr>
+            <tr><td>Adrenalina intramuscular</td><td>0,3–0,5 mg, repetible</td><td>Indicada siempre en anafilaxia. En la crisis casi fatal sin anafilaxia se usa cuando el aerosol no llega; evidencia limitada</td></tr>
+            <tr><td>Agonista β₂ intravenoso</td><td>Salbutamol o terbutalina en infusión</td><td>Se usa en algunos sistemas cuando la vía inhalada ha fallado. Arritmias, hipopotasemia y acidosis láctica son frecuentes. <em>Verificar con protocolo institucional.</em></td></tr>
+            <tr><td>Ketamina</td><td>Bolo o infusión continua</td><td>Broncodilatador con evidencia limitada en asma. Útil sobre todo como hipnótico de la intubación y como sedante del paciente ya ventilado</td></tr>
+            <tr><td>Aminofilina</td><td>Carga y luego infusión</td><td><strong>No se recomienda de rutina</strong>: beneficio adicional escaso sobre el tratamiento moderno y margen terapéutico estrecho, con vómitos, arritmias y convulsiones. Si el centro la usa, requiere monitorización y ajuste. <em>Verificar con protocolo institucional.</em></td></tr>
+            <tr><td>Heliox</td><td>Mezcla helio-oxígeno</td><td>Puede mejorar el flujo y el depósito del aerosol, pero el beneficio clínico no es consistente y limita la FiO₂ disponible</td></tr>
+            <tr><td>Anestésicos inhalados</td><td>Sevoflurano o isoflurano en el ventilador con equipo específico</td><td>Broncodilatadores potentes, usados como rescate en unidad crítica o pabellón por equipos entrenados. Requieren circuito y monitorización específicos</td></tr>
+            <tr><td>Soporte extracorpóreo</td><td>Habitualmente venovenoso</td><td>Para la hipercapnia y la acidosis refractarias pese a ventilación optimizada. La consulta al centro con programa se hace temprano</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Equipo y traslado</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📞</span><span><strong>Llama a unidad crítica en cuanto aparezca un signo de riesgo vital</strong> o ante la falta de respuesta al tratamiento máximo, no cuando el paciente ya esté claudicando. Anestesia o quien maneje la vía aérea en tu centro, avisada en el mismo momento.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚑</span><span><strong>Centro sin unidad crítica:</strong> el traslado se gestiona en paralelo con el tratamiento, nunca después. Traslada con oxígeno, nebulización o inhalador en línea, monitorización, vía permeable, equipo de vía aérea y de descompresión torácica, y médico acompañante.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📝</span><span><strong>Entrega estructurada:</strong> hora de inicio de la crisis, dosis y horas exactas de lo administrado, respuesta a cada tanda, gases y su evolución, parámetros del ventilador si está intubado y qué maniobras funcionaron ante el deterioro.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔄</span><span><strong>El paciente que mejora también necesita plan:</strong> observación prolongada tras una crisis con riesgo vital, corticoide sistémico completo, corticoide inhalado, revisión de técnica y adherencia, y control precoz. La crisis casi fatal es el principal predictor de la siguiente.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 11 · TRAMPAS -->
+  <div class="section s11" id="s11" style="animation-delay:0.66s;">
+    <div class="section-header" onclick="toggleSection('s11')">
+      <span class="section-num">11</span>
+      <div>
+        <div class="section-title">Trampas y errores frecuentes</div>
+        <div class="section-subtitle">Lo que convierte una crisis manejable en una casi fatal</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Interpretar la desaparición de las sibilancias como mejoría.</strong> Sin flujo no hay ruido: el tórax silencioso es un signo de gravedad extrema.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Tranquilizarse con una PaCO₂ «normal».</strong> En una crisis grave debería estar baja; normal o alta significa fatiga.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Retrasar el corticoide sistémico</strong> hasta ver si mejora con las nebulizaciones. Se administra en la primera hora, siempre que la crisis sea más que leve.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Sedar al paciente que ventila espontáneamente</strong> porque está agitado. La agitación es hipoxia y esfuerzo, no ansiedad: sedarlo elimina lo único que lo mantiene vivo.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Repetir la misma nebulización una cuarta vez sin cambiar de plan.</strong> Si no hay respuesta al tratamiento máximo, lo que corresponde es escalar, llamar y preparar la vía aérea.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Usar ventilación no invasiva como sustituto de la intubación</strong> en el paciente que se agota, o mantenerla sin mejoría clara en el primer par de horas.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Intubar sin volumen ni vasopresor preparados</strong>, y ventilar «bien» al recién intubado: frecuencia alta y volúmenes generosos producen el colapso.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Perseguir una PaCO₂ normal en el ventilador.</strong> Subir la frecuencia para «corregir la acidosis» aumenta el atrapamiento y empeora todo.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Guiarse por la presión pico en lugar de la meseta</strong> y bajar el volumen corriente por un número que refleja resistencia de la vía aérea, no sobredistensión.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Olvidar el neumotórax.</strong> Es la complicación que se busca activamente en todo asmático que se deteriora, sobre todo ya ventilado.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Atribuir el lactato elevado a sepsis</strong> en un asmático que recibió varias dosis de agonista β₂, o no controlar el potasio tras esas dosis.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar de alta sin corticoide oral, sin corticoide inhalado, sin revisar la técnica y sin control precoz.</strong> La crisis tratada a medias vuelve, y la siguiente puede ser la casi fatal.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio. Está orientada al
+    <strong>adulto</strong> con crisis asmática grave; el paciente pediátrico, la reagudización de EPOC y la
+    obstrucción de la vía aérea alta tienen criterios, dosis y objetivos distintos, y se rigen por sus protocolos
+    específicos. Las <strong>dosis, umbrales y parámetros ventilatorios son orientativos</strong>: verifica el ajuste
+    por peso, edad, función renal y hepática, interacciones, embarazo y lactancia, y las contraindicaciones antes de
+    administrar cualquier fármaco, así como la presentación y dilución estandarizadas de tu servicio. Las indicaciones
+    de ventilación no invasiva, los parámetros de ventilación mecánica, el umbral de pH tolerado, las terapias de
+    rescate, la descompresión torácica y las vías de derivación y traslado deben contrastarse con el
+    <strong>protocolo institucional vigente</strong>. Las calculadoras de esta página describen la gravedad y convierten
+    unidades: <strong>complementan y no reemplazan la evaluación clínica</strong>.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Global Initiative for Asthma (GINA). <em>Global Strategy for Asthma Management and Prevention.</em> Informe anual actualizado. — Manejo de la exacerbación en urgencia, objetivos de saturación, corticoides sistémicos y magnesio.</div>
+      <div class="ref-item">British Thoracic Society / Scottish Intercollegiate Guidelines Network. <em>British Guideline on the Management of Asthma (SIGN 158).</em> 2019. — Criterios de crisis moderada, grave, con riesgo vital y casi fatal, y factores de riesgo de asma fatal.</div>
+      <div class="ref-item">NICE / BTS / SIGN. <em>Asthma: diagnosis, monitoring and chronic asthma management (NG245).</em> 2024. — Guía conjunta más reciente para el Reino Unido.</div>
+      <div class="ref-item">Tuxen DV, Lane S. <em>The effects of ventilatory pattern on hyperinflation, airway pressures, and circulation in mechanical ventilation of patients with severe air-flow obstruction.</em> Am Rev Respir Dis. 1987;136(4):872–879. — Base fisiológica de la hipercapnia permisiva y de la medición del aire atrapado.</div>
+      <div class="ref-item">Leatherman J. <em>Mechanical ventilation for severe asthma.</em> Chest. 2015;147(6):1671–1680. — Parámetros iniciales, auto-PEEP, presión meseta y manejo del deterioro.</div>
+      <div class="ref-item">Rodrigo GJ, Rodrigo C, Hall JB. <em>Acute asthma in adults: a review.</em> Chest. 2004;125(3):1081–1102. — Evaluación de gravedad y respuesta al tratamiento.</div>
+      <div class="ref-item">Goodacre S, et al. <em>Intravenous or nebulised magnesium sulphate versus standard therapy for severe acute asthma (3Mg trial).</em> Lancet Respir Med. 2013;1(4):293–300. — Magnesio intravenoso y nebulizado en urgencia.</div>
+      <div class="ref-item">Rowe BH, et al. <em>Magnesium sulfate for treating exacerbations of acute asthma in the emergency department.</em> Cochrane Database Syst Rev. — Revisión sistemática del magnesio intravenoso.</div>
+      <div class="ref-item">Lott C, et al. <em>European Resuscitation Council Guidelines 2021: Cardiac arrest in special circumstances.</em> Resuscitation. 2021;161:152–219. — Paro en el asma: desconexión del ventilador, ventilación de baja frecuencia y descompresión torácica.</div>
+      <div class="ref-item">Las dosis, la preparación de infusiones, los parámetros ventilatorios, el umbral de pH tolerado, la indicación de ventilación no invasiva, de terapias de rescate y de soporte extracorpóreo, y las vías de traslado deben contrastarse con el protocolo institucional vigente y con el equipo de cuidados críticos de referencia.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Árbol de decisión interactivo ─────────────────────────────────
+  const sel = { esc: null, vent: null, ctx: new Set() };
+
+  function bindSingle(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (sel[key] === v) {
+          sel[key] = null;
+          btn.classList.remove('on');
+        } else {
+          sel[key] = v;
+          group.querySelectorAll('.opt').forEach(b => b.classList.toggle('on', b === btn));
+        }
+        render();
+      });
+    });
+  }
+
+  function bindMulti(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (v === 'ninguno') {
+          sel[key].clear();
+          group.querySelectorAll('.opt').forEach(b => b.classList.remove('on'));
+          btn.classList.add('on');
+          sel[key].add('ninguno');
+        } else {
+          const none = group.querySelector('[data-v="ninguno"]');
+          none.classList.remove('on');
+          sel[key].delete('ninguno');
+          if (sel[key].has(v)) { sel[key].delete(v); btn.classList.remove('on'); }
+          else { sel[key].add(v); btn.classList.add('on'); }
+        }
+        render();
+      });
+    });
+  }
+
+  bindSingle('q-esc', 'esc');
+  bindSingle('q-vent', 'vent');
+  bindMulti('q-ctx', 'ctx');
+
+  const f = (v) => sel.ctx.has(v);
+
+  const SABA = '<strong>Salbutamol nebulizado 2,5–5 mg cada 20 minutos</strong> impulsado con oxígeno (o nebulización continua en la crisis grave), más <strong>ipratropio 0,5 mg</strong> en las tres primeras dosis.';
+  const CORTI = '<strong>Corticoide sistémico dentro de la primera hora</strong>: prednisona 40–50 mg vía oral, o hidrocortisona 100 mg IV si no puede tragar.';
+  const MG = '<strong>Sulfato de magnesio 2 g IV en 20 minutos</strong> si no responde al tratamiento inhalado inicial.';
+  const O2 = '<strong>Oxígeno titulado a SpO₂ 93–95 %</strong> (≥ 95 % en el embarazo), sin buscar el 100 %.';
+  const DESCONECTA = '<strong>Desconecta del ventilador o de la bolsa y comprime el tórax 30–60 segundos</strong> para dejarlo vaciar: la hiperinsuflación dinámica es la causa más frecuente y la más rápida de revertir.';
+  const LINK_SHOCK = '<a class="cross-link" style="margin-top:6px" href="./algoritmo-shock-cardiogenico.html">→ Algoritmo: shock cardiogénico y falla derecha</a>';
+
+  function classify() {
+    const { esc, vent } = sel;
+    if (!esc || !vent) return null;
+
+    // 1 · Paro, sea cual sea el escenario
+    if (esc === 'paro') {
+      return {
+        sev: 'red',
+        tag: 'Catástrofe en curso',
+        title: 'Paro cardiorrespiratorio en el asmático',
+        rows: [
+          ['Primero', DESCONECTA + ' En el paro del asmático esta maniobra puede ser el tratamiento.'],
+          ['Segundo', '<strong>Neumotórax a tensión:</strong> descomprime el lado sospechoso y considera hacerlo <strong>bilateral</strong> si la sospecha es alta y no hay respuesta. No esperes la radiografía.'],
+          ['Ventilación', '<strong>Frecuencia baja (8–10 por minuto) y volúmenes pequeños.</strong> Hiperventilar durante la reanimación empeora el atrapamiento y el retorno venoso.'],
+          ['En paralelo', 'Compresiones de alta calidad —pueden requerir más fuerza por la hiperinsuflación—, adrenalina y desfibrilación según el algoritmo estándar, volumen intravenoso y corrección de hipoxia y electrolitos.'],
+          ['Equipo', '<strong>Unidad crítica y vía aérea avanzada avisadas en el mismo minuto.</strong> Donde exista programa de soporte extracorpóreo, la consulta es ahora, no tras varios ciclos.'],
+          ['Después', 'Si recupera circulación: ventilación protectora de la hiperinsuflación (sección 07), sedación adecuada, búsqueda activa de neumotórax y traslado a unidad crítica.']
+        ]
+      };
+    }
+
+    // 2 · Colapso tras la intubación
+    if (esc === 'postintubacion') {
+      return {
+        sev: 'red',
+        tag: 'Iatrogenia reversible',
+        title: 'Colapso tras intubar o al conectar al ventilador',
+        rows: [
+          ['Primero', DESCONECTA + ' Si la presión se recupera en ese lapso, la causa era el aire atrapado.'],
+          ['Si no mejora', 'Recorre <strong>DOPES</strong>: desplazamiento del tubo, obstrucción por tapón o acodamiento, <strong>neumotórax a tensión</strong>, falla del equipo y apilamiento de respiraciones (sección 08).'],
+          ['En paralelo', '<strong>Volumen intravenoso y vasopresor</strong>: el paciente llega deshidratado, la inducción le quitó el tono simpático y la presión positiva hizo el resto.'],
+          ['Al reconectar', '<strong>Frecuencia 8–10 por minuto</strong>, volumen corriente 6–8 mL/kg de peso predicho, <strong>flujo inspiratorio alto</strong>, PEEP baja y presión meseta &lt; 30 cmH₂O. Tolera la hipercapnia (sección 07).'],
+          ['No hagas', '<strong>No ventiles más rápido ni con más volumen</strong> para «corregir» la hipotensión o la acidosis: es exactamente lo que la produce.'],
+          ['Destino', 'Unidad crítica, con registro escrito de qué ocurrió y qué maniobra funcionó.'],
+          ['Enlace', LINK_SHOCK]
+        ]
+      };
+    }
+
+    // 3 · Casi fatal
+    if (esc === 'casifatal') {
+      return {
+        sev: 'red',
+        tag: 'Asma casi fatal',
+        title: 'PaCO₂ que sube y paciente que se agota',
+        rows: [
+          ['Interpreta', 'En una crisis grave la PaCO₂ debería estar <strong>baja</strong>. Que esté normal o elevada, con esfuerzo respiratorio decreciente, significa <strong>fatiga de la musculatura respiratoria</strong>: es un criterio de gravedad extrema, no un dato de laboratorio más.'],
+          ['Ahora', O2 + ' ' + SABA + ' ' + CORTI + ' ' + MG],
+          ['Vía aérea', '<strong>Prepara la intubación con el operador más experimentado</strong>: volumen previo (500–1000 mL), vasopresor listo, preoxigenación máxima, <strong>ketamina 1–2 mg/kg</strong> más <strong>rocuronio 1,2 mg/kg</strong>, tubo grande. Ventila a mano lento tras la intubación (sección 06).'],
+          ['Después', 'Ventilación con <strong>hipercapnia permisiva</strong>: frecuencia 8–12, volumen corriente 6–8 mL/kg de peso predicho, flujo alto, PEEP baja, meseta &lt; 30 cmH₂O (sección 07).'],
+          ['Equipo', '<strong>Unidad crítica y vía aérea avisadas ya.</strong> No se espera a que el paciente claudique para llamar.'],
+          ['No hagas', '<strong>No uses ventilación no invasiva como sustituto</strong> ni sedes al paciente para «tranquilizarlo» antes de tener la vía aérea asegurada.']
+        ]
+      };
+    }
+
+    // 4 · Riesgo vital
+    if (esc === 'vital') {
+      return {
+        sev: 'red',
+        tag: 'Crisis con riesgo vital',
+        title: 'Tórax silencioso, agotamiento o compromiso hemodinámico',
+        rows: [
+          ['Reconoce', 'Tórax silencioso, cianosis, esfuerzo débil, bradicardia, hipotensión, confusión o somnolencia: el paciente <strong>casi no mueve aire</strong>. La ausencia de sibilancias aquí es el peor signo posible.'],
+          ['Ahora', O2 + ' ' + SABA],
+          ['Fármacos', CORTI + ' ' + MG + ' Si el flujo inspiratorio es tan bajo que el aerosol no llega, o hay sospecha de anafilaxia, <strong>adrenalina intramuscular 0,3–0,5 mg</strong>.'],
+          ['Prepara', '<strong>Vía aérea lista y equipo reunido</strong>: material de intubación, vasopresor, volumen y material de descompresión torácica a la vista. Monitorización continua y capnografía si está disponible.'],
+          ['Equipo', '<strong>Llama a unidad crítica ahora.</strong> Este paciente no se observa desde el pasillo.'],
+          ['No hagas', 'No insistas con el flujo espiratorio máximo —la maniobra agota—, no sedes al paciente que ventila espontáneamente y no confíes en la saturación como único indicador de mejoría.']
+        ]
+      };
+    }
+
+    // 5 · Refractaria
+    if (esc === 'refractaria') {
+      return {
+        sev: 'red',
+        tag: 'Sin respuesta al tratamiento máximo',
+        title: 'Crisis grave que no mejora tras la primera hora',
+        rows: [
+          ['Revisa lo básico', '¿El fármaco <strong>está llegando</strong> (técnica, flujo de oxígeno, circuito, aerocámara)? ¿Recibió el corticoide sistémico y hace cuánto? ¿Sigue expuesto al desencadenante?'],
+          ['Descarta', '<strong>Neumotórax, neumonía, anafilaxia no reconocida, insuficiencia cardíaca, tromboembolismo y obstrucción de vía aérea alta.</strong> La radiografía de tórax y la ecografía a la cabecera están indicadas aquí.'],
+          ['Escala', MG + ' Nebulización continua, y valora adrenalina intramuscular, agonista β₂ intravenoso o ketamina según la disponibilidad y el protocolo de tu centro. <em>Verificar con protocolo institucional.</em>'],
+          ['Anticipa', '<strong>Prepara la vía aérea antes de necesitarla:</strong> volumen, vasopresor, ketamina y bloqueante neuromuscular calculados por peso (sección 06).'],
+          ['Equipo', '<strong>Unidad crítica avisada.</strong> Si el centro no tiene unidad crítica, activa el traslado en paralelo con el tratamiento.'],
+          ['No hagas', 'No repitas la misma nebulización una cuarta vez sin cambiar de plan, y no uses ventilación no invasiva para retrasar una intubación que ya está indicada.']
+        ]
+      };
+    }
+
+    // 6 · Crisis grave
+    if (esc === 'grave') {
+      return {
+        sev: 'amber',
+        tag: 'Crisis grave',
+        title: 'No completa frases, taquipnea y taquicardia',
+        rows: [
+          ['Ahora', O2 + ' ' + SABA],
+          ['Fármacos', CORTI + ' Valora <strong>magnesio 2 g IV</strong> si no hay respuesta a la primera tanda.'],
+          ['Monitoriza', 'Monitorización continua, flujo espiratorio máximo antes y después del tratamiento si puede soplar, y <strong>gases si la saturación se mantiene &lt; 92 % con oxígeno</strong> o si no responde.'],
+          ['Reevalúa', '<strong>A los 15–20 minutos de cada tanda y de forma estructurada a la hora.</strong> La tendencia del esfuerzo respiratorio, del habla y del flujo espiratorio manda sobre cualquier valor aislado.'],
+          ['Prepara', 'Ten identificado quién maneja la vía aérea en tu centro y avisa a unidad crítica si no hay mejoría clara.'],
+          ['Destino', 'Observación prolongada u hospitalización según la respuesta. <em>Los criterios de alta se ajustan al protocolo institucional.</em>']
+        ]
+      };
+    }
+
+    // 7 · Crisis moderada
+    if (esc === 'moderada') {
+      return {
+        sev: 'green',
+        tag: 'Crisis moderada',
+        title: 'Responde al tratamiento inicial',
+        rows: [
+          ['Ahora', '<strong>Salbutamol en inhalador con aerocámara, 4–10 disparos cada 20 minutos</strong>, o nebulizado 2,5–5 mg. Oxígeno solo si la saturación lo requiere, con objetivo de 93–95 %.'],
+          ['Fármacos', CORTI + ' También en la crisis moderada: es lo que evita la recaída en los días siguientes.'],
+          ['Reevalúa', 'A los 15–20 minutos y de forma estructurada a la hora: habla, esfuerzo, frecuencias, saturación y flujo espiratorio máximo.'],
+          ['Alta segura', '<strong>Síntomas mínimos, saturación estable en aire ambiente y flujo espiratorio máximo por encima del 60–70 %</strong> sostenidos al menos una hora tras la última dosis.'],
+          ['Antes de irse', 'Corticoide oral por escrito (habitualmente 5–7 días), <strong>corticoide inhalado iniciado o reanudado</strong>, revisión de la técnica del inhalador, plan de acción escrito, control precoz e identificación del desencadenante.'],
+          ['Ojo', 'Si tiene <strong>antecedente de intubación o unidad crítica por asma</strong>, hospitalización en el último año o mal acceso a la atención, el umbral para observar más tiempo baja.']
+        ]
+      };
+    }
+
+    // 8 · Duda diagnóstica
+    if (esc === 'dudadx') {
+      return {
+        sev: 'amber',
+        tag: 'Antes de tratar como asma',
+        title: 'Sibilancias que pueden no ser asma',
+        rows: [
+          ['Pregunta', '¿Tiene <strong>diagnóstico previo de asma</strong> y crisis parecidas antes? La primera «crisis asmática» después de los 50 años, sin historia previa, obliga a mirar otras causas.'],
+          ['Descarta', '<strong>Insuficiencia cardíaca</strong> (crepitaciones, ortopnea, líneas B, péptidos natriuréticos), <strong>anafilaxia</strong> (inicio brusco tras exposición, urticaria, angioedema, hipotensión), <strong>obstrucción de vía aérea alta</strong> (estridor, disfonía), <strong>tromboembolismo pulmonar</strong>, <strong>neumotórax</strong> y EPOC reagudizada.'],
+          ['Herramientas', '<strong>Ecografía a la cabecera</strong> (deslizamiento pleural, líneas B, función ventricular, vena cava), electrocardiograma, radiografía de tórax y péptidos natriuréticos según la sospecha.'],
+          ['Mientras tanto', 'Oxígeno titulado y, si la sospecha de broncoespasmo es razonable, <strong>salbutamol inhalado</strong>: es de bajo riesgo. <strong>Si hay cualquier sospecha de anafilaxia, adrenalina intramuscular sin esperar</strong>.'],
+          ['No hagas', 'No trates como asma refractaria lo que nunca fue asma: es la vía más rápida a un edema pulmonar mal manejado o a una anafilaxia sin adrenalina.'],
+          ['Enlace', LINK_SHOCK]
+        ]
+      };
+    }
+
+    return null;
+  }
+
+  function ventRows() {
+    const extra = [];
+    if (sel.vent === 'fatiga') {
+      extra.push(['Fatiga', '<strong>Signos de claudicación:</strong> habla entrecortada, uso de musculatura accesoria, somnolencia o PaCO₂ en ascenso. Reúne el equipo de vía aérea <strong>ahora</strong>: la intubación de este paciente es electiva durante unos minutos y después deja de serlo.']);
+    }
+    if (sel.vent === 'vni') {
+      extra.push(['No invasiva', '<strong>La evidencia en asma es débil y no sustituye a la intubación.</strong> Úsala solo en área monitorizada, con presiones bajas, por tiempo corto y con el equipo listo para intubar; abandónala ante cualquier deterioro. <em>Verificar con protocolo institucional.</em>']);
+    }
+    if (sel.vent === 'vm') {
+      extra.push(['Ventilador', '<strong>Hipercapnia permisiva:</strong> frecuencia 8–12 por minuto, volumen corriente 6–8 mL/kg de peso predicho, flujo inspiratorio 60–80 L/min, PEEP baja, presión <strong>meseta &lt; 30 cmH₂O</strong>. Si la meseta sube o cae la presión arterial, <strong>baja primero la frecuencia</strong> (sección 07).']);
+      extra.push(['Vigila', 'Curva de flujo que no vuelve a cero, auto-PEEP en pausa espiratoria, sedación y sincronía, y <strong>neumotórax</strong>. Mantén el broncodilatador y el corticoide durante la ventilación: el tubo no trata la obstrucción.']);
+    }
+    if (sel.vent === 'hipotension') {
+      extra.push(['Hipotensión', 'En el asmático, hasta demostrar lo contrario es <strong>hiperinsuflación dinámica o neumotórax a tensión</strong>. ' + DESCONECTA + ' Si no se recupera, descomprime. En paralelo, <strong>volumen y vasopresor</strong> (sección 08).']);
+    }
+    return extra;
+  }
+
+  function contextRows() {
+    const extra = [];
+    if (f('anafilaxia')) {
+      extra.push(['Anafilaxia', '<strong>Adrenalina intramuscular 0,3–0,5 mg en el muslo, sin demora y repetible cada 5–15 minutos.</strong> Es el tratamiento que cambia el desenlace; las nebulizaciones no lo reemplazan. Retira el desencadenante, posición en decúbito con piernas elevadas si hay hipotensión, y volumen intravenoso.']);
+    }
+    if (f('neumotorax')) {
+      extra.push(['Neumotórax', '<strong>Sospecha activa:</strong> asimetría, dolor pleurítico brusco, enfisema subcutáneo o deterioro súbito. Ecografía a la cabecera (ausencia de deslizamiento pleural). Si hay compromiso hemodinámico, <strong>descomprime sin esperar la radiografía</strong>.']);
+    }
+    if (f('riesgo')) {
+      extra.push(['Alto riesgo', '<strong>Perfil de asma casi fatal:</strong> intubación o unidad crítica previas, hospitalización en el último año, uso excesivo de agonista β₂, corticoide oral reciente o suspendido, mala adherencia. Baja el umbral para escalar, para llamar y para observar más tiempo, y <strong>no lo des de alta precozmente</strong>.']);
+    }
+    if (f('embarazo')) {
+      extra.push(['Embarazo', '<strong>La crisis se trata igual y con la misma energía:</strong> la hipoxemia materna es más peligrosa para el feto que los fármacos. Objetivo de <strong>SpO₂ ≥ 95 %</strong>, decúbito lateral izquierdo o desplazamiento uterino, monitorización fetal según edad gestacional y <strong>obstetricia avisada</strong>.']);
+    }
+    if (f('beta')) {
+      extra.push(['Efectos β₂', '<strong>Hipopotasemia, hiperglicemia, temblor y acidosis láctica</strong> son esperables tras dosis repetidas. Controla el potasio y repónlo; <strong>el lactato elevado en este contexto no significa sepsis por sí solo</strong> y no justifica intensificar la nebulización.']);
+    }
+    if (f('sinuci')) {
+      extra.push(['Traslado', '<strong>Centro sin unidad crítica:</strong> el traslado es parte del tratamiento y se gestiona en paralelo con la estabilización. Traslada con oxígeno, broncodilatador en marcha, monitorización, vía permeable, equipo de vía aérea y de descompresión torácica, y médico acompañante.']);
+    }
+    return extra;
+  }
+
+  function render() {
+    const box = document.getElementById('result');
+    const r = classify();
+    if (!r) {
+      box.className = 'result placeholder';
+      box.innerHTML = 'Selecciona el escenario dominante y el estado ventilatorio para ver la prioridad, qué hacer en ' +
+                      'los primeros minutos, qué fármaco corresponde, qué está contraindicado y a quién llamar.';
+      return;
+    }
+    const rows = r.rows.filter(row => row && row[1]);
+    const enlace = rows.length && rows[rows.length - 1][0] === 'Enlace' ? rows.pop() : null;
+    rows.push(...ventRows());
+    rows.push(...contextRows());
+    if (enlace) rows.push(enlace);
+
+    box.className = 'result sev-' + r.sev;
+    box.innerHTML =
+      '<div class="result-tag">' + r.tag + '</div>' +
+      '<div class="result-title">' + r.title + '</div>' +
+      rows.map(([k, v]) =>
+        '<div class="result-row"><div class="result-key">' + k + '</div><div>' + v + '</div></div>'
+      ).join('');
+  }
+
+  // ── Grado de la crisis ────────────────────────────────────────────
+  const sevList = document.getElementById('sev-list');
+
+  const SEV_NOTA = '<br><br>La graduación <strong>complementa y no reemplaza el juicio clínico</strong>: describe la ' +
+                   'gravedad en este momento y debe repetirse tras cada tanda de tratamiento, porque el grado cambia ' +
+                   'en minutos —en los dos sentidos—. Los criterios de observación, hospitalización y alta se definen ' +
+                   'con el <em>protocolo institucional.</em>';
+
+  const SEV_INFO = {
+    1: { nombre: 'Crisis moderada', clase: 'risk-low',
+         texto: 'Habla frases completas, sin criterios de gravedad. <strong>Agonista β₂ inhalado repetido y corticoide sistémico precoz</strong>, con reevaluación estructurada a la hora.' },
+    2: { nombre: 'Crisis grave', clase: 'risk-mid',
+         texto: 'Al menos un criterio de gravedad. <strong>Oxígeno titulado, nebulización con ipratropio, corticoide sistémico y magnesio si no responde.</strong> Monitorización continua y unidad crítica avisada si no hay mejoría clara.' },
+    3: { nombre: 'Crisis con riesgo vital', clase: 'risk-high',
+         texto: 'Reanimación: <strong>tratamiento máximo, equipo de vía aérea reunido y unidad crítica ahora</strong>. El tórax silencioso y la PaCO₂ que deja de estar baja son signos de que el paciente casi no mueve aire.' },
+    4: { nombre: 'Asma casi fatal', clase: 'risk-high',
+         texto: 'PaCO₂ elevada o necesidad de ventilación mecánica. <strong>Intubación por el operador más experimentado, con volumen y vasopresor preparados</strong>, y ventilación con hipercapnia permisiva (secciones 06 y 07).' }
+  };
+
+  function renderSev() {
+    const out = document.getElementById('sev-out');
+    const marcados = sevList.querySelectorAll('.score-item.on');
+    if (!marcados.length) {
+      out.innerHTML = 'Marca los elementos presentes. El grado corresponde al hallazgo <strong>más grave</strong> marcado, no a la suma.';
+      return;
+    }
+    let max = 0;
+    marcados.forEach(b => { max = Math.max(max, parseInt(b.dataset.stage, 10)); });
+    const info = SEV_INFO[max];
+    out.innerHTML = '<span class="big ' + info.clase + '">' + info.nombre + '</span>' + info.texto + SEV_NOTA;
+  }
+
+  sevList.querySelectorAll('.score-item').forEach(btn => {
+    btn.addEventListener('click', () => { btn.classList.toggle('on'); renderSev(); });
+  });
+  document.getElementById('sev-reset').addEventListener('click', () => {
+    sevList.querySelectorAll('.score-item').forEach(b => b.classList.remove('on'));
+    renderSev();
+  });
+
+  // ── Formato de números ────────────────────────────────────────────
+  function fmt(n) {
+    if (n >= 100) return n.toFixed(0);
+    if (n >= 10) return n.toFixed(1).replace('.', ',');
+    return n.toFixed(2).replace('.', ',');
+  }
+  function fmt0(n) { return n.toFixed(0); }
+
+  // ── Dosis por peso ────────────────────────────────────────────────
+  const pesoInput = document.getElementById('peso');
+  const pesoOut = document.getElementById('peso-out');
+
+  function renderPeso() {
+    const kg = parseFloat(pesoInput.value);
+    if (!kg || kg <= 0 || kg > 250) {
+      pesoOut.innerHTML = 'Ingresa el peso para ver las dosis de inducción, bloqueo neuromuscular, volumen y magnesio calculadas.';
+      return;
+    }
+    const filas = [
+      ['Ketamina (inducción)', '1–2 mg/kg IV', fmt0(kg * 1) + '–' + fmt0(kg * 2) + ' mg', 'Reduce la dosis en el hipotenso o hipovolémico'],
+      ['Rocuronio', '1,2 mg/kg IV', fmt0(kg * 1.2) + ' mg', 'Parálisis prolongada: asegura sedación desde el primer minuto'],
+      ['Succinilcolina', '1,5 mg/kg IV', fmt0(kg * 1.5) + ' mg', 'Alternativa; revisa contraindicaciones e hiperpotasemia'],
+      ['Cristaloide previo', '≈ 10 mL/kg', fmt0(kg * 10) + ' mL', 'Habitualmente 500–1000 mL salvo contraindicación'],
+      ['Sulfato de magnesio', 'Dosis fija en el adulto', '2 g IV en 20 min', 'No se ajusta por peso en el adulto; vigila hipotensión'],
+      ['Adrenalina intramuscular', 'Dosis fija en el adulto', '0,3–0,5 mg (1 mg/mL)', 'Obligatoria en anafilaxia; repetible cada 5–15 min']
+    ].map(d =>
+      '<tr><td>' + d[0] + '</td>' +
+      '<td><span class="dose-note">' + d[1] + '</span></td>' +
+      '<td><span class="dose-main">' + d[2] + '</span><br><span class="dose-note">' + d[3] + '</span></td></tr>'
+    ).join('');
+
+    pesoOut.innerHTML =
+      '<span class="big">Dosis para ' + fmt(kg) + ' kg</span>' +
+      '<div class="table-wrap" style="margin-top:8px;"><table><thead><tr><th>Fármaco</th><th>Dosis</th><th>Para este paciente</th></tr></thead><tbody>' +
+      filas +
+      '</tbody></table></div>' +
+      '<div style="margin-top:10px;">Calculado sobre <strong>peso real estimado</strong>. En obesidad, embarazo, insuficiencia renal o hepática ' +
+      'la dosificación puede diferir, y el volumen corriente <strong>nunca</strong> se calcula con este peso sino con el peso predicho por talla. ' +
+      '<em>Verificar con protocolo institucional.</em></div>';
+  }
+
+  pesoInput.addEventListener('input', renderPeso);
+  document.getElementById('peso-reset').addEventListener('click', () => {
+    pesoInput.value = '';
+    renderPeso();
+  });
+
+  // ── Peso predicho y volumen corriente ─────────────────────────────
+  const tallaInput = document.getElementById('talla');
+  const pbwOut = document.getElementById('pbw-out');
+  const sexoRow = document.getElementById('sexo-row');
+  let sexo = null;
+
+  function renderPBW() {
+    const cm = parseFloat(tallaInput.value);
+    if (!sexo || !cm || cm < 120 || cm > 220) {
+      pbwOut.innerHTML = 'Elige el sexo e ingresa la talla para calcular el peso predicho y el rango de volumen corriente.';
+      return;
+    }
+    // Peso predicho (ARDSNet): hombre 50 + 0,91 × (talla cm − 152,4); mujer 45,5 + 0,91 × (talla cm − 152,4)
+    const base = sexo === 'h' ? 50 : 45.5;
+    const pbw = base + 0.91 * (cm - 152.4);
+    const vt6 = pbw * 6, vt8 = pbw * 8;
+    const vm6 = vt6 * 10 / 1000, vm8 = vt8 * 10 / 1000;
+
+    pbwOut.innerHTML =
+      '<span class="big">Peso predicho ' + fmt(pbw) + ' kg</span>' +
+      '<div class="table-wrap" style="margin-top:8px;"><table><thead><tr><th>Parámetro</th><th>Valor</th></tr></thead><tbody>' +
+      '<tr><td>Volumen corriente 6–8 mL/kg</td><td><span class="dose-main">' + fmt0(vt6) + '–' + fmt0(vt8) + ' mL</span></td></tr>' +
+      '<tr><td>Frecuencia respiratoria inicial</td><td><span class="dose-main">8–12 por minuto</span><br><span class="dose-note">bájala primero si hay hiperinsuflación</span></td></tr>' +
+      '<tr><td>Volumen minuto a 10 por minuto</td><td><span class="dose-main">' + fmt(vm6) + '–' + fmt(vm8) + ' L/min</span></td></tr>' +
+      '<tr><td>Flujo inspiratorio</td><td><span class="dose-main">60–80 L/min</span><br><span class="dose-note">onda cuadrada, I:E 1:4 a 1:5</span></td></tr>' +
+      '<tr><td>Presión meseta objetivo</td><td><span class="dose-main">&lt; 30 cmH₂O</span><br><span class="dose-note">la pico alta es esperable y no guía los ajustes</span></td></tr>' +
+      '</tbody></table></div>' +
+      '<div style="margin-top:10px;">Peso predicho calculado con la fórmula habitual por talla y sexo. Son <strong>parámetros iniciales orientativos</strong>: ' +
+      'se ajustan según presión meseta, auto-PEEP, curva de flujo y hemodinamia, tolerando la hipercapnia. ' +
+      '<em>Verificar con protocolo institucional.</em></div>';
+  }
+
+  sexoRow.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      sexo = btn.dataset.sex;
+      sexoRow.querySelectorAll('.toggle-btn').forEach(b => b.classList.toggle('on', b === btn));
+      renderPBW();
+    });
+  });
+  tallaInput.addEventListener('input', renderPBW);
+  document.getElementById('pbw-reset').addEventListener('click', () => {
+    tallaInput.value = '';
+    sexo = null;
+    sexoRow.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('on'));
+    renderPBW();
+  });
+</script>
+</body>
+</html>
