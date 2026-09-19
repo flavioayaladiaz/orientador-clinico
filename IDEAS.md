@@ -67,8 +67,8 @@ tomará en orden la próxima vez que corra.
       (e infarto de ventrículo derecho) — `algoritmo-shock-cardiogenico.html`
 - [x] Status asmático grave con hiperinsuflación dinámica y riesgo de colapso
       hemodinámico a la intubación — `algoritmo-status-asmatico.html`
-- [ ] Tormenta tiroidea o crisis tirotoxicósica con inestabilidad hemodinámica
-      y arritmias complejas
+- [x] Tormenta tiroidea o crisis tirotoxicósica con inestabilidad hemodinámica
+      y arritmias complejas — `algoritmo-tormenta-tiroidea.html`
 - [ ] Traumatismo craneoencefálico grave con hipertensión endocraneal
       refractaria y compromiso multisistémico
 - [ ] Cetoacidosis diabética o estado hiperosmolar severo con shock refractario

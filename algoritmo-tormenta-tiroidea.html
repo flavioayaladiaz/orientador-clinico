@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Algoritmo · Tormenta tiroidea con inestabilidad hemodinámica</title>
+<meta name="description" content="Árbol de decisión para la tormenta tiroidea en urgencia: reconocerla con la escala de Burch-Wartofsky, el bundle de tratamiento en el orden correcto (tionamida antes que yodo), betabloqueo en el paciente con insuficiencia cardíaca, fibrilación auricular de alta respuesta, shock de alto gasto y cardiogénico, hipertermia, terapias de rescate y poblaciones especiales.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(245,158,11,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(239,68,68,0.07) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 40px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245,158,11,0.1);
+    border: 1px solid rgba(245,158,11,0.28);
+    color: #fcd34d;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .s1 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s1 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s2 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s3 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s3 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s4 .section-num { background: rgba(239,68,68,0.10); color: #fecaca; border: 1px solid rgba(239,68,68,0.18); }
+  .s4 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s5 .section-num { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s5 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s6 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s6 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s7 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s7 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s8 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s8 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s9 .section-num { background: rgba(245,158,11,0.10); color: #fde68a; border: 1px solid rgba(245,158,11,0.18); }
+  .s9 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s10 .section-num { background: rgba(59,130,246,0.12); color: #bfdbfe; border: 1px solid rgba(59,130,246,0.18); }
+  .s10 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s11 .section-num { background: rgba(255,255,255,0.06); color: var(--text-dim); border: 1px solid var(--border); }
+  .s11 { --accent: var(--text-dim); --accent-glow: rgba(148,163,184,0.08); }
+
+  /* ORIENTADOR INTERACTIVO */
+  .q-block { margin-bottom: 18px; }
+  .q-block:last-of-type { margin-bottom: 0; }
+
+  .q-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt.on {
+    background: rgba(16,185,129,0.12);
+    border-color: rgba(16,185,129,0.45);
+    color: #6ee7b7;
+  }
+  .opt:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+
+  .result {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface2);
+    padding: 18px 20px;
+    border-left: 3px solid var(--accent, var(--emerald));
+  }
+  .result.placeholder { color: var(--text-muted); font-size: 13px; font-family: var(--mono); line-height: 1.6; }
+
+  .result-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .result-title {
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .result-row {
+    display: flex;
+    gap: 12px;
+    padding: 9px 0;
+    border-top: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .result-row:first-of-type { border-top: none; padding-top: 2px; }
+  .result-key {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    flex: 0 0 104px;
+    padding-top: 3px;
+  }
+  .result-row strong { color: #fff; font-weight: 500; }
+  .result-row em { color: #fcd34d; font-style: normal; }
+
+  .result.sev-red { border-left-color: var(--red); }
+  .result.sev-amber { border-left-color: var(--amber); }
+  .result.sev-green { border-left-color: var(--emerald); }
+
+  /* CALCULADORA */
+  .calc {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-top: 16px;
+  }
+  .calc-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .calc-label.second { margin-top: 18px; }
+  .score-list { display: flex; flex-direction: column; gap: 8px; }
+  .score-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .score-item:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .score-item.on {
+    background: rgba(20,184,166,0.12);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .score-item:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+  .score-list.gate .score-item.on {
+    background: rgba(245,158,11,0.12);
+    border-color: rgba(245,158,11,0.45);
+    color: #fcd34d;
+  }
+  .score-list.danger .score-item.on {
+    background: rgba(239,68,68,0.12);
+    border-color: rgba(239,68,68,0.45);
+    color: #fca5a5;
+  }
+  .score-pts {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  .score-item.on .score-pts { color: #5eead4; border-color: rgba(20,184,166,0.4); }
+  .score-list.gate .score-item.on .score-pts { color: #fcd34d; border-color: rgba(245,158,11,0.4); }
+  .score-list.danger .score-item.on .score-pts { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  .calc-out {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .calc-out strong { color: #fff; font-weight: 500; }
+  .calc-out em { color: #fcd34d; font-style: normal; }
+  .calc-out .big {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: #93c5fd;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .calc-out .big.risk-low { color: #6ee7b7; }
+  .calc-out .big.risk-mid { color: #fcd34d; }
+  .calc-out .big.risk-high { color: #fca5a5; }
+
+  .calc-reset {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 8px 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .calc-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+  /* ENTRADA NUMÉRICA */
+  .calc-field { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .calc-field input {
+    font-family: var(--mono);
+    font-size: 15px;
+    color: #fff;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    width: 130px;
+    -moz-appearance: textfield;
+  }
+  .calc-field input:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: rgba(20,184,166,0.45); }
+  .calc-field .unit {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .toggle-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .toggle-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .toggle-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .toggle-btn.on {
+    background: rgba(20,184,166,0.12);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .toggle-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+  /* BANNERS */
+  .warning-banner, .info-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    color: #fca5a5;
+  }
+  .info-banner {
+    background: rgba(59,130,246,0.06);
+    border: 1px solid rgba(59,130,246,0.18);
+    color: #bfdbfe;
+  }
+  .warning-banner strong, .info-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* CRONOLOGÍA */
+  .timeline { display: flex; flex-direction: column; gap: 10px; }
+  .tl-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 13px 15px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .tl-time {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: #fca5a5;
+    flex: 0 0 74px;
+    padding-top: 2px;
+  }
+  .tl-item strong { color: #fff; font-weight: 500; }
+  .tl-item em { color: #fcd34d; font-style: normal; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* ÁRBOL DE DECISIÓN */
+  .flow { display: flex; flex-direction: column; gap: 10px; }
+  .flow-node {
+    position: relative;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--text-muted);
+    background: rgba(255,255,255,0.02);
+    padding: 12px 15px;
+    font-size: 13.5px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .flow-node strong { color: #fff; font-weight: 500; }
+  .flow-node em { color: #fcd34d; font-style: normal; }
+  .flow-q {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .flow-node.stop { border-left-color: var(--red); background: rgba(239,68,68,0.06); }
+  .flow-node.stop .flow-q { color: #fca5a5; }
+  .flow-node.go { border-left-color: var(--emerald); background: rgba(16,185,129,0.05); }
+  .flow-node.go .flow-q { color: #6ee7b7; }
+  .flow-node.hold { border-left-color: var(--amber); background: rgba(245,158,11,0.05); }
+  .flow-node.hold .flow-q { color: #fcd34d; }
+  .flow-node.ask { border-left-color: var(--blue); background: rgba(59,130,246,0.05); }
+  .flow-node.ask .flow-q { color: #93c5fd; }
+  .flow-branch {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 10px;
+    padding-left: 16px;
+    border-left: 2px dashed rgba(255,255,255,0.10);
+  }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--amber); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .opt { width: 100%; }
+    .result-row { flex-direction: column; gap: 4px; }
+    .result-key { flex: none; padding-top: 0; }
+    .tl-item { flex-direction: column; gap: 6px; }
+    .tl-time { flex: none; }
+    .score-item { align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <div class="header-badge">Patología compleja · Algoritmo</div>
+    <h1>Tormenta tiroidea <span>e inestabilidad hemodinámica</span></h1>
+    <p class="header-sub">
+      La tormenta tiroidea es una <strong>emergencia endocrina con diagnóstico clínico</strong>: no hay un valor de
+      hormona tiroidea que la defina, y el paciente que muere no se distingue por el laboratorio sino por la
+      <strong>fiebre, la taquiarritmia, la falla cardíaca y el compromiso de conciencia</strong>. Dos cosas la vuelven
+      traicionera en urgencia. La primera es que se parece a una sepsis, a un delirium o a una fibrilación auricular
+      «común», y se trata como tal durante horas. La segunda es que el tratamiento tiene un <strong>orden que no se
+      puede invertir</strong> —el yodo antes de la tionamida alimenta la glándula en vez de frenarla— y una trampa
+      cardiovascular: el betabloqueo, que es el pilar del control de síntomas, puede <strong>precipitar el colapso</strong>
+      en el paciente con insuficiencia cardíaca ya descompensada. Este algoritmo está escrito para las primeras horas
+      en urgencia: reconocerla, iniciar el bloqueo completo en el orden correcto, sobrevivir a la arritmia y al shock,
+      y saber cuándo escalar.
+    </p>
+  </div>
+
+  <!-- 01 · ÁRBOL DE DECISIÓN -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">Árbol de decisión</div>
+        <div class="section-subtitle">Escenario + estado hemodinámico + contexto</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Este bloque <strong>prioriza la conducta inmediata, no cierra el diagnóstico</strong>. Las dos preguntas
+        que ordenan el manejo son <strong>¿es una tirotoxicosis descompensada o solo una tirotoxicosis?</strong> y
+        <strong>¿qué está fallando ahora: el ritmo, la bomba o la temperatura?</strong>. El laboratorio hormonal
+        confirma la tirotoxicosis pero <strong>no distingue la tormenta</strong>, y llega tarde: si la sospecha es
+        razonable, se trata mientras se confirma.</span>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">1 · Escenario dominante</div>
+        <div class="opts" id="q-esc">
+          <button type="button" class="opt" data-v="sospecha">Sospecha de tormenta: tirotoxicosis conocida o probable con fiebre, taquicardia desproporcionada y agitación o compromiso del sensorio</button>
+          <button type="button" class="opt" data-v="confirmada">Tormenta ya reconocida (Burch-Wartofsky ≥ 45 o criterios equivalentes), sin shock por ahora</button>
+          <button type="button" class="opt" data-v="fa">Fibrilación auricular de alta respuesta u otra taquiarritmia como problema dominante</button>
+          <button type="button" class="opt" data-v="falla">Insuficiencia cardíaca aguda o edema pulmonar en un paciente tirotóxico</button>
+          <button type="button" class="opt" data-v="shock">Hipotensión, hipoperfusión o shock</button>
+          <button type="button" class="opt" data-v="paro">Paro cardiorrespiratorio</button>
+          <button type="button" class="opt" data-v="refractaria">Sin mejoría tras 24–48 h de tratamiento completo bien administrado</button>
+          <button type="button" class="opt" data-v="yodo">Tirotoxicosis tras carga de yodo: contraste, amiodarona o yodo tópico</button>
+          <button type="button" class="opt" data-v="dudadx">Duda diagnóstica: fiebre, taquicardia y agitación que pueden no ser tiroideas</button>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">2 · Estado hemodinámico actual</div>
+        <div class="opts" id="q-hemo">
+          <button type="button" class="opt" data-v="estable">Taquicárdico pero con presión y perfusión conservadas, sin signos congestivos</button>
+          <button type="button" class="opt" data-v="fa_rapida">Fibrilación auricular u otra taquiarritmia de alta respuesta, con perfusión aún conservada</button>
+          <button type="button" class="opt" data-v="congestivo">Signos congestivos: crepitaciones, ingurgitación yugular, edema, hipoxemia</button>
+          <button type="button" class="opt" data-v="hipotension">Hipotensión o hipoperfusión (lactato elevado, oliguria, piel moteada, compromiso de conciencia)</button>
+          <button type="button" class="opt" data-v="vm">Intubado y en ventilación mecánica</button>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">3 · Contexto y desencadenante (marca los que apliquen)</div>
+        <div class="opts" id="q-ctx">
+          <button type="button" class="opt" data-v="infeccion">Foco infeccioso sospechado o confirmado</button>
+          <button type="button" class="opt" data-v="suspension">Suspensión o mala adherencia reciente al antitiroideo</button>
+          <button type="button" class="opt" data-v="cargayodo">Carga de yodo reciente: contraste yodado, amiodarona, yodo tópico o radioyodo</button>
+          <button type="button" class="opt" data-v="cirugia">Cirugía, trauma o parto reciente</button>
+          <button type="button" class="opt" data-v="embarazo">Embarazo o puerperio</button>
+          <button type="button" class="opt" data-v="anciano">Adulto mayor con presentación apática: sin agitación, dominada por arritmia, falla cardíaca o deterioro general</button>
+          <button type="button" class="opt" data-v="broncoespasmo">Asma o EPOC con broncoespasmo activo</button>
+          <button type="button" class="opt" data-v="paralisis">Debilidad muscular aguda con hipopotasemia (sospecha de parálisis periódica tirotóxica)</button>
+          <button type="button" class="opt" data-v="sinuci">Centro sin unidad crítica ni endocrinología disponible</button>
+          <button type="button" class="opt" data-v="ninguno">Ninguno de los anteriores</button>
+        </div>
+      </div>
+
+      <div class="result placeholder" id="result">
+        Selecciona el escenario dominante y el estado hemodinámico para ver la prioridad, qué administrar en los
+        primeros minutos y en qué orden, qué está contraindicado y a quién llamar.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · RECONOCER LA TORMENTA -->
+  <div class="section s2" id="s2" style="animation-delay:0.12s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Reconocer la tormenta tiroidea</div>
+        <div class="section-subtitle">Burch-Wartofsky · calculadora</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>La tormenta tiroidea es un <strong>diagnóstico clínico</strong>. La TSH suprimida con T4 libre o T3
+        elevadas confirma la <strong>tirotoxicosis</strong>, pero <strong>el grado de alteración hormonal no distingue</strong>
+        al paciente con hipertiroidismo descompensado del que está en tormenta: hay tormentas con hormonas apenas
+        más altas que las de un ambulatorio estable. Lo que define la tormenta es la <strong>descompensación de
+        sistemas</strong> —termorregulación, sistema nervioso central, corazón, hígado y digestivo—. Esperar el
+        resultado hormonal para empezar el tratamiento es el error que más mortalidad agrega.</span>
+      </div>
+
+      <div class="subhead">Lo que hace sospecharla en el box</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🌡️</span><span><strong>Hipertermia desproporcionada</strong>, con frecuencia por sobre 38,5–40 °C, que <strong>no responde bien a los antipiréticos</strong> y se acompaña de sudoración profusa.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">💓</span><span><strong>Taquicardia desproporcionada a la fiebre</strong>, habitualmente &gt; 130 por minuto, y <strong>fibrilación auricular</strong> de nueva aparición, sobre todo en un paciente joven o sin cardiopatía conocida.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🧠</span><span><strong>Compromiso del sistema nervioso central:</strong> agitación, delirium, psicosis, letargia extrema, convulsiones o coma. Es el elemento que más pesa en todas las clasificaciones.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🤢</span><span><strong>Síntomas digestivos y hepáticos:</strong> náuseas, vómitos, diarrea profusa, dolor abdominal e <strong>ictericia sin causa</strong>. La ictericia es un marcador de mal pronóstico.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔎</span><span><strong>Sustrato clínico:</strong> bocio, oftalmopatía, temblor fino, piel caliente y húmeda, baja de peso, hiperdefecación, debilidad proximal. Pregunta siempre por <strong>enfermedad tiroidea conocida y por antitiroideos suspendidos</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🕰️</span><span><strong>Presentación apática del adulto mayor:</strong> sin agitación ni bocio evidente, dominada por <strong>fibrilación auricular, insuficiencia cardíaca, baja de peso y deterioro general</strong>. Es la que más se pasa por alto.</span></div>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Escala de Burch-Wartofsky · elige una opción por categoría</div>
+        <div class="score-list gate" id="bwps-list">
+
+          <div class="calc-label" style="margin-top:4px;">Termorregulación · temperatura</div>
+          <button type="button" class="score-item" data-g="temp" data-p="0">Menor de 37,2 °C<span class="score-pts">0</span></button>
+          <button type="button" class="score-item" data-g="temp" data-p="5">37,2–37,7 °C<span class="score-pts">5</span></button>
+          <button type="button" class="score-item" data-g="temp" data-p="10">37,8–38,2 °C<span class="score-pts">10</span></button>
+          <button type="button" class="score-item" data-g="temp" data-p="15">38,3–38,8 °C<span class="score-pts">15</span></button>
+          <button type="button" class="score-item" data-g="temp" data-p="20">38,9–39,4 °C<span class="score-pts">20</span></button>
+          <button type="button" class="score-item" data-g="temp" data-p="25">39,5–39,9 °C<span class="score-pts">25</span></button>
+          <button type="button" class="score-item" data-g="temp" data-p="30">40 °C o más<span class="score-pts">30</span></button>
+
+          <div class="calc-label" style="margin-top:14px;">Sistema nervioso central</div>
+          <button type="button" class="score-item" data-g="snc" data-p="0">Sin compromiso<span class="score-pts">0</span></button>
+          <button type="button" class="score-item" data-g="snc" data-p="10">Leve: agitación<span class="score-pts">10</span></button>
+          <button type="button" class="score-item" data-g="snc" data-p="20">Moderado: delirium, psicosis o letargia extrema<span class="score-pts">20</span></button>
+          <button type="button" class="score-item" data-g="snc" data-p="30">Grave: convulsiones o coma<span class="score-pts">30</span></button>
+
+          <div class="calc-label" style="margin-top:14px;">Digestivo y hepático</div>
+          <button type="button" class="score-item" data-g="gi" data-p="0">Sin compromiso<span class="score-pts">0</span></button>
+          <button type="button" class="score-item" data-g="gi" data-p="10">Moderado: diarrea, náuseas, vómitos o dolor abdominal<span class="score-pts">10</span></button>
+          <button type="button" class="score-item" data-g="gi" data-p="20">Grave: ictericia sin otra explicación<span class="score-pts">20</span></button>
+
+          <div class="calc-label" style="margin-top:14px;">Frecuencia cardíaca</div>
+          <button type="button" class="score-item" data-g="fc" data-p="0">Menor de 90 por minuto<span class="score-pts">0</span></button>
+          <button type="button" class="score-item" data-g="fc" data-p="5">90–109 por minuto<span class="score-pts">5</span></button>
+          <button type="button" class="score-item" data-g="fc" data-p="10">110–119 por minuto<span class="score-pts">10</span></button>
+          <button type="button" class="score-item" data-g="fc" data-p="15">120–129 por minuto<span class="score-pts">15</span></button>
+          <button type="button" class="score-item" data-g="fc" data-p="20">130–139 por minuto<span class="score-pts">20</span></button>
+          <button type="button" class="score-item" data-g="fc" data-p="25">140 o más por minuto<span class="score-pts">25</span></button>
+
+          <div class="calc-label" style="margin-top:14px;">Insuficiencia cardíaca</div>
+          <button type="button" class="score-item" data-g="icc" data-p="0">Ausente<span class="score-pts">0</span></button>
+          <button type="button" class="score-item" data-g="icc" data-p="5">Leve: edema de extremidades inferiores<span class="score-pts">5</span></button>
+          <button type="button" class="score-item" data-g="icc" data-p="10">Moderada: crepitaciones bibasales<span class="score-pts">10</span></button>
+          <button type="button" class="score-item" data-g="icc" data-p="15">Grave: edema pulmonar<span class="score-pts">15</span></button>
+
+          <div class="calc-label" style="margin-top:14px;">Fibrilación auricular</div>
+          <button type="button" class="score-item" data-g="fa" data-p="0">Ausente<span class="score-pts">0</span></button>
+          <button type="button" class="score-item" data-g="fa" data-p="10">Presente<span class="score-pts">10</span></button>
+
+          <div class="calc-label" style="margin-top:14px;">Desencadenante identificado</div>
+          <button type="button" class="score-item" data-g="prec" data-p="0">No identificado<span class="score-pts">0</span></button>
+          <button type="button" class="score-item" data-g="prec" data-p="10">Identificado<span class="score-pts">10</span></button>
+
+        </div>
+        <div class="calc-out" id="bwps-out">Elige una opción en cada categoría. El puntaje va de 0 a 140.</div>
+        <button type="button" class="calc-reset" id="bwps-reset">Limpiar</button>
+      </div>
+
+      <div class="subhead">Cómo se lee el puntaje</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Puntaje</th><th>Interpretación</th><th>Conducta</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>&lt; 25</td>
+              <td>Tormenta poco probable</td>
+              <td>Tirotoxicosis que puede no requerir el bloqueo completo. Busca igualmente el desencadenante y reevalúa: el puntaje cambia en horas</td>
+            </tr>
+            <tr>
+              <td>25–44</td>
+              <td><strong>Tormenta inminente</strong></td>
+              <td>Zona de decisión clínica. En la mayoría de los casos se trata como tormenta, con monitorización continua y área de mayor cuidado</td>
+            </tr>
+            <tr>
+              <td>≥ 45</td>
+              <td><strong>Altamente sugerente de tormenta</strong></td>
+              <td>Tratamiento completo <strong>ahora</strong>, unidad crítica y endocrinología avisadas</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span>La escala de Burch-Wartofsky es <strong>sensible pero poco específica</strong>: fue diseñada para no
+        dejar pasar tormentas, no para descartarlas. Un puntaje alto en un paciente séptico sin tirotoxicosis no
+        hace el diagnóstico, y un puntaje intermedio en un paciente con tirotoxicosis conocida y desencadenante
+        claro no autoriza a esperar. Los <strong>criterios de la Japan Thyroid Association</strong> (Akamizu, 2012)
+        son una alternativa más específica: exigen tirotoxicosis demostrada más una combinación de compromiso del
+        sistema nervioso central, fiebre ≥ 38 °C, taquicardia ≥ 130, insuficiencia cardíaca y manifestaciones
+        digestivo-hepáticas. <strong>Ninguna de las dos reemplaza el juicio clínico</strong>: son ayudas para
+        decidir el nivel de cuidado, no umbrales de tratamiento.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · ESTUDIO INICIAL Y DESENCADENANTES -->
+  <div class="section s3" id="s3" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Estudio inicial y desencadenante</div>
+        <div class="section-subtitle">Qué pedir · qué gatilló la tormenta</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>La tormenta casi siempre tiene un gatillo, y el gatillo mata tanto como la tormenta.</strong>
+        Tratar el bloqueo tiroideo sin buscar y tratar el desencadenante —con más frecuencia una infección— deja la
+        mitad del problema sin resolver. La búsqueda del foco se hace <strong>en paralelo</strong> con el tratamiento,
+        nunca antes ni después.</span>
+      </div>
+
+      <div class="subhead">Exámenes iniciales</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Perfil tiroideo:</strong> TSH, T4 libre y T3 total o libre. Se toma al inicio, <strong>pero no se espera el resultado</strong> para tratar. La TSH suprimida con T4 libre o T3 elevadas confirma tirotoxicosis; la magnitud no gradúa la tormenta.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📈</span><span><strong>Electrocardiograma y monitorización continua:</strong> fibrilación auricular, flutter, taquicardia sinusal, extrasistolia, y cambios isquémicos por desbalance de demanda.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Laboratorio general:</strong> hemograma, función renal, electrolitos con <strong>potasio, magnesio y calcio</strong>, glicemia, pruebas hepáticas y bilirrubina, gases y lactato, pruebas de coagulación. La <strong>hiperglicemia, la hipercalcemia leve y la elevación de transaminasas</strong> son frecuentes en la tormenta.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🦠</span><span><strong>Búsqueda de foco infeccioso:</strong> hemocultivos, urocultivo, radiografía de tórax y lo que dirija la clínica. <strong>La fiebre nunca se atribuye solo a la tormenta sin haber buscado infección.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">🔊</span><span><strong>Ecocardiografía a la cabecera:</strong> decide el manejo cardiovascular. Distingue la <strong>falla de alto gasto</strong> (ventrículo hiperdinámico, gasto elevado) de la <strong>miocardiopatía tirotóxica con fracción de eyección deprimida</strong>, y evalúa el ventrículo derecho y la presión pulmonar.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧬</span><span><strong>Cortisol basal</strong> antes o al momento de dar el corticoide si hay sospecha de insuficiencia suprarrenal concomitante (síndrome poliglandular autoinmune). <strong>No se retrasa el corticoide para tomarlo.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">🧷</span><span><strong>Lo que no corresponde en urgencia:</strong> la captación de yodo radiactivo, la ecografía tiroidea de rutina y los anticuerpos antitiroideos no cambian la conducta de las primeras horas. Se solicitan después, para definir la etiología.</span></div>
+      </div>
+
+      <div class="subhead">Desencadenantes que hay que buscar activamente</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Categoría</th><th>Ejemplos</th></tr></thead>
+          <tbody>
+            <tr><td>Infección</td><td><strong>El más frecuente.</strong> Neumonía, infección urinaria, infección de piel y partes blandas, infección intraabdominal, sepsis de cualquier origen</td></tr>
+            <tr><td>Fármacos y yodo</td><td><strong>Suspensión del antitiroideo</strong> (clásico), contraste yodado, amiodarona, yodo tópico, radioyodo reciente, exceso de hormona tiroidea exógena</td></tr>
+            <tr><td>Cirugía y procedimientos</td><td>Cirugía tiroidea y <strong>no tiroidea</strong>, anestesia en el paciente no preparado, palpación vigorosa de la glándula</td></tr>
+            <tr><td>Obstétrico</td><td>Parto, cesárea, preeclampsia, aborto, hiperemesis gravídica</td></tr>
+            <tr><td>Metabólico y cardiovascular</td><td>Cetoacidosis diabética, hipoglicemia, infarto agudo al miocardio, tromboembolismo pulmonar, accidente cerebrovascular</td></tr>
+            <tr><td>Otros</td><td>Trauma, quemadura, estrés psíquico intenso, ejercicio extremo</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./checklist-sepsis_4.html">→ Checklist: sepsis y shock séptico</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · TRATAMIENTO -->
+  <div class="section s4" id="s4" style="animation-delay:0.24s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Tratamiento: los cinco frentes</div>
+        <div class="section-subtitle">El orden importa · dosis en el adulto</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>El yodo se administra al menos una hora después de la tionamida, nunca antes.</strong> El yodo
+        bloquea la liberación de hormona ya formada, pero en una glándula no bloqueada también le entrega el
+        <strong>sustrato para fabricar más</strong> (efecto Jod-Basedow). Dar yodo primero puede empeorar la
+        tormenta. Este es el único orden rígido del tratamiento: todo lo demás se inicia simultáneamente.</span>
+      </div>
+
+      <div class="subhead">Los cinco frentes, en paralelo</div>
+      <div class="flow">
+        <div class="flow-node stop">
+          <span class="flow-q">Frente 1 · Frenar los efectos periféricos</span>
+          <strong>Betabloqueo.</strong> Controla taquicardia, temblor, agitación, fiebre por hipermetabolismo y consumo miocárdico. Es lo que más rápido mejora al paciente. <strong>Propranolol</strong> además inhibe parcialmente la conversión de T4 a T3. En el inestable se prefiere <strong>esmolol</strong>, titulable y de vida media corta (sección 05).
+        </div>
+        <div class="flow-node stop">
+          <span class="flow-q">Frente 2 · Frenar la síntesis</span>
+          <strong>Tionamida.</strong> <strong>Propiltiouracilo</strong> es el preferido en la tormenta porque además bloquea la conversión periférica de T4 a T3; el <strong>tiamazol (metimazol)</strong> es alternativa válida y de acción más prolongada. Ninguno actúa sobre la hormona ya almacenada: por eso no bastan solos.
+        </div>
+        <div class="flow-node hold">
+          <span class="flow-q">Frente 3 · Frenar la liberación · al menos 1 h después del frente 2</span>
+          <strong>Yodo en solución.</strong> Bloquea la liberación de hormona preformada (efecto Wolff-Chaikoff) y es lo que baja las hormonas en días en vez de semanas. <strong>Solo después de la tionamida.</strong>
+        </div>
+        <div class="flow-node stop">
+          <span class="flow-q">Frente 4 · Bloquear la conversión y cubrir la suprarrenal</span>
+          <strong>Corticoide sistémico.</strong> Inhibe la conversión periférica de T4 a T3 y trata la <strong>insuficiencia suprarrenal relativa</strong> que acompaña a la tormenta —y la insuficiencia suprarrenal autoinmune concomitante, que no es rara en estos pacientes—.
+        </div>
+        <div class="flow-node go">
+          <span class="flow-q">Frente 5 · Desencadenante y soporte</span>
+          <strong>Tratar el gatillo</strong> (con más frecuencia una infección) y sostener al paciente: temperatura, volumen, glucosa, electrolitos, oxigenación y monitorización continua (sección 08).
+        </div>
+      </div>
+
+      <div class="subhead">Dosis en el adulto</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Frente</th><th>Fármaco y dosis</th><th>Notas</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Betabloqueo</td>
+              <td><span class="dose-main">Propranolol 60–80 mg vía oral cada 4–6 h</span><br><span class="dose-note">o 0,5–1 mg IV lento, luego 1–3 mg cada varias horas bajo monitorización</span></td>
+              <td>Dosis altas y frecuentes porque el clearance está acelerado. La vía intravenosa <strong>solo con monitorización continua</strong> y titulando. Inhibe parcialmente la conversión de T4 a T3</td>
+            </tr>
+            <tr>
+              <td>Betabloqueo en el inestable</td>
+              <td><span class="dose-main">Esmolol: carga 250–500 µg/kg en 1 min</span><br><span class="dose-note">luego infusión 50–100 µg/kg/min, titulable</span></td>
+              <td><strong>Preferido si hay insuficiencia cardíaca, shock o duda</strong>: vida media de minutos, se suspende y el efecto desaparece. Requiere monitorización continua (sección 05)</td>
+            </tr>
+            <tr>
+              <td>Síntesis</td>
+              <td><span class="dose-main">Propiltiouracilo: carga 500–1000 mg vía oral, luego 250 mg cada 4 h</span></td>
+              <td><strong>Preferido en la tormenta.</strong> Por sonda nasogástrica o vía rectal si no puede tragar. Vigilar <strong>hepatotoxicidad</strong> y agranulocitosis</td>
+            </tr>
+            <tr>
+              <td>Síntesis · alternativa</td>
+              <td><span class="dose-main">Tiamazol (metimazol) 20 mg cada 4–6 h</span><br><span class="dose-note">total 60–80 mg al día</span></td>
+              <td>Alternativa cuando no hay propiltiouracilo o hay antecedente de hepatotoxicidad por este. Menos hepatotóxico, pero <strong>no bloquea la conversión periférica</strong></td>
+            </tr>
+            <tr>
+              <td>Liberación</td>
+              <td><span class="dose-main">Solución saturada de yoduro de potasio (SSKI) 5 gotas cada 6 h</span><br><span class="dose-note">o solución de Lugol 4–8 gotas cada 6–8 h</span></td>
+              <td><strong>Al menos 1 hora después de la tionamida.</strong> Contraindicado como medida única. No usarlo si la tirotoxicosis es <strong>inducida por yodo</strong> ni en la tiroiditis destructiva (sección 10). <em>Verificar la presentación y la equivalencia en gotas de tu servicio.</em></td>
+            </tr>
+            <tr>
+              <td>Conversión y suprarrenal</td>
+              <td><span class="dose-main">Hidrocortisona 300 mg IV de carga, luego 100 mg cada 8 h</span><br><span class="dose-note">o dexametasona 2 mg IV cada 6 h</span></td>
+              <td>Bloquea la conversión de T4 a T3 y cubre la insuficiencia suprarrenal. Toma cortisol antes si es posible, <strong>pero no retrases la dosis</strong></td>
+            </tr>
+            <tr>
+              <td>Temperatura</td>
+              <td><span class="dose-main">Paracetamol 1 g cada 6–8 h</span><br><span class="dose-note">más medidas físicas de enfriamiento</span></td>
+              <td><strong>Los salicilatos están contraindicados:</strong> desplazan la hormona de sus proteínas transportadoras y aumentan la fracción libre</td>
+            </tr>
+            <tr>
+              <td>Adyuvante</td>
+              <td><span class="dose-main">Colestiramina 4 g vía oral cada 6 h</span></td>
+              <td>Interrumpe la circulación enterohepática de la hormona. Adyuvante en el caso grave o de respuesta lenta, nunca en reemplazo de lo anterior</td>
+            </tr>
+            <tr>
+              <td>Desencadenante</td>
+              <td><span class="dose-main">Antibiótico si hay infección</span></td>
+              <td><strong>No de rutina</strong>: solo con foco sospechado o confirmado. Pero el umbral es bajo, porque la infección es el gatillo más frecuente</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">La primera hora, en orden</div>
+      <div class="timeline">
+        <div class="tl-item"><span class="tl-time">0–5 min</span><span><strong>Reconocer y activar.</strong> Monitorización continua, dos vías venosas, oxígeno si lo requiere, glicemia capilar, temperatura central. <strong>Avisa a unidad crítica y a endocrinología</strong>: este paciente no se maneja en un box de observación.</span></div>
+        <div class="tl-item"><span class="tl-time">5–15 min</span><span><strong>Betabloqueo y tionamida.</strong> Propranolol vía oral o esmolol en infusión según el estado hemodinámico, y <strong>propiltiouracilo de carga</strong> por boca o sonda. <strong>Hidrocortisona 300 mg IV.</strong> Toma exámenes en el mismo acto.</span></div>
+        <div class="tl-item"><span class="tl-time">15–30 min</span><span><strong>Soporte y desencadenante.</strong> Volumen titulado con ecografía, glucosa, corrección de potasio y magnesio, enfriamiento activo con paracetamol, <strong>cultivos y antibiótico si hay foco</strong>. Ecocardiografía a la cabecera.</span></div>
+        <div class="tl-item"><span class="tl-time">≥ 60 min</span><span><strong>Yodo, una vez que la tionamida ya está dada.</strong> SSKI o Lugol. Reevaluación estructurada: temperatura, frecuencia, presión, sensorio y diuresis.</span></div>
+        <div class="tl-item"><span class="tl-time">Primeras horas</span><span><strong>Destino y seguimiento.</strong> Unidad crítica. Reevalúa la escala de Burch-Wartofsky, vigila la aparición de falla cardíaca y arritmia, y define con endocrinología el tratamiento definitivo. <em>Los criterios de ingreso y traslado se ajustan al protocolo institucional.</em></span></div>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Dosis por peso · betabloqueo titulable y soporte</div>
+        <div class="calc-field">
+          <input type="number" id="peso" min="20" max="250" step="1" inputmode="decimal" placeholder="70">
+          <span class="unit">kg · peso real estimado</span>
+        </div>
+        <div class="calc-out" id="peso-out">Ingresa el peso para ver la carga y la infusión de esmolol calculadas, junto con las dosis fijas del bundle.</div>
+        <button type="button" class="calc-reset" id="peso-reset">Limpiar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · BETABLOQUEO -->
+  <div class="section s5" id="s5" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Betabloqueo sin matar al paciente</div>
+        <div class="section-subtitle">El pilar que también puede precipitar el colapso</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>En el paciente con <strong>miocardiopatía tirotóxica y fracción de eyección deprimida</strong>, una parte
+        del gasto cardíaco depende de la taquicardia. Un bolo de propranolol puede quitarle esa compensación de golpe y
+        <strong>precipitar shock cardiogénico</strong>: está descrito en la literatura como causa de colapso y muerte
+        en la tormenta tiroidea. La respuesta no es «no betabloquear» —el exceso adrenérgico es parte del problema—
+        sino <strong>cambiar de fármaco y de velocidad</strong>: esmolol en infusión titulable, dosis pequeñas,
+        monitorización continua y ecografía que diga en qué corazón se está actuando.</span>
+      </div>
+
+      <div class="subhead">Qué betabloqueante, según el escenario</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Escenario</th><th>Elección</th><th>Por qué</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Tormenta sin falla cardíaca</td>
+              <td><strong>Propranolol</strong> 60–80 mg vía oral cada 4–6 h</td>
+              <td>No selectivo, con el beneficio adicional de inhibir parcialmente la conversión de T4 a T3. Dosis altas por clearance acelerado</td>
+            </tr>
+            <tr>
+              <td>Inestabilidad, falla cardíaca o duda</td>
+              <td><strong>Esmolol</strong> en infusión titulable</td>
+              <td>Vida media de minutos: si el paciente se deteriora, se suspende la infusión y el efecto cede. Es el betabloqueante de elección cuando el corazón está en cuestión</td>
+            </tr>
+            <tr>
+              <td>Broncoespasmo activo (asma o EPOC)</td>
+              <td><strong>Betabloqueante cardioselectivo</strong> (esmolol o metoprolol), titulado</td>
+              <td>El propranolol no selectivo puede empeorar el broncoespasmo. La cardioselectividad es relativa y se pierde con dosis altas: titula y vigila</td>
+            </tr>
+            <tr>
+              <td>Betabloqueo verdaderamente contraindicado</td>
+              <td><strong>Diltiazem</strong> para control de frecuencia</td>
+              <td>Alternativa cuando no se puede betabloquear. <strong>También es inotropo negativo</strong>: la misma precaución vale en el paciente con falla cardíaca. <em>Verificar con protocolo institucional.</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Reglas de seguridad</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔊</span><span><strong>Ecografía antes de comprometerte con un betabloqueante de vida media larga.</strong> Un ventrículo hiperdinámico con gasto elevado tolera bien el betabloqueo; un ventrículo dilatado e hipocontráctil, no.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📉</span><span><strong>Titula al efecto, no a una frecuencia objetivo arbitraria.</strong> Busca reducir el trabajo miocárdico y los síntomas manteniendo la perfusión, no normalizar la frecuencia en la primera hora.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚩</span><span><strong>Si la presión cae al betabloquear:</strong> suspende la infusión (por eso se prefiere el esmolol), reevalúa volumen y función ventricular con ecografía, e inicia vasoactivos. Considera que el cuadro puede ser una <strong>miocardiopatía tirotóxica descompensada</strong> y no solo una tormenta «hiperdinámica» (sección 07).</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>El betabloqueo no reemplaza el bloqueo tiroideo.</strong> Mejora los síntomas y la frecuencia, pero no frena la producción ni la liberación de hormona: la tionamida, el yodo y el corticoide siguen siendo obligatorios.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧂</span><span><strong>En la parálisis periódica tirotóxica</strong> —debilidad proximal aguda con hipopotasemia, más frecuente en hombres jóvenes de origen asiático— el <strong>propranolol es parte del tratamiento</strong> y la reposición de potasio debe ser <strong>cautelosa</strong>: el potasio no está perdido sino desplazado al intracelular, y la reposición agresiva produce <strong>hiperpotasemia de rebote</strong>. <em>Verificar con protocolo institucional.</em></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · ARRITMIAS -->
+  <div class="section s6" id="s6" style="animation-delay:0.36s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Arritmias en la tormenta</div>
+        <div class="section-subtitle">Fibrilación auricular y taquiarritmias complejas</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>La <strong>fibrilación auricular es la arritmia característica</strong> de la tirotoxicosis y aparece en
+        una proporción importante de las tormentas, más aún en el adulto mayor. La clave conceptual es que
+        <strong>la arritmia es un síntoma de la tirotoxicosis</strong>: mientras el paciente siga tirotóxico será
+        difícil de controlar, y una vez eutiroideo una parte importante revierte espontáneamente a ritmo sinusal en
+        las semanas siguientes. Por eso el tratamiento de fondo es el bloqueo tiroideo, y la cardioversión electiva
+        precoz rara vez está indicada.</span>
+      </div>
+
+      <div class="subhead">Conducta según la situación</div>
+      <div class="flow">
+        <div class="flow-node ask">
+          <span class="flow-q">Pregunta que ordena todo</span>
+          ¿La taquiarritmia está <strong>causando inestabilidad</strong> (hipotensión, isquemia, edema pulmonar, compromiso de conciencia), o es la expresión del estado tirotóxico en un paciente que aún perfunde?
+        </div>
+        <div class="flow-branch">
+          <div class="flow-node stop">
+            <span class="flow-q">Inestable por la arritmia</span>
+            <strong>Cardioversión eléctrica sincronizada</strong> según el algoritmo estándar de taquiarritmia inestable, con sedación. En paralelo, <strong>el bloqueo tiroideo completo</strong>: sin él, la arritmia recurre. <em>Energías y sedación según el protocolo de tu servicio.</em>
+          </div>
+          <div class="flow-node hold">
+            <span class="flow-q">Estable, con respuesta ventricular rápida</span>
+            <strong>Control de frecuencia con betabloqueo</strong> (propranolol o esmolol según la sección 05), no control de ritmo. La frecuencia baja a medida que baja el estímulo tiroideo.
+          </div>
+          <div class="flow-node hold">
+            <span class="flow-q">Betabloqueo contraindicado</span>
+            <strong>Diltiazem</strong> para control de frecuencia, con la misma precaución si hay falla cardíaca. <em>Verificar con protocolo institucional.</em>
+          </div>
+          <div class="flow-node stop">
+            <span class="flow-q">Antiarrítmico que hay que evitar</span>
+            <strong>Amiodarona:</strong> cada dosis es una carga masiva de yodo y puede <strong>empeorar la tirotoxicosis</strong>. No es el antiarrítmico de elección aquí, y si la tirotoxicosis fue inducida por amiodarona, menos todavía (sección 10).
+          </div>
+          <div class="flow-node ask">
+            <span class="flow-q">Digoxina</span>
+            En tirotoxicosis el <strong>clearance está aumentado y la sensibilidad miocárdica disminuida</strong>: pueden requerirse dosis mayores de lo habitual para el mismo efecto, con <strong>mayor riesgo de toxicidad</strong> al normalizarse la función tiroidea. Se usa como coadyuvante, con niveles y vigilancia. <em>Verificar con protocolo institucional.</em>
+          </div>
+        </div>
+      </div>
+
+      <div class="subhead">Anticoagulación</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">⚖️</span><span><strong>Decisión individualizada, no automática.</strong> La fibrilación auricular de la tirotoxicosis aumenta el riesgo embólico, pero los puntajes de riesgo habituales <strong>no fueron desarrollados ni validados en esta población</strong>, y muchos pacientes son jóvenes y sin otros factores.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Pesa el riesgo hemorrágico del momento:</strong> disfunción hepática, plaquetopenia, cirugía reciente o inminente. La sensibilidad a los anticoagulantes orales antagonistas de la vitamina K <strong>está aumentada</strong> en la tirotoxicosis por mayor recambio de factores.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📋</span><span><strong>Es una decisión compartida</strong> con cardiología y con el equipo que continúa el cuidado. <em>Verificar con protocolo institucional.</em></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · FALLA CARDÍACA Y SHOCK -->
+  <div class="section s7" id="s7" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Falla cardíaca y shock</div>
+        <div class="section-subtitle">Alto gasto, miocardiopatía tirotóxica y colapso</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>«Shock en un paciente tirotóxico» no es un solo cuadro</strong>, y los tratamientos se
+        contradicen entre sí. Puede ser un <strong>estado de alto gasto y vasodilatación</strong> con hipovolemia por
+        fiebre, sudoración y vómitos —que necesita volumen—; una <strong>miocardiopatía tirotóxica descompensada</strong>
+        con fracción de eyección baja y congestión —donde el volumen empeora todo—; o una <strong>sepsis
+        concomitante</strong>, que es el desencadenante más frecuente de la tormenta. La ecografía a la cabecera es
+        lo que diferencia los tres, y se hace antes de comprometerse con una estrategia.</span>
+      </div>
+
+      <div class="subhead">Diferenciar los tres escenarios</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Escenario</th><th>Lo que se ve</th><th>Conducta</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Alto gasto con hipovolemia</td>
+              <td>Extremidades calientes, presión diferencial amplia, ventrículo hiperdinámico, vena cava colapsable. Pérdidas por fiebre, sudoración, vómitos y diarrea</td>
+              <td><strong>Volumen titulado</strong> con reevaluación ecográfica, glucosa en los sueros (las reservas de glucógeno están agotadas), corrección de electrolitos. Betabloqueo con precaución pero <strong>sin postergarlo</strong></td>
+            </tr>
+            <tr>
+              <td>Miocardiopatía tirotóxica</td>
+              <td>Fracción de eyección deprimida, ventrículo dilatado, congestión pulmonar, ingurgitación yugular, hipoxemia. Con frecuencia con fibrilación auricular rápida de larga data</td>
+              <td><strong>No volumen.</strong> Diurético, oxígeno o ventilación no invasiva, <strong>esmolol titulable en dosis bajas</strong>, vasoactivos si hay hipoperfusión, y unidad crítica ahora</td>
+            </tr>
+            <tr>
+              <td>Sepsis concomitante</td>
+              <td>Foco clínico, leucocitosis o leucopenia, lactato elevado, vasodilatación. <strong>Es el gatillo más frecuente de la tormenta</strong></td>
+              <td>Manejo de sepsis completo <strong>en paralelo</strong> con el bloqueo tiroideo: cultivos, antibiótico precoz, volumen y vasoactivos según respuesta</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Si el paciente está en shock</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🩺</span><span><strong>Ecografía a la cabecera primero:</strong> contractilidad, tamaño ventricular, vena cava, líneas B y función derecha. Cambia la conducta en minutos y evita el error de dar volumen a un ventrículo que ya no lo tolera.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Hidrocortisona 300 mg IV sin esperar</strong>: en el tirotóxico en shock cubre la insuficiencia suprarrenal relativa y la crisis suprarrenal concomitante, además de su efecto sobre la conversión hormonal.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Vasoactivos según el perfil:</strong> noradrenalina si predomina la vasoplejía. Recuerda que el paciente ya está en exceso adrenérgico y que los inotropos con efecto cronotrópico pueden agravar la taquiarritmia: la elección se discute con unidad crítica.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧊</span><span><strong>El bloqueo tiroideo no se suspende por el shock.</strong> La tionamida, el corticoide y —una hora después— el yodo se administran igual, por sonda si es necesario. Es el único tratamiento que revierte la causa.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🆘</span><span><strong>Shock refractario:</strong> consulta precoz por <strong>soporte circulatorio mecánico o extracorpóreo</strong> donde exista el programa, y por plasmaféresis (sección 09). Estas decisiones se toman temprano, no tras varias horas de deterioro.</span></div>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./algoritmo-shock-cardiogenico.html">→ Algoritmo: shock cardiogénico y falla derecha</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · HIPERTERMIA Y SOPORTE -->
+  <div class="section s8" id="s8" style="animation-delay:0.48s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Hipertermia y soporte general</div>
+        <div class="section-subtitle">Temperatura, volumen, glucosa y sensorio</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>La aspirina y los demás salicilatos están contraindicados.</strong> Desplazan la hormona tiroidea
+        de sus proteínas transportadoras y <strong>aumentan la fracción libre</strong>, es decir, empeoran exactamente
+        lo que se está tratando. El antipirético de la tormenta tiroidea es el <strong>paracetamol</strong>, junto a
+        medidas físicas.</span>
+      </div>
+
+      <div class="subhead">Manejo de la temperatura</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🌡️</span><span><strong>Mide temperatura central y monitorízala.</strong> La hipertermia de la tormenta es un marcador de gravedad y se asocia a peor desenlace; el objetivo es bajarla activamente, no solo documentarla.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Paracetamol 1 g cada 6–8 h</strong> como antipirético de elección, ajustado si hay disfunción hepática —frecuente en la tormenta—.</span></div>
+        <div class="plain-item"><span class="bullet-icon">❄️</span><span><strong>Enfriamiento físico activo:</strong> compresas frías, mantas de enfriamiento, sueros a temperatura ambiente o fríos. En la hipertermia extrema se usan las mismas medidas que en el golpe de calor.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🥶</span><span><strong>El escalofrío es contraproducente:</strong> genera calor y consumo. Si el enfriamiento externo lo provoca, se maneja con la sedación o el fármaco que indique el <em>protocolo institucional</em> de tu servicio.</span></div>
+      </div>
+
+      <div class="subhead">Soporte general</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💧</span><span><strong>Volumen titulado, con glucosa.</strong> Las pérdidas insensibles por fiebre y sudoración son grandes y las reservas de glucógeno están agotadas por el hipermetabolismo. El volumen se titula con ecografía: <strong>en la miocardiopatía tirotóxica el exceso precipita el edema pulmonar</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧾</span><span><strong>Electrolitos:</strong> vigila y corrige potasio, magnesio y fosfato. La <strong>hipercalcemia leve</strong> es frecuente en la tirotoxicosis y habitualmente se corrige con la hidratación y el tratamiento de base.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧠</span><span><strong>Agitación y delirium:</strong> forman parte del cuadro y mejoran con el betabloqueo y el tratamiento de la tormenta. La sedación es sintomática y no sustituye el tratamiento; en el paciente que se deteriora, <strong>la vía aérea se asegura antes de que claudique</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🍽️</span><span><strong>Vitaminas y soporte nutricional:</strong> el estado hipermetabólico consume rápidamente las reservas. La reposición de tiamina y el inicio precoz del soporte nutricional se coordinan con unidad crítica.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫁</span><span><strong>Tromboprofilaxis y protección gástrica</strong> según el protocolo de la unidad, considerando el riesgo hemorrágico individual.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚩</span><span><strong>Vigila la aparición de falla multiorgánica:</strong> la <strong>ictericia</strong>, la falla renal, la acidosis persistente y la necesidad de ventilación mecánica marcan al grupo de mayor mortalidad. Su aparición es criterio para escalar el soporte, no para esperar.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · REFRACTARIEDAD Y RESCATE -->
+  <div class="section s9" id="s9" style="animation-delay:0.54s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Tormenta refractaria y terapias de rescate</div>
+        <div class="section-subtitle">Qué revisar antes de escalar · plasmaféresis y cirugía</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Antes de declarar una tormenta refractaria, <strong>revisa que el tratamiento se haya dado como
+        corresponde</strong>. La causa más frecuente de «falta de respuesta» no es la biología sino la ejecución: una
+        dosis que no se administró, el yodo dado antes que la tionamida, un desencadenante que nadie trató o una
+        etiología en la que la tionamida simplemente no actúa.</span>
+      </div>
+
+      <div class="subhead">Revisa esto primero</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">✅</span><span><strong>¿Están los cinco frentes cubiertos y en dosis suficientes?</strong> Betabloqueo, tionamida en dosis de carga y mantención, yodo, corticoide y tratamiento del desencadenante. Revisa el registro dosis por dosis.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🔁</span><span><strong>¿Se dio el yodo antes que la tionamida?</strong> Es un error frecuente y puede haber empeorado el cuadro. Corrige el orden desde ahora.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>¿Se está absorbiendo?</strong> El paciente con vómitos, íleo o compromiso de conciencia puede no estar recibiendo la tionamida oral. Sonda nasogástrica o vía rectal donde el <em>protocolo institucional</em> lo contemple.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🦠</span><span><strong>¿Hay un desencadenante no tratado?</strong> Un foco infeccioso oculto, una cetoacidosis, un tromboembolismo o un infarto que nadie buscó.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>¿Es una tiroiditis destructiva o una tirotoxicosis inducida por yodo?</strong> En la tiroiditis no hay síntesis que bloquear: <strong>la tionamida no sirve</strong> y el tratamiento se apoya en corticoides y betabloqueo (sección 10).</span></div>
+      </div>
+
+      <div class="subhead">Terapias de rescate</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Medida</th><th>Cuándo</th><th>Notas</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Colestiramina</td>
+              <td>Adyuvante en el caso grave o de respuesta lenta</td>
+              <td>4 g vía oral cada 6 h. Interrumpe la circulación enterohepática de la hormona. Separar de la administración de otros fármacos orales</td>
+            </tr>
+            <tr>
+              <td>Plasmaféresis (recambio plasmático)</td>
+              <td><strong>Tormenta que no responde al tratamiento máximo</strong>, deterioro rápido, o como puente a la tiroidectomía</td>
+              <td>Remueve hormona circulante, citoquinas y anticuerpos. El efecto es <strong>transitorio</strong>: es un puente, no un tratamiento definitivo. Requiere el recurso y el equipo. <em>Verificar con protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Tiroidectomía de urgencia</td>
+              <td>Refractariedad al tratamiento médico, o cuando la tionamida está contraindicada (agranulocitosis, hepatotoxicidad grave)</td>
+              <td>Decisión conjunta de endocrinología, cirugía y unidad crítica. Idealmente <strong>tras estabilizar</strong>, con frecuencia después de plasmaféresis. Alta morbimortalidad en el paciente no preparado</td>
+            </tr>
+            <tr>
+              <td>Perclorato de potasio</td>
+              <td>Tirotoxicosis <strong>inducida por yodo</strong>, asociado a la tionamida</td>
+              <td>Bloquea la captación de yoduro por la glándula. Disponibilidad limitada y uso por tiempo acotado por toxicidad medular y renal. <em>Verificar con protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Litio</td>
+              <td>Alternativa al yodo cuando este está contraindicado o hay alergia</td>
+              <td>Inhibe la liberación hormonal. Requiere <strong>monitorización de niveles</strong> y función renal; ventana terapéutica estrecha. <em>Verificar con protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Soporte extracorpóreo</td>
+              <td>Shock cardiogénico refractario o paro recuperado con falla circulatoria</td>
+              <td>Donde exista el programa, la consulta es <strong>precoz</strong>. La tormenta es potencialmente reversible, lo que la hace una buena indicación de puente</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · POBLACIONES Y SITUACIONES ESPECIALES -->
+  <div class="section s10" id="s10" style="animation-delay:0.60s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Situaciones especiales</div>
+        <div class="section-subtitle">Embarazo, adulto mayor, amiodarona y yodo</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Embarazo y puerperio</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🤰</span><span><strong>La tormenta se trata con la misma energía:</strong> la tirotoxicosis no controlada amenaza a la madre y al feto más que los fármacos. <strong>Obstetricia y neonatología avisadas desde el primer momento</strong>, con monitorización fetal según edad gestacional.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Tionamida según el trimestre:</strong> el <strong>propiltiouracilo es el preferido en el primer trimestre</strong> por la embriopatía asociada al tiamazol; a partir del segundo se prefiere el <strong>tiamazol</strong> por la hepatotoxicidad del propiltiouracilo. En la tormenta, la urgencia manda sobre la preferencia teórica: se usa el que esté disponible y se ajusta después. <em>Verificar con protocolo institucional y con obstetricia.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🧂</span><span><strong>Yodo:</strong> se usa en la tormenta, <strong>por el tiempo más corto posible</strong>, por el riesgo de bocio e hipotiroidismo fetal con exposición prolongada.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💓</span><span><strong>Betabloqueo:</strong> se usa cuando es necesario, con la dosis mínima eficaz y por el menor tiempo posible; el uso prolongado se ha asociado a restricción del crecimiento fetal, bradicardia e hipoglicemia neonatal.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚩</span><span><strong>Diferencia la tirotoxicosis gestacional transitoria</strong> —por estímulo de la gonadotropina coriónica, asociada a hiperemesis, sin bocio ni oftalmopatía, autolimitada— de la <strong>enfermedad de Graves</strong>. La primera no requiere antitiroideos, y confundirlas lleva a tratar de más o de menos.</span></div>
+      </div>
+
+      <div class="subhead">Adulto mayor y tormenta apática</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🕰️</span><span><strong>No busques el paciente agitado, sudoroso y con bocio.</strong> La tirotoxicosis del adulto mayor se presenta con <strong>fibrilación auricular, insuficiencia cardíaca, baja de peso, debilidad, apatía y depresión</strong>, y con frecuencia sin bocio palpable ni signos oculares.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💔</span><span><strong>El corazón es el órgano que se descompensa primero:</strong> fibrilación auricular de nueva aparición, angina o insuficiencia cardíaca sin causa evidente en un adulto mayor <strong>justifica medir la TSH</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⚖️</span><span><strong>La escala de Burch-Wartofsky puntúa bajo</strong> en esta presentación porque falta la fiebre alta y el compromiso del sensorio florido. Un puntaje intermedio en un adulto mayor con falla cardíaca no descarta la tormenta.</span></div>
+      </div>
+
+      <div class="subhead">Tirotoxicosis inducida por yodo y por amiodarona</div>
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>Aquí el algoritmo estándar <strong>cambia</strong>. Si la tirotoxicosis fue provocada por una carga de
+        yodo, <strong>dar más yodo empeora el cuadro</strong>, y si el mecanismo es destructivo —la glándula libera
+        hormona ya formada porque se está destruyendo— <strong>la tionamida no tiene sobre qué actuar</strong>. La
+        diferenciación es compleja y con frecuencia mixta: <strong>esta decisión se toma con endocrinología</strong>.</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Tipo</th><th>Mecanismo y pistas</th><th>Tratamiento</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Tipo 1</td>
+              <td>Hipertiroidismo verdadero por <strong>exceso de sustrato yodado</strong> en una glándula con patología previa (bocio nodular, Graves latente). Suele haber bocio y vascularización aumentada en la ecografía</td>
+              <td><strong>Tionamida</strong> en dosis altas, con betabloqueo. Puede asociarse <strong>perclorato</strong> para bloquear la captación de yodo. <em>Verificar con protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Tipo 2</td>
+              <td><strong>Tiroiditis destructiva</strong> por toxicidad directa del fármaco: la glándula libera hormona preformada. Glándula habitualmente normal y con vascularización disminuida</td>
+              <td><strong>Corticoides en dosis altas</strong> como tratamiento principal, con betabloqueo. <strong>La tionamida no es eficaz y el yodo está contraindicado</strong></td>
+            </tr>
+            <tr>
+              <td>Mixto o indeterminado</td>
+              <td>Lo más frecuente en la práctica: rasgos de ambos, o imposibilidad de diferenciarlos en la urgencia</td>
+              <td>Se tratan <strong>ambos mecanismos a la vez</strong> —tionamida más corticoide— mientras endocrinología define. En el paciente grave no se pierde tiempo diferenciando</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="plain-list" style="margin-top:12px;">
+        <div class="plain-item flag"><span class="bullet-icon">🚩</span><span><strong>No suspendas la amiodarona por tu cuenta.</strong> Tiene una vida media de meses —suspenderla no resuelve el cuadro a corto plazo— y puede ser el único fármaco que controla una arritmia con riesgo vital. <strong>La decisión es conjunta con cardiología y endocrinología.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">🩻</span><span><strong>Prevención:</strong> en el paciente con hipertiroidismo conocido o bocio nodular, <strong>piensa antes de indicar un estudio con contraste yodado</strong> no urgente. Cuando el estudio es necesario, se hace, y se vigila la función tiroidea después.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 11 · TRAMPAS -->
+  <div class="section s11" id="s11" style="animation-delay:0.66s;">
+    <div class="section-header" onclick="toggleSection('s11')">
+      <span class="section-num">11</span>
+      <div>
+        <div class="section-title">Trampas y errores frecuentes</div>
+        <div class="section-subtitle">Lo que convierte una tormenta tratable en una muerte evitable</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Esperar el perfil tiroideo para empezar a tratar.</strong> El diagnóstico es clínico y el laboratorio llega tarde. Si la sospecha es razonable, se trata y se confirma después.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar el yodo antes o junto con la tionamida.</strong> Alimenta la síntesis en vez de frenarla. Al menos una hora de diferencia, siempre en ese orden.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Tratar la tormenta y olvidar el desencadenante.</strong> La infección es el gatillo más frecuente y mata por su cuenta: cultivos, foco y antibiótico si corresponde, en paralelo.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Atribuir toda la fiebre a la tormenta</strong> sin haber buscado infección, o toda la taquicardia a la fiebre sin mirar el electrocardiograma.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar un bolo de propranolol al paciente con insuficiencia cardíaca descompensada.</strong> Puede precipitar el colapso. En el corazón en duda, esmolol titulable y ecografía antes.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Usar amiodarona para controlar la fibrilación auricular</strong> de un paciente tirotóxico: es una carga de yodo que puede empeorar la tirotoxicosis.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Usar aspirina como antipirético.</strong> Aumenta la hormona libre. El antipirético es el paracetamol, con enfriamiento físico.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Omitir el corticoide</strong> por considerarlo «opcional». Bloquea la conversión periférica y cubre una insuficiencia suprarrenal que puede ser la causa del shock.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Reanimar con volumen al paciente con miocardiopatía tirotóxica</strong> sin mirar el corazón con ecografía: precipita el edema pulmonar.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No reconocer la tormenta apática del adulto mayor</strong>, que se presenta como fibrilación auricular e insuficiencia cardíaca sin fiebre alta ni agitación, y puntúa bajo en las escalas.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Insistir con tionamida en una tiroiditis destructiva</strong> o en una tirotoxicosis inducida por amiodarona tipo 2, donde no hay síntesis que bloquear y el tratamiento son los corticoides.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dejar al paciente en observación general.</strong> La tormenta tiroidea tiene mortalidad alta incluso tratada: es un paciente de unidad crítica y de consulta precoz con endocrinología.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Suspender el bloqueo tiroideo apenas mejora.</strong> El descenso de dosis y el paso al tratamiento definitivo —antitiroideo, radioyodo o cirugía— se planifica con endocrinología, no se improvisa en urgencia.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio. Está orientada al
+    <strong>adulto</strong> con sospecha de tormenta tiroidea; el paciente pediátrico, el neonato de madre con
+    enfermedad de Graves y la tirotoxicosis facticia tienen criterios y dosis distintos, y se rigen por sus
+    protocolos específicos. Las <strong>dosis, umbrales y secuencias son orientativos</strong>: verifica la
+    presentación, la concentración y la equivalencia en gotas de las soluciones yodadas de tu servicio, y el ajuste
+    por peso, edad, función renal y hepática, interacciones, embarazo y lactancia, y las contraindicaciones antes de
+    administrar cualquier fármaco. La elección del betabloqueante y su velocidad de titulación, el uso de digoxina,
+    la anticoagulación en la fibrilación auricular tirotóxica, la indicación de plasmaféresis, de perclorato, de
+    litio, de tiroidectomía de urgencia y de soporte extracorpóreo, y las vías de derivación y traslado deben
+    contrastarse con el <strong>protocolo institucional vigente</strong> y con endocrinología y cuidados críticos.
+    La escala de Burch-Wartofsky y la calculadora de dosis de esta página describen la gravedad y realizan
+    conversiones aritméticas: <strong>complementan y no reemplazan la evaluación clínica</strong>, y un puntaje bajo
+    no descarta la tormenta.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Ross DS, Burch HB, Cooper DS, et al. <em>2016 American Thyroid Association Guidelines for Diagnosis and Management of Hyperthyroidism and Other Causes of Thyrotoxicosis.</em> Thyroid. 2016;26(10):1343–1421. — Tratamiento de la tormenta tiroidea, dosis, orden de administración del yodo y tirotoxicosis inducida por amiodarona.</div>
+      <div class="ref-item">Burch HB, Wartofsky L. <em>Life-threatening thyrotoxicosis: thyroid storm.</em> Endocrinol Metab Clin North Am. 1993;22(2):263–277. — Publicación original de la escala de puntos utilizada en la calculadora de esta página.</div>
+      <div class="ref-item">Akamizu T, Satoh T, Isozaki O, et al. <em>Diagnostic criteria, clinical features, and incidence of thyroid storm based on nationwide surveys.</em> Thyroid. 2012;22(7):661–679. — Criterios de la Japan Thyroid Association, características clínicas y mortalidad.</div>
+      <div class="ref-item">Satoh T, Isozaki O, Suzuki A, et al. <em>2016 Guidelines for the management of thyroid storm from The Japan Thyroid Association and Japan Endocrine Society.</em> Endocr J. 2016;63(12):1025–1064. — Manejo por sistemas, betabloqueo en la insuficiencia cardíaca y terapias de rescate.</div>
+      <div class="ref-item">Chiha M, Samarasinghe S, Kabaker AS. <em>Thyroid storm: an updated review.</em> J Intensive Care Med. 2015;30(3):131–140. — Revisión de manejo en cuidados críticos.</div>
+      <div class="ref-item">Dalan R, Leow MK. <em>Cardiovascular collapse associated with beta blockade in thyroid storm.</em> Exp Clin Endocrinol Diabetes. 2007;115(6):392–396. — Colapso precipitado por betabloqueo en el paciente con falla cardíaca tirotóxica.</div>
+      <div class="ref-item">Klein I, Danzi S. <em>Thyroid disease and the heart.</em> Circulation. 2007;116(15):1725–1735. — Fibrilación auricular, miocardiopatía tirotóxica y falla de alto gasto.</div>
+      <div class="ref-item">Bahn RS, Burch HB, Cooper DS, et al. <em>Hyperthyroidism and other causes of thyrotoxicosis: management guidelines of the ATA and AACE.</em> Thyroid. 2011;21(6):593–646. — Antitiroideos, efectos adversos y tratamiento definitivo.</div>
+      <div class="ref-item">Alexander EK, Pearce EN, Brent GA, et al. <em>2017 Guidelines of the American Thyroid Association for the Diagnosis and Management of Thyroid Disease During Pregnancy and the Postpartum.</em> Thyroid. 2017;27(3):315–389. — Elección de tionamida por trimestre y manejo de la tirotoxicosis en el embarazo.</div>
+      <div class="ref-item">Las dosis, la preparación y equivalencia de las soluciones yodadas, la elección y titulación del betabloqueante, la anticoagulación, la indicación de plasmaféresis, perclorato, litio, tiroidectomía de urgencia y soporte extracorpóreo, y las vías de traslado deben contrastarse con el protocolo institucional vigente y con los equipos de endocrinología y cuidados críticos de referencia.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Árbol de decisión interactivo ─────────────────────────────────
+  const sel = { esc: null, hemo: null, ctx: new Set() };
+
+  function bindSingle(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (sel[key] === v) {
+          sel[key] = null;
+          btn.classList.remove('on');
+        } else {
+          sel[key] = v;
+          group.querySelectorAll('.opt').forEach(b => b.classList.toggle('on', b === btn));
+        }
+        render();
+      });
+    });
+  }
+
+  function bindMulti(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (v === 'ninguno') {
+          sel[key].clear();
+          group.querySelectorAll('.opt').forEach(b => b.classList.remove('on'));
+          btn.classList.add('on');
+          sel[key].add('ninguno');
+        } else {
+          const none = group.querySelector('[data-v="ninguno"]');
+          none.classList.remove('on');
+          sel[key].delete('ninguno');
+          if (sel[key].has(v)) { sel[key].delete(v); btn.classList.remove('on'); }
+          else { sel[key].add(v); btn.classList.add('on'); }
+        }
+        render();
+      });
+    });
+  }
+
+  bindSingle('q-esc', 'esc');
+  bindSingle('q-hemo', 'hemo');
+  bindMulti('q-ctx', 'ctx');
+
+  const f = (v) => sel.ctx.has(v);
+
+  const TIONAMIDA = '<strong>Propiltiouracilo 500–1000 mg de carga vía oral o por sonda</strong>, luego 250 mg cada 4 h (alternativa: tiamazol 20 mg cada 4–6 h).';
+  const YODO = '<strong>Yodo al menos 1 hora después de la tionamida</strong>: SSKI 5 gotas cada 6 h o Lugol 4–8 gotas cada 6–8 h. <em>Nunca antes ni junto con ella.</em>';
+  const CORTI = '<strong>Hidrocortisona 300 mg IV de carga, luego 100 mg cada 8 h</strong> (o dexametasona 2 mg IV cada 6 h).';
+  const BETA_ORAL = '<strong>Propranolol 60–80 mg vía oral cada 4–6 h</strong>, titulado según frecuencia y perfusión.';
+  const BETA_TITULABLE = '<strong>Esmolol titulable</strong> —carga 250–500 µg/kg en 1 min, infusión 50–100 µg/kg/min— en vez de propranolol en bolo: si la presión cae, se suspende y el efecto cede en minutos.';
+  const GATILLO = '<strong>Busca y trata el desencadenante</strong> en paralelo: cultivos, foco infeccioso, antibiótico si corresponde, y revisión de fármacos y carga de yodo reciente.';
+  const UCI = '<strong>Unidad crítica y endocrinología avisadas ahora.</strong> La tormenta tiroidea no se observa en un box general.';
+  const NO_ASPIRINA = '<strong>Nada de salicilatos</strong> como antipirético: aumentan la hormona libre. Paracetamol 1 g más enfriamiento físico activo.';
+  const LINK_SHOCK = '<a class="cross-link" style="margin-top:6px" href="./algoritmo-shock-cardiogenico.html">→ Algoritmo: shock cardiogénico y falla derecha</a>';
+  const LINK_SEPSIS = '<a class="cross-link" style="margin-top:6px" href="./checklist-sepsis_4.html">→ Checklist: sepsis y shock séptico</a>';
+
+  function classify() {
+    const { esc, hemo } = sel;
+    if (!esc || !hemo) return null;
+
+    // 1 · Paro
+    if (esc === 'paro') {
+      return {
+        sev: 'red',
+        tag: 'Catástrofe en curso',
+        title: 'Paro cardiorrespiratorio en el paciente tirotóxico',
+        rows: [
+          ['Primero', '<strong>Reanimación avanzada estándar</strong>: compresiones de calidad, ritmo desfibrilable o no, adrenalina y vía aérea según el algoritmo habitual. La tormenta no cambia el algoritmo de paro.'],
+          ['Causas', 'Busca lo que es propio de este paciente: <strong>arritmia ventricular por hipertermia extrema</strong>, isquemia por desbalance de demanda, <strong>hipopotasemia</strong> (parálisis periódica tirotóxica), hipovolemia grave y falla cardíaca de alto gasto agotada.'],
+          ['En paralelo', 'No suspendas el tratamiento de la tormenta: <strong>hidrocortisona 300 mg IV</strong> y ' + TIONAMIDA + ' por sonda apenas sea posible. <strong>Enfriamiento activo</strong> desde el primer minuto.'],
+          ['Betabloqueo', '<strong>No es el momento del betabloqueante.</strong> Se retoma, en forma titulable, una vez recuperada la circulación.'],
+          ['Equipo', UCI + ' Donde exista programa de soporte extracorpóreo, la consulta es <strong>ahora</strong>: la tormenta es una causa potencialmente reversible.'],
+          ['Si recupera', 'Unidad crítica, control activo de temperatura, ecocardiografía, bloqueo tiroideo completo en orden y búsqueda del desencadenante.']
+        ]
+      };
+    }
+
+    // 2 · Shock
+    if (esc === 'shock') {
+      return {
+        sev: 'red',
+        tag: 'Shock en tirotoxicosis',
+        title: 'Primero define qué tipo de shock es',
+        rows: [
+          ['Primero', '<strong>Ecografía a la cabecera antes de comprometerte con una estrategia:</strong> ¿ventrículo hiperdinámico con vena cava colapsable (alto gasto e hipovolemia), fracción de eyección deprimida con congestión (miocardiopatía tirotóxica), o vasoplejía con foco infeccioso (sepsis concomitante)? Los tres tratamientos se contradicen.'],
+          ['Ahora', CORTI + ' En el tirotóxico en shock cubre además la insuficiencia suprarrenal relativa o una crisis suprarrenal concomitante.'],
+          ['Bloqueo', TIONAMIDA + ' ' + YODO + ' <strong>El bloqueo tiroideo no se suspende por el shock</strong>: es lo único que revierte la causa.'],
+          ['Betabloqueo', BETA_TITULABLE + ' Nunca un bolo de propranolol en este paciente.'],
+          ['Hemodinamia', 'Volumen <strong>titulado con ecografía</strong> (con glucosa en los sueros) si el perfil es hipovolémico; diurético y no volumen si hay congestión. Vasoactivos según el perfil, discutidos con unidad crítica.'],
+          ['Descarta', GATILLO + ' Una sepsis no tratada explica muchos shocks «refractarios» de la tormenta.'],
+          ['Equipo', UCI + ' Consulta precoz por soporte circulatorio mecánico o extracorpóreo y por plasmaféresis si no responde.'],
+          ['Enlace', LINK_SHOCK]
+        ]
+      };
+    }
+
+    // 3 · Falla cardíaca
+    if (esc === 'falla') {
+      return {
+        sev: 'red',
+        tag: 'Falla cardíaca tirotóxica',
+        title: 'Insuficiencia cardíaca aguda en el paciente tirotóxico',
+        rows: [
+          ['Define', '<strong>Ecografía a la cabecera:</strong> falla de <strong>alto gasto</strong> (ventrículo hiperdinámico) o <strong>miocardiopatía tirotóxica</strong> con fracción de eyección deprimida. El manejo del volumen es opuesto en cada caso.'],
+          ['Ahora', 'Oxígeno y <strong>ventilación no invasiva</strong> si hay congestión e hipoxemia, <strong>diurético</strong>, cabecera elevada. <strong>No reanimes con volumen</strong> hasta haber mirado el corazón.'],
+          ['Betabloqueo', BETA_TITULABLE + ' <strong>Este es el escenario en que un bolo de propranolol puede precipitar el colapso</strong>: parte del gasto depende de la taquicardia.'],
+          ['Bloqueo', TIONAMIDA + ' ' + CORTI + ' ' + YODO],
+          ['Ritmo', 'Si hay fibrilación auricular rápida, <strong>control de frecuencia</strong> con el betabloqueante titulable. <strong>Evita la amiodarona</strong>: es una carga de yodo. Cardioversión eléctrica solo si la arritmia está causando la inestabilidad.'],
+          ['Vigila', 'Presión, diuresis, lactato y oxigenación tras cada ajuste. El deterioro al betabloquear obliga a suspender la infusión y reevaluar con ecografía.'],
+          ['Equipo', UCI],
+          ['Enlace', LINK_SHOCK]
+        ]
+      };
+    }
+
+    // 4 · Arritmia
+    if (esc === 'fa') {
+      return {
+        sev: 'amber',
+        tag: 'Taquiarritmia tirotóxica',
+        title: 'Fibrilación auricular de alta respuesta en tirotoxicosis',
+        rows: [
+          ['Concepto', 'La arritmia es <strong>el síntoma del estado tirotóxico</strong>: será difícil de controlar mientras el paciente siga tirotóxico, y una parte importante revierte espontáneamente a ritmo sinusal cuando se alcanza el eutiroidismo. <strong>El tratamiento de fondo es el bloqueo tiroideo.</strong>'],
+          ['Si está inestable', '<strong>Cardioversión eléctrica sincronizada</strong> con sedación, según el algoritmo estándar de taquiarritmia inestable, y bloqueo tiroideo completo en paralelo para que no recurra.'],
+          ['Si está estable', '<strong>Control de frecuencia, no de ritmo:</strong> ' + BETA_ORAL + ' Si hay falla cardíaca o duda sobre la función ventricular, ' + BETA_TITULABLE],
+          ['Bloqueo', TIONAMIDA + ' ' + CORTI + ' ' + YODO],
+          ['Evita', '<strong>Amiodarona:</strong> cada dosis es una carga de yodo que puede empeorar la tirotoxicosis. La <strong>digoxina</strong> puede requerir dosis mayores por clearance acelerado y es más tóxica al normalizarse la función tiroidea. <em>Verificar con protocolo institucional.</em>'],
+          ['Anticoagulación', '<strong>Decisión individualizada</strong> con cardiología: los puntajes habituales no están validados en tirotoxicosis y la sensibilidad a los antagonistas de la vitamina K está aumentada.'],
+          ['Ojo', 'Una fibrilación auricular de nueva aparición en un paciente joven, o en un adulto mayor sin causa evidente, <strong>obliga a medir la TSH</strong>.']
+        ]
+      };
+    }
+
+    // 5 · Refractaria
+    if (esc === 'refractaria') {
+      return {
+        sev: 'red',
+        tag: 'Sin respuesta al tratamiento completo',
+        title: 'Tormenta que no cede tras 24–48 horas',
+        rows: [
+          ['Revisa la ejecución', 'Antes de escalar: ¿están dados <strong>los cinco frentes</strong> y en dosis suficientes? ¿Se dio <strong>el yodo después de la tionamida</strong>? ¿Está el paciente <strong>absorbiendo</strong> la tionamida oral, o vomita y tiene íleo?'],
+          ['Revisa el gatillo', GATILLO + ' Un foco oculto, una cetoacidosis, un tromboembolismo o un infarto no tratados explican la mayoría de las «refractariedades».'],
+          ['Revisa la etiología', '<strong>¿Es una tiroiditis destructiva o una tirotoxicosis inducida por yodo?</strong> Ahí no hay síntesis que bloquear: la tionamida no actúa y el tratamiento se apoya en <strong>corticoides en dosis altas</strong> y betabloqueo (sección 10).'],
+          ['Escala', '<strong>Plasmaféresis</strong> como puente en el paciente que se deteriora, <strong>colestiramina 4 g cada 6 h</strong> como adyuvante, y evaluación de <strong>tiroidectomía de urgencia</strong> con endocrinología y cirugía. <em>Verificar con protocolo institucional.</em>'],
+          ['Soporte', 'Consulta precoz por soporte extracorpóreo si hay shock refractario: la tormenta es potencialmente reversible y es una buena indicación de puente.'],
+          ['Equipo', UCI + ' Esta es una decisión de equipo, no del médico de urgencia en solitario.']
+        ]
+      };
+    }
+
+    // 6 · Tormenta confirmada
+    if (esc === 'confirmada') {
+      return {
+        sev: 'red',
+        tag: 'Tormenta tiroidea',
+        title: 'Bloqueo completo, en orden, ahora',
+        rows: [
+          ['Frente 1', BETA_ORAL + ' Es lo que más rápido mejora al paciente. Si aparece cualquier signo de falla cardíaca, cambia a esmolol titulable (sección 05).'],
+          ['Frente 2', TIONAMIDA],
+          ['Frente 3', YODO],
+          ['Frente 4', CORTI],
+          ['Frente 5', GATILLO + ' ' + NO_ASPIRINA],
+          ['Soporte', '<strong>Volumen titulado con glucosa</strong>, corrección de potasio y magnesio, monitorización continua, temperatura central y ecocardiografía a la cabecera.'],
+          ['Equipo', UCI],
+          ['Reevalúa', 'Repite la escala de Burch-Wartofsky y los signos vitales de forma estructurada: el grado cambia en horas, en los dos sentidos. Vigila la aparición de <strong>ictericia, falla renal o arritmia</strong>, que marcan al grupo de mayor mortalidad.']
+        ]
+      };
+    }
+
+    // 7 · Sospecha
+    if (esc === 'sospecha') {
+      return {
+        sev: 'amber',
+        tag: 'Sospecha de tormenta',
+        title: 'Trata mientras confirmas',
+        rows: [
+          ['Decide', '<strong>El diagnóstico es clínico.</strong> Calcula la escala de Burch-Wartofsky (sección 02), pero no esperes el perfil tiroideo: tómalo y <strong>empieza el tratamiento si la sospecha es razonable</strong>. Un puntaje intermedio con desencadenante claro se trata como tormenta.'],
+          ['Ahora', BETA_ORAL + ' ' + TIONAMIDA],
+          ['Después', YODO],
+          ['Además', CORTI + ' ' + NO_ASPIRINA],
+          ['Busca', GATILLO + ' Con más frecuencia es una infección. Pide además electrocardiograma, pruebas hepáticas, electrolitos, glicemia y lactato, y una ecografía a la cabecera.'],
+          ['Monitoriza', '<strong>Monitorización continua y temperatura central.</strong> Reevalúa a los 30–60 minutos: frecuencia, presión, temperatura, sensorio y diuresis.'],
+          ['Equipo', UCI],
+          ['No hagas', 'No uses <strong>aspirina</strong>, no des <strong>yodo antes de la tionamida</strong> y no des de alta a un paciente con sospecha razonable mientras esperas el laboratorio.']
+        ]
+      };
+    }
+
+    // 8 · Inducida por yodo / amiodarona
+    if (esc === 'yodo') {
+      return {
+        sev: 'amber',
+        tag: 'Tirotoxicosis inducida por yodo',
+        title: 'Aquí el algoritmo estándar cambia',
+        rows: [
+          ['Concepto', 'Si la tirotoxicosis fue gatillada por una <strong>carga de yodo</strong>, dar más yodo empeora el cuadro. Y si el mecanismo es <strong>destructivo</strong> —la glándula libera hormona preformada porque se está destruyendo— <strong>la tionamida no tiene sobre qué actuar</strong>.'],
+          ['Diferencia', '<strong>Tipo 1</strong> (hipertiroidismo verdadero por exceso de sustrato, glándula con patología previa): tionamida en dosis altas ± perclorato. <strong>Tipo 2</strong> (tiroiditis destructiva): <strong>corticoides en dosis altas</strong>, sin tionamida ni yodo. La ecografía con Doppler ayuda pero no siempre resuelve.'],
+          ['En el grave', '<strong>No pierdas tiempo diferenciando:</strong> las formas mixtas son las más frecuentes y se tratan <strong>ambos mecanismos a la vez</strong> —tionamida más corticoide en dosis altas— mientras endocrinología define.'],
+          ['Betabloqueo', BETA_ORAL + ' Si hay falla cardíaca, ' + BETA_TITULABLE],
+          ['Amiodarona', '<strong>No la suspendas por tu cuenta:</strong> tiene vida media de meses, suspenderla no resuelve el cuadro a corto plazo y puede ser el único fármaco que controla una arritmia con riesgo vital. <strong>Decisión conjunta con cardiología y endocrinología.</strong>'],
+          ['Yodo', '<strong>No administres SSKI ni Lugol</strong> en la tirotoxicosis inducida por yodo ni en la tiroiditis destructiva. <em>Verificar con protocolo institucional.</em>'],
+          ['Equipo', UCI]
+        ]
+      };
+    }
+
+    // 9 · Duda diagnóstica
+    if (esc === 'dudadx') {
+      return {
+        sev: 'amber',
+        tag: 'Antes de tratar como tormenta',
+        title: 'Fiebre, taquicardia y agitación que pueden no ser tiroideas',
+        rows: [
+          ['Descarta', '<strong>Sepsis</strong> (el diferencial más importante, y a la vez el desencadenante más frecuente), <strong>golpe de calor</strong>, <strong>síndrome neuroléptico maligno</strong>, <strong>síndrome serotoninérgico</strong>, <strong>abstinencia alcohólica o delirium tremens</strong>, intoxicación simpaticomimética, <strong>feocromocitoma</strong> e hipertermia maligna.'],
+          ['Pistas a favor', 'Bocio, oftalmopatía, temblor fino, piel caliente y húmeda, baja de peso, hiperdefecación, antecedente de enfermedad tiroidea o de <strong>antitiroideo suspendido</strong>, y fibrilación auricular de nueva aparición sin cardiopatía conocida.'],
+          ['Pide', 'TSH, T4 libre y T3 en el mismo acto, junto con electrocardiograma, pruebas hepáticas, creatinquinasa, electrolitos, glicemia, lactato, cultivos y ecografía a la cabecera. <strong>Revisa la lista de fármacos</strong>: neurolépticos, serotoninérgicos, simpaticomiméticos, amiodarona y contraste reciente.'],
+          ['Mientras tanto', '<strong>Enfriamiento activo, volumen y tratamiento del cuadro más probable</strong>. Si la sospecha de tormenta es razonable, el bloqueo tiroideo es de bajo riesgo comparado con dejarla sin tratar: trátala y confirma después.'],
+          ['No hagas', 'No trates como tormenta refractaria lo que nunca fue tormenta: es la vía más rápida a una sepsis mal manejada o a un síndrome neuroléptico maligno sin reconocer.'],
+          ['Enlace', LINK_SEPSIS]
+        ]
+      };
+    }
+
+    return null;
+  }
+
+  function hemoRows() {
+    const extra = [];
+    if (sel.hemo === 'fa_rapida') {
+      extra.push(['Ritmo', '<strong>Control de frecuencia con betabloqueo</strong>, no control de ritmo, mientras el paciente perfunda. <strong>Evita la amiodarona</strong> (carga de yodo). La frecuencia baja a medida que cede el estímulo tiroideo (sección 06).']);
+    }
+    if (sel.hemo === 'congestivo') {
+      extra.push(['Congestión', '<strong>Ecografía antes de dar volumen:</strong> si hay fracción de eyección deprimida y líneas B, el volumen precipita el edema pulmonar. Diurético, oxígeno o ventilación no invasiva, y <strong>esmolol titulable en vez de propranolol en bolo</strong> (secciones 05 y 07).']);
+    }
+    if (sel.hemo === 'hipotension') {
+      extra.push(['Hipotensión', '<strong>Distingue alto gasto con hipovolemia de miocardiopatía tirotóxica y de sepsis concomitante</strong> con ecografía a la cabecera: el manejo del volumen es opuesto. <strong>Hidrocortisona 300 mg IV ahora.</strong> Betabloqueo solo titulable y bajo monitorización continua (sección 07).']);
+    }
+    if (sel.hemo === 'vm') {
+      extra.push(['Ventilado', 'Mantén el <strong>bloqueo tiroideo por sonda nasogástrica</strong>: el tubo no trata la tormenta. Vigila que la tionamida se esté <strong>absorbiendo</strong> si hay íleo o residuo gástrico alto, controla la temperatura central de forma activa y ajusta la sedación sabiendo que el estado hipermetabólico aumenta los requerimientos.']);
+    }
+    if (sel.hemo === 'estable') {
+      extra.push(['Aún estable', '<strong>Estable no es lo mismo que leve.</strong> La tormenta se deteriora en horas: monitorización continua, reevaluación estructurada y destino en área de mayor cuidado desde ahora, no cuando aparezca la hipotensión.']);
+    }
+    return extra;
+  }
+
+  function contextRows() {
+    const extra = [];
+    if (f('infeccion')) {
+      extra.push(['Infección', '<strong>Es el desencadenante más frecuente y mata por su cuenta.</strong> Cultivos y <strong>antibiótico precoz</strong> según el foco, con el paquete de sepsis en paralelo al bloqueo tiroideo. ' + LINK_SEPSIS]);
+    }
+    if (f('suspension')) {
+      extra.push(['Antitiroideo suspendido', '<strong>Causa clásica de tormenta.</strong> Reinicia el bloqueo con dosis de carga —no con la dosis ambulatoria previa— e indaga el motivo de la suspensión: costo, efectos adversos, agranulocitosis o hepatotoxicidad cambian la elección del fármaco.']);
+    }
+    if (f('cargayodo')) {
+      extra.push(['Carga de yodo', '<strong>Replantea el uso de SSKI o Lugol:</strong> si la tirotoxicosis fue inducida por yodo, dar más lo empeora, y si el mecanismo es destructivo la tionamida no actúa. <strong>Corticoides en dosis altas</strong> y consulta con endocrinología (sección 10).']);
+    }
+    if (f('cirugia')) {
+      extra.push(['Cirugía o trauma', '<strong>Desencadenante frecuente</strong>, incluida la cirugía no tiroidea en el paciente no preparado. Revisa complicaciones postoperatorias como causa concurrente —infección de sitio quirúrgico, tromboembolismo, sangrado— y coordina con el equipo tratante.']);
+    }
+    if (f('embarazo')) {
+      extra.push(['Embarazo', '<strong>Se trata con la misma energía:</strong> la tirotoxicosis no controlada amenaza más que los fármacos. <strong>Propiltiouracilo preferido en el primer trimestre</strong> y tiamazol desde el segundo; yodo por el <strong>tiempo más corto posible</strong>; betabloqueo en la dosis mínima eficaz. <strong>Obstetricia y neonatología avisadas</strong>, con monitorización fetal según edad gestacional (sección 10).']);
+    }
+    if (f('anciano')) {
+      extra.push(['Tormenta apática', '<strong>La escala puntúa bajo y el diagnóstico se retrasa.</strong> En el adulto mayor la tormenta se presenta como fibrilación auricular, insuficiencia cardíaca, baja de peso y apatía, sin fiebre alta ni agitación. <strong>Un puntaje intermedio aquí no descarta nada.</strong>']);
+    }
+    if (f('broncoespasmo')) {
+      extra.push(['Broncoespasmo', '<strong>Evita el propranolol no selectivo:</strong> usa un betabloqueante <strong>cardioselectivo titulable</strong> (esmolol o metoprolol) y vigila la respuesta respiratoria. La cardioselectividad se pierde con dosis altas. Si el betabloqueo es verdaderamente imposible, <strong>diltiazem</strong> para control de frecuencia. <em>Verificar con protocolo institucional.</em>']);
+    }
+    if (f('paralisis')) {
+      extra.push(['Parálisis tirotóxica', '<strong>Debilidad proximal aguda con hipopotasemia:</strong> el potasio no está perdido sino <strong>desplazado al intracelular</strong>. El <strong>propranolol es parte del tratamiento</strong> y la reposición de potasio debe ser <strong>cautelosa y monitorizada</strong> por el riesgo de <strong>hiperpotasemia de rebote</strong>. <em>Verificar con protocolo institucional.</em>']);
+    }
+    if (f('sinuci')) {
+      extra.push(['Traslado', '<strong>Centro sin unidad crítica ni endocrinología:</strong> el traslado es parte del tratamiento y se gestiona <strong>en paralelo</strong> con el bloqueo, no después. Inicia los cinco frentes antes de trasladar, y traslada con monitorización continua, vía permeable, medicación en curso y médico acompañante.']);
+    }
+    return extra;
+  }
+
+  function render() {
+    const box = document.getElementById('result');
+    const r = classify();
+    if (!r) {
+      box.className = 'result placeholder';
+      box.innerHTML = 'Selecciona el escenario dominante y el estado hemodinámico para ver la prioridad, qué ' +
+                      'administrar en los primeros minutos y en qué orden, qué está contraindicado y a quién llamar.';
+      return;
+    }
+    const rows = r.rows.filter(row => row && row[1]);
+    const enlace = rows.length && rows[rows.length - 1][0] === 'Enlace' ? rows.pop() : null;
+    rows.push(...hemoRows());
+    rows.push(...contextRows());
+    if (enlace) rows.push(enlace);
+
+    box.className = 'result sev-' + r.sev;
+    box.innerHTML =
+      '<div class="result-tag">' + r.tag + '</div>' +
+      '<div class="result-title">' + r.title + '</div>' +
+      rows.map(([k, v]) =>
+        '<div class="result-row"><div class="result-key">' + k + '</div><div>' + v + '</div></div>'
+      ).join('');
+  }
+
+  // ── Escala de Burch-Wartofsky ─────────────────────────────────────
+  const bwpsList = document.getElementById('bwps-list');
+  const BWPS_GRUPOS = ['temp', 'snc', 'gi', 'fc', 'icc', 'fa', 'prec'];
+
+  const BWPS_NOTA = '<br><br>La escala es <strong>sensible pero poco específica</strong>: fue diseñada para no dejar ' +
+                    'pasar tormentas, no para descartarlas. <strong>Complementa y no reemplaza el juicio clínico</strong>, ' +
+                    'y debe repetirse durante la evolución porque el puntaje cambia en horas. La presentación apática ' +
+                    'del adulto mayor puntúa bajo sin dejar de ser una tormenta. Los criterios de ingreso, de unidad ' +
+                    'crítica y de traslado se definen con el <em>protocolo institucional.</em>';
+
+  function renderBWPS() {
+    const out = document.getElementById('bwps-out');
+    const marcados = bwpsList.querySelectorAll('.score-item.on');
+    if (!marcados.length) {
+      out.innerHTML = 'Elige una opción en cada categoría. El puntaje va de 0 a 140.';
+      return;
+    }
+    let total = 0;
+    marcados.forEach(b => { total += parseInt(b.dataset.p, 10); });
+
+    const elegidos = new Set();
+    marcados.forEach(b => elegidos.add(b.dataset.g));
+    const faltan = BWPS_GRUPOS.filter(g => !elegidos.has(g)).length;
+
+    let clase, nombre, texto;
+    if (total >= 45) {
+      clase = 'risk-high';
+      nombre = total + ' puntos · altamente sugerente de tormenta';
+      texto = '<strong>Trata como tormenta tiroidea ahora:</strong> betabloqueo, tionamida, corticoide y —al menos una ' +
+              'hora después de la tionamida— yodo, junto con el tratamiento del desencadenante y el soporte. ' +
+              '<strong>Unidad crítica y endocrinología avisadas.</strong>';
+    } else if (total >= 25) {
+      clase = 'risk-mid';
+      nombre = total + ' puntos · tormenta inminente';
+      texto = '<strong>Zona de decisión clínica.</strong> En la mayoría de los casos se trata como tormenta, con ' +
+              'monitorización continua y destino en área de mayor cuidado. Con desencadenante claro, tirotoxicosis ' +
+              'conocida o deterioro progresivo, <strong>no esperes a cruzar los 45 puntos</strong>.';
+    } else {
+      clase = 'risk-low';
+      nombre = total + ' puntos · tormenta poco probable';
+      texto = 'Puede tratarse de una <strong>tirotoxicosis sin descompensación</strong> que no requiere el bloqueo ' +
+              'completo. Busca igualmente el desencadenante, deja al paciente monitorizado y <strong>reevalúa</strong>: ' +
+              'un puntaje bajo al ingreso no garantiza que siga bajo en dos horas.';
+    }
+
+    const aviso = faltan
+      ? '<br><br><em>Faltan ' + faltan + ' categoría' + (faltan > 1 ? 's' : '') + ' por marcar: el puntaje mostrado es parcial.</em>'
+      : '';
+
+    out.innerHTML = '<span class="big ' + clase + '">' + nombre + '</span>' + texto + aviso + BWPS_NOTA;
+  }
+
+  bwpsList.querySelectorAll('.score-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const g = btn.dataset.g;
+      const yaEstaba = btn.classList.contains('on');
+      bwpsList.querySelectorAll('.score-item[data-g="' + g + '"]').forEach(b => b.classList.remove('on'));
+      if (!yaEstaba) btn.classList.add('on');
+      renderBWPS();
+    });
+  });
+  document.getElementById('bwps-reset').addEventListener('click', () => {
+    bwpsList.querySelectorAll('.score-item').forEach(b => b.classList.remove('on'));
+    renderBWPS();
+  });
+
+  // ── Formato de números ────────────────────────────────────────────
+  function fmt(n) {
+    if (n >= 100) return n.toFixed(0);
+    if (n >= 10) return n.toFixed(1).replace('.', ',');
+    return n.toFixed(2).replace('.', ',');
+  }
+  function fmt0(n) { return n.toFixed(0); }
+
+  // ── Dosis por peso ────────────────────────────────────────────────
+  const pesoInput = document.getElementById('peso');
+  const pesoOut = document.getElementById('peso-out');
+
+  function renderPeso() {
+    const kg = parseFloat(pesoInput.value);
+    if (!kg || kg <= 0 || kg > 250) {
+      pesoOut.innerHTML = 'Ingresa el peso para ver la carga y la infusión de esmolol calculadas, junto con las dosis fijas del bundle.';
+      return;
+    }
+    // Esmolol: carga 250–500 µg/kg en 1 min; infusión 50–100 µg/kg/min
+    const cargaMin = kg * 250 / 1000;   // mg
+    const cargaMax = kg * 500 / 1000;   // mg
+    const infMin = kg * 50 / 1000;      // mg/min
+    const infMax = kg * 100 / 1000;     // mg/min
+
+    const filas = [
+      ['Esmolol · carga', '250–500 µg/kg en 1 min', fmt(cargaMin) + '–' + fmt(cargaMax) + ' mg', 'Solo con monitorización continua; suspende si cae la presión'],
+      ['Esmolol · infusión', '50–100 µg/kg/min', fmt(infMin) + '–' + fmt(infMax) + ' mg/min<br>(' + fmt0(infMin * 60) + '–' + fmt0(infMax * 60) + ' mg/h)', 'La velocidad en mL/h depende de la dilución de tu servicio'],
+      ['Propranolol vía oral', 'Dosis fija en el adulto', '60–80 mg cada 4–6 h', 'No en falla cardíaca descompensada; prefiere esmolol'],
+      ['Propiltiouracilo', 'Dosis fija en el adulto', '500–1000 mg de carga, luego 250 mg c/4 h', 'Por boca o sonda; vigila hepatotoxicidad y agranulocitosis'],
+      ['Hidrocortisona', 'Dosis fija en el adulto', '300 mg IV, luego 100 mg c/8 h', 'No la retrases por tomar el cortisol basal'],
+      ['Yodo (SSKI o Lugol)', 'Dosis fija en el adulto', 'SSKI 5 gotas c/6 h · Lugol 4–8 gotas c/6–8 h', 'Al menos 1 h DESPUÉS de la tionamida; no en tirotoxicosis por yodo'],
+      ['Paracetamol', '≈ 15 mg/kg, máximo 1 g por dosis', fmt0(Math.min(kg * 15, 1000)) + ' mg cada 6–8 h', 'Antipirético de elección. Ajusta si hay disfunción hepática'],
+      ['Cristaloide con glucosa', 'Titulado, no en bolo fijo', '≈ ' + fmt0(kg * 10) + ' mL por cada 10 mL/kg', 'Titula con ecografía: en la miocardiopatía tirotóxica el exceso precipita edema pulmonar']
+    ].map(d =>
+      '<tr><td>' + d[0] + '</td>' +
+      '<td><span class="dose-note">' + d[1] + '</span></td>' +
+      '<td><span class="dose-main">' + d[2] + '</span><br><span class="dose-note">' + d[3] + '</span></td></tr>'
+    ).join('');
+
+    pesoOut.innerHTML =
+      '<span class="big">Dosis para ' + fmt(kg) + ' kg</span>' +
+      '<div class="table-wrap" style="margin-top:8px;"><table><thead><tr><th>Fármaco</th><th>Dosis</th><th>Para este paciente</th></tr></thead><tbody>' +
+      filas +
+      '</tbody></table></div>' +
+      '<div style="margin-top:10px;">Calculado sobre <strong>peso real estimado</strong>. La mayor parte del bundle de la tormenta ' +
+      'usa <strong>dosis fijas en el adulto</strong>: solo el esmolol y el paracetamol se calculan por peso. En obesidad, embarazo, ' +
+      'insuficiencia renal o hepática la dosificación puede diferir, y la concentración y equivalencia en gotas de las soluciones ' +
+      'yodadas varían entre servicios. <em>Verificar con protocolo institucional.</em></div>';
+  }
+
+  pesoInput.addEventListener('input', renderPeso);
+  document.getElementById('peso-reset').addEventListener('click', () => {
+    pesoInput.value = '';
+    renderPeso();
+  });
+</script>
+</body>
+</html>
