@@ -69,8 +69,8 @@ tomará en orden la próxima vez que corra.
       hemodinámico a la intubación — `algoritmo-status-asmatico.html`
 - [x] Tormenta tiroidea o crisis tirotoxicósica con inestabilidad hemodinámica
       y arritmias complejas — `algoritmo-tormenta-tiroidea.html`
-- [ ] Traumatismo craneoencefálico grave con hipertensión endocraneal
-      refractaria y compromiso multisistémico
+- [x] Traumatismo craneoencefálico grave con hipertensión endocraneal
+      refractaria y compromiso multisistémico — `algoritmo-tec-grave.html`
 - [ ] Cetoacidosis diabética o estado hiperosmolar severo con shock refractario
       y desequilibrios electrolíticos extremos
 - [ ] Hemorragia digestiva alta masiva por várices esofágicas con shock
