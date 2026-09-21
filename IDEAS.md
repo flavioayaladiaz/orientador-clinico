@@ -71,8 +71,8 @@ tomará en orden la próxima vez que corra.
       y arritmias complejas — `algoritmo-tormenta-tiroidea.html`
 - [x] Traumatismo craneoencefálico grave con hipertensión endocraneal
       refractaria y compromiso multisistémico — `algoritmo-tec-grave.html`
-- [ ] Cetoacidosis diabética o estado hiperosmolar severo con shock refractario
-      y desequilibrios electrolíticos extremos
+- [x] Cetoacidosis diabética o estado hiperosmolar severo con shock refractario
+      y desequilibrios electrolíticos extremos — `algoritmo-cad-ehh.html`
 - [ ] Hemorragia digestiva alta masiva por várices esofágicas con shock
       hemorrágico y falla hepática aguda sobre crónica
 - [ ] Intoxicaciones graves por bloqueadores de canales de calcio o
