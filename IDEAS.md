@@ -73,8 +73,9 @@ tomará en orden la próxima vez que corra.
       refractaria y compromiso multisistémico — `algoritmo-tec-grave.html`
 - [x] Cetoacidosis diabética o estado hiperosmolar severo con shock refractario
       y desequilibrios electrolíticos extremos — `algoritmo-cad-ehh.html`
-- [ ] Hemorragia digestiva alta masiva por várices esofágicas con shock
-      hemorrágico y falla hepática aguda sobre crónica
+- [x] Hemorragia digestiva alta masiva por várices esofágicas con shock
+      hemorrágico y falla hepática aguda sobre crónica —
+      `algoritmo-hda-variceal.html`
 - [ ] Intoxicaciones graves por bloqueadores de canales de calcio o
       betabloqueadores con shock vasopléjico y cardiogénico
 
