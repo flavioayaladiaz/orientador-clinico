@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Síntoma cardinal · Disuria</title>
+<meta name="description" content="Disuria en el adulto: bifurcación en los primeros minutos, criterios para no pedir exámenes, bundle simultáneo para la ITU complicada y la urosepsis, e indicaciones al alta listas para copiar.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(16,185,129,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(20,184,166,0.06) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 32px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.25);
+    color: #6ee7b7;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #10b981, #14b8a6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .header-sub strong { color: var(--text); font-weight: 500; }
+
+  /* SECCIONES */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+  .section-title { font-family: var(--display); font-size: 15px; font-weight: 700; color: #fff; }
+  .section-subtitle { font-size: 12px; color: var(--text-muted); font-family: var(--mono); margin-top: 2px; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+  .section-body { padding: 20px 24px 24px; }
+
+  .s1 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s3 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+
+  /* TRIAGE */
+  .q-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .q-label .arrow { color: var(--text-dim); letter-spacing: 0.04em; text-transform: none; }
+  .q-block { margin-bottom: 18px; }
+
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+    line-height: 1.4;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+  .opt.on { background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.45); color: #6ee7b7; }
+  .grp-C .opt.on  { background: rgba(239,68,68,0.14);  border-color: rgba(239,68,68,0.5);  color: #fca5a5; }
+  .grp-B2 .opt.on { background: rgba(99,102,241,0.14); border-color: rgba(99,102,241,0.5); color: #c7d2fe; }
+  .grp-B1 .opt.on { background: rgba(245,158,11,0.13); border-color: rgba(245,158,11,0.5); color: #fcd34d; }
+  .opt .sub { display: block; font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+  .opt.on .sub { color: inherit; opacity: 0.8; }
+
+  .no-flags {
+    width: 100%;
+    font-family: var(--display);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px dashed rgba(16,185,129,0.4);
+    background: rgba(16,185,129,0.05);
+    color: #6ee7b7;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.18s;
+  }
+  .no-flags .sub { display: block; font-family: var(--sans); font-weight: 400; font-size: 12.5px; color: var(--text-dim); margin-top: 4px; line-height: 1.5; }
+  .no-flags.on { border-style: solid; background: rgba(16,185,129,0.14); border-color: rgba(16,185,129,0.6); }
+  .no-flags:disabled { opacity: 0.35; cursor: not-allowed; }
+  .no-flags:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+
+  .verdict {
+    margin-top: 18px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    padding: 16px 18px;
+    border-left: 4px solid var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .verdict.placeholder { font-family: var(--mono); font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
+  .verdict-main { flex: 1; min-width: 220px; }
+  .verdict-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+  .verdict-title { font-family: var(--display); font-size: 18px; font-weight: 700; color: #fff; line-height: 1.25; }
+  .verdict-why { font-size: 12.5px; color: var(--text-dim); margin-top: 6px; line-height: 1.5; }
+  .verdict.p-A  { border-left-color: var(--emerald); }
+  .verdict.p-B1 { border-left-color: var(--amber); }
+  .verdict.p-B2 { border-left-color: var(--indigo); }
+  .verdict.p-C  { border-left-color: var(--red); }
+
+  .go-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    padding: 11px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .go-btn:hover { background: rgba(255,255,255,0.1); }
+
+  .link-btn {
+    background: none;
+    border: none;
+    color: #93c5fd;
+    font-family: var(--mono);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* CAMINOS */
+  .path-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .path-tab {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px 12px 11px;
+    cursor: pointer;
+    text-align: left;
+    color: var(--text-dim);
+    transition: all 0.18s;
+    border-top: 3px solid var(--tab-accent);
+  }
+  .path-tab:hover { color: var(--text); background: var(--surface2); }
+  .path-tab:focus-visible { outline: 2px solid var(--tab-accent); outline-offset: 2px; }
+  .path-tab .code { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--tab-accent); }
+  .path-tab .name { display: block; font-family: var(--display); font-size: 13.5px; font-weight: 700; margin-top: 3px; line-height: 1.2; }
+  .path-tab.active { background: var(--surface2); color: #fff; box-shadow: 0 0 0 1px var(--tab-accent) inset; }
+  .t-A  { --tab-accent: var(--emerald); }
+  .t-B1 { --tab-accent: var(--amber); }
+  .t-B2 { --tab-accent: var(--indigo); }
+  .t-C  { --tab-accent: var(--red); }
+
+  .path-panel {
+    display: none;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 22px 24px 24px;
+    margin-bottom: 20px;
+    border-top: 3px solid var(--tab-accent);
+  }
+  .path-panel.active { display: block; animation: fadeUp 0.35s ease both; }
+
+  .panel-head { margin-bottom: 14px; }
+  .panel-code { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tab-accent); }
+  .panel-title { font-family: var(--display); font-size: 22px; font-weight: 800; color: #fff; line-height: 1.2; margin-top: 4px; }
+  .panel-crit { font-size: 13px; color: var(--text-dim); margin-top: 6px; line-height: 1.55; }
+
+  .targets { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 6px; }
+  .target {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    padding: 7px 11px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .target b { color: var(--tab-accent); font-weight: 500; }
+
+  .block-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 22px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .block-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .stop {
+    border-radius: 14px;
+    border: 1px solid rgba(239,68,68,0.35);
+    background: rgba(239,68,68,0.07);
+    padding: 14px 16px;
+  }
+  .stop-title { font-family: var(--display); font-weight: 800; font-size: 15px; color: #fca5a5; margin-bottom: 8px; letter-spacing: 0.01em; }
+  .stop ul, .order ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .stop li { font-size: 13.5px; color: #fecaca; line-height: 1.5; padding-left: 22px; position: relative; }
+  .stop li::before { content: '✕'; position: absolute; left: 2px; color: var(--red); font-weight: 700; }
+  .stop .why { margin-top: 10px; font-size: 12.5px; color: var(--text-dim); line-height: 1.55; }
+  .stop .why strong { color: #fff; font-weight: 500; }
+
+  .order {
+    border-radius: 14px;
+    border: 1px solid rgba(16,185,129,0.3);
+    background: rgba(16,185,129,0.06);
+    padding: 14px 16px;
+  }
+  .order-title { font-family: var(--display); font-weight: 800; font-size: 15px; color: #6ee7b7; margin-bottom: 8px; }
+  .order li { font-size: 13.5px; color: var(--text); line-height: 1.5; padding-left: 22px; position: relative; }
+  .order li::before { content: '✓'; position: absolute; left: 2px; color: var(--emerald); font-weight: 700; }
+  .order li .cond { color: var(--text-muted); font-family: var(--mono); font-size: 11.5px; }
+  .order-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; }
+  .order-grid .order-title { font-size: 13px; font-family: var(--mono); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+
+  .inst-rule {
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: #fde68a;
+    background: rgba(245,158,11,0.07);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 10px;
+    padding: 10px 12px;
+    line-height: 1.5;
+  }
+  .inst-rule b { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); font-weight: 500; margin-right: 6px; }
+
+  /* FÁRMACOS */
+  .med-list { display: flex; flex-direction: column; gap: 8px; }
+  .med {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    width: 100%;
+    text-align: left;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    cursor: pointer;
+    color: var(--text-dim);
+    font-family: var(--sans);
+    transition: all 0.18s;
+  }
+  .med:hover { border-color: rgba(255,255,255,0.18); }
+  .med:focus-visible { outline: 2px solid var(--tab-accent); outline-offset: 2px; }
+  .med .radio {
+    width: 16px; height: 16px; border-radius: 50%;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .med.multi .radio { border-radius: 5px; }
+  .med.on { border-color: var(--tab-accent); background: rgba(255,255,255,0.04); }
+  .med.on .radio { border-color: var(--tab-accent); background: var(--tab-accent); box-shadow: inset 0 0 0 3px var(--surface2); }
+  .med-name { font-size: 14px; color: #fff; font-weight: 500; }
+  .med-dose { font-family: var(--mono); font-size: 12.5px; color: var(--text); margin-top: 2px; }
+  .med-note { font-size: 12px; color: var(--text-muted); margin-top: 3px; line-height: 1.45; }
+
+  .avoid {
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+  }
+  .avoid strong { color: #fca5a5; font-weight: 500; }
+
+  /* TABLA COMPACTA */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 11px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td { padding: 11px 14px; border-bottom: 1px solid var(--border); color: var(--text-dim); vertical-align: top; line-height: 1.5; }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; font-family: var(--mono); font-size: 12.5px; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 6px; }
+  .check {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    cursor: pointer;
+    line-height: 1.45;
+  }
+  .check input { accent-color: var(--emerald); width: 17px; height: 17px; margin-top: 1px; flex-shrink: 0; cursor: pointer; }
+  .check:has(input:checked) { color: var(--text); border-color: rgba(16,185,129,0.35); }
+  .check-status { font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); margin-top: 8px; }
+  .check-status.ok { color: #6ee7b7; }
+
+  /* COPIADO */
+  .copy-box {
+    border-radius: 14px;
+    border: 1px solid rgba(59,130,246,0.3);
+    background: rgba(59,130,246,0.05);
+    overflow: hidden;
+  }
+  .copy-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 10px 12px 10px 16px;
+    border-bottom: 1px solid rgba(59,130,246,0.2);
+  }
+  .copy-bar span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #93c5fd; }
+  .copy-btn {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    background: var(--blue);
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.12s, background 0.2s;
+    white-space: nowrap;
+  }
+  .copy-btn:hover { background: #2563eb; }
+  .copy-btn:active { transform: scale(0.97); }
+  .copy-btn.done { background: var(--emerald); }
+  .copy-pre {
+    margin: 0;
+    padding: 14px 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 340px;
+    overflow-y: auto;
+  }
+  .copy-hint { font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.5; }
+
+  /* LISTAS Y BANNERS */
+  .plain-list { display: flex; flex-direction: column; gap: 8px; }
+  .plain-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 11px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  .warning-banner {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.55;
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.22);
+    color: #fca5a5;
+    margin-top: 12px;
+  }
+  .warning-banner strong { color: #fff; font-weight: 500; }
+
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+
+  .deep-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 16px 20px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    text-decoration: none;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .deep-link:hover { border-color: rgba(20,184,166,0.4); transform: translateX(2px); }
+  .deep-link strong { display: block; font-family: var(--display); font-size: 15px; color: #fff; margin-bottom: 3px; }
+  .deep-link span { font-size: 12.5px; line-height: 1.5; }
+  .deep-link .arr { font-family: var(--mono); color: var(--teal); font-size: 18px; flex-shrink: 0; }
+
+  /* DISCLAIMER Y PIE */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--emerald); }
+
+  .thanks {
+    margin-top: 20px;
+    border: 1px solid rgba(16,185,129,0.2);
+    background: rgba(16,185,129,0.05);
+    border-radius: 14px;
+    padding: 16px 20px;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .thanks strong { color: #6ee7b7; font-weight: 500; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body, .path-panel { padding: 16px; }
+    .section-header { padding: 16px; }
+    .path-tabs { grid-template-columns: repeat(2, 1fr); }
+    .opt { width: 100%; }
+    th, td { padding: 10px 12px; }
+    .copy-bar { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <div class="header-badge">Síntoma cardinal · Adulto</div>
+    <h1><span>Disuria</span></h1>
+    <p class="header-sub">
+      Decide el camino en los <strong>primeros 3 minutos</strong>. La mayoría de las cistitis se diagnostican
+      y tratan <strong>sin exámenes</strong>; los pacientes complicados, en cambio, reciben
+      <strong>todas las órdenes juntas</strong> desde el inicio.
+    </p>
+  </div>
+
+  <!-- 01 · BIFURCACIÓN -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">MIN 0–3</span>
+      <div>
+        <div class="section-title">¿Tiene banderas rojas?</div>
+        <div class="section-subtitle">Marca lo presente. Manda el grupo más grave</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="q-block grp-C">
+        <div class="q-label">Sepsis <span class="arrow">→ camino C</span></div>
+        <div class="opts" data-group="C">
+          <button type="button" class="opt" data-v="pas">PAS ≤ 100 mmHg</button>
+          <button type="button" class="opt" data-v="fr">FR ≥ 22</button>
+          <button type="button" class="opt" data-v="conciencia">Alteración de conciencia</button>
+          <button type="button" class="opt" data-v="perfusion">Mala perfusión<span class="sub">piel moteada · llene capilar &gt; 3 s · oliguria</span></button>
+        </div>
+      </div>
+
+      <div class="q-block grp-B2">
+        <div class="q-label">Requiere hospitalización <span class="arrow">→ camino B2</span></div>
+        <div class="opts" data-group="B2">
+          <button type="button" class="opt" data-v="vomitos">Vómitos o intolerancia oral</button>
+          <button type="button" class="opt" data-v="obstruccion">Sospecha de obstrucción<span class="sub">cólico + fiebre · litiasis · globo vesical · anuria</span></button>
+          <button type="button" class="opt" data-v="inmuno">Inmunosupresión, trasplante o neutropenia</button>
+          <button type="button" class="opt" data-v="erc">ERC avanzada o riñón único</button>
+          <button type="button" class="opt" data-v="sonda">Portador de sonda vesical</button>
+          <button type="button" class="opt" data-v="fallaPNA">Falla de tratamiento ambulatorio de pielonefritis</button>
+          <button type="button" class="opt" data-v="social">No puede asegurar tratamiento ni control</button>
+        </div>
+      </div>
+
+      <div class="q-block grp-B1">
+        <div class="q-label">Complicada o sistémica <span class="arrow">→ camino B1</span></div>
+        <div class="opts" data-group="B1">
+          <button type="button" class="opt" data-v="fiebre">Fiebre ≥ 38 °C o calofríos</button>
+          <button type="button" class="opt" data-v="lumbar">Dolor lumbar o puñopercusión (+)</button>
+          <button type="button" class="opt" data-v="hombre">Hombre</button>
+          <button type="button" class="opt" data-v="embarazo">Embarazada</button>
+          <button type="button" class="opt" data-v="riesgo">Diabetes mal controlada o adulto mayor frágil</button>
+          <button type="button" class="opt" data-v="falla">Falla terapéutica o ITU recurrente<span class="sub">≥ 2 en 6 meses o ≥ 3 en un año</span></button>
+        </div>
+      </div>
+
+      <button type="button" class="no-flags" id="noFlags">
+        Ninguna → camino A
+        <span class="sub">Mujer no embarazada, con disuria y polaquiuria o urgencia, sin flujo ni prurito vaginal.</span>
+      </button>
+
+      <div class="verdict placeholder" id="verdict">
+        Marca las banderas rojas presentes, o confirma que no hay ninguna.
+        <br>¿Hay flujo vaginal, secreción uretral o lesiones genitales?
+        <button type="button" class="link-btn" onclick="openDiff()">Puede que no sea una ITU →</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PESTAÑAS DE CAMINO -->
+  <div class="path-tabs" id="pathTabs" role="tablist">
+    <button type="button" class="path-tab t-A"  data-path="A"  role="tab"><span class="code">A</span><span class="name">Cistitis · alta rápida</span></button>
+    <button type="button" class="path-tab t-B1" data-path="B1" role="tab"><span class="code">B1</span><span class="name">Complicada · ambulatoria</span></button>
+    <button type="button" class="path-tab t-B2" data-path="B2" role="tab"><span class="code">B2</span><span class="name">Complicada · hospitalizar</span></button>
+    <button type="button" class="path-tab t-C"  data-path="C"  role="tab"><span class="code">C</span><span class="name">Sepsis / shock</span></button>
+  </div>
+
+  <!-- ═══ CAMINO A ═══ -->
+  <div class="path-panel t-A" id="panel-A" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Camino A · Fast-track</div>
+      <div class="panel-title">Cistitis no complicada</div>
+      <div class="panel-crit">Mujer no embarazada · síntomas bajos típicos · sin fiebre ni dolor lumbar · sin flujo vaginal.</div>
+    </div>
+    <div class="targets">
+      <span class="target">⏱ Alta en <b>&lt; 30 min</b></span>
+      <span class="target">🧪 Exámenes: <b>ninguno</b></span>
+    </div>
+
+    <div class="block-label">Stop workup</div>
+    <div class="stop">
+      <div class="stop-title">NO pedir</div>
+      <ul>
+        <li>Orina completa ni tira reactiva</li>
+        <li>Urocultivo</li>
+        <li>Hemograma, PCR, creatinina ni otro laboratorio</li>
+        <li>Ecografía ni TAC</li>
+      </ul>
+      <div class="why">
+        <strong>El diagnóstico es clínico.</strong> Disuria más polaquiuria sin flujo vaginal da una probabilidad de ITU
+        mayor del 90 %. Con una probabilidad pretest tan alta, un examen negativo no descarta la infección y
+        <strong>no cambia la conducta</strong>; solo prolonga la estadía en el box.
+        Si es recurrente o hay falla terapéutica, pasa a <button type="button" class="link-btn" onclick="showPath('B1', true)">B1</button>.
+      </div>
+    </div>
+
+    <div class="block-label">Antibiótico · elige uno</div>
+    <div class="med-list" data-meds="A"></div>
+    <div class="avoid">
+      <strong>No usar de primera línea:</strong> ciprofloxacino ni otras quinolonas. Resérvalas por el riesgo de
+      resistencia y de efectos adversos (tendinopatía, aortopatía, efectos neuropsiquiátricos).
+      La nitrofurantoína está contraindicada con ClCr &lt; 30 mL/min.
+    </div>
+
+    <div class="block-label">Síntomas · opcional</div>
+    <div class="med-list" data-analg="A"></div>
+
+    <div class="block-label">Checklist de alta</div>
+    <div class="checklist" data-check="A">
+      <label class="check"><input type="checkbox"> Sin fiebre, dolor lumbar ni banderas rojas</label>
+      <label class="check"><input type="checkbox"> Embarazo descartado (FUR; test en el box si hay duda)</label>
+      <label class="check"><input type="checkbox"> Alergias consultadas</label>
+      <label class="check"><input type="checkbox"> Entiende el tratamiento y los signos de alarma</label>
+    </div>
+    <div class="check-status" data-status="A"></div>
+
+    <div class="block-label">Indicaciones al paciente</div>
+    <div class="copy-box">
+      <div class="copy-bar"><span>Texto para la ficha / entrega</span><button type="button" class="copy-btn" data-copy="A">Copiar indicaciones</button></div>
+      <pre class="copy-pre" id="copy-A"></pre>
+    </div>
+    <div class="copy-hint">El texto se arma con lo que selecciones arriba. No se guarda ningún dato.</div>
+  </div>
+
+  <!-- ═══ CAMINO B1 ═══ -->
+  <div class="path-panel t-B1" id="panel-B1" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Camino B1 · Estudio dirigido, alta</div>
+      <div class="panel-title">ITU complicada o pielonefritis estable</div>
+      <div class="panel-crit">Estable, tolera la vía oral, sin criterios de B2 ni de C. Se va de alta <strong>sin esperar resultados</strong>.</div>
+    </div>
+
+    <div class="block-label">Escenario</div>
+    <div class="opts" id="b1Scen"></div>
+
+    <div class="targets">
+      <span class="target">⏱ Muestras + 1.ª dosis en <b>&lt; 60 min</b></span>
+      <span class="target">🚪 Alta en <b>&lt; 2 h</b></span>
+      <span class="target">🔬 Control con urocultivo en <b>48–72 h</b></span>
+    </div>
+
+    <div class="block-label">Pedir · todo junto al ingreso</div>
+    <div class="order">
+      <div class="order-title">Órdenes</div>
+      <ul id="b1Orders"></ul>
+    </div>
+    <div class="inst-rule"><b>Regla institucional</b> El urocultivo solo se procesa si hay orina completa inflamatoria previa, fracaso terapéutico o pertenencia a una población especial (hombre, embarazada, ITU complicada). Pide ambos exámenes en la misma orden.</div>
+
+    <div class="block-label">Stop workup</div>
+    <div class="stop">
+      <div class="stop-title">NO pedir</div>
+      <ul>
+        <li>Hemograma ni PCR de rutina: no cambian el destino de un paciente estable que se va de alta</li>
+        <li>Imagen: sin sospecha de obstrucción no aporta; si la sospechas, el paciente pasa a B2</li>
+        <li>No esperar el urocultivo para dar el alta: se revisa en el control</li>
+      </ul>
+      <div class="why"><strong>Creatinina</strong> solo si tiene más de 65 años, diabetes, sospecha de ERC o fármacos nefrotóxicos: define la dosis y el uso de nitrofurantoína.</div>
+    </div>
+
+    <div class="block-label">Tratamiento · elige uno</div>
+    <div class="med-list" data-meds="B1"></div>
+    <div class="avoid" id="b1Avoid"></div>
+
+    <div class="block-label">Síntomas · opcional</div>
+    <div class="med-list" data-analg="B1"></div>
+
+    <div class="block-label">Checklist de alta</div>
+    <div class="checklist" data-check="B1">
+      <label class="check"><input type="checkbox"> Orina completa y urocultivo tomados antes del antibiótico</label>
+      <label class="check"><input type="checkbox"> Primera dosis administrada en el box (si corresponde)</label>
+      <label class="check"><input type="checkbox"> Tolera la vía oral, sin signos de sepsis</label>
+      <label class="check"><input type="checkbox"> Control a las 48–72 h agendado y responsable de revisar el urocultivo definido</label>
+      <label class="check"><input type="checkbox"> Entiende el tratamiento y los signos de alarma</label>
+    </div>
+    <div class="check-status" data-status="B1"></div>
+
+    <div class="block-label">Indicaciones al paciente</div>
+    <div class="copy-box">
+      <div class="copy-bar"><span>Texto para la ficha / entrega</span><button type="button" class="copy-btn" data-copy="B1">Copiar indicaciones</button></div>
+      <pre class="copy-pre" id="copy-B1"></pre>
+    </div>
+    <div class="copy-hint">El texto se arma con el escenario y los fármacos elegidos. No se guarda ningún dato.</div>
+  </div>
+
+  <!-- ═══ CAMINO B2 ═══ -->
+  <div class="path-panel t-B2" id="panel-B2" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Camino B2 · Estudio dirigido, hospitalización</div>
+      <div class="panel-title">ITU complicada que no puede irse a casa</div>
+      <div class="panel-crit">Intolerancia oral, sospecha de obstrucción, inmunosupresión, ERC avanzada o riñón único, sonda vesical,
+        falla del tratamiento ambulatorio, embarazada con fiebre o dolor lumbar, o paciente que no puede asegurar el tratamiento.</div>
+    </div>
+    <div class="targets">
+      <span class="target">💉 Antibiótico EV en <b>&lt; 60 min</b></span>
+      <span class="target">🖥 Imagen en <b>&lt; 2 h</b> si hay sospecha de obstrucción</span>
+      <span class="target">🏥 Destino decidido en <b>&lt; 3 h</b></span>
+    </div>
+
+    <div class="block-label">Bundle de entrada · pedir todo en una sola orden</div>
+    <div class="order-grid">
+      <div class="order">
+        <div class="order-title">Muestras</div>
+        <ul>
+          <li>Orina completa + urocultivo con antibiograma</li>
+          <li>Hemocultivos ×2 <span class="cond">si hay fiebre, inmunosupresión o sonda</span></li>
+          <li>Test de embarazo <span class="cond">mujer en edad fértil</span></li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">Laboratorio</div>
+        <ul>
+          <li>Hemograma, PCR</li>
+          <li>Creatinina, BUN, electrolitos</li>
+          <li>Glicemia <span class="cond">si hay diabetes</span></li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">Imagen</div>
+        <ul>
+          <li>Pielo-TAC sin contraste <span class="cond">sospecha de litiasis u obstrucción</span></li>
+          <li>Ecografía renal <span class="cond">embarazada · ERC · riñón único</span></li>
+          <li>TAC de abdomen y pelvis con contraste <span class="cond">evolución tórpida o deterioro febril</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="block-label">Antibiótico EV</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Situación</th><th>Esquema</th></tr></thead>
+        <tbody>
+          <tr><td>Pielonefritis o ITU complicada</td><td><span class="dose-main">Ceftriaxona 2 g EV c/24 h</span></td></tr>
+          <tr><td>Alergia a betalactámicos o resistencia a C3G</td><td><span class="dose-main">Amikacina 15 mg/kg EV c/24 h</span><br><span class="dose-note">Ajustar por función renal. Evitar en el embarazo.</span></td></tr>
+          <tr><td>Riesgo de BLEE</td><td><span class="dose-main">Ertapenem 1 g EV c/24 h</span><br><span class="dose-note">BLEE previo, antibiótico u hospitalización en los últimos 3 meses, institucionalizado</span></td></tr>
+          <tr><td>Portador de sonda</td><td><span class="dose-main">Amikacina 15 mg/kg EV c/24 h</span><br><span class="dose-note">Recambiar la sonda antes del antibiótico y cultivar la sonda nueva. 5–7 días según antibiograma.</span></td></tr>
+          <tr><td>Embarazada con pielonefritis</td><td><span class="dose-main">Ceftriaxona 1–2 g EV c/24 h</span><br><span class="dose-note">Sin quinolonas ni aminoglucósidos. Evaluación obstétrica.</span></td></tr>
+          <tr><td>Prostatitis con compromiso sistémico</td><td><span class="dose-main">Ceftriaxona 2 g EV c/24 h</span><br><span class="dose-note">En un hombre joven sin patología prostática, descartar ITS y tratar en conjunto.</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="avoid">Duración total habitual: <strong style="color:#fff">7 días si hay mejoría precoz</strong>, con paso a la vía oral según el antibiograma. Desescalar apenas llegue el cultivo.</div>
+
+    <div class="block-label">Destino</div>
+    <div class="plain-list">
+      <div class="plain-item"><span class="bullet-icon">🏥</span><span><strong>Hospitalización en sala básica</strong> con reevaluación clínica a las 48–72 h.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🪨</span><span><strong>Obstrucción + infección = urología inmediata.</strong> La pionefrosis requiere drenaje (nefrostomía o catéter ureteral); el antibiótico solo no basta.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🤰</span><span><strong>Embarazada:</strong> hospitalizar, con evaluación obstétrica.</span></div>
+      <div class="plain-item"><span class="bullet-icon">⚠️</span><span><strong>Si aparece hipotensión, confusión o taquipnea,</strong> pasa a <button type="button" class="link-btn" onclick="showPath('C', true)">camino C</button>.</span></div>
+    </div>
+  </div>
+
+  <!-- ═══ CAMINO C ═══ -->
+  <div class="path-panel t-C" id="panel-C" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Camino C · Crítico</div>
+      <div class="panel-title">Sepsis o shock séptico de foco urinario</div>
+      <div class="panel-crit">ITU con disfunción orgánica. Es <strong>shock séptico</strong> si requiere vasopresores para una PAM ≥ 65 y tiene lactato &gt; 2 mmol/L pese a volemizar.</div>
+    </div>
+    <div class="targets">
+      <span class="target">💉 Antibiótico en <b>&lt; 1 h</b></span>
+      <span class="target">💧 Cristaloides <b>30 mL/kg en 3 h</b> si PAS baja o lactato ≥ 4</span>
+      <span class="target">🎯 PAM <b>≥ 65</b></span>
+      <span class="target">🔧 Control del foco en <b>&lt; 6–12 h</b></span>
+    </div>
+
+    <div class="block-label">Bundle de entrada · simultáneo</div>
+    <div class="order-grid">
+      <div class="order">
+        <div class="order-title">Antes del antibiótico (sin retrasarlo)</div>
+        <ul>
+          <li>Hemocultivos ×2</li>
+          <li>Orina completa + urocultivo con antibiograma</li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">Laboratorio</div>
+        <ul>
+          <li>Lactato, gases</li>
+          <li>Hemograma, PCR</li>
+          <li>Creatinina, BUN, electrolitos</li>
+          <li>Perfil hepático, pruebas de coagulación</li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">Imagen y monitorización</div>
+        <ul>
+          <li>TAC de abdomen y pelvis con contraste <span class="cond">buscar obstrucción, absceso o gas</span></li>
+          <li>Ecografía renal en el box <span class="cond">si no se puede trasladar al paciente</span></li>
+          <li>Sonda Foley con diuresis horaria</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="block-label">Antibiótico empírico · primera hora</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Situación</th><th>Esquema</th></tr></thead>
+        <tbody>
+          <tr><td>Sin factores de resistencia</td><td><span class="dose-main">Ceftriaxona 2 g EV + Amikacina 15 mg/kg EV</span></td></tr>
+          <tr><td>Riesgo de BLEE o infección asociada a atención de salud</td><td><span class="dose-main">Meropenem 1 g EV c/8 h ± Amikacina 15 mg/kg EV</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="avoid">Desescalar según el cultivo. El control del foco (obstrucción, sonda, litiasis) es tan urgente como el antibiótico.</div>
+
+    <div class="block-label">Destino</div>
+    <div class="plain-list">
+      <div class="plain-item"><span class="bullet-icon">🚨</span><span><strong>UPC / UCI.</strong> Llama a urología desde el inicio si hay obstrucción o sospecha de absceso.</span></div>
+    </div>
+    <a class="cross-link" href="./checklist-sepsis_4.html">→ Abrir checklist de sepsis y shock séptico</a>
+  </div>
+
+  <!-- 02 · NO ES ITU -->
+  <div class="section s3 collapsed" id="s-diff" style="animation-delay:0.12s;">
+    <div class="section-header" onclick="toggleSection('s-diff')">
+      <span class="section-num">DESVÍO</span>
+      <div>
+        <div class="section-title">Puede que no sea una ITU</div>
+        <div class="section-subtitle">Disuria sin infección urinaria</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Sospecha</th><th>Pistas</th><th>Conducta</th></tr></thead>
+          <tbody>
+            <tr><td>Uretritis / cervicitis (ITS)</td><td>Pareja nueva, secreción uretral o cervical, inicio gradual, sin polaquiuria marcada</td><td>Estudio de ITS y tratamiento sindromático según la norma MINSAL de ITS; notificación y estudio de la pareja</td></tr>
+            <tr><td>Vulvovaginitis</td><td>Flujo, prurito, disuria «externa» al pasar la orina por la piel</td><td>Especuloscopía y tratamiento según el agente probable. No indicar antibiótico urinario</td></tr>
+            <tr><td>Herpes genital</td><td>Disuria muy intensa, vesículas o úlceras</td><td>Tratamiento antiviral; puede causar retención urinaria</td></tr>
+            <tr><td>Cólico renal sin fiebre</td><td>Dolor cólico, hematuria, sin fiebre</td><td>Manejo de litiasis. <strong>Si aparece fiebre, pasa a B2</strong></td></tr>
+            <tr><td>Prostatitis</td><td>Hombre con fiebre, dolor perineal, próstata dolorosa</td><td>Camino B1 (estable) o B2 (compromiso sistémico)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFUNDIZAR -->
+  <a class="deep-link" href="./guia-infeccion-urinaria.html">
+    <div>
+      <strong>Profundizar · Guía de infección urinaria</strong>
+      <span>Clasificación completa, interpretación de la orina y del urocultivo, diferencial ampliado y situaciones especiales.</span>
+    </div>
+    <span class="arr">→</span>
+  </a>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda de orientación para la atención de urgencia:
+    no reemplaza el juicio clínico ni los protocolos vigentes del servicio. Las metas de tiempo son referenciales.
+    La elección empírica depende del patrón de resistencia local. Verifica dosis, ajuste por función renal,
+    alergias y contraindicaciones antes de indicar cualquier fármaco.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Trautner BW, et al. <em>IDSA 2025 Guidelines on Management and Treatment of Complicated Urinary Tract Infections — Duration of Antibiotics.</em> Clin Infect Dis. 2026;82(Suppl 3):i79–i88.</div>
+      <div class="ref-item">Gupta K, et al. <em>International Clinical Practice Guidelines for the Treatment of Acute Uncomplicated Cystitis and Pyelonephritis in Women (IDSA / ESCMID).</em> Clin Infect Dis. 2011;52(5):e103–e120.</div>
+      <div class="ref-item">Bonkat G, et al. <em>EAU Guidelines on Urological Infections.</em> European Association of Urology.</div>
+      <div class="ref-item">Bent S, et al. <em>Does this woman have an acute uncomplicated urinary tract infection?</em> JAMA. 2002;287(20):2701–2710.</div>
+      <div class="ref-item">Lammers RL, et al. <em>Comparison of test characteristics of urine dipstick and urinalysis at various test cutoff points.</em> Ann Emerg Med. 2001;38(5):505–512.</div>
+      <div class="ref-item">Devillé WL, et al. <em>The urine dipstick test useful to rule out infections. A meta-analysis of the accuracy.</em> BMC Urol. 2004;4:4.</div>
+      <div class="ref-item">Chernaya A, et al. <em>Validity of the urinary dipstick test in the diagnosis of urinary tract infections in adults.</em> Dan Med J. 2021;69(1):A07210607.</div>
+      <div class="ref-item">Pochick K. <em>Urinary Tract Infections: Urgent Care Management.</em> Evidence-Based Urgent Care. EB Medicine; 2022.</div>
+      <div class="ref-item">Gupta K, Trautner B. <em>Infecciones de vías urinarias, pielonefritis y prostatitis.</em> En: Harrison. Principios de medicina interna. 18.ª ed. McGraw-Hill; 2012.</div>
+      <div class="ref-item">Evans L, et al. <em>Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2021.</em> Crit Care Med. 2021;49(11):e1063–e1143.</div>
+    </div>
+  </div>
+
+  <!-- AGRADECIMIENTOS -->
+  <div class="thanks">
+    <strong>Agradecimientos.</strong> A Jaime Carril, por su colaboración con el borrador clínico sobre infección
+    del tracto urinario en el adulto que sirvió de base para esta página.
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+  function openDiff() {
+    const s = document.getElementById('s-diff');
+    s.classList.remove('collapsed');
+    s.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ── Datos: fármacos (dosis para ficha + texto para el paciente) ───
+  const MEDS = {
+    nitro5:   { name: 'Nitrofurantoína', dose: '100 mg c/6 h VO × 5 días', note: 'Primera línea. No usar con ClCr < 30 ni si se sospecha pielonefritis.',
+                pt: 'Nitrofurantoína 100 mg: 1 cápsula cada 6 horas por 5 días, junto con las comidas.' },
+    fosfo:    { name: 'Fosfomicina trometamol', dose: '3 g VO dosis única', note: 'Primera línea. Buena adherencia; algo menos eficaz que 5 días de nitrofurantoína.',
+                pt: 'Fosfomicina 3 g: disolver 1 sobre en medio vaso de agua y tomarlo UNA sola vez, idealmente en la noche, después de orinar y con el estómago vacío.' },
+    cefa5:    { name: 'Cefadroxilo', dose: '500 mg c/12 h VO × 5 días', note: 'Alternativa.',
+                pt: 'Cefadroxilo 500 mg: 1 cápsula cada 12 horas por 5 días.' },
+    pnaCro:   { name: 'Ceftriaxona + cefpodoxima', dose: 'Ceftriaxona 2 g EV en el box → cefpodoxima 200 mg c/12 h VO × 7 días', note: 'Con un betalactámico oral, da siempre una dosis parenteral inicial.',
+                pt: 'Cefpodoxima 200 mg: 1 comprimido cada 12 horas por 7 días.', box: 'Se le administró una primera dosis de antibiótico inyectable en este servicio.' },
+    pnaCipro: { name: 'Ciprofloxacino', dose: '500 mg c/12 h VO × 7 días', note: 'Solo si la resistencia local a quinolonas es < 10 %; si no, da antes ceftriaxona 2 g EV.',
+                pt: 'Ciprofloxacino 500 mg: 1 comprimido cada 12 horas por 7 días. No tomar junto con leche, antiácidos ni suplementos de hierro o calcio.' },
+    nitro7:   { name: 'Nitrofurantoína', dose: '100 mg c/6 h VO × 7 días', note: 'Si no hay fiebre ni sospecha de prostatitis.',
+                pt: 'Nitrofurantoína 100 mg: 1 cápsula cada 6 horas por 7 días, junto con las comidas.' },
+    cefa7:    { name: 'Cefadroxilo', dose: '500 mg c/12 h VO × 7 días', note: '',
+                pt: 'Cefadroxilo 500 mg: 1 cápsula cada 12 horas por 7 días.' },
+    prosCipro:{ name: 'Ciprofloxacino', dose: '500 mg c/12 h VO × 14 días', note: 'Buena penetración prostática. Extender hasta 4 semanas según la evolución.',
+                pt: 'Ciprofloxacino 500 mg: 1 comprimido cada 12 horas por 14 días. No suspender antes aunque se sienta bien. No tomar junto con leche, antiácidos ni suplementos de hierro o calcio.' },
+    embCefa:  { name: 'Cefadroxilo', dose: '500 mg c/12 h VO × 7 días', note: 'Seguro en todo el embarazo.',
+                pt: 'Cefadroxilo 500 mg: 1 cápsula cada 12 horas por 7 días.' },
+    embNitro: { name: 'Nitrofurantoína', dose: '100 mg c/6 h VO × 7 días', note: 'Evitar desde las 37 semanas y en el déficit de G6PD.',
+                pt: 'Nitrofurantoína 100 mg: 1 cápsula cada 6 horas por 7 días, junto con las comidas.' }
+  };
+
+  const ANALG = {
+    para:   { name: 'Paracetamol', dose: '1 g c/8 h VO si hay dolor', note: '',
+              pt: 'Paracetamol 1 g: cada 8 horas solo si tiene dolor (máximo 3 g al día).' },
+    ibu:    { name: 'Ibuprofeno', dose: '400 mg c/8 h VO × máx. 3 días', note: 'Evitar en ERC, úlcera péptica y embarazo.',
+              pt: 'Ibuprofeno 400 mg: cada 8 horas con comida, solo si tiene dolor, por un máximo de 3 días.' }
+  };
+
+  // ── Escenarios del camino B1 ──────────────────────────────────────
+  const B1 = {
+    pna: {
+      label: 'Pielonefritis estable',
+      meds: ['pnaCro', 'pnaCipro'], analg: ['para', 'ibu'],
+      orders: ['Orina completa + urocultivo con antibiograma', 'Test de embarazo en mujer en edad fértil'],
+      avoid: '<strong>No usar nitrofurantoína ni fosfomicina:</strong> no alcanzan concentraciones útiles en el riñón.',
+      dx: 'Infección urinaria alta (pielonefritis)',
+      extraAlarm: [],
+      control: 'Control en 48 a 72 horas para revisar el resultado del urocultivo y su evolución. Si la fiebre persiste más de 48 horas con el antibiótico, consulte antes.'
+    },
+    hombre: {
+      label: 'Cistitis en hombre',
+      meds: ['nitro7', 'cefa7'], analg: ['para', 'ibu'],
+      orders: ['Orina completa + urocultivo con antibiograma'],
+      avoid: 'Toda ITU en el hombre es complicada: <strong>no tratar 3 días</strong>. Si hay fiebre o próstata dolorosa, cambia al escenario de prostatitis.',
+      dx: 'Infección urinaria baja',
+      extraAlarm: ['Dolor en la zona entre los testículos y el ano, o dificultad para orinar.'],
+      control: 'Control en 48 a 72 horas para revisar el resultado del urocultivo.'
+    },
+    prostatitis: {
+      label: 'Prostatitis aguda estable',
+      meds: ['prosCipro'], analg: ['para', 'ibu'],
+      orders: ['Orina completa + urocultivo con antibiograma', 'Estudio de ITS en hombre joven sin patología prostática ni ITU previa'],
+      avoid: 'Evitar el masaje prostático. <strong>En un hombre joven, descartar ITS</strong> y tratar en conjunto si corresponde.',
+      dx: 'Infección de la próstata (prostatitis aguda)',
+      extraAlarm: ['Imposibilidad de orinar o dolor intenso en la zona perineal.'],
+      control: 'Control en 48 a 72 horas para revisar el urocultivo, y luego con su médico para definir la duración total del tratamiento.'
+    },
+    embarazo: {
+      label: 'Cistitis en embarazada',
+      meds: ['embCefa', 'embNitro'], analg: ['para'],
+      orders: ['Orina completa + urocultivo con antibiograma'],
+      avoid: '<strong>Contraindicados:</strong> quinolonas y cotrimoxazol. Sin fiebre ni dolor lumbar; si los tiene, es pielonefritis → B2.',
+      dx: 'Infección urinaria baja durante el embarazo',
+      extraAlarm: ['Contracciones, sangrado vaginal o pérdida de líquido por la vagina.', 'Disminución de los movimientos del bebé.'],
+      control: 'Control en 48 a 72 horas para revisar el urocultivo. Al terminar el tratamiento necesitará un urocultivo de control: avise a su matrona o médico tratante.'
+    },
+    falla: {
+      label: 'Falla terapéutica o recurrencia',
+      meds: ['cefa7', 'nitro7', 'fosfo'], analg: ['para', 'ibu'],
+      orders: ['Orina completa + urocultivo con antibiograma'],
+      avoid: 'Elige una <strong>familia distinta</strong> de la que falló. Ajusta según el urocultivo.',
+      dx: 'Infección urinaria baja (recurrente o que no respondió al tratamiento previo)',
+      extraAlarm: [],
+      control: 'Control en 48 a 72 horas para revisar el resultado del urocultivo y ajustar el antibiótico si es necesario.'
+    }
+  };
+
+  // ── Estado (en memoria, no se guarda) ─────────────────────────────
+  const state = {
+    flags: { C: new Set(), B2: new Set(), B1: new Set() },
+    noFlags: false,
+    path: null,
+    scen: 'pna',
+    med: { A: 'nitro5', B1: null },
+    analg: { A: new Set(), B1: new Set() }
+  };
+
+  // ── Triage ────────────────────────────────────────────────────────
+  const PATH_NAMES = {
+    A:  'Camino A · Cistitis no complicada, alta rápida',
+    B1: 'Camino B1 · ITU complicada o pielonefritis estable, alta',
+    B2: 'Camino B2 · ITU complicada, hospitalizar',
+    C:  'Camino C · Sepsis de foco urinario'
+  };
+
+  function flagLabels(group) {
+    return [...state.flags[group]].map(v => {
+      const b = document.querySelector(`[data-group="${group}"] [data-v="${v}"]`);
+      return b.childNodes[0].textContent.trim();
+    });
+  }
+
+  function computePath() {
+    const f = state.flags;
+    if (f.C.size) return { p: 'C', why: flagLabels('C') };
+    if (f.B1.has('embarazo') && (f.B1.has('fiebre') || f.B1.has('lumbar')))
+      return { p: 'B2', why: ['Embarazada con fiebre o dolor lumbar (pielonefritis)', ...flagLabels('B2')] };
+    if (f.B2.size) return { p: 'B2', why: flagLabels('B2') };
+    if (f.B1.size) return { p: 'B1', why: flagLabels('B1') };
+    if (state.noFlags) return { p: 'A', why: ['Sin banderas rojas'] };
+    return null;
+  }
+
+  function suggestScenario() {
+    const f = state.flags.B1;
+    if (f.has('embarazo')) return 'embarazo';
+    if (f.has('hombre')) return (f.has('fiebre') || f.has('lumbar')) ? 'prostatitis' : 'hombre';
+    if (f.has('fiebre') || f.has('lumbar')) return 'pna';
+    if (f.has('falla')) return 'falla';
+    return state.scen;
+  }
+
+  function renderVerdict() {
+    const v = document.getElementById('verdict');
+    const anyFlag = Object.values(state.flags).some(s => s.size);
+    const nf = document.getElementById('noFlags');
+    nf.disabled = anyFlag;
+    if (anyFlag) { state.noFlags = false; nf.classList.remove('on'); }
+
+    const r = computePath();
+    if (!r) {
+      v.className = 'verdict placeholder';
+      v.innerHTML = 'Marca las banderas rojas presentes, o confirma que no hay ninguna.<br>¿Hay flujo vaginal, secreción uretral o lesiones genitales? <button type="button" class="link-btn" onclick="openDiff()">Puede que no sea una ITU →</button>';
+      return;
+    }
+    if (r.p === 'B1') setScenario(suggestScenario());
+    v.className = 'verdict p-' + r.p;
+    v.innerHTML = `
+      <div class="verdict-main">
+        <div class="verdict-tag">Camino sugerido</div>
+        <div class="verdict-title">${PATH_NAMES[r.p]}</div>
+        <div class="verdict-why">${r.why.join(' · ')}</div>
+      </div>
+      <button type="button" class="go-btn" onclick="showPath('${r.p}', true)">Ir al camino ↓</button>`;
+    showPath(r.p, false);
+  }
+
+  document.querySelectorAll('[data-group]').forEach(group => {
+    const g = group.dataset.group;
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (state.flags[g].has(v)) { state.flags[g].delete(v); btn.classList.remove('on'); }
+        else { state.flags[g].add(v); btn.classList.add('on'); }
+        renderVerdict();
+      });
+    });
+  });
+
+  document.getElementById('noFlags').addEventListener('click', e => {
+    state.noFlags = !state.noFlags;
+    e.currentTarget.classList.toggle('on', state.noFlags);
+    renderVerdict();
+  });
+
+  // ── Pestañas de camino ────────────────────────────────────────────
+  function showPath(p, scroll) {
+    state.path = p;
+    document.querySelectorAll('.path-tab').forEach(t => {
+      const on = t.dataset.path === p;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on);
+    });
+    document.querySelectorAll('.path-panel').forEach(pn => pn.classList.toggle('active', pn.id === 'panel-' + p));
+    if (scroll) document.getElementById('pathTabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  document.querySelectorAll('.path-tab').forEach(t => t.addEventListener('click', () => showPath(t.dataset.path, false)));
+
+  // ── Listas de fármacos ────────────────────────────────────────────
+  function medButton(m, id, multi, on) {
+    return `<button type="button" class="med${multi ? ' multi' : ''}${on ? ' on' : ''}" data-id="${id}">
+      <span class="radio"></span>
+      <span><span class="med-name">${m.name}</span><span class="med-dose" style="display:block">${m.dose}</span>${m.note ? `<span class="med-note" style="display:block">${m.note}</span>` : ''}</span>
+    </button>`;
+  }
+
+  function renderMeds(path) {
+    const ids = path === 'A' ? ['nitro5', 'fosfo', 'cefa5'] : B1[state.scen].meds;
+    if (!ids.includes(state.med[path])) state.med[path] = ids[0];
+    const box = document.querySelector(`[data-meds="${path}"]`);
+    box.innerHTML = ids.map(id => medButton(MEDS[id], id, false, state.med[path] === id)).join('');
+    box.querySelectorAll('.med').forEach(b => b.addEventListener('click', () => {
+      state.med[path] = b.dataset.id;
+      renderMeds(path);
+    }));
+
+    const aIds = path === 'A' ? ['para', 'ibu'] : B1[state.scen].analg;
+    [...state.analg[path]].forEach(a => { if (!aIds.includes(a)) state.analg[path].delete(a); });
+    const abox = document.querySelector(`[data-analg="${path}"]`);
+    abox.innerHTML = aIds.map(id => medButton(ANALG[id], id, true, state.analg[path].has(id))).join('');
+    abox.querySelectorAll('.med').forEach(b => b.addEventListener('click', () => {
+      const id = b.dataset.id;
+      state.analg[path].has(id) ? state.analg[path].delete(id) : state.analg[path].add(id);
+      renderMeds(path);
+    }));
+
+    renderCopy(path);
+  }
+
+  // ── Escenario B1 ──────────────────────────────────────────────────
+  function setScenario(s) {
+    state.scen = s;
+    document.querySelectorAll('#b1Scen .opt').forEach(b => b.classList.toggle('on', b.dataset.v === s));
+    document.getElementById('b1Orders').innerHTML = B1[s].orders.map(o => `<li>${o}</li>`).join('');
+    document.getElementById('b1Avoid').innerHTML = B1[s].avoid;
+    renderMeds('B1');
+  }
+  document.getElementById('b1Scen').innerHTML = Object.entries(B1)
+    .map(([k, v]) => `<button type="button" class="opt" data-v="${k}">${v.label}</button>`).join('');
+  document.querySelectorAll('#b1Scen .opt').forEach(b => b.addEventListener('click', () => setScenario(b.dataset.v)));
+
+  // ── Texto de indicaciones ─────────────────────────────────────────
+  const ALARM_BASE = [
+    'Fiebre de 38 °C o más, o calofríos.',
+    'Dolor en la espalda o en el costado.',
+    'Vómitos que le impidan tomar los medicamentos.',
+    'Decaimiento importante, confusión, mareo al ponerse de pie o desmayo.',
+    'Sangre abundante en la orina o imposibilidad de orinar.'
+  ];
+
+  function buildText(path) {
+    const isA = path === 'A';
+    const sc = B1[state.scen];
+    const med = MEDS[state.med[path]];
+    const dx = isA ? 'Infección urinaria baja (cistitis)' : sc.dx;
+    const L = [];
+    L.push('INDICACIONES AL ALTA — ' + dx.toUpperCase(), '');
+    L.push('Tratamiento:');
+    if (!isA && med.box) L.push('• ' + med.box);
+    L.push('• ' + med.pt);
+    [...state.analg[path]].forEach(a => L.push('• ' + ANALG[a].pt));
+    L.push('', 'Recomendaciones:');
+    L.push('• Tome el antibiótico completo, aunque se sienta mejor antes de terminarlo.');
+    L.push('• Beba líquidos en abundancia, salvo que su médico le haya indicado restringirlos.');
+    L.push('• Los síntomas deberían mejorar en 48 a 72 horas.');
+    if (isA) L.push('• Avise antes de tomar el medicamento si está o podría estar embarazada.');
+    L.push('', 'CONSULTE DE INMEDIATO EN URGENCIA si presenta:');
+    const alarm = isA ? ALARM_BASE : (state.scen === 'pna'
+      ? ['Fiebre que persiste más de 48 horas pese al antibiótico.', ...ALARM_BASE.slice(1)]
+      : ALARM_BASE);
+    [...alarm, ...(isA ? [] : sc.extraAlarm)].forEach(a => L.push('• ' + a));
+    L.push('', 'Control:');
+    L.push('• ' + (isA
+      ? 'Si los síntomas no mejoran en 48 a 72 horas o reaparecen dentro de 2 semanas, consulte nuevamente: necesitará un examen de orina.'
+      : sc.control));
+    L.push('', 'Se explicaron el diagnóstico, el tratamiento y los signos de alarma. El paciente refiere comprender las indicaciones.');
+    return L.join('\n');
+  }
+
+  function renderCopy(path) {
+    document.getElementById('copy-' + path).textContent = buildText(path);
+  }
+
+  async function copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (e) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch (_) {}
+      ta.remove();
+      return ok;
+    }
+  }
+
+  document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
+    const ok = await copyText(buildText(btn.dataset.copy));
+    btn.textContent = ok ? 'Copiado ✓' : 'Selecciona y copia';
+    btn.classList.toggle('done', ok);
+    setTimeout(() => { btn.textContent = 'Copiar indicaciones'; btn.classList.remove('done'); }, 1800);
+  }));
+
+  // ── Checklists de alta ────────────────────────────────────────────
+  document.querySelectorAll('[data-check]').forEach(list => {
+    const p = list.dataset.check;
+    const status = document.querySelector(`[data-status="${p}"]`);
+    const boxes = list.querySelectorAll('input');
+    const upd = () => {
+      const n = [...boxes].filter(b => b.checked).length;
+      const done = n === boxes.length;
+      status.textContent = done ? '✓ Listo para el alta' : `${n} / ${boxes.length} verificados`;
+      status.classList.toggle('ok', done);
+    };
+    boxes.forEach(b => b.addEventListener('change', upd));
+    upd();
+  });
+
+  // ── Inicio ────────────────────────────────────────────────────────
+  renderMeds('A');
+  setScenario('pna');
+</script>
+</body>
+</html>
