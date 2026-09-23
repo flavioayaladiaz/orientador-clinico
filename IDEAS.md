@@ -140,8 +140,9 @@ Estructura de cada página:
 Reglas de contenido:
 
 - Solo adultos (la pediatría tendrá contenido propio).
-- Referencias: primero guías GES/MINSAL; si no existen, guías internacionales.
-  Los ajustes locales se definirán en una etapa posterior.
+- Referencias: si existe un protocolo local del HUAP para el tema, sus esquemas
+  y dosis prevalecen, y se nombra en el disclaimer y en las referencias. Si no,
+  primero guías GES/MINSAL y luego guías internacionales.
 - Usar solo fármacos disponibles en Chile (por ejemplo, **no hay
   fenazopiridina**).
 - Si la página se basa en un borrador de un colaborador, agradecerlo al final de
@@ -151,9 +152,9 @@ Reglas de contenido:
 
 - [x] Disuria — `sintoma-disuria.html` (piloto; reemplaza en el index a
       `guia-infeccion-urinaria.html`). Basado en el borrador de Jaime Carril.
-      Pendiente de validación clínica: disponibilidad de cefpodoxima en el
-      arsenal, duración de 7 días (IDSA 2025) en pielonefritis e ITU complicada,
-      esquemas para BLEE y sepsis, y metas de tiempo propuestas.
+      Esquemas antimicrobianos y epidemiología según el Protocolo clínico del
+      manejo empírico de ITU del HUAP (PROA, 12/2024). Pendiente de validación:
+      solo las metas de tiempo propuestas.
 - [ ] Diarrea / vómitos — base: `guia-gastroenteritis.html`
 - [ ] Dolor torácico — base: `guia-dolor-toracico.html`
 - [ ] Dolor lumbar — base: `guia-lumbago-agudo.html`
