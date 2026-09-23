@@ -10,17 +10,23 @@ diagnóstica, calculadora, etc).
 
 1. Toma el **primer ítem sin marcar** de este archivo, en el orden en que aparece
    (primero "Rebranding", luego "Motivos de consulta", luego "Patologías complejas",
-   luego "Procedimientos HALO").
+   luego "Procedimientos HALO", luego "Síntomas cardinales" y al final la "Cola final").
 2. Antes de crear contenido nuevo, revisa si el tema ya está cubierto (total o
-   parcialmente) por una página existente (`checklist-*.html`). Si ya existe,
+   parcialmente) por una página existente (`checklist-*`, `guia-*`, `algoritmo-*`,
+   `sintoma-*.html`). Si ya existe,
    mejórala o complétala en vez de duplicar.
 3. Elige la modalidad más adecuada para el contenido:
    - **Checklist con cronómetro** para procedimientos y códigos con secuencia de
      pasos y tiempos críticos (útil para HALO y patologías con "bundle" de manejo).
    - **Algoritmo / árbol de decisión** para patologías complejas con ramificaciones
      según presentación clínica.
-   - **Guía de orientación** (diagnóstico diferencial, red flags, estudio inicial)
-     para motivos de consulta frecuentes.
+   - **Página de síntoma cardinal** (`sintoma-*.html`) para los síntomas de
+     consulta frecuente: formato de acción orientado a bajar el tiempo en el box
+     (ver la sección "Síntomas cardinales" más abajo). Reemplaza a la guía de
+     orientación como puerta de entrada.
+   - **Guía de orientación** (`guia-*.html`; diagnóstico diferencial, red flags,
+     estudio inicial). Formato anterior: las guías existentes se conservan como
+     material de referencia y se enlazan desde su página de síntoma.
 4. Sigue las convenciones visuales existentes: mismo tema oscuro, tipografías
    (Syne / DM Sans / DM Mono), paleta de variables CSS (`--teal`, `--red`,
    `--indigo`, `--amber`, `--emerald`), estilo de tarjetas de `index.html`.
@@ -31,7 +37,11 @@ diagnóstica, calculadora, etc).
      correspondiente (crea la sección si no existe todavía).
    - Incluir el disclaimer de uso clínico (no reemplaza el juicio clínico ni los
      protocolos vigentes; verificar dosis y contraindicaciones).
-   - Registrarse en `sw.js` (lista de cache) para que funcione sin conexión.
+   - Registrarse en `sw.js` (lista de cache) y subir `CACHE_VERSION`, para que
+     funcione sin conexión.
+   - Excepción: cuando se crea la página de síntoma de un tema que ya tenía guía,
+     la tarjeta de `index.html` pasa a apuntar a `sintoma-*.html`; la guía sale del
+     index y queda accesible solo desde el enlace "Profundizar →" de esa página.
 6. Marca el ítem como hecho (`[x]`) en este archivo, en el mismo commit.
 7. Un commit por día, mensaje claro (ej: `feat: guía de orientación — dolor torácico`).
 8. Push directo a `main` (no se usan PRs en este proyecto).
@@ -50,6 +60,9 @@ tomará en orden la próxima vez que corra.
       actual; solo cambia el nombre/identidad, no la funcionalidad.
 
 ## 1. Motivos de consulta frecuentes
+
+Formato anterior (guías de orientación). Se mantienen como referencia; cada una
+será reemplazada en el index por su página de la sección "Síntomas cardinales".
 
 - [x] Infección urinaria — `guia-infeccion-urinaria.html`
 - [x] Gastroenteritis (síndrome diarreico agudo) — `guia-gastroenteritis.html`
@@ -97,7 +110,63 @@ tomará en orden la próxima vez que corra.
       artritis séptica (guiada por ecografía)
 - [ ] Cistostomía por punción suprapúbica de urgencia (usando CistoFix)
 
-## 4. Cola final
+## 4. Síntomas cardinales
+
+Rediseño de los motivos de consulta en páginas de acción (`sintoma-*.html`),
+con un objetivo prioritario: **reducir el tiempo de atención en el box**
+(sobreestudio, órdenes escalonadas, demora en la redacción del alta).
+La plantilla es `sintoma-disuria.html`: toda página nueva copia su estructura.
+
+Estructura de cada página:
+
+- **Bifurcación en los minutos 0–3:** banderas rojas agrupadas por gravedad,
+  donde manda el grupo más grave. El camino rápido exige confirmarlo
+  explícitamente ("Ninguna"); no se llega a él por omisión.
+- **Caminos definidos por síntoma** (2, 3 o más; disuria usa A / B1 / B2 / C):
+  - **Rápido (fast-track):** recuadro rojo "NO pedir" con los criterios que
+    validan no estudiar, tratamiento sintomático con dosis fijas, checklist de
+    alta y copiado de indicaciones.
+  - **Dirigido / complejo:** bundle de órdenes simultáneas (laboratorio, imagen y
+    tratamiento pedidos juntos al ingreso), lo que no se debe pedir y criterios
+    de destino (alta, hospitalización, pabellón, UPC).
+- **Metas de tiempo** solo como texto (sin cronómetro ni estado guardado).
+- **Copiar indicaciones al paciente:** texto armado según lo seleccionado en
+  pantalla (fármaco, analgesia, escenario), en lenguaje simple, con "consulte
+  de inmediato si…" y una línea de comprensión de las indicaciones. No se guarda
+  ningún dato del paciente.
+- Desvío temprano "puede que no sea X" cuando corresponda, y enlace
+  "Profundizar →" a la guía de referencia si existe.
+
+Reglas de contenido:
+
+- Solo adultos (la pediatría tendrá contenido propio).
+- Referencias: primero guías GES/MINSAL; si no existen, guías internacionales.
+  Los ajustes locales se definirán en una etapa posterior.
+- Usar solo fármacos disponibles en Chile (por ejemplo, **no hay
+  fenazopiridina**).
+- Si la página se basa en un borrador de un colaborador, agradecerlo al final de
+  la página.
+
+Ítems:
+
+- [x] Disuria — `sintoma-disuria.html` (piloto; reemplaza en el index a
+      `guia-infeccion-urinaria.html`). Basado en el borrador de Jaime Carril.
+      Pendiente de validación clínica: disponibilidad de cefpodoxima en el
+      arsenal, duración de 7 días (IDSA 2025) en pielonefritis e ITU complicada,
+      esquemas para BLEE y sepsis, y metas de tiempo propuestas.
+- [ ] Diarrea / vómitos — base: `guia-gastroenteritis.html`
+- [ ] Dolor torácico — base: `guia-dolor-toracico.html`
+- [ ] Dolor lumbar — base: `guia-lumbago-agudo.html`
+- [ ] Dolor abdominal — base: `guia-dolor-abdominal.html`
+- [ ] Cefalea — base: `guia-cefalea.html`
+- [ ] Contusión / trauma menor — base: `guia-policontusiones.html`
+- [ ] Disnea (nueva)
+- [ ] Fiebre (nueva; enlazar al checklist de sepsis)
+- [ ] Mareo / vértigo (nueva; HINTS, VPPB en el camino rápido)
+- [ ] Dolor / trauma de extremidades (nueva; reglas de Ottawa de tobillo y
+      rodilla como criterio "NO pedir imagen")
+
+## 5. Cola final
 
 Ítems que deben tomarse **al final**, después de todo lo anterior. Van aquí, y no
 en su sección temática, porque el agente recorre el archivo en orden.
