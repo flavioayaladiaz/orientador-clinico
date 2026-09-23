@@ -3,7 +3,7 @@
    Al subir una nueva versión, cambia CACHE_VERSION y todos los
    dispositivos se actualizarán en su próxima conexión. */
 
-const CACHE_VERSION = "orientador-clinico-v0.20.0";
+const CACHE_VERSION = "orientador-clinico-v0.21.0";
 const ASSETS = [
   "./",
   "./index.html",

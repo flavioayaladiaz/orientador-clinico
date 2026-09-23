@@ -707,6 +707,7 @@
           <button type="button" class="opt" data-v="inmuno">Inmunosupresión, trasplante o neutropenia</button>
           <button type="button" class="opt" data-v="erc">ERC avanzada o riñón único</button>
           <button type="button" class="opt" data-v="sonda">Portador de sonda vesical</button>
+          <button type="button" class="opt" data-v="dmdesc">Diabetes descompensada<span class="sub">cetoacidosis o estado hiperosmolar</span></button>
           <button type="button" class="opt" data-v="fallaPNA">Falla de tratamiento ambulatorio de pielonefritis</button>
           <button type="button" class="opt" data-v="social">No puede asegurar tratamiento ni control</button>
         </div>
@@ -720,6 +721,7 @@
           <button type="button" class="opt" data-v="hombre">Hombre</button>
           <button type="button" class="opt" data-v="embarazo">Embarazada</button>
           <button type="button" class="opt" data-v="riesgo">Diabetes mal controlada o adulto mayor frágil</button>
+          <button type="button" class="opt" data-v="instrum">Instrumentación o cirugía urológica reciente<span class="sub">o alteración anatómica de la vía urinaria</span></button>
           <button type="button" class="opt" data-v="falla">Falla terapéutica o ITU recurrente<span class="sub">≥ 2 en 6 meses o ≥ 3 en un año</span></button>
         </div>
       </div>
@@ -778,8 +780,9 @@
     <div class="block-label">Antibiótico · elige uno</div>
     <div class="med-list" data-meds="A"></div>
     <div class="avoid">
-      <strong>No usar de primera línea:</strong> ciprofloxacino ni otras quinolonas. Resérvalas por el riesgo de
-      resistencia y de efectos adversos (tendinopatía, aortopatía, efectos neuropsiquiátricos).
+      <strong>No usar quinolonas:</strong> localmente solo ~50 % de los <em>E. coli</em> son sensibles
+      (<button type="button" class="link-btn" onclick="openEpi()">epidemiología local</button>), y tienen riesgo de
+      efectos adversos (tendinopatía, aortopatía, efectos neuropsiquiátricos).
       La nitrofurantoína está contraindicada con ClCr &lt; 30 mL/min.
     </div>
 
@@ -835,7 +838,7 @@
         <li>Imagen: sin sospecha de obstrucción no aporta; si la sospechas, el paciente pasa a B2</li>
         <li>No esperar el urocultivo para dar el alta: se revisa en el control</li>
       </ul>
-      <div class="why"><strong>Creatinina</strong> solo si tiene más de 65 años, diabetes, sospecha de ERC o fármacos nefrotóxicos: define la dosis y el uso de nitrofurantoína.</div>
+      <div class="why"><strong>Creatinina</strong> solo si se usará amikacina, o si tiene más de 65 años, diabetes, sospecha de ERC o fármacos nefrotóxicos: define la dosis y el uso de nitrofurantoína.</div>
     </div>
 
     <div class="block-label">Tratamiento · elige uno</div>
@@ -850,7 +853,7 @@
       <label class="check"><input type="checkbox"> Orina completa y urocultivo tomados antes del antibiótico</label>
       <label class="check"><input type="checkbox"> Primera dosis administrada en el box (si corresponde)</label>
       <label class="check"><input type="checkbox"> Tolera la vía oral, sin signos de sepsis</label>
-      <label class="check"><input type="checkbox"> Control a las 48–72 h agendado y responsable de revisar el urocultivo definido</label>
+      <label class="check"><input type="checkbox"> Alta asistida o control a las 48–72 h agendado, y responsable de revisar el urocultivo definido</label>
       <label class="check"><input type="checkbox"> Entiende el tratamiento y los signos de alarma</label>
     </div>
     <div class="check-status" data-status="B1"></div>
@@ -869,7 +872,7 @@
       <div class="panel-code">Camino B2 · Estudio dirigido, hospitalización</div>
       <div class="panel-title">ITU complicada que no puede irse a casa</div>
       <div class="panel-crit">Intolerancia oral, sospecha de obstrucción, inmunosupresión, ERC avanzada o riñón único, sonda vesical,
-        falla del tratamiento ambulatorio, embarazada con fiebre o dolor lumbar, o paciente que no puede asegurar el tratamiento.</div>
+        diabetes descompensada, falla del tratamiento ambulatorio, embarazada con fiebre o dolor lumbar, o paciente que no puede asegurar el tratamiento.</div>
     </div>
     <div class="targets">
       <span class="target">💉 Antibiótico EV en <b>&lt; 60 min</b></span>
@@ -910,20 +913,34 @@
       <table>
         <thead><tr><th>Situación</th><th>Esquema</th></tr></thead>
         <tbody>
-          <tr><td>Pielonefritis o ITU complicada</td><td><span class="dose-main">Ceftriaxona 2 g EV c/24 h</span></td></tr>
-          <tr><td>Alergia a betalactámicos o resistencia a C3G</td><td><span class="dose-main">Amikacina 15 mg/kg EV c/24 h</span><br><span class="dose-note">Ajustar por función renal. Evitar en el embarazo.</span></td></tr>
-          <tr><td>Riesgo de BLEE</td><td><span class="dose-main">Ertapenem 1 g EV c/24 h</span><br><span class="dose-note">BLEE previo, antibiótico u hospitalización en los últimos 3 meses, institucionalizado</span></td></tr>
-          <tr><td>Portador de sonda</td><td><span class="dose-main">Amikacina 15 mg/kg EV c/24 h</span><br><span class="dose-note">Recambiar la sonda antes del antibiótico y cultivar la sonda nueva. 5–7 días según antibiograma.</span></td></tr>
+          <tr><td>ITU alta sin riesgo de BLEE</td><td><span class="dose-main">Amikacina 15 mg/kg/día EV</span><br><span class="dose-note">5 días. Ajustar a las 48 h según el urocultivo.</span></td></tr>
+          <tr><td>ITU alta con riesgo de BLEE</td><td><span class="dose-main">Ertapenem 1 g EV c/24 h, infundido en 3 h</span><br><span class="dose-note">5 días. Ajustar a las 48 h según el urocultivo.</span></td></tr>
+          <tr><td>Asociada a atención de salud o portador de sonda</td><td><span class="dose-main">Amikacina 15 mg/kg/día EV</span><br><span class="dose-note">Si la sonda lleva más de 14 días, recambiarla y cultivar la sonda nueva. 5 días.</span></td></tr>
           <tr><td>Embarazada con pielonefritis</td><td><span class="dose-main">Ceftriaxona 1–2 g EV c/24 h</span><br><span class="dose-note">Sin quinolonas ni aminoglucósidos. Evaluación obstétrica.</span></td></tr>
-          <tr><td>Prostatitis con compromiso sistémico</td><td><span class="dose-main">Ceftriaxona 2 g EV c/24 h</span><br><span class="dose-note">En un hombre joven sin patología prostática, descartar ITS y tratar en conjunto.</span></td></tr>
+          <tr><td>Prostatitis aguda</td><td><span class="dose-main">Ceftriaxona 2 g EV c/24 h, infundida en ≥ 30 min</span><br><span class="dose-note">Con instrumentación urológica previa: meropenem 1 g EV c/8 h, infundido en 3 h. 3 semanas, con paso a vía oral según evolución.</span></td></tr>
+          <tr><td>Absceso renal o prostático</td><td><span class="dose-main">Sin riesgo de BLEE: ceftriaxona 2 g EV c/24 h<br>Con riesgo de BLEE: ertapenem 1 g EV c/24 h, en 3 h</span><br><span class="dose-note">TAC con contraste. Drenaje si el renal mide &gt; 5 cm o el prostático &gt; 2 cm, si es multiloculado o si no responde (3–5 cm renal y 1–2 cm prostático, según evolución). Inicialmente 3 semanas.</span></td></tr>
         </tbody>
       </table>
     </div>
-    <div class="avoid">Duración total habitual: <strong style="color:#fff">7 días si hay mejoría precoz</strong>, con paso a la vía oral según el antibiograma. Desescalar apenas llegue el cultivo.</div>
+    <div class="avoid">
+      <strong style="color:#fff">Amikacina:</strong> dosis de 500 mg a 1 g en 30 min; &gt; 1 g en 60 min. Monitorizar niveles plasmáticos;
+      en ERC o falla renal aguda, ajustar según niveles y clearance de creatinina. Evitar en el embarazo.
+    </div>
+    <div class="avoid">
+      <strong style="color:#fff">Riesgo de BLEE:</strong> antibiótico en las últimas 4 semanas, DM2, ERC, cirrosis, paciente institucionalizado
+      u hospitalización reciente (en este último caso, considerar el score de Tumbarello).<br>
+      <strong style="color:#fff">Riesgo de <em>Pseudomonas</em>:</strong> litiasis con ITU a repetición, catéter urinario permanente, biopsia prostática, diabetes.
+    </div>
 
     <div class="block-label">Destino</div>
     <div class="plain-list">
-      <div class="plain-item"><span class="bullet-icon">🏥</span><span><strong>Hospitalización en sala básica</strong> con reevaluación clínica a las 48–72 h.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🏥</span><span><strong>Hospitalización en sala básica</strong> con reevaluación clínica a las 48–72 h.
+        <strong>Paso a vía oral</strong> si está afebril 24 h, con PCR &lt; 10 mg/dL, leucocitos &lt; 10.000 y tolerancia oral.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🩺</span><span><strong>Urología:</strong> pielonefritis o cistitis enfisematosa, pielonefritis xantogranulomatosa, uropatía obstructiva,
+        monorreno, nefrostomía o catéter JJ, absceso renal o prostático, ITU asociada a litiasis, embarazada o alteración anatómica.
+        <strong>Radiología intervencional:</strong> absceso renal &gt; 3 cm, previa evaluación de urología.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🦠</span><span><strong>Infectología:</strong> shock séptico por ITU complicada, enterobacteria multirresistente,
+        bacilo gram negativo no fermentador (<em>Pseudomonas</em>, <em>Acinetobacter</em>) o <em>S. aureus</em>, ITU a repetición, paciente inmunosuprimido.</span></div>
       <div class="plain-item"><span class="bullet-icon">🪨</span><span><strong>Obstrucción + infección = urología inmediata.</strong> La pionefrosis requiere drenaje (nefrostomía o catéter ureteral); el antibiótico solo no basta.</span></div>
       <div class="plain-item"><span class="bullet-icon">🤰</span><span><strong>Embarazada:</strong> hospitalizar, con evaluación obstétrica.</span></div>
       <div class="plain-item"><span class="bullet-icon">⚠️</span><span><strong>Si aparece hipotensión, confusión o taquipnea,</strong> pasa a <button type="button" class="link-btn" onclick="showPath('C', true)">camino C</button>.</span></div>
@@ -977,18 +994,50 @@
       <table>
         <thead><tr><th>Situación</th><th>Esquema</th></tr></thead>
         <tbody>
-          <tr><td>Sin factores de resistencia</td><td><span class="dose-main">Ceftriaxona 2 g EV + Amikacina 15 mg/kg EV</span></td></tr>
-          <tr><td>Riesgo de BLEE o infección asociada a atención de salud</td><td><span class="dose-main">Meropenem 1 g EV c/8 h ± Amikacina 15 mg/kg EV</span></td></tr>
+          <tr><td>Sin riesgo de BLEE</td><td><span class="dose-main">Amikacina 20–30 mg/kg/día EV + Ceftriaxona 1 g EV c/12 h</span><br><span class="dose-note">Ceftriaxona infundida en ≥ 30 min.</span></td></tr>
+          <tr><td>Riesgo de BLEE o asociada a atención de salud</td><td><span class="dose-main">Meropenem 2 g EV (carga) → 1 g EV c/8 h, infundido en 3 h + Amikacina 20–30 mg/kg/día EV</span></td></tr>
+          <tr><td>Prostatitis con riesgo de <em>Pseudomonas</em></td><td><span class="dose-main">Ceftazidima 2 g EV c/8 h + Amikacina 20–30 mg/kg/día EV</span></td></tr>
         </tbody>
       </table>
     </div>
-    <div class="avoid">Desescalar según el cultivo. El control del foco (obstrucción, sonda, litiasis) es tan urgente como el antibiótico.</div>
+    <div class="avoid">Ajustar a las 48 h según el cultivo; duración habitual 5 días según evolución. Monitorizar niveles de amikacina.
+      El control del foco (obstrucción, sonda, litiasis) es tan urgente como el antibiótico.</div>
 
     <div class="block-label">Destino</div>
     <div class="plain-list">
-      <div class="plain-item"><span class="bullet-icon">🚨</span><span><strong>UPC / UCI.</strong> Llama a urología desde el inicio si hay obstrucción o sospecha de absceso.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🚨</span><span><strong>UPC / UCI.</strong> Llama a urología desde el inicio si hay obstrucción o sospecha de absceso,
+        e interconsulta a infectología (shock séptico secundario a ITU complicada).</span></div>
     </div>
     <a class="cross-link" href="./checklist-sepsis_4.html">→ Abrir checklist de sepsis y shock séptico</a>
+  </div>
+
+  <!-- EPIDEMIOLOGÍA LOCAL -->
+  <div class="section s2 collapsed" id="s-epi">
+    <div class="section-header" onclick="toggleSection('s-epi')">
+      <span class="section-num">LOCAL</span>
+      <div>
+        <div class="section-title">Epidemiología local · HUAP 2023</div>
+        <div class="section-subtitle">Por qué estos esquemas empíricos</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Agente (urocultivos de urgencia)</th><th>Sensibilidad</th></tr></thead>
+          <tbody>
+            <tr><td><em>E. coli</em> · 84 %</td><td>Amikacina 98 % · ceftriaxona &gt; 85 % · quinolonas 50 %</td></tr>
+            <tr><td><em>K. pneumoniae</em> · 12 %</td><td>Amikacina 85 % · cefalosporinas de 3.ª generación ~60 % · quinolonas 50 %</td></tr>
+            <tr><td><em>P. aeruginosa</em> · 3 %</td><td>Amikacina 93 % · cefalosporina de 3.ª generación antipseudomónica 85 % · quinolonas 73 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="plain-list" style="margin-top:12px;">
+        <div class="plain-item"><span class="bullet-icon">🚫</span><span><strong>Sin quinolonas empíricas:</strong> la mitad de los <em>E. coli</em> y <em>K. pneumoniae</em> son resistentes.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>La amikacina es la base del esquema hospitalizado:</strong> mantiene sensibilidad ≥ 85 % en todos los agentes.</span></div>
+      </div>
+      <div class="copy-hint">Fuente: Informe de susceptibilidad antimicrobiana 2023 del HUAP, citado en el Protocolo PROA 12/2024.</div>
+    </div>
   </div>
 
   <!-- 02 · NO ES ITU -->
@@ -1011,6 +1060,7 @@
             <tr><td>Herpes genital</td><td>Disuria muy intensa, vesículas o úlceras</td><td>Tratamiento antiviral; puede causar retención urinaria</td></tr>
             <tr><td>Cólico renal sin fiebre</td><td>Dolor cólico, hematuria, sin fiebre</td><td>Manejo de litiasis. <strong>Si aparece fiebre, pasa a B2</strong></td></tr>
             <tr><td>Prostatitis</td><td>Hombre con fiebre, dolor perineal, próstata dolorosa</td><td>Camino B1 (estable) o B2 (compromiso sistémico)</td></tr>
+            <tr><td><em>S. aureus</em> en el urocultivo</td><td>Sin procedimiento urológico previo</td><td>Probable siembra hematógena: hemocultivos y búsqueda de un foco a distancia</td></tr>
           </tbody>
         </table>
       </div>
@@ -1030,7 +1080,8 @@
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda de orientación para la atención de urgencia:
     no reemplaza el juicio clínico ni los protocolos vigentes del servicio. Las metas de tiempo son referenciales.
-    La elección empírica depende del patrón de resistencia local. Verifica dosis, ajuste por función renal,
+    Los esquemas antimicrobianos siguen el <strong>Protocolo clínico del manejo empírico de infecciones urinarias
+    del HUAP (PROA, 12/2024)</strong>. Verifica dosis, ajuste por función renal,
     alergias y contraindicaciones antes de indicar cualquier fármaco.
   </div>
 
@@ -1038,6 +1089,7 @@
   <div class="references-footer">
     <div class="references-title">Referencias</div>
     <div class="references-list">
+      <div class="ref-item">Hospital de Urgencia Asistencia Pública. <em>Protocolo clínico del manejo empírico de infecciones urinarias.</em> Código PROA, versión 01. Unidad de Infectología; diciembre 2024.</div>
       <div class="ref-item">Trautner BW, et al. <em>IDSA 2025 Guidelines on Management and Treatment of Complicated Urinary Tract Infections — Duration of Antibiotics.</em> Clin Infect Dis. 2026;82(Suppl 3):i79–i88.</div>
       <div class="ref-item">Gupta K, et al. <em>International Clinical Practice Guidelines for the Treatment of Acute Uncomplicated Cystitis and Pyelonephritis in Women (IDSA / ESCMID).</em> Clin Infect Dis. 2011;52(5):e103–e120.</div>
       <div class="ref-item">Bonkat G, et al. <em>EAU Guidelines on Urological Infections.</em> European Association of Urology.</div>
@@ -1065,6 +1117,11 @@
   function toggleSection(id) {
     document.getElementById(id).classList.toggle('collapsed');
   }
+  function openEpi() {
+    const s = document.getElementById('s-epi');
+    s.classList.remove('collapsed');
+    s.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
   function openDiff() {
     const s = document.getElementById('s-diff');
     s.classList.remove('collapsed');
@@ -1073,26 +1130,29 @@
 
   // ── Datos: fármacos (dosis para ficha + texto para el paciente) ───
   const MEDS = {
-    nitro5:   { name: 'Nitrofurantoína', dose: '100 mg c/6 h VO × 5 días', note: 'Primera línea. No usar con ClCr < 30 ni si se sospecha pielonefritis.',
-                pt: 'Nitrofurantoína 100 mg: 1 cápsula cada 6 horas por 5 días, junto con las comidas.' },
+    nitro3:   { name: 'Nitrofurantoína macrocristales', dose: '100 mg c/12 h VO × 3 días', note: 'Primera línea (protocolo HUAP). No usar con ClCr < 30 ni si se sospecha pielonefritis.',
+                pt: 'Nitrofurantoína 100 mg: 1 cápsula cada 12 horas por 3 días, junto con las comidas.' },
     fosfo:    { name: 'Fosfomicina trometamol', dose: '3 g VO dosis única', note: 'Primera línea. Buena adherencia; algo menos eficaz que 5 días de nitrofurantoína.',
                 pt: 'Fosfomicina 3 g: disolver 1 sobre en medio vaso de agua y tomarlo UNA sola vez, idealmente en la noche, después de orinar y con el estómago vacío.' },
     cefa5:    { name: 'Cefadroxilo', dose: '500 mg c/12 h VO × 5 días', note: 'Alternativa.',
                 pt: 'Cefadroxilo 500 mg: 1 cápsula cada 12 horas por 5 días.' },
-    pnaCro:   { name: 'Ceftriaxona + cefpodoxima', dose: 'Ceftriaxona 2 g EV en el box → cefpodoxima 200 mg c/12 h VO × 7 días', note: 'Con un betalactámico oral, da siempre una dosis parenteral inicial.',
-                pt: 'Cefpodoxima 200 mg: 1 comprimido cada 12 horas por 7 días.', box: 'Se le administró una primera dosis de antibiótico inyectable en este servicio.' },
-    pnaCipro: { name: 'Ciprofloxacino', dose: '500 mg c/12 h VO × 7 días', note: 'Solo si la resistencia local a quinolonas es < 10 %; si no, da antes ceftriaxona 2 g EV.',
-                pt: 'Ciprofloxacino 500 mg: 1 comprimido cada 12 horas por 7 días. No tomar junto con leche, antiácidos ni suplementos de hierro o calcio.' },
-    nitro7:   { name: 'Nitrofurantoína', dose: '100 mg c/6 h VO × 7 días', note: 'Si no hay fiebre ni sospecha de prostatitis.',
-                pt: 'Nitrofurantoína 100 mg: 1 cápsula cada 6 horas por 7 días, junto con las comidas.' },
+    pnaCro:   { name: 'Ceftriaxona · alta asistida', dose: '2 g EV c/24 h × 5 días', note: 'Sin riesgo de BLEE. Ajustar con el urocultivo y evaluar alternativa oral.',
+                pt: 'Ceftriaxona 2 g inyectable: debe volver a este servicio UNA vez al día, durante 5 días, para recibir el antibiótico por vena.', box: 'Hoy recibió la primera dosis en este servicio.' },
+    pnaAmk:   { name: 'Amikacina · alta asistida', dose: '15 mg/kg/día EV × 5 días', note: 'Con riesgo de BLEE. Pedir creatinina; si hay falla renal aguda, considerar hospitalizar.',
+                pt: 'Amikacina inyectable: debe volver a este servicio UNA vez al día, durante 5 días, para recibir el antibiótico por vena.', box: 'Hoy recibió la primera dosis en este servicio.' },
+    nitro7:   { name: 'Nitrofurantoína macrocristales', dose: '100 mg c/12 h VO × 7 días', note: '',
+                pt: 'Nitrofurantoína 100 mg: 1 cápsula cada 12 horas por 7 días, junto con las comidas.' },
     cefa7:    { name: 'Cefadroxilo', dose: '500 mg c/12 h VO × 7 días', note: '',
                 pt: 'Cefadroxilo 500 mg: 1 cápsula cada 12 horas por 7 días.' },
-    prosCipro:{ name: 'Ciprofloxacino', dose: '500 mg c/12 h VO × 14 días', note: 'Buena penetración prostática. Extender hasta 4 semanas según la evolución.',
-                pt: 'Ciprofloxacino 500 mg: 1 comprimido cada 12 horas por 14 días. No suspender antes aunque se sienta bien. No tomar junto con leche, antiácidos ni suplementos de hierro o calcio.' },
+    cotri21:  { name: 'Cotrimoxazol forte', dose: '800/160 mg c/12 h VO × 21 días', note: 'Protocolo HUAP para cistitis y prostatitis en el hombre. No usar con alergia a sulfas.',
+                pt: 'Cotrimoxazol forte 800/160 mg: 1 comprimido cada 12 horas por 21 días. No suspender antes aunque se sienta bien. Beba abundante agua.' },
+    cotriITS: { name: 'Cotrimoxazol forte + tratamiento de ITS', dose: 'Cotrimoxazol forte c/12 h × 21 días + ceftriaxona 2 g EV dosis única + azitromicina 1 g VO dosis única', note: 'Hombre joven. Derivar a UNACESS.',
+                pt: 'Cotrimoxazol forte 800/160 mg: 1 comprimido cada 12 horas por 21 días. No suspender antes aunque se sienta bien. Beba abundante agua.',
+                box: 'Hoy recibió en este servicio una dosis única de ceftriaxona inyectable y de azitromicina 1 g, para tratar una posible infección de transmisión sexual. Debe acudir a UNACESS para completar su estudio; su pareja también debe consultar.' },
     embCefa:  { name: 'Cefadroxilo', dose: '500 mg c/12 h VO × 7 días', note: 'Seguro en todo el embarazo.',
                 pt: 'Cefadroxilo 500 mg: 1 cápsula cada 12 horas por 7 días.' },
-    embNitro: { name: 'Nitrofurantoína', dose: '100 mg c/6 h VO × 7 días', note: 'Evitar desde las 37 semanas y en el déficit de G6PD.',
-                pt: 'Nitrofurantoína 100 mg: 1 cápsula cada 6 horas por 7 días, junto con las comidas.' }
+    embNitro: { name: 'Nitrofurantoína macrocristales', dose: '100 mg c/12 h VO × 7 días', note: 'Evitar desde las 37 semanas y en el déficit de G6PD.',
+                pt: 'Nitrofurantoína 100 mg: 1 cápsula cada 12 horas por 7 días, junto con las comidas.' }
   };
 
   const ANALG = {
@@ -1106,30 +1166,21 @@
   const B1 = {
     pna: {
       label: 'Pielonefritis estable',
-      meds: ['pnaCro', 'pnaCipro'], analg: ['para', 'ibu'],
-      orders: ['Orina completa + urocultivo con antibiograma', 'Test de embarazo en mujer en edad fértil'],
-      avoid: '<strong>No usar nitrofurantoína ni fosfomicina:</strong> no alcanzan concentraciones útiles en el riñón.',
+      meds: ['pnaCro', 'pnaAmk'], analg: ['para', 'ibu'],
+      orders: ['Orina completa + urocultivo con antibiograma', 'Test de embarazo en mujer en edad fértil', 'Creatinina si se usará amikacina'],
+      avoid: '<strong>No usar nitrofurantoína ni fosfomicina</strong> (no alcanzan concentraciones útiles en el riñón) <strong>ni quinolonas</strong> (sensibilidad local ~50 %).',
       dx: 'Infección urinaria alta (pielonefritis)',
       extraAlarm: [],
-      control: 'Control en 48 a 72 horas para revisar el resultado del urocultivo y su evolución. Si la fiebre persiste más de 48 horas con el antibiótico, consulte antes.'
+      control: 'Vuelva cada día durante 5 días para recibir el antibiótico (alta asistida). En esas visitas se revisará el resultado del urocultivo y se ajustará el tratamiento si es necesario.'
     },
     hombre: {
-      label: 'Cistitis en hombre',
-      meds: ['nitro7', 'cefa7'], analg: ['para', 'ibu'],
-      orders: ['Orina completa + urocultivo con antibiograma'],
-      avoid: 'Toda ITU en el hombre es complicada: <strong>no tratar 3 días</strong>. Si hay fiebre o próstata dolorosa, cambia al escenario de prostatitis.',
-      dx: 'Infección urinaria baja',
-      extraAlarm: ['Dolor en la zona entre los testículos y el ano, o dificultad para orinar.'],
-      control: 'Control en 48 a 72 horas para revisar el resultado del urocultivo.'
-    },
-    prostatitis: {
-      label: 'Prostatitis aguda estable',
-      meds: ['prosCipro'], analg: ['para', 'ibu'],
-      orders: ['Orina completa + urocultivo con antibiograma', 'Estudio de ITS en hombre joven sin patología prostática ni ITU previa'],
-      avoid: 'Evitar el masaje prostático. <strong>En un hombre joven, descartar ITS</strong> y tratar en conjunto si corresponde.',
-      dx: 'Infección de la próstata (prostatitis aguda)',
-      extraAlarm: ['Imposibilidad de orinar o dolor intenso en la zona perineal.'],
-      control: 'Control en 48 a 72 horas para revisar el urocultivo, y luego con su médico para definir la duración total del tratamiento.'
+      label: 'Hombre: cistitis o prostatitis',
+      meds: ['cotri21', 'cotriITS'], analg: ['para', 'ibu'],
+      orders: ['Orina completa + urocultivo con antibiograma', 'Estudio de ITS en hombre joven'],
+      avoid: 'Toda ITU en el hombre es complicada: <strong>no tratar 3 días</strong>. El protocolo HUAP usa el mismo esquema para cistitis y prostatitis sin criterio de hospitalización. Evitar el masaje prostático.',
+      dx: 'Infección urinaria en el hombre (vejiga o próstata)',
+      extraAlarm: ['Imposibilidad de orinar o dolor intenso en la zona entre los testículos y el ano.'],
+      control: 'Control en 48 a 72 horas para revisar el resultado del urocultivo. Complete los 21 días de tratamiento.'
     },
     embarazo: {
       label: 'Cistitis en embarazada',
@@ -1141,11 +1192,11 @@
       control: 'Control en 48 a 72 horas para revisar el urocultivo. Al terminar el tratamiento necesitará un urocultivo de control: avise a su matrona o médico tratante.'
     },
     falla: {
-      label: 'Falla terapéutica o recurrencia',
+      label: 'Cistitis complicada (falla, recurrencia, instrumentación)',
       meds: ['cefa7', 'nitro7', 'fosfo'], analg: ['para', 'ibu'],
       orders: ['Orina completa + urocultivo con antibiograma'],
       avoid: 'Elige una <strong>familia distinta</strong> de la que falló. Ajusta según el urocultivo.',
-      dx: 'Infección urinaria baja (recurrente o que no respondió al tratamiento previo)',
+      dx: 'Infección urinaria baja complicada',
       extraAlarm: [],
       control: 'Control en 48 a 72 horas para revisar el resultado del urocultivo y ajustar el antibiótico si es necesario.'
     }
@@ -1157,7 +1208,7 @@
     noFlags: false,
     path: null,
     scen: 'pna',
-    med: { A: 'nitro5', B1: null },
+    med: { A: 'nitro3', B1: null },
     analg: { A: new Set(), B1: new Set() }
   };
 
@@ -1190,9 +1241,9 @@
   function suggestScenario() {
     const f = state.flags.B1;
     if (f.has('embarazo')) return 'embarazo';
-    if (f.has('hombre')) return (f.has('fiebre') || f.has('lumbar')) ? 'prostatitis' : 'hombre';
+    if (f.has('hombre')) return 'hombre';
     if (f.has('fiebre') || f.has('lumbar')) return 'pna';
-    if (f.has('falla')) return 'falla';
+    if (f.has('falla') || f.has('instrum')) return 'falla';
     return state.scen;
   }
 
@@ -1261,7 +1312,7 @@
   }
 
   function renderMeds(path) {
-    const ids = path === 'A' ? ['nitro5', 'fosfo', 'cefa5'] : B1[state.scen].meds;
+    const ids = path === 'A' ? ['nitro3', 'fosfo', 'cefa5'] : B1[state.scen].meds;
     if (!ids.includes(state.med[path])) state.med[path] = ids[0];
     const box = document.querySelector(`[data-meds="${path}"]`);
     box.innerHTML = ids.map(id => medButton(MEDS[id], id, false, state.med[path] === id)).join('');
@@ -1312,11 +1363,13 @@
     const L = [];
     L.push('INDICACIONES AL ALTA — ' + dx.toUpperCase(), '');
     L.push('Tratamiento:');
-    if (!isA && med.box) L.push('• ' + med.box);
+    if (med.box) L.push('• ' + med.box);
     L.push('• ' + med.pt);
     [...state.analg[path]].forEach(a => L.push('• ' + ANALG[a].pt));
     L.push('', 'Recomendaciones:');
-    L.push('• Tome el antibiótico completo, aunque se sienta mejor antes de terminarlo.');
+    L.push(!isA && state.scen === 'pna'
+      ? '• No falte a ninguna de las dosis diarias, aunque se sienta mejor antes de terminar.'
+      : '• Tome el antibiótico completo, aunque se sienta mejor antes de terminarlo.');
     L.push('• Beba líquidos en abundancia, salvo que su médico le haya indicado restringirlos.');
     L.push('• Los síntomas deberían mejorar en 48 a 72 horas.');
     if (isA) L.push('• Avise antes de tomar el medicamento si está o podría estar embarazada.');
@@ -1327,7 +1380,7 @@
     [...alarm, ...(isA ? [] : sc.extraAlarm)].forEach(a => L.push('• ' + a));
     L.push('', 'Control:');
     L.push('• ' + (isA
-      ? 'Si los síntomas no mejoran en 48 a 72 horas o reaparecen dentro de 2 semanas, consulte nuevamente: necesitará un examen de orina.'
+      ? 'Si los síntomas persisten después de terminar el tratamiento, o reaparecen dentro de 2 semanas, controle en su CESFAM: necesitará un examen de orina.'
       : sc.control));
     L.push('', 'Se explicaron el diagnóstico, el tratamiento y los signos de alarma. El paciente refiere comprender las indicaciones.');
     return L.join('\n');
