@@ -76,8 +76,9 @@ tomará en orden la próxima vez que corra.
 - [x] Hemorragia digestiva alta masiva por várices esofágicas con shock
       hemorrágico y falla hepática aguda sobre crónica —
       `algoritmo-hda-variceal.html`
-- [ ] Intoxicaciones graves por bloqueadores de canales de calcio o
-      betabloqueadores con shock vasopléjico y cardiogénico
+- [x] Intoxicaciones graves por bloqueadores de canales de calcio o
+      betabloqueadores con shock vasopléjico y cardiogénico —
+      `algoritmo-intoxicacion-ccb-betabloqueadores.html`
 
 ## 3. Procedimientos HALO
 

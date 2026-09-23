@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Algoritmo · Intoxicación por bloqueadores de calcio y betabloqueadores</title>
+<meta name="description" content="Árbol de decisión para la intoxicación grave por bloqueadores de canales de calcio y betabloqueadores en urgencia: shock vasopléjico y cardiogénico, calcio y atropina, insulina en altas dosis con euglicemia, vasopresores, glucagón, azul de metileno y emulsión lipídica, descontaminación de preparados de liberación prolongada, diálisis en atenolol y sotalol, marcapasos, ECMO venoarterial y calculadora de dosis por peso.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(245,158,11,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(99,102,241,0.07) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 40px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245,158,11,0.1);
+    border: 1px solid rgba(245,158,11,0.28);
+    color: #fcd34d;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #f59e0b, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .s1 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s1 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s2 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s2 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s3 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s3 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s4 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s4 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s5 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s5 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s6 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s6 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s7 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s7 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s8 .section-num { background: rgba(20,184,166,0.12); color: #99f6e4; border: 1px solid rgba(20,184,166,0.18); }
+  .s8 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s9 .section-num { background: rgba(99,102,241,0.10); color: #c7d2fe; border: 1px solid rgba(99,102,241,0.18); }
+  .s9 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s10 .section-num { background: rgba(239,68,68,0.10); color: #fecaca; border: 1px solid rgba(239,68,68,0.18); }
+  .s10 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s11 .section-num { background: rgba(59,130,246,0.10); color: #bfdbfe; border: 1px solid rgba(59,130,246,0.18); }
+  .s11 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s12 .section-num { background: rgba(255,255,255,0.06); color: var(--text-dim); border: 1px solid var(--border); }
+  .s12 { --accent: var(--text-dim); --accent-glow: rgba(148,163,184,0.08); }
+
+  /* ORIENTADOR INTERACTIVO */
+  .q-block { margin-bottom: 18px; }
+  .q-block:last-of-type { margin-bottom: 0; }
+
+  .q-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt.on {
+    background: rgba(245,158,11,0.12);
+    border-color: rgba(245,158,11,0.45);
+    color: #fcd34d;
+  }
+  .opt:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+  .result {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface2);
+    padding: 18px 20px;
+    border-left: 3px solid var(--accent, var(--amber));
+  }
+  .result.placeholder { color: var(--text-muted); font-size: 13px; font-family: var(--mono); line-height: 1.6; }
+
+  .result-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .result-title {
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .result-row {
+    display: flex;
+    gap: 12px;
+    padding: 9px 0;
+    border-top: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .result-row:first-of-type { border-top: none; padding-top: 2px; }
+  .result-key {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    flex: 0 0 104px;
+    padding-top: 3px;
+  }
+  .result-row strong { color: #fff; font-weight: 500; }
+  .result-row em { color: #fcd34d; font-style: normal; }
+
+  .result.sev-red { border-left-color: var(--red); }
+  .result.sev-amber { border-left-color: var(--amber); }
+  .result.sev-green { border-left-color: var(--emerald); }
+
+  /* CALCULADORA */
+  .calc {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-top: 16px;
+  }
+  .calc-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .calc-label.second { margin-top: 18px; }
+  .score-list { display: flex; flex-direction: column; gap: 8px; }
+  .score-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .score-item:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .score-item.on {
+    background: rgba(20,184,166,0.12);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .score-item:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+  .score-list.gate .score-item.on {
+    background: rgba(245,158,11,0.12);
+    border-color: rgba(245,158,11,0.45);
+    color: #fcd34d;
+  }
+  .score-list.danger .score-item.on {
+    background: rgba(239,68,68,0.12);
+    border-color: rgba(239,68,68,0.45);
+    color: #fca5a5;
+  }
+  .score-pts {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  .score-item.on .score-pts { color: #5eead4; border-color: rgba(20,184,166,0.4); }
+  .score-list.gate .score-item.on .score-pts { color: #fcd34d; border-color: rgba(245,158,11,0.4); }
+  .score-list.danger .score-item.on .score-pts { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  .calc-out {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .calc-out strong { color: #fff; font-weight: 500; }
+  .calc-out em { color: #fcd34d; font-style: normal; }
+  .calc-out .big {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: #93c5fd;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .calc-out .big.risk-low { color: #6ee7b7; }
+  .calc-out .big.risk-mid { color: #fcd34d; }
+  .calc-out .big.risk-high { color: #fca5a5; }
+
+  .calc-reset {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 8px 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .calc-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+  /* ENTRADA NUMÉRICA */
+  .calc-field { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .calc-field + .calc-field { margin-top: 10px; }
+  .calc-field input {
+    font-family: var(--mono);
+    font-size: 15px;
+    color: #fff;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    width: 130px;
+    -moz-appearance: textfield;
+  }
+  .calc-field input:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: rgba(20,184,166,0.45); }
+  .calc-field .unit {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .toggle-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .toggle-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .toggle-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .toggle-btn.on {
+    background: rgba(20,184,166,0.12);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .toggle-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+  /* BANNERS */
+  .warning-banner, .info-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    color: #fca5a5;
+  }
+  .info-banner {
+    background: rgba(59,130,246,0.06);
+    border: 1px solid rgba(59,130,246,0.18);
+    color: #bfdbfe;
+  }
+  .warning-banner strong, .info-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* CRONOLOGÍA */
+  .timeline { display: flex; flex-direction: column; gap: 10px; }
+  .tl-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 13px 15px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .tl-time {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: #fca5a5;
+    flex: 0 0 74px;
+    padding-top: 2px;
+  }
+  .tl-item strong { color: #fff; font-weight: 500; }
+  .tl-item em { color: #fcd34d; font-style: normal; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* ÁRBOL DE DECISIÓN */
+  .flow { display: flex; flex-direction: column; gap: 10px; }
+  .flow-node {
+    position: relative;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--text-muted);
+    background: rgba(255,255,255,0.02);
+    padding: 12px 15px;
+    font-size: 13.5px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .flow-node strong { color: #fff; font-weight: 500; }
+  .flow-node em { color: #fcd34d; font-style: normal; }
+  .flow-q {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .flow-node.stop { border-left-color: var(--red); background: rgba(239,68,68,0.06); }
+  .flow-node.stop .flow-q { color: #fca5a5; }
+  .flow-node.go { border-left-color: var(--emerald); background: rgba(16,185,129,0.05); }
+  .flow-node.go .flow-q { color: #6ee7b7; }
+  .flow-node.hold { border-left-color: var(--amber); background: rgba(245,158,11,0.05); }
+  .flow-node.hold .flow-q { color: #fcd34d; }
+  .flow-node.ask { border-left-color: var(--blue); background: rgba(59,130,246,0.05); }
+  .flow-node.ask .flow-q { color: #93c5fd; }
+  .flow-branch {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 10px;
+    padding-left: 16px;
+    border-left: 2px dashed rgba(255,255,255,0.10);
+  }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--amber); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .opt { width: 100%; }
+    .result-row { flex-direction: column; gap: 4px; }
+    .result-key { flex: none; padding-top: 0; }
+    .tl-item { flex-direction: column; gap: 6px; }
+    .tl-time { flex: none; }
+    .score-item { align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <div class="header-badge">Patología compleja · Algoritmo</div>
+    <h1>Intoxicación grave por <span>bloqueadores de calcio y betabloqueadores</span></h1>
+    <p class="header-sub">
+      Son dos de las intoxicaciones que más matan por dosis ingerida, y las dos comparten el mismo problema:
+      <strong>un corazón que no se contrae ni acelera, y un lecho vascular que no vasoconstriñe</strong>. Lo que las
+      hace peligrosas en urgencia no es solo la gravedad, sino <strong>el ritmo al que se deterioran</strong>: un
+      paciente que llega conversando, con presión normal y un comprimido de liberación prolongada en el estómago,
+      puede estar en shock refractario cuatro horas después. El tratamiento tampoco es intuitivo —la dosis de
+      <strong>insulina que se usa aquí es cien veces la habitual</strong>, el calcio se repite, el vasopresor casi
+      nunca basta solo— y la decisión que más cambia el pronóstico, <strong>llamar al equipo de ECMO</strong>, se
+      toma <em>antes</em> del paro, no después. Esta página está escrita para esas primeras horas: reconocer la
+      gravedad temprano, escalar en el orden correcto y no perder la ventana del soporte extracorpóreo.
+    </p>
+  </div>
+
+  <!-- 01 · ÁRBOL DE DECISIÓN -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">Árbol de decisión</div>
+        <div class="section-subtitle">Tóxico y escenario + estado hemodinámico + contexto</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Marca el <strong>escenario dominante</strong> y el <strong>estado hemodinámico</strong>; el contexto es
+        opcional y agrega matices. El resultado orienta qué hacer en los primeros minutos, en qué orden escalar, qué
+        <strong>no</strong> hacer y a quién llamar. No sustituye el protocolo de tu servicio, la evaluación presencial
+        ni la indicación del <strong>centro de información toxicológica</strong>, al que conviene llamar temprano en
+        todos estos casos.</span>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">1 · Escenario dominante</div>
+        <div class="opts" id="q-esc">
+          <button type="button" class="opt" data-v="paro">Paro cardiorrespiratorio o peri-paro por el tóxico</button>
+          <button type="button" class="opt" data-v="ncc">Verapamilo o diltiazem: <strong>bradicardia, bloqueo AV e hipotensión</strong></button>
+          <button type="button" class="opt" data-v="dhp">Amlodipino, nifedipino u otra dihidropiridina: <strong>shock vasopléjico</strong></button>
+          <button type="button" class="opt" data-v="bb">Betabloqueador con bradicardia e hipotensión</button>
+          <button type="button" class="opt" data-v="propra">Propranolol: compromiso de conciencia, convulsiones o <strong>QRS ancho</strong></button>
+          <button type="button" class="opt" data-v="sotalol">Sotalol: <strong>QT largo</strong>, torsades o bradicardia</button>
+          <button type="button" class="opt" data-v="mixta">Co-ingesta de varios cardiodepresores (calcioantagonista + betabloqueador, digoxina, clonidina)</button>
+          <button type="button" class="opt" data-v="sr">Ingesta de un preparado de <strong>liberación prolongada</strong>, todavía sin síntomas</button>
+          <button type="button" class="opt" data-v="asintomatico">Ingesta de liberación inmediata, paciente asintomático</button>
+          <button type="button" class="opt" data-v="refractario">Shock que no responde a calcio, insulina en altas dosis y vasopresores</button>
+          <button type="button" class="opt" data-v="pediatrico">Niño pequeño que ingirió <strong>una o pocas tabletas</strong> de un adulto</button>
+          <button type="button" class="opt" data-v="sinrecursos">Centro sin unidad crítica, sin ECMO o sin toxicología disponible</button>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">2 · Estado hemodinámico</div>
+        <div class="opts" id="q-est">
+          <button type="button" class="opt" data-v="paro">Paro cardiorrespiratorio en curso</button>
+          <button type="button" class="opt" data-v="refractario">Shock con dos o más vasoactivos en dosis altas</button>
+          <button type="button" class="opt" data-v="hipotension">Hipotensión que responde parcialmente a volumen o vasopresor</button>
+          <button type="button" class="opt" data-v="brady">Bradicardia sintomática o bloqueo AV, sin hipotensión franca</button>
+          <button type="button" class="opt" data-v="estable">Normotenso y asintomático, con ingesta reciente</button>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">3 · Contexto (marca los que apliquen)</div>
+        <div class="opts" id="q-ctx">
+          <button type="button" class="opt" data-v="sr">Preparado de liberación prolongada (SR, XL, retard, OROS)</button>
+          <button type="button" class="opt" data-v="coing">Co-ingesta de otros fármacos o de alcohol</button>
+          <button type="button" class="opt" data-v="digoxina">Sospecha de digoxina asociada</button>
+          <button type="button" class="opt" data-v="hiper">Glicemia &gt; 250 mg/dL sin diabetes conocida</button>
+          <button type="button" class="opt" data-v="hipo">Hipoglicemia</button>
+          <button type="button" class="opt" data-v="qrs">QRS &gt; 120 ms</button>
+          <button type="button" class="opt" data-v="qt">QTc prolongado o torsades</button>
+          <button type="button" class="opt" data-v="edema">Edema pulmonar, hipoxemia o infiltrados</button>
+          <button type="button" class="opt" data-v="renal">Insuficiencia renal, oliguria o anuria</button>
+          <button type="button" class="opt" data-v="embarazo">Embarazo</button>
+          <button type="button" class="opt" data-v="pediatrico">Paciente pediátrico</button>
+          <button type="button" class="opt" data-v="intencional">Ingesta intencional o riesgo suicida</button>
+          <button type="button" class="opt" data-v="sinecmo">Sin ECMO ni radiología intervencional en el centro</button>
+          <button type="button" class="opt" data-v="ninguno">Ninguno de los anteriores</button>
+        </div>
+      </div>
+
+      <div class="result placeholder" id="result">
+        Selecciona el escenario dominante y el estado hemodinámico para ver la prioridad de los primeros minutos, el
+        orden de escalamiento de los fármacos, lo que está contraindicado y a quién llamar.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · POR QUÉ MATA -->
+  <div class="section s2" id="s2" style="animation-delay:0.12s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Por qué matan y en qué se diferencian</div>
+        <div class="section-subtitle">Fisiopatología · calcioantagonista vs betabloqueador · marcadores de gravedad</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>El error más caro de esta intoxicación es esperar.</strong> El paciente asintomático con una
+        ingesta significativa —sobre todo de un <strong>preparado de liberación prolongada</strong>— no está fuera de
+        peligro: está en el período de latencia. Cuando aparece la hipotensión, ya hay una masa de fármaco absorbiéndose
+        que no se puede retirar, y el deterioro a partir de ahí es rápido. <strong>El momento de preparar el box, pedir
+        el peso, avisar a la unidad crítica y llamar al centro toxicológico es mientras el paciente todavía está
+        estable.</strong></span>
+      </div>
+
+      <div class="subhead">Qué hace cada grupo</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🫀</span><span><strong>Calcioantagonistas no dihidropiridínicos (verapamilo, diltiazem):</strong> bloquean los canales de calcio tipo L del miocardio y del nodo. El resultado es <strong>inotropismo, cronotropismo y dromotropismo negativos</strong>: bradicardia, bloqueo AV de cualquier grado, ritmo de la unión y shock cardiogénico. <strong>El verapamilo es el más letal del grupo.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">💧</span><span><strong>Dihidropiridinas (amlodipino, nifedipino, nitrendipino):</strong> en dosis terapéuticas son selectivas del músculo liso vascular y producen <strong>vasodilatación con taquicardia refleja</strong>. <strong>En sobredosis pierden esa selectividad</strong> y agregan depresión miocárdica, de modo que el cuadro final puede ser idéntico al del verapamilo. El shock suele ser <strong>vasopléjico</strong>, con resistencia vascular muy baja.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚫</span><span><strong>Betabloqueadores:</strong> bloqueo β1 con <strong>bradicardia, hipotensión y bajo gasto</strong>. La gravedad depende mucho de la molécula: <strong>propranolol</strong> es lipofílico, atraviesa la barrera hematoencefálica (coma, convulsiones) y <strong>bloquea canales de sodio</strong> (QRS ancho, arritmias ventriculares); <strong>sotalol</strong> bloquea además canales de potasio (<strong>QT largo y torsades</strong>); el resto tiende a producir cuadros más «puros» de bradicardia e hipotensión.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🍬</span><span><strong>El metabolismo energético del miocardio cambia.</strong> El bloqueo de los canales de calcio de la célula β pancreática produce <strong>hipoinsulinemia con resistencia a la insulina</strong>, y el corazón en shock pierde la capacidad de usar ácidos grasos y pasa a depender de la glucosa. <strong>Ese es el fundamento de la insulina en altas dosis</strong>, que no se usa aquí para bajar la glicemia sino como <strong>inotrópico metabólico</strong>.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>La hiperglicemia es un marcador de gravedad en la intoxicación por calcioantagonistas</strong>, y ayuda a distinguirla: el paciente intoxicado con <strong>betabloqueador</strong> tiende a la <strong>normoglicemia o la hipoglicemia</strong> (sobre todo los niños y los pacientes en ayuno). <em>El punto de corte exacto no es un criterio rígido: úsalo como señal, no como umbral de decisión.</em></span></div>
+      </div>
+
+      <div class="subhead">Pistas para diferenciarlos cuando no sabes qué tomó</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Dato</th><th>Calcioantagonista</th><th>Betabloqueador</th></tr></thead>
+          <tbody>
+            <tr><td>Glicemia</td><td><span class="dose-main">Alta</span><br><span class="dose-note">y se correlaciona con la gravedad</span></td><td><span class="dose-main">Normal o baja</span><br><span class="dose-note">hipoglicemia sobre todo en niños</span></td></tr>
+            <tr><td>Conciencia</td><td>Habitualmente <strong>conservada</strong> hasta que cae la perfusión cerebral</td><td>Puede estar <strong>deprimida precozmente</strong> con las moléculas lipofílicas (propranolol)</td></tr>
+            <tr><td>Convulsiones</td><td>Raras, salvo por hipoperfusión</td><td><strong>Propranolol</strong> (efecto de membrana y del sistema nervioso central)</td></tr>
+            <tr><td>QRS</td><td>Habitualmente estrecho</td><td><strong>Ancho con propranolol</strong> por bloqueo de canales de sodio</td></tr>
+            <tr><td>QT</td><td>Sin efecto característico</td><td><strong>Largo con sotalol</strong>, con riesgo de torsades</td></tr>
+            <tr><td>Frecuencia cardíaca</td><td><strong>Baja</strong> con verapamilo y diltiazem; <strong>alta o normal</strong> al inicio con dihidropiridinas</td><td><strong>Baja</strong>, aunque puede ser «normal» en el paciente en shock</td></tr>
+            <tr><td>Patrón del shock</td><td>Cardiogénico (no dihidropiridinas) o <strong>vasopléjico</strong> (dihidropiridinas)</td><td>Predominantemente <strong>cardiogénico</strong> con bajo gasto</td></tr>
+            <tr><td>Acidosis láctica</td><td colspan="2">Común en ambos y marcador de hipoperfusión. <strong>Un lactato que sube pese al tratamiento es una señal de escalamiento</strong>, no un dato de laboratorio más</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>La ecografía a pie de cama decide el tipo de soporte.</strong> Distinguir el corazón que no se
+        contrae (shock cardiogénico: insulina en altas dosis, inotrópico, plantear ECMO) del corazón hiperdinámico con
+        vasodilatación (shock vasopléjico: noradrenalina y volumen) <strong>cambia el fármaco que eliges</strong>, y es
+        una diferencia que la presión arterial sola no te da. Repite la evaluación: el mismo paciente puede cambiar de
+        patrón en una hora.</span>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Marcadores de gravedad y de escalamiento · marca los presentes</div>
+        <div class="score-list danger" id="grav-list">
+          <button type="button" class="score-item" data-crit="1" data-p="1">Hipotensión que requiere vasopresor, o presión sistólica &lt; 90 mmHg<span class="score-pts">grave</span></button>
+          <button type="button" class="score-item" data-crit="1" data-p="1">Bradicardia extrema, bloqueo AV de alto grado o ritmo de escape<span class="score-pts">grave</span></button>
+          <button type="button" class="score-item" data-crit="1" data-p="1">Necesidad de dos o más fármacos vasoactivos, o de insulina en altas dosis<span class="score-pts">grave</span></button>
+          <button type="button" class="score-item" data-p="1">Signos de hipoperfusión: piel fría, oliguria, lactato elevado, compromiso de conciencia<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-p="1">Preparado de liberación prolongada (SR, XL, retard, OROS)<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-p="1">Ingesta intencional de dosis alta, o cantidad desconocida<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-p="1">Co-ingesta de otro cardiodepresor (otro calcioantagonista, betabloqueador, digoxina, clonidina, antiarrítmico, tricíclico)<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-p="1">Glicemia &gt; 250 mg/dL sin diabetes conocida<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-p="1">QRS &gt; 120 ms o QTc prolongado<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-p="1">Acidosis metabólica o lactato en ascenso pese al tratamiento<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-p="1">Edema pulmonar o hipoxemia<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-p="1">Niño pequeño con ingesta de una o pocas tabletas de adulto<span class="score-pts">1</span></button>
+        </div>
+        <div class="calc-out" id="grav-out">Marca los marcadores presentes para ver el nivel de vigilancia y de escalamiento sugerido. <strong>No es un puntaje validado</strong>: es un recuento de señales de alarma para ordenar la conducta.</div>
+        <button type="button" class="calc-reset" id="grav-reset">Limpiar</button>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./algoritmo-shock-cardiogenico.html">→ Algoritmo: shock cardiogénico y vasoactivos</a>
+        <a class="cross-link" href="./guia-dolor-toracico.html">→ Guía: dolor torácico y lectura del electrocardiograma</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · LOS PRIMEROS 30 MINUTOS -->
+  <div class="section s3" id="s3" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Los primeros 30 minutos</div>
+        <div class="section-subtitle">Preparar el escalamiento antes de necesitarlo</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="timeline">
+        <div class="tl-item"><span class="tl-time">0–5 min</span><span><strong>Monitorización continua, electrocardiograma de 12 derivaciones, dos vías periféricas y glicemia capilar.</strong> Mide el <strong>peso</strong> (o estímalo y déjalo escrito): todo lo que viene después se dosifica por kilo. Pregunta qué tomó, <strong>cuánto, a qué hora y si el comprimido era de liberación prolongada</strong>; revisa cajas, recetas y el listado de fármacos de la casa.</span></div>
+        <div class="tl-item"><span class="tl-time">0–10 min</span><span><strong>Llama al centro de información toxicológica y avisa a la unidad crítica</strong>, aunque el paciente esté estable. En el mismo momento averigua <strong>dónde está el ECMO más cercano</strong> y cuál es la vía para activarlo: es un dato que no quieres buscar en medio del paro.</span></div>
+        <div class="tl-item"><span class="tl-time">0–15 min</span><span><strong>Si ya hay hipotensión o bradicardia sintomática:</strong> <strong>calcio intravenoso</strong>, <strong>atropina</strong> si hay bradicardia y un <strong>bolo modesto de cristaloides</strong> (10–20 mL/kg, reevaluando: el corazón intoxicado se congestiona con facilidad). Ver sección 04.</span></div>
+        <div class="tl-item"><span class="tl-time">10–20 min</span><span><strong>Descontaminación cuando corresponda</strong> (sección 08): <strong>carbón activado</strong> si la ingesta es reciente y la vía aérea está protegida o el paciente está plenamente alerta; plantear <strong>irrigación intestinal total</strong> en preparados de liberación prolongada. <strong>Nunca a costa de la reanimación</strong>, y nunca en el paciente somnoliento sin vía aérea asegurada.</span></div>
+        <div class="tl-item"><span class="tl-time">15–30 min</span><span><strong>Insulina en altas dosis con euglicemia (sección 05) apenas hay disfunción miocárdica o hipotensión que no responde a las medidas iniciales.</strong> Tarda <strong>15 a 45 minutos</strong> en hacer efecto: si esperas a que el paciente esté <em>in extremis</em>, el efecto llega tarde. En paralelo, <strong>noradrenalina o adrenalina</strong> según el patrón de shock.</span></div>
+        <div class="tl-item"><span class="tl-time">20–40 min</span><span><strong>Accesos definitivos y laboratorio:</strong> vía central y línea arterial si hay shock; gases, lactato, electrolitos con <strong>potasio</strong>, <strong>calcio iónico</strong>, magnesio, función renal y hepática, glicemia, pruebas de embarazo cuando corresponda. Considera <strong>paracetamol y otras co-ingestas</strong> en la ingesta intencional.</span></div>
+        <div class="tl-item"><span class="tl-time">30–60 min</span><span><strong>Reevalúa con ecografía a pie de cama</strong> y define el patrón: cardiogénico, vasopléjico o mixto. <strong>Define el destino:</strong> toda intoxicación sintomática por estos fármacos, y toda ingesta significativa de liberación prolongada, es <strong>cama monitorizada o unidad crítica</strong>.</span></div>
+        <div class="tl-item"><span class="tl-time">En paralelo</span><span><strong>Si el paciente ya requiere dos vasoactivos, o el lactato sigue subiendo con tratamiento máximo, llama al equipo de ECMO ahora</strong> (sección 10). La canulación toma tiempo y el traslado, más: la decisión se toma <strong>mientras el paciente todavía tiene pulso</strong>.</span></div>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>Prepara el box para un deterioro brusco</strong> aunque el paciente esté conversando: marcapasos
+        transcutáneo con parches ya puestos, calcio y atropina cargados, la insulina y la dextrosa pedidas a farmacia,
+        el equipo de vía aérea listo y el vasopresor montado. <strong>Esta es una intoxicación en la que el material
+        preparado con anticipación cambia el desenlace.</strong></span>
+      </div>
+
+      <div class="subhead">Vía aérea: intubar es un momento de riesgo</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>La inducción puede precipitar el paro.</strong> El paciente sin reserva cronotrópica ni inotrópica no tolera ni la vasodilatación del inductor ni la presión positiva. <strong>Optimiza primero</strong> —calcio, vasopresor en marcha, insulina iniciada—, usa <strong>dosis reducida de inductor</strong> (ketamina o etomidato), <strong>dosis plena de bloqueador neuromuscular</strong> y ten el vasopresor en bolo listo en la mano.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫁</span><span><strong>Indicaciones habituales:</strong> compromiso de conciencia con riesgo de aspiración (típico del propranolol), insuficiencia respiratoria, edema pulmonar, necesidad de descontaminación con la vía aérea no protegida, o traslado de un paciente inestable.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💨</span><span><strong>Después de intubar, baja la presión positiva y reevalúa de inmediato:</strong> el colapso posintubación en estos pacientes se trata con volumen prudente, vasopresor y, si no responde, escalamiento inmediato del soporte. <em>No asumas que es «efecto del sedante» sin descartar el deterioro del tóxico.</em></span></div>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./algoritmo-shock-cardiogenico.html">→ Algoritmo: intubación de alto riesgo en shock</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · PRIMER ESCALÓN -->
+  <div class="section s4" id="s4" style="animation-delay:0.24s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Primer escalón: calcio, atropina y volumen</div>
+        <div class="section-subtitle">Barato, rápido y casi siempre insuficiente por sí solo</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>El consenso de expertos para la intoxicación por calcioantagonistas en adultos ordena las <strong>terapias
+        de primera línea</strong> así: <strong>calcio intravenoso</strong>, <strong>insulina en altas dosis</strong> y
+        <strong>noradrenalina o adrenalina</strong>, con dobutamina o adrenalina si predomina el componente cardiogénico
+        y atropina si hay bradicardia sintomática o trastorno de conducción. <strong>Todo el cuerpo de evidencia es de
+        calidad muy baja</strong>, así que la secuencia importa menos que <strong>no detenerse en el primer escalón</strong>
+        cuando no funciona.</span>
+      </div>
+
+      <div class="subhead">Calcio</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Preparado</th><th>Dosis habitual en el adulto</th><th>Notas</th></tr></thead>
+          <tbody>
+            <tr><td>Cloruro de calcio 10%</td><td><span class="dose-main">10–20 mL (1–2 g) IV</span><br><span class="dose-note">repetir cada 10–20 min según respuesta</span></td><td>Aporta <strong>aproximadamente el triple de calcio elemental</strong> que el gluconato por igual volumen. <strong>Vesicante: preferir vía central</strong>; la extravasación produce necrosis</td></tr>
+            <tr><td>Gluconato de calcio 10%</td><td><span class="dose-main">30–60 mL (3–6 g) IV</span><br><span class="dose-note">repetir cada 10–20 min según respuesta</span></td><td>Alternativa <strong>segura por vía periférica</strong>. Es el preparado a elegir mientras no haya vía central</td></tr>
+            <tr><td>Infusión continua</td><td><span class="dose-main">Cuando los bolos funcionan pero el efecto se pierde</span></td><td>Se usa para mantener el efecto tras una respuesta a los bolos. <em>Velocidad, dilución y meta de calcio iónico: verificar con protocolo institucional</em></td></tr>
+            <tr><td>Monitorización</td><td colspan="2">Controla el <strong>calcio iónico</strong> de forma seriada. Con dosis repetidas hay riesgo de <strong>hipercalcemia</strong>; en presencia de acidosis grave o insuficiencia renal, la interpretación cambia. <em>Meta de calcio iónico: verificar con protocolo institucional</em></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="plain-list" style="margin-top:14px;">
+        <div class="plain-item"><span class="bullet-icon">📈</span><span><strong>El calcio mejora sobre todo la contractilidad y la presión</strong>, y menos la frecuencia y la conducción. Funciona mejor en la intoxicación por <strong>calcioantagonistas</strong> que por betabloqueadores, aunque también se usa en estos últimos.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔁</span><span><strong>Si una dosis funciona parcialmente, repítela.</strong> Lo habitual es necesitar <strong>varias dosis</strong>, y su efecto es transitorio; el error frecuente es dar un bolo, ver una respuesta pequeña y concluir que «el calcio no sirve».</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>Si sospechas intoxicación digitálica asociada</strong>, discute el calcio con toxicología antes de administrarlo: la enseñanza clásica advierte contra su uso en ese contexto, aunque la evidencia que sustenta esa advertencia es débil. <em>Conducta: verificar con el centro toxicológico.</em></span></div>
+      </div>
+
+      <div class="subhead">Atropina</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Adulto: 0,5–1 mg IV</strong>, repetible hasta aproximadamente <strong>3 mg</strong> totales. <strong>Pediatría: 0,02 mg/kg.</strong> <em>Dosis máximas y mínimas pediátricas: verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🤷</span><span><strong>Suele no funcionar en la intoxicación grave</strong>, porque el problema no es el tono vagal sino el bloqueo del canal. Es razonable intentarla —es rápida y de bajo riesgo—, pero <strong>no es un tratamiento y no debe retrasar el escalamiento</strong>.</span></div>
+      </div>
+
+      <div class="subhead">Volumen</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💧</span><span><strong>Bolo inicial modesto: 10–20 mL/kg de cristaloide</strong>, reevaluando después de cada bolo. En el shock vasopléjico por dihidropiridinas el volumen ayuda más; en el shock cardiogénico por verapamilo ayuda poco.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>No sigas llenando al paciente que no responde.</strong> Estos pacientes desarrollan <strong>edema pulmonar</strong> con facilidad —por disfunción miocárdica, por la carga hídrica del soporte y, en las dihidropiridinas, por aumento de la permeabilidad—, y la insulina en altas dosis agrega su propio volumen de dextrosa. <strong>Pasa antes a vasoactivo e insulina que a un tercer bolo.</strong></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · INSULINA EN ALTAS DOSIS -->
+  <div class="section s5" id="s5" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Insulina en altas dosis con euglicemia</div>
+        <div class="section-subtitle">El inotrópico de esta intoxicación · protocolo y calculadora por peso</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Las dosis de esta sección no son un error de imprenta.</strong> Se usan <strong>1 U/kg en bolo y
+        1 a 10 U/kg/hora</strong> en infusión: en un adulto de 70 kg eso son <strong>70 unidades en bolo y hasta 700
+        unidades por hora</strong>, entre cincuenta y cien veces lo que se usa en una cetoacidosis. Es la dosis correcta
+        para esta indicación y <strong>la razón principal por la que este tratamiento se subdosifica o se administra
+        tarde</strong>. Confirma la indicación, la dosis y la preparación con farmacia y con el centro toxicológico, y
+        <strong>deja la dosis escrita en la ficha con la unidad completa</strong> para que nadie la interprete como una
+        infusión habitual.</span>
+      </div>
+
+      <div class="subhead">Cómo funciona y cuándo empezar</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">⚙️</span><span><strong>Tres mecanismos:</strong> aumenta el <strong>inotropismo</strong>, mejora el <strong>transporte intracelular de glucosa</strong> en un miocardio que ya no puede usar ácidos grasos, y produce <strong>vasodilatación</strong> con aumento del gasto cardíaco. En modelos animales fue superior al calcio, al glucagón, a la adrenalina y a la vasopresina en términos de supervivencia.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏱️</span><span><strong>El efecto no es inmediato:</strong> empieza entre <strong>15 y 45 minutos</strong> después de iniciada. Por eso se indica <strong>precozmente</strong>, apenas hay disfunción miocárdica o hipotensión que no responde al primer escalón, y no como medida desesperada.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫀</span><span><strong>Es la terapia con mejor fundamento en el shock con componente cardiogénico</strong>, tanto por calcioantagonistas como por betabloqueadores. En el shock puramente vasopléjico su rendimiento es menor, pero se sigue usando cuando el vasopresor no basta.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔚</span><span><strong>Se retira gradualmente</strong>, en paralelo al destete de los vasoactivos, y <strong>el riesgo de hipoglicemia persiste horas después de suspenderla</strong>: el control de glicemia y el aporte de glucosa se mantienen hasta 24 horas más. <em>Esquema de retiro: verificar con protocolo institucional.</em></span></div>
+      </div>
+
+      <div class="subhead">Protocolo</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Paso</th><th>Qué se hace</th><th>Detalle</th></tr></thead>
+          <tbody>
+            <tr><td>Bolo de insulina</td><td><span class="dose-main">Insulina cristalina (regular) 1 U/kg IV</span></td><td>Algunos protocolos parten en 0,5 U/kg. <strong>No se usa insulina de acción prolongada.</strong></td></tr>
+            <tr><td>Infusión</td><td><span class="dose-main">1 U/kg/h</span><br><span class="dose-note">titular hasta 10 U/kg/h</span></td><td>Se sube <strong>cada 10–15 minutos</strong> según respuesta hemodinámica. Hay experiencia publicada con dosis mayores en casos refractarios. <em>Techo institucional: verificar</em></td></tr>
+            <tr><td>Glucosa inicial</td><td><span class="dose-main">Bolo de dextrosa si la glicemia es &lt; 250 mg/dL</span><br><span class="dose-note">≈ 0,5 g/kg</span></td><td>Si la glicemia inicial es alta —frecuente en la intoxicación por calcioantagonistas— <strong>se puede omitir el bolo</strong> e iniciar solo la infusión</td></tr>
+            <tr><td>Infusión de glucosa</td><td><span class="dose-main">≈ 0,5 g/kg/h</span><br><span class="dose-note">titulada a la glicemia</span></td><td>Usar <strong>soluciones concentradas por vía central</strong> para no sobrecargar de volumen. <em>Concentración y vía: verificar con protocolo institucional</em></td></tr>
+            <tr><td>Control de glicemia</td><td><span class="dose-main">Cada 15–30 min las primeras horas</span><br><span class="dose-note">luego cada hora, y tras suspender</span></td><td>Meta habitual: <strong>euglicemia</strong>, no hipoglicemia. <em>Rango objetivo: verificar con protocolo institucional</em></td></tr>
+            <tr><td>Potasio</td><td><span class="dose-main">Control cada 30–60 min</span></td><td>La caída del potasio es un <strong>desplazamiento al espacio intracelular</strong>, no un déficit corporal: se repone con prudencia para mantenerlo en torno a <strong>2,5–3,0 mEq/L o más</strong>, evitando la hiperkalemia de rebote. <em>Umbral: verificar</em></td></tr>
+            <tr><td>Accesos</td><td colspan="2"><strong>Vía central</strong> para la dextrosa concentrada y los vasoactivos, y <strong>línea arterial</strong> si hay shock. No retrases el inicio de la insulina por esperar el acceso central: comienza por vía periférica con lo que tengas y escala</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Problemas frecuentes durante el tratamiento</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Subdosificar «por seguridad».</strong> Una infusión de 0,1 U/kg/h no es insulina en altas dosis: es una infusión de insulina habitual que no aporta inotropismo y sí confunde la interpretación de la glicemia.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Suspenderla por hiperglicemia.</strong> La hiperglicemia se trata subiendo la insulina, no bajándola: el objetivo del tratamiento es <strong>hemodinámico</strong>.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Sobrecargar de volumen con la dextrosa diluida.</strong> En pacientes con disfunción miocárdica, el aporte de glucosa en soluciones poco concentradas contribuye al edema pulmonar.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Corregir agresivamente el potasio.</strong> La hipokalemia es por redistribución; repone lo necesario para mantener el umbral y vuelve a medir.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧾</span><span><strong>Deja el protocolo escrito y comunicado al equipo de enfermería</strong>, con las dosis, la frecuencia de los controles y quién titula. Es un tratamiento intensivo en tiempo de enfermería y los errores ocurren en los cambios de turno.</span></div>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Calculadora de dosis por peso</div>
+        <div class="calc-field">
+          <input type="number" id="peso" min="3" max="250" step="0.5" inputmode="decimal" placeholder="70">
+          <span class="unit">peso · kg</span>
+        </div>
+        <div class="calc-out" id="peso-out">Ingresa el peso para ver las dosis dependientes del peso —insulina, dextrosa, calcio, glucagón, emulsión lipídica, bicarbonato, magnesio, carbón activado— calculadas para este paciente.</div>
+        <button type="button" class="calc-reset" id="peso-reset">Limpiar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · VASOPRESORES -->
+  <div class="section s6" id="s6" style="animation-delay:0.36s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Vasopresores e inotrópicos</div>
+        <div class="section-subtitle">Elegir según el patrón de shock, no según la costumbre</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>No hay un vasoactivo «correcto» demostrado</strong> en esta intoxicación, y las dosis necesarias
+        suelen ser muy superiores a las habituales. Lo que sí está claro es que <strong>el catecolamínico solo rara vez
+        resuelve el problema</strong>: sube la resistencia vascular y el consumo miocárdico de oxígeno en un corazón que
+        no puede responder. Por eso se usan <strong>junto con la insulina en altas dosis</strong>, y por eso la
+        necesidad de dosis crecientes es una señal de que hay que llamar al equipo de soporte extracorpóreo.</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Fármaco</th><th>Cuándo</th><th>Notas</th></tr></thead>
+          <tbody>
+            <tr><td>Noradrenalina</td><td><span class="dose-main">Shock vasopléjico</span><br><span class="dose-note">dihidropiridinas, resistencia vascular baja</span></td><td>Primera elección cuando predomina la vasodilatación. <strong>Sin dosis techo definida</strong> en este contexto: se titula a presión de perfusión. <em>Dilución y dosis máxima: verificar con protocolo institucional</em></td></tr>
+            <tr><td>Adrenalina</td><td><span class="dose-main">Bradicardia con bajo gasto</span><br><span class="dose-note">componente cardiogénico</span></td><td>Aporta cronotropismo e inotropismo. Produce <strong>hiperlactatemia propia</strong>, lo que complica usar el lactato como guía: interprétalo junto con la perfusión clínica</td></tr>
+            <tr><td>Dobutamina</td><td><span class="dose-main">Disfunción miocárdica con presión sostenida</span></td><td><strong>Vasodilata</strong>: puede empeorar la hipotensión si se usa sola en el paciente ya vasopléjico. Combinar con vasopresor</td></tr>
+            <tr><td>Vasopresina</td><td><span class="dose-main">Adyuvante en vasoplejía refractaria</span></td><td>Permite limitar la escalada de catecolaminas. Evidencia limitada en esta indicación</td></tr>
+            <tr><td>Isoproterenol</td><td><span class="dose-main">Bradicardia refractaria</span><br><span class="dose-note">y torsades por sotalol</span></td><td>Cronotrópico potente pero <strong>vasodilatador</strong>: vigila la presión. Disponibilidad variable. <em>Verificar existencia en tu servicio antes de necesitarlo</em></td></tr>
+            <tr><td>Inhibidores de fosfodiesterasa y levosimendán</td><td><span class="dose-main">Uso excepcional</span></td><td>Aportan inotropismo pero <strong>vasodilatan</strong> y tienen vida media larga, lo que limita su utilidad en shock. Decisión con cuidados intensivos y toxicología</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="plain-list" style="margin-top:14px;">
+        <div class="plain-item"><span class="bullet-icon">🎯</span><span><strong>Titula contra perfusión, no contra un número:</strong> conciencia, piel, diuresis, lactato y la contractilidad que ves en la ecografía. Una presión «aceptable» conseguida con vasoconstricción extrema sobre un corazón que no eyecta <strong>no es una meta cumplida</strong>.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>Que la dosis siga subiendo no es un plan.</strong> Si en la primera hora ya vas en dos vasoactivos con insulina en marcha, <strong>el siguiente paso no es un tercer fármaco: es la llamada al equipo de ECMO</strong>.</span></div>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./algoritmo-shock-cardiogenico.html">→ Algoritmo: vasoactivos con dosis por peso</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · ADYUVANTES Y RESCATE FARMACOLÓGICO -->
+  <div class="section s7" id="s7" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Glucagón, azul de metileno y emulsión lipídica</div>
+        <div class="section-subtitle">Adyuvantes de segunda línea y rescate · qué dice cada guía</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Glucagón</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Adulto: 3–5 mg IV lentos (1–2 min).</strong> Si no hay respuesta, se repite hasta un total en torno a <strong>10 mg</strong>; si la hay, se continúa con una <strong>infusión a la dosis por hora que produjo la respuesta</strong>. <strong>Pediatría: aproximadamente 50 µg/kg.</strong> <em>Presentación, reconstitución, diluyente y esquema de infusión: verificar con farmacia y protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🔑</span><span><strong>Su lugar es la intoxicación por betabloqueadores</strong>, donde aporta efecto inotrópico y cronotrópico por una vía independiente del receptor β. En la intoxicación por calcioantagonistas su rendimiento es menor.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>Produce vómitos con mucha frecuencia</strong>: es un riesgo real de aspiración en el paciente somnoliento. Anticipa antiemético y vía aérea, sobre todo si acabas de dar carbón activado.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>La existencia en el hospital suele ser el factor limitante.</strong> Las dosis de esta indicación agotan rápidamente el stock de una farmacia de urgencia. <strong>Averigua cuántas ampollas hay apenas planteas usarlo</strong>, y no construyas el plan de tratamiento sobre un fármaco que se te va a acabar en una hora.</span></div>
+      </div>
+
+      <div class="subhead">Azul de metileno</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔵</span><span><strong>1–2 mg/kg IV</strong> en infusión lenta, como rescate en la <strong>vasoplejía refractaria</strong> que no responde a vasopresores en dosis altas. La evidencia se limita a <strong>reportes y series de casos</strong>. <em>Dosis repetidas, infusión y disponibilidad: verificar con protocolo institucional y toxicología.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">⚕️</span><span><strong>Precauciones:</strong> riesgo de <strong>síndrome serotoninérgico</strong> si el paciente usa fármacos serotoninérgicos —frecuente en las ingestas intencionales—, hemólisis en el <strong>déficit de glucosa-6-fosfato deshidrogenasa</strong>, e interferencia con la lectura de la oximetría de pulso.</span></div>
+      </div>
+
+      <div class="subhead">Emulsión lipídica intravenosa</div>
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>Aquí las guías no dicen lo mismo, y conviene saberlo antes de indicarla.</strong> El grupo de
+        trabajo sobre emulsión lipídica <strong>sugiere no usarla como terapia de primera línea</strong> en la
+        toxicidad por calcioantagonistas ni por betabloqueadores no liposolubles, y se declara neutro en la mayoría de
+        los demás escenarios. El consenso de calcioantagonistas, en cambio, <strong>la recomienda en el shock
+        refractario, en el peri-paro y en el paro cardíaco</strong>, cuando ya se agotaron las otras medidas.
+        Interpretación práctica: <strong>no es tratamiento inicial, sí es una opción de rescate</strong> en el paciente
+        que se muere pese a todo lo demás, especialmente con tóxicos lipofílicos como el <strong>propranolol</strong>,
+        el <strong>verapamilo</strong> y las dihidropiridinas.</span>
+      </div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Esquema habitualmente citado (emulsión al 20%):</strong> <strong>1,5 mL/kg en bolo</strong> en 2–3 minutos, repetible, seguido de infusión de <strong>0,25 mL/kg/min</strong>. <em>El propio grupo de trabajo se declara neutro respecto de la dosis y la duración óptimas fuera de los anestésicos locales: verificar con protocolo institucional y toxicología.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>Tiene costos.</strong> <strong>Interfiere con numerosos exámenes de laboratorio</strong> —lo que puede dejarte sin datos justo cuando más los necesitas—, puede <strong>obstruir el circuito de ECMO y de depuración extracorpórea</strong>, y se asocia a pancreatitis y a síndrome de sobrecarga grasa. <strong>Si el paciente es candidato a ECMO, conversa la decisión con el equipo antes de infundirla.</strong></span></div>
+      </div>
+
+      <div class="subhead">Fármacos para problemas específicos</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Problema</th><th>Conducta</th><th>Notas</th></tr></thead>
+          <tbody>
+            <tr><td>QRS ancho por propranolol</td><td><span class="dose-main">Bicarbonato de sodio 1–2 mEq/kg IV</span><br><span class="dose-note">en bolos repetidos según QRS</span></td><td>Es un <strong>bloqueo de canales de sodio</strong> y se trata como tal. Vigila pH, sodio y potasio. <em>Meta de pH y esquema de infusión: verificar</em></td></tr>
+            <tr><td>Convulsiones</td><td><span class="dose-main">Benzodiacepinas</span></td><td>Típicas del <strong>propranolol</strong>. Descarta <strong>hipoglicemia</strong> e hipoperfusión antes de atribuirlas solo al tóxico</td></tr>
+            <tr><td>Torsades por sotalol</td><td><span class="dose-main">Sulfato de magnesio IV</span><br><span class="dose-note">2 g en el adulto, repetible</span></td><td>Corrige además <strong>potasio y magnesio</strong>, y considera <strong>sobreestimulación (<em>overdrive</em>) con marcapasos o isoproterenol</strong>. Evita todo fármaco que prolongue el QT</td></tr>
+            <tr><td>Hipoglicemia</td><td><span class="dose-main">Dextrosa IV</span></td><td>Más frecuente con betabloqueadores y en <strong>niños</strong>. Se confunde con compromiso neurológico del tóxico</td></tr>
+            <tr><td>Hiperkalemia</td><td><span class="dose-main">Tratamiento habitual</span></td><td>Puede aparecer en la intoxicación grave por betabloqueadores. <strong>Ojo con el efecto de la insulina en altas dosis</strong>, que empuja el potasio en sentido contrario</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · DESCONTAMINACIÓN Y DEPURACIÓN -->
+  <div class="section s8" id="s8" style="animation-delay:0.48s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Descontaminación digestiva y depuración extracorpórea</div>
+        <div class="section-subtitle">Carbón, irrigación intestinal y qué se dializa de verdad</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Carbón activado</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">⚫</span><span><strong>1 g/kg, hasta aproximadamente 50 g en el adulto</strong>, idealmente <strong>dentro de la primera o las dos primeras horas</strong>. En preparados de <strong>liberación prolongada</strong> puede tener sentido más tarde, porque el fármaco sigue en el tubo digestivo. <em>Dosis repetidas: decisión con el centro toxicológico.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>Solo con la vía aérea protegida o el paciente plenamente alerta y colaborador.</strong> La aspiración de carbón es una complicación grave y evitable, y el riesgo aumenta si además se usó glucagón (vómitos). <strong>Contraindicado si hay compromiso de conciencia sin intubación, íleo u obstrucción.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">⏳</span><span><strong>Nunca antes que la reanimación.</strong> En el paciente inestable, la descontaminación se hace <strong>después</strong> de estabilizar y con la vía aérea asegurada, o no se hace.</span></div>
+      </div>
+
+      <div class="subhead">Irrigación intestinal total</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🚿</span><span><strong>Polietilenglicol por sonda:</strong> del orden de <strong>1.500–2.000 mL/h en el adulto</strong> y <strong>25 mL/kg/h en pediatría</strong>, hasta que el efluente salga claro. Su indicación típica es precisamente esta: <strong>preparados de liberación prolongada</strong> de verapamilo, diltiazem o nifedipino. <em>Volúmenes, velocidad y duración: verificar con protocolo institucional y toxicología.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>Contraindicaciones:</strong> íleo, obstrucción o perforación, hemorragia digestiva, <strong>vía aérea no protegida</strong> e <strong>inestabilidad hemodinámica</strong>. En un paciente que se está deteriorando, la irrigación consume tiempo y personal que hacen falta en otra parte.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🤝</span><span><strong>Es una decisión que se toma con el centro toxicológico</strong>, no por reflejo: el beneficio depende de la dosis ingerida, del tiempo transcurrido y de la formulación.</span></div>
+      </div>
+
+      <div class="subhead">Hemodiálisis: casi nunca, salvo excepciones que importan</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Fármaco</th><th>¿Se dializa?</th><th>Conducta</th></tr></thead>
+          <tbody>
+            <tr><td>Calcioantagonistas</td><td><strong>No</strong></td><td>Alto volumen de distribución y alta unión a proteínas. <strong>La diálisis no es tratamiento de esta intoxicación</strong>; se usa solo por indicación renal propia</td></tr>
+            <tr><td>Propranolol</td><td><strong>No</strong></td><td>El grupo EXTRIP <strong>recomienda no usar depuración extracorpórea</strong> en la intoxicación grave por propranolol</td></tr>
+            <tr><td>Atenolol</td><td><span class="dose-main">Sí, es dializable</span></td><td>EXTRIP <strong>sugiere depuración extracorpórea en el paciente con función renal alterada</strong> e intoxicación grave, ante <strong>bradicardia e hipotensión refractarias</strong></td></tr>
+            <tr><td>Sotalol</td><td><span class="dose-main">Sí, es dializable</span></td><td>Misma sugerencia que el atenolol en presencia de insuficiencia renal, e incluye la <strong>torsades de pointes recurrente</strong> como indicación</td></tr>
+            <tr><td>Otros betabloqueadores</td><td><span class="dose-main">Variable</span></td><td>Nadolol y practolol se consideran dializables; acebutolol, bisoprolol y metipranolol, moderadamente; metoprolol, poco; carvedilol, labetalol y timolol, no. <strong>Los datos clínicos son insuficientes para recomendaciones firmes</strong> fuera de los anteriores</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>La lectura práctica:</strong> si el paciente está en shock por <strong>verapamilo, diltiazem,
+        amlodipino o propranolol</strong>, la diálisis no va a sacarlo del problema y no debe distraer del escalamiento
+        real. Si está en shock por <strong>atenolol o sotalol y además tiene insuficiencia renal</strong>, vale la pena
+        levantar el teléfono a nefrología temprano. <em>La indicación final, el momento y la modalidad se definen con
+        nefrología y con el centro toxicológico.</em></span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · ESCENARIOS ESPECIALES -->
+  <div class="section s9" id="s9" style="animation-delay:0.54s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Escenarios especiales</div>
+        <div class="section-subtitle">Propranolol · sotalol · amlodipino · pediatría · embarazo · co-ingesta</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🧠</span><span><strong>Propranolol:</strong> es el betabloqueador que más mata. Es <strong>lipofílico</strong> (coma y convulsiones precoces, a veces antes que la hipotensión) y <strong>bloquea canales de sodio</strong> (<strong>QRS ancho</strong>, arritmias ventriculares, paro). Trata el QRS ancho con <strong>bicarbonato de sodio</strong>, las convulsiones con <strong>benzodiacepinas</strong>, y recuerda que <strong>no se dializa</strong>. Es también el candidato más razonable a <strong>emulsión lipídica</strong> de rescate.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📉</span><span><strong>Sotalol:</strong> el problema es eléctrico más que contráctil. Vigila el <strong>QT</strong>, corrige <strong>potasio y magnesio</strong>, ten el <strong>magnesio</strong> a mano y planifica la <strong>sobreestimulación</strong> si hay torsades recurrente. Es <strong>dializable</strong>, sobre todo si hay insuficiencia renal. <strong>Evita cualquier fármaco que prolongue el QT</strong>, incluidos antieméticos habituales.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💧</span><span><strong>Amlodipino:</strong> vida media muy larga, de modo que <strong>el shock dura días, no horas</strong>. Patrón vasopléjico con resistencia vascular muy baja: noradrenalina en dosis altas y, con frecuencia, un segundo vasopresor. Plantéate desde el inicio que este paciente puede necesitar <strong>soporte prolongado</strong>, y anticipa el <strong>edema pulmonar</strong> por aumento de la permeabilidad.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏳</span><span><strong>Verapamilo y diltiazem de liberación prolongada:</strong> el peor escenario de latencia. El paciente puede estar bien durante horas y desplomarse después; <strong>el momento del pico de toxicidad puede estar muy retrasado</strong>. Aquí es donde la irrigación intestinal total y la observación prolongada tienen su indicación más clara.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">👶</span><span><strong>Pediatría — «una tableta puede matar»:</strong> en un lactante o preescolar, <strong>uno o dos comprimidos de adulto de verapamilo, nifedipino o propranolol pueden ser letales</strong>. Toda ingesta de estos fármacos en un niño pequeño <strong>se evalúa en urgencia y se observa</strong>, aunque llegue asintomático. La <strong>hipoglicemia</strong> es más frecuente que en el adulto. Las dosis de calcio, insulina, glucagón y dextrosa son <strong>por kilo</strong>: usa la calculadora de la sección 05 y confirma cada una. <em>Los umbrales de ingesta que obligan a observar y el tiempo de observación pediátrica se definen con el centro toxicológico.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🤰</span><span><strong>Embarazo:</strong> el tratamiento de la madre es el tratamiento del feto —no se retrasan calcio, insulina ni vasopresores—, pero se suma <strong>monitorización fetal</strong>, posición en decúbito lateral izquierdo en la segunda mitad del embarazo y aviso precoz a obstetricia y neonatología. <em>Ajustes y decisiones sobre interrupción o cesárea perimortem: con el equipo obstétrico y el protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🧩</span><span><strong>Co-ingesta:</strong> lo habitual en la ingesta intencional es que haya más de un fármaco. Busca dirigidamente <strong>otro antihipertensivo, digoxina, clonidina, antidepresivos, antipsicóticos, benzodiacepinas, alcohol y paracetamol</strong>. El <strong>electrocardiograma</strong> orienta: QRS ancho, QT largo o bradicardia desproporcionada sugieren un segundo tóxico. <strong>Un betabloqueador más un calcioantagonista es peor que la suma de ambos.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">🩺</span><span><strong>El paciente que no se intoxicó a propósito:</strong> el adulto mayor con insuficiencia renal aguda que acumuló su diltiazem habitual, o al que se le agregó un fármaco que interactúa, puede llegar con el mismo cuadro sin ninguna sobredosis. <strong>Revisa la función renal, los cambios recientes de receta y las interacciones</strong> antes de asumir que solo es «bradicardia del anciano».</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · REFRACTARIO -->
+  <div class="section s10" id="s10" style="animation-delay:0.60s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Shock refractario, marcapasos, ECMO y paro</div>
+        <div class="section-subtitle">La decisión que más cambia el pronóstico se toma antes del paro</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Este es un shock reversible con un plazo.</strong> El tóxico se elimina en horas o días y el
+        corazón, si sobrevive, se recupera; el problema es sostener la perfusión mientras tanto. Por eso el <strong>soporte
+        extracorpóreo tiene aquí un lugar que no tiene en casi ningún otro shock cardiogénico</strong>, y por eso la
+        conversación con el equipo de ECMO se abre <strong>cuando el paciente todavía tiene pulso</strong> y no cuando
+        lleva veinte minutos de reanimación.</span>
+      </div>
+
+      <div class="subhead">Antes de declarar «refractario», revisa lo reversible</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔍</span><span><strong>¿La insulina está de verdad en dosis altas?</strong> Verifica la unidad y la velocidad en la bomba: la causa más frecuente de «no respondió a la insulina» es que nunca llegó a la dosis correcta.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>¿Corregiste calcio iónico, potasio, magnesio, glicemia y pH?</strong> La acidosis grave y las alteraciones electrolíticas hacen fracasar cualquier vasoactivo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫁</span><span><strong>¿Hay una causa mecánica sumada?</strong> Neumotórax, sobredistensión por ventilación, taponamiento, hipovolemia por vómitos o hemorragia. Ecografía a pie de cama.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>¿Hay un segundo tóxico?</strong> Digoxina, clonidina, antidepresivo, otro antihipertensivo. Revisa el electrocardiograma y vuelve a preguntar a la familia.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏳</span><span><strong>¿Sigue absorbiendo?</strong> En un preparado de liberación prolongada, el paciente puede estar recibiendo dosis adicionales desde su propio intestino: replantea la descontaminación con la vía aérea protegida.</span></div>
+      </div>
+
+      <div class="subhead">Marcapasos</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">⚡</span><span><strong>Tiene un lugar acotado:</strong> el consenso lo sugiere en <strong>bradicardia inestable o bloqueo AV de alto grado</strong>, con más razón cuando <strong>no hay disfunción miocárdica significativa</strong> —es decir, cuando el problema real es la frecuencia y no la contractilidad—.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>Captura eléctrica no es captura mecánica.</strong> Es muy frecuente ver espigas seguidas de complejos en el monitor <strong>sin que la presión ni el pulso mejoren</strong>: el miocardio intoxicado no responde. <strong>Comprueba siempre pulso, presión y perfusión</strong>, y si la captura no es mecánica, no pierdas tiempo escalando la energía: escala el soporte.</span></div>
+      </div>
+
+      <div class="subhead">ECMO venoarterial</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🫀</span><span><strong>Indicación:</strong> shock refractario con <strong>componente cardiogénico significativo</strong> pese a tratamiento máximo, y paro cardíaco por el tóxico en un centro con capacidad. En una revisión sistemática de casos publicados de intoxicación por calcioantagonistas tratados con ECMO, <strong>la supervivencia al alta fue alta</strong> —aunque se trata de reportes de casos, con el sesgo de publicación correspondiente— y los pacientes habían recibido ya cuatro o cinco tratamientos médicos antes de la canulación.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📞</span><span><strong>Cuándo llamar:</strong> cuando vas en <strong>dos o más vasoactivos en dosis altas con insulina en marcha</strong>, cuando el lactato sube pese al tratamiento, o cuando la ecografía muestra un corazón que casi no se mueve. <strong>Si tu centro no tiene ECMO, esa llamada es la activación del traslado</strong>, y se hace en ese mismo momento.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📝</span><span><strong>Qué necesita el equipo receptor:</strong> tóxico, dosis y hora de la ingesta, peso, evolución hemodinámica, vasoactivos y dosis actuales, dosis de insulina, laboratorio con lactato y gases, y si se usó <strong>emulsión lipídica</strong> (importa para el circuito). Tenlo escrito antes de llamar.</span></div>
+      </div>
+
+      <div class="subhead">Paro cardíaco por el tóxico</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔁</span><span><strong>Reanimación avanzada estándar</strong>, y además <strong>calcio intravenoso</strong>; <strong>emulsión lipídica</strong> como rescate si no se usó antes; mantener o iniciar la <strong>insulina en altas dosis</strong> según el contexto y la indicación del toxicólogo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏱️</span><span><strong>Prolonga la reanimación</strong>: la causa es un tóxico que se elimina, no una lesión estructural irreversible. Hay recuperaciones neurológicamente buenas tras reanimaciones muy prolongadas cuando se logró soporte extracorpóreo. <strong>El paro por tóxico es la indicación clásica de reanimación extracorpórea donde exista</strong>.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>No apliques los criterios habituales de cese de maniobras sin considerar la causa.</strong> Antes de suspender, verifica que se hayan usado calcio, insulina en altas dosis y las terapias de rescate, y que se haya descartado la posibilidad de soporte extracorpóreo. <em>La decisión de cese se toma con el equipo, idealmente con el toxicólogo en línea, y según el protocolo institucional.</em></span></div>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./checklist-politrauma_2.html">→ Checklist: reanimación y trabajo en equipo</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 11 · MONITORIZACIÓN Y DISPOSICIÓN -->
+  <div class="section s11" id="s11" style="animation-delay:0.66s;">
+    <div class="section-header" onclick="toggleSection('s11')">
+      <span class="section-num">11</span>
+      <div>
+        <div class="section-title">Monitorización, observación y disposición</div>
+        <div class="section-subtitle">A quién se observa, cuánto tiempo y quién no se va de alta</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Situación</th><th>Conducta</th><th>Notas</th></tr></thead>
+          <tbody>
+            <tr><td>Cualquier síntoma o alteración hemodinámica</td><td><span class="dose-main">Cama monitorizada o unidad crítica</span></td><td>Bradicardia, hipotensión, bloqueo, compromiso de conciencia o necesidad de cualquier fármaco: <strong>no es un paciente de sala común</strong></td></tr>
+            <tr><td>Ingesta de liberación prolongada, asintomático</td><td><span class="dose-main">Observación prolongada con monitorización</span><br><span class="dose-note">del orden de 24 h</span></td><td>El pico de toxicidad puede estar muy retrasado. <em>Duración exacta de la observación: definir con el centro toxicológico y el protocolo institucional</em></td></tr>
+            <tr><td>Ingesta de liberación inmediata, asintomático</td><td><span class="dose-main">Observación monitorizada varias horas</span></td><td>Con electrocardiograma, signos vitales seriados y glicemia. <em>Ventana de observación: verificar con el centro toxicológico</em></td></tr>
+            <tr><td>Paciente pediátrico</td><td><span class="dose-main">Evaluación en urgencia siempre</span></td><td>Incluso ante la ingesta de <strong>una o pocas tabletas</strong>. Umbral de observación más bajo que en el adulto</td></tr>
+            <tr><td>Insulina en altas dosis en curso o reciente</td><td><span class="dose-main">Control de glicemia y potasio prolongado</span><br><span class="dose-note">hasta 24 h tras suspenderla</span></td><td>La hipoglicemia tardía es una complicación evitable que ocurre <strong>cuando el paciente ya «está mejor»</strong></td></tr>
+            <tr><td>Ingesta intencional</td><td><span class="dose-main">Evaluación de salud mental antes del alta</span></td><td>Con <strong>vigilancia y retiro de fármacos</strong> mientras tanto. Consigna el riesgo y coordina el seguimiento; la ingesta de cardiotóxicos indica alta letalidad del intento</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Qué vigilar mientras está en el servicio</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📟</span><span><strong>Monitorización continua del ritmo</strong> con electrocardiogramas seriados: vigila <strong>frecuencia, PR, QRS y QT</strong>. El deterioro de la conducción suele preceder al colapso.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Laboratorio seriado:</strong> glicemia, potasio, <strong>calcio iónico</strong>, magnesio, gases con <strong>lactato</strong> y función renal. En el paciente con insulina en altas dosis, la frecuencia la define el protocolo, no la comodidad.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫀</span><span><strong>Reevaluación ecográfica</strong> del patrón de shock cada vez que cambia el requerimiento de vasoactivos: el paciente puede pasar de vasopléjico a cardiogénico y el tratamiento debe seguirlo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📝</span><span><strong>Deja escrito el plan de escalamiento</strong> en la ficha y comunicado al turno siguiente: cuál es el próximo fármaco, en qué umbral se llama al equipo de ECMO y quién está a cargo de esa llamada.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 12 · TRAMPAS -->
+  <div class="section s12" id="s12" style="animation-delay:0.72s;">
+    <div class="section-header" onclick="toggleSection('s12')">
+      <span class="section-num">12</span>
+      <div>
+        <div class="section-title">Trampas y errores frecuentes</div>
+        <div class="section-subtitle">Lo que convierte una intoxicación tratable en una muerte evitable</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Tranquilizarse porque el paciente llegó bien.</strong> Con un preparado de liberación prolongada, el paciente asintomático de la hora 2 puede estar en shock en la hora 6.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dejar la insulina en altas dosis para el final.</strong> Tarda 15–45 minutos en actuar: indicada tarde, actúa tarde.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Subdosificar la insulina «porque esa dosis no puede ser».</strong> La dosis correcta para esta indicación es 1 U/kg en bolo y 1–10 U/kg/h; confírmala con farmacia y escríbela completa.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar un solo bolo de calcio y concluir que no sirve.</strong> El efecto es transitorio y suele requerir dosis repetidas o infusión, con control de calcio iónico.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Insistir en la atropina.</strong> Es rápida y vale intentarla, pero rara vez funciona y nunca debe consumir el tiempo del escalamiento.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Llenar de volumen al paciente que no responde.</strong> El edema pulmonar en esta intoxicación es frecuente y se lo agrega uno mismo, sumando bolos y dextrosa diluida.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Confundir captura eléctrica con captura mecánica</strong> al usar el marcapasos, y seguir subiendo la energía mientras el paciente no tiene pulso efectivo.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Usar emulsión lipídica como primera línea</strong>, o usarla sin considerar que interfiere con el laboratorio y con el circuito de ECMO.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Pedir diálisis para «sacar el verapamilo».</strong> No se dializa. Las excepciones que sí importan son <strong>atenolol y sotalol</strong> con insuficiencia renal.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Descontaminar a un paciente somnoliento sin vía aérea protegida.</strong> La aspiración de carbón activado es una complicación grave y evitable.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Intubar sin optimizar antes.</strong> La inducción en un corazón sin reserva puede ser el evento que precipita el paro.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Llamar al equipo de ECMO después del paro.</strong> La llamada se hace con el paciente aún perfundido, en cuanto el tratamiento máximo no basta.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No llamar al centro de información toxicológica.</strong> Es la consulta que ajusta dosis, descontaminación y tiempos de observación al caso concreto, y está disponible antes de que el paciente se complique.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Olvidar la glicemia y el potasio</strong> durante y después de la insulina en altas dosis, incluido el paciente que ya mejoró.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar de alta una ingesta intencional sin evaluación de salud mental</strong> ni retiro de los fármacos de acceso inmediato en el domicilio.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni la consulta al
+    <strong>centro de información toxicológica</strong>, que debe hacerse precozmente en toda intoxicación grave por
+    estos fármacos. Las <strong>dosis, concentraciones, velocidades de infusión, umbrales y tiempos son
+    orientativos</strong>: verifica la presentación, la dilución y la vía de administración de tu servicio, y el ajuste
+    por peso, edad, función renal y hepática, interacciones, embarazo y contraindicaciones antes de administrar
+    cualquier fármaco. <strong>Las dosis de insulina descritas son deliberadamente muy superiores a las
+    habituales</strong> y deben confirmarse con farmacia y con toxicología antes de indicarse. El esquema y la duración
+    de la infusión de calcio y su meta de calcio iónico, el techo de la infusión de insulina y su esquema de retiro, la
+    preparación y la infusión de glucagón, la dosis y la repetición del azul de metileno, la dosis y la duración de la
+    emulsión lipídica, la indicación y los volúmenes de la irrigación intestinal total, los tiempos de observación —en
+    particular los de los preparados de liberación prolongada y los pediátricos— y los criterios de indicación,
+    contraindicación y traslado para <strong>ECMO</strong> deben contrastarse con el <strong>protocolo institucional
+    vigente</strong> y con los equipos de toxicología, cuidados intensivos, cardiología, nefrología, farmacia y, cuando
+    corresponda, pediatría y obstetricia. Los <strong>procedimientos de rescate descritos —marcapasos transvenoso,
+    soporte extracorpóreo, reanimación prolongada— son de alto riesgo</strong> y requieren operador entrenado y el
+    respaldo institucional correspondiente. La calculadora de dosis por peso realiza <strong>conversiones aritméticas:
+    complementa y no reemplaza la evaluación clínica</strong>, y el recuento de marcadores de gravedad
+    <strong>no es un puntaje validado</strong>, sino una ayuda para ordenar la conducta.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">St-Onge M, Anseeuw K, Cantrell FL, et al. <em>Experts consensus recommendations for the management of calcium channel blocker poisoning in adults.</em> Crit Care Med. 2017;45(3):e306–e315. <a href="https://pubmed.ncbi.nlm.nih.gov/27749343/" target="_blank" rel="noopener">PMID 27749343</a> — Consenso de referencia: primera línea con calcio, insulina en altas dosis y noradrenalina o adrenalina; atropina en bradicardia; marcapasos, emulsión lipídica y ECMO venoarterial en el paciente refractario o en paro. Toda la evidencia calificada como de calidad muy baja.</div>
+      <div class="ref-item">Lavonas EJ, Akpunonu PD, Arens AM, et al. <em>2023 American Heart Association focused update on the management of patients with cardiac arrest or life-threatening toxicity due to poisoning.</em> Circulation. 2023;148(16):e149–e184. <a href="https://pubmed.ncbi.nlm.nih.gov/37721023/" target="_blank" rel="noopener">PMID 37721023</a> — Guía de reanimación en intoxicaciones críticas, incluidos betabloqueadores y calcioantagonistas: calcio, insulina, vasopresores, glucagón, marcapasos, hemodiálisis, emulsión lipídica y ECMO venoarterial.</div>
+      <div class="ref-item">Engebretsen KM, Kaczmarek KM, Morgan J, Holger JS. <em>High-dose insulin therapy in beta-blocker and calcium channel-blocker poisoning.</em> Clin Toxicol (Phila). 2011;49(4):277–283. <a href="https://pubmed.ncbi.nlm.nih.gov/21563902/" target="_blank" rel="noopener">PMID 21563902</a> — Revisión de la que provienen los esquemas de 1 U/kg en bolo y 1–10 U/kg/h, los mecanismos de beneficio y el manejo de la hipoglicemia y la hipokalemia.</div>
+      <div class="ref-item">Graudins A, Lee HM, Druda D. <em>Calcium channel antagonist and beta-blocker overdose: antidotes and adjunct therapies.</em> Br J Clin Pharmacol. 2016;81(3):453–461. <a href="https://pubmed.ncbi.nlm.nih.gov/26344579/" target="_blank" rel="noopener">PMID 26344579</a> — Revisión de antídotos y terapias adyuvantes, descontaminación en preparados de liberación prolongada, glucagón, azul de metileno y dispositivos de asistencia cardíaca.</div>
+      <div class="ref-item">Gosselin S, Hoegberg LCG, Hoffman RS, et al. <em>Evidence-based recommendations on the use of intravenous lipid emulsion therapy in poisoning.</em> Clin Toxicol (Phila). 2016;54(10):899–923. <a href="https://pubmed.ncbi.nlm.nih.gov/27608281/" target="_blank" rel="noopener">PMID 27608281</a> — Grupo de trabajo que sugiere no usar emulsión lipídica como primera línea en calcioantagonistas ni en betabloqueadores no liposolubles, y se declara neutro sobre dosis y duración fuera de los anestésicos locales.</div>
+      <div class="ref-item">Bouchard J, Shepherd G, Hoffman RS, et al. <em>Extracorporeal treatment for poisoning to beta-adrenergic antagonists: systematic review and recommendations from the EXTRIP workgroup.</em> Crit Care. 2021;25(1):201. <a href="https://pubmed.ncbi.nlm.nih.gov/34112223/" target="_blank" rel="noopener">PMID 34112223</a> — Propranolol no dializable con recomendación en contra de la depuración extracorpórea; atenolol y sotalol dializables, con sugerencia de depuración en insuficiencia renal ante bradicardia e hipotensión refractarias o torsades recurrente.</div>
+      <div class="ref-item">Finn D, Stevens J, Tolkacz M, et al. <em>Calcium channel blocker overdose: what role does extracorporeal membrane oxygenation have in support? A systematic review of the literature.</em> ASAIO J. 2024;70(5):404–408. <a href="https://pubmed.ncbi.nlm.nih.gov/38165982/" target="_blank" rel="noopener">PMID 38165982</a> — Revisión sistemática de casos publicados de ECMO en intoxicación por calcioantagonistas, con alta supervivencia al alta tras el fracaso del tratamiento médico. Serie de reportes de casos, con el sesgo de publicación correspondiente.</div>
+      <div class="ref-item">Bartlett JW, Walker PL. <em>Management of calcium channel blocker toxicity in the pediatric patient.</em> J Pediatr Pharmacol Ther. 2019;24(5):378–389. <a href="https://pubmed.ncbi.nlm.nih.gov/31598101/" target="_blank" rel="noopener">PMID 31598101</a> — Manejo pediátrico: evaluación en urgencia de toda ingesta potencialmente tóxica, carbón activado en el paciente asintomático precoz, insulina en altas dosis y emulsión lipídica como rescate.</div>
+      <div class="ref-item">Referencias localizadas mediante PubMed. Las dosis, diluciones, velocidades de infusión y duraciones de calcio, insulina en altas dosis, dextrosa, glucagón, azul de metileno y emulsión lipídica; los volúmenes y la indicación de la irrigación intestinal total; los umbrales y tiempos de observación, incluidos los pediátricos y los de preparados de liberación prolongada; y los criterios de marcapasos, depuración extracorpórea, ECMO y traslado deben contrastarse con el protocolo institucional vigente y con el centro de información toxicológica y los equipos de cuidados intensivos, cardiología, nefrología, farmacia, pediatría y obstetricia de referencia.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Árbol de decisión interactivo ─────────────────────────────────
+  const sel = { esc: null, est: null, ctx: new Set() };
+
+  function bindSingle(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (sel[key] === v) {
+          sel[key] = null;
+          btn.classList.remove('on');
+        } else {
+          sel[key] = v;
+          group.querySelectorAll('.opt').forEach(b => b.classList.toggle('on', b === btn));
+        }
+        render();
+      });
+    });
+  }
+
+  function bindMulti(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (v === 'ninguno') {
+          sel[key].clear();
+          group.querySelectorAll('.opt').forEach(b => b.classList.remove('on'));
+          btn.classList.add('on');
+          sel[key].add('ninguno');
+        } else {
+          const none = group.querySelector('[data-v="ninguno"]');
+          none.classList.remove('on');
+          sel[key].delete('ninguno');
+          if (sel[key].has(v)) { sel[key].delete(v); btn.classList.remove('on'); }
+          else { sel[key].add(v); btn.classList.add('on'); }
+        }
+        render();
+      });
+    });
+  }
+
+  bindSingle('q-esc', 'esc');
+  bindSingle('q-est', 'est');
+  bindMulti('q-ctx', 'ctx');
+
+  const f = (v) => sel.ctx.has(v);
+
+  const CALCIO = '<strong>Calcio intravenoso ahora:</strong> gluconato de calcio 10% 30–60 mL (3–6 g) por vía ' +
+                 'periférica, o cloruro de calcio 10% 10–20 mL (1–2 g) <strong>por vía central</strong>, ' +
+                 '<strong>repetible cada 10–20 min</strong> según respuesta, con control de calcio iónico.';
+  const INSULINA = '<strong>Insulina en altas dosis con euglicemia:</strong> insulina cristalina <strong>1 U/kg en ' +
+                   'bolo</strong> y <strong>1 U/kg/h</strong> en infusión, titulando hasta 10 U/kg/h. Dextrosa si la ' +
+                   'glicemia es &lt; 250 mg/dL y luego en infusión. <em>Tarda 15–45 min: indícala temprano, no al final.</em>';
+  const VASO = '<strong>Vasoactivo según el patrón:</strong> <strong>noradrenalina</strong> si predomina la ' +
+               'vasoplejía, <strong>adrenalina</strong> si predomina la bradicardia con bajo gasto. Titula contra ' +
+               'perfusión —conciencia, piel, diuresis, lactato— y no contra un número aislado.';
+  const ATROPINA = '<strong>Atropina 0,5–1 mg IV</strong> (hasta ≈ 3 mg; pediatría 0,02 mg/kg) si hay bradicardia ' +
+                   'sintomática. <em>Vale intentarla, pero rara vez basta: no dejes que consuma tiempo.</em>';
+  const VOLUMEN = '<strong>Volumen con moderación:</strong> bolo de 10–20 mL/kg reevaluando. <strong>No sigas ' +
+                  'llenando al que no responde</strong>: el edema pulmonar es frecuente y se lo agrega uno mismo.';
+  const LABS = '<strong>Pide:</strong> electrocardiograma de 12 derivaciones, glicemia capilar, gases con ' +
+               '<strong>lactato</strong>, electrolitos con <strong>potasio</strong>, <strong>calcio iónico</strong>, ' +
+               'magnesio, función renal y hepática. En la ingesta intencional, busca <strong>co-ingestas</strong> ' +
+               '(paracetamol incluido) y pide prueba de embarazo cuando corresponda.';
+  const ECMO = '<strong>Llama al equipo de ECMO ahora, con el paciente todavía perfundido.</strong> Si tu centro no ' +
+               'tiene soporte extracorpóreo, <strong>esa llamada es la activación del traslado</strong>, y se hace en ' +
+               'este momento, no cuando el paciente esté en paro.';
+  const TOXICO = '<strong>Llama al centro de información toxicológica</strong>: ajusta dosis, descontaminación y ' +
+                 'tiempos de observación al fármaco y a la cantidad concretos. <strong>Se llama temprano</strong>, no ' +
+                 'cuando el paciente ya se complicó.';
+  const ECO = '<strong>Ecografía a pie de cama</strong> para separar el corazón que no se contrae del corazón ' +
+              'hiperdinámico con vasodilatación: <strong>es lo que decide el fármaco</strong>, y cambia en el tiempo.';
+  const VIAAEREA = '<strong>Si vas a intubar, optimiza antes:</strong> calcio, vasopresor en marcha e insulina ' +
+                   'iniciada. <strong>Inductor en dosis reducida</strong> (ketamina o etomidato), bloqueador a dosis ' +
+                   'plena y vasopresor en bolo en la mano. <em>La inducción puede precipitar el paro.</em>';
+  const DESCONT = '<strong>Descontaminación si corresponde:</strong> carbón activado 1 g/kg (máximo ≈ 50 g) con la ' +
+                  'vía aérea protegida o el paciente plenamente alerta; plantea <strong>irrigación intestinal ' +
+                  'total</strong> en preparados de liberación prolongada. <strong>Nunca a costa de la reanimación.</strong>';
+  const MONITOR = '<strong>Cama monitorizada</strong> con electrocardiogramas seriados (frecuencia, PR, QRS, QT), ' +
+                  'glicemia y potasio seriados. <strong>El deterioro de la conducción precede al colapso.</strong>';
+  const LINK_SHOCK = '<a class="cross-link" style="margin-top:6px" href="./algoritmo-shock-cardiogenico.html">→ Algoritmo: shock cardiogénico y vasoactivos</a>';
+  const LINK_TRAUMA = '<a class="cross-link" style="margin-top:6px" href="./checklist-politrauma_2.html">→ Checklist: reanimación y trabajo en equipo</a>';
+  const LINK_TORAX = '<a class="cross-link" style="margin-top:6px" href="./guia-dolor-toracico.html">→ Guía: lectura del electrocardiograma</a>';
+
+  function classify() {
+    const { esc, est } = sel;
+    if (!esc || !est) return null;
+
+    // 1 · Paro o peri-paro
+    if (esc === 'paro' || est === 'paro') {
+      return {
+        sev: 'red',
+        tag: 'Emergencia inmediata',
+        title: 'Reanimación estándar más los antídotos de esta intoxicación',
+        rows: [
+          ['Ahora', '<strong>Reanimación avanzada habitual</strong> y, además, <strong>calcio intravenoso</strong> durante el paro. ' + CALCIO],
+          ['Antídotos', INSULINA + ' Mantenla o inícala según la indicación del toxicólogo.'],
+          ['Rescate', '<strong>Emulsión lipídica al 20%</strong> como rescate si no se usó antes: ≈ 1,5 mL/kg en bolo, repetible, seguida de infusión. <em>Avisa al equipo de ECMO si la usas: puede afectar el circuito y el laboratorio.</em>'],
+          ['Prolonga', '<strong>No apliques los criterios habituales de cese sin considerar la causa:</strong> el tóxico se elimina y hay recuperaciones neurológicamente buenas tras reanimaciones muy prolongadas. <strong>El paro por tóxico es la indicación clásica de reanimación extracorpórea donde exista.</strong>'],
+          ['Equipo', ECMO],
+          ['Llama', TOXICO],
+          ['Enlace', LINK_TRAUMA]
+        ]
+      };
+    }
+
+    // 2 · Verapamilo / diltiazem
+    if (esc === 'ncc') {
+      return {
+        sev: 'red',
+        tag: 'Calcioantagonista no dihidropiridínico',
+        title: 'Shock cardiogénico con bloqueo: calcio, insulina y plan de escalamiento',
+        rows: [
+          ['Primero', CALCIO],
+          ['Bradicardia', ATROPINA],
+          ['Temprano', INSULINA + ' <strong>Es la terapia con mejor fundamento cuando hay disfunción miocárdica.</strong>'],
+          ['Apoyo', VASO + ' ' + VOLUMEN],
+          ['Mira', ECO],
+          ['Pide', LABS],
+          ['Descontamina', DESCONT + ' <em>El verapamilo y el diltiazem se presentan con frecuencia en preparados de liberación prolongada.</em>'],
+          ['Anticipa', '<strong>El verapamilo es el más letal del grupo</strong> y el deterioro puede ser brusco. Ten el marcapasos transcutáneo con parches puestos y el plan de ECMO conversado <em>antes</em> de necesitarlo.'],
+          ['Llama', TOXICO],
+          ['Enlace', LINK_SHOCK]
+        ]
+      };
+    }
+
+    // 3 · Dihidropiridinas
+    if (esc === 'dhp') {
+      return {
+        sev: 'red',
+        tag: 'Dihidropiridina',
+        title: 'Shock vasopléjico: noradrenalina primero, sin olvidar el corazón',
+        rows: [
+          ['Primero', '<strong>Noradrenalina</strong> como vasopresor de elección en la vasoplejía, titulada a presión de perfusión, junto con ' + VOLUMEN],
+          ['También', CALCIO],
+          ['Si no basta', INSULINA + ' <strong>En sobredosis, las dihidropiridinas pierden su selectividad vascular</strong> y agregan depresión miocárdica: el cuadro puede terminar igual al del verapamilo.'],
+          ['Mira', ECO + ' <em>El mismo paciente puede pasar de vasopléjico a cardiogénico en una hora.</em>'],
+          ['Ojo', '<strong>Amlodipino:</strong> vida media muy larga, <strong>el shock dura días, no horas</strong>. Anticipa soporte prolongado, un segundo vasopresor y <strong>edema pulmonar</strong> por aumento de la permeabilidad.'],
+          ['Pide', LABS],
+          ['Descontamina', DESCONT],
+          ['Llama', TOXICO],
+          ['Enlace', LINK_SHOCK]
+        ]
+      };
+    }
+
+    // 4 · Betabloqueador
+    if (esc === 'bb') {
+      return {
+        sev: 'red',
+        tag: 'Betabloqueador',
+        title: 'Bradicardia y bajo gasto: insulina temprano, glucagón como adyuvante',
+        rows: [
+          ['Primero', ATROPINA + ' ' + CALCIO],
+          ['Temprano', INSULINA],
+          ['Adyuvante', '<strong>Glucagón 3–5 mg IV lentos</strong> (repetible hasta ≈ 10 mg; pediatría ≈ 50 µg/kg), seguido de infusión a la dosis que produjo respuesta. <strong>Produce vómitos con frecuencia</strong>: anticipa antiemético y vía aérea. <em>Averigua cuántas ampollas hay en farmacia antes de construir el plan sobre este fármaco.</em>'],
+          ['Apoyo', VASO],
+          ['Pide', LABS + ' <strong>Ojo con la hipoglicemia</strong>, más típica de los betabloqueadores que de los calcioantagonistas.'],
+          ['Mira', ECO],
+          ['Pregunta', '<strong>¿Cuál betabloqueador?</strong> Cambia la conducta: <strong>propranolol</strong> (QRS ancho, convulsiones, coma), <strong>sotalol</strong> (QT largo, torsades), <strong>atenolol y sotalol</strong> (dializables si hay insuficiencia renal).'],
+          ['Descontamina', DESCONT],
+          ['Llama', TOXICO],
+          ['Enlace', LINK_SHOCK]
+        ]
+      };
+    }
+
+    // 5 · Propranolol
+    if (esc === 'propra') {
+      return {
+        sev: 'red',
+        tag: 'Propranolol',
+        title: 'Bloqueo de canales de sodio y toxicidad del sistema nervioso central',
+        rows: [
+          ['QRS ancho', '<strong>Bicarbonato de sodio 1–2 mEq/kg IV en bolo</strong>, repetible según el QRS, vigilando pH, sodio y potasio. <em>Meta de pH y esquema de infusión: verificar con protocolo institucional.</em>'],
+          ['Convulsiones', '<strong>Benzodiacepinas</strong>, y <strong>descarta hipoglicemia</strong> e hipoperfusión antes de atribuirlas solo al tóxico.'],
+          ['Vía aérea', '<strong>El compromiso de conciencia es precoz</strong> con esta molécula lipofílica: protege la vía aérea antes de descontaminar. ' + VIAAEREA],
+          ['Hemodinamia', CALCIO + ' ' + INSULINA],
+          ['Apoyo', VASO],
+          ['Rescate', '<strong>Es el candidato más razonable a emulsión lipídica</strong> (≈ 1,5 mL/kg al 20%) en el peri-paro o el shock refractario, <strong>no como primera línea</strong>. Avisa al equipo de ECMO si la usas.'],
+          ['No pidas', '<strong>Diálisis: el propranolol no se dializa</strong> y el grupo EXTRIP recomienda no usar depuración extracorpórea. No dejes que esa gestión te distraiga del escalamiento real.'],
+          ['Pide', LABS],
+          ['Llama', TOXICO],
+          ['Enlace', LINK_TORAX]
+        ]
+      };
+    }
+
+    // 6 · Sotalol
+    if (esc === 'sotalol') {
+      return {
+        sev: 'red',
+        tag: 'Sotalol',
+        title: 'El problema es eléctrico: QT, torsades y diálisis',
+        rows: [
+          ['Ahora', '<strong>Sulfato de magnesio IV</strong> (2 g en el adulto, repetible; pediatría 25–50 mg/kg) ante torsades, y <strong>corrige potasio y magnesio</strong> de forma agresiva. <em>Dosis y repetición: verificar con protocolo institucional.</em>'],
+          ['Si recurre', '<strong>Sobreestimulación (<em>overdrive</em>)</strong> con marcapasos o isoproterenol para acortar el QT. <strong>Verifica la disponibilidad de isoproterenol en tu servicio antes de necesitarlo.</strong>'],
+          ['Evita', '<strong>Todo fármaco que prolongue el QT</strong>, incluidos antieméticos y antipsicóticos de uso habitual en urgencia. Revisa lo que ya se administró.'],
+          ['Considera', '<strong>El sotalol sí se dializa.</strong> El grupo EXTRIP sugiere depuración extracorpórea en el paciente con <strong>función renal alterada</strong> e intoxicación grave, ante bradicardia e hipotensión refractarias o <strong>torsades recurrente</strong>. Llama a nefrología temprano.'],
+          ['Hemodinamia', CALCIO + ' ' + INSULINA + ' ' + VASO],
+          ['Monitoriza', MONITOR + ' <strong>Vigila el QTc en cada electrocardiograma.</strong>'],
+          ['Llama', TOXICO],
+          ['Enlace', LINK_TORAX]
+        ]
+      };
+    }
+
+    // 7 · Co-ingesta de varios cardiodepresores
+    if (esc === 'mixta') {
+      return {
+        sev: 'red',
+        tag: 'Co-ingesta de cardiodepresores',
+        title: 'Peor que la suma de las partes: trata ambos mecanismos',
+        rows: [
+          ['Asume lo peor', '<strong>Un betabloqueador más un calcioantagonista es más grave que cualquiera por separado:</strong> se suman la depresión de la contractilidad, de la frecuencia y de la conducción. Trata en paralelo los dos mecanismos y <strong>no esperes a confirmar qué predomina</strong>.'],
+          ['Ahora', CALCIO + ' ' + ATROPINA],
+          ['Temprano', INSULINA + ' <strong>Es el tratamiento que cubre mejor ambos mecanismos.</strong>'],
+          ['Adyuvante', '<strong>Glucagón</strong> si hay componente betabloqueador (3–5 mg IV lentos, repetible; luego infusión). Anticipa los vómitos.'],
+          ['Apoyo', VASO + ' ' + VOLUMEN],
+          ['Busca', '<strong>El tercer fármaco:</strong> digoxina, clonidina, antidepresivos, antipsicóticos, benzodiacepinas, alcohol, paracetamol. El <strong>electrocardiograma orienta</strong>: QRS ancho, QT largo o bradicardia desproporcionada sugieren un segundo tóxico.'],
+          ['Pide', LABS],
+          ['Anticipa', '<strong>Este paciente tiene alta probabilidad de necesitar soporte extracorpóreo.</strong> Conversa el plan de ECMO ahora.'],
+          ['Llama', TOXICO],
+          ['Enlace', LINK_SHOCK]
+        ]
+      };
+    }
+
+    // 8 · Liberación prolongada, asintomático
+    if (esc === 'sr') {
+      return {
+        sev: 'amber',
+        tag: 'Liberación prolongada',
+        title: 'El paciente que está bien ahora y no lo estará en seis horas',
+        rows: [
+          ['Entiende el riesgo', '<strong>El pico de toxicidad puede estar muy retrasado.</strong> Estar asintomático a las dos horas de una ingesta significativa de verapamilo, diltiazem o nifedipino de liberación prolongada <strong>no descarta nada</strong>: es el período de latencia.'],
+          ['Ahora', MONITOR + ' Pesa al paciente y <strong>déjalo escrito</strong>.'],
+          ['Descontamina', '<strong>Carbón activado</strong> 1 g/kg (máximo ≈ 50 g) si la ingesta es reciente y el paciente está plenamente alerta, y <strong>plantea irrigación intestinal total</strong> con polietilenglicol (≈ 1.500–2.000 mL/h en el adulto; 25 mL/kg/h en pediatría) por sonda. <em>Indicación, volúmenes y duración: decisión con el centro toxicológico.</em>'],
+          ['Prepara', '<strong>Deja el box listo para un deterioro brusco:</strong> parches de marcapasos puestos, calcio y atropina cargados, insulina y dextrosa pedidas a farmacia, vasopresor montado y equipo de vía aérea a mano.'],
+          ['Pide', LABS],
+          ['Observa', '<strong>Observación monitorizada prolongada, del orden de 24 horas</strong>, aunque siga asintomático. <em>Duración exacta: definir con el centro toxicológico y el protocolo institucional.</em>'],
+          ['Llama', TOXICO],
+          ['Destino', '<strong>No es un paciente de sala común ni de alta desde el box.</strong> Define ahora dónde va a estar en cuatro horas y quién lo va a estar mirando.']
+        ]
+      };
+    }
+
+    // 9 · Liberación inmediata, asintomático
+    if (esc === 'asintomatico') {
+      return {
+        sev: 'amber',
+        tag: 'Ingesta sin síntomas',
+        title: 'Observar con monitor, no dar de alta desde el box',
+        rows: [
+          ['Define', '<strong>Qué, cuánto y cuándo:</strong> fármaco exacto, dosis por comprimido, número de comprimidos, hora de la ingesta y <strong>si era de liberación prolongada</strong>. Ese último dato cambia por completo el tiempo de observación.'],
+          ['Ahora', MONITOR],
+          ['Descontamina', DESCONT],
+          ['Pide', LABS],
+          ['Observa', '<strong>Observación monitorizada por varias horas</strong> con signos vitales, electrocardiogramas seriados y glicemia. <em>La ventana concreta depende del fármaco y de la dosis: verificar con el centro toxicológico.</em>'],
+          ['Ojo', '<strong>Un electrocardiograma normal y una presión normal a la llegada no cierran el caso</strong>, y la ausencia de síntomas en una ingesta declarada importante no autoriza el alta precoz.'],
+          ['Llama', TOXICO],
+          ['Antes del alta', '<strong>Evaluación de salud mental si la ingesta fue intencional</strong>, con vigilancia mientras tanto, retiro de los fármacos de acceso inmediato en el domicilio y seguimiento coordinado.']
+        ]
+      };
+    }
+
+    // 10 · Shock refractario
+    if (esc === 'refractario' || est === 'refractario') {
+      return {
+        sev: 'red',
+        tag: 'Shock refractario',
+        title: 'Revisa lo reversible y llama al equipo de ECMO ahora',
+        rows: [
+          ['Primero verifica', '<strong>¿La insulina está de verdad en dosis altas?</strong> Revisa la unidad y la velocidad en la bomba: la causa más frecuente de «no respondió a la insulina» es que <strong>nunca llegó a 1–10 U/kg/h</strong>.'],
+          ['Corrige', '<strong>Calcio iónico, potasio, magnesio, glicemia y pH.</strong> La acidosis grave y las alteraciones electrolíticas hacen fracasar cualquier vasoactivo.'],
+          ['Descarta', '<strong>Causa mecánica sumada</strong> (neumotórax, sobredistensión por el ventilador, taponamiento, hipovolemia), <strong>un segundo tóxico</strong> y <strong>absorción en curso</strong> desde un preparado de liberación prolongada.'],
+          ['Escala', '<strong>Azul de metileno 1–2 mg/kg IV</strong> en la vasoplejía refractaria (evidencia de reportes de casos; ojo con fármacos serotoninérgicos y déficit de G6PD) y <strong>emulsión lipídica</strong> como rescate. <em>Verificar dosis, repetición y disponibilidad con toxicología.</em>'],
+          ['Marcapasos', '<strong>Solo si el problema es la frecuencia y no la contractilidad</strong>, y <strong>comprueba captura mecánica</strong>: espigas con complejos en el monitor sin pulso ni presión no son captura. Si no la hay, no subas la energía: escala el soporte.'],
+          ['Ahora', ECMO],
+          ['Mientras tanto', 'Mantén <strong>calcio, insulina en altas dosis y vasoactivos</strong>, y no bajes el tratamiento por el traslado: <strong>todo viaja con el paciente</strong>.'],
+          ['Llama', TOXICO],
+          ['Enlace', LINK_SHOCK]
+        ]
+      };
+    }
+
+    // 11 · Pediátrico
+    if (esc === 'pediatrico') {
+      return {
+        sev: 'red',
+        tag: 'Pediatría',
+        title: 'Una tableta puede matar: se evalúa y se observa siempre',
+        rows: [
+          ['Regla', '<strong>En un lactante o preescolar, uno o dos comprimidos de adulto de verapamilo, nifedipino o propranolol pueden ser letales.</strong> Toda ingesta de estos fármacos en un niño pequeño <strong>se evalúa en urgencia y se observa</strong>, aunque llegue perfectamente bien.'],
+          ['Ahora', '<strong>Peso real y monitorización</strong>. Todas las dosis de esta intoxicación son por kilo: usa la calculadora de la sección 05 y <strong>confirma cada dosis con farmacia</strong>.'],
+          ['Vigila', '<strong>La hipoglicemia es más frecuente que en el adulto</strong> y se confunde con compromiso neurológico del tóxico: glicemia capilar ahora y seriada.'],
+          ['Si se deteriora', '<strong>Calcio intravenoso:</strong> gluconato de calcio 10% <strong>≈ 0,6 mL/kg</strong> por vía periférica, o cloruro de calcio 10% <strong>≈ 0,2 mL/kg</strong> por vía central, repetible según respuesta y con control de calcio iónico. <em>Dosis máximas por administración y esquema de repetición pediátricos: verificar con protocolo institucional y con el centro toxicológico.</em>'],
+          ['Después', INSULINA + ' Su uso pediátrico se apoya en reportes de casos y en la extrapolación del consenso de adultos.'],
+          ['Descontamina', '<strong>Carbón activado 1 g/kg</strong> si la ingesta es reciente y el niño está alerta; irrigación intestinal total (25 mL/kg/h) solo con indicación toxicológica y vía aérea protegida.'],
+          ['Llama', TOXICO + ' <strong>Avisa además a pediatría y a la unidad de cuidados intensivos pediátricos.</strong>'],
+          ['Pregunta', '<strong>¿Cómo llegó el fármaco al niño?</strong> Revisa el acceso a medicamentos en el domicilio y consigna la orientación a la familia antes del alta.']
+        ]
+      };
+    }
+
+    // 12 · Centro sin recursos
+    if (esc === 'sinrecursos') {
+      return {
+        sev: 'amber',
+        tag: 'Centro sin unidad crítica ni ECMO',
+        title: 'Lo que sí puedes hacer aquí, y la llamada que no puede esperar',
+        rows: [
+          ['Puedes hacer', '<strong>Casi todo lo que cambia el pronóstico no depende del centro:</strong> calcio, atropina, volumen prudente, <strong>insulina en altas dosis</strong>, vasoactivos, bicarbonato y magnesio. ' + CALCIO],
+          ['Temprano', INSULINA + ' <strong>Inícala aquí</strong>: no la dejes para el hospital de destino.'],
+          ['Ahora', '<strong>Activa el traslado antes de que el paciente se deteriore</strong>, no cuando ya esté en shock refractario. Deja claro en la derivación que se trata de una <strong>intoxicación cardiotóxica potencialmente candidata a ECMO</strong>.'],
+          ['Llama', TOXICO + ' Es la consulta que más rinde cuando no tienes toxicología presencial.'],
+          ['Prepara el traslado', '<strong>Todo viaja con el paciente</strong>: insulina, dextrosa, calcio, vasoactivo y el registro de dosis y horarios. Verifica bombas, accesos y monitorización antes de salir, y <strong>anticipa que puede deteriorarse en el camino</strong>.'],
+          ['Entrega', '<strong>Qué necesita el equipo receptor:</strong> tóxico, dosis y hora de la ingesta, peso, evolución hemodinámica, vasoactivos y dosis actuales, dosis de insulina, laboratorio con lactato y gases, y si se usó <strong>emulsión lipídica</strong>.'],
+          ['Pide', LABS],
+          ['Enlace', LINK_SHOCK]
+        ]
+      };
+    }
+
+    return null;
+  }
+
+  function estadoRows() {
+    const extra = [];
+    const e = sel.est;
+    if (e === 'refractario' && sel.esc !== 'refractario') {
+      extra.push(['Refractario', '<strong>Antes de declararlo refractario, verifica que la insulina esté realmente en ' +
+        '1–10 U/kg/h</strong> —la causa más frecuente de «no respondió» es la subdosificación—, corrige <strong>calcio ' +
+        'iónico, potasio, magnesio, glicemia y pH</strong>, y descarta causa mecánica sumada, un segundo tóxico y ' +
+        'absorción en curso. Luego escala: <strong>azul de metileno</strong> en la vasoplejía, <strong>emulsión ' +
+        'lipídica</strong> como rescate y, sobre todo, <strong>la llamada al equipo de ECMO con el paciente todavía ' +
+        'perfundido</strong>.']);
+    }
+    if (e === 'hipotension') {
+      extra.push(['Hemodinamia', '<strong>Una respuesta parcial significa que el tóxico sigue actuando.</strong> Prepara el paso siguiente ahora —insulina en dosis plena, segundo vasoactivo, llamada al equipo de ECMO— y no te tranquilices con la mejoría transitoria entre bolos.']);
+    } else if (e === 'brady') {
+      extra.push(['Frecuencia', '<strong>Bradicardia o bloqueo sin hipotensión todavía es una ventana, no una tranquilidad.</strong> Atropina y calcio ahora, parches de marcapasos puestos, y vigilancia estrecha del PR y del QRS: <strong>el deterioro de la conducción precede al colapso</strong>.']);
+    } else if (e === 'estable') {
+      extra.push(['Estabilidad', '<strong>Estar normotenso no es estar fuera de riesgo</strong>, sobre todo con un preparado de liberación prolongada. Este es el momento de <strong>preparar el box, pesar al paciente, avisar a la unidad crítica y llamar al centro toxicológico</strong>, mientras todavía hay tiempo.']);
+    }
+    return extra;
+  }
+
+  function contextRows() {
+    const extra = [];
+    if (f('sr')) {
+      extra.push(['Liberación prolongada', '<strong>El pico de toxicidad puede estar muy retrasado y la absorción continúa durante horas.</strong> Plantea <strong>irrigación intestinal total</strong> con la vía aérea protegida, y observa de forma monitorizada del orden de <strong>24 horas</strong> aunque esté asintomático. <em>Duración: definir con el centro toxicológico.</em>']);
+    }
+    if (f('coing')) {
+      extra.push(['Co-ingesta', '<strong>Busca el segundo tóxico dirigidamente:</strong> otro antihipertensivo, digoxina, clonidina, antidepresivos, antipsicóticos, benzodiacepinas, alcohol y <strong>paracetamol</strong>. El electrocardiograma orienta, y la familia suele recordar más en la segunda pregunta que en la primera.']);
+    }
+    if (f('digoxina')) {
+      extra.push(['Digoxina', '<strong>Consulta el uso de calcio con toxicología antes de administrarlo:</strong> la enseñanza clásica advierte contra su uso en la intoxicación digitálica, aunque la evidencia es débil. Pide <strong>digoxinemia</strong>, revisa potasio y función renal, y pregunta por la disponibilidad de <strong>anticuerpos antidigoxina</strong> en tu centro.']);
+    }
+    if (f('hiper')) {
+      extra.push(['Hiperglicemia', '<strong>Es un marcador de gravedad en la intoxicación por calcioantagonistas</strong> y apoya ese diagnóstico frente al betabloqueador. <strong>No la trates con insulina convencional:</strong> la insulina que corresponde aquí es la de altas dosis, indicada por su efecto hemodinámico.']);
+    }
+    if (f('hipo')) {
+      extra.push(['Hipoglicemia', '<strong>Corrígela ahora y contrólala seriada.</strong> Es más típica del betabloqueador y de los niños, imita el compromiso neurológico del tóxico y es una causa de deterioro perfectamente evitable.']);
+    }
+    if (f('qrs')) {
+      extra.push(['QRS ancho', '<strong>Piensa en propranolol o en otro bloqueador de canales de sodio co-ingerido.</strong> <strong>Bicarbonato de sodio 1–2 mEq/kg IV</strong> en bolo, repetible según el QRS, con control de pH, sodio y potasio. <em>Meta y esquema: verificar con protocolo institucional.</em>']);
+    }
+    if (f('qt')) {
+      extra.push(['QT largo', '<strong>Sospecha sotalol</strong> o un co-ingerido que prolongue el QT. <strong>Magnesio</strong> ante torsades, corrección de potasio y magnesio, <strong>sobreestimulación</strong> si recurre, y <strong>evita todo fármaco que prolongue el QT</strong>, incluidos antieméticos de uso habitual.']);
+    }
+    if (f('edema')) {
+      extra.push(['Edema pulmonar', '<strong>Frena el volumen y concentra la dextrosa.</strong> Parte del edema es iatrogénico —bolos sucesivos más el aporte de glucosa de la insulina en altas dosis— y parte es del tóxico. Prioriza vasoactivo e inotropismo sobre más líquido, y reevalúa con ecografía.']);
+    }
+    if (f('renal')) {
+      extra.push(['Riñón', '<strong>Cambia el mapa en dos cosas:</strong> el <strong>atenolol y el sotalol se vuelven candidatos a depuración extracorpórea</strong> (llama a nefrología temprano), y el paciente con deterioro renal puede haber acumulado su propio fármaco sin ninguna sobredosis. Revisa recetas recientes e interacciones.']);
+    }
+    if (f('embarazo')) {
+      extra.push(['Embarazo', '<strong>Tratar a la madre es tratar al feto:</strong> no se retrasan calcio, insulina ni vasopresores. Suma <strong>monitorización fetal</strong>, decúbito lateral izquierdo en la segunda mitad del embarazo y aviso precoz a obstetricia y neonatología.']);
+    }
+    if (f('pediatrico')) {
+      extra.push(['Pediatría', '<strong>Todas las dosis por kilo</strong> y confirmadas con farmacia; la <strong>hipoglicemia</strong> es más frecuente; y <strong>una o pocas tabletas de adulto pueden ser letales</strong> en un niño pequeño, de modo que la observación es obligada aunque llegue bien.']);
+    }
+    if (f('intencional')) {
+      extra.push(['Ingesta intencional', '<strong>Asume que hay más de un fármaco</strong> y busca co-ingestas. <strong>Vigilancia y retiro de medicamentos</strong> mientras está en el servicio, y <strong>evaluación de salud mental antes del alta</strong>: la elección de un cardiotóxico indica alta letalidad del intento.']);
+    }
+    if (f('sinecmo')) {
+      extra.push(['Sin ECMO', '<strong>Identifica temprano al candidato</strong> —dos vasoactivos, lactato en ascenso, corazón que casi no se mueve— porque <strong>ese es el criterio de traslado</strong>, y la gestión se hace en paralelo al tratamiento, no después. Todo el soporte viaja con el paciente.']);
+    }
+    return extra;
+  }
+
+  function render() {
+    const box = document.getElementById('result');
+    const r = classify();
+    if (!r) {
+      box.className = 'result placeholder';
+      box.innerHTML = 'Selecciona el escenario dominante y el estado hemodinámico para ver la prioridad de los primeros ' +
+                      'minutos, el orden de escalamiento de los fármacos, lo que está contraindicado y a quién llamar.';
+      return;
+    }
+    const rows = r.rows.filter(row => row && row[1]);
+    const enlace = rows.length && rows[rows.length - 1][0] === 'Enlace' ? rows.pop() : null;
+    rows.push(...estadoRows());
+    rows.push(...contextRows());
+    if (enlace) rows.push(enlace);
+
+    box.className = 'result sev-' + r.sev;
+    box.innerHTML =
+      '<div class="result-tag">' + r.tag + '</div>' +
+      '<div class="result-title">' + r.title + '</div>' +
+      rows.map(([k, v]) =>
+        '<div class="result-row"><div class="result-key">' + k + '</div><div>' + v + '</div></div>'
+      ).join('');
+  }
+
+  // ── Formato de números ────────────────────────────────────────────
+  function fmt(n) {
+    if (n >= 100) return n.toFixed(0);
+    if (n >= 10) return n.toFixed(1).replace('.', ',');
+    return n.toFixed(2).replace('.', ',');
+  }
+  function fmt0(n) { return n.toFixed(0); }
+  function fmt1(n) { return n.toFixed(1).replace('.', ','); }
+
+  // ── Marcadores de gravedad ────────────────────────────────────────
+  const gravList = document.getElementById('grav-list');
+
+  const GRAV_NOTA = '<br><br><strong>Esto no es un puntaje validado</strong>, sino un recuento de señales de alarma ' +
+                    'para ordenar la conducta. No sustituye la evaluación clínica ni la indicación del centro de ' +
+                    'información toxicológica, y <strong>un solo marcador grave basta para escalar</strong> aunque el ' +
+                    'recuento total sea bajo. <em>Umbrales de observación y de ingreso: verificar con protocolo institucional.</em>';
+
+  function renderGrav() {
+    const out = document.getElementById('grav-out');
+    const marcados = gravList.querySelectorAll('.score-item.on');
+    if (!marcados.length) {
+      out.innerHTML = 'Marca los marcadores presentes para ver el nivel de vigilancia y de escalamiento sugerido. ' +
+                      '<strong>No es un puntaje validado</strong>: es un recuento de señales de alarma para ordenar la conducta.';
+      return;
+    }
+    let total = 0;
+    let criticos = 0;
+    marcados.forEach(b => {
+      total += parseInt(b.dataset.p, 10);
+      if (b.dataset.crit === '1') criticos += 1;
+    });
+
+    let clase, nombre, texto;
+    if (criticos >= 1 || total >= 4) {
+      clase = 'risk-high';
+      nombre = total + ' marcador' + (total > 1 ? 'es' : '') + ' · intoxicación grave';
+      texto = '<strong>Unidad crítica y tratamiento completo en marcha:</strong> calcio, <strong>insulina en altas ' +
+              'dosis</strong>, vasoactivo según el patrón de shock y vía aérea planificada. <strong>Llama al centro ' +
+              'de información toxicológica y abre ahora la conversación con el equipo de ECMO</strong> —con el ' +
+              'paciente todavía perfundido—, y si tu centro no tiene soporte extracorpóreo, activa el traslado. ' +
+              'Reevalúa con ecografía cada vez que cambie el requerimiento de vasoactivos.';
+    } else if (total >= 2) {
+      clase = 'risk-mid';
+      nombre = total + ' marcadores · riesgo intermedio';
+      texto = '<strong>Cama monitorizada, no sala común.</strong> Prepara el box para un deterioro brusco: parches de ' +
+              'marcapasos puestos, calcio y atropina cargados, insulina y dextrosa pedidas a farmacia, vasoactivo ' +
+              'montado. <strong>Llama al centro toxicológico ahora</strong> y define el tiempo de observación según el ' +
+              'fármaco y la formulación. Electrocardiogramas seriados con atención al PR y al QRS.';
+    } else {
+      clase = 'risk-low';
+      nombre = total + ' marcador' + (total > 1 ? 'es' : '') + ' · vigilancia';
+      texto = '<strong>Observación monitorizada de todas formas.</strong> Un marcador aislado en un paciente ' +
+              'asintomático no autoriza el alta precoz: define con el centro toxicológico la ventana de observación, ' +
+              'que es <strong>notablemente más larga en los preparados de liberación prolongada</strong> y en ' +
+              'pediatría. Repite el electrocardiograma y los signos vitales antes de cualquier decisión de alta.';
+    }
+
+    const aviso = criticos
+      ? '<br><br><em>Hay ' + criticos + ' marcador' + (criticos > 1 ? 'es' : '') + ' de gravedad mayor marcado' +
+        (criticos > 1 ? 's' : '') + ': trata este caso como intoxicación grave con independencia del recuento total.</em>'
+      : '';
+
+    out.innerHTML = '<span class="big ' + clase + '">' + nombre + '</span>' + texto + aviso + GRAV_NOTA;
+  }
+
+  gravList.querySelectorAll('.score-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('on');
+      renderGrav();
+    });
+  });
+  document.getElementById('grav-reset').addEventListener('click', () => {
+    gravList.querySelectorAll('.score-item').forEach(b => b.classList.remove('on'));
+    renderGrav();
+  });
+
+  // ── Dosis por peso ────────────────────────────────────────────────
+  const pesoInput = document.getElementById('peso');
+  const pesoOut = document.getElementById('peso-out');
+
+  function renderPeso() {
+    const kg = parseFloat(pesoInput.value);
+    if (!kg || kg <= 0 || kg > 250) {
+      pesoOut.innerHTML = 'Ingresa el peso para ver las dosis dependientes del peso —insulina, dextrosa, calcio, ' +
+                          'glucagón, emulsión lipídica, bicarbonato, magnesio, carbón activado— calculadas para este paciente.';
+      return;
+    }
+
+    const glucagon = Math.min(kg * 0.05, 5);
+    const carbon = Math.min(kg * 1, 50);
+
+    const filas = [
+      ['Insulina · bolo', 'Insulina cristalina 1 U/kg IV', fmt0(kg * 1) + ' U', 'Algunos protocolos parten en 0,5 U/kg (' + fmt0(kg * 0.5) + ' U). <strong>No se usa insulina de acción prolongada</strong>'],
+      ['Insulina · infusión inicial', '1 U/kg/h', fmt0(kg * 1) + ' U/h', 'Se titula cada 10–15 min según respuesta hemodinámica'],
+      ['Insulina · techo habitual', 'Hasta 10 U/kg/h', 'hasta ' + fmt0(kg * 10) + ' U/h', 'Hay experiencia publicada con dosis mayores. <em>Techo institucional: verificar con farmacia y toxicología</em>'],
+      ['Dextrosa · bolo', '≈ 0,5 g/kg si la glicemia es &lt; 250 mg/dL', '≈ ' + fmt0(kg * 0.5) + ' g', 'Se puede omitir si la glicemia inicial ya está alta'],
+      ['Dextrosa · infusión', '≈ 0,5 g/kg/h, titulada a la glicemia', '≈ ' + fmt0(kg * 0.5) + ' g/h', 'Usar <strong>solución concentrada por vía central</strong> para no sobrecargar de volumen. <em>Concentración: verificar</em>'],
+      ['Gluconato de calcio 10%', 'Adulto 30–60 mL (3–6 g) · pediatría ≈ 0,6 mL/kg', kg < 40 ? '≈ ' + fmt1(kg * 0.6) + ' mL' : '30–60 mL (3–6 g)', 'Vía periférica segura. Repetible cada 10–20 min con control de calcio iónico. <em>Dosis máxima por administración: verificar</em>'],
+      ['Cloruro de calcio 10%', 'Adulto 10–20 mL (1–2 g) · pediatría ≈ 0,2 mL/kg', kg < 40 ? '≈ ' + fmt1(kg * 0.2) + ' mL' : '10–20 mL (1–2 g)', '<strong>Vesicante: preferir vía central.</strong> Aporta ≈ el triple de calcio elemental que el gluconato por igual volumen'],
+      ['Atropina', 'Adulto 0,5–1 mg · pediatría 0,02 mg/kg', kg < 40 ? fmt(kg * 0.02) + ' mg' : '0,5–1 mg', 'Hasta ≈ 3 mg en el adulto. <strong>Rara vez basta</strong>: no debe retrasar el escalamiento. <em>Mínimos y máximos pediátricos: verificar</em>'],
+      ['Glucagón', 'Adulto 3–5 mg IV lentos · pediatría ≈ 50 µg/kg', kg < 40 ? '≈ ' + fmt1(glucagon) + ' mg' : '3–5 mg', 'Repetible hasta ≈ 10 mg en el adulto; luego infusión a la dosis que produjo respuesta. <strong>Produce vómitos</strong>. <em>Reconstitución e infusión: verificar con farmacia</em>'],
+      ['Bicarbonato de sodio', '1–2 mEq/kg IV en bolo', fmt0(kg * 1) + '–' + fmt0(kg * 2) + ' mEq', 'Para el <strong>QRS ancho del propranolol</strong>, repetible según el QRS. Vigila pH, sodio y potasio'],
+      ['Sulfato de magnesio', 'Adulto 2 g IV · pediatría 25–50 mg/kg', kg < 40 ? fmt0(kg * 25) + '–' + fmt0(kg * 50) + ' mg' : '2 g', 'Para <strong>torsades por sotalol</strong>, repetible. Corrige además potasio y magnesio'],
+      ['Emulsión lipídica 20% · bolo', '≈ 1,5 mL/kg en 2–3 min', '≈ ' + fmt0(kg * 1.5) + ' mL', '<strong>Rescate, no primera línea.</strong> Interfiere con el laboratorio y puede afectar el circuito de ECMO'],
+      ['Emulsión lipídica 20% · infusión', '≈ 0,25 mL/kg/min', '≈ ' + fmt0(kg * 0.25) + ' mL/min', '<em>Dosis total, repetición y duración: verificar con protocolo institucional y toxicología</em>'],
+      ['Azul de metileno', '1–2 mg/kg IV lento', fmt0(kg * 1) + '–' + fmt0(kg * 2) + ' mg', 'Vasoplejía refractaria, con evidencia de reportes de casos. <strong>Ojo con fármacos serotoninérgicos y déficit de G6PD</strong>'],
+      ['Carbón activado', '1 g/kg, máximo ≈ 50 g', '≈ ' + fmt0(carbon) + ' g', 'Solo con <strong>vía aérea protegida o paciente plenamente alerta</strong>. Ingesta reciente, o más tarde en liberación prolongada'],
+      ['Irrigación intestinal total', 'Adulto 1.500–2.000 mL/h · pediatría 25 mL/kg/h', kg < 40 ? '≈ ' + fmt0(kg * 25) + ' mL/h' : '1.500–2.000 mL/h', 'Polietilenglicol por sonda en preparados de liberación prolongada, hasta efluente claro. <em>Indicación y duración: con el centro toxicológico</em>'],
+      ['Volumen inicial', '10–20 mL/kg de cristaloide', fmt0(kg * 10) + '–' + fmt0(kg * 20) + ' mL', 'Reevaluando tras cada bolo. <strong>No sigas llenando al que no responde</strong>: el edema pulmonar es frecuente']
+    ].map(d =>
+      '<tr><td>' + d[0] + '</td>' +
+      '<td><span class="dose-note">' + d[1] + '</span></td>' +
+      '<td><span class="dose-main">' + d[2] + '</span><br><span class="dose-note">' + d[3] + '</span></td></tr>'
+    ).join('');
+
+    pesoOut.innerHTML =
+      '<span class="big">Dosis para ' + fmt(kg) + ' kg</span>' +
+      '<div class="table-wrap" style="margin-top:8px;"><table><thead><tr><th>Fármaco</th><th>Regla</th><th>Para este paciente</th></tr></thead><tbody>' +
+      filas +
+      '</tbody></table></div>' +
+      '<div style="margin-top:10px;">Calculado sobre <strong>peso real estimado</strong>. Las presentaciones, ' +
+      'concentraciones, diluciones y velocidades de infusión <strong>varían entre servicios</strong>, y las dosis de ' +
+      'inducción y de vasoactivos deben ajustarse al estado hemodinámico real, no solo al peso. <strong>Las dosis de ' +
+      'insulina de esta tabla son muy superiores a las habituales y son las correctas para esta indicación</strong>: ' +
+      'confírmalas con farmacia y con el centro de información toxicológica, y escríbelas completas en la ficha. ' +
+      '<em>Verificar con protocolo institucional antes de administrar.</em></div>';
+  }
+
+  pesoInput.addEventListener('input', renderPeso);
+  document.getElementById('peso-reset').addEventListener('click', () => {
+    pesoInput.value = '';
+    renderPeso();
+  });
+</script>
+</body>
+</html>
