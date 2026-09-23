@@ -1,0 +1,2005 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Algoritmo · Hemorragia digestiva alta variceal</title>
+<meta name="description" content="Árbol de decisión para la hemorragia digestiva alta masiva por várices esofágicas en urgencia: reanimación hemostática con transfusión restrictiva, lo que no hay que corregir, vasoactivo y antibiótico desde el primer minuto, vía aérea en la hematemesis masiva, endoscopia dentro de 12 horas, taponamiento con balón, stent esofágico, TIPS preventivo y de rescate, calculadora de Child-Pugh y manejo de la falla hepática aguda sobre crónica.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(239,68,68,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(99,102,241,0.07) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 40px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.28);
+    color: #fca5a5;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #ef4444, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .s1 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s1 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s2 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s2 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s3 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s3 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s4 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s4 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s5 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s5 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s6 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s6 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s7 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s7 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s8 .section-num { background: rgba(239,68,68,0.10); color: #fecaca; border: 1px solid rgba(239,68,68,0.18); }
+  .s8 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s9 .section-num { background: rgba(99,102,241,0.10); color: #c7d2fe; border: 1px solid rgba(99,102,241,0.18); }
+  .s9 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s10 .section-num { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.18); }
+  .s10 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s11 .section-num { background: rgba(20,184,166,0.12); color: #99f6e4; border: 1px solid rgba(20,184,166,0.18); }
+  .s11 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s12 .section-num { background: rgba(255,255,255,0.06); color: var(--text-dim); border: 1px solid var(--border); }
+  .s12 { --accent: var(--text-dim); --accent-glow: rgba(148,163,184,0.08); }
+
+  /* ORIENTADOR INTERACTIVO */
+  .q-block { margin-bottom: 18px; }
+  .q-block:last-of-type { margin-bottom: 0; }
+
+  .q-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt.on {
+    background: rgba(239,68,68,0.12);
+    border-color: rgba(239,68,68,0.45);
+    color: #fca5a5;
+  }
+  .opt:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+
+  .result {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface2);
+    padding: 18px 20px;
+    border-left: 3px solid var(--accent, var(--red));
+  }
+  .result.placeholder { color: var(--text-muted); font-size: 13px; font-family: var(--mono); line-height: 1.6; }
+
+  .result-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .result-title {
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .result-row {
+    display: flex;
+    gap: 12px;
+    padding: 9px 0;
+    border-top: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .result-row:first-of-type { border-top: none; padding-top: 2px; }
+  .result-key {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    flex: 0 0 104px;
+    padding-top: 3px;
+  }
+  .result-row strong { color: #fff; font-weight: 500; }
+  .result-row em { color: #fcd34d; font-style: normal; }
+
+  .result.sev-red { border-left-color: var(--red); }
+  .result.sev-amber { border-left-color: var(--amber); }
+  .result.sev-green { border-left-color: var(--emerald); }
+
+  /* CALCULADORA */
+  .calc {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-top: 16px;
+  }
+  .calc-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .calc-label.second { margin-top: 18px; }
+  .score-list { display: flex; flex-direction: column; gap: 8px; }
+  .score-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .score-item:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .score-item.on {
+    background: rgba(20,184,166,0.12);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .score-item:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+  .score-list.gate .score-item.on {
+    background: rgba(245,158,11,0.12);
+    border-color: rgba(245,158,11,0.45);
+    color: #fcd34d;
+  }
+  .score-list.danger .score-item.on {
+    background: rgba(239,68,68,0.12);
+    border-color: rgba(239,68,68,0.45);
+    color: #fca5a5;
+  }
+  .score-pts {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  .score-item.on .score-pts { color: #5eead4; border-color: rgba(20,184,166,0.4); }
+  .score-list.gate .score-item.on .score-pts { color: #fcd34d; border-color: rgba(245,158,11,0.4); }
+  .score-list.danger .score-item.on .score-pts { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  .calc-out {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .calc-out strong { color: #fff; font-weight: 500; }
+  .calc-out em { color: #fcd34d; font-style: normal; }
+  .calc-out .big {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: #93c5fd;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .calc-out .big.risk-low { color: #6ee7b7; }
+  .calc-out .big.risk-mid { color: #fcd34d; }
+  .calc-out .big.risk-high { color: #fca5a5; }
+
+  .calc-reset {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 8px 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .calc-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+  /* ENTRADA NUMÉRICA */
+  .calc-field { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .calc-field + .calc-field { margin-top: 10px; }
+  .calc-field input {
+    font-family: var(--mono);
+    font-size: 15px;
+    color: #fff;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    width: 130px;
+    -moz-appearance: textfield;
+  }
+  .calc-field input:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: rgba(20,184,166,0.45); }
+  .calc-field .unit {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .toggle-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .toggle-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .toggle-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .toggle-btn.on {
+    background: rgba(20,184,166,0.12);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .toggle-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+  /* BANNERS */
+  .warning-banner, .info-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    color: #fca5a5;
+  }
+  .info-banner {
+    background: rgba(59,130,246,0.06);
+    border: 1px solid rgba(59,130,246,0.18);
+    color: #bfdbfe;
+  }
+  .warning-banner strong, .info-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* CRONOLOGÍA */
+  .timeline { display: flex; flex-direction: column; gap: 10px; }
+  .tl-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 13px 15px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .tl-time {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: #fca5a5;
+    flex: 0 0 74px;
+    padding-top: 2px;
+  }
+  .tl-item strong { color: #fff; font-weight: 500; }
+  .tl-item em { color: #fcd34d; font-style: normal; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* ÁRBOL DE DECISIÓN */
+  .flow { display: flex; flex-direction: column; gap: 10px; }
+  .flow-node {
+    position: relative;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--text-muted);
+    background: rgba(255,255,255,0.02);
+    padding: 12px 15px;
+    font-size: 13.5px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .flow-node strong { color: #fff; font-weight: 500; }
+  .flow-node em { color: #fcd34d; font-style: normal; }
+  .flow-q {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .flow-node.stop { border-left-color: var(--red); background: rgba(239,68,68,0.06); }
+  .flow-node.stop .flow-q { color: #fca5a5; }
+  .flow-node.go { border-left-color: var(--emerald); background: rgba(16,185,129,0.05); }
+  .flow-node.go .flow-q { color: #6ee7b7; }
+  .flow-node.hold { border-left-color: var(--amber); background: rgba(245,158,11,0.05); }
+  .flow-node.hold .flow-q { color: #fcd34d; }
+  .flow-node.ask { border-left-color: var(--blue); background: rgba(59,130,246,0.05); }
+  .flow-node.ask .flow-q { color: #93c5fd; }
+  .flow-branch {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 10px;
+    padding-left: 16px;
+    border-left: 2px dashed rgba(255,255,255,0.10);
+  }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--amber); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .opt { width: 100%; }
+    .result-row { flex-direction: column; gap: 4px; }
+    .result-key { flex: none; padding-top: 0; }
+    .tl-item { flex-direction: column; gap: 6px; }
+    .tl-time { flex: none; }
+    .score-item { align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <div class="header-badge">Patología compleja · Algoritmo</div>
+    <h1>Hemorragia digestiva alta <span>por várices esofágicas</span></h1>
+    <p class="header-sub">
+      La hemorragia variceal es una <strong>hemorragia bajo presión en un paciente que además no coagula, no
+      vasoconstriñe y se infecta</strong>. Por eso no se maneja como una úlcera que sangra mucho: aquí las tres
+      intervenciones que bajan la mortalidad —<strong>vasoactivo, antibiótico y endoscopia oportuna</strong>— se
+      indican <strong>antes</strong> de saber qué está sangrando, y varias de las cosas que uno instintivamente haría
+      —transfundir hasta normalizar la hemoglobina, corregir el INR con plasma, llenar de volumen— <strong>suben la
+      presión portal y empeoran el sangrado</strong>. En el cirrótico descompensado, el episodio suele ser además el
+      gatillo de una <strong>falla hepática aguda sobre crónica</strong>, y la mortalidad a 6 semanas se define tanto
+      por la insuficiencia hepática y las infecciones como por la hemorragia misma. Esta página está escrita para las
+      primeras horas: reanimar sin empeorar la hipertensión portal, decidir la vía aérea, llegar a la endoscopia,
+      saber qué hacer cuando la ligadura falla y reconocer a tiempo al paciente que necesita <strong>TIPS</strong>.
+    </p>
+  </div>
+
+  <!-- 01 · ÁRBOL DE DECISIÓN -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">Árbol de decisión</div>
+        <div class="section-subtitle">Escenario + estado circulatorio + contexto</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Marca el <strong>escenario dominante</strong> y el <strong>estado circulatorio</strong>; el contexto es
+        opcional y agrega matices. El resultado orienta lo que hay que hacer en los primeros minutos, qué
+        <strong>no</strong> hacer y a quién llamar. No sustituye el protocolo de tu servicio ni la evaluación
+        presencial.</span>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">1 · Escenario dominante</div>
+        <div class="opts" id="q-esc">
+          <button type="button" class="opt" data-v="exang">Hematemesis masiva en curso: el paciente <strong>se está ahogando en sangre</strong></button>
+          <button type="button" class="opt" data-v="shock">Shock hemorrágico con sospecha de várices (cirrosis conocida o estigmas)</button>
+          <button type="button" class="opt" data-v="sospecha">Hemorragia digestiva alta en hepatópata, por ahora compensado</button>
+          <button type="button" class="opt" data-v="duda">No está claro si es variceal o no variceal (úlcera, gastropatía, Mallory-Weiss)</button>
+          <button type="button" class="opt" data-v="refractario">Sigue sangrando <strong>después</strong> de la ligadura endoscópica</button>
+          <button type="button" class="opt" data-v="resangrado">Resangrado en los primeros días tras un episodio controlado</button>
+          <button type="button" class="opt" data-v="gastricas">Várices <strong>gástricas</strong> fúndicas o sospecha de ellas</button>
+          <button type="button" class="opt" data-v="aclf">Cirrótico con falla multiorgánica (falla hepática aguda sobre crónica) que sangra</button>
+          <button type="button" class="opt" data-v="encefalo">Encefalopatía hepática marcada con hematemesis o melena</button>
+          <button type="button" class="opt" data-v="tips">Sangrado ya controlado: hay que decidir <strong>TIPS preventivo</strong></button>
+          <button type="button" class="opt" data-v="anticoag">Paciente anticoagulado, antiagregado o con trombocitopenia grave</button>
+          <button type="button" class="opt" data-v="sinrecursos">Centro sin endoscopia de urgencia, sin banco de sangre o sin radiología intervencional</button>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">2 · Estado circulatorio y de conciencia</div>
+        <div class="opts" id="q-est">
+          <button type="button" class="opt" data-v="exsang">Hipotensión que no se sostiene pese a transfusión: sangrado exanguinante</button>
+          <button type="button" class="opt" data-v="shockresp">Hipotensión que responde transitoriamente a volumen o sangre</button>
+          <button type="button" class="opt" data-v="taqui">Taquicardia y palidez, sin hipotensión franca</button>
+          <button type="button" class="opt" data-v="estable">Hemodinamia conservada y paciente alerta</button>
+          <button type="button" class="opt" data-v="encef">Encefalopatía grado III–IV o Glasgow ≤ 8</button>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">3 · Contexto (marca los que apliquen)</div>
+        <div class="opts" id="q-ctx">
+          <button type="button" class="opt" data-v="childc">Child-Pugh C, o MELD alto / insuficiencia hepática avanzada</button>
+          <button type="button" class="opt" data-v="ascitis">Ascitis conocida o a tensión</button>
+          <button type="button" class="opt" data-v="aki">Creatinina en ascenso, oliguria o sospecha de síndrome hepatorrenal</button>
+          <button type="button" class="opt" data-v="infeccion">Fiebre, sospecha de infección o de peritonitis bacteriana espontánea</button>
+          <button type="button" class="opt" data-v="alcohol">Consumo activo de alcohol o hepatitis alcohólica aguda</button>
+          <button type="button" class="opt" data-v="trombo">Trombosis portal conocida</button>
+          <button type="button" class="opt" data-v="cardio">Cardiopatía isquémica, insuficiencia cardíaca o hipertensión pulmonar</button>
+          <button type="button" class="opt" data-v="betabloq">Ya usa betabloqueador no selectivo (propranolol, carvedilol)</button>
+          <button type="button" class="opt" data-v="anticoag">Anticoagulación o antiagregación en curso</button>
+          <button type="button" class="opt" data-v="hipogli">Hipoglicemia o glicemia límite</button>
+          <button type="button" class="opt" data-v="sinendo">Sin endoscopia de urgencia disponible</button>
+          <button type="button" class="opt" data-v="sintips">Sin radiología intervencional ni TIPS en el centro</button>
+          <button type="button" class="opt" data-v="ninguno">Ninguno de los anteriores</button>
+        </div>
+      </div>
+
+      <div class="result placeholder" id="result">
+        Selecciona el escenario dominante y el estado circulatorio para ver la prioridad de los primeros minutos,
+        los fármacos que se indican antes de la endoscopia, lo que está contraindicado y a quién llamar.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · ¿ES VARICEAL? -->
+  <div class="section s2" id="s2" style="animation-delay:0.12s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Reconocer el escenario: ¿es variceal?</div>
+        <div class="section-subtitle">Pistas clínicas · estudio inicial · calculadora de Child-Pugh</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>No esperes la confirmación endoscópica para tratar.</strong> En un hepatópata con hemorragia
+        digestiva alta, el <strong>vasoactivo esplácnico y el antibiótico se inician apenas se sospecha</strong>, y
+        ambos han demostrado reducir mortalidad. Si la endoscopia demuestra después una úlcera, se suspende el
+        vasoactivo sin haber perdido nada.</span>
+      </div>
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Y al revés: <strong>no todo sangrado en un cirrótico es variceal</strong>. Una proporción importante
+        corresponde a <strong>úlcera péptica, gastropatía de la hipertensión portal, lesión de Dieulafoy o síndrome de
+        Mallory-Weiss</strong>. Por eso el inhibidor de bomba de protones empírico sigue teniendo sentido
+        <strong>hasta que la endoscopia defina el origen</strong>, y por eso no se abandona la búsqueda de otras
+        causas.</span>
+      </div>
+
+      <div class="subhead">Pistas de que el paciente es un hepatópata con hipertensión portal</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔎</span><span><strong>Estigmas al examen:</strong> ictericia, arañas vasculares, eritema palmar, circulación colateral abdominal, ascitis, esplenomegalia, atrofia muscular temporal, ginecomastia, contractura de Dupuytren, <em>flapping</em> (asterixis).</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Laboratorio que delata la cirrosis:</strong> plaquetas bajas con INR prolongado y albúmina baja, bilirrubina elevada, relación AST/ALT &gt; 1. La <strong>trombocitopenia</strong> es a menudo el primer signo de hipertensión portal en un paciente sin diagnóstico previo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📋</span><span><strong>Antecedentes que hay que preguntar dirigidamente:</strong> episodios previos de várices o ligaduras, alcohol, hepatitis B o C, hígado graso metabólico, diuréticos, betabloqueador, lactulosa, paracentesis, hospitalizaciones por ascitis o encefalopatía.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>La presentación típica</strong> es hematemesis de sangre fresca en volumen importante, a menudo sin dolor y sin pródromo dispéptico. La melena sola no descarta várices, y <strong>la hematoquecia en un paciente en shock puede ser una hemorragia alta masiva</strong>, no baja.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>El betabloqueador enmascara la taquicardia.</strong> Un cirrótico con propranolol o carvedilol puede estar en shock con frecuencia cardíaca de 80. Guíate por la presión, la perfusión, el lactato y la diuresis, no por el pulso.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>La cirrosis tiene presiones basales bajas.</strong> Una sistólica de 100 mmHg en un paciente que vive en 90 puede ser normal para él; una de 110 en quien vive en 140 ya es shock. Pregunta por la presión habitual.</span></div>
+      </div>
+
+      <div class="subhead">Lo que hay que pedir en los primeros minutos</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🧾</span><span><strong>Grupo y Rh con pruebas cruzadas urgentes</strong>, hemograma con plaquetas, pruebas de coagulación con fibrinógeno, función renal y electrolitos, pruebas hepáticas con bilirrubina y albúmina, <strong>lactato</strong>, gases venosos y <strong>glicemia capilar</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🦠</span><span><strong>Hemocultivos, orina completa y urocultivo, radiografía de tórax</strong> y <strong>paracentesis diagnóstica si hay ascitis</strong>: la peritonitis bacteriana espontánea puede ser el gatillo del sangrado y es una de las causas evitables de muerte. Recuento de polimorfonucleares ≥ 250/mm³ la define.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📉</span><span><strong>La hemoglobina inicial subestima la pérdida:</strong> en el sangrado agudo todavía no hay hemodilución. Una hemoglobina «normal» en un paciente pálido y taquicárdico <strong>no tranquiliza</strong>; repítela.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫀</span><span><strong>Electrocardiograma</strong> en todo paciente con sangrado y shock: la anemia aguda precipita isquemia, y la troponina elevada cambia el umbral de transfusión y el riesgo del vasoactivo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩻</span><span><strong>Ecografía abdominal con Doppler</strong> cuando esté disponible: confirma cirrosis, evalúa <strong>trombosis portal</strong>, busca hepatocarcinoma y cuantifica la ascitis. No retrasa nada si se hace a pie de cama.</span></div>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span>Sobre las <strong>escalas de riesgo de hemorragia digestiva alta</strong> (Glasgow-Blatchford, AIMS65,
+        Rockall): fueron desarrolladas y validadas sobre todo en población con sangrado <strong>no variceal</strong>,
+        y su utilidad principal es identificar al paciente de muy bajo riesgo que podría manejarse
+        ambulatoriamente. <strong>Un paciente con sospecha de sangrado variceal no es ese paciente</strong>: no uses
+        un puntaje bajo para diferir el vasoactivo, el antibiótico ni la endoscopia. En cirrosis, lo que pronostica
+        el resultado es la <strong>función hepática</strong> —Child-Pugh, MELD— y la presencia de falla orgánica.</span>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Child-Pugh · elige una opción por categoría</div>
+        <div class="score-list gate" id="cp-list">
+
+          <div class="calc-label" style="margin-top:4px;">Bilirrubina total</div>
+          <button type="button" class="score-item" data-g="bili" data-p="1">&lt; 2 mg/dL<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-g="bili" data-p="2">2–3 mg/dL<span class="score-pts">2</span></button>
+          <button type="button" class="score-item" data-g="bili" data-p="3">&gt; 3 mg/dL<span class="score-pts">3</span></button>
+
+          <div class="calc-label second">Albúmina</div>
+          <button type="button" class="score-item" data-g="alb" data-p="1">&gt; 3,5 g/dL<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-g="alb" data-p="2">2,8–3,5 g/dL<span class="score-pts">2</span></button>
+          <button type="button" class="score-item" data-g="alb" data-p="3">&lt; 2,8 g/dL<span class="score-pts">3</span></button>
+
+          <div class="calc-label second">INR</div>
+          <button type="button" class="score-item" data-g="inr" data-p="1">&lt; 1,7<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-g="inr" data-p="2">1,7–2,3<span class="score-pts">2</span></button>
+          <button type="button" class="score-item" data-g="inr" data-p="3">&gt; 2,3<span class="score-pts">3</span></button>
+
+          <div class="calc-label second">Ascitis</div>
+          <button type="button" class="score-item" data-g="asc" data-p="1">Ausente<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-g="asc" data-p="2">Leve o controlada con diuréticos<span class="score-pts">2</span></button>
+          <button type="button" class="score-item" data-g="asc" data-p="3">Moderada a tensa o refractaria<span class="score-pts">3</span></button>
+
+          <div class="calc-label second">Encefalopatía hepática</div>
+          <button type="button" class="score-item" data-g="enc" data-p="1">Ausente<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-g="enc" data-p="2">Grado I–II (o controlada con tratamiento)<span class="score-pts">2</span></button>
+          <button type="button" class="score-item" data-g="enc" data-p="3">Grado III–IV (o refractaria)<span class="score-pts">3</span></button>
+
+        </div>
+        <div class="calc-out" id="cp-out">Elige una opción en cada una de las cinco categorías. El puntaje va de 5 a 15 y define las clases A, B y C.</div>
+        <button type="button" class="calc-reset" id="cp-reset">Limpiar</button>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./checklist-sepsis_4.html">→ Checklist: sepsis y shock séptico</a>
+        <a class="cross-link" href="./guia-dolor-abdominal.html">→ Guía: dolor abdominal</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · LOS PRIMEROS 30 MINUTOS -->
+  <div class="section s3" id="s3" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Los primeros 30 minutos</div>
+        <div class="section-subtitle">Vasoactivo y antibiótico antes de saber qué sangra</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Las tres intervenciones que bajan la mortalidad son precoces y no dependen del endoscopista:</strong>
+        el <strong>fármaco vasoactivo esplácnico</strong>, el <strong>antibiótico profiláctico</strong> y una
+        <strong>reanimación restrictiva</strong> que no suba la presión portal. La endoscopia viene después, con el
+        paciente reanimado, no en medio del colapso.</span>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item"><span class="tl-time">0–5 min</span><span><strong>Monitorización, oxígeno, dos vías periféricas gruesas</strong> (calibre 16–18 G o mayor; el flujo depende más del calibre y la longitud que del sitio). <strong>Posición con cabecera elevada y aspiración lista</strong> —idealmente dos aspiraciones—, porque el riesgo inmediato es la aspiración masiva. Glicemia capilar y muestras <strong>antes</strong> de transfundir: grupo y pruebas cruzadas, hemograma, coagulación con fibrinógeno, función hepática y renal, lactato.</span></div>
+        <div class="tl-item"><span class="tl-time">0–10 min</span><span><strong>Fármaco vasoactivo esplácnico ahora</strong>, sin esperar la endoscopia: <strong>terlipresina</strong>, <strong>somatostatina</strong> u <strong>octreotida</strong>, según disponibilidad y contraindicaciones (ver sección 05). Se mantiene <strong>2 a 5 días</strong>.</span></div>
+        <div class="tl-item"><span class="tl-time">0–15 min</span><span><strong>Antibiótico profiláctico:</strong> <strong>ceftriaxona 1 g IV al día</strong> es el esquema habitual en cirrosis avanzada y donde hay resistencia a quinolonas. Reduce infecciones, resangrado y <strong>mortalidad</strong>. No es opcional y no se pospone «a ver si se confirma la infección».</span></div>
+        <div class="tl-item"><span class="tl-time">0–20 min</span><span><strong>Transfundir con criterio restrictivo:</strong> umbral de hemoglobina <strong>7 g/dL</strong>, meta 7–8 g/dL. <strong>Volumen con moderación</strong> y presión sistólica objetivo alrededor de <strong>90–100 mmHg</strong> mientras el sangrado está activo. Sobrerreanimar sube la presión portal y <strong>reactiva el sangrado</strong>.</span></div>
+        <div class="tl-item"><span class="tl-time">15–30 min</span><span><strong>Decide la vía aérea antes de que te obligue el paciente</strong> (sección 06): hematemesis masiva, encefalopatía grado III–IV, agitación incontrolable o incapacidad de proteger la vía aérea. Intubar <strong>de forma planificada</strong> es muy distinto a intubar en medio de la aspiración.</span></div>
+        <div class="tl-item"><span class="tl-time">30–60 min</span><span><strong>Avisa al endoscopista, a la unidad crítica y —si el centro lo tiene— a radiología intervencional.</strong> La meta es <strong>endoscopia dentro de las primeras 12 horas</strong>, con el paciente estabilizado. Si tu centro no puede hacerla, <strong>activa el traslado ahora</strong>: el vasoactivo y el antibiótico viajan con el paciente.</span></div>
+        <div class="tl-item"><span class="tl-time">En paralelo</span><span><strong>Busca el desencadenante y las complicaciones que corren en paralelo:</strong> infección (peritonitis bacteriana espontánea, neumonía, infección urinaria), <strong>encefalopatía</strong> —la sangre en el intestino es una carga proteica enorme—, <strong>lesión renal aguda</strong>, hipoglicemia e hiponatremia. Cada una empeora el pronóstico por separado.</span></div>
+        <div class="tl-item"><span class="tl-time">Desde ya</span><span><strong>Define dónde va a estar el paciente en 2 horas.</strong> Sangrado variceal con shock, Child-Pugh C, encefalopatía o falla orgánica <strong>es cama crítica</strong>. Y anticipa el plan B: quién pone el balón o el <em>stent</em> si la ligadura falla, y dónde está el TIPS más cercano.</span></div>
+      </div>
+
+      <div class="subhead">Lo que se hace y lo que no en los primeros minutos</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Intervención</th><th>Conducta</th><th>Por qué</th></tr></thead>
+          <tbody>
+            <tr><td>Vasoactivo esplácnico</td><td><span class="dose-main">Sí, inmediato</span></td><td>Reduce el flujo portal y el sangrado. Beneficio demostrado <strong>antes</strong> de la endoscopia</td></tr>
+            <tr><td>Antibiótico profiláctico</td><td><span class="dose-main">Sí, inmediato</span></td><td>Reduce infección, resangrado y <strong>mortalidad</strong> en cirrosis con hemorragia digestiva</td></tr>
+            <tr><td>Inhibidor de bomba de protones</td><td><span class="dose-main">Empírico hasta la endoscopia</span></td><td>Porque una parte importante del sangrado en cirróticos <strong>no es variceal</strong>. Confirmadas las várices, su rol se limita a la úlcera post-ligadura. <em>Esquema y duración: verificar con protocolo institucional</em></td></tr>
+            <tr><td>Eritromicina IV pre-endoscopia</td><td><span class="dose-main">Considerar</span><br><span class="dose-note">250 mg IV, 30–120 min antes</span></td><td>Vacía el estómago y mejora la visión endoscópica. <strong>Evitar si hay QT prolongado</strong> o interacciones relevantes</td></tr>
+            <tr><td>Ácido tranexámico</td><td><strong>No</strong></td><td>El ensayo <strong>HALT-IT</strong> no mostró reducción de mortalidad en hemorragia digestiva y sí <strong>más eventos tromboembólicos venosos y convulsiones</strong></td></tr>
+            <tr><td>Plasma fresco congelado para «corregir» el INR</td><td><strong>No de rutina</strong></td><td>El INR <strong>no mide el riesgo de sangrado en cirrosis</strong>: el déficit de factores procoagulantes y anticoagulantes es paralelo. El plasma aporta volumen, <strong>sube la presión portal</strong> y no corrige la hemostasia</td></tr>
+            <tr><td>Sonda nasogástrica</td><td><span class="dose-main">No de rutina</span></td><td>No mejora resultados y es incómoda; un aspirado limpio no descarta sangrado. Úsala solo si la necesitas para vaciar el estómago o administrar lactulosa, y con criterio si hay várices</td></tr>
+            <tr><td>Sobrecarga de cristaloides</td><td><strong>No</strong></td><td>La expansión excesiva aumenta la presión portal y <strong>precipita el resangrado</strong>. Reanimación conservadora y guiada por perfusión</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · REANIMACIÓN -->
+  <div class="section s4" id="s4" style="animation-delay:0.24s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Reanimación: transfundir poco y no «corregir» la coagulación</div>
+        <div class="section-subtitle">Umbral restrictivo · el INR que engaña · calculadora por peso</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Aquí se pierde gente por exceso, no por defecto.</strong> Transfundir hasta normalizar la
+        hemoglobina y llenar de cristaloides <strong>restituye la presión portal</strong> que el sangrado había
+        descomprimido, y el resultado es más resangrado y más mortalidad. El ensayo de Villanueva mostró
+        <strong>mejor supervivencia a 6 semanas con una estrategia restrictiva</strong>, y el beneficio fue
+        especialmente claro en los pacientes con cirrosis Child-Pugh A y B.</span>
+      </div>
+
+      <div class="subhead">Metas de la reanimación</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Parámetro</th><th>Meta</th><th>Matices</th></tr></thead>
+          <tbody>
+            <tr><td>Hemoglobina</td><td><span class="dose-main">Transfundir bajo 7 g/dL</span><br><span class="dose-note">meta 7–8 g/dL</span></td><td>Umbral <strong>más alto</strong> si hay sangrado exanguinante en curso, cardiopatía isquémica activa o inestabilidad que no responde. <em>Umbral institucional: verificar</em></td></tr>
+            <tr><td>Presión arterial</td><td><span class="dose-main">Sistólica ≈ 90–100 mmHg</span></td><td>Mientras el sangrado esté activo. <strong>Perfusión, no cifras</strong>: conciencia, piel, diuresis y lactato mandan</td></tr>
+            <tr><td>Cristaloides</td><td><span class="dose-main">Los mínimos necesarios</span></td><td>Para sostener la perfusión mientras llega la sangre. <strong>Nunca como sustituto de transfundir</strong> en el paciente que se desangra</td></tr>
+            <tr><td>Plaquetas</td><td><span class="dose-main">Sin umbral establecido</span></td><td>No hay evidencia que respalde un umbral específico en la hemorragia variceal; la decisión se toma caso a caso en el sangrado masivo. <em>Verificar con protocolo de transfusión masiva institucional</em></td></tr>
+            <tr><td>Fibrinógeno</td><td><span class="dose-main">Considerar si está muy bajo</span></td><td>En el contexto de transfusión masiva y sangrado activo. Umbral y producto (crioprecipitado o concentrado) según protocolo local. <em>Verificar</em></td></tr>
+            <tr><td>INR</td><td><strong>No es una meta</strong></td><td>No se transfunde plasma para «normalizarlo». Si el paciente está anticoagulado con fármacos, eso es otra cosa (ver más abajo)</td></tr>
+            <tr><td>Calcio iónico</td><td><span class="dose-main">Vigilar y reponer</span></td><td>La <strong>transfusión masiva produce hipocalcemia por citrato</strong>, y el hígado cirrótico lo metaboliza peor. La hipocalcemia empeora la coagulación y la contractilidad</td></tr>
+            <tr><td>Temperatura</td><td><span class="dose-main">Normotermia activa</span></td><td>Sangre y sueros tibios. La hipotermia agrava la coagulopatía y es fácil de provocar transfundiendo rápido</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>La coagulopatía de la cirrosis es «rebalanceada», no unidireccional.</strong> Bajan los factores
+        procoagulantes, pero también la antitrombina, la proteína C y la proteína S, y sube el factor VIII y el
+        factor de von Willebrand. Por eso el INR y el tiempo de protrombina <strong>no predicen el sangrado</strong>,
+        el cirrótico <strong>también hace trombosis</strong> —incluida la portal— y la profilaxis de trombosis venosa
+        no está contraindicada por el solo hecho de tener el INR alto. <em>Indicación, momento de inicio tras el
+        sangrado y fármaco: decisión conjunta con hepatología y según protocolo institucional.</em></span>
+      </div>
+
+      <div class="subhead">El paciente anticoagulado o antiagregado</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Suspende el anticoagulante y el antiagregante</strong> mientras el sangrado esté activo, y consigna el fármaco exacto, la dosis y la <strong>hora de la última toma</strong>: es el dato que decide el resto.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Antagonistas específicos:</strong> vitamina K y concentrado de complejo protrombínico para los antagonistas de la vitamina K con sangrado grave; <strong>idarucizumab</strong> para dabigatrán; <strong>andexanet alfa</strong> —donde esté disponible— o complejo protrombínico para los inhibidores del factor Xa. <em>Dosis, disponibilidad y criterios: verificar con protocolo institucional y con hematología.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🤝</span><span><strong>Habla con quien indicó la anticoagulación.</strong> Una trombosis portal, una válvula mecánica o una trombosis venosa reciente cambian por completo el balance riesgo-beneficio de revertir y de reiniciar.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>No traslades el razonamiento del trauma a este escenario.</strong> El paciente con hemorragia variceal no se beneficia de un protocolo de «1:1:1» aplicado por defecto ni de ácido tranexámico. El protocolo de transfusión masiva se activa por <strong>sangrado exanguinante</strong>, no por el diagnóstico.</span></div>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Dosis y volúmenes por peso</div>
+        <div class="calc-field">
+          <input type="number" id="peso" min="20" max="250" step="1" inputmode="decimal" placeholder="70">
+          <span class="unit">peso · kg</span>
+        </div>
+        <div class="calc-out" id="peso-out">Ingresa el peso para ver las dosis dependientes del peso —terlipresina por banda, albúmina, volemia estimada— calculadas para este paciente.</div>
+        <button type="button" class="calc-reset" id="peso-reset">Limpiar</button>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./checklist-politrauma_2.html">→ Checklist: politrauma y control de hemorragia</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · FÁRMACOS -->
+  <div class="section s5" id="s5" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Vasoactivo esplácnico y antibiótico</div>
+        <div class="section-subtitle">Las dos indicaciones que se ponen antes de la endoscopia</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Fármacos vasoactivos esplácnicos</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Fármaco</th><th>Esquema habitual</th><th>Precauciones</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Terlipresina</td>
+              <td><span class="dose-main">2 mg IV en bolo cada 4 h</span><br><span class="dose-note">las primeras 48 h; luego 1 mg cada 4 h</span><br><span class="dose-note">alternativa ajustada por peso: 1 mg si &lt; 50 kg · 1,5 mg si 50–70 kg · 2 mg si &gt; 70 kg</span><br><span class="dose-note">mantener 2–5 días</span></td>
+              <td><strong>Hiponatremia</strong> —a veces rápida y sintomática, sobre todo en cirrosis poco avanzada y en jóvenes: controla el sodio—, <strong>isquemia</strong> periférica, mesentérica y coronaria, bradicardia, sobrecarga de volumen. <strong>Precaución en cardiopatía isquémica, arteriopatía y enfermedad respiratoria</strong>; en el ensayo CONFIRM, en síndrome hepatorrenal, se observó <strong>más insuficiencia respiratoria</strong> con terlipresina. <em>Disponibilidad, presentación e infusión continua como alternativa: verificar con protocolo institucional</em></td>
+            </tr>
+            <tr>
+              <td>Somatostatina</td>
+              <td><span class="dose-main">250 µg IV en bolo</span><br><span class="dose-note">luego 250 µg/h en infusión continua</span><br><span class="dose-note">mantener 2–5 días</span></td>
+              <td>Bien tolerada. Hiperglicemia, náuseas y bradicardia. Algunos protocolos permiten <strong>500 µg/h</strong> en sangrado refractario y repetir el bolo. <em>Verificar</em></td>
+            </tr>
+            <tr>
+              <td>Octreotida</td>
+              <td><span class="dose-main">50 µg IV en bolo</span><br><span class="dose-note">luego 50 µg/h en infusión continua</span><br><span class="dose-note">mantener 2–5 días</span></td>
+              <td>Alternativa más disponible en muchos servicios. Hiperglicemia e hipoglicemia, náuseas, bradicardia. <em>Dilución y concentración: verificar</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>Usa el que tengas, pero úsalo ya.</strong> Las guías consideran los tres aceptables como
+        tratamiento inicial; lo determinante es <strong>iniciarlo precozmente</strong>, antes de la endoscopia, y
+        mantenerlo hasta completar el tratamiento endoscópico y el período de mayor riesgo de resangrado (habitualmente
+        2–5 días). <em>La elección concreta, las diluciones y la duración se definen con el protocolo institucional.</em></span>
+      </div>
+
+      <div class="subhead">Profilaxis antibiótica</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Esquema</th><th>Dosis</th><th>Cuándo</th></tr></thead>
+          <tbody>
+            <tr><td>Ceftriaxona</td><td><span class="dose-main">1 g IV cada 24 h</span><br><span class="dose-note">hasta 7 días o hasta el alta</span></td><td><strong>Preferida</strong> en cirrosis avanzada, en pacientes que ya usaban profilaxis con quinolonas y en centros con alta resistencia a quinolonas</td></tr>
+            <tr><td>Norfloxacino oral</td><td><span class="dose-main">400 mg cada 12 h</span><br><span class="dose-note">hasta 7 días</span></td><td>Alternativa clásica en enfermedad hepática menos avanzada y baja resistencia local. Requiere vía oral funcionante</td></tr>
+            <tr><td>Ajuste local</td><td colspan="2"><strong>El esquema debe adaptarse a la epidemiología y la resistencia locales</strong>, y a las infecciones previas del paciente. Si ya hay una infección documentada o sospecha fundada, esto <strong>deja de ser profilaxis</strong> y se trata como infección. <em>Verificar con protocolo institucional e infectología</em></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span>La profilaxis antibiótica en la hemorragia digestiva del cirrótico es una de las intervenciones con
+        <strong>mejor relación esfuerzo-beneficio de toda la medicina de urgencia</strong>: los metaanálisis muestran
+        reducción de infecciones bacterianas, de resangrado y de <strong>mortalidad</strong>. Se indica
+        <strong>aunque el paciente esté afebril y sin foco</strong>.</span>
+      </div>
+
+      <div class="subhead">Otros fármacos en el box</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Lactulosa</strong> para la encefalopatía y para arrastrar la sangre del intestino, por vía oral o por sonda si la vía aérea está protegida. <strong>Rifaximina</strong> como complemento según protocolo. <em>Dosis y vía: verificar.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🍬</span><span><strong>Glicemia capilar seriada:</strong> el hígado insuficiente no mantiene la gluconeogénesis. La <strong>hipoglicemia</strong> es frecuente, se confunde con encefalopatía y se corrige en segundos.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧴</span><span><strong>Albúmina</strong> en indicaciones específicas —peritonitis bacteriana espontánea, lesión renal aguda del cirrótico, paracentesis evacuadora de gran volumen—, <strong>no como expansor genérico</strong> en el sangrado.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Suspende diuréticos, betabloqueador y nefrotóxicos</strong> durante el sangrado agudo: el betabloqueador impide la respuesta taquicárdica y baja la presión, y los diuréticos y antiinflamatorios empeoran la función renal. El betabloqueador se reintroduce <strong>después</strong>, como profilaxis secundaria.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Evita antiinflamatorios no esteroidales y aminoglicósidos</strong>, y revisa las dosis de todo lo demás: sedantes y opioides se acumulan y precipitan encefalopatía en el hepatópata.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · VÍA AÉREA -->
+  <div class="section s6" id="s6" style="animation-delay:0.36s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Vía aérea en la hematemesis masiva</div>
+        <div class="section-subtitle">A quién intubar, cuándo y cómo no matarlo al hacerlo</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>La intubación no es rutinaria, pero tampoco es optativa cuando está indicada.</strong> Intubar a
+        todo paciente con sangrado variceal aumenta neumonía y complicaciones; no intubar al que se está ahogando o
+        no responde produce <strong>aspiración masiva</strong>, que es una de las causas más frecuentes de muerte en
+        estos pacientes. La decisión se toma <strong>antes</strong> de la endoscopia y de forma planificada.</span>
+      </div>
+
+      <div class="subhead">Indicaciones habituales de intubación</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🩸</span><span><strong>Hematemesis masiva y continua</strong> que no permite mantener la vía aérea limpia con aspiración.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🧠</span><span><strong>Encefalopatía grado III–IV</strong>, Glasgow ≤ 8, o agitación que impide el examen y la endoscopia.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">📉</span><span><strong>Shock profundo</strong> o hipoxemia que no mejora, y el paciente que <strong>se va a trasladar</strong> a otro centro sangrando.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🎈</span><span><strong>Antes de instalar un balón de taponamiento esofagogástrico</strong>: el taponamiento en un paciente no intubado es una receta para la aspiración y la asfixia.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫁</span><span>En el paciente <strong>alerta, con sangrado controlado y buen manejo de secreciones</strong>, la endoscopia puede hacerse sin intubar, con el endoscopista y el equipo advertidos y con plan de rescate inmediato. <em>La política local sobre intubación pre-endoscopia varía: verificar con protocolo institucional.</em></span></div>
+      </div>
+
+      <div class="subhead">Cómo intubar a este paciente</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🧯</span><span><strong>Optimiza primero:</strong> sangre corriendo, vasopresor preparado en jeringa o en bomba, dos aspiraciones potentes con cánula rígida, camilla en posición de <em>rampa</em> con cabecera elevada, y la posibilidad de bajar la cabecera rápido si el campo se inunda.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Inductor que no colapse la presión:</strong> <strong>ketamina en dosis reducida (≈ 0,5–1 mg/kg IV)</strong> o etomidato son las opciones habituales en shock. <strong>Evita el propofol</strong> y reduce siempre la dosis: la dosis estándar en un paciente exanguinado produce paro. Bloqueador neuromuscular a dosis plena, <strong>rocuronio ≈ 1,2 mg/kg</strong> o succinilcolina si no está contraindicada. <em>Dosis y fármacos según protocolo institucional y el estado del paciente.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🎥</span><span><strong>El operador más experimentado, y videolaringoscopio con hoja que permita aspiración continua.</strong> Técnica de aspiración del campo antes de introducir el tubo (maniobra tipo <em>SALAD</em>): aspira, deja la sonda de aspiración en el esófago si es necesario y luego intuba.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫀</span><span><strong>Anticipa el colapso posintubación:</strong> hipovolemia, presión positiva y sedación se suman. Ten el vasopresor corriendo o en bolos y no ventiles con volúmenes ni frecuencias altas.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧠</span><span><strong>Después de intubar, la sedación se dosifica con cautela:</strong> el hígado insuficiente prolonga el efecto de benzodiacepinas y opioides, y la sedación profunda enmascara la evolución de la encefalopatía.</span></div>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./algoritmo-shock-cardiogenico.html">→ Algoritmo: intubación de alto riesgo en shock</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · ENDOSCOPIA -->
+  <div class="section s7" id="s7" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Endoscopia: cuándo, qué se hace y qué esperar</div>
+        <div class="section-subtitle">Dentro de 12 horas · ligadura · cianoacrilato en várices gástricas</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>La recomendación de consenso es endoscopia dentro de las primeras 12 horas</strong> desde la
+        presentación, <strong>una vez que el paciente está reanimado</strong>. «Cuanto antes» no significa «antes de
+        estabilizar»: la endoscopia en un paciente en shock e inestable tiene peores resultados y más
+        complicaciones. En el paciente con sangrado exanguinante, la prioridad es el control temporal y el paso
+        directo a terapia de rescate.</span>
+      </div>
+
+      <div class="subhead">Qué se hace según el hallazgo</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Hallazgo</th><th>Tratamiento endoscópico</th><th>Notas</th></tr></thead>
+          <tbody>
+            <tr><td>Várices esofágicas</td><td><span class="dose-main">Ligadura con bandas</span></td><td><strong>Tratamiento de elección.</strong> La escleroterapia queda como alternativa cuando la ligadura no es técnicamente posible</td></tr>
+            <tr><td>Várices gástricas fúndicas</td><td><span class="dose-main">Inyección de adhesivo tisular (cianoacrilato)</span></td><td>Requiere experiencia; riesgo de <strong>embolización</strong> del adhesivo. Donde exista, la terapia guiada por ecoendoscopia y las opciones radiológicas (BRTO, TIPS) entran temprano en la conversación</td></tr>
+            <tr><td>Várices de la unión (extensión de esofágicas)</td><td><span class="dose-main">Ligadura habitualmente</span></td><td>La conducta depende de la clasificación endoscópica y de la experiencia local. <em>Verificar</em></td></tr>
+            <tr><td>Gastropatía de la hipertensión portal</td><td><strong>No se liga</strong></td><td>Sangrado difuso y en sábana: se maneja con fármacos que bajan la presión portal, no con terapia local</td></tr>
+            <tr><td>Úlcera péptica u otra causa no variceal</td><td><span class="dose-main">Terapia endoscópica estándar</span></td><td>Cambia todo el plan: <strong>inhibidor de bomba en esquema completo y se puede suspender el vasoactivo</strong>. El antibiótico profiláctico igualmente suele mantenerse en el cirrótico. <em>Verificar</em></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Después del procedimiento</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">⏱️</span><span><strong>El vasoactivo no se suspende al salir de la endoscopia:</strong> se mantiene 2–5 días, que es cuando ocurre la mayor parte del resangrado precoz.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🍽️</span><span><strong>Ayuno inicial y reintroducción según protocolo</strong>, con precaución por la úlcera post-ligadura, que puede sangrar entre el día 5 y el 14.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔁</span><span><strong>Define de antemano qué vas a hacer si vuelve a sangrar.</strong> Un segundo intento endoscópico es razonable en el resangrado leve; en el resangrado grave o en la falla del tratamiento, el camino es el <strong>TIPS de rescate</strong>, no una tercera endoscopia.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>Falla del tratamiento</strong> —criterios de consenso— incluye, entre otros: hematemesis fresca o aspirado de sangre fresca abundante <strong>2 horas o más</strong> después del inicio del tratamiento farmacológico o endoscópico, desarrollo de <strong>shock hipovolémico</strong>, o una <strong>caída de 3 g/dL de hemoglobina en 24 h</strong> sin transfusión. <em>La definición operativa exacta debe contrastarse con el protocolo institucional.</em></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · SANGRADO REFRACTARIO -->
+  <div class="section s8" id="s8" style="animation-delay:0.48s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Sangrado refractario: balón, <em>stent</em> y TIPS de rescate</div>
+        <div class="section-subtitle">Puentes que compran horas, no tratamientos definitivos</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>El balón y el <em>stent</em> son puentes hacia el tratamiento definitivo.</strong> Nunca son el
+        plan final. Desde el momento en que decides ponerlos, tiene que estar corriendo en paralelo la gestión del
+        <strong>TIPS de rescate</strong> o del traslado: el sangrado vuelve cuando se desinfla el balón, y la mortalidad
+        del paciente que llega al balón sin plan posterior es muy alta.</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Opción</th><th>Qué es</th><th>Límites y riesgos</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Taponamiento con balón</td>
+              <td>Sonda de <strong>Sengstaken-Blakemore</strong> (balón gástrico y esofágico) o de <strong>Minnesota</strong> (además aspiración esofágica). Comprime las várices y controla el sangrado en la mayoría de los casos de forma inmediata</td>
+              <td><strong>Máximo 24 horas</strong> y <strong>con el paciente intubado</strong>. Riesgos: necrosis y <strong>perforación esofágica</strong>, aspiración, migración con obstrucción de la vía aérea. Verifica la posición del balón gástrico <strong>con radiografía antes de inflarlo del todo</strong>. Ten a mano una tijera junto a la cama para cortar y desinflar si migra. <em>Volúmenes de inflado, tracción y técnica: seguir las instrucciones del kit y el protocolo institucional</em></td>
+            </tr>
+            <tr>
+              <td><em>Stent</em> esofágico autoexpandible removible</td>
+              <td>Prótesis metálica cubierta específicamente diseñada para várices esofágicas, instalada por endoscopia</td>
+              <td>Donde está disponible es una <strong>alternativa preferible al balón</strong>: el ensayo aleatorizado de Escorsell mostró <strong>mejor control del sangrado y menos efectos adversos graves</strong>. Puede permanecer varios días —hasta cerca de una semana—, lo que da tiempo real para organizar el TIPS. No sirve para várices gástricas fúndicas. <em>Verificar disponibilidad y experiencia local</em></td>
+            </tr>
+            <tr>
+              <td>TIPS de rescate</td>
+              <td><strong>Cortocircuito portosistémico intrahepático transyugular</strong> por radiología intervencional: es el tratamiento que <strong>resuelve</strong> el sangrado refractario, porque descomprime el sistema portal</td>
+              <td>Depende de que exista el recurso: <strong>si tu centro no lo tiene, el traslado es el tratamiento</strong>. Complicaciones: encefalopatía, insuficiencia cardíaca derecha, disfunción del <em>stent</em>. Pronóstico malo en falla hepática muy avanzada. <em>Criterios de indicación y contraindicación: decisión conjunta con hepatología y radiología intervencional</em></td>
+            </tr>
+            <tr>
+              <td>Opciones radiológicas para várices gástricas</td>
+              <td>Obliteración retrógrada transvenosa con balón (BRTO) y variantes, o embolización</td>
+              <td>Alternativa o complemento al TIPS en várices gástricas con derivación gastrorrenal. Disponibilidad muy variable. <em>Verificar</em></td>
+            </tr>
+            <tr>
+              <td>Cirugía derivativa</td>
+              <td>Derivaciones quirúrgicas o transección esofágica</td>
+              <td><strong>Opción histórica y de último recurso</strong>, donde no existe TIPS. Alta mortalidad en el paciente descompensado</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span>Si vas a poner un balón: <strong>intuba primero</strong>, confirma la posición gástrica antes de completar
+        el inflado, <strong>anota la hora de instalación en un lugar visible</strong> y registra los volúmenes usados.
+        Infla el balón <strong>esofágico solo si el gástrico no controla el sangrado</strong>, y desínflalo
+        periódicamente según el protocolo del kit para reducir el riesgo de necrosis. El paciente con balón
+        <strong>no se deja solo ni se traslada sin acompañamiento de un operador capaz de retirarlo</strong>.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · TIPS PREVENTIVO -->
+  <div class="section s9" id="s9" style="animation-delay:0.54s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">TIPS preventivo: la decisión que se toma en 72 horas</div>
+        <div class="section-subtitle">No es para el que sigue sangrando, sino para el que va a volver a sangrar</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>El <strong>TIPS preventivo o precoz</strong> es distinto del TIPS de rescate: se indica en el paciente de
+        alto riesgo <strong>cuyo sangrado ya se controló</strong>, para evitar el resangrado que en ese grupo es muy
+        probable. El ensayo de García-Pagán demostró <strong>menos falla del tratamiento y mejor supervivencia</strong>
+        cuando se hacía precozmente en pacientes seleccionados, y las guías lo incorporaron desde entonces. Es una
+        decisión que <strong>el médico de urgencia identifica y deriva</strong>, aunque no la ejecute.</span>
+      </div>
+
+      <div class="subhead">A quién se considera, según el consenso de Baveno VII</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🎯</span><span><strong>Ventana de tiempo:</strong> dentro de las <strong>72 horas</strong> desde el episodio, e idealmente en las primeras <strong>24 horas</strong>. Pasada esa ventana, la indicación cambia.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🅲</span><span><strong>Child-Pugh C</strong> con puntaje aproximadamente entre <strong>10 y 13</strong> puntos.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🅱</span><span><strong>Child-Pugh B con sangrado activo en la endoscopia</strong> pese a estar ya con tratamiento vasoactivo. <em>Este subgrupo es el más discutido y el criterio ha ido cambiando entre consensos: decisión con hepatología.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">📈</span><span>Donde se mide, un <strong>gradiente de presión venosa hepática elevado</strong> identifica también a pacientes de alto riesgo. No está disponible en la mayoría de los centros y no debe retrasar nada.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>Situaciones donde el beneficio es dudoso o el riesgo alto:</strong> insuficiencia hepática terminal (por ejemplo Child-Pugh por sobre 13 puntos o MELD muy alto con lactato elevado), <strong>encefalopatía persistente o recurrente</strong>, insuficiencia cardíaca o hipertensión pulmonar significativa, sepsis no controlada, y hepatocarcinoma avanzado. <em>Los umbrales exactos y las contraindicaciones deben contrastarse con el protocolo institucional y con hepatología.</em></span></div>
+      </div>
+
+      <div class="subhead">Qué hacer con esto en urgencia</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📞</span><span><strong>Calcula el Child-Pugh (sección 02) y déjalo escrito en la ficha.</strong> Si el paciente cae en el grupo de alto riesgo, <strong>avisa a hepatología y a radiología intervencional el mismo día</strong>, no al día siguiente: la ventana es de horas.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚑</span><span><strong>Si tu centro no tiene TIPS, ese es el criterio de traslado.</strong> Un paciente Child C que sangró por várices y se quedó en un centro sin TIPS está perdiendo su mejor intervención.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📝</span><span><strong>Documenta el hallazgo endoscópico</strong> —sangrado activo, estigmas, qué se ligó—: es el dato que decide la indicación y el que suele faltar cuando el equipo de hepatología revisa el caso.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · ACLF -->
+  <div class="section s10" id="s10" style="animation-delay:0.60s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Falla hepática aguda sobre crónica</div>
+        <div class="section-subtitle">El sangrado como gatillo · fallas orgánicas · lo que mata después</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>La hemorragia variceal es uno de los gatillos clásicos de la falla hepática aguda sobre
+        crónica</strong>, junto con las infecciones bacterianas y la hepatitis alcohólica. Es un síndrome
+        <strong>distinto de la simple descompensación</strong>: se define por la aparición de <strong>fallas
+        orgánicas</strong> en un paciente con enfermedad hepática crónica, tiene una mortalidad a corto plazo muy
+        alta y, sobre todo, <strong>es potencialmente reversible si se trata el gatillo a tiempo</strong>. Reconocerlo
+        cambia el destino del paciente: cama crítica y evaluación de trasplante, no sala común.</span>
+      </div>
+
+      <div class="subhead">Las seis fallas orgánicas (criterios EASL-CLIF)</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Órgano</th><th>Define falla</th><th>En el box</th></tr></thead>
+          <tbody>
+            <tr><td>Hígado</td><td><span class="dose-main">Bilirrubina ≥ 12 mg/dL</span></td><td>Pídela siempre: es el dato que muchos omiten en el sangrado</td></tr>
+            <tr><td>Riñón</td><td><span class="dose-main">Creatinina ≥ 2,0 mg/dL</span><br><span class="dose-note">o necesidad de terapia de reemplazo renal</span></td><td>La lesión renal aguda es la falla más frecuente y la que más pesa en el pronóstico</td></tr>
+            <tr><td>Cerebro</td><td><span class="dose-main">Encefalopatía grado III–IV</span><br><span class="dose-note">West Haven</span></td><td>Descarta antes hipoglicemia, sedantes, hiponatremia, infección del sistema nervioso y hemorragia intracraneal</td></tr>
+            <tr><td>Coagulación</td><td><span class="dose-main">INR ≥ 2,5</span></td><td>Es un marcador de <strong>función hepática</strong>, no una indicación de transfundir plasma</td></tr>
+            <tr><td>Circulación</td><td><span class="dose-main">Necesidad de vasopresores</span></td><td>En el sangrado hay que distinguir la hipovolemia corregible de la vasoplejía establecida</td></tr>
+            <tr><td>Respiración</td><td><span class="dose-main">PaO₂/FiO₂ ≤ 200</span><br><span class="dose-note">o SpO₂/FiO₂ ≤ 214</span></td><td>Piensa en aspiración, sobrecarga por transfusión y neumonía</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span>A partir del número de fallas orgánicas se definen los grados: <strong>grado 1</strong> (una falla, con
+        las particularidades de la falla renal y de la cerebral con disfunción renal asociada), <strong>grado
+        2</strong> (dos fallas) y <strong>grado 3</strong> (tres o más). La mortalidad a 28 días
+        <strong>aumenta marcadamente con el grado</strong> y es muy alta en el grado 3. <em>Los criterios completos,
+        la clasificación exacta y las cifras de mortalidad provienen del estudio CANONIC y de las guías EASL:
+        para la clasificación formal y las decisiones de trasplante, verificar con la guía vigente y con
+        hepatología.</em></span>
+      </div>
+
+      <div class="subhead">Lo que hay que hacer en paralelo al sangrado</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🦠</span><span><strong>Busca infección de forma agresiva y trátala temprano.</strong> La infección es a la vez gatillo y consecuencia. <strong>Paracentesis diagnóstica si hay ascitis</strong>, hemocultivos, orina, radiografía de tórax. Un cirrótico séptico puede estar afebril y con leucocitos normales.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💧</span><span><strong>Protege el riñón:</strong> suspende diuréticos y nefrotóxicos, evita contrastes innecesarios, corrige la hipovolemia. En la lesión renal aguda del cirrótico, tras retirar diuréticos, el paso habitual es la <strong>expansión con albúmina</strong> (esquema clásico de <strong>1 g/kg al día, hasta un máximo en torno a 100 g, por 2 días</strong>) para diferenciar la hipovolemia del síndrome hepatorrenal. <em>Esquemas y criterios: verificar con protocolo institucional y nefrología/hepatología.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🧠</span><span><strong>Trata la encefalopatía y su causa:</strong> la sangre en el tubo digestivo es el precipitante activo. Lactulosa para lograr deposiciones, rifaximina según protocolo, corrección de electrolitos, retirada de sedantes. <strong>Descarta siempre hipoglicemia primero.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">🍬</span><span><strong>Glicemia, sodio y lactato seriados.</strong> La hipoglicemia y la hiponatremia son frecuentes y tratables; el lactato persistentemente elevado en el cirrótico refleja tanto hipoperfusión como falla del aclaramiento hepático, y es un mal signo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span><strong>Activa la conversación de trasplante temprano.</strong> En falla hepática aguda sobre crónica, la ventana de oportunidad es corta. Plantear la evaluación no es prematuro: es parte del tratamiento.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💬</span><span><strong>Y la conversación de objetivos de cuidado también.</strong> En el paciente con falla orgánica múltiple, sin opción de trasplante y sin control del sangrado, insistir indefinidamente con procedimientos no es neutral. Hablar con la familia y con el equipo tratante es parte del trabajo del box, no una renuncia.</span></div>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./checklist-sepsis_4.html">→ Checklist: sepsis y shock séptico</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 11 · DESPUÉS DEL CONTROL -->
+  <div class="section s11" id="s11" style="animation-delay:0.66s;">
+    <div class="section-header" onclick="toggleSection('s11')">
+      <span class="section-num">11</span>
+      <div>
+        <div class="section-title">Después del control: evitar el segundo episodio</div>
+        <div class="section-subtitle">Profilaxis secundaria · qué dejar escrito</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>Sin profilaxis secundaria, el resangrado es la regla, no la excepción.</strong> El estándar
+        combina <strong>betabloqueador no selectivo</strong> con un <strong>programa de ligaduras endoscópicas
+        seriadas</strong> hasta erradicar las várices, salvo que el paciente vaya a TIPS. Esto se indica y se agenda
+        antes del alta; si queda «para el control», no ocurre.</span>
+      </div>
+
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Betabloqueador no selectivo</strong> (propranolol o <strong>carvedilol</strong>, que en los consensos recientes ha ganado terreno por su efecto adicional sobre la resistencia intrahepática), titulado según frecuencia y presión, <strong>una vez resuelto el sangrado y con el paciente estable</strong>. Precaución en ascitis refractaria, hipotensión, lesión renal aguda y peritonitis bacteriana espontánea. <em>Elección, dosis, titulación y contraindicaciones: verificar con protocolo institucional y hepatología.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🔁</span><span><strong>Programa de ligaduras seriadas</strong> cada 2–4 semanas hasta erradicar las várices, con control endoscópico posterior. <strong>Deja la primera fecha agendada</strong> antes del alta, con nombre y teléfono de contacto.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🍷</span><span><strong>Abstinencia de alcohol y derivación formal</strong> cuando corresponda: es la intervención que más cambia la historia natural en la cirrosis alcohólica, y la que con más frecuencia se deja como una frase al margen del epicrisis.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧾</span><span><strong>Revisa la lista de fármacos al alta:</strong> reintroducción o no de diuréticos, retirada de antiinflamatorios, ajuste de sedantes, lactulosa titulada a 2–3 deposiciones blandas al día, vacunas y profilaxis según el caso.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📋</span><span><strong>Deja escrito en la ficha, para el equipo que sigue:</strong> Child-Pugh y MELD calculados, hallazgo endoscópico exacto, si hubo sangrado activo, fármacos y dosis usadas, si se evaluó TIPS preventivo y por quién, estado de la evaluación de trasplante, y la conversación de objetivos de cuidado si se tuvo.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>El alta precoz sin plan es la causa más frecuente de reingreso.</strong> Un paciente que sangró por várices y se va sin betabloqueador, sin ligadura agendada y sin control de hepatología va a volver, y la segunda vez suele ser peor.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 12 · TRAMPAS -->
+  <div class="section s12" id="s12" style="animation-delay:0.72s;">
+    <div class="section-header" onclick="toggleSection('s12')">
+      <span class="section-num">12</span>
+      <div>
+        <div class="section-title">Trampas y errores frecuentes</div>
+        <div class="section-subtitle">Lo que convierte un episodio controlable en una muerte evitable</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Esperar la endoscopia para iniciar el vasoactivo y el antibiótico.</strong> Son las dos intervenciones precoces con impacto en mortalidad y no dependen de la confirmación del diagnóstico.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Transfundir hasta una hemoglobina «bonita».</strong> Sube la presión portal y aumenta el resangrado y la mortalidad. El umbral es 7 g/dL con meta 7–8, salvo excepciones explícitas.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Llenar de cristaloides al paciente que espera sangre.</strong> Diluye, enfría y descomprime mal: sostén la perfusión con lo mínimo y transfunde.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Pedir plasma para «corregir» el INR.</strong> No corrige la hemostasia, aporta volumen y sube la presión portal.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar ácido tranexámico por costumbre.</strong> En hemorragia digestiva no redujo mortalidad y aumentó eventos tromboembólicos y convulsiones.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No hacer paracentesis diagnóstica porque «está sangrando y no es el momento».</strong> La peritonitis bacteriana espontánea no tratada mata a este paciente aunque el sangrado se controle, y la coagulopatía no es contraindicación para la punción diagnóstica.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Postergar la vía aérea en el paciente que vomita sangre y está somnoliento.</strong> La aspiración masiva ocurre en minutos y a menudo durante el traslado o la endoscopia.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Usar la dosis habitual de inductor en un paciente exanguinado.</strong> Reduce la dosis, ten el vasopresor listo y anticipa el colapso posintubación.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Poner el balón sin intubar, sin confirmar posición o sin plan posterior.</strong> Es un puente de horas: si nadie está gestionando el TIPS o el traslado mientras el balón está puesto, el puente no lleva a ninguna parte.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Suspender el vasoactivo al terminar la endoscopia.</strong> El resangrado precoz ocurre justo en esos días: se mantiene 2–5 días.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Confiar en la frecuencia cardíaca de un paciente betabloqueado</strong> o en una presión de 100 mmHg en alguien que vive en 90.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No calcular el Child-Pugh</strong> y perder la ventana de 72 horas del TIPS preventivo en el paciente de alto riesgo.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Olvidar la glicemia.</strong> Un hepatópata somnoliento es hipoglicémico hasta que el capilar diga lo contrario.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar de alta sin profilaxis secundaria ni ligadura agendada.</strong> El siguiente episodio ya está programado.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio. Está orientada al
+    <strong>paciente adulto</strong>: la hemorragia variceal <strong>pediátrica</strong> y la de la
+    <strong>paciente embarazada</strong> tienen umbrales, dosis y consideraciones propias. Las <strong>dosis,
+    concentraciones, umbrales y tiempos son orientativos</strong>: verifica la presentación, la dilución y la vía de
+    administración de tu servicio, y el ajuste por peso, edad, función renal y hepática, interacciones y
+    contraindicaciones antes de administrar cualquier fármaco. La elección y la duración del vasoactivo esplácnico,
+    el esquema antibiótico según la resistencia local, los umbrales de transfusión de hemoderivados y de corrección
+    de plaquetas y fibrinógeno, la reversión de anticoagulantes, la política de intubación previa a la endoscopia,
+    la técnica, los volúmenes de inflado y el tiempo máximo del balón de taponamiento, y los criterios de indicación
+    y contraindicación del TIPS preventivo y de rescate deben contrastarse con el <strong>protocolo institucional
+    vigente</strong> y con gastroenterología, hepatología, radiología intervencional, cuidados críticos y banco de
+    sangre. Los <strong>procedimientos de rescate descritos —taponamiento con balón, <em>stent</em> esofágico, TIPS—
+    son de alto riesgo</strong> y requieren operador entrenado y el respaldo institucional correspondiente. Las
+    calculadoras de esta página —Child-Pugh y dosis por peso— realizan <strong>conversiones aritméticas: complementan
+    y no reemplazan la evaluación clínica</strong>, y sus resultados deben interpretarse en el contexto completo del
+    paciente.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">de Franchis R, Bosch J, Garcia-Tsao G, Reiberger T, Ripoll C; Baveno VII Faculty. <em>Baveno VII — Renewing consensus in portal hypertension.</em> J Hepatol. 2022;76(4):959–974. <a href="https://pubmed.ncbi.nlm.nih.gov/35120736/" target="_blank" rel="noopener">PMID 35120736</a> — Consenso de referencia: vasoactivo precoz, profilaxis antibiótica, endoscopia dentro de 12 h, umbral transfusional restrictivo, no corrección rutinaria de la coagulación, TIPS preventivo y de rescate, profilaxis secundaria.</div>
+      <div class="ref-item">Garcia-Tsao G, Abraldes JG, Berzigotti A, Bosch J. <em>Portal hypertensive bleeding in cirrhosis: Risk stratification, diagnosis, and management — 2016 practice guidance by the AASLD.</em> Hepatology. 2017;65(1):310–335. <a href="https://pubmed.ncbi.nlm.nih.gov/27786365/" target="_blank" rel="noopener">PMID 27786365</a> — Guía de manejo con esquemas de fármacos vasoactivos, antibióticos y terapia endoscópica.</div>
+      <div class="ref-item">Villanueva C, Colomo A, Bosch A, et al. <em>Transfusion strategies for acute upper gastrointestinal bleeding.</em> N Engl J Med. 2013;368(1):11–21. <a href="https://pubmed.ncbi.nlm.nih.gov/23281973/" target="_blank" rel="noopener">PMID 23281973</a> — Base de la estrategia restrictiva: mejor supervivencia a 6 semanas y menos resangrado con umbral de 7 g/dL.</div>
+      <div class="ref-item">HALT-IT Trial Collaborators. <em>Effects of a high-dose 24-h infusion of tranexamic acid on death and thromboembolic events in patients with acute gastrointestinal bleeding (HALT-IT): an international randomised, double-blind, placebo-controlled trial.</em> Lancet. 2020;395(10241):1927–1936. <a href="https://pubmed.ncbi.nlm.nih.gov/32563378/" target="_blank" rel="noopener">PMID 32563378</a> — Sin reducción de mortalidad y con más eventos tromboembólicos venosos y convulsiones.</div>
+      <div class="ref-item">García-Pagán JC, Caca K, Bureau C, et al. <em>Early use of TIPS in patients with cirrhosis and variceal bleeding.</em> N Engl J Med. 2010;362(25):2370–2379. <a href="https://pubmed.ncbi.nlm.nih.gov/20573925/" target="_blank" rel="noopener">PMID 20573925</a> — Ensayo que estableció el TIPS precoz en pacientes de alto riesgo.</div>
+      <div class="ref-item">Escorsell À, Pavel O, Cárdenas A, et al. <em>Esophageal balloon tamponade versus esophageal stent in controlling acute refractory variceal bleeding: a multicenter randomized, controlled trial.</em> Hepatology. 2016;63(6):1957–1967. <a href="https://pubmed.ncbi.nlm.nih.gov/26600191/" target="_blank" rel="noopener">PMID 26600191</a> — Mejor control del sangrado y menos efectos adversos graves con <em>stent</em> esofágico frente a balón.</div>
+      <div class="ref-item">Chavez-Tapia NC, Barrientos-Gutiérrez T, Tellez-Avila F, et al. <em>Meta-analysis: antibiotic prophylaxis for cirrhotic patients with upper gastrointestinal bleeding — an updated Cochrane review.</em> Aliment Pharmacol Ther. 2011;34(5):509–518. <a href="https://pubmed.ncbi.nlm.nih.gov/21707680/" target="_blank" rel="noopener">PMID 21707680</a> — Reducción de infecciones, resangrado y mortalidad con profilaxis antibiótica.</div>
+      <div class="ref-item">European Association for the Study of the Liver. <em>EASL Clinical Practice Guidelines on acute-on-chronic liver failure.</em> J Hepatol. 2023;79(2):461–491. <a href="https://pubmed.ncbi.nlm.nih.gov/37364789/" target="_blank" rel="noopener">PMID 37364789</a> — Definición, clasificación, manejo y pronóstico de la falla hepática aguda sobre crónica.</div>
+      <div class="ref-item">Moreau R, Jalan R, Gines P, et al. <em>Acute-on-chronic liver failure is a distinct syndrome that develops in patients with acute decompensation of cirrhosis (CANONIC).</em> Gastroenterology. 2013;144(7):1426–1437. <a href="https://pubmed.ncbi.nlm.nih.gov/23474284/" target="_blank" rel="noopener">PMID 23474284</a> — Estudio que definió los criterios EASL-CLIF de fallas orgánicas y los grados.</div>
+      <div class="ref-item">Biggins SW, Angeli P, Garcia-Tsao G, et al. <em>Diagnosis, evaluation, and management of ascites, spontaneous bacterial peritonitis and hepatorenal syndrome: 2021 practice guidance by the AASLD.</em> Hepatology. 2021;74(2):1014–1048. <a href="https://pubmed.ncbi.nlm.nih.gov/33942342/" target="_blank" rel="noopener">PMID 33942342</a> — Paracentesis diagnóstica, peritonitis bacteriana espontánea, lesión renal aguda del cirrótico y uso de albúmina.</div>
+      <div class="ref-item">Wong F, Pappas SC, Curry MP, et al. <em>Terlipressin plus albumin for the treatment of type 1 hepatorenal syndrome (CONFIRM).</em> N Engl J Med. 2021;384(9):818–828. <a href="https://pubmed.ncbi.nlm.nih.gov/33657294/" target="_blank" rel="noopener">PMID 33657294</a> — Eficacia de terlipresina en síndrome hepatorrenal y señal de insuficiencia respiratoria como efecto adverso.</div>
+      <div class="ref-item">Referencias localizadas mediante PubMed. Las dosis, diluciones y duraciones del vasoactivo esplácnico, el esquema y la duración del antibiótico según resistencia local, los umbrales de transfusión y de corrección de hemoderivados, la reversión de anticoagulantes, la política de intubación previa a la endoscopia, la técnica y los tiempos del balón de taponamiento y del <em>stent</em> esofágico, y los criterios de TIPS preventivo y de rescate deben contrastarse con el protocolo institucional vigente y con los equipos de gastroenterología, hepatología, radiología intervencional, cuidados críticos, hematología y banco de sangre de referencia.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Árbol de decisión interactivo ─────────────────────────────────
+  const sel = { esc: null, est: null, ctx: new Set() };
+
+  function bindSingle(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (sel[key] === v) {
+          sel[key] = null;
+          btn.classList.remove('on');
+        } else {
+          sel[key] = v;
+          group.querySelectorAll('.opt').forEach(b => b.classList.toggle('on', b === btn));
+        }
+        render();
+      });
+    });
+  }
+
+  function bindMulti(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (v === 'ninguno') {
+          sel[key].clear();
+          group.querySelectorAll('.opt').forEach(b => b.classList.remove('on'));
+          btn.classList.add('on');
+          sel[key].add('ninguno');
+        } else {
+          const none = group.querySelector('[data-v="ninguno"]');
+          none.classList.remove('on');
+          sel[key].delete('ninguno');
+          if (sel[key].has(v)) { sel[key].delete(v); btn.classList.remove('on'); }
+          else { sel[key].add(v); btn.classList.add('on'); }
+        }
+        render();
+      });
+    });
+  }
+
+  bindSingle('q-esc', 'esc');
+  bindSingle('q-est', 'est');
+  bindMulti('q-ctx', 'ctx');
+
+  const f = (v) => sel.ctx.has(v);
+
+  const VASO = '<strong>Vasoactivo esplácnico ahora, sin esperar la endoscopia:</strong> terlipresina, somatostatina u ' +
+               'octreotida según disponibilidad y contraindicaciones. Se mantiene <strong>2–5 días</strong>.';
+  const ATB = '<strong>Antibiótico profiláctico ahora:</strong> ceftriaxona 1 g IV al día es el esquema habitual en ' +
+              'cirrosis avanzada. Reduce infección, resangrado y <strong>mortalidad</strong>; se indica aunque no haya fiebre.';
+  const TRANSF = '<strong>Transfusión restrictiva:</strong> umbral de hemoglobina <strong>7 g/dL</strong>, meta 7–8 g/dL, ' +
+                 'y presión sistólica objetivo ≈ 90–100 mmHg mientras sangra. <em>Sobrerreanimar sube la presión portal y ' +
+                 'reactiva el sangrado.</em>';
+  const NOHACER = '<strong>No des ácido tranexámico</strong> (HALT-IT: sin beneficio y más trombosis y convulsiones), ' +
+                  '<strong>no transfundas plasma para corregir el INR</strong> y <strong>no llenes de cristaloides</strong>. ' +
+                  'Suspende diuréticos, betabloqueador y nefrotóxicos durante el sangrado.';
+  const ENDO = '<strong>Endoscopia dentro de las primeras 12 horas</strong>, con el paciente ya reanimado. Ligadura con ' +
+               'bandas para várices esofágicas. Considera <strong>eritromicina 250 mg IV 30–120 min antes</strong> para ' +
+               'vaciar el estómago, salvo QT prolongado.';
+  const VIAAEREA = '<strong>Decide la vía aérea antes de que te obligue el paciente:</strong> hematemesis masiva, ' +
+                   'encefalopatía grado III–IV, Glasgow ≤ 8 o traslado sangrando. <strong>Inductor en dosis reducida</strong> ' +
+                   '(ketamina ≈ 0,5–1 mg/kg o etomidato), bloqueador a dosis plena, dos aspiraciones y vasopresor listo.';
+  const LABS = '<strong>Grupo y pruebas cruzadas, hemograma, coagulación con fibrinógeno, función hepática con bilirrubina ' +
+               'y albúmina, función renal, lactato, glicemia capilar y electrocardiograma.</strong> Hemocultivos, orina y ' +
+               '<strong>paracentesis diagnóstica si hay ascitis</strong>.';
+  const RESCATE = '<strong>Terapia de rescate:</strong> taponamiento con balón (máximo 24 h y <strong>solo con el paciente ' +
+                  'intubado</strong>) o <em>stent</em> esofágico donde exista, <strong>siempre como puente al TIPS de ' +
+                  'rescate</strong> o al traslado, gestionado en paralelo desde el minuto en que se instala.';
+  const TIPSPREV = '<strong>Calcula el Child-Pugh y evalúa TIPS preventivo:</strong> ventana de <strong>72 h</strong>, ' +
+                   'idealmente 24 h, en Child C de aproximadamente 10–13 puntos y en Child B con sangrado activo en la ' +
+                   'endoscopia. <em>Decisión con hepatología y radiología intervencional.</em>';
+  const UCI = '<strong>Cama crítica y equipo avisado:</strong> endoscopista, cuidados críticos y —si el centro lo tiene— ' +
+              'radiología intervencional. Si no puedes sostener esto localmente, <strong>activa el traslado ahora</strong>.';
+  const ACLF = '<strong>Busca falla orgánica (falla hepática aguda sobre crónica):</strong> bilirrubina, creatinina, INR, ' +
+               'encefalopatía, vasopresores y oxigenación. Cambia el destino y abre la conversación de trasplante.';
+  const LINK_SEPSIS = '<a class="cross-link" style="margin-top:6px" href="./checklist-sepsis_4.html">→ Checklist: sepsis y shock séptico</a>';
+  const LINK_TRAUMA = '<a class="cross-link" style="margin-top:6px" href="./checklist-politrauma_2.html">→ Checklist: politrauma y control de hemorragia</a>';
+  const LINK_SHOCK = '<a class="cross-link" style="margin-top:6px" href="./algoritmo-shock-cardiogenico.html">→ Algoritmo: intubación de alto riesgo en shock</a>';
+
+  function classify() {
+    const { esc, est } = sel;
+    if (!esc || !est) return null;
+
+    // 1 · Hematemesis masiva en curso
+    if (esc === 'exang') {
+      return {
+        sev: 'red',
+        tag: 'Emergencia inmediata',
+        title: 'Primero la vía aérea, la sangre y el vasoactivo',
+        rows: [
+          ['Ahora', '<strong>Vía aérea antes que nada:</strong> cabecera elevada, <strong>dos aspiraciones</strong> con cánula rígida, oxígeno, y <strong>intubación planificada por el operador más experimentado</strong>. ' + VIAAEREA],
+          ['Sangre', '<strong>Transfusión inmediata, sangre de emergencia si hace falta</strong>, y activación del protocolo de transfusión masiva por <em>sangrado exanguinante</em> —no por el diagnóstico—. Vigila <strong>calcio iónico y temperatura</strong>. ' + TRANSF],
+          ['Fármacos', VASO + ' ' + ATB],
+          ['No hagas', NOHACER],
+          ['Después', '<strong>Endoscopia apenas el paciente lo tolere</strong>, y si el sangrado no se controla, paso directo a rescate. ' + RESCATE],
+          ['Equipo', UCI],
+          ['Enlace', LINK_TRAUMA]
+        ]
+      };
+    }
+
+    // 2 · Shock hemorrágico con sospecha de várices
+    if (esc === 'shock') {
+      return {
+        sev: 'red',
+        tag: 'Shock hemorrágico',
+        title: 'Reanimar sin subir la presión portal',
+        rows: [
+          ['Primero', TRANSF + ' Dos vías gruesas, sangre en camino y <strong>perfusión como guía</strong>: conciencia, piel, diuresis y lactato.'],
+          ['Ahora', VASO],
+          ['Ahora', ATB],
+          ['Pide', LABS],
+          ['Vía aérea', VIAAEREA],
+          ['Luego', ENDO],
+          ['No hagas', NOHACER],
+          ['Piensa en', ACLF],
+          ['Equipo', UCI],
+          ['Enlace', LINK_SEPSIS]
+        ]
+      };
+    }
+
+    // 3 · HDA en hepatópata compensado
+    if (esc === 'sospecha') {
+      return {
+        sev: 'amber',
+        tag: 'Sospecha de sangrado variceal',
+        title: 'Tratar como variceal hasta que la endoscopia diga otra cosa',
+        rows: [
+          ['Ahora', VASO],
+          ['Ahora', ATB],
+          ['Reanimación', TRANSF],
+          ['Pide', LABS],
+          ['Luego', ENDO],
+          ['Ojo', '<strong>Una parte importante del sangrado en cirróticos no es variceal</strong> (úlcera, gastropatía portal, Mallory-Weiss): mantén el inhibidor de bomba empírico <strong>hasta que la endoscopia defina el origen</strong>.'],
+          ['No hagas', NOHACER],
+          ['Después', TIPSPREV],
+          ['Destino', '<strong>Cama monitorizada</strong> aunque esté compensado: el deterioro es brusco y el resangrado precoz ocurre en los primeros días.']
+        ]
+      };
+    }
+
+    // 4 · Duda variceal / no variceal
+    if (esc === 'duda') {
+      return {
+        sev: 'amber',
+        tag: 'Origen incierto',
+        title: 'Cubre las dos hipótesis: cuesta poco y cambia el pronóstico',
+        rows: [
+          ['Cubre ambas', '<strong>Inhibidor de bomba de protones empírico</strong> por la hipótesis no variceal <strong>y</strong> <strong>vasoactivo esplácnico + antibiótico</strong> por la variceal. Ninguna de las dos conductas daña si la otra resulta ser la correcta.'],
+          ['Busca', '<strong>Estigmas de hepatopatía</strong> (ictericia, arañas, ascitis, circulación colateral, esplenomegalia) y el <strong>laboratorio que delata la cirrosis</strong>: plaquetas bajas con INR prolongado y albúmina baja.'],
+          ['Pide', LABS + ' Ecografía abdominal con Doppler cuando esté disponible.'],
+          ['Reanimación', TRANSF],
+          ['Define', ENDO + ' <strong>La endoscopia resuelve la duda</strong> y define si se suspende el vasoactivo.'],
+          ['No hagas', NOHACER],
+          ['Destino', '<strong>Cama monitorizada</strong> mientras el origen siga sin aclararse.']
+        ]
+      };
+    }
+
+    // 5 · Sangrado refractario tras ligadura
+    if (esc === 'refractario') {
+      return {
+        sev: 'red',
+        tag: 'Falla del tratamiento',
+        title: 'Puente ahora, TIPS de rescate en paralelo',
+        rows: [
+          ['Reconócelo', '<strong>Falla del tratamiento</strong> incluye hematemesis fresca 2 h o más después de iniciado el tratamiento, shock hipovolémico o caída de 3 g/dL de hemoglobina en 24 h sin transfundir. <em>Definición operativa: verificar con protocolo institucional.</em>'],
+          ['Ahora', '<strong>Asegura la vía aérea</strong> e intuba antes de cualquier maniobra de taponamiento. ' + VIAAEREA],
+          ['Puente', RESCATE],
+          ['En paralelo', '<strong>Llama a radiología intervencional y a hepatología en el mismo momento en que pones el puente.</strong> Si tu centro no tiene TIPS, <strong>el traslado es el tratamiento</strong> y se gestiona ya.'],
+          ['Sigue', VASO + ' ' + ATB + ' ' + TRANSF],
+          ['Considera', '<strong>Un segundo intento endoscópico</strong> es razonable solo si el resangrado es leve y el paciente está estable; en la falla franca, la respuesta es el TIPS, no una tercera endoscopia.'],
+          ['No hagas', NOHACER],
+          ['Equipo', UCI]
+        ]
+      };
+    }
+
+    // 6 · Resangrado precoz
+    if (esc === 'resangrado') {
+      return {
+        sev: 'red',
+        tag: 'Resangrado precoz',
+        title: 'Vuelve al inicio y sube un escalón',
+        rows: [
+          ['Primero', '<strong>Reanima de nuevo y reinicia o mantén el vasoactivo y el antibiótico.</strong> ' + TRANSF],
+          ['Endoscopia', '<strong>Nueva endoscopia</strong> para evaluar y tratar: puede haber várices no tratadas, una <strong>úlcera post-ligadura</strong> (típicamente entre el día 5 y el 14) o un origen distinto.'],
+          ['Escalón', '<strong>El resangrado es la señal de que el tratamiento actual no basta:</strong> ' + TIPSPREV + ' En el resangrado grave, la conducta es <strong>TIPS de rescate</strong>.'],
+          ['Busca', '<strong>Qué cambió:</strong> infección intercurrente, peritonitis bacteriana espontánea, trombosis portal, deterioro de la función hepática, transgresión alcohólica, fármacos suspendidos.'],
+          ['Pide', LABS],
+          ['No hagas', NOHACER],
+          ['Equipo', UCI]
+        ]
+      };
+    }
+
+    // 7 · Várices gástricas
+    if (esc === 'gastricas') {
+      return {
+        sev: 'red',
+        tag: 'Várices gástricas',
+        title: 'Otro tratamiento endoscópico y otro plan de rescate',
+        rows: [
+          ['Igual que siempre', VASO + ' ' + ATB + ' ' + TRANSF],
+          ['Endoscopia', '<strong>Las várices gástricas fúndicas no se ligan:</strong> el tratamiento endoscópico habitual es la <strong>inyección de adhesivo tisular (cianoacrilato)</strong>, que requiere experiencia y tiene riesgo de embolización. <em>Disponibilidad y técnica: verificar.</em>'],
+          ['Rescate distinto', '<strong>El balón esofágico y el <em>stent</em> esofágico no controlan las várices fúndicas.</strong> El balón gástrico puede ayudar, pero el camino real es radiológico: <strong>TIPS</strong> o técnicas de obliteración retrógrada transvenosa (BRTO) donde existan.'],
+          ['Busca', '<strong>Trombosis esplénica o portal:</strong> las várices gástricas aisladas obligan a descartar trombosis de la vena esplénica (hipertensión portal segmentaria), cuyo tratamiento definitivo puede ser la esplenectomía. Pide imagen con contraste cuando el paciente lo permita.'],
+          ['Llama', '<strong>Hepatología y radiología intervencional temprano:</strong> aquí el plan endoscópico solo no suele bastar.'],
+          ['No hagas', NOHACER],
+          ['Equipo', UCI]
+        ]
+      };
+    }
+
+    // 8 · ACLF
+    if (esc === 'aclf') {
+      return {
+        sev: 'red',
+        tag: 'Falla hepática aguda sobre crónica',
+        title: 'Dos emergencias a la vez: la hemorragia y las fallas orgánicas',
+        rows: [
+          ['Hemorragia', VASO + ' ' + ATB + ' ' + TRANSF],
+          ['Clasifica', ACLF + ' <strong>Bilirrubina ≥ 12 · creatinina ≥ 2,0 o diálisis · encefalopatía III–IV · INR ≥ 2,5 · vasopresores · PaO₂/FiO₂ ≤ 200.</strong>'],
+          ['Infección', '<strong>Búsqueda agresiva y tratamiento precoz:</strong> paracentesis diagnóstica si hay ascitis (polimorfonucleares ≥ 250/mm³), hemocultivos, orina, radiografía de tórax. <strong>Puede estar afebril y sin leucocitosis.</strong>'],
+          ['Riñón', '<strong>Suspende diuréticos y nefrotóxicos</strong>, evita contrastes innecesarios y corrige la hipovolemia. En la lesión renal aguda del cirrótico, el paso habitual tras retirar diuréticos es la <strong>expansión con albúmina</strong> (esquema clásico de 1 g/kg al día, máximo en torno a 100 g, por 2 días). <em>Verificar con protocolo institucional.</em>'],
+          ['Cerebro', '<strong>Descarta hipoglicemia primero</strong>, luego sedantes, hiponatremia, infección y hemorragia intracraneal. Lactulosa y rifaximina según protocolo; la sangre en el intestino es el precipitante activo.'],
+          ['Vía aérea', VIAAEREA],
+          ['Después', TIPSPREV + ' <strong>Y abre la evaluación de trasplante</strong>: la ventana es corta.'],
+          ['Conversación', '<strong>Con falla orgánica múltiple, sin opción de trasplante y sin control del sangrado, hablar de objetivos de cuidado con la familia y el equipo tratante es parte del trabajo</strong>, no una renuncia.'],
+          ['Equipo', UCI],
+          ['Enlace', LINK_SEPSIS]
+        ]
+      };
+    }
+
+    // 9 · Encefalopatía
+    if (esc === 'encefalo') {
+      return {
+        sev: 'red',
+        tag: 'Encefalopatía con hemorragia',
+        title: 'Glicemia, vía aérea y la sangre que hay que sacar del intestino',
+        rows: [
+          ['Primero', '<strong>Glicemia capilar ahora mismo:</strong> el hepatópata somnoliento es hipoglicémico hasta que el capilar diga lo contrario. Se corrige en segundos y se confunde con encefalopatía todos los días.'],
+          ['Vía aérea', '<strong>Encefalopatía grado III–IV o Glasgow ≤ 8 con hematemesis: intuba.</strong> ' + VIAAEREA],
+          ['Hemorragia', VASO + ' ' + ATB + ' ' + TRANSF],
+          ['Trata la causa', '<strong>La sangre en el tubo digestivo es una carga proteica enorme y es el precipitante activo.</strong> Lactulosa para lograr deposiciones (por sonda solo con la vía aérea protegida), rifaximina según protocolo, corrección de electrolitos y <strong>retirada de sedantes y opioides</strong>.'],
+          ['Descarta', '<strong>No todo lo que confunde a un cirrótico es encefalopatía:</strong> hipoglicemia, hiponatremia, infección —incluida la del sistema nervioso—, intoxicación, abstinencia alcohólica y <strong>hemorragia intracraneal</strong> tras una caída. Umbral bajo para imagen de cerebro.'],
+          ['Pide', LABS],
+          ['No hagas', NOHACER],
+          ['Equipo', UCI]
+        ]
+      };
+    }
+
+    // 10 · Decisión de TIPS preventivo
+    if (esc === 'tips') {
+      return {
+        sev: 'amber',
+        tag: 'Ventana de 72 horas',
+        title: 'Identificar al paciente que necesita TIPS preventivo',
+        rows: [
+          ['Calcula', '<strong>Child-Pugh (sección 02) y MELD</strong>, y déjalos escritos en la ficha junto con el hallazgo endoscópico exacto: si hubo <strong>sangrado activo</strong> durante la endoscopia es un dato decisivo y es el que más se omite.'],
+          ['Criterios', TIPSPREV],
+          ['Llama hoy', '<strong>Hepatología y radiología intervencional el mismo día</strong>, no en el pase de mañana. Si tu centro no tiene TIPS, <strong>ese es el criterio de traslado</strong>.'],
+          ['Mientras tanto', VASO + ' El vasoactivo <strong>no se suspende al salir de la endoscopia</strong>: se mantiene 2–5 días. ' + ATB],
+          ['Cuidado con', '<strong>Situaciones donde el beneficio es dudoso:</strong> insuficiencia hepática terminal, encefalopatía persistente o recurrente, insuficiencia cardíaca o hipertensión pulmonar, sepsis no controlada, hepatocarcinoma avanzado. <em>Umbrales y contraindicaciones: verificar con hepatología.</em>'],
+          ['Si no va a TIPS', '<strong>Profilaxis secundaria antes del alta:</strong> betabloqueador no selectivo más <strong>programa de ligaduras seriadas agendado</strong>, no «para el control».']
+        ]
+      };
+    }
+
+    // 11 · Anticoagulado o trombocitopenia grave
+    if (esc === 'anticoag') {
+      return {
+        sev: 'red',
+        tag: 'Hemostasia alterada por fármacos',
+        title: 'Suspende, revierte solo lo que corresponde y no toques el INR de la cirrosis',
+        rows: [
+          ['Primero', '<strong>Suspende anticoagulante y antiagregante</strong> y consigna fármaco exacto, dosis y <strong>hora de la última toma</strong>: ese dato decide el resto.'],
+          ['Distingue', '<strong>El INR alto de la cirrosis no es lo mismo que una anticoagulación farmacológica.</strong> El primero <strong>no se corrige con plasma</strong>; la segunda puede requerir reversión específica si el sangrado es grave.'],
+          ['Reversión', '<strong>Vitamina K y concentrado de complejo protrombínico</strong> para antagonistas de la vitamina K con sangrado grave; <strong>idarucizumab</strong> para dabigatrán; <strong>andexanet alfa</strong> —donde esté disponible— o complejo protrombínico para inhibidores del factor Xa. <em>Dosis, disponibilidad y criterios: verificar con protocolo institucional y hematología.</em>'],
+          ['Plaquetas', '<strong>No hay un umbral establecido</strong> de transfusión de plaquetas en la hemorragia variceal; la decisión se toma caso a caso en el sangrado masivo y según el protocolo de transfusión masiva local. <em>Verificar.</em>'],
+          ['Consulta', '<strong>Habla con quien indicó la anticoagulación:</strong> una trombosis portal, una válvula mecánica o una trombosis reciente cambian por completo el balance de revertir y de reiniciar.'],
+          ['Igual que siempre', VASO + ' ' + ATB + ' ' + TRANSF],
+          ['No hagas', '<strong>No des ácido tranexámico</strong> y no transfundas plasma «por si acaso». ' + ENDO],
+          ['Equipo', UCI]
+        ]
+      };
+    }
+
+    // 12 · Sin recursos
+    if (esc === 'sinrecursos') {
+      return {
+        sev: 'red',
+        tag: 'Centro sin recursos',
+        title: 'El traslado es parte del tratamiento, y empieza ahora',
+        rows: [
+          ['Lo que sí puedes', '<strong>Las dos intervenciones que más bajan la mortalidad no necesitan endoscopista:</strong> ' + VASO + ' ' + ATB],
+          ['Reanima', TRANSF + ' Con banco de sangre limitado, <strong>prioriza los glóbulos rojos</strong> y evita gastar el recurso en plasma que no corrige nada.'],
+          ['Vía aérea', '<strong>Intuba antes del traslado</strong> si hay hematemesis masiva, encefalopatía o Glasgow ≤ 8: no se intuba bien dentro de una ambulancia. ' + VIAAEREA],
+          ['Activa ya', '<strong>Gestiona el traslado en paralelo, no después de estabilizar.</strong> Llama al centro receptor con el Child-Pugh, el estado hemodinámico y lo que ya administraste. El vasoactivo y el antibiótico <strong>viajan con el paciente</strong>.'],
+          ['Si se desangra', '<strong>El balón de taponamiento es el puente cuando no hay endoscopia</strong>, siempre con el paciente intubado y con la hora de instalación anotada. Requiere operador entrenado y no debe trasladarse sin acompañamiento capaz de retirarlo. ' + RESCATE],
+          ['Prepara', '<strong>Lleva preparado para el trayecto:</strong> sangre, vasoactivo, vasopresor, aspiración portátil y el material de vía aérea, además del registro de lo administrado.'],
+          ['No hagas', NOHACER]
+        ]
+      };
+    }
+
+    return null;
+  }
+
+  function estadoRows() {
+    const extra = [];
+    const e = sel.est;
+    if (e === 'exsang') {
+      extra.push(['Circulación', '<strong>Sangrado exanguinante:</strong> transfunde ya, activa el protocolo de transfusión masiva, vigila <strong>calcio iónico, temperatura y potasio</strong>, y pasa a <strong>terapia de rescate</strong> sin esperar una segunda endoscopia. <strong>El vasopresor complementa, no reemplaza, la sangre.</strong>']);
+    } else if (e === 'shockresp') {
+      extra.push(['Circulación', '<strong>Respuesta transitoria = sigue sangrando.</strong> Prepara el paso siguiente ahora —endoscopia inmediata, rescate, TIPS— y no te tranquilices con la mejoría entre bolos. Reevalúa perfusión, diuresis y lactato cada pocos minutos.']);
+    } else if (e === 'taqui') {
+      extra.push(['Circulación', '<strong>Taquicardia sin hipotensión ya es pérdida significativa</strong>, y <strong>el betabloqueador puede estar enmascarando la respuesta</strong>. Vía, grupo y pruebas cruzadas, y umbral bajo para monitorizar en área de mayor cuidado.']);
+    } else if (e === 'estable') {
+      extra.push(['Circulación', '<strong>Estable no es lo mismo que fuera de riesgo:</strong> el deterioro en el sangrado variceal es brusco. Mantén el vasoactivo y el antibiótico, monitoriza y no lo dejes en un box sin vigilancia esperando la endoscopia.']);
+    } else if (e === 'encef') {
+      extra.push(['Conciencia', '<strong>Glicemia capilar ahora</strong> y <strong>vía aérea:</strong> con encefalopatía grado III–IV o Glasgow ≤ 8 y hematemesis, la intubación es la conducta habitual antes de la endoscopia y obligatoria antes del balón.']);
+    }
+    return extra;
+  }
+
+  function contextRows() {
+    const extra = [];
+    if (f('childc')) {
+      extra.push(['Child C', '<strong>Alto riesgo de falla del tratamiento y de muerte.</strong> Cama crítica, y <strong>evalúa TIPS preventivo dentro de las 72 h</strong> (idealmente 24 h) con hepatología. Deja el puntaje escrito en la ficha.']);
+    }
+    if (f('ascitis')) {
+      extra.push(['Ascitis', '<strong>Paracentesis diagnóstica:</strong> la peritonitis bacteriana espontánea (polimorfonucleares ≥ 250/mm³) es gatillo y consecuencia del sangrado, y la coagulopatía <strong>no la contraindica</strong>. La ascitis a tensión además dificulta la ventilación y la endoscopia.']);
+    }
+    if (f('aki')) {
+      extra.push(['Riñón', '<strong>Suspende diuréticos y nefrotóxicos</strong>, evita contrastes innecesarios y corrige la hipovolemia. Tras retirar diuréticos, el paso habitual en la lesión renal aguda del cirrótico es la <strong>expansión con albúmina</strong> (1 g/kg al día, máximo en torno a 100 g, por 2 días) para diferenciar hipovolemia de síndrome hepatorrenal. <em>Verificar con protocolo institucional.</em>']);
+    }
+    if (f('infeccion')) {
+      extra.push(['Infección', '<strong>Esto ya no es profilaxis: es tratamiento.</strong> Cultivos y antibiótico dirigido según foco y resistencia local, paracentesis si hay ascitis y reevaluación del esquema con infectología. La infección es la causa evitable de muerte más frecuente en este escenario.']);
+    }
+    if (f('alcohol')) {
+      extra.push(['Alcohol', '<strong>Anticipa la abstinencia</strong> —que se confunde con encefalopatía y cuyo tratamiento la empeora si se sobredosifica—, repón <strong>tiamina antes de cualquier glucosa</strong>, y considera la <strong>hepatitis alcohólica aguda</strong> como gatillo. La derivación formal para cesación se indica en esta hospitalización, no en la próxima.']);
+    }
+    if (f('trombo')) {
+      extra.push(['Trombosis portal', '<strong>Cambia el plan:</strong> puede dificultar o modificar el TIPS y obliga a discutir anticoagulación <strong>después</strong> del control del sangrado, con hepatología. Pide imagen con contraste cuando el paciente lo permita y busca hepatocarcinoma.']);
+    }
+    if (f('cardio')) {
+      extra.push(['Corazón', '<strong>Precaución con la terlipresina</strong> (isquemia coronaria, periférica y mesentérica) y umbral transfusional individualizado en la cardiopatía isquémica activa. La insuficiencia cardíaca y la hipertensión pulmonar <strong>pesan en contra del TIPS</strong>. Electrocardiograma y troponina.']);
+    }
+    if (f('betabloq')) {
+      extra.push(['Betabloqueo', '<strong>Suspéndelo durante el sangrado agudo:</strong> impide la respuesta taquicárdica, baja la presión y enmascara la gravedad. <strong>No te fíes de la frecuencia cardíaca.</strong> Se reintroduce después, como profilaxis secundaria, con el paciente estable.']);
+    }
+    if (f('anticoag')) {
+      extra.push(['Anticoagulación', '<strong>Suspende y consigna la hora de la última dosis.</strong> Reversión específica solo si el sangrado es grave, y <strong>sin confundirla con el INR alto de la cirrosis</strong>, que no se corrige con plasma. <em>Dosis y criterios: verificar con hematología.</em>']);
+    }
+    if (f('hipogli')) {
+      extra.push(['Glicemia', '<strong>Corrígela ahora y contrólala seriada:</strong> el hígado insuficiente no sostiene la gluconeogénesis, la hipoglicemia imita la encefalopatía y es una causa de deterioro perfectamente evitable. <strong>Tiamina antes de la glucosa</strong> si hay consumo de alcohol.']);
+    }
+    if (f('sinendo')) {
+      extra.push(['Sin endoscopia', '<strong>El vasoactivo y el antibiótico no dependen del endoscopista</strong> y se indican igual. <strong>Activa el traslado ahora</strong>, y ten listo el balón de taponamiento como puente si el paciente se desangra, con el paciente intubado.']);
+    }
+    if (f('sintips')) {
+      extra.push(['Sin TIPS', '<strong>Identifica temprano al candidato</strong> —Child C, sangrado activo en la endoscopia, falla del tratamiento— porque <strong>ese es el criterio de traslado</strong>. La gestión se hace en paralelo al puente, no después.']);
+    }
+    return extra;
+  }
+
+  function render() {
+    const box = document.getElementById('result');
+    const r = classify();
+    if (!r) {
+      box.className = 'result placeholder';
+      box.innerHTML = 'Selecciona el escenario dominante y el estado circulatorio para ver la prioridad de los primeros ' +
+                      'minutos, los fármacos que se indican antes de la endoscopia, lo que está contraindicado y a quién llamar.';
+      return;
+    }
+    const rows = r.rows.filter(row => row && row[1]);
+    const enlace = rows.length && rows[rows.length - 1][0] === 'Enlace' ? rows.pop() : null;
+    rows.push(...estadoRows());
+    rows.push(...contextRows());
+    if (enlace) rows.push(enlace);
+
+    box.className = 'result sev-' + r.sev;
+    box.innerHTML =
+      '<div class="result-tag">' + r.tag + '</div>' +
+      '<div class="result-title">' + r.title + '</div>' +
+      rows.map(([k, v]) =>
+        '<div class="result-row"><div class="result-key">' + k + '</div><div>' + v + '</div></div>'
+      ).join('');
+  }
+
+  // ── Formato de números ────────────────────────────────────────────
+  function fmt(n) {
+    if (n >= 100) return n.toFixed(0);
+    if (n >= 10) return n.toFixed(1).replace('.', ',');
+    return n.toFixed(2).replace('.', ',');
+  }
+  function fmt0(n) { return n.toFixed(0); }
+  function fmt1(n) { return n.toFixed(1).replace('.', ','); }
+
+  // ── Child-Pugh ────────────────────────────────────────────────────
+  const cpList = document.getElementById('cp-list');
+  const CP_GRUPOS = ['bili', 'alb', 'inr', 'asc', 'enc'];
+
+  const CP_NOTA = '<br><br>El Child-Pugh usa <strong>bilirrubina, albúmina, INR, ascitis y encefalopatía</strong>; dos de ' +
+                  'esos cinco elementos son <strong>clínicos y subjetivos</strong>, y la ascitis y la encefalopatía pueden ' +
+                  'estar modificadas por el tratamiento en curso. En el sangrado agudo, además, la albúmina y el INR se ' +
+                  'alteran por la propia hemorragia y por lo que se transfundió. <strong>Es una calculadora aritmética que ' +
+                  'complementa y no reemplaza la evaluación clínica</strong>, y la indicación de TIPS preventivo la define ' +
+                  'hepatología con el cuadro completo. <em>Umbrales y conducta: verificar con protocolo institucional.</em>';
+
+  function renderCP() {
+    const out = document.getElementById('cp-out');
+    const marcados = cpList.querySelectorAll('.score-item.on');
+    if (!marcados.length) {
+      out.innerHTML = 'Elige una opción en cada una de las cinco categorías. El puntaje va de 5 a 15 y define las clases A, B y C.';
+      return;
+    }
+    let total = 0;
+    marcados.forEach(b => { total += parseInt(b.dataset.p, 10); });
+
+    const elegidos = new Set();
+    marcados.forEach(b => elegidos.add(b.dataset.g));
+    const faltan = CP_GRUPOS.filter(g => !elegidos.has(g)).length;
+
+    let clase, nombre, texto;
+    if (faltan) {
+      clase = 'risk-mid';
+      nombre = total + ' puntos · parcial';
+      texto = 'Marca las cinco categorías para obtener la clase de Child-Pugh.';
+    } else if (total >= 10) {
+      clase = 'risk-high';
+      nombre = total + ' puntos · Child-Pugh C';
+      texto = '<strong>Alto riesgo de falla del tratamiento y de muerte.</strong> Cama crítica. Con puntaje ' +
+              'aproximadamente <strong>entre 10 y 13</strong>, este paciente está en el grupo en que el consenso de ' +
+              'Baveno VII plantea <strong>TIPS preventivo dentro de las 72 horas</strong> —idealmente en las primeras ' +
+              '24—, una vez controlado el sangrado. <strong>Avisa a hepatología y a radiología intervencional hoy</strong>, ' +
+              'y si tu centro no tiene TIPS, ese es el criterio de traslado. Con puntajes más altos el beneficio del ' +
+              'procedimiento es dudoso y la conversación pasa a ser también sobre trasplante y objetivos de cuidado.';
+    } else if (total >= 7) {
+      clase = 'risk-mid';
+      nombre = total + ' puntos · Child-Pugh B';
+      texto = '<strong>Enfermedad hepática significativamente descompensada.</strong> Si en la endoscopia hubo ' +
+              '<strong>sangrado activo</strong> pese al tratamiento vasoactivo, este paciente entra en la discusión de ' +
+              '<strong>TIPS preventivo</strong> —el subgrupo más debatido de los consensos—. <strong>Deja escrito el ' +
+              'hallazgo endoscópico</strong>: es el dato que decide, y el que más se omite. Monitorización y profilaxis ' +
+              'secundaria asegurada antes del alta.';
+    } else {
+      clase = 'risk-low';
+      nombre = total + ' puntos · Child-Pugh A';
+      texto = '<strong>Función hepática relativamente conservada</strong>, con mejor pronóstico del episodio. Eso ' +
+              '<strong>no cambia el manejo agudo</strong>: vasoactivo, antibiótico, transfusión restrictiva y endoscopia ' +
+              'dentro de 12 h siguen siendo exactamente iguales, y la profilaxis secundaria es igual de obligatoria.';
+    }
+
+    const aviso = faltan
+      ? '<br><br><em>Faltan ' + faltan + ' categoría' + (faltan > 1 ? 's' : '') + ' por marcar: el puntaje mostrado es parcial.</em>'
+      : '';
+
+    out.innerHTML = '<span class="big ' + clase + '">' + nombre + '</span>' + texto + aviso + CP_NOTA;
+  }
+
+  cpList.querySelectorAll('.score-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const g = btn.dataset.g;
+      const yaEstaba = btn.classList.contains('on');
+      cpList.querySelectorAll('.score-item[data-g="' + g + '"]').forEach(b => b.classList.remove('on'));
+      if (!yaEstaba) btn.classList.add('on');
+      renderCP();
+    });
+  });
+  document.getElementById('cp-reset').addEventListener('click', () => {
+    cpList.querySelectorAll('.score-item').forEach(b => b.classList.remove('on'));
+    renderCP();
+  });
+
+  // ── Dosis y volúmenes por peso ────────────────────────────────────
+  const pesoInput = document.getElementById('peso');
+  const pesoOut = document.getElementById('peso-out');
+
+  function renderPeso() {
+    const kg = parseFloat(pesoInput.value);
+    if (!kg || kg <= 0 || kg > 250) {
+      pesoOut.innerHTML = 'Ingresa el peso para ver las dosis dependientes del peso —terlipresina por banda, albúmina, volemia estimada— calculadas para este paciente.';
+      return;
+    }
+
+    const terli = kg < 50 ? '1 mg' : (kg <= 70 ? '1,5 mg' : '2 mg');
+    const albumina = Math.min(kg * 1, 100);
+
+    const filas = [
+      ['Terlipresina · esquema clásico', '2 mg IV cada 4 h las primeras 48 h', '2 mg cada 4 h', 'Luego 1 mg cada 4 h. Mantener 2–5 días'],
+      ['Terlipresina · ajuste por banda de peso', '&lt; 50 kg: 1 mg · 50–70 kg: 1,5 mg · &gt; 70 kg: 2 mg', terli + ' cada 4 h', 'Alternativa al esquema fijo. <em>Verificar cuál usa tu servicio</em>'],
+      ['Somatostatina', '250 µg en bolo, luego 250 µg/h', 'No depende del peso', 'Algunos protocolos permiten 500 µg/h en sangrado refractario'],
+      ['Octreotida', '50 µg en bolo, luego 50 µg/h', 'No depende del peso', 'Alternativa más disponible en muchos servicios'],
+      ['Ceftriaxona', '1 g IV cada 24 h', 'No depende del peso', 'Hasta 7 días o hasta el alta. Ajustar a la resistencia local'],
+      ['Albúmina · lesión renal aguda del cirrótico', '1 g/kg al día, máximo ≈ 100 g, por 2 días', '≈ ' + fmt0(albumina) + ' g al día', 'Tras suspender diuréticos, para diferenciar hipovolemia de síndrome hepatorrenal. <em>Verificar esquema institucional</em>'],
+      ['Ketamina para inducción en shock', '≈ 0,5–1 mg/kg IV (dosis reducida)', fmt1(kg * 0.5) + '–' + fmt1(kg * 1) + ' mg', 'Reducir siempre la dosis en el paciente exanguinado. Etomidato es la otra opción habitual'],
+      ['Rocuronio', '≈ 1,2 mg/kg IV', fmt0(kg * 1.2) + ' mg', 'Dosis plena de bloqueador: no se recorta aunque se recorte el inductor'],
+      ['Volemia estimada', '≈ 70 mL/kg en el adulto', '≈ ' + fmt1(kg * 0.07) + ' L', 'Orientativo. Ayuda a dimensionar la pérdida, no reemplaza la evaluación de perfusión'],
+      ['Transfusión de glóbulos rojos', 'Umbral 7 g/dL · meta 7–8 g/dL', 'No se calcula por peso', 'Cada unidad sube la hemoglobina aproximadamente 1 g/dL en el adulto. <strong>Sobrerreanimar aumenta el resangrado</strong>']
+    ].map(d =>
+      '<tr><td>' + d[0] + '</td>' +
+      '<td><span class="dose-note">' + d[1] + '</span></td>' +
+      '<td><span class="dose-main">' + d[2] + '</span><br><span class="dose-note">' + d[3] + '</span></td></tr>'
+    ).join('');
+
+    pesoOut.innerHTML =
+      '<span class="big">Dosis y volúmenes para ' + fmt(kg) + ' kg</span>' +
+      '<div class="table-wrap" style="margin-top:8px;"><table><thead><tr><th>Intervención</th><th>Regla</th><th>Para este paciente</th></tr></thead><tbody>' +
+      filas +
+      '</tbody></table></div>' +
+      '<div style="margin-top:10px;">Calculado sobre <strong>peso real estimado</strong>. Las presentaciones, diluciones, ' +
+      'concentraciones y velocidades de infusión <strong>varían entre servicios</strong>, y las dosis de inducción deben ' +
+      'ajustarse al estado hemodinámico real del paciente, no solo al peso. <em>Verificar con protocolo institucional ' +
+      'antes de administrar.</em></div>';
+  }
+
+  pesoInput.addEventListener('input', renderPeso);
+  document.getElementById('peso-reset').addEventListener('click', () => {
+    pesoInput.value = '';
+    renderPeso();
+  });
+</script>
+</body>
+</html>

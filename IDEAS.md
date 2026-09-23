@@ -67,16 +67,18 @@ tomará en orden la próxima vez que corra.
       (e infarto de ventrículo derecho) — `algoritmo-shock-cardiogenico.html`
 - [x] Status asmático grave con hiperinsuflación dinámica y riesgo de colapso
       hemodinámico a la intubación — `algoritmo-status-asmatico.html`
-- [ ] Tormenta tiroidea o crisis tirotoxicósica con inestabilidad hemodinámica
-      y arritmias complejas
-- [ ] Traumatismo craneoencefálico grave con hipertensión endocraneal
-      refractaria y compromiso multisistémico
-- [ ] Cetoacidosis diabética o estado hiperosmolar severo con shock refractario
-      y desequilibrios electrolíticos extremos
-- [ ] Hemorragia digestiva alta masiva por várices esofágicas con shock
-      hemorrágico y falla hepática aguda sobre crónica
-- [ ] Intoxicaciones graves por bloqueadores de canales de calcio o
-      betabloqueadores con shock vasopléjico y cardiogénico
+- [x] Tormenta tiroidea o crisis tirotoxicósica con inestabilidad hemodinámica
+      y arritmias complejas — `algoritmo-tormenta-tiroidea.html`
+- [x] Traumatismo craneoencefálico grave con hipertensión endocraneal
+      refractaria y compromiso multisistémico — `algoritmo-tec-grave.html`
+- [x] Cetoacidosis diabética o estado hiperosmolar severo con shock refractario
+      y desequilibrios electrolíticos extremos — `algoritmo-cad-ehh.html`
+- [x] Hemorragia digestiva alta masiva por várices esofágicas con shock
+      hemorrágico y falla hepática aguda sobre crónica —
+      `algoritmo-hda-variceal.html`
+- [x] Intoxicaciones graves por bloqueadores de canales de calcio o
+      betabloqueadores con shock vasopléjico y cardiogénico —
+      `algoritmo-intoxicacion-ccb-betabloqueadores.html`
 
 ## 3. Procedimientos HALO
 

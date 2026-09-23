@@ -1,0 +1,2091 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Algoritmo · TEC grave e hipertensión endocraneal refractaria</title>
+<meta name="description" content="Árbol de decisión para el traumatismo craneoencefálico grave en urgencia: reconocer la herniación, evitar la hipoxia y la hipotensión, intubación neuroprotectora, criterios quirúrgicos, osmoterapia de rescate, escalonamiento por niveles de la hipertensión endocraneal refractaria y manejo del paciente con compromiso multisistémico.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99,102,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(239,68,68,0.07) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 40px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(99,102,241,0.1);
+    border: 1px solid rgba(99,102,241,0.28);
+    color: #a5b4fc;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #6366f1, #ef4444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .s1 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s1 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s2 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s3 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s3 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s4 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s4 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s5 .section-num { background: rgba(239,68,68,0.10); color: #fecaca; border: 1px solid rgba(239,68,68,0.18); }
+  .s5 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s6 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s6 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s7 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s7 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s8 .section-num { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s8 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s9 .section-num { background: rgba(20,184,166,0.12); color: #99f6e4; border: 1px solid rgba(20,184,166,0.18); }
+  .s9 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s10 .section-num { background: rgba(59,130,246,0.12); color: #bfdbfe; border: 1px solid rgba(59,130,246,0.18); }
+  .s10 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s11 .section-num { background: rgba(255,255,255,0.06); color: var(--text-dim); border: 1px solid var(--border); }
+  .s11 { --accent: var(--text-dim); --accent-glow: rgba(148,163,184,0.08); }
+
+  /* ORIENTADOR INTERACTIVO */
+  .q-block { margin-bottom: 18px; }
+  .q-block:last-of-type { margin-bottom: 0; }
+
+  .q-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt.on {
+    background: rgba(16,185,129,0.12);
+    border-color: rgba(16,185,129,0.45);
+    color: #6ee7b7;
+  }
+  .opt:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+
+  .result {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface2);
+    padding: 18px 20px;
+    border-left: 3px solid var(--accent, var(--emerald));
+  }
+  .result.placeholder { color: var(--text-muted); font-size: 13px; font-family: var(--mono); line-height: 1.6; }
+
+  .result-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .result-title {
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .result-row {
+    display: flex;
+    gap: 12px;
+    padding: 9px 0;
+    border-top: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .result-row:first-of-type { border-top: none; padding-top: 2px; }
+  .result-key {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    flex: 0 0 104px;
+    padding-top: 3px;
+  }
+  .result-row strong { color: #fff; font-weight: 500; }
+  .result-row em { color: #fcd34d; font-style: normal; }
+
+  .result.sev-red { border-left-color: var(--red); }
+  .result.sev-amber { border-left-color: var(--amber); }
+  .result.sev-green { border-left-color: var(--emerald); }
+
+  /* CALCULADORA */
+  .calc {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-top: 16px;
+  }
+  .calc-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .calc-label.second { margin-top: 18px; }
+  .score-list { display: flex; flex-direction: column; gap: 8px; }
+  .score-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .score-item:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .score-item.on {
+    background: rgba(20,184,166,0.12);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .score-item:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+  .score-list.gate .score-item.on {
+    background: rgba(245,158,11,0.12);
+    border-color: rgba(245,158,11,0.45);
+    color: #fcd34d;
+  }
+  .score-list.danger .score-item.on {
+    background: rgba(239,68,68,0.12);
+    border-color: rgba(239,68,68,0.45);
+    color: #fca5a5;
+  }
+  .score-pts {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  .score-item.on .score-pts { color: #5eead4; border-color: rgba(20,184,166,0.4); }
+  .score-list.gate .score-item.on .score-pts { color: #fcd34d; border-color: rgba(245,158,11,0.4); }
+  .score-list.danger .score-item.on .score-pts { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  .calc-out {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .calc-out strong { color: #fff; font-weight: 500; }
+  .calc-out em { color: #fcd34d; font-style: normal; }
+  .calc-out .big {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: #93c5fd;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .calc-out .big.risk-low { color: #6ee7b7; }
+  .calc-out .big.risk-mid { color: #fcd34d; }
+  .calc-out .big.risk-high { color: #fca5a5; }
+
+  .calc-reset {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 8px 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .calc-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+  /* ENTRADA NUMÉRICA */
+  .calc-field { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .calc-field input {
+    font-family: var(--mono);
+    font-size: 15px;
+    color: #fff;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    width: 130px;
+    -moz-appearance: textfield;
+  }
+  .calc-field input:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: rgba(20,184,166,0.45); }
+  .calc-field .unit {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .toggle-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .toggle-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .toggle-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .toggle-btn.on {
+    background: rgba(20,184,166,0.12);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .toggle-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+  /* BANNERS */
+  .warning-banner, .info-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    color: #fca5a5;
+  }
+  .info-banner {
+    background: rgba(59,130,246,0.06);
+    border: 1px solid rgba(59,130,246,0.18);
+    color: #bfdbfe;
+  }
+  .warning-banner strong, .info-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* CRONOLOGÍA */
+  .timeline { display: flex; flex-direction: column; gap: 10px; }
+  .tl-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 13px 15px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .tl-time {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: #fca5a5;
+    flex: 0 0 74px;
+    padding-top: 2px;
+  }
+  .tl-item strong { color: #fff; font-weight: 500; }
+  .tl-item em { color: #fcd34d; font-style: normal; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* ÁRBOL DE DECISIÓN */
+  .flow { display: flex; flex-direction: column; gap: 10px; }
+  .flow-node {
+    position: relative;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--text-muted);
+    background: rgba(255,255,255,0.02);
+    padding: 12px 15px;
+    font-size: 13.5px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .flow-node strong { color: #fff; font-weight: 500; }
+  .flow-node em { color: #fcd34d; font-style: normal; }
+  .flow-q {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .flow-node.stop { border-left-color: var(--red); background: rgba(239,68,68,0.06); }
+  .flow-node.stop .flow-q { color: #fca5a5; }
+  .flow-node.go { border-left-color: var(--emerald); background: rgba(16,185,129,0.05); }
+  .flow-node.go .flow-q { color: #6ee7b7; }
+  .flow-node.hold { border-left-color: var(--amber); background: rgba(245,158,11,0.05); }
+  .flow-node.hold .flow-q { color: #fcd34d; }
+  .flow-node.ask { border-left-color: var(--blue); background: rgba(59,130,246,0.05); }
+  .flow-node.ask .flow-q { color: #93c5fd; }
+  .flow-branch {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 10px;
+    padding-left: 16px;
+    border-left: 2px dashed rgba(255,255,255,0.10);
+  }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--amber); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .opt { width: 100%; }
+    .result-row { flex-direction: column; gap: 4px; }
+    .result-key { flex: none; padding-top: 0; }
+    .tl-item { flex-direction: column; gap: 6px; }
+    .tl-time { flex: none; }
+    .score-item { align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <div class="header-badge">Patología compleja · Algoritmo</div>
+    <h1>TEC grave <span>e hipertensión endocraneal refractaria</span></h1>
+    <p class="header-sub">
+      En el traumatismo craneoencefálico grave, <strong>la lesión primaria ya ocurrió y no se puede deshacer</strong>:
+      todo lo que se hace en urgencia sirve para evitar la <strong>lesión secundaria</strong>. Y la lesión secundaria
+      tiene dos causas que se pueden medir con un monitor de cabecera —<strong>la hipoxia y la hipotensión</strong>—
+      más una tercera que se puede ver —<strong>la masa que comprime y desplaza el cerebro</strong>—. Un solo episodio
+      de presión arterial sistólica bajo 90 mmHg o de saturación bajo 90 % empeora el pronóstico de forma
+      independiente, y la mayoría de esos episodios ocurren en la reanimación inicial, no en la unidad crítica.
+      Este algoritmo está escrito para las primeras horas: reconocer la herniación y tratarla antes de la imagen,
+      intubar sin hundir la presión, decidir cuándo la sala de operaciones va antes que el escáner, escalonar el
+      tratamiento de la hipertensión endocraneal y sostener al paciente que además está sangrando, hipoxémico o
+      coagulopático.
+    </p>
+  </div>
+
+  <!-- 01 · ÁRBOL DE DECISIÓN -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">Árbol de decisión</div>
+        <div class="section-subtitle">Escenario + examen neurológico + contexto sistémico</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Este bloque <strong>ordena la conducta inmediata, no reemplaza la evaluación completa</strong>. Las tres
+        preguntas que gobiernan las primeras horas son <strong>¿está herniando ahora?</strong>,
+        <strong>¿hay hipoxia o hipotensión que corregir en este minuto?</strong> y <strong>¿hay una masa que un
+        neurocirujano debe evacuar?</strong>. Todo lo demás —la osmoterapia, la sedación, el monitor de presión
+        intracraneana— viene después de esas tres.</span>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">1 · Escenario dominante</div>
+        <div class="opts" id="q-esc">
+          <button type="button" class="opt" data-v="herniacion">Signos de herniación <strong>ahora</strong>: anisocoria o midriasis arreactiva, postura de descerebración o decorticación, caída de 2 o más puntos en el Glasgow motor</button>
+          <button type="button" class="opt" data-v="llegada">TEC grave recién llegado (Glasgow ≤ 8), sin tomografía todavía</button>
+          <button type="button" class="opt" data-v="hipotension">Hipotensión o hipoxemia en el paciente con TEC grave</button>
+          <button type="button" class="opt" data-v="politrauma">Sangrado activo en tórax, abdomen o pelvis junto con el TEC grave</button>
+          <button type="button" class="opt" data-v="masa">Tomografía ya hecha con lesión ocupante de espacio (hematoma extradural, subdural o contusión con efecto de masa)</button>
+          <button type="button" class="opt" data-v="pic">Presión intracraneana monitorizada sobre 22 mmHg pese a las medidas básicas</button>
+          <button type="button" class="opt" data-v="refractaria">Hipertensión endocraneal refractaria pese a niveles 1 y 2 completos</button>
+          <button type="button" class="opt" data-v="deterioro">Paciente que llegó hablando y se está deteriorando («talk and deteriorate»)</button>
+          <button type="button" class="opt" data-v="taco">TEC en paciente anticoagulado o antiagregado</button>
+          <button type="button" class="opt" data-v="convulsion">Convulsión o estado epiléptico postraumático</button>
+          <button type="button" class="opt" data-v="sincentro">Centro sin neurocirugía o sin tomografía: traslado pendiente</button>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">2 · Examen neurológico actual</div>
+        <div class="opts" id="q-neuro">
+          <button type="button" class="opt" data-v="gcs3">Glasgow 3 con pupilas midriáticas arreactivas bilaterales</button>
+          <button type="button" class="opt" data-v="anisocoria">Anisocoria o midriasis unilateral arreactiva</button>
+          <button type="button" class="opt" data-v="gcs48">Glasgow 4–8 con pupilas reactivas</button>
+          <button type="button" class="opt" data-v="fluctuante">Glasgow sobre 8 pero fluctuante o en descenso</button>
+          <button type="button" class="opt" data-v="sedado">Ya intubado y sedado: examen no valorable en este momento</button>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">3 · Contexto sistémico (marca los que apliquen)</div>
+        <div class="opts" id="q-ctx">
+          <button type="button" class="opt" data-v="shock">Shock hemorrágico o necesidad de transfusión masiva</button>
+          <button type="button" class="opt" data-v="hipoxemia">Hipoxemia o lesión torácica significativa</button>
+          <button type="button" class="opt" data-v="coagulopatia">Coagulopatía conocida, anticoagulante o antiagregante</button>
+          <button type="button" class="opt" data-v="alcohol">Intoxicación por alcohol o drogas que confunde el examen</button>
+          <button type="button" class="opt" data-v="cervical">Sospecha de lesión de columna cervical</button>
+          <button type="button" class="opt" data-v="anciano">Adulto mayor o paciente frágil</button>
+          <button type="button" class="opt" data-v="embarazo">Embarazo</button>
+          <button type="button" class="opt" data-v="pediatrico">Paciente pediátrico</button>
+          <button type="button" class="opt" data-v="sinneuro">Sin neurocirugía ni unidad crítica en el centro</button>
+          <button type="button" class="opt" data-v="ninguno">Ninguno de los anteriores</button>
+        </div>
+      </div>
+
+      <div class="result placeholder" id="result">
+        Selecciona el escenario dominante y el examen neurológico para ver la prioridad, qué hacer en los primeros
+        minutos, qué está contraindicado y a quién llamar.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · RECONOCER Y GRADUAR -->
+  <div class="section s2" id="s2" style="animation-delay:0.12s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Graduar el TEC y reconocer la herniación</div>
+        <div class="section-subtitle">Glasgow y pupilas · calculadora GCS y GCS-P</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>El Glasgow que importa para clasificar es el <strong>mejor puntaje tras la reanimación inicial</strong>,
+        no el de la escena ni el del paciente en shock profundo o en apnea. Y el puntaje que mejor discrimina es el
+        <strong>componente motor</strong>. Anota siempre <strong>el Glasgow previo a la sedación y a la relajación
+        muscular</strong>: una vez intubado y paralizado, ese examen ya no se puede recuperar, y es el que usarán el
+        neurocirujano y la unidad crítica durante los días siguientes.</span>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Escala de coma de Glasgow y GCS-P</div>
+        <div class="score-list" id="gcs-list">
+
+          <div class="calc-label" style="margin-top:2px;">Respuesta ocular</div>
+          <button type="button" class="score-item" data-g="o" data-p="4">Espontánea<span class="score-pts">4</span></button>
+          <button type="button" class="score-item" data-g="o" data-p="3">Al llamado o a la orden verbal<span class="score-pts">3</span></button>
+          <button type="button" class="score-item" data-g="o" data-p="2">Al estímulo doloroso<span class="score-pts">2</span></button>
+          <button type="button" class="score-item" data-g="o" data-p="1">Sin apertura ocular<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-g="o" data-p="1" data-nv="1">No valorable: edema palpebral o trauma orbitario<span class="score-pts">NV</span></button>
+
+          <div class="calc-label" style="margin-top:14px;">Respuesta verbal</div>
+          <button type="button" class="score-item" data-g="v" data-p="5">Orientado<span class="score-pts">5</span></button>
+          <button type="button" class="score-item" data-g="v" data-p="4">Confuso<span class="score-pts">4</span></button>
+          <button type="button" class="score-item" data-g="v" data-p="3">Palabras inapropiadas<span class="score-pts">3</span></button>
+          <button type="button" class="score-item" data-g="v" data-p="2">Sonidos incomprensibles<span class="score-pts">2</span></button>
+          <button type="button" class="score-item" data-g="v" data-p="1">Sin respuesta verbal<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-g="v" data-p="1" data-nv="1">No valorable: intubado o traqueostomizado<span class="score-pts">NV</span></button>
+
+          <div class="calc-label" style="margin-top:14px;">Respuesta motora (la que más pesa)</div>
+          <button type="button" class="score-item" data-g="m" data-p="6">Obedece órdenes<span class="score-pts">6</span></button>
+          <button type="button" class="score-item" data-g="m" data-p="5">Localiza el dolor<span class="score-pts">5</span></button>
+          <button type="button" class="score-item" data-g="m" data-p="4">Retirada o flexión normal al dolor<span class="score-pts">4</span></button>
+          <button type="button" class="score-item" data-g="m" data-p="3">Flexión anormal: decorticación<span class="score-pts">3</span></button>
+          <button type="button" class="score-item" data-g="m" data-p="2">Extensión: descerebración<span class="score-pts">2</span></button>
+          <button type="button" class="score-item" data-g="m" data-p="1">Sin respuesta motora<span class="score-pts">1</span></button>
+
+          <div class="calc-label" style="margin-top:14px;">Reactividad pupilar (para el GCS-P)</div>
+          <button type="button" class="score-item" data-g="p" data-p="0">Ambas pupilas reactivas a la luz<span class="score-pts">−0</span></button>
+          <button type="button" class="score-item" data-g="p" data-p="1">Una pupila arreactiva<span class="score-pts">−1</span></button>
+          <button type="button" class="score-item" data-g="p" data-p="2">Ambas pupilas arreactivas<span class="score-pts">−2</span></button>
+
+        </div>
+        <div class="calc-out" id="gcs-out">Elige una opción en cada categoría. El Glasgow va de 3 a 15 y el GCS-P de 1 a 15.</div>
+        <button type="button" class="calc-reset" id="gcs-reset">Limpiar</button>
+      </div>
+
+      <div class="subhead">Cómo se lee</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Puntaje</th><th>Categoría</th><th>Conducta en urgencia</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>13–15</td>
+              <td>TEC leve</td>
+              <td>Reglas de decisión de imagen (Canadiense, New Orleans) y observación. <strong>No es este algoritmo</strong>: usa la guía de policontusiones</td>
+            </tr>
+            <tr>
+              <td>9–12</td>
+              <td>TEC moderado</td>
+              <td>Tomografía siempre, observación monitorizada y <strong>reevaluación neurológica seriada</strong>: una proporción se deteriora a grave en las primeras horas</td>
+            </tr>
+            <tr>
+              <td>≤ 8</td>
+              <td><strong>TEC grave</strong></td>
+              <td>Vía aérea definitiva, tomografía precoz, neurocirugía avisada, unidad crítica. <strong>Este algoritmo</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span>El <strong>GCS-P</strong> (Glasgow más reactividad pupilar, Brennan y Murray, 2018) resta al Glasgow un
+        punto por cada pupila arreactiva y extiende la escala hacia abajo, de 1 a 15. Sirve para separar pronósticos
+        dentro del grupo más grave —un Glasgow 3 con pupilas reactivas no es lo mismo que un Glasgow 3 con ambas
+        arreactivas— y se usa en los modelos pronósticos <strong>IMPACT</strong> y <strong>CRASH</strong>. Es una
+        herramienta descriptiva y de comunicación entre equipos: <strong>no decide por sí sola ninguna conducta</strong>,
+        y menos aún una limitación del esfuerzo terapéutico en las primeras horas.</span>
+      </div>
+
+      <div class="subhead">Signos de herniación: actuar antes de la imagen</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">👁️</span><span><strong>Anisocoria con midriasis arreactiva:</strong> el uncus comprime el tercer par del mismo lado. La pupila dilatada indica habitualmente el <strong>lado de la lesión</strong>, aunque hay excepciones (fenómeno de Kernohan, trauma ocular directo, midriático instilado).</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🧍</span><span><strong>Postura de descerebración</strong> (extensión) o <strong>decorticación</strong> (flexión), espontánea o al estímulo doloroso.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">📉</span><span><strong>Caída de 2 o más puntos en el Glasgow</strong>, sobre todo en el componente motor, en un paciente que estaba mejor hace minutos.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">💓</span><span><strong>Tríada de Cushing:</strong> hipertensión arterial con presión de pulso amplia, <strong>bradicardia</strong> y respiración irregular. Es <strong>tardía y poco sensible</strong>: su ausencia no descarta nada, su presencia es una emergencia.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🫁</span><span><strong>Patrón respiratorio anormal o apnea</strong> en el paciente no sedado: Cheyne-Stokes, hiperventilación central, respiración atáxica.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧷</span><span><strong>Trampa:</strong> la hipotensión con bradicardia también puede ser <strong>shock neurogénico</strong> por lesión medular cervical alta, y la hipotensión con taquicardia en el politraumatizado es <strong>hemorragia hasta que se demuestre lo contrario</strong>. La hipotensión <em>no</em> se atribuye al TEC salvo en la fase terminal de la herniación.</span></div>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./guia-policontusiones.html">→ Guía: policontusiones y TEC leve</a>
+        <a class="cross-link" href="./checklist-politrauma_2.html">→ Checklist: politrauma</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · PRIMEROS MINUTOS -->
+  <div class="section s3" id="s3" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Los primeros minutos: fisiología y vía aérea</div>
+        <div class="section-subtitle">Los dos asesinos · intubación neuroprotectora</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>La hipoxia y la hipotensión son los dos asesinos del TEC grave.</strong> Un solo episodio de
+        presión arterial sistólica bajo 90 mmHg o de saturación bajo 90 % se asocia de forma independiente a peor
+        pronóstico, y buena parte de esos episodios ocurren <strong>durante la intubación y el traslado</strong>, en
+        nuestras manos. Antes de pensar en osmoterapia o en monitor de presión intracraneana, lo que salva cerebro es
+        <strong>oxigenar y perfundir</strong>.</span>
+      </div>
+
+      <div class="subhead">Metas fisiológicas de las primeras horas</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Variable</th><th>Meta</th><th>Por qué</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Saturación / PaO₂</td>
+              <td><span class="dose-main">SpO₂ ≥ 94 % · PaO₂ &gt; 60 mmHg</span><br><span class="dose-note">evitar SpO₂ &lt; 90 %</span></td>
+              <td>La hipoxia duplica la mortalidad en las series clásicas. Evita también la <strong>hiperoxia prolongada</strong> innecesaria</td>
+            </tr>
+            <tr>
+              <td>Presión arterial sistólica</td>
+              <td><span class="dose-main">≥ 110 mmHg</span><br><span class="dose-note">BTF 2016: ≥ 110 entre 15–49 y &gt; 70 años; ≥ 100 entre 50–69 años</span></td>
+              <td>Es el umbral mínimo, no el objetivo. En el paciente con presión intracraneana elevada la presión que importa es la <strong>presión de perfusión cerebral</strong></td>
+            </tr>
+            <tr>
+              <td>PaCO₂ / EtCO₂</td>
+              <td><span class="dose-main">PaCO₂ 35–40 mmHg</span><br><span class="dose-note">EtCO₂ 35–40 mmHg, correlacionado con un gas</span></td>
+              <td><strong>Normocapnia estricta.</strong> La hipercapnia vasodilata y sube la presión intracraneana; la hiperventilación profiláctica produce isquemia</td>
+            </tr>
+            <tr>
+              <td>Temperatura</td>
+              <td><span class="dose-main">Normotermia, 36–37,5 °C</span></td>
+              <td>La fiebre aumenta el consumo metabólico cerebral y empeora el pronóstico. Se trata activamente</td>
+            </tr>
+            <tr>
+              <td>Glicemia</td>
+              <td><span class="dose-main">≈ 140–180 mg/dL</span><br><span class="dose-note">rango según protocolo local</span></td>
+              <td>Tanto la hiperglicemia como la hipoglicemia agravan la lesión secundaria. <strong>El control estricto no ha demostrado beneficio y aumenta la hipoglicemia</strong></td>
+            </tr>
+            <tr>
+              <td>Sodio y osmolalidad</td>
+              <td><span class="dose-main">Natremia normal-alta</span><br><span class="dose-note">evitar natremia &lt; 135 mmol/L</span></td>
+              <td>Los <strong>sueros hipotónicos están prohibidos</strong>: el suero glucosado al 5 % y, en menor grado, el Ringer lactato aumentan el edema cerebral. Cristaloide de elección: <strong>cloruro de sodio 0,9 %</strong></td>
+            </tr>
+            <tr>
+              <td>Posición y retorno venoso</td>
+              <td><span class="dose-main">Cabecera a 30°, cuello neutro</span></td>
+              <td>Suelta el collar cervical apretado y las amarras del tubo: la compresión yugular sube la presión intracraneana sin que nadie lo note</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Intubación neuroprotectora: la secuencia rápida que no hunde la presión</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1️⃣</span><span><strong>Indicaciones de vía aérea definitiva:</strong> Glasgow ≤ 8, incapacidad de proteger la vía aérea, hipoxemia o hipoventilación que no corrigen, agitación que impide el estudio o el traslado, y el paciente que va a ser trasladado a otro centro.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2️⃣</span><span><strong>Optimiza antes de inducir:</strong> preoxigenación, volumen y vasopresor <strong>listos y conectados</strong> —no «por si acaso»— porque la inducción y la ventilación con presión positiva bajan la presión arterial justo cuando el cerebro menos lo tolera. Corrige la hipotensión <strong>antes</strong> del laringoscopio siempre que sea posible.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3️⃣</span><span><strong>Inmovilización cervical con estabilización manual en línea</strong> y retiro de la parte anterior del collar durante la laringoscopia: mejora la visión y evita el compromiso venoso. Se asume lesión cervical hasta descartarla.</span></div>
+        <div class="plain-item"><span class="bullet-icon">4️⃣</span><span><strong>Inductor según hemodinamia.</strong> La <strong>ketamina ya no está contraindicada en el TEC</strong>: la evidencia actual no muestra aumento clínicamente relevante de la presión intracraneana en el paciente sedado y ventilado, y preserva mejor la presión arterial. El <strong>etomidato</strong> es la alternativa hemodinámicamente estable. El <strong>propofol</strong> es neuroprotector en teoría, pero <strong>hipotensor</strong>: si se usa, en dosis reducida y con vasopresor en marcha.</span></div>
+        <div class="plain-item"><span class="bullet-icon">5️⃣</span><span><strong>Relajante muscular en dosis plena</strong> para lograr condiciones ideales al primer intento: rocuronio 1,2 mg/kg o succinilcolina 1,5 mg/kg. El primer intento fallido, con la desaturación y la respuesta simpática que trae, es en sí mismo una lesión secundaria.</span></div>
+        <div class="plain-item"><span class="bullet-icon">6️⃣</span><span><strong>Después del tubo:</strong> capnografía continua con meta 35–40 mmHg, <strong>sedación y analgesia en infusión</strong> (el paciente relajado pero no sedado tiene picos de presión intracraneana), volumen corriente protector y cabecera a 30°. <strong>Confirma el gas arterial</strong> para calibrar el EtCO₂.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Lo que no se hace:</strong> hiperventilar «por rutina» al conectar el ventilador, usar el tubo nasotraqueal a ciegas ante sospecha de fractura de base de cráneo, dejar al paciente paralizado sin sedación, y demorar la intubación para completar exámenes en el paciente que no protege su vía aérea.</span></div>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span>El uso de <strong>lidocaína o de un bolo de fentanilo como premedicación</strong> para atenuar la respuesta
+        presora a la laringoscopia es una práctica tradicional con <strong>evidencia débil</strong> y con riesgo de
+        hipotensión en el paciente hipovolémico. Si se usa fentanilo, que sea en dosis baja y en el paciente
+        hemodinámicamente estable. <em>Verificar con protocolo institucional.</em></span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · IMAGEN Y NEUROCIRUGÍA -->
+  <div class="section s4" id="s4" style="animation-delay:0.24s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Tomografía y decisión quirúrgica</div>
+        <div class="section-subtitle">Qué evacuar · qué va primero en el politraumatizado</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Ninguna medida médica reemplaza la evacuación de una masa.</strong> La osmoterapia, la sedación y
+        la hiperventilación de rescate <strong>compran minutos</strong> para llegar al pabellón: si hay un hematoma
+        extradural o subdural con efecto de masa, el tratamiento es quirúrgico y el reloj corre desde la anisocoria,
+        no desde el ingreso. <strong>Llama al neurocirujano con la sospecha, no con el informe.</strong></span>
+      </div>
+
+      <div class="subhead">Tomografía de cerebro sin contraste</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">⏱️</span><span><strong>Cuándo:</strong> en todo TEC grave, <strong>lo antes posible tras estabilizar la vía aérea y la hemodinamia</strong>. El paciente inestable no se lleva al escáner: primero se controla el sangrado.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔁</span><span><strong>Tomografía de control:</strong> ante <strong>deterioro neurológico</strong>, ante aumento sostenido de la presión intracraneana sin explicación, y de forma programada en las primeras 6–12 h en lesiones con riesgo de progresión —contusiones, sangrado en paciente anticoagulado, primera imagen muy precoz—. <em>El intervalo exacto se define con el protocolo institucional y con neurocirugía.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🧠</span><span><strong>Qué mirar más allá del hematoma:</strong> <strong>desviación de la línea media</strong>, estado de las <strong>cisternas basales</strong> (comprimidas o ausentes es un marcador de mal pronóstico y de presión intracraneana elevada), hemorragia subaracnoidea traumática, hemorragia intraventricular, neumoencéfalo, fracturas de cráneo y de base de cráneo, y lesión axonal difusa (que puede verse engañosamente «normal» en la tomografía inicial).</span></div>
+        <div class="plain-item"><span class="bullet-icon">🦴</span><span><strong>Columna cervical:</strong> en el TEC grave se estudia junto con el cerebro. La incidencia de lesión cervical asociada es suficiente para no postergarla, y el paciente inconsciente no puede ser evaluado clínicamente.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Angiotomografía de vasos de cuello</strong> ante mecanismo o hallazgos de riesgo de <strong>lesión cerebrovascular contusa</strong>: fractura que atraviesa el canal carotídeo o el foramen transverso, fractura cervical, lesión por cinturón en el cuello, déficit no explicado por la tomografía. <em>Los criterios de tamizaje (Denver, Memphis) y la conducta antitrombótica se definen con el protocolo institucional.</em></span></div>
+      </div>
+
+      <div class="subhead">Lesiones que habitualmente se evacúan</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Lesión</th><th>Criterio quirúrgico habitual</th><th>Nota</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Hematoma extradural</td>
+              <td><span class="dose-main">Volumen &gt; 30 cm³</span><br><span class="dose-note">independiente del Glasgow</span></td>
+              <td>La lesión más <strong>tiempo-dependiente y más recuperable</strong>: el clásico intervalo lúcido seguido de deterioro. Evacuado a tiempo puede tener excelente resultado</td>
+            </tr>
+            <tr>
+              <td>Hematoma subdural agudo</td>
+              <td><span class="dose-main">Espesor &gt; 10 mm o desviación de línea media &gt; 5 mm</span><br><span class="dose-note">independiente del Glasgow</span></td>
+              <td>Si es menor pero el paciente tiene Glasgow ≤ 8: operar si cae ≥ 2 puntos de Glasgow, hay pupila asimétrica o fija, o la presión intracraneana supera 20 mmHg</td>
+            </tr>
+            <tr>
+              <td>Contusión o hematoma intraparenquimatoso</td>
+              <td><span class="dose-main">&gt; 50 cm³</span>, o &gt; 20 cm³ con desviación ≥ 5 mm o compresión cisternal más deterioro clínico e hipertensión endocraneal refractaria</td>
+              <td>Decisión individualizada por neurocirugía; la progresión en las primeras horas es la regla</td>
+            </tr>
+            <tr>
+              <td>Lesión de fosa posterior</td>
+              <td><span class="dose-main">Efecto de masa</span>: distorsión del cuarto ventrículo, compresión de cisternas o hidrocefalia obstructiva</td>
+              <td>Deterioro <strong>rápido e impredecible</strong>. Umbral quirúrgico bajo</td>
+            </tr>
+            <tr>
+              <td>Fractura deprimida abierta</td>
+              <td><span class="dose-main">Hundimiento mayor que el espesor de la tabla</span></td>
+              <td>Elevación y aseo quirúrgico; antibiótico y evaluación de fístula de líquido cefalorraquídeo según protocolo</td>
+            </tr>
+            <tr>
+              <td>Hidrocefalia o hipertensión refractaria</td>
+              <td><span class="dose-main">Ventriculostomía</span></td>
+              <td>Monitoriza y <strong>trata a la vez</strong>: permite drenar líquido cefalorraquídeo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span>Los umbrales de la tabla siguen las <em>Guidelines for the Surgical Management of Traumatic Brain Injury</em>
+        (Bullock y cols., 2006), que siguen siendo la referencia más citada. <strong>Son orientativos y no reemplazan la
+        decisión del neurocirujano</strong>, que integra la edad, el mecanismo, las cisternas, la comorbilidad y la
+        trayectoria clínica. Una estimación rápida de volumen con la fórmula <strong>A × B × C / 2</strong> (diámetros
+        máximos en centímetros en los tres ejes) sirve para comunicar la magnitud por teléfono, no para decidir.</span>
+      </div>
+
+      <div class="subhead">Cuando el paciente además está sangrando: quién va primero</div>
+      <div class="flow">
+        <div class="flow-node ask"><span class="flow-q">Pregunta</span>¿El paciente tiene <strong>hemorragia no compresible con inestabilidad</strong> (tórax, abdomen, pelvis) <strong>y</strong> sospecha de masa intracraneana?</div>
+        <div class="flow-branch">
+          <div class="flow-node stop"><span class="flow-q">Inestable por sangrado</span><strong>El sangrado gana.</strong> Control de la hemorragia primero —pabellón, angiografía o toracostomía—: un paciente exanguinado no sobrevive a la craneotomía perfecta. En paralelo: sedación, normocapnia, cabecera elevada y <strong>osmoterapia de rescate si hay signos de herniación</strong>. Discute con neurocirugía la instalación del monitor de presión intracraneana <strong>en el mismo pabellón</strong>.</div>
+          <div class="flow-node hold"><span class="flow-q">Estable o transitoriamente estable</span>Tomografía de cerebro y cuerpo en el mismo traslado al escáner, con equipo completo acompañando, y de ahí a pabellón según el hallazgo dominante.</div>
+          <div class="flow-node go"><span class="flow-q">Herniación con sangrado controlado</span><strong>Pabellón para evacuación</strong> sin esperar exámenes adicionales, con la reanimación en curso y el banco de sangre activado.</div>
+        </div>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./checklist-politrauma_2.html">→ Checklist: politrauma y control de hemorragia</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · HERNIACIÓN Y RESCATE -->
+  <div class="section s5" id="s5" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Herniación: maniobras de rescate</div>
+        <div class="section-subtitle">Osmoterapia · hiperventilación como puente · dosis por peso</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>Ante signos de herniación, <strong>la osmoterapia se administra sin esperar la tomografía ni el monitor de
+        presión intracraneana</strong>. Pero entiende qué estás haciendo: son <strong>minutos comprados</strong> para
+        llegar al pabellón o al escáner. Si no hay un plan quirúrgico o de escalamiento detrás, el efecto se agota y el
+        paciente vuelve a herniar.</span>
+      </div>
+
+      <div class="subhead">Secuencia ante herniación aguda</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-time">0–1 min</div><div><strong>Revisa lo reversible primero:</strong> cabecera a 30° y cuello neutro, <strong>suelta el collar y las amarras del tubo</strong>, verifica que el tubo no esté obstruido ni el paciente desadaptado del ventilador, y que la sedación sea suficiente. Una parte de los picos de presión intracraneana son mecánicos y se resuelven en segundos.</div></div>
+        <div class="tl-item"><div class="tl-time">1–2 min</div><div><strong>Corrige hipotensión e hipoxemia</strong> en paralelo. Con la presión arterial baja, bajar la presión intracraneana no sirve de nada: lo que importa es la <strong>presión de perfusión cerebral</strong>.</div></div>
+        <div class="tl-item"><div class="tl-time">2–5 min</div><div><strong>Osmoterapia en bolo:</strong> suero salino hipertónico o manitol (ver tabla y calculadora). <strong>Es la maniobra farmacológica de rescate.</strong></div></div>
+        <div class="tl-item"><div class="tl-time">2–5 min</div><div><strong>Bolo de sedación y analgesia</strong>, y <strong>relajación muscular</strong> si el paciente tose, puja o lucha contra el ventilador. <em>Recuerda que el relajante borra el examen neurológico:</em> documenta el examen antes.</div></div>
+        <div class="tl-item"><div class="tl-time">5 min</div><div><strong>Hiperventilación solo como puente:</strong> PaCO₂ 30–35 mmHg, con capnografía, <strong>por el menor tiempo posible</strong> y mientras se resuelve la causa. <em>Nunca profiláctica, nunca por debajo de 30 mmHg salvo situación extrema y monitorizada.</em></div></div>
+        <div class="tl-item"><div class="tl-time">En paralelo</div><div><strong>Neurocirugía y pabellón activados</strong>, tomografía apenas sea seguro trasladar, banco de sangre y reversión de anticoagulación si corresponde.</div></div>
+      </div>
+
+      <div class="subhead">Osmoterapia: las dos opciones</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Agente</th><th>Dosis habitual en el adulto</th><th>Consideraciones</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Suero salino hipertónico 3 %</td>
+              <td><span class="dose-main">≈ 3–5 mL/kg en 10–20 min</span><br><span class="dose-note">bolo típico 250 mL</span></td>
+              <td>Preferible en el <strong>paciente hipotenso o hipovolémico</strong>: expande volumen en vez de contraerlo. Vía central preferente; la vía periférica de buen calibre se acepta para el 3 % en la emergencia según protocolo local</td>
+            </tr>
+            <tr>
+              <td>Salino hipertónico 23,4 %</td>
+              <td><span class="dose-main">30 mL en 10–20 min</span><br><span class="dose-note">dosis fija</span></td>
+              <td><strong>Vía central obligatoria.</strong> Máxima potencia osmótica en el menor volumen. Riesgo de hipotensión transitoria si se pasa rápido. <em>Disponibilidad y preparación varían: verificar con protocolo institucional</em></td>
+            </tr>
+            <tr>
+              <td>Manitol 20 %</td>
+              <td><span class="dose-main">0,25–1 g/kg en 15–20 min</span></td>
+              <td><strong>Diurético osmótico:</strong> puede causar <strong>hipotensión e hipovolemia</strong> por diuresis. Evitar en el paciente en shock. Vigila natremia, osmolalidad, función renal y balance; usa filtro y vía permeable</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span>Los ensayos comparativos no han demostrado de forma concluyente la superioridad de uno sobre otro en
+        desenlace neurológico. En la práctica, <strong>el salino hipertónico se prefiere en el paciente hipotenso, en
+        shock o hiponatrémico</strong>, y el manitol en el paciente normovolémico con buena función renal. Los límites
+        de seguridad que se citan habitualmente —natremia hasta 155–160 mmol/L, osmolalidad bajo 320 mOsm/kg con
+        manitol, <em>gap</em> osmolar— son <strong>orientativos y varían entre protocolos</strong>: verificar con
+        protocolo institucional y con cuidados críticos. La <strong>corrección de la natremia debe ser controlada</strong>:
+        el descenso brusco tras días de terapia hipertónica puede producir edema de rebote.</span>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Dosis por peso · rescate y neuroprotección</div>
+        <div class="calc-field">
+          <input type="number" id="peso" min="20" max="250" step="1" inputmode="decimal" placeholder="70">
+          <span class="unit">kg · peso real estimado</span>
+        </div>
+        <div class="calc-out" id="peso-out">Ingresa el peso para ver la osmoterapia, las dosis de inducción y el ácido tranexámico calculados para este paciente.</div>
+        <button type="button" class="calc-reset" id="peso-reset">Limpiar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · PIC Y PPC -->
+  <div class="section s6" id="s6" style="animation-delay:0.36s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Presión intracraneana y presión de perfusión</div>
+        <div class="section-subtitle">Umbrales · calculadora de PPC · escalonamiento por niveles</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Umbrales de referencia</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Variable</th><th>Umbral</th><th>Fuente y matiz</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Presión intracraneana</td>
+              <td><span class="dose-main">Tratar sobre 22 mmHg</span></td>
+              <td>Brain Trauma Foundation, 4.ª edición (2016). No es un número mágico: lo que se trata es la <strong>tendencia sostenida</strong>, no un pico aislado de segundos</td>
+            </tr>
+            <tr>
+              <td>Presión de perfusión cerebral</td>
+              <td><span class="dose-main">60–70 mmHg</span></td>
+              <td>PPC = PAM − PIC. <strong>Forzarla sobre 70</strong> con volumen y vasopresores aumenta el riesgo de distrés respiratorio sin mejorar el pronóstico</td>
+            </tr>
+            <tr>
+              <td>Oxigenación tisular cerebral (PbtO₂)</td>
+              <td><span class="dose-main">&gt; 20 mmHg</span><br><span class="dose-note">donde esté disponible</span></td>
+              <td>El beneficio del manejo guiado por PbtO₂ sobre el manejo guiado solo por presión intracraneana <strong>sigue en discusión</strong>. <em>Verificar con protocolo institucional</em></td>
+            </tr>
+            <tr>
+              <td>Indicación de monitorizar</td>
+              <td><span class="dose-main">Glasgow 3–8 con tomografía anormal</span></td>
+              <td>Con tomografía normal, se considera si hay <strong>2 o más</strong> de: edad &gt; 40 años, postura motora anormal, presión sistólica &lt; 90 mmHg. La decisión es de neurocirugía y cuidados críticos</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Calculadora de presión de perfusión cerebral</div>
+        <div class="calc-field">
+          <input type="number" id="pam" min="20" max="200" step="1" inputmode="decimal" placeholder="85">
+          <span class="unit">mmHg · presión arterial media</span>
+        </div>
+        <div class="calc-field" style="margin-top:10px;">
+          <input type="number" id="pic" min="0" max="100" step="1" inputmode="decimal" placeholder="20">
+          <span class="unit">mmHg · presión intracraneana</span>
+        </div>
+        <div class="calc-out" id="ppc-out">Ingresa la presión arterial media y la presión intracraneana para calcular la presión de perfusión cerebral.</div>
+        <button type="button" class="calc-reset" id="ppc-reset">Limpiar</button>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span>El <strong>transductor de presión arterial se nivela a la altura del trago</strong> (agujero de Monro), no
+        a la línea axilar media, cuando lo que se quiere es la presión de perfusión cerebral: nivelarlo al corazón
+        sobreestima la presión que llega al cerebro, sobre todo con la cabecera elevada. <em>La convención exacta se
+        define con el protocolo institucional</em>, pero debe ser la misma para todo el equipo y quedar registrada.</span>
+      </div>
+
+      <div class="subhead">Escalonamiento por niveles (enfoque SIBICC)</div>
+      <div class="flow">
+        <div class="flow-node go"><span class="flow-q">Nivel 0 · base para todos</span>Cabecera 30°, cuello neutro, collar suelto, <strong>analgesia y sedación adecuadas</strong>, normocapnia (PaCO₂ 35–40), normotermia, normoglicemia, normonatremia o natremia alta, evitar hipotensión e hipoxemia, tratar la fiebre, <strong>profilaxis de convulsiones los primeros 7 días</strong>, cabeza y cuerpo sin obstáculos al retorno venoso.</div>
+        <div class="flow-node ask"><span class="flow-q">Nivel 1</span>Profundizar la <strong>sedación y la analgesia</strong>; <strong>drenaje de líquido cefalorraquídeo</strong> si hay ventriculostomía; <strong>bolos de osmoterapia</strong> (salino hipertónico o manitol); mantener la presión de perfusión en el rango objetivo con volumen y vasopresor; considerar <strong>relajación muscular</strong> si hay desadaptación al ventilador.</div>
+        <div class="flow-node hold"><span class="flow-q">Nivel 2</span><strong>Relajación muscular en infusión</strong>; <strong>hipocapnia leve</strong> (PaCO₂ 32–35 mmHg) con monitorización; <strong>prueba de autorregulación</strong> para ajustar el objetivo de presión de perfusión; <strong>nueva tomografía</strong> para buscar una lesión quirúrgica que haya aparecido o progresado. <em>Aquí ya debe estar discutido el plan de nivel 3.</em></div>
+        <div class="flow-node stop"><span class="flow-q">Nivel 3 · rescate</span><strong>Coma barbitúrico</strong>, <strong>hipotermia moderada</strong> (35–36 °C) o <strong>craniectomía descompresiva secundaria</strong>. Son medidas de alto riesgo, con beneficio sobre la mortalidad pero no necesariamente sobre la calidad del resultado funcional: se deciden con neurocirugía y cuidados críticos, e idealmente conversadas con la familia.</div>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span>El esquema por niveles proviene del <strong>consenso de Seattle (SIBICC, Hawryluk y cols., 2019)</strong>,
+        pensado para la unidad crítica. En urgencia rara vez se pasa del nivel 1, pero conocer la escalera sirve para
+        dos cosas: <strong>no saltarse los peldaños baratos y reversibles</strong> —posición, sedación, capnia— antes de
+        los caros y riesgosos, y <strong>anticipar la conversación</strong> con la unidad crítica y neurocirugía antes
+        de que el paciente la necesite.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · REFRACTARIA -->
+  <div class="section s7" id="s7" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Hipertensión endocraneal refractaria</div>
+        <div class="section-subtitle">Qué queda cuando todo lo razonable falló</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Antes de declarar refractaria una hipertensión endocraneal, descarta lo que se puede arreglar:</strong>
+        una <strong>lesión quirúrgica nueva o que creció</strong> (repite la tomografía), sedación insuficiente,
+        desadaptación al ventilador, obstrucción del tubo, convulsiones no convulsivas, fiebre, hiponatremia,
+        compresión yugular por el collar o por la posición, presión intraabdominal elevada, hipercapnia por
+        ventilación inadecuada, y un <strong>monitor de presión intracraneana descalibrado o desplazado</strong>. Buena
+        parte de las «refractarias» son una de estas.</span>
+      </div>
+
+      <div class="subhead">Las tres opciones de rescate</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Medida</th><th>Qué se sabe</th><th>Costo</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Craniectomía descompresiva</td>
+              <td><strong>RESCUEicp (2016):</strong> en hipertensión refractaria, la craniectomía <strong>reduce la mortalidad</strong> a costa de más sobrevivientes con discapacidad grave o estado vegetativo. <strong>DECRA (2011):</strong> la craniectomía bifrontal <strong>precoz</strong> en elevaciones moderadas de presión <strong>empeoró</strong> el resultado funcional</td>
+              <td>Es una decisión de <strong>neurocirugía</strong>, no de urgencia, y exige conversar con la familia sobre qué significa sobrevivir así. La indicación es la hipertensión <strong>refractaria</strong>, no la elevación moderada</td>
+            </tr>
+            <tr>
+              <td>Coma barbitúrico</td>
+              <td>Tiopental o pentobarbital en infusión titulada, idealmente con <strong>electroencefalografía continua</strong> buscando patrón de brote-supresión. Controla la presión intracraneana en una parte de los casos; <strong>no ha demostrado mejorar el pronóstico funcional</strong></td>
+              <td><strong>Hipotensión</strong> (suele requerir vasopresores), inmunosupresión e infecciones, íleo, acumulación prolongada que <strong>impide evaluar el neurológico por días</strong>. No se usa profilácticamente</td>
+            </tr>
+            <tr>
+              <td>Hipotermia</td>
+              <td><strong>Eurotherm3235 (2015):</strong> la hipotermia terapéutica (32–35 °C) para control de presión intracraneana <strong>no mejoró y tendió a empeorar</strong> el resultado. <strong>POLAR (2018):</strong> la hipotermia profiláctica precoz <strong>no aportó beneficio</strong></td>
+              <td>Coagulopatía, arritmias, infección, alteraciones electrolíticas, temblor. <strong>Lo que sí está indicado en todos es evitar la fiebre</strong> y mantener normotermia estricta</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="plain-list" style="margin-top:14px;">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Corticoides: contraindicados.</strong> El ensayo <strong>CRASH (2004)</strong>, con más de diez mil pacientes, mostró <strong>aumento de la mortalidad</strong> con metilprednisolona en el TEC. No tienen lugar en el edema cerebral traumático (sí lo tienen en el edema vasogénico tumoral, que es otra cosa).</span></div>
+        <div class="plain-item"><span class="bullet-icon">💧</span><span><strong>Drenaje de líquido cefalorraquídeo</strong> por ventriculostomía: la medida más elegante cuando el catéter está bien puesto. Baja la presión de inmediato y permite monitorizarla. Depende de que haya ventrículos drenables —en el cerebro edematoso pueden estar colapsados—.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⚡</span><span><strong>Electroencefalografía</strong> ante hipertensión inexplicada o discordancia entre la imagen y el estado clínico: el <strong>estado epiléptico no convulsivo</strong> es una causa tratable y sistemáticamente subdiagnosticada en este escenario.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · COMPROMISO MULTISISTÉMICO -->
+  <div class="section s8" id="s8" style="animation-delay:0.48s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">El paciente con compromiso multisistémico</div>
+        <div class="section-subtitle">Cuando la reanimación del trauma y la del cerebro se contradicen</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>El TEC grave rompe varias reglas del trauma.</strong> La <strong>hipotensión permisiva</strong>, que
+        es estándar en el shock hemorrágico, <strong>no se aplica al paciente con TEC grave</strong>: el cerebro lesionado
+        pierde la autorregulación y no tolera presiones bajas. Cuando ambos problemas coexisten, se prioriza el
+        <strong>control del sangrado</strong> como maniobra, pero con una <strong>meta de presión más alta</strong> que en
+        el politraumatizado sin TEC. <em>Los objetivos exactos en este conflicto se definen con el protocolo
+        institucional y con el equipo de trauma.</em></span>
+      </div>
+
+      <div class="subhead">Hemodinamia y sangrado</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Control de la hemorragia primero, siempre:</strong> compresión, torniquete, faja pélvica, pabellón o angiografía. Ninguna meta de presión de perfusión cerebral se sostiene mientras el paciente sangra.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Reanimación con hemoderivados balanceados</strong> en el shock hemorrágico, no con cristaloides en volumen. Cuando se usa cristaloide, <strong>cloruro de sodio 0,9 %</strong>: evita los sueros hipotónicos y el glucosado al 5 %.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📊</span><span><strong>Vasopresor precoz</strong> —habitualmente noradrenalina— para sostener la presión mientras se repone volumen, en vez de aceptar hipotensión prolongada. <em>La elección y los objetivos se ajustan al protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Umbral transfusional:</strong> la práctica habitual es restrictiva (hemoglobina ≈ 7 g/dL), pero en el TEC grave la evidencia sobre un umbral más liberal <strong>no es concluyente</strong>. <em>Verificar con protocolo institucional.</em></span></div>
+      </div>
+
+      <div class="subhead">Coagulopatía</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">⏱️</span><span><strong>Ácido tranexámico:</strong> el ensayo <strong>CRASH-3 (2019)</strong> mostró beneficio en mortalidad relacionada con el TEC cuando se administra <strong>dentro de las 3 horas</strong> de la lesión, sobre todo en TEC <strong>leve a moderado</strong>; <strong>no se observó beneficio</strong> en los pacientes con pupilas arreactivas bilaterales o TEC muy grave. Esquema: <strong>1 g intravenoso en 10 min, seguido de 1 g en 8 h</strong>. <em>Pasado el plazo de 3 horas puede ser perjudicial: verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🧬</span><span><strong>El TEC produce coagulopatía por sí mismo</strong> (liberación de factor tisular cerebral, hiperfibrinólisis, consumo). Pide recuento plaquetario, pruebas de coagulación, fibrinógeno y —si está disponible— <strong>viscoelástico</strong>, y repite: puede aparecer horas después.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Reversión urgente si hay hemorragia intracraneana:</strong> <strong>antagonistas de vitamina K</strong> → concentrado de complejo protrombínico más vitamina K 10 mg intravenosa; <strong>dabigatrán</strong> → idarucizumab; <strong>inhibidores del factor Xa</strong> → andexanet alfa donde esté disponible, o concentrado de complejo protrombínico. <em>Dosis, disponibilidad y elección: verificar con protocolo institucional y con hematología.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🧷</span><span><strong>Antiagregados:</strong> la <strong>transfusión de plaquetas de rutina no está recomendada</strong> —en la hemorragia intracerebral espontánea el ensayo PATCH mostró peor resultado— y en el TEC la evidencia es insuficiente. La conducta se discute con neurocirugía y hematología, sobre todo si hay cirugía inminente.</span></div>
+      </div>
+
+      <div class="subhead">Pulmón y ventilación</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🫁</span><span><strong>Ventilación protectora sin perder la normocapnia:</strong> volumen corriente 6–8 mL/kg de <strong>peso predicho</strong> con vigilancia estrecha de la PaCO₂. Cuando el pulmón obliga a hipercapnia permisiva y el cerebro no la tolera, el conflicto se resuelve <strong>con cuidados críticos</strong>, no en solitario.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📈</span><span><strong>PEEP:</strong> la PEEP necesaria para oxigenar <strong>no está prohibida</strong> en el TEC. Niveles altos pueden reducir el retorno venoso y subir la presión intracraneana, pero la hipoxemia es peor: se titula vigilando presión intracraneana y hemodinamia.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🌊</span><span><strong>Edema pulmonar neurogénico:</strong> infiltrados bilaterales e hipoxemia de aparición brusca tras la lesión cerebral, sin sobrecarga de volumen ni falla cardíaca evidente. Tratamiento de soporte y control de la presión intracraneana.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🤢</span><span><strong>Aspiración:</strong> frecuente en el paciente que llegó con compromiso de conciencia. Considérala ante hipoxemia o infiltrado precoz; <strong>no se dan antibióticos profilácticos de rutina</strong> por este motivo.</span></div>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./checklist-politrauma_2.html">→ Checklist: politrauma</a>
+        <a class="cross-link" href="./algoritmo-shock-cardiogenico.html">→ Algoritmo: shock y soporte hemodinámico</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · COMPLICACIONES SISTÉMICAS -->
+  <div class="section s9" id="s9" style="animation-delay:0.54s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Complicaciones que aparecen en las primeras horas y días</div>
+        <div class="section-subtitle">Sodio · convulsiones · fiebre · disautonomía</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Trastornos del sodio</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Cuadro</th><th>Perfil</th><th>Conducta inicial</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Secreción inadecuada de hormona antidiurética</td>
+              <td>Hiponatremia con <strong>euvolemia</strong>, orina concentrada y sodio urinario alto</td>
+              <td>Restricción de agua libre y <strong>nunca sueros hipotónicos</strong>. La hiponatremia empeora el edema cerebral</td>
+            </tr>
+            <tr>
+              <td>Síndrome perdedor de sal cerebral</td>
+              <td>Hiponatremia con <strong>hipovolemia</strong> y poliuria con natriuresis elevada</td>
+              <td>Reposición con <strong>salino</strong> (isotónico o hipertónico según gravedad). La restricción de agua, que sirve en el anterior, <strong>aquí es dañina</strong></td>
+            </tr>
+            <tr>
+              <td>Diabetes insípida central</td>
+              <td><strong>Poliuria</strong> con orina diluida, hipernatremia y sed en el paciente consciente</td>
+              <td>Reposición de agua libre y <strong>desmopresina</strong> según protocolo. Puede ser signo de <strong>lesión hipotálamo-hipofisaria o de progresión a muerte encefálica</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span>Distinguir la secreción inadecuada de hormona antidiurética del síndrome perdedor de sal se apoya en el
+        <strong>estado de volumen y el balance</strong>, no en un único examen, y <strong>el tratamiento de uno agrava al
+        otro</strong>. En la duda, en el paciente con TEC grave se tiende a corregir con salino vigilando el balance, y
+        se consulta a cuidados críticos o nefrología. <em>Verificar con protocolo institucional.</em></span>
+      </div>
+
+      <div class="subhead">Convulsiones postraumáticas</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Profilaxis de convulsiones precoces durante 7 días</strong> en el TEC grave: reduce la incidencia de convulsiones en la primera semana, <strong>sin reducir la epilepsia postraumática tardía</strong> ni cambiar la mortalidad. La guía clásica cita <strong>fenitoína</strong>; en la práctica actual se usa ampliamente <strong>levetiracetam</strong> por su perfil y su menor interacción. <em>Fármaco y dosis según protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">⚡</span><span><strong>Convulsión establecida:</strong> benzodiacepina como primera línea, seguida de un antiepiléptico de segunda línea; si no recupera conciencia como corresponde, <strong>sospecha estado epiléptico no convulsivo</strong> y pide electroencefalografía.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span>Una convulsión en el paciente con TEC <strong>sube la presión intracraneana y consume oxígeno cerebral</strong>: se trata rápido y se busca la causa (lesión nueva, hiponatremia, hipoglicemia, privación de alcohol o de fármacos).</span></div>
+      </div>
+
+      <div class="subhead">Otras complicaciones a anticipar</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🌡️</span><span><strong>Fiebre:</strong> tratar activamente y buscar foco. La fiebre <strong>central</strong> es un diagnóstico de exclusión: primero se descarta infección.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔥</span><span><strong>Hiperactividad simpática paroxística:</strong> episodios de taquicardia, hipertensión, taquipnea, sudoración, hipertermia y postura. Se confunde con dolor, sepsis o herniación. Manejo sintomático y en cuidados críticos.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🦵</span><span><strong>Profilaxis de trombosis venosa:</strong> compresión neumática intermitente desde el ingreso. El <strong>inicio de la profilaxis farmacológica</strong> depende de la estabilidad del sangrado intracraneano en la tomografía de control y <strong>se decide con neurocirugía</strong>. <em>Momento exacto: verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🍽️</span><span><strong>Nutrición precoz</strong> (enteral cuando sea posible) y <strong>profilaxis de úlcera de estrés</strong> en el paciente ventilado, según protocolo de la unidad.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💧</span><span><strong>Fístula de líquido cefalorraquídeo</strong> por nariz u oído en fracturas de base de cráneo: evita la sonda nasogástrica y la vía nasal a ciegas; consulta a neurocirugía. <strong>Los antibióticos profilácticos de rutina no están recomendados</strong> en la fístula de base de cráneo.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · PRONÓSTICO Y DECISIONES -->
+  <div class="section s10" id="s10" style="animation-delay:0.60s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Traslado, pronóstico y conversación con la familia</div>
+        <div class="section-subtitle">Qué no se decide en urgencia</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>El pronóstico del TEC grave no se define en las primeras horas.</strong> Los modelos pronósticos
+        —<strong>IMPACT</strong> y <strong>CRASH</strong>— describen probabilidades <strong>poblacionales</strong> y no
+        predicen el desenlace de un paciente concreto. Las decisiones de limitación del esfuerzo terapéutico tomadas
+        muy temprano son una <strong>profecía autocumplida</strong> bien documentada en la literatura: se retira el
+        soporte y el paciente muere, confirmando el pronóstico que motivó el retiro. Salvo situaciones
+        excepcionales, el paciente se reanima completamente y la conversación se retoma con el equipo tratante, con
+        más información y con tiempo.</span>
+      </div>
+
+      <div class="subhead">Traslado a centro con neurocirugía</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📞</span><span><strong>Llama apenas sospeches TEC grave</strong>, no cuando tengas el informe: el traslado se gestiona en paralelo con la estabilización. Transmite Glasgow (y su componente motor), pupilas, mecanismo, hora de la lesión, constantes, lesiones asociadas, anticoagulantes y lo ya administrado.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚑</span><span><strong>Antes de salir:</strong> vía aérea asegurada y confirmada con capnografía, dos accesos permeables, presión arterial optimizada, sedación y analgesia en infusión, cabecera elevada si el transporte lo permite, <strong>medicación de rescate preparada</strong> (osmoterapia, vasopresor, relajante) e imágenes disponibles para el centro receptor.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧾</span><span><strong>Documenta el examen neurológico previo a la sedación</strong> con hora. Es el dato más valioso que viaja con el paciente y ya no se puede repetir.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>El traslado es el momento de mayor riesgo de hipotensión e hipoxemia.</strong> Monitorización continua, oxígeno suficiente para el trayecto y el peor escenario, y personal capaz de manejar la vía aérea durante todo el recorrido.</span></div>
+      </div>
+
+      <div class="subhead">Hablar con la familia desde urgencia</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🗣️</span><span>Explica <strong>lo que se está haciendo y por qué</strong>, en palabras sin jerga: hay una lesión en el cerebro, estamos evitando que empeore, y aún no sabemos cómo va a quedar.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏳</span><span><strong>No prometas ni condenes.</strong> «Es demasiado pronto para saberlo» es una respuesta honesta y suficiente en las primeras horas.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📋</span><span>Pregunta por <strong>anticoagulantes, antiagregantes, comorbilidad, alergias y voluntades anticipadas</strong>: además de humano, cambia el manejo inmediato.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🤝</span><span>Cuando la evolución es hacia la muerte encefálica, el <strong>proceso de diagnóstico y la eventual donación de órganos</strong> siguen la normativa legal y el protocolo institucional, y los conduce el equipo designado: en urgencia se sostiene al paciente y se avisa. <em>Verificar con protocolo institucional y con la legislación vigente.</em></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 11 · TRAMPAS -->
+  <div class="section s11" id="s11" style="animation-delay:0.66s;">
+    <div class="section-header" onclick="toggleSection('s11')">
+      <span class="section-num">11</span>
+      <div>
+        <div class="section-title">Trampas y errores frecuentes</div>
+        <div class="section-subtitle">Lo que convierte un TEC tratable en una discapacidad evitable</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Tolerar una hipotensión «leve» mientras se completa el estudio.</strong> Cada minuto bajo el umbral es lesión secundaria. La presión se corrige antes, durante y después de la intubación.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Atribuir el compromiso de conciencia al alcohol o a las drogas.</strong> El paciente intoxicado también se golpea la cabeza, y esa atribución retrasa la tomografía. La intoxicación no explica una anisocoria ni una focalidad.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Hiperventilar de rutina al conectar el ventilador.</strong> Produce vasoconstricción e isquemia. La normocapnia se verifica con capnografía y un gas arterial, no se supone.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Usar sueros hipotónicos o glucosado al 5 %</strong> en el paciente con lesión cerebral: agravan el edema.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dejar el collar cervical apretado y la cabeza girada.</strong> Es la causa más barata y más frecuente de presión intracraneana elevada evitable.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Relajar sin sedar,</strong> o dejar caer la sedación durante el traslado: el paciente que tose y puja contra el tubo sube su presión intracraneana en segundos.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No documentar el Glasgow previo a la sedación</strong> ni el examen pupilar. Es el dato que más pesa después y es irrecuperable.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Esperar la tríada de Cushing para diagnosticar herniación.</strong> Es tardía: cuando aparece, el margen es de minutos.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar osmoterapia y quedarse esperando.</strong> El bolo compra minutos: si hay masa, el tratamiento es el pabellón, y el llamado al neurocirujano va en paralelo con el bolo, no después.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar corticoides.</strong> Aumentan la mortalidad en el TEC (CRASH, 2004).</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Olvidar el ácido tranexámico dentro de las 3 horas</strong> en el paciente que cumple criterios, o darlo fuera de plazo asumiendo que «no hace daño».</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No preguntar por anticoagulantes y antiagregantes</strong> en el adulto mayor con un golpe aparentemente banal: es el grupo donde el hematoma subdural crece en silencio.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No repetir la tomografía ante deterioro</strong> o ante presión intracraneana que sube sin explicación: la lesión quirúrgica que aparece a las horas es un clásico.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Llevar al escáner a un paciente inestable por sangrado.</strong> El escáner no es un lugar para reanimar: primero se controla la hemorragia.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Pronosticar en las primeras horas</strong> y ajustar la intensidad del tratamiento a ese pronóstico. Es el error con consecuencias más irreversibles de toda esta página.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio. Está orientada al
+    <strong>adulto</strong> con traumatismo craneoencefálico grave; el <strong>paciente pediátrico</strong> tiene
+    umbrales de presión arterial, de presión intracraneana y dosis distintas, y se rige por sus propias guías, igual
+    que la paciente embarazada y el paciente con lesión medular asociada. Las <strong>dosis, umbrales y secuencias
+    son orientativos</strong>: verifica la presentación, la concentración, la dilución y la vía de administración de
+    tu servicio, y el ajuste por peso, edad, función renal y hepática, interacciones y contraindicaciones antes de
+    administrar cualquier fármaco. La indicación y el momento de la cirugía, la instalación y los umbrales del
+    monitor de presión intracraneana, la elección y los límites de la osmoterapia, el uso de relajantes musculares,
+    barbitúricos, hipotermia y craniectomía descompresiva, la reversión de anticoagulantes, el umbral transfusional,
+    el inicio de la tromboprofilaxis farmacológica y las vías de derivación y traslado deben contrastarse con el
+    <strong>protocolo institucional vigente</strong> y con neurocirugía, anestesia y cuidados críticos. Las
+    calculadoras de esta página —Glasgow con reactividad pupilar, presión de perfusión cerebral y dosis por peso—
+    describen la gravedad y realizan <strong>conversiones aritméticas: complementan y no reemplazan la evaluación
+    clínica</strong>, y ningún puntaje justifica por sí solo limitar el esfuerzo terapéutico en las primeras horas.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Carney N, Totten AM, O'Reilly C, et al. <em>Guidelines for the Management of Severe Traumatic Brain Injury, Fourth Edition.</em> Neurosurgery. 2017;80(1):6–15. — Umbrales de presión intracraneana (&gt; 22 mmHg), presión de perfusión cerebral (60–70 mmHg), presión arterial sistólica por edad, osmoterapia, hiperventilación, barbitúricos, hipotermia, corticoides y profilaxis de convulsiones.</div>
+      <div class="ref-item">Hawryluk GWJ, Aguilera S, Buki A, et al. <em>A management algorithm for patients with intracranial pressure monitoring: the Seattle International Severe Traumatic Brain Injury Consensus Conference (SIBICC).</em> Intensive Care Med. 2019;45(12):1783–1794. — Escalonamiento por niveles del tratamiento de la hipertensión endocraneal.</div>
+      <div class="ref-item">Bullock MR, Chesnut R, Ghajar J, et al. <em>Guidelines for the Surgical Management of Traumatic Brain Injury.</em> Neurosurgery. 2006;58(3 Suppl):S2-1–S2-62. — Criterios quirúrgicos del hematoma extradural, subdural agudo, lesiones parenquimatosas y de fosa posterior.</div>
+      <div class="ref-item">Brennan PM, Murray GD, Teasdale GM. <em>Simplifying the use of prognostic information in traumatic brain injury. Part 1: The GCS-Pupils score.</em> J Neurosurg. 2018;128(6):1612–1620. — Escala GCS-P utilizada en la calculadora de esta página.</div>
+      <div class="ref-item">CRASH-3 trial collaborators. <em>Effects of tranexamic acid on death, disability, vascular occlusive events and other morbidities in patients with acute traumatic brain injury (CRASH-3): a randomised, placebo-controlled trial.</em> Lancet. 2019;394(10210):1713–1723. — Ácido tranexámico dentro de las 3 horas.</div>
+      <div class="ref-item">CRASH trial collaborators. <em>Effect of intravenous corticosteroids on death within 14 days in 10008 adults with clinically significant head injury.</em> Lancet. 2004;364(9442):1321–1328. — Aumento de mortalidad con corticoides en el TEC.</div>
+      <div class="ref-item">Hutchinson PJ, Kolias AG, Timofeev IS, et al. <em>Trial of Decompressive Craniectomy for Traumatic Intracranial Hypertension (RESCUEicp).</em> N Engl J Med. 2016;375(12):1119–1130. — Craniectomía descompresiva en hipertensión refractaria.</div>
+      <div class="ref-item">Cooper DJ, Rosenfeld JV, Murray L, et al. <em>Decompressive craniectomy in diffuse traumatic brain injury (DECRA).</em> N Engl J Med. 2011;364(16):1493–1502. — Craniectomía bifrontal precoz y peor resultado funcional.</div>
+      <div class="ref-item">Andrews PJD, Sinclair HL, Rodriguez A, et al. <em>Hypothermia for Intracranial Hypertension after Traumatic Brain Injury (Eurotherm3235).</em> N Engl J Med. 2015;373(25):2403–2412. — Hipotermia para control de presión intracraneana.</div>
+      <div class="ref-item">Cooper DJ, Nichol AD, Bailey M, et al. <em>Effect of Early Sustained Prophylactic Hypothermia on Neurologic Outcomes Among Patients With Severe Traumatic Brain Injury (POLAR).</em> JAMA. 2018;320(21):2211–2220. — Hipotermia profiláctica precoz.</div>
+      <div class="ref-item">Chesnut RM, Marshall LF, Klauber MR, et al. <em>The role of secondary brain injury in determining outcome from severe head injury.</em> J Trauma. 1993;34(2):216–222. — Impacto pronóstico de la hipotensión y la hipoxia.</div>
+      <div class="ref-item">American College of Surgeons Committee on Trauma. <em>ATLS: Advanced Trauma Life Support, 10.ª edición.</em> Chicago, 2018. — Evaluación inicial, prioridades en el politraumatizado y manejo del TEC en el contexto del trauma.</div>
+      <div class="ref-item">Las dosis y diluciones de la osmoterapia, los fármacos de inducción y sedación, los umbrales de natremia y osmolalidad, el umbral transfusional, la elección y dosis de la profilaxis de convulsiones, la estrategia de reversión de anticoagulantes, el momento de la tromboprofilaxis farmacológica y las vías de traslado deben contrastarse con el protocolo institucional vigente y con los equipos de neurocirugía y cuidados críticos de referencia.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Árbol de decisión interactivo ─────────────────────────────────
+  const sel = { esc: null, neuro: null, ctx: new Set() };
+
+  function bindSingle(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (sel[key] === v) {
+          sel[key] = null;
+          btn.classList.remove('on');
+        } else {
+          sel[key] = v;
+          group.querySelectorAll('.opt').forEach(b => b.classList.toggle('on', b === btn));
+        }
+        render();
+      });
+    });
+  }
+
+  function bindMulti(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (v === 'ninguno') {
+          sel[key].clear();
+          group.querySelectorAll('.opt').forEach(b => b.classList.remove('on'));
+          btn.classList.add('on');
+          sel[key].add('ninguno');
+        } else {
+          const none = group.querySelector('[data-v="ninguno"]');
+          none.classList.remove('on');
+          sel[key].delete('ninguno');
+          if (sel[key].has(v)) { sel[key].delete(v); btn.classList.remove('on'); }
+          else { sel[key].add(v); btn.classList.add('on'); }
+        }
+        render();
+      });
+    });
+  }
+
+  bindSingle('q-esc', 'esc');
+  bindSingle('q-neuro', 'neuro');
+  bindMulti('q-ctx', 'ctx');
+
+  const f = (v) => sel.ctx.has(v);
+
+  const OSMO = '<strong>Osmoterapia en bolo:</strong> salino hipertónico 3 % ≈ 3–5 mL/kg en 10–20 min (bolo típico 250 mL) o manitol 0,25–1 g/kg. <em>En el paciente hipotenso o en shock, salino hipertónico y no manitol.</em>';
+  const POSICION = '<strong>Cabecera a 30°, cuello neutro, collar y amarras sueltos</strong>, y verifica que el tubo no esté obstruido ni el paciente desadaptado del ventilador.';
+  const NORMOCAPNIA = '<strong>Normocapnia estricta</strong> con capnografía (PaCO₂ 35–40 mmHg), confirmada con un gas arterial.';
+  const PRESION = '<strong>Presión arterial sistólica ≥ 110 mmHg</strong> y SpO₂ ≥ 94 %: la hipotensión y la hipoxia son las dos causas evitables de lesión secundaria.';
+  const NEURO_AHORA = '<strong>Neurocirugía avisada ahora</strong>, con la sospecha y no con el informe, y pabellón alertado.';
+  const SEDACION = '<strong>Sedación y analgesia en infusión</strong>, no solo en bolo; relajante muscular si hay desadaptación, <em>documentando antes el examen neurológico.</em>';
+  const NO_ESTEROIDE = '<strong>Sin corticoides</strong> (aumentan la mortalidad en el TEC) y <strong>sin hiperventilación profiláctica</strong>.';
+  const TAC = '<strong>Tomografía de cerebro sin contraste</strong> apenas sea seguro trasladar al paciente, junto con columna cervical.';
+  const LINK_POLITRAUMA = '<a class="cross-link" style="margin-top:6px" href="./checklist-politrauma_2.html">→ Checklist: politrauma</a>';
+  const LINK_POLICONTUSIONES = '<a class="cross-link" style="margin-top:6px" href="./guia-policontusiones.html">→ Guía: policontusiones y TEC leve</a>';
+  const LINK_SHOCK = '<a class="cross-link" style="margin-top:6px" href="./algoritmo-shock-cardiogenico.html">→ Algoritmo: shock y soporte hemodinámico</a>';
+
+  function classify() {
+    const { esc, neuro } = sel;
+    if (!esc || !neuro) return null;
+
+    // 1 · Herniación
+    if (esc === 'herniacion') {
+      return {
+        sev: 'red',
+        tag: 'Catástrofe en curso',
+        title: 'Herniación: minutos, no horas',
+        rows: [
+          ['Primero', POSICION + ' Una parte de los picos de presión intracraneana es mecánica y cede en segundos.'],
+          ['Ahora', OSMO + ' <strong>No esperes la tomografía ni el monitor de presión intracraneana.</strong>'],
+          ['En paralelo', PRESION + ' Con la presión arterial baja, bajar la presión intracraneana no sirve: lo que perfunde el cerebro es la diferencia entre ambas.'],
+          ['Ventilación', '<strong>Hiperventilación solo como puente:</strong> PaCO₂ 30–35 mmHg con capnografía, por el menor tiempo posible y mientras se resuelve la causa. <em>Nunca profiláctica ni bajo 30 mmHg.</em>'],
+          ['Sedación', SEDACION],
+          ['Equipo', NEURO_AHORA + ' La osmoterapia compra minutos: <strong>si hay masa, el tratamiento es la evacuación</strong>.'],
+          ['Imagen', TAC + ' Si ya está hecha, el destino es el pabellón.'],
+          ['No hagas', NO_ESTEROIDE]
+        ]
+      };
+    }
+
+    // 2 · Llegada del TEC grave
+    if (esc === 'llegada') {
+      return {
+        sev: 'red',
+        tag: 'TEC grave · primeros minutos',
+        title: 'Glasgow ≤ 8: vía aérea, fisiología, tomografía',
+        rows: [
+          ['Primero', '<strong>Documenta el Glasgow y las pupilas antes de sedar</strong>, con hora. Ese examen no se puede repetir después de la inducción.'],
+          ['Vía aérea', '<strong>Intubación de secuencia rápida neuroprotectora:</strong> preoxigenación, volumen y vasopresor listos, estabilización cervical manual en línea, inductor que no hunda la presión (ketamina o etomidato) y relajante en dosis plena.'],
+          ['Fisiología', PRESION + ' ' + NORMOCAPNIA + ' Normotermia, glicemia ≈ 140–180 mg/dL y <strong>cloruro de sodio 0,9 %</strong> como cristaloide: nada hipotónico.'],
+          ['Posición', POSICION],
+          ['Imagen', TAC],
+          ['Equipo', NEURO_AHORA + ' Unidad crítica avisada; si no hay neurocirugía en el centro, <strong>activa el traslado en paralelo</strong>.'],
+          ['Considera', '<strong>Ácido tranexámico dentro de las 3 horas</strong> de la lesión si cumple criterios: 1 g IV en 10 min y luego 1 g en 8 h.'],
+          ['No hagas', NO_ESTEROIDE + ' Tampoco osmoterapia «profiláctica» sin signos de herniación ni presión intracraneana medida.']
+        ]
+      };
+    }
+
+    // 3 · Hipotensión o hipoxemia
+    if (esc === 'hipotension') {
+      return {
+        sev: 'red',
+        tag: 'Lesión secundaria en curso',
+        title: 'Hipotensión o hipoxemia: esto mata cerebro ahora',
+        rows: [
+          ['Primero', '<strong>Trátalo como la emergencia que es.</strong> Un solo episodio de presión sistólica bajo 90 mmHg o de saturación bajo 90 % empeora el pronóstico de forma independiente.'],
+          ['Causa', '<strong>La hipotensión en el politraumatizado es hemorragia hasta que se demuestre lo contrario</strong>: busca tórax, abdomen, pelvis, retroperitoneo y fémures. Considera también neumotórax a tensión, taponamiento y shock neurogénico por lesión medular cervical alta. <em>No la atribuyas al TEC</em> salvo en la fase terminal de la herniación.'],
+          ['Meta', PRESION + ' <strong>La hipotensión permisiva no se aplica al TEC grave.</strong>'],
+          ['Cómo', 'Hemoderivados balanceados si sangra; <strong>cloruro de sodio 0,9 %</strong> si usas cristaloide; <strong>vasopresor precoz</strong> (habitualmente noradrenalina) en vez de tolerar hipotensión mientras repones.'],
+          ['Oxigenación', 'Corrige la hipoxemia sin miedo a la PEEP necesaria: la hipoxemia es peor que el efecto de la PEEP sobre la presión intracraneana. Verifica posición del tubo y descarta neumotórax.'],
+          ['Equipo', NEURO_AHORA],
+          ['Enlace', LINK_POLITRAUMA]
+        ]
+      };
+    }
+
+    // 4 · Politrauma con sangrado
+    if (esc === 'politrauma') {
+      return {
+        sev: 'red',
+        tag: 'Dos emergencias a la vez',
+        title: 'Sangrado activo más TEC grave: el orden importa',
+        rows: [
+          ['Primero', '<strong>El sangrado gana como maniobra:</strong> control de la hemorragia —compresión, torniquete, faja pélvica, pabellón, angiografía—. Un paciente exanguinado no sobrevive a la craneotomía perfecta.'],
+          ['Pero', '<strong>La meta de presión es la del TEC, no la del trauma aislado:</strong> presión sistólica ≥ 110 mmHg. La hipotensión permisiva <strong>no se aplica</strong> aquí.'],
+          ['En paralelo', 'Sedación, ' + NORMOCAPNIA + ' cabecera elevada si es posible, y <strong>osmoterapia de rescate si aparecen signos de herniación</strong>.'],
+          ['Hemostasia', '<strong>Ácido tranexámico</strong> según protocolo de trauma y dentro de las 3 horas; hemoderivados balanceados; corrige hipotermia, acidosis y calcio.'],
+          ['Coordina', 'Discute con neurocirugía la <strong>instalación del monitor de presión intracraneana en el mismo pabellón</strong> y el orden de los procedimientos. La decisión es conjunta con el equipo de trauma.'],
+          ['Imagen', 'El paciente inestable <strong>no va al escáner</strong>: primero se controla el sangrado. Si se estabiliza, tomografía de cerebro y cuerpo en el mismo traslado.'],
+          ['Enlace', LINK_POLITRAUMA]
+        ]
+      };
+    }
+
+    // 5 · Masa en la tomografía
+    if (esc === 'masa') {
+      return {
+        sev: 'red',
+        tag: 'Lesión quirúrgica',
+        title: 'Hay una masa: el tratamiento es evacuarla',
+        rows: [
+          ['Primero', NEURO_AHORA + ' Informa <strong>volumen estimado, desviación de línea media, estado de las cisternas basales</strong>, Glasgow previo a la sedación y pupilas.'],
+          ['Criterios', 'Se evacúan habitualmente: <strong>extradural &gt; 30 cm³</strong> (independiente del Glasgow), <strong>subdural agudo con espesor &gt; 10 mm o desviación &gt; 5 mm</strong>, contusión &gt; 50 cm³ o &gt; 20 cm³ con desviación y deterioro, y toda lesión de fosa posterior con efecto de masa. <em>La decisión final es del neurocirujano.</em>'],
+          ['Mientras tanto', POSICION + ' ' + SEDACION + ' ' + NORMOCAPNIA],
+          ['Si hernia', OSMO + ' Es un puente al pabellón, no un tratamiento definitivo.'],
+          ['Coagulación', 'Pide recuento plaquetario, pruebas de coagulación y fibrinógeno, y <strong>revierte la anticoagulación</strong> si corresponde, sin demorar la cirugía.'],
+          ['Prepara', 'Grupo y pruebas cruzadas, consentimiento con la familia cuando sea posible, vía central y línea arterial según lo que pida el equipo quirúrgico.'],
+          ['No hagas', NO_ESTEROIDE]
+        ]
+      };
+    }
+
+    // 6 · PIC elevada
+    if (esc === 'pic') {
+      return {
+        sev: 'amber',
+        tag: 'Hipertensión endocraneal',
+        title: 'Presión intracraneana sobre 22 mmHg sostenida',
+        rows: [
+          ['Primero', '<strong>Descarta lo reversible y barato antes de escalar:</strong> posición y collar, obstrucción del tubo, desadaptación al ventilador, sedación insuficiente, fiebre, hiponatremia, convulsión no convulsiva, y <strong>monitor descalibrado o desplazado</strong>.'],
+          ['Nivel 1', 'Profundiza sedación y analgesia; <strong>drena líquido cefalorraquídeo</strong> si hay ventriculostomía; <strong>bolos de osmoterapia</strong>; sostén la presión de perfusión en 60–70 mmHg; relajación muscular si hay desadaptación.'],
+          ['Perfusión', '<strong>PPC = PAM − PIC, meta 60–70 mmHg.</strong> No fuerces sobre 70 con volumen y vasopresores: aumenta el riesgo de distrés respiratorio sin mejorar el pronóstico.'],
+          ['Imagen', '<strong>Repite la tomografía</strong> ante presión que sube sin explicación: la lesión quirúrgica que aparece o crece a las horas es un clásico.'],
+          ['Ventilación', NORMOCAPNIA + ' La hipocapnia leve (32–35 mmHg) es una medida de segundo nivel, monitorizada y transitoria.'],
+          ['Equipo', 'Cuidados críticos y neurocirugía definen el escalamiento. <em>Los umbrales y el orden se ajustan al protocolo institucional.</em>'],
+          ['No hagas', NO_ESTEROIDE]
+        ]
+      };
+    }
+
+    // 7 · Refractaria
+    if (esc === 'refractaria') {
+      return {
+        sev: 'red',
+        tag: 'Nivel 3 · rescate',
+        title: 'Hipertensión endocraneal refractaria',
+        rows: [
+          ['Primero', '<strong>Vuelve a descartar lo tratable:</strong> nueva tomografía en busca de lesión quirúrgica, estado epiléptico no convulsivo (electroencefalografía), sedación y analgesia insuficientes, fiebre, hiponatremia, hipercapnia, compresión yugular y presión intraabdominal elevada.'],
+          ['Opciones', '<strong>Craniectomía descompresiva</strong> (RESCUEicp: menos mortalidad, más discapacidad grave entre los sobrevivientes), <strong>coma barbitúrico</strong> (controla la presión en algunos casos, sin mejorar el pronóstico funcional, a costa de hipotensión e infecciones) e <strong>hipotermia moderada 35–36 °C</strong> (Eurotherm y POLAR no mostraron beneficio; lo que sí está indicado en todos es evitar la fiebre).'],
+          ['Quién decide', 'No es una decisión de urgencia: <strong>neurocirugía y cuidados críticos</strong>, e idealmente conversada con la familia sobre qué significa sobrevivir con discapacidad grave.'],
+          ['Soporte', 'Si se inicia coma barbitúrico, anticipa <strong>hipotensión y necesidad de vasopresores</strong>, monitorización electroencefalográfica y pérdida del examen neurológico por días.'],
+          ['Sodio', 'Terapia hipertónica sostenida con control seriado de natremia y osmolalidad. <strong>La corrección posterior debe ser lenta</strong> por el riesgo de edema de rebote. <em>Verificar con protocolo institucional.</em>'],
+          ['No hagas', NO_ESTEROIDE + ' Tampoco hiperventilación mantenida como estrategia de control.']
+        ]
+      };
+    }
+
+    // 8 · Talk and deteriorate
+    if (esc === 'deterioro') {
+      return {
+        sev: 'red',
+        tag: 'Deterioro progresivo',
+        title: 'Llegó hablando y se está deteriorando',
+        rows: [
+          ['Significa', 'Hasta que se demuestre lo contrario, <strong>una lesión ocupante de espacio que está creciendo</strong>: el hematoma extradural con intervalo lúcido es el ejemplo clásico, y es <strong>la lesión más recuperable si se evacúa a tiempo</strong>.'],
+          ['Ahora', '<strong>Tomografía urgente</strong> (o repetirla si la primera fue precoz y normal) y <strong>neurocirugía avisada antes del resultado</strong>.'],
+          ['Vía aérea', 'Si el Glasgow cae a 8 o menos, o el paciente ya no protege la vía aérea: <strong>intubación neuroprotectora</strong>, documentando antes el examen.'],
+          ['Busca también', 'Causas no quirúrgicas del deterioro: <strong>hipoxemia, hipotensión, hipoglicemia, convulsión, hiponatremia, intoxicación</strong> y sedación administrada.'],
+          ['Si hernia', OSMO],
+          ['Trampa', '<strong>No atribuyas el deterioro al alcohol o a las drogas.</strong> El paciente intoxicado también sangra dentro del cráneo, y esa atribución es una de las causas más frecuentes de retraso.'],
+          ['Enlace', LINK_POLICONTUSIONES]
+        ]
+      };
+    }
+
+    // 9 · Anticoagulado
+    if (esc === 'taco') {
+      return {
+        sev: 'red',
+        tag: 'Sangrado facilitado',
+        title: 'TEC en paciente anticoagulado o antiagregado',
+        rows: [
+          ['Primero', '<strong>Tomografía precoz con umbral bajo</strong>, incluso con mecanismo aparentemente banal y Glasgow 15: es el grupo donde el hematoma crece en silencio y el deterioro es tardío.'],
+          ['Reversión', '<strong>Antagonistas de vitamina K:</strong> concentrado de complejo protrombínico más vitamina K 10 mg IV. <strong>Dabigatrán:</strong> idarucizumab. <strong>Inhibidores del factor Xa:</strong> andexanet alfa donde esté disponible, o concentrado de complejo protrombínico. <em>Dosis, disponibilidad y elección: verificar con protocolo institucional y con hematología.</em>'],
+          ['Datos clave', 'Pregunta <strong>qué fármaco, qué dosis y a qué hora fue la última toma</strong>, y pide función renal: define el efecto residual de los anticoagulantes orales directos.'],
+          ['Antiagregados', '<strong>La transfusión de plaquetas de rutina no está recomendada</strong> (en la hemorragia intracerebral espontánea el ensayo PATCH mostró peor resultado); en el TEC la evidencia es insuficiente. Se discute con neurocirugía y hematología, sobre todo si hay cirugía inminente.'],
+          ['Control', '<strong>Tomografía de control</strong> y observación prolongada aunque la primera imagen sea normal. <em>El intervalo y la duración se definen con el protocolo institucional.</em>'],
+          ['Equipo', NEURO_AHORA]
+        ]
+      };
+    }
+
+    // 10 · Convulsión
+    if (esc === 'convulsion') {
+      return {
+        sev: 'amber',
+        tag: 'Convulsión postraumática',
+        title: 'Convulsión o estado epiléptico tras el trauma',
+        rows: [
+          ['Ahora', '<strong>Benzodiacepina como primera línea</strong> en dosis adecuada, seguida de un antiepiléptico de segunda línea según protocolo. Protege vía aérea, oxigena y monitoriza.'],
+          ['Por qué urge', 'La convulsión <strong>sube la presión intracraneana y aumenta el consumo de oxígeno cerebral</strong> en el peor momento posible.'],
+          ['Busca causa', '<strong>Lesión nueva o que creció</strong> (tomografía), hiponatremia, hipoglicemia, hipoxemia, privación de alcohol o de fármacos, e intoxicación.'],
+          ['Si no despierta', 'Sospecha <strong>estado epiléptico no convulsivo</strong> y pide electroencefalografía: es sistemáticamente subdiagnosticado en el paciente con TEC.'],
+          ['Profilaxis', '<strong>Profilaxis de convulsiones precoces durante 7 días</strong> en el TEC grave: reduce las convulsiones de la primera semana pero <strong>no la epilepsia tardía</strong>. La guía clásica cita fenitoína; en la práctica actual se usa ampliamente levetiracetam. <em>Fármaco y dosis según protocolo institucional.</em>'],
+          ['Fisiología', PRESION + ' ' + NORMOCAPNIA]
+        ]
+      };
+    }
+
+    // 11 · Sin neurocirugía
+    if (esc === 'sincentro') {
+      return {
+        sev: 'amber',
+        tag: 'Traslado',
+        title: 'Centro sin neurocirugía o sin tomografía',
+        rows: [
+          ['Primero', '<strong>Activa el traslado ahora</strong>, en paralelo con la estabilización y sin esperar exámenes: el tiempo hasta la evacuación de una masa es el factor que más pesa.'],
+          ['Transmite', 'Glasgow con su <strong>componente motor</strong>, pupilas, mecanismo, hora de la lesión, constantes, lesiones asociadas, anticoagulantes y todo lo administrado.'],
+          ['Antes de salir', 'Vía aérea asegurada y <strong>confirmada con capnografía</strong>, dos accesos permeables, presión optimizada, sedación y analgesia en infusión, cabecera elevada si el transporte lo permite, e <strong>imágenes disponibles</strong> para el centro receptor.'],
+          ['Lleva preparado', '<strong>Medicación de rescate a mano:</strong> osmoterapia, vasopresor, relajante muscular, anticonvulsivante, y oxígeno suficiente para el trayecto y para el peor escenario.'],
+          ['Durante', '<strong>El traslado es el momento de mayor riesgo de hipotensión e hipoxemia:</strong> monitorización continua y personal capaz de manejar la vía aérea durante todo el recorrido.'],
+          ['Documenta', '<strong>El examen neurológico previo a la sedación, con hora.</strong> Es el dato más valioso que viaja con el paciente.']
+        ]
+      };
+    }
+
+    return null;
+  }
+
+  function neuroRows() {
+    const extra = [];
+    if (sel.neuro === 'gcs3') {
+      extra.push(['Examen', '<strong>Glasgow 3 con pupilas arreactivas bilaterales (GCS-P 1):</strong> el grupo de peor pronóstico, pero <strong>no una indicación de no reanimar</strong> en urgencia. Descarta activamente lo reversible —hipotensión profunda, hipoxia, hipotermia, sedantes, alcohol, tóxicos, hipoglicemia— antes de atribuirlo todo a la lesión. El pronóstico <strong>no se define en las primeras horas</strong>.']);
+    } else if (sel.neuro === 'anisocoria') {
+      extra.push(['Examen', '<strong>Anisocoria con midriasis arreactiva:</strong> compresión del tercer par, habitualmente del <strong>lado de la lesión</strong>. Trátala como herniación —osmoterapia, posición, normocapnia— y lleva al paciente a imagen y pabellón. Descarta trauma ocular directo o midriático instilado antes de darla por definitiva.']);
+    } else if (sel.neuro === 'gcs48') {
+      extra.push(['Examen', '<strong>Glasgow 4–8 con pupilas reactivas:</strong> TEC grave con vía aérea a asegurar. <strong>Registra el examen y la hora antes de sedar</strong>, y repítelo de forma seriada: el deterioro de 2 puntos en el motor cambia toda la conducta.']);
+    } else if (sel.neuro === 'fluctuante') {
+      extra.push(['Examen', '<strong>Glasgow fluctuante o en descenso:</strong> reevaluación neurológica frecuente y documentada, <strong>umbral bajo para repetir la tomografía</strong> y vía aérea asegurada antes de que el deterioro te tome sin preparación —sobre todo si hay traslado por delante—.']);
+    } else if (sel.neuro === 'sedado') {
+      extra.push(['Examen', '<strong>Paciente sedado y relajado:</strong> el Glasgow ya no es valorable. Usa el <strong>último examen previo a la sedación</strong> y apóyate en lo que sigue siendo informativo: <strong>pupilas</strong>, imagen, presión intracraneana si está monitorizada y tendencia hemodinámica. Si necesitas un examen fiable, la ventana de sedación se discute con cuidados críticos.']);
+    }
+    return extra;
+  }
+
+  function contextRows() {
+    const extra = [];
+    if (f('shock')) {
+      extra.push(['Shock', '<strong>Hemorragia primero</strong>, con hemoderivados balanceados y control quirúrgico o angiográfico, pero con <strong>meta de presión sistólica ≥ 110 mmHg</strong>: la hipotensión permisiva no se aplica al TEC grave. Corrige hipotermia, acidosis y calcio.']);
+    }
+    if (f('hipoxemia')) {
+      extra.push(['Hipoxemia', 'Corrige la oxigenación sin miedo a la PEEP necesaria y <strong>sin perder la normocapnia</strong>. Descarta neumotórax, contusión pulmonar, aspiración y <strong>edema pulmonar neurogénico</strong>. Ventilación protectora con 6–8 mL/kg de peso predicho vigilando la PaCO₂.']);
+    }
+    if (f('coagulopatia')) {
+      extra.push(['Coagulación', '<strong>Revierte según el fármaco</strong> (complejo protrombínico y vitamina K, idarucizumab o andexanet alfa) y pide recuento plaquetario, coagulación, fibrinógeno y viscoelástico si está disponible. Recuerda que <strong>el TEC genera coagulopatía por sí mismo</strong> y que puede aparecer horas después. <em>Verificar con protocolo institucional.</em>']);
+    }
+    if (f('alcohol')) {
+      extra.push(['Intoxicación', '<strong>No atribuyas el compromiso de conciencia al alcohol o a las drogas.</strong> Es una de las causas más frecuentes de tomografía tardía. La intoxicación no explica anisocoria ni focalidad; mide glicemia y considera tiamina y otras causas metabólicas.']);
+    }
+    if (f('cervical')) {
+      extra.push(['Columna cervical', '<strong>Inmovilización con estabilización manual en línea</strong> para la vía aérea y estudio de columna junto con la tomografía de cerebro. El paciente inconsciente <strong>no se puede evaluar clínicamente</strong>. Mantén el collar, pero <strong>suelto</strong>: el collar apretado sube la presión intracraneana.']);
+    }
+    if (f('anciano')) {
+      extra.push(['Adulto mayor', '<strong>Umbral bajo para tomografía</strong> aun con mecanismo banal: atrofia cerebral, venas puente tensas y uso frecuente de anticoagulantes o antiagregantes. El Glasgow puede sobreestimar la reserva, y el deterioro llega más tarde. Pregunta siempre por <strong>fármacos y caídas previas</strong>.']);
+    }
+    if (f('embarazo')) {
+      extra.push(['Embarazo', '<strong>Reanimar a la madre es reanimar al feto.</strong> Desplazamiento uterino a la izquierda desde las 20 semanas, protección abdominal sin negar la tomografía indicada, evaluación obstétrica y monitorización fetal precoces. <em>Fármacos, imagen y conducta obstétrica: verificar con protocolo institucional y con obstetricia.</em>']);
+    }
+    if (f('pediatrico')) {
+      extra.push(['Pediátrico', '<strong>Fuera del alcance de esta página.</strong> Los umbrales de presión arterial y de presión intracraneana, las dosis de osmoterapia y de fármacos, y las reglas de imagen (PECARN) <strong>son distintos</strong>. Usa la guía pediátrica y el protocolo institucional, y consulta precozmente.']);
+    }
+    if (f('sinneuro')) {
+      extra.push(['Sin neurocirugía', '<strong>El traslado es parte del tratamiento</strong> y se gestiona <strong>en paralelo</strong> con la estabilización, no después. Vía aérea asegurada, presión optimizada, medicación de rescate preparada y examen neurológico documentado con hora antes de sedar.']);
+    }
+    return extra;
+  }
+
+  function render() {
+    const box = document.getElementById('result');
+    const r = classify();
+    if (!r) {
+      box.className = 'result placeholder';
+      box.innerHTML = 'Selecciona el escenario dominante y el examen neurológico para ver la prioridad, qué hacer en ' +
+                      'los primeros minutos, qué está contraindicado y a quién llamar.';
+      return;
+    }
+    const rows = r.rows.filter(row => row && row[1]);
+    const enlace = rows.length && rows[rows.length - 1][0] === 'Enlace' ? rows.pop() : null;
+    rows.push(...neuroRows());
+    rows.push(...contextRows());
+    if (enlace) rows.push(enlace);
+
+    box.className = 'result sev-' + r.sev;
+    box.innerHTML =
+      '<div class="result-tag">' + r.tag + '</div>' +
+      '<div class="result-title">' + r.title + '</div>' +
+      rows.map(([k, v]) =>
+        '<div class="result-row"><div class="result-key">' + k + '</div><div>' + v + '</div></div>'
+      ).join('');
+  }
+
+  // ── Escala de Glasgow y GCS-P ─────────────────────────────────────
+  const gcsList = document.getElementById('gcs-list');
+  const GCS_GRUPOS = ['o', 'v', 'm', 'p'];
+
+  const GCS_NOTA = '<br><br>El puntaje que clasifica es el <strong>mejor Glasgow tras la reanimación inicial</strong> y ' +
+                   '<strong>previo a la sedación</strong>, no el de la escena ni el del paciente en shock profundo. ' +
+                   'El <strong>componente motor</strong> es el que más discrimina. El GCS-P y los modelos pronósticos ' +
+                   'describen <strong>probabilidades poblacionales</strong>: <strong>complementan y no reemplazan el ' +
+                   'juicio clínico</strong>, y ningún puntaje justifica por sí solo limitar el esfuerzo terapéutico en ' +
+                   'las primeras horas. Los criterios de ingreso, de unidad crítica y de traslado se definen con el ' +
+                   '<em>protocolo institucional.</em>';
+
+  function renderGCS() {
+    const out = document.getElementById('gcs-out');
+    const marcados = gcsList.querySelectorAll('.score-item.on');
+    if (!marcados.length) {
+      out.innerHTML = 'Elige una opción en cada categoría. El Glasgow va de 3 a 15 y el GCS-P de 1 a 15.';
+      return;
+    }
+
+    let gcs = 0, prs = 0, noValorable = false;
+    const elegidos = new Set();
+    marcados.forEach(b => {
+      const g = b.dataset.g;
+      elegidos.add(g);
+      const p = parseInt(b.dataset.p, 10);
+      if (g === 'p') prs = p;
+      else gcs += p;
+      if (b.dataset.nv) noValorable = true;
+    });
+
+    const faltan = GCS_GRUPOS.filter(g => !elegidos.has(g)).length;
+    const completo = faltan === 0;
+    const tieneGcs = ['o', 'v', 'm'].every(g => elegidos.has(g));
+
+    let clase, nombre, texto;
+    if (!tieneGcs) {
+      clase = '';
+      nombre = 'Puntaje parcial: ' + gcs;
+      texto = 'Marca las tres respuestas —ocular, verbal y motora— para obtener el Glasgow.';
+    } else if (gcs <= 8) {
+      clase = 'risk-high';
+      nombre = 'Glasgow ' + gcs + (noValorable ? ' (con componente no valorable)' : '') + ' · TEC grave';
+      texto = '<strong>Vía aérea definitiva, tomografía precoz, neurocirugía avisada y unidad crítica.</strong> ' +
+              'Metas inmediatas: presión sistólica ≥ 110 mmHg, SpO₂ ≥ 94 %, PaCO₂ 35–40 mmHg, normotermia, cabecera ' +
+              'a 30° y nada de sueros hipotónicos.';
+    } else if (gcs <= 12) {
+      clase = 'risk-mid';
+      nombre = 'Glasgow ' + gcs + (noValorable ? ' (con componente no valorable)' : '') + ' · TEC moderado';
+      texto = '<strong>Tomografía siempre, observación monitorizada y reevaluación neurológica seriada.</strong> ' +
+              'Una proporción se deteriora a grave en las primeras horas: define desde ya quién repite el examen y ' +
+              'cada cuánto, y ten preparada la vía aérea.';
+    } else {
+      clase = 'risk-low';
+      nombre = 'Glasgow ' + gcs + (noValorable ? ' (con componente no valorable)' : '') + ' · TEC leve';
+      texto = 'Este algoritmo <strong>no es el adecuado</strong>: aplica las reglas de decisión de imagen y de ' +
+              'observación del TEC leve. Cuidado con el paciente anticoagulado, el adulto mayor y el que vomita ' +
+              'o se deteriora: ahí el umbral de imagen baja.';
+    }
+
+    let gcspTexto = '';
+    if (tieneGcs && elegidos.has('p')) {
+      const gcsp = Math.max(1, gcs - prs);
+      gcspTexto = '<br><br><strong>GCS-P = ' + gcs + ' − ' + prs + ' = ' + gcsp + '.</strong> ' +
+                  (prs === 2
+                    ? 'Ambas pupilas arreactivas: el grupo de peor pronóstico poblacional. <strong>No es una indicación de no reanimar</strong>; descarta hipotensión, hipoxia, hipotermia, sedantes y tóxicos antes de atribuirlo todo a la lesión.'
+                    : prs === 1
+                      ? 'Una pupila arreactiva: <strong>trátalo como herniación</strong> hasta demostrar lo contrario —osmoterapia, posición, normocapnia— y avisa a neurocirugía ahora.'
+                      : 'Pupilas reactivas: mejor categoría pronóstica dentro del mismo Glasgow. Repite el examen pupilar de forma seriada.');
+    }
+
+    const nvAviso = noValorable
+      ? '<br><br><em>Hay un componente no valorable (intubación, edema palpebral): se registró con el puntaje mínimo y el total debe anotarse indicando esa limitación —por ejemplo «Glasgow 6T»—.</em>'
+      : '';
+
+    const aviso = (!completo && tieneGcs)
+      ? '<br><br><em>Falta marcar la reactividad pupilar para calcular el GCS-P.</em>'
+      : '';
+
+    out.innerHTML = '<span class="big ' + clase + '">' + nombre + '</span>' + texto + gcspTexto + nvAviso + aviso + GCS_NOTA;
+  }
+
+  gcsList.querySelectorAll('.score-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const g = btn.dataset.g;
+      const yaEstaba = btn.classList.contains('on');
+      gcsList.querySelectorAll('.score-item[data-g="' + g + '"]').forEach(b => b.classList.remove('on'));
+      if (!yaEstaba) btn.classList.add('on');
+      renderGCS();
+    });
+  });
+  document.getElementById('gcs-reset').addEventListener('click', () => {
+    gcsList.querySelectorAll('.score-item').forEach(b => b.classList.remove('on'));
+    renderGCS();
+  });
+
+  // ── Formato de números ────────────────────────────────────────────
+  function fmt(n) {
+    if (n >= 100) return n.toFixed(0);
+    if (n >= 10) return n.toFixed(1).replace('.', ',');
+    return n.toFixed(2).replace('.', ',');
+  }
+  function fmt0(n) { return n.toFixed(0); }
+
+  // ── Presión de perfusión cerebral ─────────────────────────────────
+  const pamInput = document.getElementById('pam');
+  const picInput = document.getElementById('pic');
+  const ppcOut = document.getElementById('ppc-out');
+
+  function renderPPC() {
+    const pam = parseFloat(pamInput.value);
+    const pic = parseFloat(picInput.value);
+    if (!pam || pam <= 0 || isNaN(pic) || pic < 0) {
+      ppcOut.innerHTML = 'Ingresa la presión arterial media y la presión intracraneana para calcular la presión de perfusión cerebral.';
+      return;
+    }
+    const ppc = pam - pic;
+
+    let clase, texto;
+    if (ppc < 50) {
+      clase = 'risk-high';
+      texto = '<strong>Perfusión cerebral críticamente baja.</strong> Sube la presión arterial media —volumen y ' +
+              'vasopresor— <strong>y</strong> baja la presión intracraneana a la vez: posición, sedación, normocapnia, ' +
+              'drenaje de líquido cefalorraquídeo si hay ventriculostomía, osmoterapia. Reevalúa si hay una lesión ' +
+              'quirúrgica que explique la presión.';
+    } else if (ppc < 60) {
+      clase = 'risk-mid';
+      texto = '<strong>Bajo el rango objetivo (60–70 mmHg).</strong> Corrige lo reversible primero —posición, collar, ' +
+              'sedación, capnia— y optimiza la presión arterial media antes de escalar.';
+    } else if (ppc <= 70) {
+      clase = 'risk-low';
+      texto = '<strong>En el rango objetivo (60–70 mmHg).</strong> Mantén, vigila la tendencia y no fuerces más arriba.';
+    } else {
+      clase = 'risk-mid';
+      texto = '<strong>Sobre el rango objetivo.</strong> Forzar la presión de perfusión sobre 70 mmHg con volumen y ' +
+              'vasopresores <strong>aumenta el riesgo de distrés respiratorio sin mejorar el pronóstico</strong>. ' +
+              'Si la presión arterial es alta con bradicardia, piensa en <strong>respuesta de Cushing</strong> y no en ' +
+              'una hipertensión a tratar.';
+    }
+
+    const picNota = pic > 22
+      ? '<br><br><em>Presión intracraneana sobre el umbral de tratamiento (22 mmHg):</em> descarta primero lo reversible ' +
+        '—posición, collar apretado, tubo obstruido, desadaptación al ventilador, sedación insuficiente, fiebre, ' +
+        'hiponatremia, convulsión no convulsiva y monitor descalibrado— antes de escalar.'
+      : '';
+
+    ppcOut.innerHTML = '<span class="big ' + clase + '">PPC = ' + fmt0(pam) + ' − ' + fmt0(pic) + ' = ' + fmt0(ppc) + ' mmHg</span>' +
+      texto + picNota +
+      '<br><br>Objetivo habitual <strong>60–70 mmHg</strong> (Brain Trauma Foundation, 4.ª edición). Nivela el ' +
+      'transductor arterial <strong>a la altura del trago</strong> para esta medición y usa la misma convención en ' +
+      'todo el equipo. En el paciente con autorregulación alterada el objetivo puede individualizarse en la unidad ' +
+      'crítica. <em>Verificar con protocolo institucional.</em>';
+  }
+
+  pamInput.addEventListener('input', renderPPC);
+  picInput.addEventListener('input', renderPPC);
+  document.getElementById('ppc-reset').addEventListener('click', () => {
+    pamInput.value = '';
+    picInput.value = '';
+    renderPPC();
+  });
+
+  // ── Dosis por peso ────────────────────────────────────────────────
+  const pesoInput = document.getElementById('peso');
+  const pesoOut = document.getElementById('peso-out');
+
+  function renderPeso() {
+    const kg = parseFloat(pesoInput.value);
+    if (!kg || kg <= 0 || kg > 250) {
+      pesoOut.innerHTML = 'Ingresa el peso para ver la osmoterapia, las dosis de inducción y el ácido tranexámico calculados para este paciente.';
+      return;
+    }
+
+    const sal3Min = kg * 3;            // mL de NaCl 3 %
+    const sal3Max = kg * 5;
+    const manitolGMin = kg * 0.25;     // g
+    const manitolGMax = kg * 1;
+    const manitolMlMin = manitolGMin / 0.2;  // mL de manitol 20 % (0,2 g/mL)
+    const manitolMlMax = manitolGMax / 0.2;
+
+    const filas = [
+      ['Salino hipertónico 3 %', '≈ 3–5 mL/kg en 10–20 min', fmt0(sal3Min) + '–' + fmt0(sal3Max) + ' mL', 'Preferible en el paciente hipotenso o en shock. Bolo típico del adulto: 250 mL'],
+      ['Salino hipertónico 23,4 %', 'Dosis fija en el adulto', '30 mL en 10–20 min', 'Vía central obligatoria. Disponibilidad y preparación varían entre servicios'],
+      ['Manitol 20 %', '0,25–1 g/kg en 15–20 min', fmt0(manitolGMin) + '–' + fmt0(manitolGMax) + ' g<br>(' + fmt0(manitolMlMin) + '–' + fmt0(manitolMlMax) + ' mL al 20 %)', 'Diurético osmótico: evita en hipotensión o hipovolemia. Vigila natremia, osmolalidad y función renal'],
+      ['Ketamina · inducción', '1–2 mg/kg IV', fmt0(kg * 1) + '–' + fmt0(kg * 2) + ' mg', 'Ya no está contraindicada en el TEC; preserva mejor la presión arterial'],
+      ['Etomidato · inducción', '0,3 mg/kg IV', fmt(kg * 0.3) + ' mg', 'Alternativa hemodinámicamente estable'],
+      ['Rocuronio', '1,2 mg/kg IV', fmt0(kg * 1.2) + ' mg', 'Dosis plena para condiciones ideales al primer intento'],
+      ['Succinilcolina', '1,5 mg/kg IV', fmt0(kg * 1.5) + ' mg', 'Alternativa si no hay contraindicaciones (hiperkalemia, quemadura antigua, lesión medular establecida)'],
+      ['Ácido tranexámico', 'Dosis fija en el adulto', '1 g IV en 10 min, luego 1 g en 8 h', 'Solo dentro de las 3 h de la lesión y según criterios de CRASH-3'],
+      ['Ventilación protectora', '6–8 mL/kg de peso predicho', 'Se calcula con la talla, no con este peso', 'El peso predicho depende de talla y sexo: no uses el peso real']
+    ].map(d =>
+      '<tr><td>' + d[0] + '</td>' +
+      '<td><span class="dose-note">' + d[1] + '</span></td>' +
+      '<td><span class="dose-main">' + d[2] + '</span><br><span class="dose-note">' + d[3] + '</span></td></tr>'
+    ).join('');
+
+    pesoOut.innerHTML =
+      '<span class="big">Dosis para ' + fmt(kg) + ' kg</span>' +
+      '<div class="table-wrap" style="margin-top:8px;"><table><thead><tr><th>Intervención</th><th>Dosis</th><th>Para este paciente</th></tr></thead><tbody>' +
+      filas +
+      '</tbody></table></div>' +
+      '<div style="margin-top:10px;">Calculado sobre <strong>peso real estimado</strong>. La concentración y la dilución ' +
+      'de las soluciones hipertónicas y del manitol <strong>varían entre servicios</strong>, y la dosificación puede ' +
+      'diferir en obesidad, embarazo, insuficiencia renal o hepática, y en el paciente pediátrico —donde las dosis de ' +
+      'osmoterapia son distintas—. <em>Verificar con protocolo institucional.</em></div>';
+  }
+
+  pesoInput.addEventListener('input', renderPeso);
+  document.getElementById('peso-reset').addEventListener('click', () => {
+    pesoInput.value = '';
+    renderPeso();
+  });
+</script>
+</body>
+</html>

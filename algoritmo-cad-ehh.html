@@ -1,0 +1,2152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Algoritmo · Cetoacidosis diabética y estado hiperosmolar</title>
+<meta name="description" content="Árbol de decisión para las crisis hiperglicémicas graves en urgencia: criterios de cetoacidosis diabética y de estado hiperosmolar, calculadora de osmolalidad efectiva, sodio corregido y brecha aniónica, fluidos, el potasio antes que la insulina, cetoacidosis euglicémica por inhibidores de SGLT2, shock refractario, desequilibrios electrolíticos extremos, acidosis con pH bajo 7 y la trampa de la intubación.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(16,185,129,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(245,158,11,0.07) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 40px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.28);
+    color: #6ee7b7;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #10b981, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .s1 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s1 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s2 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s2 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s3 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s3 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s4 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s4 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s5 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s5 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s6 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s6 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s7 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s7 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s8 .section-num { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s8 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s9 .section-num { background: rgba(239,68,68,0.10); color: #fecaca; border: 1px solid rgba(239,68,68,0.18); }
+  .s9 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s10 .section-num { background: rgba(59,130,246,0.12); color: #bfdbfe; border: 1px solid rgba(59,130,246,0.18); }
+  .s10 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s11 .section-num { background: rgba(20,184,166,0.12); color: #99f6e4; border: 1px solid rgba(20,184,166,0.18); }
+  .s11 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s12 .section-num { background: rgba(255,255,255,0.06); color: var(--text-dim); border: 1px solid var(--border); }
+  .s12 { --accent: var(--text-dim); --accent-glow: rgba(148,163,184,0.08); }
+
+  /* ORIENTADOR INTERACTIVO */
+  .q-block { margin-bottom: 18px; }
+  .q-block:last-of-type { margin-bottom: 0; }
+
+  .q-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt.on {
+    background: rgba(16,185,129,0.12);
+    border-color: rgba(16,185,129,0.45);
+    color: #6ee7b7;
+  }
+  .opt:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+
+  .result {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface2);
+    padding: 18px 20px;
+    border-left: 3px solid var(--accent, var(--emerald));
+  }
+  .result.placeholder { color: var(--text-muted); font-size: 13px; font-family: var(--mono); line-height: 1.6; }
+
+  .result-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .result-title {
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .result-row {
+    display: flex;
+    gap: 12px;
+    padding: 9px 0;
+    border-top: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .result-row:first-of-type { border-top: none; padding-top: 2px; }
+  .result-key {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    flex: 0 0 104px;
+    padding-top: 3px;
+  }
+  .result-row strong { color: #fff; font-weight: 500; }
+  .result-row em { color: #fcd34d; font-style: normal; }
+
+  .result.sev-red { border-left-color: var(--red); }
+  .result.sev-amber { border-left-color: var(--amber); }
+  .result.sev-green { border-left-color: var(--emerald); }
+
+  /* CALCULADORA */
+  .calc {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-top: 16px;
+  }
+  .calc-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .calc-label.second { margin-top: 18px; }
+  .score-list { display: flex; flex-direction: column; gap: 8px; }
+  .score-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .score-item:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .score-item.on {
+    background: rgba(20,184,166,0.12);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .score-item:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+  .score-list.gate .score-item.on {
+    background: rgba(245,158,11,0.12);
+    border-color: rgba(245,158,11,0.45);
+    color: #fcd34d;
+  }
+  .score-list.danger .score-item.on {
+    background: rgba(239,68,68,0.12);
+    border-color: rgba(239,68,68,0.45);
+    color: #fca5a5;
+  }
+  .score-pts {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  .score-item.on .score-pts { color: #5eead4; border-color: rgba(20,184,166,0.4); }
+  .score-list.gate .score-item.on .score-pts { color: #fcd34d; border-color: rgba(245,158,11,0.4); }
+  .score-list.danger .score-item.on .score-pts { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  .calc-out {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .calc-out strong { color: #fff; font-weight: 500; }
+  .calc-out em { color: #fcd34d; font-style: normal; }
+  .calc-out .big {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: #93c5fd;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .calc-out .big.risk-low { color: #6ee7b7; }
+  .calc-out .big.risk-mid { color: #fcd34d; }
+  .calc-out .big.risk-high { color: #fca5a5; }
+
+  .calc-reset {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 8px 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .calc-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+  /* ENTRADA NUMÉRICA */
+  .calc-field { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .calc-field + .calc-field { margin-top: 10px; }
+  .calc-field input {
+    font-family: var(--mono);
+    font-size: 15px;
+    color: #fff;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    width: 130px;
+    -moz-appearance: textfield;
+  }
+  .calc-field input:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: rgba(20,184,166,0.45); }
+  .calc-field .unit {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .toggle-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .toggle-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .toggle-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .toggle-btn.on {
+    background: rgba(20,184,166,0.12);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .toggle-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+  /* BANNERS */
+  .warning-banner, .info-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    color: #fca5a5;
+  }
+  .info-banner {
+    background: rgba(59,130,246,0.06);
+    border: 1px solid rgba(59,130,246,0.18);
+    color: #bfdbfe;
+  }
+  .warning-banner strong, .info-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* CRONOLOGÍA */
+  .timeline { display: flex; flex-direction: column; gap: 10px; }
+  .tl-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 13px 15px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .tl-time {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: #fca5a5;
+    flex: 0 0 74px;
+    padding-top: 2px;
+  }
+  .tl-item strong { color: #fff; font-weight: 500; }
+  .tl-item em { color: #fcd34d; font-style: normal; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* ÁRBOL DE DECISIÓN */
+  .flow { display: flex; flex-direction: column; gap: 10px; }
+  .flow-node {
+    position: relative;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--text-muted);
+    background: rgba(255,255,255,0.02);
+    padding: 12px 15px;
+    font-size: 13.5px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .flow-node strong { color: #fff; font-weight: 500; }
+  .flow-node em { color: #fcd34d; font-style: normal; }
+  .flow-q {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .flow-node.stop { border-left-color: var(--red); background: rgba(239,68,68,0.06); }
+  .flow-node.stop .flow-q { color: #fca5a5; }
+  .flow-node.go { border-left-color: var(--emerald); background: rgba(16,185,129,0.05); }
+  .flow-node.go .flow-q { color: #6ee7b7; }
+  .flow-node.hold { border-left-color: var(--amber); background: rgba(245,158,11,0.05); }
+  .flow-node.hold .flow-q { color: #fcd34d; }
+  .flow-node.ask { border-left-color: var(--blue); background: rgba(59,130,246,0.05); }
+  .flow-node.ask .flow-q { color: #93c5fd; }
+  .flow-branch {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 10px;
+    padding-left: 16px;
+    border-left: 2px dashed rgba(255,255,255,0.10);
+  }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--amber); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .opt { width: 100%; }
+    .result-row { flex-direction: column; gap: 4px; }
+    .result-key { flex: none; padding-top: 0; }
+    .tl-item { flex-direction: column; gap: 6px; }
+    .tl-time { flex: none; }
+    .score-item { align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <div class="header-badge">Patología compleja · Algoritmo</div>
+    <h1>Cetoacidosis diabética <span>y estado hiperosmolar</span></h1>
+    <p class="header-sub">
+      La cetoacidosis diabética y el estado hiperosmolar hiperglicémico son <strong>la misma enfermedad en dos
+      extremos</strong> de un continuo —déficit de insulina, hormonas de contrarregulación, diuresis osmótica— y
+      hasta un tercio de los pacientes llega con un <strong>cuadro mixto</strong>. Lo que mata en urgencia casi nunca
+      es la glicemia: es el <strong>colapso circulatorio por un déficit de volumen de litros</strong>, el
+      <strong>potasio</strong> —que parece normal o alto con el paciente vacío de potasio corporal, y se desploma
+      apenas empieza la insulina—, la <strong>acidosis extrema</strong> con un paciente agotado al que alguien decide
+      intubar, y el <strong>desencadenante que nadie buscó</strong>. Esta página está escrita para las primeras horas:
+      clasificar el cuadro, reponer volumen, no dar insulina antes de tiempo, reconocer la cetoacidosis euglicémica
+      por inhibidores de SGLT2, manejar los electrolitos extremos y decidir qué hacer con el paciente que no mejora.
+    </p>
+  </div>
+
+  <!-- 01 · ÁRBOL DE DECISIÓN -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">Árbol de decisión</div>
+        <div class="section-subtitle">Escenario + estado circulatorio + contexto</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Marca el <strong>escenario dominante</strong> y el <strong>estado circulatorio</strong>; el contexto es
+        opcional y agrega matices. El resultado orienta la prioridad de los primeros minutos, el orden correcto
+        —volumen, potasio, insulina— y lo que <strong>no</strong> hay que hacer. No sustituye el protocolo de tu
+        servicio ni la evaluación presencial.</span>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">1 · Escenario dominante</div>
+        <div class="opts" id="q-esc">
+          <button type="button" class="opt" data-v="shock">Hipotensión o shock que <strong>no responde</strong> a la reposición inicial</button>
+          <button type="button" class="opt" data-v="cad">Cetoacidosis diabética confirmada o muy probable</button>
+          <button type="button" class="opt" data-v="ehh">Estado hiperosmolar: glicemia muy alta, osmolalidad alta, sin cetoacidosis relevante</button>
+          <button type="button" class="opt" data-v="mixto">Cuadro mixto: cetoacidosis <strong>y</strong> hiperosmolaridad juntas</button>
+          <button type="button" class="opt" data-v="eugli">Sospecha de cetoacidosis euglicémica (inhibidor de SGLT2, embarazo, ayuno prolongado, hepatopatía)</button>
+          <button type="button" class="opt" data-v="hipok">Potasio inicial <strong>bajo 3,3 mmol/L</strong></button>
+          <button type="button" class="opt" data-v="hiperk">Potasio alto con cambios en el electrocardiograma</button>
+          <button type="button" class="opt" data-v="acidosis">Acidosis extrema (pH &lt; 7,0) o paciente agotado, con la intubación en discusión</button>
+          <button type="button" class="opt" data-v="noresuelve">Lleva horas de tratamiento y la brecha aniónica no cierra</button>
+          <button type="button" class="opt" data-v="renal">Diálisis crónica o insuficiencia cardíaca: no tolera el volumen</button>
+          <button type="button" class="opt" data-v="embarazo">Embarazada con cetoacidosis</button>
+          <button type="button" class="opt" data-v="pediatrico">Paciente pediátrico</button>
+          <button type="button" class="opt" data-v="sinuci">Centro sin unidad crítica, sin gases o sin laboratorio: traslado pendiente</button>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">2 · Estado circulatorio y de conciencia</div>
+        <div class="opts" id="q-est">
+          <button type="button" class="opt" data-v="shockprof">Hipotensión con hipoperfusión: piel fría, oliguria, lactato alto</button>
+          <button type="button" class="opt" data-v="deshid">Deshidratación marcada, taquicardia, sin hipotensión franca</button>
+          <button type="button" class="opt" data-v="estable">Hemodinamia conservada y paciente alerta</button>
+          <button type="button" class="opt" data-v="sopor">Somnoliento o confuso (Glasgow 9–14)</button>
+          <button type="button" class="opt" data-v="coma">Glasgow ≤ 8 o sin protección de vía aérea</button>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">3 · Contexto (marca los que apliquen)</div>
+        <div class="opts" id="q-ctx">
+          <button type="button" class="opt" data-v="infeccion">Fiebre, foco infeccioso o sospecha de sepsis</button>
+          <button type="button" class="opt" data-v="isglt2">Toma inhibidor de SGLT2 (dapagliflozina, empagliflozina, canagliflozina)</button>
+          <button type="button" class="opt" data-v="cardio">Dolor torácico, electrocardiograma anormal o troponina elevada</button>
+          <button type="button" class="opt" data-v="ercdial">Enfermedad renal crónica avanzada o en diálisis</button>
+          <button type="button" class="opt" data-v="icc">Insuficiencia cardíaca o fracción de eyección reducida</button>
+          <button type="button" class="opt" data-v="kbajo">Potasio bajo 3,3 mmol/L en el primer examen</button>
+          <button type="button" class="opt" data-v="debut">Debut diabético o sin insulina hace días</button>
+          <button type="button" class="opt" data-v="abdomen">Dolor abdominal intenso o vómitos persistentes</button>
+          <button type="button" class="opt" data-v="embarazo">Embarazo</button>
+          <button type="button" class="opt" data-v="pediatrico">Paciente pediátrico</button>
+          <button type="button" class="opt" data-v="sinuci">Sin unidad crítica ni laboratorio en el centro</button>
+          <button type="button" class="opt" data-v="ninguno">Ninguno de los anteriores</button>
+        </div>
+      </div>
+
+      <div class="result placeholder" id="result">
+        Selecciona el escenario dominante y el estado circulatorio para ver la prioridad, el orden de las
+        intervenciones en los primeros minutos, qué está contraindicado y a quién llamar.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · RECONOCER Y CLASIFICAR -->
+  <div class="section s2" id="s2" style="animation-delay:0.12s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Reconocer y clasificar el cuadro</div>
+        <div class="section-subtitle">Criterios · gravedad · calculadora de osmolalidad, sodio corregido y brecha aniónica</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>La glicemia no define la gravedad.</strong> Un paciente con glicemia de 240 mg/dL y pH de 6,9
+        está mucho peor que uno con 750 mg/dL y pH normal. Lo que clasifica es la <strong>acidosis</strong> (pH y
+        bicarbonato), la <strong>cetonemia</strong>, la <strong>osmolalidad efectiva</strong> y el <strong>estado de
+        conciencia</strong>.</span>
+      </div>
+
+      <div class="subhead">Criterios diagnósticos</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Criterio</th><th>Cetoacidosis diabética</th><th>Estado hiperosmolar</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Glicemia</td>
+              <td><span class="dose-main">≥ 200 mg/dL</span><br><span class="dose-note">o diabetes conocida a cualquier glicemia</span></td>
+              <td><span class="dose-main">≥ 600 mg/dL</span><br><span class="dose-note">(≈ 33,3 mmol/L)</span></td>
+            </tr>
+            <tr>
+              <td>Cetonas</td>
+              <td><span class="dose-main">β-hidroxibutirato ≥ 3,0 mmol/L</span><br><span class="dose-note">o cetonuria ≥ 2+</span></td>
+              <td><span class="dose-main">β-hidroxibutirato &lt; 3,0 mmol/L</span><br><span class="dose-note">cetonuria ausente o mínima</span></td>
+            </tr>
+            <tr>
+              <td>Acidosis</td>
+              <td><span class="dose-main">pH &lt; 7,3 y/o bicarbonato &lt; 18 mmol/L</span></td>
+              <td><span class="dose-main">pH &gt; 7,3 y bicarbonato &gt; 15 mmol/L</span></td>
+            </tr>
+            <tr>
+              <td>Osmolalidad efectiva</td>
+              <td>Variable, habitualmente normal o poco elevada</td>
+              <td><span class="dose-main">&gt; 320 mOsm/kg</span></td>
+            </tr>
+            <tr>
+              <td>Conciencia</td>
+              <td>Habitualmente conservada, salvo en la forma grave</td>
+              <td><strong>Compromiso frecuente</strong>, proporcional a la osmolalidad</td>
+            </tr>
+            <tr>
+              <td>Instalación</td>
+              <td>Horas a 1–2 días</td>
+              <td>Días a semanas: <strong>el déficit de volumen es mucho mayor</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span>Umbrales del <strong>consenso ADA/EASD/JBDS/AACE/DTS 2024</strong>, que reemplazó al documento ADA de
+        2009. Dos cambios que importan en el box: la glicemia de corte de la cetoacidosis <strong>bajó a 200
+        mg/dL</strong> —y en el paciente con diabetes conocida <strong>puede no haber hiperglicemia en
+        absoluto</strong>—, y el <strong>β-hidroxibutirato capilar o plasmático pasó a ser la medición de cetonas de
+        elección</strong> frente a la cetonuria. <em>Los valores de corte y la nomenclatura pueden diferir en el
+        protocolo institucional: verificar.</em></span>
+      </div>
+
+      <div class="subhead">Gravedad de la cetoacidosis</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Gravedad</th><th>pH</th><th>Bicarbonato</th><th>Conciencia y destino</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Leve</td>
+              <td><span class="dose-main">7,25–7,30</span></td>
+              <td><span class="dose-main">15–18 mmol/L</span></td>
+              <td>Alerta. Manejo en urgencia u hospitalización general según protocolo</td>
+            </tr>
+            <tr>
+              <td>Moderada</td>
+              <td><span class="dose-main">7,00–7,24</span></td>
+              <td><span class="dose-main">10–15 mmol/L</span></td>
+              <td>Alerta o somnoliento. Área monitorizada</td>
+            </tr>
+            <tr>
+              <td>Grave</td>
+              <td><span class="dose-main">&lt; 7,00</span></td>
+              <td><span class="dose-main">&lt; 10 mmol/L</span></td>
+              <td><strong>Estupor o coma.</strong> Unidad crítica</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span>Criterios adicionales de gravedad que se citan habitualmente y que <strong>por sí solos justifican
+        cama crítica</strong>, aunque el pH no sea &lt; 7,0: <strong>β-hidroxibutirato &gt; 6 mmol/L</strong>,
+        <strong>brecha aniónica &gt; 16</strong>, <strong>potasio &lt; 3,5 mmol/L al ingreso</strong>, saturación de
+        oxígeno baja, frecuencia cardíaca &gt; 100 o &lt; 60 lpm, presión sistólica &lt; 90 mmHg y compromiso de
+        conciencia. <em>Los criterios de ingreso a unidad crítica se definen con el protocolo institucional.</em></span>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Osmolalidad efectiva · sodio corregido · brecha aniónica</div>
+        <div class="calc-field">
+          <input type="number" id="lab-na" min="90" max="200" step="1" inputmode="decimal" placeholder="132">
+          <span class="unit">sodio medido · mmol/L</span>
+        </div>
+        <div class="calc-field">
+          <input type="number" id="lab-glu" min="40" max="2000" step="1" inputmode="decimal" placeholder="520">
+          <span class="unit">glicemia · mg/dL</span>
+        </div>
+        <div class="calc-field">
+          <input type="number" id="lab-cl" min="50" max="160" step="1" inputmode="decimal" placeholder="95">
+          <span class="unit">cloro · mmol/L (opcional)</span>
+        </div>
+        <div class="calc-field">
+          <input type="number" id="lab-hco3" min="1" max="45" step="0.1" inputmode="decimal" placeholder="8">
+          <span class="unit">bicarbonato · mmol/L (opcional)</span>
+        </div>
+        <div class="calc-out" id="lab-out">Ingresa sodio y glicemia para calcular la osmolalidad efectiva y el sodio corregido. Agrega cloro y bicarbonato para la brecha aniónica.</div>
+        <button type="button" class="calc-reset" id="lab-reset">Limpiar</button>
+      </div>
+
+      <div class="subhead">Lo que hay que pedir en los primeros minutos</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Gases venosos</strong> (el pH venoso es suficiente para el manejo: se sitúa alrededor de 0,03 unidades bajo el arterial), <strong>electrolitos con cloro</strong>, <strong>β-hidroxibutirato</strong>, glicemia capilar y de laboratorio, función renal, calcio, fósforo y magnesio.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Hemograma, proteína C reactiva, orina completa, urocultivo, hemocultivos</strong> y radiografía de tórax si hay sospecha de foco. <strong>Electrocardiograma siempre</strong>: busca el infarto silente y los cambios del potasio.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🤰</span><span><strong>Test de embarazo</strong> en toda mujer en edad fértil: la cetoacidosis del embarazo aparece con glicemias más bajas y es una emergencia materno-fetal.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>La leucocitosis es parte del cuadro:</strong> cifras de 15.000–25.000/µL pueden deberse solo a la cetoacidosis y al estrés. Una cifra más alta o con desviación izquierda marcada orienta a infección, pero <strong>la ausencia de fiebre no descarta nada</strong>: la hipotermia es un signo de mal pronóstico y de sepsis.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>Amilasa y lipasa se elevan sin pancreatitis</strong> en la cetoacidosis. Y a la inversa, la pancreatitis aguda es un desencadenante frecuente: el diagnóstico se apoya en la clínica y en la imagen, no solo en la enzima.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📉</span><span><strong>Hiponatremia por dilución:</strong> con glicemias muy altas el sodio medido baja sin que haya exceso real de agua libre. Usa el <strong>sodio corregido</strong> para decidir el tipo de suero, no el medido. Los triglicéridos muy altos también dan una pseudohiponatremia por interferencia del método.</span></div>
+      </div>
+
+      <div class="subhead">Buscar el desencadenante: las seis «i»</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Desencadenante</th><th>Qué buscar</th></tr></thead>
+          <tbody>
+            <tr><td>Infección</td><td><strong>La causa más frecuente.</strong> Neumonía, infección urinaria, celulitis y pie diabético, colecistitis, absceso dental o perianal. Examina la piel y los pies con el paciente desnudo</td></tr>
+            <tr><td>Infarto e isquemia</td><td>Infarto agudo al miocardio —a menudo <strong>sin dolor</strong> en el diabético—, accidente cerebrovascular, isquemia mesentérica, tromboembolismo pulmonar</td></tr>
+            <tr><td>Insulina omitida</td><td>Abandono del tratamiento, falla de la bomba de insulina o del catéter, problemas de acceso al fármaco, trastorno alimentario</td></tr>
+            <tr><td>Inicio (debut)</td><td>Diabetes tipo 1 de debut, o <strong>diabetes propensa a cetosis</strong> en adultos con fenotipo de tipo 2</td></tr>
+            <tr><td>Intoxicación</td><td>Alcohol, cocaína y simpaticomiméticos. <strong>Considera también la cetoacidosis alcohólica</strong> y la intoxicación por salicilatos o metanol en la acidosis con brecha aniónica no explicada</td></tr>
+            <tr><td>Iatrogenia</td><td><strong>Inhibidores de SGLT2</strong> (cetoacidosis euglicémica), corticoides, antipsicóticos atípicos, tiazidas, inhibidores de puntos de control inmunitario, nutrición parenteral</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./guia-dolor-abdominal.html">→ Guía: dolor abdominal</a>
+        <a class="cross-link" href="./checklist-sepsis_4.html">→ Checklist: sepsis y shock séptico</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · LOS PRIMEROS 60 MINUTOS -->
+  <div class="section s3" id="s3" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Los primeros 60 minutos</div>
+        <div class="section-subtitle">El orden correcto: volumen → potasio → insulina</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>El orden no es negociable.</strong> Primero volumen, después potasio, y la insulina al final.
+        La insulina empuja potasio y glucosa hacia el interior de la célula: si se administra a un paciente
+        hipovolémico e hipokalémico, produce <strong>colapso circulatorio y arritmia</strong>. La insulina no es lo
+        urgente; el volumen sí.</span>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item"><span class="tl-time">0–5 min</span><span><strong>Monitorización, dos vías periféricas gruesas y glicemia capilar.</strong> Electrocardiograma de 12 derivaciones —busca el infarto silente y los signos de hiper o hipokalemia—. Toma la primera muestra <strong>antes</strong> de administrar nada: gases venosos, electrolitos con cloro, β-hidroxibutirato, función renal, calcio, fósforo y magnesio.</span></div>
+        <div class="tl-item"><span class="tl-time">0–15 min</span><span><strong>Cristaloide isotónico:</strong> 500–1000 mL en la primera hora, o <strong>10–20 mL/kg en bolo</strong> si hay hipoperfusión, reevaluando después de cada bolo. Cloruro de sodio 0,9 % o cristaloide balanceado (Ringer lactato, Plasma-Lyte). En el paciente con insuficiencia cardíaca o renal avanzada, <strong>bolos más pequeños y reevaluación frecuente</strong>.</span></div>
+        <div class="tl-item"><span class="tl-time">15–30 min</span><span><strong>Potasio:</strong> no inicies insulina sin conocerlo. <strong>Bajo 3,3 mmol/L → reponer y retrasar la insulina.</strong> Entre 3,3 y 5,2 → agrega 20–30 mmol por litro de suero. Sobre 5,2 → no repongas todavía y controla en 2 h.</span></div>
+        <div class="tl-item"><span class="tl-time">30–60 min</span><span><strong>Insulina cristalina en infusión, 0,1 U/kg/h,</strong> una vez que el potasio esté sobre 3,3 mmol/L y con volumen ya corriendo. El bolo inicial <strong>no es necesario</strong> si se usa infusión continua a esa dosis.</span></div>
+        <div class="tl-item"><span class="tl-time">En paralelo</span><span><strong>Busca el desencadenante y trátalo:</strong> infección, infarto, pancreatitis, fármacos, insulina omitida. <strong>La crisis no se resuelve si el gatillo sigue activo</strong>, y esa es la causa más frecuente de «cetoacidosis refractaria».</span></div>
+        <div class="tl-item"><span class="tl-time">1.ª hora</span><span><strong>Sonda vesical solo si hay indicación</strong> (retención, anuria, compromiso de conciencia con necesidad estricta de balance). Sonda nasogástrica si hay vómitos incoercibles con riesgo de aspiración. <strong>Profilaxis de trombosis venosa</strong> salvo contraindicación, especialmente en el estado hiperosmolar.</span></div>
+        <div class="tl-item"><span class="tl-time">Desde ya</span><span><strong>Define dónde va a estar el paciente en 2 horas.</strong> Cetoacidosis grave, estado hiperosmolar, compromiso de conciencia, shock o electrolitos extremos <strong>necesitan cama monitorizada y laboratorio cada 1–2 h</strong>. Si tu centro no lo tiene, activa el traslado ahora y no cuando el paciente empeore.</span></div>
+      </div>
+
+      <div class="subhead">Controles de laboratorio durante el tratamiento</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Parámetro</th><th>Frecuencia</th><th>Qué estás mirando</th></tr></thead>
+          <tbody>
+            <tr><td>Glicemia capilar</td><td><span class="dose-main">Cada 1 h</span></td><td>Velocidad de descenso: meta <strong>50–75 mg/dL por hora</strong>. Más rápido no es mejor</td></tr>
+            <tr><td>Electrolitos y gases venosos</td><td><span class="dose-main">Cada 2–4 h</span><br><span class="dose-note">cada 1–2 h si son extremos</span></td><td>Potasio sobre todo. Después, bicarbonato, cloro y brecha aniónica</td></tr>
+            <tr><td>β-hidroxibutirato</td><td><span class="dose-main">Cada 2–4 h</span><br><span class="dose-note">donde esté disponible</span></td><td>Es lo que mide la <strong>resolución real</strong> de la cetosis. Meta &lt; 0,6 mmol/L</td></tr>
+            <tr><td>Cetonas en orina</td><td><strong>No sirven para monitorizar</strong></td><td>El método del nitroprusiato mide acetoacetato: durante la recuperación <strong>puede aumentar</strong> aunque el paciente esté mejorando</td></tr>
+            <tr><td>Balance hídrico y diuresis</td><td><span class="dose-main">Horario</span></td><td>Sobrecarga en el cardiópata, anuria persistente que sugiere daño renal o hipovolemia mantenida</td></tr>
+            <tr><td>Estado neurológico</td><td><span class="dose-main">Horario</span></td><td>Deterioro durante el tratamiento = <strong>edema cerebral</strong> hasta que se demuestre lo contrario, sobre todo en niños</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · FLUIDOS -->
+  <div class="section s4" id="s4" style="animation-delay:0.24s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Fluidos: qué, cuánto y a qué velocidad</div>
+        <div class="section-subtitle">Déficit real · balanceado frente a salino · calculadora por peso</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>El déficit de volumen se cuenta en litros, no en mililitros.</strong> En la cetoacidosis es del
+        orden de <strong>100 mL/kg</strong> (unos 6 L en un adulto de 60 kg) y en el estado hiperosmolar puede llegar
+        a <strong>100–220 mL/kg</strong> (8–12 L). La reposición es la intervención que más cambia la fisiología en
+        la primera hora: baja la glicemia por dilución y por mejoría de la filtración renal, mejora la perfusión y
+        reduce las hormonas de contrarregulación <strong>antes de que la insulina haga nada</strong>.</span>
+      </div>
+
+      <div class="subhead">Esquema de reposición</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Momento</th><th>Qué</th><th>Cuánto</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Primera hora</td>
+              <td>Cristaloide isotónico: <strong>cloruro de sodio 0,9 %</strong> o <strong>balanceado</strong> (Ringer lactato, Plasma-Lyte)</td>
+              <td><span class="dose-main">500–1000 mL/h</span><br><span class="dose-note">o 10–20 mL/kg en bolo si hay hipoperfusión, reevaluando</span></td>
+            </tr>
+            <tr>
+              <td>Horas siguientes · sodio corregido bajo o normal</td>
+              <td>Continuar con isotónico</td>
+              <td><span class="dose-main">250–500 mL/h</span><br><span class="dose-note">ajustado a hemodinamia, diuresis y comorbilidad</span></td>
+            </tr>
+            <tr>
+              <td>Horas siguientes · sodio corregido alto</td>
+              <td><strong>Cloruro de sodio 0,45 %</strong></td>
+              <td><span class="dose-main">250–500 mL/h</span><br><span class="dose-note">vigilando que la natremia no caiga más de 10 mmol/L en 24 h</span></td>
+            </tr>
+            <tr>
+              <td>Glicemia ≈ 200–250 mg/dL en cetoacidosis</td>
+              <td>Añadir <strong>glucosa al 5–10 %</strong> al suero y reducir la insulina</td>
+              <td><span class="dose-main">Mantener glicemia 150–200 mg/dL</span><br><span class="dose-note">hasta que la cetoacidosis se resuelva</span></td>
+            </tr>
+            <tr>
+              <td>Glicemia ≈ 250–300 mg/dL en estado hiperosmolar</td>
+              <td>Añadir <strong>glucosa al 5 %</strong></td>
+              <td><span class="dose-main">Mantener glicemia 200–300 mg/dL</span><br><span class="dose-note">hasta recuperar la osmolalidad y el estado mental</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">¿Salino al 0,9 % o cristaloide balanceado?</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">⚖️</span><span>El consenso 2024 permite <strong>ambos</strong>, con una <strong>preferencia razonable por el balanceado</strong> donde esté disponible. El subanálisis de los ensayos SMART y SALT-ED en adultos con cetoacidosis mostró <strong>resolución más rápida</strong> con balanceado (mediana 13,0 h frente a 16,9 h) y menor tiempo de infusión de insulina. Un metaanálisis posterior de 11 ensayos no confirmó diferencia en el tiempo de resolución, pero sí <strong>menos hipercloremia</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧂</span><span><strong>Lo que sí está claro:</strong> varios litros de salino al 0,9 % producen <strong>acidosis metabólica hiperclorémica</strong>. Esa acidosis no es cetoacidosis, no mejora con más insulina y <strong>se confunde con una cetoacidosis que no se resuelve</strong>, prolongando infusiones innecesariamente.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧷</span><span>El <strong>Ringer lactato aporta unos 4 mmol/L de potasio</strong> y algo de lactato que se metaboliza a bicarbonato. Tenlo en cuenta al sumar el potasio total administrado, y recuerda que la glicemia baja marginalmente más lento con soluciones que contienen lactato. <em>La elección concreta se ajusta al protocolo institucional y a la disponibilidad.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>No uses soluciones hipotónicas como reposición inicial</strong> ni suero glucosado solo al inicio: el objetivo de la primera hora es <strong>volumen intravascular</strong>, no agua libre.</span></div>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Dosis y volúmenes por peso</div>
+        <div class="calc-field">
+          <input type="number" id="peso" min="20" max="250" step="1" inputmode="decimal" placeholder="70">
+          <span class="unit">kg · peso real estimado</span>
+        </div>
+        <div class="calc-out" id="peso-out">Ingresa el peso para ver el bolo inicial, el déficit estimado de volumen y las velocidades de infusión de insulina calculadas para este paciente.</div>
+        <button type="button" class="calc-reset" id="peso-reset">Limpiar</button>
+      </div>
+
+      <div class="warning-banner" style="margin-top:16px;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Dos poblaciones en las que el volumen se administra con freno:</strong> el paciente con
+        <strong>insuficiencia cardíaca o fracción de eyección reducida</strong> y el paciente con <strong>enfermedad
+        renal terminal o en diálisis</strong> —donde no hay diuresis osmótica, el déficit de volumen es mucho menor o
+        inexistente, y la reposición estándar produce edema pulmonar—. En ambos: <strong>bolos pequeños (250 mL),
+        reevaluación clínica y ecográfica tras cada uno</strong>, y el tratamiento se apoya principalmente en la
+        insulina. <em>Consulta precozmente con nefrología o cuidados críticos.</em></span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · POTASIO -->
+  <div class="section s5" id="s5" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">El potasio antes que la insulina</div>
+        <div class="section-subtitle">El error que mata en las primeras horas</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>El potasio plasmático miente.</strong> Casi todos los pacientes tienen un <strong>déficit
+        corporal total de potasio de 3–5 mmol/kg</strong> —varios cientos de milimoles—, pero la acidosis y el
+        déficit de insulina lo sacan de la célula, de modo que el valor de laboratorio puede ser normal o alto.
+        Apenas empiezan la insulina, la corrección de la acidosis y la expansión de volumen, ese potasio vuelve al
+        interior de la célula y la kalemia <strong>se desploma en 1–2 horas</strong>. La hipokalemia aguda es una de
+        las causas evitables de muerte en la cetoacidosis.</span>
+      </div>
+
+      <div class="subhead">Qué hacer según el potasio inicial</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Potasio</th><th>Insulina</th><th>Reposición</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>&lt; 3,3 mmol/L</td>
+              <td><span class="dose-main">NO iniciar todavía</span><br><span class="dose-note">retrasar hasta ≥ 3,3</span></td>
+              <td><strong>10–20 mmol/h</strong> de cloruro de potasio con el suero, monitorizado. Si la hipokalemia es profunda (&lt; 2,5) o hay arritmia, se usan velocidades mayores por <strong>vía central y con monitorización continua</strong>. <em>Velocidad máxima por vía periférica y central: verificar con protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>3,3–5,2 mmol/L</td>
+              <td>Iniciar según el esquema</td>
+              <td><strong>20–30 mmol por cada litro</strong> de suero, con meta de mantener la kalemia entre <strong>4 y 5 mmol/L</strong></td>
+            </tr>
+            <tr>
+              <td>&gt; 5,2 mmol/L</td>
+              <td>Iniciar según el esquema</td>
+              <td><strong>No reponer todavía.</strong> Control cada 2 h y comenzar la reposición en cuanto baje de 5,2. <strong>La hiperkalemia inicial no significa potasio corporal suficiente</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="plain-list" style="margin-top:14px;">
+        <div class="plain-item flag"><span class="bullet-icon">⚡</span><span><strong>Antes de la insulina, mira el electrocardiograma.</strong> Ondas T picudas, PR largo y QRS ancho en la hiperkalemia; aplanamiento de la T, onda U y QT largo en la hipokalemia. En el paciente con hiperkalemia y cambios electrocardiográficos, <strong>gluconato o cloruro de calcio para estabilizar la membrana</strong> mientras la insulina y el volumen hacen el resto del trabajo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧮</span><span>Cuenta <strong>todo</strong> el potasio que entra: el de los sueros, el del Ringer lactato (≈ 4 mmol/L) y el de las diluciones. Es fácil sobrepasar la velocidad prevista sumando fuentes.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚽</span><span><strong>Antes de reponer agresivamente, verifica que haya diuresis.</strong> En anuria o insuficiencia renal avanzada la reposición se hace con mucha más cautela y controles más frecuentes.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧲</span><span><strong>Si el potasio no sube pese a la reposición, mide el magnesio.</strong> La hipomagnesemia perpetúa la hipokalemia y hay que corregirla para que la reposición funcione.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Nunca administres potasio en bolo</strong> ni por una vía no verificada. La reposición rápida va siempre con monitorización electrocardiográfica continua.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · INSULINA -->
+  <div class="section s6" id="s6" style="animation-delay:0.36s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Insulina: infusión, metas y el momento del suero glucosado</div>
+        <div class="section-subtitle">Cerrar la brecha aniónica, no bajar la glicemia</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>La insulina no está para normalizar la glicemia: está para apagar la cetogénesis.</strong> Por
+        eso, cuando la glicemia baja, <strong>no se suspende la insulina: se agrega glucosa</strong>. Suspenderla
+        porque «ya está en 180» reabre la producción de cetonas y devuelve al paciente al punto de partida.</span>
+      </div>
+
+      <div class="subhead">Esquema estándar en el adulto</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Paso</th><th>Qué</th><th>Detalle</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Antes de empezar</td>
+              <td><strong>Potasio ≥ 3,3 mmol/L</strong> y volumen ya corriendo</td>
+              <td>Si el potasio es menor, se repone primero y la insulina espera</td>
+            </tr>
+            <tr>
+              <td>Infusión</td>
+              <td><span class="dose-main">Insulina cristalina (regular) 0,1 U/kg/h IV</span></td>
+              <td>El <strong>bolo inicial de 0,1 U/kg no es necesario</strong> si se usa infusión continua a esta dosis. Algunos protocolos usan tasa fija de 0,1 U/kg/h sin bolo desde el inicio</td>
+            </tr>
+            <tr>
+              <td>Meta de descenso</td>
+              <td><span class="dose-main">50–75 mg/dL por hora</span></td>
+              <td>Si baja menos, verifica volumen, permeabilidad de la vía y desencadenante antes de subir la dosis. Si baja demasiado rápido, agrega glucosa antes que reducir la insulina</td>
+            </tr>
+            <tr>
+              <td>Glicemia ≈ 200–250 mg/dL</td>
+              <td><strong>Agregar glucosa 5–10 %</strong> y bajar la infusión a <span class="dose-main">0,05 U/kg/h</span></td>
+              <td>Mantener la glicemia en <strong>150–200 mg/dL</strong> y <strong>continuar la insulina</strong> hasta resolver la cetoacidosis</td>
+            </tr>
+            <tr>
+              <td>Resolución</td>
+              <td>Ver criterios en la sección 11</td>
+              <td>Recién ahí se planifica el paso a insulina subcutánea, <strong>con solapamiento</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Insulina subcutánea en la cetoacidosis leve</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💉</span><span>En la <strong>cetoacidosis leve o moderada no complicada</strong>, los análogos de acción rápida por vía subcutánea cada 1–2 h son una alternativa razonable a la infusión intravenosa cuando no hay cama crítica disponible, y el consenso 2024 los reconoce como opción. <em>Los esquemas concretos de dosis subcutánea varían entre protocolos: verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No es una opción</strong> en la cetoacidosis grave, en el estado hiperosmolar, en el shock, en la hipoperfusión periférica —donde la absorción subcutánea es impredecible—, ni en el paciente con compromiso de conciencia.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🛏️</span><span>Mantener <strong>la insulina basal habitual del paciente</strong> junto con la infusión intravenosa facilita la transición posterior y reduce el rebote; es una práctica recomendada en el consenso 2024. <em>Verificar con protocolo institucional.</em></span></div>
+      </div>
+
+      <div class="subhead">Cetoacidosis euglicémica: la que se pasa por alto</div>
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Glicemia normal o poco elevada con acidosis y cetonas altas.</strong> Ocurre con
+        <strong>inhibidores de SGLT2</strong>, en el <strong>embarazo</strong>, con ayuno prolongado, vómitos,
+        hepatopatía, pancreatitis, cirugía reciente y consumo de alcohol. Si esperas una glicemia de 400 para
+        sospechar cetoacidosis, <strong>este paciente se va de alta con «gastroenteritis»</strong>.</span>
+      </div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔍</span><span><strong>Cómo se caza:</strong> acidosis metabólica con brecha aniónica aumentada + β-hidroxibutirato elevado, <strong>con glicemia bajo 200–250 mg/dL</strong>. Pregunta siempre por inhibidores de SGLT2 por su nombre comercial: muchos pacientes no los identifican como «para la diabetes».</span></div>
+        <div class="plain-item"><span class="bullet-icon">🍬</span><span><strong>El tratamiento cambia en un punto:</strong> se necesita <strong>insulina y glucosa desde el inicio</strong> —suero glucosado junto con la infusión de insulina— porque no se puede esperar a que la glicemia baje para agregar glucosa. El volumen y el potasio siguen la misma lógica.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏳</span><span><strong>Suspende el inhibidor de SGLT2</strong> y considera que su efecto sobre la cetogénesis <strong>persiste varios días</strong> tras la última dosis: la cetosis puede prolongarse más de lo esperado y reaparecer. <em>El intervalo de suspensión perioperatoria y de reinicio se define con el protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🤰</span><span><strong>En el embarazo</strong> la cetoacidosis aparece con glicemias más bajas, progresa más rápido y compromete al feto. Es una emergencia materno-fetal: <strong>obstetricia desde el primer minuto</strong>, monitorización fetal y manejo en unidad crítica. <em>Metas, fármacos y conducta obstétrica: verificar con protocolo institucional y con obstetricia.</em></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · SHOCK REFRACTARIO -->
+  <div class="section s7" id="s7" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Shock refractario: el paciente que no responde al volumen</div>
+        <div class="section-subtitle">Casi nunca es «solo la cetoacidosis»</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>La hipotensión de la crisis hiperglicémica <strong>es hipovolémica y responde al volumen</strong>. Si
+        después de 2–3 litros el paciente sigue hipotenso, <strong>hay una segunda enfermedad</strong> o falta mucho
+        más volumen del que pensabas. No subas la insulina: busca.</span>
+      </div>
+
+      <div class="flow">
+        <div class="flow-node ask">
+          <span class="flow-q">Paso 1</span>
+          <strong>¿De verdad está lleno?</strong> El déficit en el estado hiperosmolar llega a 8–12 litros. Reevalúa
+          con lo que tengas: relleno capilar, diuresis, lactato, vena cava y colapso inspiratorio, variación
+          respiratoria de la presión de pulso, <strong>ecografía a pie de cama</strong>. La causa más frecuente de
+          «shock refractario» a las dos horas es <em>reposición insuficiente</em>.
+        </div>
+        <div class="flow-branch">
+          <div class="flow-node stop">
+            <span class="flow-q">Paso 2 · lo que más se pasa por alto</span>
+            <strong>Sepsis.</strong> Es el desencadenante más frecuente de la crisis y la causa más frecuente de
+            shock que no responde. Hemocultivos y <strong>antibiótico de amplio espectro precoz</strong> ante sospecha
+            razonable, sin esperar confirmación. Recuerda que la leucocitosis es parte de la cetoacidosis y que la
+            <strong>normotermia o la hipotermia no descartan infección</strong>.
+          </div>
+          <div class="flow-node stop">
+            <span class="flow-q">Paso 3 · corazón</span>
+            <strong>Infarto agudo al miocardio</strong> —con frecuencia indoloro en el diabético—,
+            <strong>miocardiopatía por estrés</strong>, arritmia por potasio extremo, <strong>tromboembolismo
+            pulmonar</strong> (el estado hiperosmolar es intensamente protrombótico). Electrocardiograma seriado,
+            troponina y <strong>ecocardiografía a pie de cama</strong>: la función ventricular se ve en un minuto.
+          </div>
+          <div class="flow-node stop">
+            <span class="flow-q">Paso 4 · abdomen</span>
+            <strong>Pancreatitis aguda, isquemia mesentérica, colecistitis, víscera perforada.</strong> El dolor
+            abdominal de la cetoacidosis <strong>cede al corregir la acidosis</strong>: el que persiste con la brecha
+            aniónica ya cerrada es un abdomen que hay que estudiar con imagen.
+          </div>
+          <div class="flow-node hold">
+            <span class="flow-q">Paso 5 · metabólico</span>
+            <strong>Acidosis profunda</strong> (la respuesta a las catecolaminas cae con pH muy bajo),
+            <strong>hipocalcemia, hipofosfatemia e hipomagnesemia graves</strong> —todas deprimen la contractilidad—,
+            e <strong>insuficiencia suprarrenal</strong> en el paciente con corticoides crónicos o con sospecha
+            clínica.
+          </div>
+          <div class="flow-node go">
+            <span class="flow-q">Paso 6 · soporte mientras buscas</span>
+            <strong>Noradrenalina</strong> como vasopresor de primera línea si la presión no se sostiene pese a
+            volumen adecuado. No esperes a completar la reposición para iniciarla: la hipotensión prolongada produce
+            daño renal e isquemia. <strong>Línea arterial y vía central</strong> según disponibilidad y
+            <strong>unidad crítica</strong>. <em>Dosis, diluciones y umbrales: verificar con protocolo
+            institucional.</em>
+          </div>
+        </div>
+      </div>
+
+      <div class="plain-list" style="margin-top:14px;">
+        <div class="plain-item flag"><span class="bullet-icon">🦠</span><span><strong>Infecciones que hay que nombrar</strong> en el diabético descompensado y muy grave: <strong>fascitis necrotizante</strong> y pie diabético con necrosis, <strong>otitis externa maligna</strong>, <strong>colecistitis enfisematosa y pielonefritis enfisematosa</strong>, y la <strong>mucormicosis rinocerebral</strong> —dolor facial, secreción oscura, escara negra en el paladar o el cornete, oftalmoplejia— que es una urgencia quirúrgica. Desnuda al paciente y mira la boca, la nariz, el periné y los pies.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩻</span><span><strong>El lactato se eleva en la cetoacidosis sin que haya sepsis</strong>, por hipoperfusión, por el propio estado metabólico y por la reducción de su aclaramiento. Un lactato alto no prueba infección, pero un lactato que <strong>no baja con la reposición</strong> obliga a buscar otra causa.</span></div>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./checklist-sepsis_4.html">→ Checklist: sepsis y shock séptico</a>
+        <a class="cross-link" href="./algoritmo-shock-cardiogenico.html">→ Algoritmo: shock cardiogénico y falla derecha</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · ELECTROLITOS EXTREMOS -->
+  <div class="section s8" id="s8" style="animation-delay:0.48s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Desequilibrios electrolíticos extremos</div>
+        <div class="section-subtitle">Sodio, fósforo, magnesio, calcio y el cloro que confunde</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Alteración</th><th>Qué está pasando</th><th>Conducta</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Hiponatremia con glicemia muy alta</td>
+              <td><strong>Dilucional:</strong> la glucosa arrastra agua al espacio extracelular. No hay exceso real de agua libre</td>
+              <td>Calcula el <strong>sodio corregido</strong> y decide el suero con ese valor. <strong>Se corrige sola</strong> al bajar la glicemia: no la trates como hiponatremia verdadera</td>
+            </tr>
+            <tr>
+              <td>Hipernatremia (sodio corregido alto)</td>
+              <td>Déficit de agua libre por diuresis osmótica prolongada. Típica del estado hiperosmolar</td>
+              <td>Tras la reposición isotónica inicial, pasar a <strong>cloruro de sodio 0,45 %</strong>. <strong>Descenso de natremia no mayor de 10 mmol/L en 24 h</strong> y de osmolalidad <strong>3–8 mOsm/kg por hora</strong></td>
+            </tr>
+            <tr>
+              <td>Hipokalemia</td>
+              <td>Déficit corporal de 3–5 mmol/kg, enmascarado al ingreso y desenmascarado por la insulina</td>
+              <td>Ver sección 05. <strong>Bajo 3,3 mmol/L, la insulina espera.</strong> Meta 4–5 mmol/L</td>
+            </tr>
+            <tr>
+              <td>Hipofosfatemia</td>
+              <td>Déficit corporal habitual que se hace evidente con el tratamiento, por desplazamiento intracelular</td>
+              <td><strong>La reposición de rutina no está indicada</strong> (no ha demostrado beneficio clínico). Se considera si el fósforo es <strong>&lt; 1,0 mg/dL</strong> con disfunción cardíaca o respiratoria, debilidad muscular o hemólisis, como <strong>fosfato de potasio</strong> en el suero, <strong>vigilando la calcemia</strong></td>
+            </tr>
+            <tr>
+              <td>Hipomagnesemia</td>
+              <td>Pérdida urinaria por diuresis osmótica</td>
+              <td>Corrígela si el potasio no sube pese a la reposición, si hay arritmia o si hay QT largo</td>
+            </tr>
+            <tr>
+              <td>Hipocalcemia</td>
+              <td>Puede aparecer o agravarse <strong>al reponer fosfato</strong></td>
+              <td>Control de calcio durante la reposición de fósforo. Trátala si es sintomática o si hay alargamiento del QT</td>
+            </tr>
+            <tr>
+              <td>Acidosis hiperclorémica tardía</td>
+              <td>Efecto de <strong>litros de salino al 0,9 %</strong>. Bicarbonato bajo con <strong>brecha aniónica normal</strong></td>
+              <td><strong>No es cetoacidosis persistente</strong> y no requiere más insulina. Se resuelve sola en 24–48 h. Confírmala calculando la brecha aniónica y midiendo el β-hidroxibutirato</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>Las tres cuentas que hay que saber hacer</strong> (y que están en la calculadora de la sección
+        02): <strong>osmolalidad efectiva = 2 × sodio + glicemia (mg/dL) / 18</strong>, deliberadamente <em>sin</em>
+        la urea, porque la urea atraviesa las membranas y no genera gradiente osmótico efectivo; <strong>sodio
+        corregido = sodio medido + 1,6 × (glicemia − 100) / 100</strong> (algunos autores usan un factor de 2,4 con
+        glicemias muy altas, lo que da un valor más alto); y <strong>brecha aniónica = sodio − cloro −
+        bicarbonato</strong>, cuyo valor normal depende del método del laboratorio local.</span>
+      </div>
+
+      <div class="subhead">Edema cerebral durante el tratamiento</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🧠</span><span><strong>Es una complicación sobre todo pediátrica</strong> y poco frecuente, pero con mortalidad y secuelas altas. Aparece habitualmente <strong>dentro de las primeras 4–12 horas</strong> de tratamiento, cuando el paciente ya parecía estar mejorando.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚨</span><span><strong>Señales:</strong> cefalea creciente, deterioro del estado de conciencia, vómitos recurrentes, <strong>bradicardia con hipertensión</strong>, incontinencia, alteración pupilar, convulsión. <strong>Cualquier deterioro neurológico durante el tratamiento es edema cerebral hasta que se demuestre lo contrario.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Conducta:</strong> reducir la velocidad de infusión de fluidos, elevar la cabecera, <strong>osmoterapia</strong> —manitol o salino hipertónico según protocolo— y tomografía <em>después</em> de tratar, no antes. Avisa a cuidados críticos y, en el niño, a pediatría intensiva. <em>Dosis y elección de osmoterapia: verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🛡️</span><span><strong>Cómo se previene:</strong> evitando descensos bruscos de glicemia y de osmolalidad, no sobrehidratando y <strong>no usando bicarbonato de rutina</strong> —su uso se asoció a mayor riesgo de edema cerebral en series pediátricas—.</span></div>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./algoritmo-tec-grave.html">→ Algoritmo: hipertensión endocraneal y osmoterapia</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · ACIDOSIS EXTREMA Y VÍA AÉREA -->
+  <div class="section s9" id="s9" style="animation-delay:0.54s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Acidosis extrema, bicarbonato y la trampa de la intubación</div>
+        <div class="section-subtitle">Donde se pierden los pacientes que iban a sobrevivir</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>La respiración de Kussmaul no es dificultad respiratoria: es el tratamiento.</strong> Ese
+        paciente sostiene su pH con un volumen minuto enorme. Si lo sedas y lo paralizas, la apnea de la intubación
+        —aunque dure treinta segundos— hace caer el pH en picada y puede producir <strong>paro cardíaco en la
+        inducción</strong>. La taquipnea de la cetoacidosis grave <strong>no es indicación de intubar</strong>.</span>
+      </div>
+
+      <div class="subhead">Si la intubación es inevitable</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🎯</span><span><strong>Indicaciones reales:</strong> incapacidad de proteger la vía aérea (compromiso profundo de conciencia), agotamiento respiratorio con caída del volumen minuto, hipoxemia que no se corrige, o paro. <strong>No</strong> «la frecuencia respiratoria de 40» ni «el pH de 6,9» por sí solos.</span></div>
+        <div class="plain-item"><span class="bullet-icon">👤</span><span><strong>Que la haga el operador más experimentado disponible</strong>, con plan de rescate definido y con el equipo avisado de que se trata de una vía aérea fisiológicamente difícil.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💧</span><span><strong>Optimiza antes:</strong> volumen corriendo, potasio conocido, vasopresor preparado y en bomba —no «por si acaso» en el carro—, y preoxigenación prolongada con oxígeno a alto flujo y <strong>oxigenación apneica</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏱️</span><span><strong>Minimiza la apnea.</strong> Considera mantener la ventilación espontánea o asistirla durante la inducción según la técnica y la experiencia del operador; el objetivo es que el paciente <strong>no deje de ventilar</strong>.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🫁</span><span><strong>Inmediatamente después de intubar, iguala el volumen minuto que tenía el paciente:</strong> frecuencias altas y volumen corriente adecuado al peso predicho, vigilando el auto-PEEP. Programar el ventilador «como siempre» en un paciente que respiraba 40 veces por minuto <strong>produce acidosis catastrófica en minutos</strong>. Gas de control precoz, no en media hora.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩺</span><span>Si hay <strong>paro o colapso posintubación</strong>, piensa en la secuencia DOPES —desplazamiento del tubo, obstrucción, neumotórax, falla del equipo, atrapamiento aéreo— y en la acidosis no compensada. Desconecta y comprime el tórax si sospechas atrapamiento.</span></div>
+      </div>
+
+      <div class="subhead">Bicarbonato de sodio</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📉</span><span><strong>No se recomienda de rutina.</strong> La revisión sistemática de los ensayos disponibles muestra, como mucho, una mejoría transitoria del pH en las primeras dos horas, <strong>sin beneficio en control glicémico, tiempo de resolución ni desenlaces clínicos</strong>, y con señales de daño: mayor necesidad de potasio, empeoramiento paradójico transitorio de la cetosis y, en series pediátricas retrospectivas, <strong>mayor riesgo de edema cerebral</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🤔</span><span><strong>La zona gris es el pH &lt; 6,9</strong>, donde no hay ensayos —ningún estudio incluyó pacientes con pH inicial &lt; 6,85— y donde algunos protocolos aún lo contemplan por el riesgo de depresión miocárdica y de pérdida de respuesta a las catecolaminas. El esquema clásico es <strong>100 mmol en 400 mL de agua con 20 mmol de cloruro de potasio, a pasar en 2 h</strong>, repitiendo cada 2 h hasta pH ≥ 7,0. <em>Indicación, umbral y esquema: verificar con protocolo institucional y con cuidados críticos.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Nunca en bolo rápido ni sin potasio en el mismo esquema:</strong> el bicarbonato baja la kalemia con rapidez y puede desencadenar una arritmia en un paciente ya depletado.</span></div>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>Lo que realmente corrige la acidosis es el tratamiento de fondo:</strong> volumen, insulina y
+        control del desencadenante. Si el pH no mejora con eso, la pregunta no es «cuánto bicarbonato» sino
+        <strong>«qué me estoy perdiendo»</strong>: sepsis, isquemia mesentérica, intoxicación, acidosis láctica por
+        hipoperfusión mantenida, o una infusión de insulina que no está llegando.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · ESTADO HIPEROSMOLAR -->
+  <div class="section s10" id="s10" style="animation-delay:0.60s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Estado hiperosmolar: en qué se maneja distinto</div>
+        <div class="section-subtitle">Más lento, más volumen, menos insulina</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>El estado hiperosmolar se instala en <strong>días o semanas</strong>, afecta a pacientes de más edad y
+        con más comorbilidad, y <strong>su mortalidad es claramente mayor que la de la cetoacidosis</strong>. El
+        error típico es tratarlo con el protocolo de cetoacidosis: demasiada insulina, demasiado rápido, y una caída
+        brusca de la osmolalidad.</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Aspecto</th><th>Cetoacidosis</th><th>Estado hiperosmolar</th></tr></thead>
+          <tbody>
+            <tr><td>Prioridad número 1</td><td>Volumen, potasio y apagar la cetogénesis</td><td><strong>Volumen, volumen y volumen.</strong> La glicemia baja sola con la reposición</td></tr>
+            <tr><td>Insulina</td><td>0,1 U/kg/h desde el inicio</td><td>Puede <strong>diferirse</strong> hasta que la glicemia deje de bajar solo con fluidos, o iniciarse a <strong>0,05 U/kg/h</strong>. Si hay cetonemia significativa, se inicia como en la cetoacidosis</td></tr>
+            <tr><td>Velocidad de corrección</td><td>Glicemia 50–75 mg/dL/h</td><td>Glicemia <strong>50–75 mg/dL/h</strong>, osmolalidad <strong>3–8 mOsm/kg/h</strong>, sodio <strong>no más de 10 mmol/L en 24 h</strong></td></tr>
+            <tr><td>Meta intermedia de glicemia</td><td>150–200 mg/dL hasta resolver</td><td><strong>200–300 mg/dL</strong> hasta recuperar osmolalidad y estado mental</td></tr>
+            <tr><td>Resolución</td><td>Cierre de la brecha aniónica y cetonas bajas</td><td><strong>Osmolalidad normal y recuperación del estado mental</strong>, con volumen restituido</td></tr>
+            <tr><td>Trombosis</td><td>Riesgo aumentado</td><td><strong>Riesgo alto:</strong> profilaxis farmacológica salvo contraindicación</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="plain-list" style="margin-top:14px;">
+        <div class="plain-item flag"><span class="bullet-icon">🧠</span><span><strong>El compromiso de conciencia debe ser proporcional a la osmolalidad.</strong> Si el paciente está más comprometido de lo que explica su osmolalidad efectiva, <strong>busca otra causa</strong>: accidente cerebrovascular, hemorragia, meningitis, convulsión no convulsiva, fármacos, hipoglicemia previa. No lo atribuyas todo a la hiperosmolaridad.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏳</span><span><strong>La recuperación neurológica va por detrás de la corrección metabólica</strong>, a veces por días. Eso es esperable y no justifica acelerar la corrección.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🦵</span><span>Vigila la <strong>rabdomiólisis</strong> —frecuente en el paciente que lleva días postrado y deshidratado— pidiendo creatinquinasa, y el daño renal agudo, que suele mejorar con la reposición.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔀</span><span><strong>Hasta un tercio de los pacientes tiene un cuadro mixto</strong> con criterios de ambos. En ese caso se trata <strong>la acidosis con el esquema de la cetoacidosis y la osmolalidad con la cautela del estado hiperosmolar</strong>: insulina para cerrar la brecha aniónica, pero corrección osmolar lenta.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 11 · RESOLUCIÓN Y TRANSICIÓN -->
+  <div class="section s11" id="s11" style="animation-delay:0.66s;">
+    <div class="section-header" onclick="toggleSection('s11')">
+      <span class="section-num">11</span>
+      <div>
+        <div class="section-title">Resolución, transición y el alta que no rebota</div>
+        <div class="section-subtitle">Criterios · solapamiento de insulina · qué dejar escrito</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Criterios de resolución</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Cuadro</th><th>Se considera resuelto cuando</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Cetoacidosis</td>
+              <td><strong>Glicemia &lt; 200 mg/dL</strong> más <strong>dos</strong> de: bicarbonato ≥ 15 mmol/L, pH venoso &gt; 7,3, brecha aniónica ≤ 12. Donde se mide β-hidroxibutirato, el criterio preferible es <strong>&lt; 0,6 mmol/L</strong></td>
+            </tr>
+            <tr>
+              <td>Estado hiperosmolar</td>
+              <td><strong>Osmolalidad efectiva normalizada</strong>, <strong>recuperación del estado mental basal</strong> y volumen restituido con diuresis adecuada</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-banner" style="margin-top:16px;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>El error clásico del final:</strong> suspender la infusión de insulina y poner la subcutánea
+        «cuando el paciente coma». La insulina intravenosa tiene una vida media de minutos: si se corta sin una
+        insulina subcutánea ya actuando, el paciente vuelve a la cetoacidosis. <strong>La subcutánea basal se
+        administra 1–2 horas antes de suspender la infusión</strong>, y la infusión no se detiene antes de que
+        transcurra ese solapamiento.</span>
+      </div>
+
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Dosis de la subcutánea:</strong> si el paciente ya usaba insulina y estaba bien controlado, se reanuda su esquema habitual. En el debut o sin esquema previo, la dosis total diaria se calcula por peso y se reparte entre basal y prandial. <em>El cálculo concreto y el reparto se definen con el protocolo institucional y, cuando sea posible, con diabetología.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🍽️</span><span>Idealmente la transición se hace <strong>con el paciente comiendo</strong> y no de madrugada. Mantén controles de glicemia frecuentes durante las primeras horas tras suspender la infusión.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔁</span><span><strong>Antes de que se vaya, resuelve por qué llegó.</strong> Un alta sin abordar la causa —insulina que no puede pagar, bomba que falla, técnica de inyección, no saber qué hacer en días de enfermedad, un trastorno alimentario, consumo de alcohol— garantiza el reingreso. Las tasas de reingreso tras una crisis hiperglicémica son altas y en buena medida evitables.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📋</span><span><strong>Reglas de días de enfermedad</strong> por escrito: no suspender nunca la insulina basal, medir glicemia y cetonas con más frecuencia, hidratarse, y cuándo volver a consultar. Si el paciente usa inhibidor de SGLT2, <strong>instrucción explícita de suspenderlo ante enfermedad aguda, ayuno o cirugía</strong> y de consultar si aparecen náuseas, vómitos o dificultad respiratoria aunque la glicemia esté normal.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩺</span><span><strong>Deja agendado el control</strong> con el equipo que sigue al paciente, con medidor y tiras de cetonas cuando corresponda, y con un contacto al que llamar antes de volver a urgencia.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 12 · TRAMPAS -->
+  <div class="section s12" id="s12" style="animation-delay:0.72s;">
+    <div class="section-header" onclick="toggleSection('s12')">
+      <span class="section-num">12</span>
+      <div>
+        <div class="section-title">Trampas y errores frecuentes</div>
+        <div class="section-subtitle">Lo que convierte una crisis tratable en una muerte evitable</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Empezar la insulina antes de conocer el potasio.</strong> Es el error con consecuencias más inmediatas de toda esta página.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Empezar la insulina antes que el volumen.</strong> En el paciente hipovolémico, la insulina desplaza glucosa y agua al interior de la célula y <strong>agrava la hipotensión</strong>.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Suspender la insulina cuando la glicemia se normaliza.</strong> La insulina se mantiene y se agrega glucosa: lo que se está tratando es la cetosis, no el número del glucómetro.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Monitorizar la resolución con cetonas en orina.</strong> Miden acetoacetato y pueden subir mientras el paciente mejora. Usa β-hidroxibutirato o la brecha aniónica.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Descartar cetoacidosis porque la glicemia es «solo» 190.</strong> La euglicémica existe, es cada vez más frecuente por los inhibidores de SGLT2, y se diagnostica con gases y cetonas.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No preguntar por inhibidores de SGLT2</strong> ni suspenderlos, y reiniciarlos al alta sin instrucciones de días de enfermedad.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Intubar por la taquipnea.</strong> El Kussmaul es el mecanismo compensatorio: quitarlo sin igualar el volumen minuto puede matar al paciente en la inducción.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Programar el ventilador «como siempre» tras intubar</strong> a un paciente con pH de 6,9. El volumen minuto postintubación debe igualar el que tenía antes.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar bicarbonato de rutina</strong> por un número de pH, en bolo o sin potasio en el mismo esquema.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Interpretar la acidosis hiperclorémica de las horas siguientes como cetoacidosis persistente</strong> y subir la insulina. Calcula la brecha aniónica antes de escalar.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Tratar la hiponatremia dilucional</strong> con sodio, o usar el sodio medido en lugar del corregido para elegir el suero.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Corregir demasiado rápido la osmolalidad</strong> en el estado hiperosmolar, o aplicarle el protocolo de la cetoacidosis sin ajustar velocidad ni dosis de insulina.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Atribuir la hipotensión persistente a la cetoacidosis.</strong> Después de 2–3 litros sin respuesta, hay una segunda enfermedad —sepsis, infarto, pancreatitis, isquemia mesentérica— o falta mucho más volumen.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No desvestir al paciente.</strong> El pie diabético necrótico, el absceso perianal, la escara negra en el paladar y la fascitis solo se ven mirando.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Atribuir el dolor abdominal a la cetoacidosis cuando la brecha aniónica ya cerró.</strong> Ese abdomen necesita imagen.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Ignorar un deterioro neurológico durante el tratamiento.</strong> En el niño, y también en el adulto joven, es edema cerebral hasta que se demuestre lo contrario.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Suspender la infusión sin solapar la insulina subcutánea.</strong> Devuelve al paciente a la cetoacidosis en pocas horas.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Reponer volumen a velocidad estándar en el paciente en diálisis o con insuficiencia cardíaca.</strong> Ahí el déficit es otro y la reposición produce edema pulmonar.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar de alta sin resolver la causa.</strong> El reingreso ya está agendado si nadie preguntó por qué dejó de usar la insulina.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio. Está orientada al
+    <strong>paciente adulto</strong>: la cetoacidosis <strong>pediátrica</strong> tiene velocidades de reposición,
+    dosis de insulina, umbrales y un riesgo de edema cerebral distintos, y se rige por sus propias guías (ISPAD),
+    igual que la <strong>paciente embarazada</strong> y el paciente en <strong>diálisis</strong>. Las <strong>dosis,
+    concentraciones, umbrales y velocidades son orientativas</strong>: verifica la presentación, la dilución y la vía
+    de administración de tu servicio, y el ajuste por peso, edad, función renal y hepática, interacciones y
+    contraindicaciones antes de administrar cualquier fármaco. La elección del cristaloide, las velocidades máximas
+    de reposición de potasio por vía periférica y central, la indicación y el esquema de bicarbonato, la reposición
+    de fosfato, los criterios de ingreso a unidad crítica, los esquemas de insulina subcutánea y de transición, la
+    profilaxis de trombosis y las vías de derivación y traslado deben contrastarse con el <strong>protocolo
+    institucional vigente</strong> y con cuidados críticos, endocrinología y nefrología. Las calculadoras de esta
+    página —osmolalidad efectiva, sodio corregido, brecha aniónica y dosis por peso— realizan
+    <strong>conversiones aritméticas: complementan y no reemplazan la evaluación clínica</strong>, y sus fórmulas son
+    aproximaciones cuyos factores varían entre autores y laboratorios.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Umpierrez GE, Davis GM, ElSayed NA, Fadini GP, Galindo RJ, Hirsch IB, Klonoff DC, McCoy RG, Misra S, Gabbay RA, Bannuru RR, Dhatariya KK. <em>Hyperglycemic Crises in Adults With Diabetes: A Consensus Report.</em> Diabetes Care. 2024;47(8):1257–1275. <a href="https://doi.org/10.2337/dci24-0032" target="_blank" rel="noopener">doi:10.2337/dci24-0032</a> — Consenso ADA/EASD/JBDS/AACE/DTS: criterios diagnósticos actualizados, gravedad, fluidos, potasio, insulina, resolución y transición. Publicado también en Diabetologia. 2024;67(8):1455–1479. <a href="https://doi.org/10.1007/s00125-024-06183-8" target="_blank" rel="noopener">doi:10.1007/s00125-024-06183-8</a></div>
+      <div class="ref-item">Kitabchi AE, Umpierrez GE, Miles JM, Fisher JN. <em>Hyperglycemic crises in adult patients with diabetes.</em> Diabetes Care. 2009;32(7):1335–1343. <a href="https://doi.org/10.2337/dc09-9032" target="_blank" rel="noopener">doi:10.2337/dc09-9032</a> — Documento ADA previo, base de muchos protocolos institucionales todavía vigentes: umbrales de potasio, esquema de insulina, criterios de resolución y esquema clásico de bicarbonato.</div>
+      <div class="ref-item">Self WH, Evans CS, Jenkins CA, et al. <em>Clinical Effects of Balanced Crystalloids vs Saline in Adults With Diabetic Ketoacidosis: A Subgroup Analysis of Cluster Randomized Clinical Trials.</em> JAMA Netw Open. 2020;3(11):e2024596. <a href="https://doi.org/10.1001/jamanetworkopen.2020.24596" target="_blank" rel="noopener">doi:10.1001/jamanetworkopen.2020.24596</a> — Subanálisis de SMART y SALT-ED: resolución más rápida con cristaloide balanceado (13,0 h frente a 16,9 h).</div>
+      <div class="ref-item">Liu Y, Zhang J, Xu X, Zou X. <em>Comparison of balanced crystalloids versus normal saline in patients with diabetic ketoacidosis: a meta-analysis of randomized controlled trials.</em> Front Endocrinol. 2024;15:1367916. <a href="https://doi.org/10.3389/fendo.2024.1367916" target="_blank" rel="noopener">doi:10.3389/fendo.2024.1367916</a> — 11 ensayos, 753 pacientes: sin diferencia en tiempo de resolución, con menor cloremia tras la reanimación.</div>
+      <div class="ref-item">Chua HR, Schneider A, Bellomo R. <em>Bicarbonate in diabetic ketoacidosis — a systematic review.</em> Ann Intensive Care. 2011;1(1):23. <a href="https://doi.org/10.1186/2110-5820-1-23" target="_blank" rel="noopener">doi:10.1186/2110-5820-1-23</a> — Base de la recomendación de no usar bicarbonato de rutina; ningún estudio incluyó pacientes con pH inicial bajo 6,85.</div>
+      <div class="ref-item">Agarwal A, Jayashree M, Nallasamy K, Dayal D, Attri SV. <em>0.9% Saline versus Ringer's lactate as initial fluid in children with diabetic ketoacidosis: a double-blind randomized controlled trial.</em> BMJ Open Diabetes Res Care. 2025;13(2):e004623. <a href="https://doi.org/10.1136/bmjdrc-2024-004623" target="_blank" rel="noopener">doi:10.1136/bmjdrc-2024-004623</a> — Menor tiempo de resolución y menos hipercloremia con Ringer lactato en población pediátrica.</div>
+      <div class="ref-item">Referencias localizadas mediante PubMed. Las dosis, concentraciones y diluciones de insulina, potasio, fosfato y bicarbonato, las velocidades máximas de reposición, la elección del cristaloide, los criterios de ingreso a unidad crítica, los esquemas de insulina subcutánea y de transición, el manejo de la paciente embarazada, del paciente en diálisis y del paciente pediátrico, y las vías de traslado deben contrastarse con el protocolo institucional vigente y con los equipos de cuidados críticos, endocrinología, nefrología, obstetricia y pediatría de referencia.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Árbol de decisión interactivo ─────────────────────────────────
+  const sel = { esc: null, est: null, ctx: new Set() };
+
+  function bindSingle(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (sel[key] === v) {
+          sel[key] = null;
+          btn.classList.remove('on');
+        } else {
+          sel[key] = v;
+          group.querySelectorAll('.opt').forEach(b => b.classList.toggle('on', b === btn));
+        }
+        render();
+      });
+    });
+  }
+
+  function bindMulti(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (v === 'ninguno') {
+          sel[key].clear();
+          group.querySelectorAll('.opt').forEach(b => b.classList.remove('on'));
+          btn.classList.add('on');
+          sel[key].add('ninguno');
+        } else {
+          const none = group.querySelector('[data-v="ninguno"]');
+          none.classList.remove('on');
+          sel[key].delete('ninguno');
+          if (sel[key].has(v)) { sel[key].delete(v); btn.classList.remove('on'); }
+          else { sel[key].add(v); btn.classList.add('on'); }
+        }
+        render();
+      });
+    });
+  }
+
+  bindSingle('q-esc', 'esc');
+  bindSingle('q-est', 'est');
+  bindMulti('q-ctx', 'ctx');
+
+  const f = (v) => sel.ctx.has(v);
+
+  const VOLUMEN = '<strong>Cristaloide isotónico primero:</strong> cloruro de sodio 0,9 % o balanceado (Ringer lactato, Plasma-Lyte), 500–1000 mL en la primera hora, o 10–20 mL/kg en bolo si hay hipoperfusión, reevaluando tras cada bolo.';
+  const POTASIO = '<strong>Potasio antes que insulina:</strong> bajo 3,3 mmol/L se repone y la insulina <em>espera</em>; entre 3,3 y 5,2 se agregan 20–30 mmol por litro de suero con meta de 4–5 mmol/L; sobre 5,2 no se repone y se controla en 2 h.';
+  const INSULINA = '<strong>Insulina cristalina en infusión 0,1 U/kg/h</strong> una vez que el potasio está sobre 3,3 mmol/L y con volumen corriendo. El bolo inicial no es necesario. Meta de descenso de glicemia: <strong>50–75 mg/dL por hora</strong>.';
+  const GLUCOSA = 'Al llegar a <strong>200–250 mg/dL</strong>, <strong>agrega glucosa al 5–10 % y baja la insulina a 0,05 U/kg/h</strong>: no la suspendas, porque lo que se está tratando es la cetosis.';
+  const GATILLO = '<strong>Busca y trata el desencadenante:</strong> infección, infarto, insulina omitida, debut, intoxicación, fármacos (inhibidores de SGLT2, corticoides). La crisis no se resuelve con el gatillo activo.';
+  const LABS = '<strong>Gases venosos, electrolitos con cloro, β-hidroxibutirato, función renal, calcio, fósforo y magnesio</strong>, hemograma, cultivos según foco, electrocardiograma y test de embarazo en edad fértil.';
+  const NO_BIC = '<strong>Sin bicarbonato de rutina</strong>, sin cetonas en orina para monitorizar y <strong>sin suspender la insulina</strong> al normalizarse la glicemia.';
+  const MONITOR = '<strong>Glicemia capilar horaria</strong>, electrolitos y gases cada 2–4 h —cada 1–2 h si son extremos—, balance hídrico y <strong>estado neurológico horario</strong>.';
+  const UCI = '<strong>Cama monitorizada y cuidados críticos avisados</strong>; si tu centro no puede sostener controles cada 1–2 h, activa el traslado ahora.';
+  const LINK_SEPSIS = '<a class="cross-link" style="margin-top:6px" href="./checklist-sepsis_4.html">→ Checklist: sepsis y shock séptico</a>';
+  const LINK_SHOCK = '<a class="cross-link" style="margin-top:6px" href="./algoritmo-shock-cardiogenico.html">→ Algoritmo: shock cardiogénico y falla derecha</a>';
+  const LINK_ABDOMEN = '<a class="cross-link" style="margin-top:6px" href="./guia-dolor-abdominal.html">→ Guía: dolor abdominal</a>';
+  const LINK_TEC = '<a class="cross-link" style="margin-top:6px" href="./algoritmo-tec-grave.html">→ Algoritmo: osmoterapia e hipertensión endocraneal</a>';
+
+  function classify() {
+    const { esc, est } = sel;
+    if (!esc || !est) return null;
+
+    // 1 · Shock refractario
+    if (esc === 'shock') {
+      return {
+        sev: 'red',
+        tag: 'Emergencia en curso',
+        title: 'Hipotensión que no responde: hay una segunda enfermedad',
+        rows: [
+          ['Primero', '<strong>¿De verdad está lleno?</strong> El déficit llega a 6 L en la cetoacidosis y a 8–12 L en el estado hiperosmolar. La causa más frecuente de «shock refractario» a las dos horas es <em>reposición insuficiente</em>. Reevalúa con relleno capilar, diuresis, lactato y ecografía a pie de cama.'],
+          ['Ahora', VOLUMEN + ' <strong>Noradrenalina</strong> si la presión no se sostiene pese a volumen adecuado: no esperes a terminar la reposición.'],
+          ['Busca', '<strong>Sepsis</strong> (la más frecuente y la más tratable), <strong>infarto</strong> —a menudo indoloro en el diabético—, <strong>tromboembolismo pulmonar</strong>, <strong>pancreatitis o isquemia mesentérica</strong>, y <strong>miocardiopatía por estrés</strong>. Electrocardiograma, troponina y ecocardiografía a pie de cama.'],
+          ['No olvides', '<strong>Hipocalcemia, hipofosfatemia e hipomagnesemia graves</strong> deprimen la contractilidad; la <strong>acidosis profunda</strong> reduce la respuesta a las catecolaminas; y considera <strong>insuficiencia suprarrenal</strong> en el paciente con corticoides crónicos.'],
+          ['Mira la piel', '<strong>Desviste al paciente:</strong> pie diabético necrótico, absceso perianal, fascitis necrotizante, escara negra en paladar o nariz (mucormicosis). Son urgencias quirúrgicas que no se ven con el paciente vestido.'],
+          ['Después', POTASIO + ' ' + INSULINA],
+          ['Equipo', UCI],
+          ['Enlace', LINK_SEPSIS]
+        ]
+      };
+    }
+
+    // 2 · Cetoacidosis
+    if (esc === 'cad') {
+      return {
+        sev: 'red',
+        tag: 'Cetoacidosis diabética',
+        title: 'El orden: volumen, potasio, insulina',
+        rows: [
+          ['Primero', VOLUMEN],
+          ['Segundo', POTASIO],
+          ['Tercero', INSULINA],
+          ['Después', GLUCOSA],
+          ['Pide', LABS],
+          ['En paralelo', GATILLO],
+          ['Controla', MONITOR],
+          ['No hagas', NO_BIC],
+          ['Destino', 'Gravedad por <strong>pH y bicarbonato</strong>: grave si pH &lt; 7,0 o bicarbonato &lt; 10 mmol/L, o si hay compromiso de conciencia. ' + UCI]
+        ]
+      };
+    }
+
+    // 3 · Estado hiperosmolar
+    if (esc === 'ehh') {
+      return {
+        sev: 'red',
+        tag: 'Estado hiperosmolar',
+        title: 'Volumen, y todo más lento',
+        rows: [
+          ['Primero', '<strong>Volumen, volumen y volumen:</strong> el déficit llega a 8–12 litros y la glicemia baja sola con la reposición. ' + VOLUMEN],
+          ['Insulina', '<strong>Puede diferirse</strong> hasta que la glicemia deje de bajar solo con fluidos, o iniciarse a <strong>0,05 U/kg/h</strong>. Si hay cetonemia significativa, se trata además como cetoacidosis.'],
+          ['Velocidad', '<strong>Glicemia 50–75 mg/dL/h, osmolalidad 3–8 mOsm/kg/h, sodio no más de 10 mmol/L en 24 h.</strong> Corregir rápido es el error típico de esta entidad. Meta intermedia de glicemia: <strong>200–300 mg/dL</strong>.'],
+          ['Sodio', 'Decide el suero con el <strong>sodio corregido</strong>, no con el medido: si está alto tras la reposición isotónica inicial, pasa a <strong>cloruro de sodio 0,45 %</strong>.'],
+          ['Potasio', POTASIO],
+          ['Trombosis', '<strong>Profilaxis farmacológica de trombosis venosa</strong> salvo contraindicación: el estado hiperosmolar es intensamente protrombótico.'],
+          ['Neurológico', 'El compromiso de conciencia debe ser <strong>proporcional a la osmolalidad</strong>. Si no lo es, busca accidente cerebrovascular, hemorragia, infección del sistema nervioso o convulsión no convulsiva. La recuperación va por detrás de la corrección metabólica, a veces días.'],
+          ['En paralelo', GATILLO + ' Pide creatinquinasa: la rabdomiólisis es frecuente en el paciente postrado y deshidratado días.'],
+          ['Equipo', UCI]
+        ]
+      };
+    }
+
+    // 4 · Mixto
+    if (esc === 'mixto') {
+      return {
+        sev: 'red',
+        tag: 'Cuadro mixto',
+        title: 'Cetoacidosis e hiperosmolaridad juntas',
+        rows: [
+          ['La regla', '<strong>Trata la acidosis con el esquema de la cetoacidosis y la osmolalidad con la cautela del estado hiperosmolar:</strong> insulina para cerrar la brecha aniónica, pero corrección osmolar lenta. Hasta un tercio de los pacientes está en esta categoría.'],
+          ['Primero', VOLUMEN + ' El déficit es grande: más cercano al del estado hiperosmolar.'],
+          ['Segundo', POTASIO],
+          ['Tercero', INSULINA + ' ' + GLUCOSA],
+          ['Velocidad', '<strong>Osmolalidad 3–8 mOsm/kg/h y sodio no más de 10 mmol/L en 24 h</strong>, aunque la acidosis te empuje a ir más rápido.'],
+          ['Vigila', '<strong>Deterioro neurológico durante el tratamiento = edema cerebral</strong> hasta que se demuestre lo contrario. Estado neurológico horario.'],
+          ['En paralelo', GATILLO],
+          ['Equipo', UCI]
+        ]
+      };
+    }
+
+    // 5 · Euglicémica
+    if (esc === 'eugli') {
+      return {
+        sev: 'amber',
+        tag: 'Cetoacidosis euglicémica',
+        title: 'Acidosis y cetonas con glicemia casi normal',
+        rows: [
+          ['Confírmala', '<strong>Acidosis metabólica con brecha aniónica aumentada + β-hidroxibutirato elevado, con glicemia bajo 200–250 mg/dL.</strong> No la descartes por el número del glucómetro: se diagnostica con gases y cetonas.'],
+          ['Pregunta', '<strong>Inhibidores de SGLT2</strong> por su nombre comercial —muchos pacientes no los identifican como «para la diabetes»—, embarazo, ayuno prolongado, vómitos, hepatopatía, pancreatitis, cirugía reciente y consumo de alcohol.'],
+          ['Lo que cambia', '<strong>Insulina y glucosa desde el inicio</strong>, a la vez: suero glucosado junto con la infusión, porque no puedes esperar a que la glicemia baje para agregar glucosa. Volumen y potasio siguen la misma lógica de siempre.'],
+          ['Fármaco', '<strong>Suspende el inhibidor de SGLT2.</strong> Su efecto sobre la cetogénesis <strong>persiste varios días</strong>: la cetosis puede prolongarse y reaparecer. <em>Intervalo de suspensión y reinicio: verificar con protocolo institucional.</em>'],
+          ['Diferencial', 'Cetoacidosis <strong>alcohólica</strong>, acidosis láctica, intoxicación por <strong>salicilatos, metanol o etilenglicol</strong>, insuficiencia renal. La brecha aniónica alta sin cetonas altas apunta a otra causa.'],
+          ['Controla', MONITOR + ' La resolución se mide con <strong>β-hidroxibutirato y brecha aniónica</strong>, no con la glicemia.'],
+          ['Al alta', '<strong>Instrucciones escritas de días de enfermedad:</strong> suspender el inhibidor de SGLT2 ante enfermedad aguda, ayuno o cirugía, y consultar ante náuseas, vómitos o disnea <strong>aunque la glicemia esté normal</strong>.']
+        ]
+      };
+    }
+
+    // 6 · Hipokalemia
+    if (esc === 'hipok') {
+      return {
+        sev: 'red',
+        tag: 'Riesgo vital inmediato',
+        title: 'Potasio bajo 3,3: la insulina espera',
+        rows: [
+          ['Regla', '<strong>No inicies insulina.</strong> La insulina, el volumen y la corrección de la acidosis empujan más potasio al interior de la célula y pueden producir <strong>arritmia y paro</strong> en un paciente ya depletado.'],
+          ['Ahora', '<strong>Repone 10–20 mmol/h de cloruro de potasio</strong> con el suero, con monitorización electrocardiográfica continua, y <strong>reevalúa la kalemia antes de iniciar la insulina</strong>. Si la hipokalemia es profunda (&lt; 2,5 mmol/L) o hay arritmia, se usan velocidades mayores por vía central. <em>Velocidades máximas por vía periférica y central: verificar con protocolo institucional.</em>'],
+          ['En paralelo', VOLUMEN + ' El volumen no espera al potasio: lo que espera es la insulina.'],
+          ['Electrocardiograma', 'Busca <strong>aplanamiento de la T, onda U y QT largo</strong>. Repite el trazado durante la reposición.'],
+          ['Magnesio', '<strong>Si el potasio no sube pese a la reposición, mide y corrige el magnesio:</strong> la hipomagnesemia perpetúa la hipokalemia.'],
+          ['Cuenta todo', 'Suma <strong>todas</strong> las fuentes de potasio, incluido el del Ringer lactato (≈ 4 mmol/L). Verifica que haya <strong>diuresis</strong> antes de reponer con velocidad.'],
+          ['Después', INSULINA + ' Solo cuando el potasio esté sobre 3,3 mmol/L.'],
+          ['Equipo', UCI]
+        ]
+      };
+    }
+
+    // 7 · Hiperkalemia con cambios
+    if (esc === 'hiperk') {
+      return {
+        sev: 'red',
+        tag: 'Riesgo de arritmia',
+        title: 'Hiperkalemia con electrocardiograma alterado',
+        rows: [
+          ['Ahora', '<strong>Calcio intravenoso para estabilizar la membrana</strong> —gluconato o cloruro de calcio según disponibilidad y vía—, con monitorización continua. Es la primera medida ante ondas T picudas, PR largo o QRS ancho. <em>Dosis y preparado: verificar con protocolo institucional.</em>'],
+          ['Después', 'El tratamiento de fondo de esta hiperkalemia es <strong>el mismo de la crisis</strong>: <strong>volumen e insulina</strong> desplazan el potasio al interior de la célula. ' + VOLUMEN + ' ' + INSULINA],
+          ['Clave', '<strong>La hiperkalemia inicial no significa potasio corporal suficiente:</strong> el déficit total sigue siendo de 3–5 mmol/kg. <strong>Controla la kalemia cada 2 h</strong> y comienza la reposición apenas baje de 5,2 mmol/L; la caída puede ser brusca.'],
+          ['No repongas', 'Potasio mientras esté sobre 5,2 mmol/L, y <strong>revisa la función renal y la diuresis</strong> antes de cualquier reposición posterior.'],
+          ['Descarta', '<strong>Insuficiencia renal aguda o crónica</strong>, rabdomiólisis, hemólisis y fármacos que retienen potasio. Considera también la <strong>pseudohiperkalemia</strong> por hemólisis de la muestra si el electrocardiograma no concuerda: repite el examen, pero sin retrasar el tratamiento si hay cambios.'],
+          ['Controla', MONITOR],
+          ['Equipo', UCI]
+        ]
+      };
+    }
+
+    // 8 · Acidosis extrema
+    if (esc === 'acidosis') {
+      return {
+        sev: 'red',
+        tag: 'Vía aérea fisiológicamente difícil',
+        title: 'pH extremo: la taquipnea no es indicación de intubar',
+        rows: [
+          ['Entiende', '<strong>La respiración de Kussmaul es el tratamiento, no el problema.</strong> Ese paciente sostiene su pH con un volumen minuto enorme. Sedarlo y paralizarlo produce apnea, el pH cae en picada y puede haber <strong>paro en la inducción</strong>.'],
+          ['Indicaciones reales', 'Incapacidad de proteger la vía aérea, <strong>agotamiento con caída del volumen minuto</strong>, hipoxemia que no se corrige, o paro. <strong>No</strong> una frecuencia respiratoria alta ni un número de pH.'],
+          ['Si hay que intubar', '<strong>El operador más experimentado disponible</strong>, volumen corriendo, potasio conocido, <strong>vasopresor en bomba</strong>, preoxigenación prolongada y oxigenación apneica, y <strong>minimizar el tiempo de apnea</strong>.'],
+          ['Ventilador', '<strong>Iguala el volumen minuto previo inmediatamente:</strong> frecuencia alta con volumen corriente por peso predicho, vigilando el auto-PEEP. Programarlo «como siempre» produce acidosis catastrófica en minutos. <strong>Gas de control precoz.</strong>'],
+          ['Colapso posterior', 'Piensa en <strong>DOPES</strong> —desplazamiento, obstrucción, neumotórax, falla del equipo, atrapamiento aéreo— y en acidosis no compensada. Desconecta y comprime el tórax si sospechas atrapamiento.'],
+          ['Bicarbonato', '<strong>No de rutina:</strong> mejoría transitoria del pH sin beneficio clínico y con señales de daño. La zona gris es el <strong>pH &lt; 6,9</strong>, sin ensayos que la respalden. Esquema clásico: 100 mmol en 400 mL con 20 mmol de cloruro de potasio en 2 h. <em>Verificar con protocolo institucional.</em>'],
+          ['Lo que sí corrige', '<strong>Volumen, insulina y tratar el desencadenante.</strong> Si el pH no mejora con eso, la pregunta no es cuánto bicarbonato sino <strong>qué te estás perdiendo</strong>: sepsis, isquemia mesentérica, intoxicación, o una infusión que no está llegando.'],
+          ['Equipo', UCI]
+        ]
+      };
+    }
+
+    // 9 · No resuelve
+    if (esc === 'noresuelve') {
+      return {
+        sev: 'amber',
+        tag: 'Cetoacidosis que no cierra',
+        title: 'Horas de tratamiento y la brecha aniónica sigue abierta',
+        rows: [
+          ['Primero', '<strong>Calcula la brecha aniónica.</strong> Si el bicarbonato está bajo pero <strong>la brecha es normal</strong>, esto es <strong>acidosis hiperclorémica por los litros de salino</strong>, no cetoacidosis persistente: no requiere más insulina y se resuelve sola en 24–48 h.'],
+          ['Segundo', '<strong>¿Está llegando la insulina?</strong> Revisa la vía, la bomba, la dilución, la concentración y que nadie haya suspendido la infusión al normalizarse la glicemia. Es una causa banal y frecuente.'],
+          ['Tercero', GATILLO + ' Una <strong>infección no tratada</strong> es la causa más frecuente de refractariedad real.'],
+          ['Cuarto', '<strong>¿Repusiste suficiente volumen?</strong> La hipoperfusión mantenida genera acidosis láctica que se confunde con cetoacidosis persistente. Mide lactato y β-hidroxibutirato por separado.'],
+          ['Quinto', '<strong>Replantea el diagnóstico:</strong> cetoacidosis alcohólica, intoxicación por salicilatos, metanol o etilenglicol, acidosis urémica, o un inhibidor de SGLT2 cuyo efecto persiste días.'],
+          ['Sexto', '<strong>¿Estás midiendo bien?</strong> Las cetonas en orina no sirven para monitorizar: el método del nitroprusiato mide acetoacetato y <strong>puede subir mientras el paciente mejora</strong>. Usa β-hidroxibutirato o la brecha aniónica.'],
+          ['Abdomen', 'Si el <strong>dolor abdominal persiste con la brecha aniónica ya cerrada</strong>, ese abdomen necesita imagen: pancreatitis, isquemia mesentérica, víscera perforada.'],
+          ['Enlace', LINK_ABDOMEN]
+        ]
+      };
+    }
+
+    // 10 · Renal / cardíaco
+    if (esc === 'renal') {
+      return {
+        sev: 'amber',
+        tag: 'Reposición con freno',
+        title: 'Diálisis o insuficiencia cardíaca: el volumen no es la respuesta',
+        rows: [
+          ['Por qué cambia', 'En la <strong>enfermedad renal terminal</strong> no hay diuresis osmótica: el déficit de volumen es mucho menor o inexistente, y la reposición estándar produce <strong>edema pulmonar</strong>. En la <strong>insuficiencia cardíaca</strong>, el margen entre reponer e inundar es estrecho.'],
+          ['Cómo', '<strong>Bolos pequeños de 250 mL con reevaluación clínica y ecográfica tras cada uno.</strong> El tratamiento se apoya principalmente en la <strong>insulina</strong>, que corrige la hiperglicemia y desplaza el potasio.'],
+          ['Potasio', '<strong>Extremar la cautela:</strong> en el paciente anúrico el potasio puede ser alto y no se repone hasta que baje claramente, con controles más frecuentes. ' + POTASIO],
+          ['Insulina', INSULINA + ' ' + GLUCOSA + ' Vigila la <strong>hipoglicemia</strong>: el aclaramiento de la insulina está reducido en la insuficiencia renal.'],
+          ['Llama', '<strong>Nefrología y cuidados críticos precozmente.</strong> Puede requerirse diálisis por la sobrecarga, por el potasio o por la acidosis, y esa decisión no se toma en solitario en urgencia.'],
+          ['Controla', MONITOR + ' Balance estricto y auscultación seriada.'],
+          ['Enlace', LINK_SHOCK]
+        ]
+      };
+    }
+
+    // 11 · Embarazo
+    if (esc === 'embarazo') {
+      return {
+        sev: 'red',
+        tag: 'Emergencia materno-fetal',
+        title: 'Cetoacidosis en el embarazo',
+        rows: [
+          ['Clave', '<strong>Aparece con glicemias más bajas</strong> —la cetoacidosis euglicémica es frecuente—, <strong>progresa más rápido</strong> y compromete al feto antes de que la madre se vea grave. No esperes cifras altas de glicemia para pedir gases y cetonas.'],
+          ['Ahora', '<strong>Obstetricia desde el primer minuto</strong> y monitorización fetal. La mejor reanimación fetal es la reanimación materna: no retrases el tratamiento de la madre.'],
+          ['Tratamiento', VOLUMEN + ' ' + POTASIO + ' ' + INSULINA + ' Con frecuencia se necesita <strong>glucosa desde el inicio</strong> por la tendencia euglicémica.'],
+          ['Posición', '<strong>Desplazamiento uterino a la izquierda</strong> desde las 20 semanas, y oxígeno para mantener saturación materna adecuada.'],
+          ['Busca', GATILLO + ' Infección, hiperémesis, corticoides para maduración pulmonar y tocolíticos son desencadenantes clásicos en el embarazo.'],
+          ['Destino', '<strong>Unidad crítica con obstetricia</strong>. <em>Metas de glicemia, fármacos, conducta obstétrica y momento del parto: verificar con protocolo institucional y con obstetricia.</em>'],
+          ['Equipo', UCI]
+        ]
+      };
+    }
+
+    // 12 · Pediátrico
+    if (esc === 'pediatrico') {
+      return {
+        sev: 'amber',
+        tag: 'Fuera del alcance de esta página',
+        title: 'Paciente pediátrico: otras reglas',
+        rows: [
+          ['Advertencia', '<strong>Esta página está escrita para adultos.</strong> En pediatría cambian las velocidades de reposición, las dosis de insulina, los umbrales y —sobre todo— el <strong>riesgo de edema cerebral</strong>. Usa la guía pediátrica (ISPAD) y el protocolo institucional.'],
+          ['Diferencias clave', 'La insulina se inicia habitualmente <strong>después</strong> de la reposición inicial y a dosis menores; <strong>no se usa bolo de insulina</strong>; la reposición de volumen es más gradual y calculada por peso y déficit estimado.'],
+          ['Edema cerebral', '<strong>La complicación que define el manejo pediátrico.</strong> Aparece habitualmente dentro de las primeras 4–12 h de tratamiento, cuando el niño parecía mejorar: cefalea creciente, deterioro de conciencia, vómitos recurrentes, <strong>bradicardia con hipertensión</strong>, alteración pupilar. Se trata <em>antes</em> de la imagen.'],
+          ['Prevención', 'Evitar descensos bruscos de glicemia y osmolalidad, no sobrehidratar y <strong>no usar bicarbonato</strong>: su uso se asoció a mayor riesgo de edema cerebral en series pediátricas.'],
+          ['Llama', '<strong>Pediatría y unidad de cuidados intensivos pediátricos ahora</strong>, y activa el traslado si tu centro no cuenta con ellas.'],
+          ['Enlace', LINK_TEC]
+        ]
+      };
+    }
+
+    // 13 · Sin recursos
+    if (esc === 'sinuci') {
+      return {
+        sev: 'amber',
+        tag: 'Traslado',
+        title: 'Centro sin unidad crítica, sin gases o sin laboratorio',
+        rows: [
+          ['Primero', '<strong>Activa el traslado ahora</strong>, en paralelo con el tratamiento y sin esperar exámenes. Una crisis hiperglicémica grave necesita controles cada 1–2 h que no se pueden improvisar.'],
+          ['Mientras tanto', VOLUMEN + ' ' + POTASIO + ' Si no puedes medir el potasio, <strong>el electrocardiograma es tu mejor aproximación</strong> y la insulina se inicia con mucha más cautela. <em>Conducta sin laboratorio: verificar con protocolo institucional y con el centro receptor.</em>'],
+          ['Insulina', INSULINA + ' Si no tienes bomba de infusión ni control de laboratorio, discute con el centro receptor la alternativa subcutánea —válida solo en la cetoacidosis leve o moderada, <strong>nunca en la grave, en el shock ni con compromiso de conciencia</strong>—.'],
+          ['Antes de salir', '<strong>Dos accesos permeables</strong>, sueros y potasio preparados para el trayecto, glucómetro y glucosa a mano, monitorización continua, y registro escrito de todo lo administrado con horas.'],
+          ['Transmite', 'Glicemia, pH y bicarbonato si los tienes, potasio, estado de conciencia, diuresis, desencadenante sospechado, volumen ya administrado y dosis de insulina en curso.'],
+          ['Durante', '<strong>El traslado es el momento de mayor riesgo de hipoglicemia y de hipokalemia.</strong> Controla la glicemia capilar durante el trayecto y lleva personal capaz de manejar la vía aérea.'],
+          ['No hagas', NO_BIC]
+        ]
+      };
+    }
+
+    return null;
+  }
+
+  function estadoRows() {
+    const extra = [];
+    if (sel.est === 'shockprof') {
+      extra.push(['Circulación', '<strong>Hipotensión con hipoperfusión:</strong> bolos de <strong>10–20 mL/kg</strong> reevaluando tras cada uno, y <strong>noradrenalina</strong> si no se sostiene la presión pese a volumen adecuado. Si tras 2–3 litros sigue hipotenso, <strong>busca una segunda enfermedad</strong> —sepsis, infarto, pancreatitis, tromboembolismo— en vez de subir la insulina.']);
+    } else if (sel.est === 'deshid') {
+      extra.push(['Circulación', '<strong>Deshidratación sin hipotensión:</strong> el déficit igual es de litros. Repón a <strong>500–1000 mL en la primera hora</strong> y luego 250–500 mL/h, guiándote por diuresis, frecuencia cardíaca y sodio corregido. La taquicardia que no cede con volumen obliga a buscar otra causa.']);
+    } else if (sel.est === 'estable') {
+      extra.push(['Circulación', '<strong>Hemodinamia conservada:</strong> tienes tiempo para hacer las cosas en orden, pero no para relajarte. <strong>Define ahora dónde estará el paciente en dos horas</strong> y quién repite los exámenes: la cetoacidosis se deteriora en silencio mientras nadie mira.']);
+    } else if (sel.est === 'sopor') {
+      extra.push(['Conciencia', '<strong>Somnoliento o confuso:</strong> calcula la <strong>osmolalidad efectiva</strong> —el compromiso debe ser proporcional a ella—. Si no lo es, busca otra causa: accidente cerebrovascular, infección del sistema nervioso, convulsión no convulsiva, fármacos o hipoglicemia previa. Mide glicemia capilar antes de atribuir nada.']);
+    } else if (sel.est === 'coma') {
+      extra.push(['Vía aérea', '<strong>Glasgow ≤ 8:</strong> protege la vía aérea, pero recuerda que <strong>la taquipnea de la acidosis no es la indicación</strong> —la incapacidad de proteger la vía aérea sí lo es—. Si intubas, <strong>iguala el volumen minuto previo inmediatamente</strong> y pide un gas de control precoz. Sonda nasogástrica por el riesgo de aspiración y control de glicemia capilar inmediato.']);
+    }
+    return extra;
+  }
+
+  function contextRows() {
+    const extra = [];
+    if (f('infeccion')) {
+      extra.push(['Infección', '<strong>Es el desencadenante más frecuente y la causa más frecuente de shock que no responde.</strong> Hemocultivos y <strong>antibiótico de amplio espectro precoz</strong> ante sospecha razonable. Recuerda que la leucocitosis de 15.000–25.000/µL es parte de la cetoacidosis y que <strong>la ausencia de fiebre no descarta infección</strong>: la hipotermia es signo de gravedad.']);
+    }
+    if (f('isglt2')) {
+      extra.push(['SGLT2', '<strong>Suspéndelo</strong> y considera <strong>cetoacidosis euglicémica</strong>: pide gases y β-hidroxibutirato aunque la glicemia sea casi normal. Necesitarás <strong>glucosa junto con la insulina desde el inicio</strong>, y el efecto sobre la cetogénesis <strong>persiste varios días</strong> tras la última dosis.']);
+    }
+    if (f('cardio')) {
+      extra.push(['Corazón', '<strong>El infarto es con frecuencia indoloro en el diabético</strong> y puede ser el desencadenante o la consecuencia. Electrocardiograma seriado, troponina y ecocardiografía a pie de cama. Ajusta la velocidad de reposición a la función ventricular y avisa a cardiología.']);
+    }
+    if (f('ercdial')) {
+      extra.push(['Riñón', '<strong>Sin diuresis osmótica no hay déficit de litros:</strong> bolos pequeños de 250 mL con reevaluación, y el tratamiento se apoya en la <strong>insulina</strong>. El potasio se repone con extrema cautela o no se repone. Vigila la <strong>hipoglicemia</strong> por menor aclaramiento de insulina y <strong>llama a nefrología</strong>.']);
+    }
+    if (f('icc')) {
+      extra.push(['Corazón e hidratación', '<strong>Margen estrecho entre reponer e inundar:</strong> bolos de 250 mL, reevaluación clínica y ecográfica tras cada uno, balance estricto y auscultación seriada. La sobrecarga en este paciente se paga con ventilación mecánica.']);
+    }
+    if (f('kbajo')) {
+      extra.push(['Potasio bajo', '<strong>La insulina espera.</strong> Repón 10–20 mmol/h con monitorización electrocardiográfica continua y reevalúa la kalemia antes de iniciarla. Si el potasio no sube, <strong>corrige el magnesio</strong>. <em>Velocidades máximas: verificar con protocolo institucional.</em>']);
+    }
+    if (f('debut')) {
+      extra.push(['Debut o abandono', '<strong>Averigua por qué:</strong> acceso al fármaco, costo, falla de la bomba o del catéter, técnica de inyección, trastorno alimentario, desconocimiento de las reglas de días de enfermedad. <strong>El alta sin resolver esto garantiza el reingreso.</strong> Involucra a diabetología y a trabajo social antes del alta.']);
+    }
+    if (f('abdomen')) {
+      extra.push(['Abdomen', '<strong>El dolor abdominal de la cetoacidosis cede al corregir la acidosis.</strong> El que persiste con la brecha aniónica ya cerrada necesita imagen: pancreatitis, isquemia mesentérica, colecistitis, víscera perforada. <strong>Amilasa y lipasa se elevan sin pancreatitis</strong> en la cetoacidosis: no diagnostiques solo con la enzima.']);
+    }
+    if (f('embarazo')) {
+      extra.push(['Embarazo', '<strong>Emergencia materno-fetal:</strong> la cetoacidosis aparece con glicemias más bajas, progresa más rápido y compromete al feto. Obstetricia y monitorización fetal <strong>desde el primer minuto</strong>, desplazamiento uterino a la izquierda desde las 20 semanas. <em>Metas y conducta obstétrica: verificar con protocolo institucional y con obstetricia.</em>']);
+    }
+    if (f('pediatrico')) {
+      extra.push(['Pediátrico', '<strong>Fuera del alcance de esta página.</strong> Velocidades, dosis y umbrales son distintos, no se usa bolo de insulina y el <strong>riesgo de edema cerebral</strong> define el manejo. Usa la guía pediátrica (ISPAD) y llama a pediatría intensiva.']);
+    }
+    if (f('sinuci')) {
+      extra.push(['Sin recursos', '<strong>El traslado es parte del tratamiento</strong> y se gestiona en paralelo, no después. Sin gases ni electrolitos, el <strong>electrocardiograma</strong> es tu mejor aproximación al potasio y la insulina se inicia con mucha más cautela. Lleva sueros, potasio y glucosa preparados para el trayecto.']);
+    }
+    return extra;
+  }
+
+  function render() {
+    const box = document.getElementById('result');
+    const r = classify();
+    if (!r) {
+      box.className = 'result placeholder';
+      box.innerHTML = 'Selecciona el escenario dominante y el estado circulatorio para ver la prioridad, el orden de ' +
+                      'las intervenciones en los primeros minutos, qué está contraindicado y a quién llamar.';
+      return;
+    }
+    const rows = r.rows.filter(row => row && row[1]);
+    const enlace = rows.length && rows[rows.length - 1][0] === 'Enlace' ? rows.pop() : null;
+    rows.push(...estadoRows());
+    rows.push(...contextRows());
+    if (enlace) rows.push(enlace);
+
+    box.className = 'result sev-' + r.sev;
+    box.innerHTML =
+      '<div class="result-tag">' + r.tag + '</div>' +
+      '<div class="result-title">' + r.title + '</div>' +
+      rows.map(([k, v]) =>
+        '<div class="result-row"><div class="result-key">' + k + '</div><div>' + v + '</div></div>'
+      ).join('');
+  }
+
+  // ── Formato de números ────────────────────────────────────────────
+  function fmt(n) {
+    if (n >= 100) return n.toFixed(0);
+    if (n >= 10) return n.toFixed(1).replace('.', ',');
+    return n.toFixed(2).replace('.', ',');
+  }
+  function fmt0(n) { return n.toFixed(0); }
+  function fmt1(n) { return n.toFixed(1).replace('.', ','); }
+
+  // ── Osmolalidad efectiva, sodio corregido y brecha aniónica ───────
+  const naInput = document.getElementById('lab-na');
+  const gluInput = document.getElementById('lab-glu');
+  const clInput = document.getElementById('lab-cl');
+  const hco3Input = document.getElementById('lab-hco3');
+  const labOut = document.getElementById('lab-out');
+
+  const LAB_NOTA = '<br><br>La <strong>osmolalidad efectiva</strong> se calcula deliberadamente <strong>sin la urea</strong>, ' +
+                   'porque la urea atraviesa las membranas y no genera gradiente osmótico efectivo. El <strong>sodio ' +
+                   'corregido</strong> usa el factor clásico de 1,6 —algunos autores emplean 2,4 con glicemias muy ' +
+                   'altas, lo que da un valor más alto— y sirve para <strong>elegir el suero</strong>, no para ' +
+                   'diagnosticar una hiponatremia verdadera. El valor normal de la <strong>brecha aniónica</strong> ' +
+                   'depende del método del laboratorio local y esta fórmula <strong>no incluye el potasio</strong>. ' +
+                   'Son <strong>conversiones aritméticas que complementan y no reemplazan la evaluación clínica</strong>. ' +
+                   '<em>Umbrales y conducta: verificar con protocolo institucional.</em>';
+
+  function renderLab() {
+    const na = parseFloat(naInput.value);
+    const glu = parseFloat(gluInput.value);
+    const cl = parseFloat(clInput.value);
+    const hco3 = parseFloat(hco3Input.value);
+
+    if (!na || !glu || na <= 0 || glu <= 0) {
+      labOut.innerHTML = 'Ingresa sodio y glicemia para calcular la osmolalidad efectiva y el sodio corregido. Agrega cloro y bicarbonato para la brecha aniónica.';
+      return;
+    }
+
+    const osm = 2 * na + glu / 18;
+    const naCorr = na + 1.6 * (glu - 100) / 100;
+
+    let clase, titulo, texto;
+    if (osm > 320) {
+      clase = 'risk-high';
+      titulo = 'Osmolalidad efectiva ' + fmt1(osm) + ' mOsm/kg · rango de estado hiperosmolar';
+      texto = '<strong>Sobre 320 mOsm/kg.</strong> Con glicemia ≥ 600 mg/dL y sin cetoacidosis relevante, cumple ' +
+              'criterio de <strong>estado hiperosmolar</strong>. Corrige <strong>lento</strong>: osmolalidad ' +
+              '<strong>3–8 mOsm/kg por hora</strong> y natremia no más de <strong>10 mmol/L en 24 h</strong>. ' +
+              'El compromiso de conciencia debe ser proporcional a este valor: si no lo es, busca otra causa ' +
+              'neurológica.';
+    } else if (osm >= 310) {
+      clase = 'risk-mid';
+      titulo = 'Osmolalidad efectiva ' + fmt1(osm) + ' mOsm/kg · elevada';
+      texto = '<strong>Elevada pero bajo el umbral de 320.</strong> Vigila la velocidad de corrección igual que en el ' +
+              'estado hiperosmolar y recuerda que hasta un tercio de los pacientes tiene un <strong>cuadro ' +
+              'mixto</strong> con criterios de ambas entidades.';
+    } else {
+      clase = 'risk-low';
+      titulo = 'Osmolalidad efectiva ' + fmt1(osm) + ' mOsm/kg · bajo el umbral';
+      texto = '<strong>Bajo 320 mOsm/kg:</strong> no cumple el criterio osmolar del estado hiperosmolar. Eso ' +
+              '<strong>no descarta una cetoacidosis</strong>, que se define por acidosis y cetonas, no por la ' +
+              'osmolalidad.';
+    }
+
+    let naTexto;
+    if (naCorr > 145) {
+      naTexto = '<br><br><strong>Sodio corregido ' + fmt1(naCorr) + ' mmol/L (medido ' + fmt0(na) + ').</strong> ' +
+                'Corregido <strong>alto</strong>: tras la reposición isotónica inicial, el suero de continuación ' +
+                'habitual es <strong>cloruro de sodio 0,45 %</strong>, vigilando que la natremia no caiga más de ' +
+                '10 mmol/L en 24 h.';
+    } else if (naCorr < 135) {
+      naTexto = '<br><br><strong>Sodio corregido ' + fmt1(naCorr) + ' mmol/L (medido ' + fmt0(na) + ').</strong> ' +
+                'Corregido <strong>bajo</strong>: continúa con <strong>cristaloide isotónico</strong>. Una ' +
+                'hiponatremia real en este contexto obliga a pensar también en otras causas, y <strong>no se trata ' +
+                'con sodio hipertónico</strong> salvo indicación específica.';
+    } else {
+      naTexto = '<br><br><strong>Sodio corregido ' + fmt1(naCorr) + ' mmol/L (medido ' + fmt0(na) + ').</strong> ' +
+                'Corregido <strong>normal</strong>: continúa con <strong>cristaloide isotónico</strong> y reevalúa ' +
+                'con los controles siguientes. Si el medido es bajo y el corregido normal, la hiponatremia es ' +
+                '<strong>dilucional</strong> y se corrige sola al bajar la glicemia.';
+    }
+
+    let agTexto = '';
+    if (cl > 0 && hco3 > 0) {
+      const ag = na - cl - hco3;
+      if (ag > 12) {
+        agTexto = '<br><br><strong>Brecha aniónica ' + fmt1(ag) + ' mmol/L: aumentada.</strong> Compatible con ' +
+                  'cetoacidosis activa. Confirma con <strong>β-hidroxibutirato</strong> y considera el diferencial ' +
+                  'de la acidosis con brecha elevada: acidosis láctica, cetoacidosis alcohólica, uremia e ' +
+                  'intoxicación por salicilatos, metanol o etilenglicol. ' +
+                  (ag > 16 ? '<em>Sobre 16 se considera criterio de gravedad.</em>' : '');
+      } else {
+        agTexto = '<br><br><strong>Brecha aniónica ' + fmt1(ag) + ' mmol/L: normal o cerrada.</strong> Si el ' +
+                  'bicarbonato sigue bajo con la brecha cerrada tras varios litros de suero, lo más probable es una ' +
+                  '<strong>acidosis metabólica hiperclorémica</strong> por el volumen administrado: <strong>no es ' +
+                  'cetoacidosis persistente, no requiere más insulina</strong> y se resuelve en 24–48 h. La brecha ' +
+                  'cerrada es además uno de los criterios de resolución.';
+      }
+    } else if (cl > 0 || hco3 > 0) {
+      agTexto = '<br><br><em>Ingresa cloro y bicarbonato para calcular la brecha aniónica.</em>';
+    }
+
+    labOut.innerHTML = '<span class="big ' + clase + '">' + titulo + '</span>' + texto + naTexto + agTexto + LAB_NOTA;
+  }
+
+  [naInput, gluInput, clInput, hco3Input].forEach(el => el.addEventListener('input', renderLab));
+  document.getElementById('lab-reset').addEventListener('click', () => {
+    [naInput, gluInput, clInput, hco3Input].forEach(el => { el.value = ''; });
+    renderLab();
+  });
+
+  // ── Dosis y volúmenes por peso ────────────────────────────────────
+  const pesoInput = document.getElementById('peso');
+  const pesoOut = document.getElementById('peso-out');
+
+  function renderPeso() {
+    const kg = parseFloat(pesoInput.value);
+    if (!kg || kg <= 0 || kg > 250) {
+      pesoOut.innerHTML = 'Ingresa el peso para ver el bolo inicial, el déficit estimado de volumen y las velocidades de infusión de insulina calculadas para este paciente.';
+      return;
+    }
+
+    const filas = [
+      ['Bolo inicial de cristaloide', '10–20 mL/kg si hay hipoperfusión', fmt0(kg * 10) + '–' + fmt0(kg * 20) + ' mL', 'Reevaluar tras cada bolo. Sin hipoperfusión: 500–1000 mL en la primera hora'],
+      ['Déficit estimado · cetoacidosis', '≈ 100 mL/kg', '≈ ' + fmt1(kg * 0.1) + ' L', 'Se repone en 24–48 h, no de golpe. Es una estimación poblacional'],
+      ['Déficit estimado · estado hiperosmolar', '≈ 100–220 mL/kg', '≈ ' + fmt1(kg * 0.1) + '–' + fmt1(kg * 0.22) + ' L', 'Mucho mayor: se instala en días o semanas'],
+      ['Insulina cristalina · infusión', '0,1 U/kg/h IV', fmt1(kg * 0.1) + ' U/h', 'Solo con potasio ≥ 3,3 mmol/L y volumen corriendo. El bolo inicial no es necesario'],
+      ['Insulina · tras agregar glucosa', '0,05 U/kg/h IV', fmt(kg * 0.05) + ' U/h', 'Al llegar a 200–250 mg/dL en cetoacidosis. No se suspende la insulina'],
+      ['Insulina · estado hiperosmolar', '0,05 U/kg/h IV o diferida', fmt(kg * 0.05) + ' U/h', 'Puede diferirse mientras la glicemia baje solo con fluidos'],
+      ['Bolo inicial de insulina (si el protocolo lo usa)', '0,1 U/kg IV', fmt1(kg * 0.1) + ' U', 'Opcional: no es necesario si se usa infusión continua a 0,1 U/kg/h'],
+      ['Déficit corporal de potasio', '3–5 mmol/kg', fmt0(kg * 3) + '–' + fmt0(kg * 5) + ' mmol', 'Orientativo: la reposición se guía por la kalemia seriada, no por este cálculo'],
+      ['Velocidad de descenso de glicemia', 'Meta 50–75 mg/dL por hora', 'No depende del peso', 'Más rápido no es mejor: aumenta el riesgo de edema cerebral']
+    ].map(d =>
+      '<tr><td>' + d[0] + '</td>' +
+      '<td><span class="dose-note">' + d[1] + '</span></td>' +
+      '<td><span class="dose-main">' + d[2] + '</span><br><span class="dose-note">' + d[3] + '</span></td></tr>'
+    ).join('');
+
+    pesoOut.innerHTML =
+      '<span class="big">Dosis y volúmenes para ' + fmt(kg) + ' kg</span>' +
+      '<div class="table-wrap" style="margin-top:8px;"><table><thead><tr><th>Intervención</th><th>Regla</th><th>Para este paciente</th></tr></thead><tbody>' +
+      filas +
+      '</tbody></table></div>' +
+      '<div style="margin-top:10px;">Calculado sobre <strong>peso real estimado</strong>. En obesidad importante ' +
+      'algunos protocolos limitan la dosis absoluta de insulina y el volumen de los bolos. Las velocidades de ' +
+      'reposición, las concentraciones y diluciones de la insulina y del potasio, y los límites por vía periférica y ' +
+      'central <strong>varían entre servicios</strong>, y todo cambia en el paciente pediátrico, en la embarazada y ' +
+      'en el paciente en diálisis. <em>Verificar con protocolo institucional.</em></div>';
+  }
+
+  pesoInput.addEventListener('input', renderPeso);
+  document.getElementById('peso-reset').addEventListener('click', () => {
+    pesoInput.value = '';
+    renderPeso();
+  });
+</script>
+</body>
+</html>
