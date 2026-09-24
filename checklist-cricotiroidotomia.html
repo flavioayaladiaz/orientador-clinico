@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Checklist · Cricotiroidotomía percutánea con kit de aguja</title>
+<meta name="description" content="Checklist con cronómetro para la cricotiroidotomía percutánea con kit de aguja (técnica de Seldinger) en la situación «no intubo, no oxigeno»: cuándo declararla, roles, localización de la membrana cricotiroidea con maniobra laríngea y ecografía, técnica paso a paso, confirmación con capnografía, plan de rescate con bisturí-bougie-tubo, complicaciones y poblaciones especiales.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(239,68,68,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(20,184,166,0.06) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 36px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.28);
+    color: #fca5a5;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  .header-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--red);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--red);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #ef4444, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .header-sub strong { color: #fff; font-weight: 500; }
+  .header-sub em { color: #fcd34d; font-style: normal; }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .section-check-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .s1 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s1 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s2 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s2 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s3 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s3 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s4 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s4 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s5 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s5 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s6 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s6 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s7 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s7 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s8 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s8 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s9 .section-num { background: rgba(99,102,241,0.12); color: #c7d2fe; border: 1px solid rgba(99,102,241,0.18); }
+  .s9 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s10 .section-num { background: rgba(59,130,246,0.10); color: #bfdbfe; border: 1px solid rgba(59,130,246,0.18); }
+  .s10 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s11 .section-num { background: rgba(239,68,68,0.10); color: #fecaca; border: 1px solid rgba(239,68,68,0.18); }
+  .s11 { --accent: var(--red); --accent-glow: var(--red-glow); }
+
+  /* CRONÓMETRO */
+  .stopwatch {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+  .sw-display {
+    font-family: var(--mono);
+    font-size: clamp(40px, 11vw, 60px);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #fff;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .sw-display.warn { color: #fcd34d; }
+  .sw-display.late { color: #fca5a5; }
+  .sw-caption {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+  .sw-controls { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+  .sw-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .sw-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .sw-btn:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+  .sw-btn.primary {
+    background: rgba(239,68,68,0.14);
+    border-color: rgba(239,68,68,0.45);
+    color: #fca5a5;
+  }
+  .sw-btn.primary:hover { background: rgba(239,68,68,0.22); color: #fecaca; }
+
+  .milestones { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .ms {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .ms:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .ms:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .ms.done { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); color: #6ee7b7; }
+  .ms-goal {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .ms.done .ms-goal { color: #6ee7b7; border-color: rgba(16,185,129,0.4); }
+  .ms.done.over .ms-goal { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+  }
+  .check-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .check-item:hover::before { opacity: 1; }
+  .check-item:hover { border-color: rgba(255,255,255,0.12); }
+  .check-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .check-item.checked { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+  .check-item.checked::before { opacity: 0.5; }
+
+  .checkbox {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+    background: transparent;
+  }
+  .check-item.checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .checkmark {
+    opacity: 0;
+    transform: scale(0) rotate(-10deg);
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .check-item.checked .checkmark { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  .check-label {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-dim);
+    transition: color 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+  .check-item.checked .check-label {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(100,116,139,0.5);
+  }
+  .check-label strong { color: #fff; font-weight: 500; }
+  .check-label em { color: #fcd34d; font-style: normal; }
+  .check-step {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+
+  /* PROGRESO */
+  .progress-bottom {
+    margin-top: 6px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .progress-bar-track {
+    flex: 1;
+    min-width: 120px;
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ef4444, #f59e0b);
+    border-radius: 100px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px rgba(239,68,68,0.5);
+  }
+  .progress-label { font-family: var(--mono); font-size: 12px; color: var(--text-dim); white-space: nowrap; }
+  #progress-pct { color: var(--red); font-weight: 500; }
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+  /* BANNERS */
+  .warning-banner, .info-banner, .go-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #fca5a5; }
+  .info-banner { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.18); color: #bfdbfe; }
+  .go-banner { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); color: #6ee7b7; }
+  .warning-banner strong, .info-banner strong, .go-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em, .go-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+  .plain-item.good { background: rgba(16,185,129,0.05); border-color: rgba(16,185,129,0.16); }
+  .plain-item.good strong { color: #6ee7b7; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ESQUEMA ANATÓMICO */
+  .figure {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 16px 14px;
+    margin-bottom: 14px;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .fig-caption {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .fig-caption strong { color: var(--text-dim); font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--red); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .ms { align-items: flex-start; flex-wrap: wrap; }
+    .ms-goal { margin-left: 0; }
+    .sw-btn { flex: 1; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <div class="header-badge">Procedimiento HALO · Checklist</div>
+    <h1>Cricotiroidotomía percutánea <span>con kit de aguja</span></h1>
+    <p class="header-sub">
+      Es el procedimiento que se hace cuando ya no queda nada más: <strong>no se puede intubar y no se puede
+      oxigenar</strong>. La literatura es consistente en dos cosas incómodas. La primera es que el problema
+      casi nunca es la técnica, sino <strong>la demora en decidir</strong>: en el NAP4, los accesos quirúrgicos de
+      rescate se hicieron tarde, tras intentos repetidos de intubación, y muchos fracasaron. La segunda es que
+      <strong>la membrana cricotiroidea se palpa mal</strong>: en mujeres obesas, la tasa de identificación correcta
+      por palpación fue de 0 de 15 en un estudio, y en otro los anestesistas acertaron en el 24 % de las mujeres no
+      obesas. Por eso esta página no empieza en la punción, sino en <em>declarar la situación en voz alta, parar el
+      reloj mental y localizar el reparo</em>. La técnica que se describe es la <strong>percutánea con kit de aguja
+      (Seldinger)</strong>, del tipo Melker o Arndt; conviene saber desde ya que las guías actuales recomiendan el
+      <strong>bisturí-bougie-tubo</strong> como técnica de rescate preferente, y que este checklist incluye el paso de
+      conversión cuando el kit no avanza.
+    </p>
+  </div>
+
+  <!-- 01 · DECISIÓN -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">¿Estamos en «no intubo, no oxigeno»?</div>
+        <div class="section-subtitle">Indicaciones, gatillo de decisión y contraindicaciones</div>
+      </div>
+      <span class="section-check-count" id="count-s1">0/5</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>La situación CICO (<em>cannot intubate, cannot oxygenate</em>) se <strong>declara en voz alta</strong>:
+        «estamos en no intubo–no oxigeno, vamos a acceso frontal del cuello». Declararla es lo que autoriza al equipo a
+        dejar de intentar por arriba. <strong>El error que más mata no es la técnica, es esperar un intento más.</strong></span>
+      </div>
+
+      <div class="subhead">Gatillo: los tres fracasos</div>
+      <div class="checklist" id="list-s1">
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Intubación traqueal fallida</strong> tras un máximo de 3 intentos (+1 por el operador más experimentado disponible), con optimización entre intentos: posición, laringoscopio distinto o videolaringoscopio, bougie, manipulación laríngea externa.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Dispositivo supraglótico fallido</strong> tras un máximo de 3 intentos, idealmente con dispositivo de segunda generación y cambiando de tamaño o de modelo entre intentos.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Ventilación con mascarilla facial imposible</strong> pese a técnica a cuatro manos, cánula orofaríngea y nasofaríngea, y tracción mandibular.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Relajación neuromuscular completa asegurada</strong> antes de puncionar: un laringoespasmo o un tórax rígido pueden ser la causa de la ventilación imposible. Si hay duda, dosis completa de bloqueador neuromuscular — <em>rocuronio 1,2 mg/kg</em> o <em>succinilcolina 1,5 mg/kg</em> (verificar dosis y disponibilidad con el protocolo institucional).</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Oxigenación de apoyo mantenida mientras se prepara:</strong> cánula nasal con oxígeno a flujo alto puesta desde el inicio y no retirada, e intentos continuos de ventilación por arriba hasta que la cánula esté instalada.</span>
+        </button>
+      </div>
+
+      <div class="subhead">Indicaciones directas, sin pasar por los tres fracasos</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🚩</span><span><strong>Obstrucción de la vía aérea superior que impide cualquier paso desde arriba:</strong> angioedema masivo, quemadura de vía aérea con edema establecido, tumor o absceso obstructivo, cuerpo extraño supraglótico impactado que no se puede extraer.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚩</span><span><strong>Trauma maxilofacial o cervical severo</strong> con sangrado o distorsión que hace imposible visualizar la glotis y ventilar.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚩</span><span><strong>Sangrado incoercible en la vía aérea</strong> (hematemesis masiva, hemoptisis, herida penetrante) que impide oxigenar por arriba.</span></div>
+      </div>
+
+      <div class="subhead">Contraindicaciones</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Transección o fractura laríngea:</strong> el acceso cricotiroideo puede completar la separación laringotraqueal. Si hay enfisema cervical con crepitación laríngea, voz perdida y deformidad del cartílago, el destino es <strong>traqueostomía quirúrgica</strong> o intubación a través de la herida, por el operador más experimentado disponible.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Edad pediátrica:</strong> el ATLS no recomienda la cricotiroidotomía quirúrgica en <strong>menores de 12 años</strong>. El umbral exacto y la alternativa (punción con cánula y oxigenación) varían entre fuentes y servicios: <em>verificar con protocolo institucional</em> (ver sección 09).</span></div>
+        <div class="plain-item"><span class="bullet-icon">⚠️</span><span><strong>Relativas, que no detienen a nadie en un CICO:</strong> coagulopatía o anticoagulación, cirugía o radioterapia cervical previa, bocio voluminoso, obesidad con cuello corto, hematoma cervical expansivo. Cambian la técnica y el operador esperable, no la indicación: <strong>un paciente que no oxigena muere por la hipoxia, no por el sangrado.</strong></span></div>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;margin-bottom:0;">
+        <span class="warning-icon">ℹ️</span>
+        <span>Si <strong>la obstrucción está por debajo de la membrana cricotiroidea</strong> (tumor traqueal, cuerpo
+        extraño traqueal bajo, estenosis traqueal), la cricotiroidotomía no resuelve el problema: puede dar acceso, pero
+        no oxigenación. En ese escenario se necesita <strong>broncoscopia, traqueostomía baja o soporte extracorpóreo</strong>,
+        y la llamada al equipo correspondiente debe salir en paralelo.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · CRONÓMETRO Y ROLES -->
+  <div class="section s2" id="s2" style="animation-delay:0.10s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Cronómetro e hitos</div>
+        <div class="section-subtitle">Desde la declaración de CICO hasta la primera capnografía</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="stopwatch">
+        <div class="sw-display" id="swDisplay">00:00</div>
+        <div class="sw-caption" id="swCaption">Detenido · parte el reloj al declarar CICO</div>
+        <div class="sw-controls">
+          <button type="button" class="sw-btn primary" id="swToggle" onclick="swToggle()">▶ Iniciar</button>
+          <button type="button" class="sw-btn" onclick="swReset()">↺ Reiniciar</button>
+        </div>
+        <div class="milestones" id="milestones">
+          <button type="button" class="ms" data-goal="30" onclick="markMs(this)"><span>Kit abierto y campo listo</span><span class="ms-goal">meta ~30 s</span></button>
+          <button type="button" class="ms" data-goal="45" onclick="markMs(this)"><span>Membrana identificada y laringe tomada</span><span class="ms-goal">meta ~45 s</span></button>
+          <button type="button" class="ms" data-goal="60" onclick="markMs(this)"><span>Punción con retorno de aire</span><span class="ms-goal">meta ~60 s</span></button>
+          <button type="button" class="ms" data-goal="90" onclick="markMs(this)"><span>Guía pasada y cánula avanzada</span><span class="ms-goal">meta ~90 s</span></button>
+          <button type="button" class="ms" data-goal="120" onclick="markMs(this)"><span>Ventilando con capnografía en onda</span><span class="ms-goal">meta ~120 s</span></button>
+          <button type="button" class="ms" data-goal="150" onclick="markMs(this)"><span>Conversión a bisturí-bougie-tubo (si el kit falló)</span><span class="ms-goal">tope ~150 s</span></button>
+        </div>
+      </div>
+
+      <div class="info-banner" style="margin-top:16px;">
+        <span class="warning-icon">ℹ️</span>
+        <span>Las metas son <strong>referenciales, no un estándar validado</strong>: sirven para que alguien diga los
+        tiempos en voz alta y para detectar el estancamiento. Como referencia de magnitud, en estudios de simulación con
+        operadores entrenados la técnica de Seldinger tardó una mediana de <strong>101 s</strong> (frente a 45 s del
+        bisturí-bougie) en un modelo de banco, y hasta <strong>298 s</strong> (frente a 109 s) en un modelo porcino obeso
+        con hemorragia diseñado para reproducir el estrés real. En ese mismo modelo, el paro cardíaco ocurrió entre los
+        137 y los 233 s desde el CICO. <strong>El margen es ese.</strong></span>
+      </div>
+
+      <div class="subhead">Roles: quién hace qué</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>Operador:</strong> toma la laringe y no la suelta hasta que la cánula esté dentro. No habla por teléfono, no busca material, no negocia.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>Asistente del kit:</strong> abre el set, carga la jeringa con suero, entrega cada pieza <em>en el orden de uso</em> y en la mano del operador. Tiene el plan B (bisturí, bougie y tubo 6.0 con balón) abierto sobre el mismo campo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>Vía aérea superior:</strong> mantiene la oxigenación por arriba y no la interrumpe: cánula nasal con oxígeno, intentos de ventilación con mascarilla o dispositivo supraglótico hasta el momento de ventilar por la cánula.</span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span><strong>Tiempo y checklist:</strong> lleva el cronómetro, canta los hitos en voz alta y lee la lista de pasos. Es el rol que más se omite y el que más ordena la escena.</span></div>
+        <div class="plain-item"><span class="bullet-icon">5</span><span><strong>Llamadas y fármacos:</strong> activa a anestesia, otorrinolaringología o cirugía según el servicio, prepara sedación y relajante, y registra.</span></div>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;margin-bottom:0;">
+        <span class="warning-icon">⚠️</span>
+        <span>Este cronómetro <strong>no guarda ningún dato</strong> ni queda registrado en el dispositivo: al recargar la
+        página se pierde. El registro clínico del procedimiento se hace en la ficha.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · EQUIPO -->
+  <div class="section s3" id="s3" style="animation-delay:0.14s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Kit y material</div>
+        <div class="section-subtitle">Qué trae el set de Seldinger y qué hay que tener al lado</div>
+      </div>
+      <span class="section-check-count" id="count-s3">0/6</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Contenido típico del set percutáneo (tipo Melker / Arndt)</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Pieza</th><th>Para qué</th><th>Detalle</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Aguja o cánula sobre aguja</td>
+              <td>Punción de la membrana</td>
+              <td>Habitualmente <span class="dose-main">18 G</span>, montada en jeringa. <span class="dose-note">verificar el calibre del kit disponible</span></td>
+            </tr>
+            <tr>
+              <td>Jeringa</td>
+              <td>Aspirar durante la punción</td>
+              <td>Cargada con <span class="dose-main">2–5 ml de suero fisiológico</span>: las burbujas confirman la luz aérea</td>
+            </tr>
+            <tr>
+              <td>Guía metálica</td>
+              <td>Sostiene la vía mientras se cambia de instrumento</td>
+              <td>Punta en J o blanda, habitualmente <span class="dose-main">0,038″</span>. <span class="dose-note">verificar según kit</span></td>
+            </tr>
+            <tr>
+              <td>Bisturí</td>
+              <td>Incisión de piel para que pase el dilatador</td>
+              <td>Hoja <span class="dose-main">n.º 15</span> en la mayoría de los sets</td>
+            </tr>
+            <tr>
+              <td>Dilatador</td>
+              <td>Abre el trayecto; va dentro de la cánula</td>
+              <td>Se monta con la cánula formando <strong>una sola unidad</strong> antes de avanzar</td>
+            </tr>
+            <tr>
+              <td>Cánula de vía aérea</td>
+              <td>Es la vía aérea definitiva del procedimiento</td>
+              <td>Sets habituales de <span class="dose-main">3,5 / 4,0 / 5,0 / 6,0 mm de diámetro interno</span>, con o sin balón. En adultos se prefiere la mayor disponible <strong>con balón</strong>. <span class="dose-note">verificar los tamaños y si hay versión con balón en tu servicio</span></td>
+            </tr>
+            <tr>
+              <td>Cinta de fijación</td>
+              <td>Evitar el desplazamiento</td>
+              <td>La complicación tardía más letal es que la cánula se salga sin que nadie lo note</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Sobre el mismo campo, antes de puncionar</div>
+      <div class="checklist" id="list-s3">
+        <button type="button" class="check-item" onclick="toggle(this,'s3')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Plan B abierto:</strong> bisturí n.º 10 o 20, bougie y tubo endotraqueal <em>6.0 con balón</em>. No en el carro: <strong>abierto, sobre el campo</strong>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s3')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Capnografía en onda conectada y encendida</strong>, lista para acoplarse a la cánula. Es el único confirmador que sirve en este escenario.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s3')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Bolsa autoinflable o circuito</strong> con oxígeno a flujo alto y conector de 15 mm compatible con la cánula del kit.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s3')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Aspiración</strong> funcionando y a mano: sangre y secreciones son la regla, no la excepción.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s3')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Ecógrafo con transductor lineal de alta frecuencia</strong>, si está disponible y hay un segundo operador que pueda usarlo <em>sin detener</em> el procedimiento.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s3')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Sedación y analgesia preparadas</strong> para después de asegurar la vía: el paciente que se recupera con una cánula en el cuello y sin sedación se la saca.</span>
+        </button>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;margin-bottom:0;">
+        <span class="warning-icon">⚠️</span>
+        <span>No confundir el <strong>set percutáneo de Seldinger</strong> (deja una cánula de 4–6 mm que se ventila con
+        bolsa) con la <strong>punción cricotiroidea con cánula fina</strong> de 12–14 G, que <em>requiere una fuente de
+        oxígeno de alta presión</em> y una vía de espiración permeable. Ventilar una cánula fina con bolsa autoinflable
+        no oxigena; ventilarla con alta presión sin salida espiratoria provoca barotrauma. Ver la comparación en la
+        sección 10.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · ANATOMÍA -->
+  <div class="section s4" id="s4" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Encontrar la membrana cricotiroidea</div>
+        <div class="section-subtitle">Maniobra laríngea, ecografía y qué hacer si no se palpa</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="figure">
+        <svg viewBox="0 0 640 280" role="img" aria-label="Esquema lateral del cuello: cartílago tiroides, membrana cricotiroidea, cartílago cricoides y tráquea, con el ángulo de punción caudal de 45 grados.">
+          <defs>
+            <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 z" fill="#ef4444"/>
+            </marker>
+          </defs>
+          <!-- piel -->
+          <line x1="116" y1="28" x2="116" y2="258" stroke="rgba(148,163,184,0.3)" stroke-width="2"/>
+          <text x="66" y="252" fill="#475569" font-family="DM Mono, monospace" font-size="11">piel</text>
+          <!-- cartílago tiroides -->
+          <path d="M158,62 L236,52 L236,118 L158,126 Z" fill="rgba(99,102,241,0.18)" stroke="#a5b4fc" stroke-width="2"/>
+          <text x="248" y="70" fill="#a5b4fc" font-family="DM Mono, monospace" font-size="13">Cartílago tiroides</text>
+          <text x="248" y="88" fill="#64748b" font-family="DM Mono, monospace" font-size="11">borde inferior = techo de la membrana</text>
+          <!-- membrana cricotiroidea -->
+          <rect x="158" y="128" width="78" height="22" fill="rgba(239,68,68,0.28)" stroke="#ef4444" stroke-width="2"/>
+          <text x="248" y="137" fill="#fca5a5" font-family="DM Mono, monospace" font-size="13">Membrana cricotiroidea</text>
+          <text x="248" y="155" fill="#64748b" font-family="DM Mono, monospace" font-size="11">~8–12 mm de alto · punción en la línea media</text>
+          <!-- cartílago cricoides -->
+          <path d="M158,152 L236,152 L236,186 L158,192 Z" fill="rgba(20,184,166,0.16)" stroke="#5eead4" stroke-width="2"/>
+          <text x="248" y="176" fill="#5eead4" font-family="DM Mono, monospace" font-size="13">Cartílago cricoides</text>
+          <text x="248" y="194" fill="#64748b" font-family="DM Mono, monospace" font-size="11">único anillo completo · suelo de la membrana</text>
+          <!-- tráquea -->
+          <path d="M162,198 L232,196 M162,214 L232,212 M162,230 L232,228" stroke="rgba(148,163,184,0.4)" stroke-width="7" stroke-linecap="round"/>
+          <text x="248" y="222" fill="#64748b" font-family="DM Mono, monospace" font-size="12">Tráquea</text>
+          <!-- aguja -->
+          <line x1="44" y1="96" x2="152" y2="141" stroke="#ef4444" stroke-width="3" marker-end="url(#arrowRed)"/>
+          <text x="24" y="84" fill="#fca5a5" font-family="DM Mono, monospace" font-size="12">45° caudal</text>
+        </svg>
+        <div class="fig-caption">
+          <strong>Esquema orientativo, no a escala.</strong> La membrana cricotiroidea se ubica entre el borde inferior
+          del cartílago tiroides y el borde superior del cricoides, en la línea media. La aguja entra en la línea media
+          y se dirige <strong>hacia caudal, en torno a 45°</strong>. Las arterias cricotiroideas cruzan habitualmente la
+          <strong>porción superior</strong> de la membrana: puncionar en la mitad inferior reduce el sangrado.
+        </div>
+      </div>
+
+      <div class="subhead">Maniobra laríngea (<em>laryngeal handshake</em>)</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">①</span><span>Desde la cabecera o desde el <strong>lado</strong> del paciente —la posición desde la que vayas a puncionar—, toma la laringe entre el pulgar y el dedo medio de la mano no dominante, a la altura del hueso hioides.</span></div>
+        <div class="plain-item"><span class="bullet-icon">②</span><span>Desliza la mano hacia caudal <strong>balanceando suavemente</strong> la laringe: se reconoce el cuerpo del cartílago tiroides y, bajo su borde inferior, el escalón hacia el cricoides.</span></div>
+        <div class="plain-item"><span class="bullet-icon">③</span><span>El <strong>índice</strong> queda apoyado sobre la membrana, en la línea media. Esa mano <strong>no se suelta</strong> durante todo el procedimiento: es el único reparo fiable una vez que hay sangre o enfisema.</span></div>
+        <div class="plain-item"><span class="bullet-icon">④</span><span>Extensión cervical si no hay sospecha de lesión de columna: acerca la laringe a la piel y facilita la palpación. Con collar cervical, <strong>retira la parte anterior manteniendo estabilización manual en línea</strong>.</span></div>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>La palpación falla más de lo que se cree.</strong> En un estudio observacional en mujeres, la
+        membrana se identificó correctamente en 10 de 41 pacientes no obesas y en <strong>0 de 15 obesas</strong>; los
+        errores llegaron a 3 cm por encima o por debajo del nivel real. En otro estudio con 61 anestesistas, el acierto
+        fue del 72 % en hombres no obesos y del <strong>24 % en mujeres no obesas</strong>. Cuando el reparo no se palpa
+        con seguridad, <strong>la técnica con aguja es la peor elección</strong>: conviene la incisión vertical en la
+        línea media con disección digital (técnica con bisturí).</span>
+      </div>
+
+      <div class="subhead">Si hay ecógrafo y un segundo operador</div>
+      <div class="plain-list">
+        <div class="plain-item good"><span class="bullet-icon">✔</span><span><strong>Transductor lineal de alta frecuencia</strong> en el plano <strong>transversal</strong>, sobre la línea media cervical: se identifica la interfaz aire-mucosa como una línea hiperecogénica con reverberación.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">✔</span><span>En el plano <strong>longitudinal</strong> se reconocen en serie el cartílago tiroides, la membrana, el cricoides y los anillos traqueales; marcar la piel con lápiz demora segundos y evita el trayecto falso.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏱</span><span>En estudios de simulación, la identificación ecográfica es <strong>más precisa pero más lenta</strong> (una mediana de 80 s frente a 22 s con palpación en un modelo). <strong>En CICO establecido, la ecografía no puede retrasar la punción:</strong> es para el paciente con vía aérea difícil anticipada, o mientras otro operador ya está preparando el campo.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · TÉCNICA -->
+  <div class="section s5" id="s5" style="animation-delay:0.22s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Técnica paso a paso (Seldinger)</div>
+        <div class="section-subtitle">Punción · guía · dilatación · cánula</div>
+      </div>
+      <span class="section-check-count" id="count-s5">0/11</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Secuencia para el <strong>set percutáneo con aguja</strong>. La asepsia se reduce a lo que el tiempo
+        permita —una pincelada de antiséptico si está a mano—: <strong>en un CICO la esterilidad no compite con la
+        oxigenación</strong>. El orden de las piezas sí es innegociable.</span>
+      </div>
+
+      <div class="checklist" id="list-s5">
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 01 · Posición</span>Paciente en decúbito supino, <strong>cuello en extensión</strong> si no hay sospecha de lesión cervical (una almohadilla bajo los hombros ayuda). Operador de pie <strong>al lado del paciente, a la altura del cuello</strong>, con el material a su alcance.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 02 · Fijar la laringe</span>Maniobra laríngea con la mano no dominante: <strong>pulgar y dedo medio sobre las alas del cartílago tiroides, índice sobre la membrana</strong>. Esta mano queda inmovilizada hasta el final. La laringe es móvil: si se suelta, se pierde el reparo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 03 · Incisión de piel</span>Incisión vertical en la línea media sobre la membrana, de aproximadamente <strong>1–1,5 cm, solo piel y tejido subcutáneo</strong>. Muchos kits la indican antes de puncionar y evita que el dilatador se atasque o la cánula se doble. La incisión vertical sangra menos y permite ampliar hacia arriba o abajo si el reparo no era el correcto.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 04 · Punción</span>Aguja montada en la jeringa con suero, en la <strong>línea media y en la mitad inferior de la membrana</strong>, dirigida <em>hacia caudal en torno a 45°</em>, <strong>aspirando de forma continua</strong> mientras se avanza. El chorro de burbujas marca la entrada a la luz traqueal: <strong>detener el avance en ese momento</strong>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 05 · Asegurar la posición</span>Si el kit tiene <strong>cánula sobre aguja</strong>, avanzar la cánula hacia caudal y retirar la aguja; volver a aspirar para confirmar aire. Mantener la pieza <strong>firme contra la piel</strong>: cualquier desplazamiento en este punto deja la guía fuera de la tráquea.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 06 · Guía</span>Retirar la jeringa y pasar la <strong>guía metálica hacia caudal</strong>, en dirección a la carina. Debe deslizarse <strong>sin resistencia</strong>. Si encuentra tope, no forzar: retirar y repuncionar. Una guía dirigida hacia cefálico deja la cánula contra las cuerdas.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 07 · Retirar la aguja</span>Retirar la aguja o la cánula <strong>dejando la guía dentro</strong>, y sujetar la guía en la piel con los dedos. <strong>Desde aquí y hasta el final, alguien tiene siempre una mano en la guía.</strong></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 08 · Montar dilatador y cánula</span>Introducir el <strong>dilatador dentro de la cánula</strong> formando una sola unidad y enhebrarla por el extremo libre de la guía, hasta ver salir la guía por el extremo proximal del dilatador antes de avanzar.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 09 · Avanzar</span>Avanzar el conjunto sobre la guía con un <strong>movimiento firme de rotación</strong>, siguiendo el mismo ángulo caudal, hasta que el <strong>reborde de la cánula apoye en la piel</strong>. La resistencia mayor es al atravesar la membrana; si no cede, ampliar la incisión cutánea antes de forzar.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 10 · Retirar dilatador y guía</span>Retirar <strong>dilatador y guía juntos, como una unidad</strong>, sosteniendo la cánula contra la piel para que no se desplace. Inflar el balón si la cánula lo tiene.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 11 · Ventilar y confirmar</span>Conectar la bolsa con <strong>capnografía en onda</strong> y ventilar. <strong>No soltar la cánula</strong> hasta que esté fijada con cinta o sutura. Confirmación completa en la sección 06.</span>
+        </button>
+      </div>
+
+      <div class="progress-bottom">
+        <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBar"></div></div>
+        <div class="progress-label"><span id="progress-pct">0%</span> del checklist</div>
+        <button type="button" class="reset-btn" onclick="resetAll()">↺ Reiniciar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · CONFIRMACIÓN -->
+  <div class="section s6" id="s6" style="animation-delay:0.26s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Confirmar que está dentro</div>
+        <div class="section-subtitle">Capnografía, signos de trayecto falso y manejo inmediato</div>
+      </div>
+      <span class="section-check-count" id="count-s6">0/5</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>En el NAP4, <strong>la falta de uso o la mala interpretación de la capnografía contribuyó al 74 %</strong>
+        de los casos de muerte o daño neurológico permanente ocurridos en unidades críticas y urgencias. Una cánula en
+        un trayecto falso se ve, se siente y se ausculta parecido a una bien puesta: <strong>la onda de capnografía es
+        lo que las diferencia.</strong></span>
+      </div>
+
+      <div class="checklist" id="list-s6">
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Capnografía en onda con curva sostenida</strong> en varias ventilaciones sucesivas. Una curva que aparece y se apaga obliga a reevaluar la posición.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Expansión torácica simétrica</strong> y murmullo pulmonar bilateral, con ausencia de ruido de entrada de aire en epigastrio.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Ventilación sin resistencia excesiva</strong> y saturación que empieza a subir. Recordar que la SpO₂ puede tardar en recuperarse tras una hipoxia prolongada.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Cánula fijada</strong> con cinta al cuello o sutura a la piel, y profundidad registrada. <em>Nadie suelta la cánula antes de esto.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Sedación y analgesia</strong> instaladas, y <strong>relajación</strong> según necesidad, en cuanto la vía aérea está asegurada.</span>
+        </button>
+      </div>
+
+      <div class="subhead">Señales de trayecto falso</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Sin onda de capnografía</strong> pese a ventilaciones adecuadas, en un paciente con circulación presente.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Enfisema subcutáneo que crece</strong> con cada ventilación, y cuello que se deforma: además de indicar el trayecto falso, <em>borra los reparos</em> y hace más difícil el siguiente intento.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Resistencia alta a la ventilación</strong>, sin expansión torácica, con la bolsa que «rebota».</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No se puede aspirar aire</strong> ni pasar una sonda de aspiración fina por la cánula.</span></div>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;margin-bottom:0;">
+        <span class="warning-icon">⚠️</span>
+        <span>Ante sospecha de trayecto falso: <strong>detener la ventilación a presión por esa cánula</strong> (cada
+        insuflación empeora el enfisema), mantener la oxigenación por arriba si es posible, y <strong>pasar a la técnica
+        con bisturí</strong> (sección 07) con un nuevo trayecto. No insistir en recolocar a ciegas sobre un cuello ya
+        enfisematoso.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · PLAN DE RESCATE -->
+  <div class="section s7" id="s7" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Si el kit falla: bisturí-bougie-tubo</div>
+        <div class="section-subtitle">Cuándo abandonar la aguja y cómo convertir</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Las guías de la <strong>Difficult Airway Society (2015)</strong> recomiendan la
+        <strong>cricotiroidotomía con bisturí</strong> como técnica de rescate preferente y señalan que todo anestesista
+        debe practicarla; el NAP4 mostró una alta tasa de fracaso de las técnicas con cánula. Varios estudios
+        comparativos posteriores han encontrado el abordaje con bisturí más rápido y con mayor éxito al primer intento
+        que el kit de Seldinger, especialmente bajo estrés. Si el kit percutáneo es lo que hay —o lo que el operador
+        domina—, se usa; pero <strong>la conversión al bisturí forma parte del plan desde el inicio</strong>, no es una
+        improvisación.</span>
+      </div>
+
+      <div class="subhead">Regla de abandono</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">⏱</span><span><strong>Un intento con el kit.</strong> Si la punción no da aire, si la guía no pasa o si la cánula no avanza, <strong>se pasa al bisturí</strong>. Un segundo intento idéntico sobre un cuello que ya sangra rara vez resulta mejor que el primero.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⏱</span><span><strong>Reparo no palpable desde el inicio</strong> (obesidad, edema, hematoma, enfisema): no empezar con la aguja. Ir directo a incisión vertical con disección digital.</span></div>
+      </div>
+
+      <div class="subhead">Secuencia con bisturí (resumen de rescate)</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">①</span><span><strong>Membrana palpable:</strong> incisión <strong>transversal</strong> sobre la membrana con hoja n.º 10 o 20; girar el bisturí <strong>90°</strong> con el filo hacia caudal para mantener abierto el orificio.</span></div>
+        <div class="plain-item"><span class="bullet-icon">②</span><span><strong>Membrana no palpable:</strong> incisión <strong>vertical</strong> en la línea media de <strong>8–10 cm</strong>, disección roma con los dedos hasta identificar la laringe por tacto, y luego incisión transversal de la membrana.</span></div>
+        <div class="plain-item"><span class="bullet-icon">③</span><span>Deslizar el <strong>bougie</strong> por el orificio hacia caudal, apoyado en el bisturí o en el dedo como guía. Buscar el tope suave de la vía aérea distal.</span></div>
+        <div class="plain-item"><span class="bullet-icon">④</span><span>Pasar un <strong>tubo endotraqueal 6.0 con balón</strong> sobre el bougie con rotación, avanzarlo pocos centímetros, retirar el bougie, inflar el balón y ventilar con capnografía.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">✔</span><span><strong>Confirmar, fijar, sedar</strong> igual que en la sección 06, y avisar al equipo que tomará la vía aérea definitiva.</span></div>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./checklist-politrauma_2.html">Checklist de politrauma · vía aérea en el paciente traumatizado →</a>
+        <a class="cross-link" href="./algoritmo-tec-grave.html">TEC grave · intubación neuroprotectora →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · DESPUÉS -->
+  <div class="section s8" id="s8" style="animation-delay:0.34s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Después de asegurar la vía aérea</div>
+        <div class="section-subtitle">Complicaciones, cuidados y vía aérea definitiva</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Complicaciones a buscar activamente</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Momento</th><th>Complicación</th><th>Qué hacer</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Inmediata</td>
+              <td><strong>Trayecto falso</strong> (paratraqueal, preesofágico) — la más letal</td>
+              <td>Capnografía en cada ventilación; si no hay onda, no insistir a presión y convertir a bisturí</td>
+            </tr>
+            <tr>
+              <td>Inmediata</td>
+              <td><strong>Perforación de la pared traqueal posterior</strong> o del esófago</td>
+              <td>Sospechar si hubo avance profundo o resistencia vencida a la fuerza; evaluación endoscópica y quirúrgica precoz</td>
+            </tr>
+            <tr>
+              <td>Inmediata</td>
+              <td><strong>Hemorragia</strong> del plexo cricotiroideo o de vasos tiroideos</td>
+              <td>Compresión y continuar: la hipoxia mata antes que el sangrado. Revisión quirúrgica una vez estabilizado</td>
+            </tr>
+            <tr>
+              <td>Inmediata</td>
+              <td><strong>Enfisema subcutáneo, neumomediastino, neumotórax</strong></td>
+              <td>Más frecuente con cánula fina y oxígeno a alta presión; radiografía de tórax y vigilancia de neumotórax a tensión</td>
+            </tr>
+            <tr>
+              <td>Precoz</td>
+              <td><strong>Desplazamiento u obstrucción de la cánula</strong></td>
+              <td>Fijación firme, aspiración, humidificación, y capnografía continua mientras esté instalada</td>
+            </tr>
+            <tr>
+              <td>Tardía</td>
+              <td><strong>Estenosis subglótica, disfonía, granuloma, infección del sitio</strong></td>
+              <td>Seguimiento por otorrinolaringología; informar al paciente y dejar el episodio en la ficha</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Cuidados y plan</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">▸</span><span><strong>Sedación, analgesia y ventilación mecánica</strong> con parámetros protectores; aspiración y humidificación de la cánula, cuyo diámetro interno pequeño aumenta la resistencia y se obstruye con facilidad.</span></div>
+        <div class="plain-item"><span class="bullet-icon">▸</span><span><strong>Radiografía de tórax</strong> para posición, neumotórax y neumomediastino; evaluación endoscópica de la vía aérea según disponibilidad.</span></div>
+        <div class="plain-item"><span class="bullet-icon">▸</span><span><strong>Vía aérea definitiva:</strong> la recomendación tradicional es convertir la cricotiroidotomía a intubación orotraqueal o traqueostomía en las <strong>primeras 24–72 h</strong> para reducir el riesgo de estenosis subglótica, pero la evidencia es de baja calidad y el plazo varía entre servicios — <em>verificar con protocolo institucional</em> y decidir con otorrinolaringología o cirugía.</span></div>
+        <div class="plain-item"><span class="bullet-icon">▸</span><span><strong>Registro y alerta de vía aérea difícil:</strong> dejar consignado en la ficha qué se intentó, qué falló, qué funcionó y con qué material, e informar al paciente o su familia. Es lo que protege al paciente en su próxima anestesia.</span></div>
+        <div class="plain-item"><span class="bullet-icon">▸</span><span><strong>Revisión del caso con el equipo</strong> (<em>debriefing</em>) y reposición inmediata del kit usado en el carro de vía aérea difícil.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · POBLACIONES ESPECIALES -->
+  <div class="section s9" id="s9" style="animation-delay:0.38s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Poblaciones y escenarios especiales</div>
+        <div class="section-subtitle">Pediatría, obesidad, trauma cervical, anatomía distorsionada</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">👶</span><span><strong>Niños.</strong> El ATLS no recomienda la cricotiroidotomía quirúrgica en <strong>menores de 12 años</strong>: la membrana es muy pequeña, la laringe está más alta y el cartílago cricoides es el punto más estrecho y el soporte de la vía aérea. La alternativa clásica es la <strong>punción con cánula</strong> (14–16 G) con un sistema de oxigenación controlado, como puente hasta la vía aérea definitiva por anestesia u otorrinolaringología. Los umbrales de edad, el calibre y el sistema de oxigenación difieren entre fuentes y servicios: <em>verificar con protocolo institucional</em> antes de que haga falta.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⚖️</span><span><strong>Obesidad y cuello corto.</strong> Es el escenario donde la palpación falla más y donde la técnica con aguja rinde peor. Extensión cervical máxima si es posible, tracción caudal del tejido cervical por un ayudante, ecografía si hay alguien que la pueda hacer en paralelo, e incisión <strong>vertical y larga</strong> con disección digital como primera opción.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧷</span><span><strong>Trauma con collar cervical.</strong> Retirar la parte anterior del collar manteniendo <strong>estabilización manual en línea</strong>. No renunciar al acceso por la inmovilización: la hipoxia es la amenaza inmediata.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Anticoagulación o coagulopatía.</strong> No contraindican el procedimiento en un CICO. Anticipar más sangrado en el campo, tener aspiración lista y priorizar la técnica que el operador domine mejor.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🦴</span><span><strong>Anatomía distorsionada</strong> (bocio, radioterapia o cirugía cervical previa, masa, hematoma expansivo, enfisema). Si hay tiempo y disponibilidad, <strong>traqueostomía por cirujano</strong> en pabellón es mejor que una cricotiroidotomía a ciegas. Si no hay tiempo, incisión vertical amplia y disección hasta identificar la vía aérea por tacto.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🤰</span><span><strong>Embarazo.</strong> Los pasos no cambian, pero la desaturación es más rápida y el edema de la vía aérea es más frecuente: la ventana de decisión es más corta y conviene desplazamiento uterino izquierdo durante la maniobra.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫁</span><span><strong>Obstrucción infraglótica.</strong> La cricotiroidotomía no atraviesa una obstrucción traqueal baja. Reconocerlo temprano evita perder el único tiempo útil para broncoscopia, traqueostomía baja o soporte extracorpóreo.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · COMPARACIÓN -->
+  <div class="section s10" id="s10" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Las tres técnicas, comparadas</div>
+        <div class="section-subtitle">Cánula fina · kit de Seldinger · bisturí-bougie-tubo</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th></th><th>Cánula fina (12–14 G)</th><th>Kit percutáneo con aguja (Seldinger)</th><th>Bisturí-bougie-tubo</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Qué deja</td>
+              <td>Cánula de ~2 mm, sin balón</td>
+              <td>Cánula de <strong>4–6 mm</strong>, con o sin balón</td>
+              <td><strong>Tubo 6.0 con balón</strong></td>
+            </tr>
+            <tr>
+              <td>Cómo se ventila</td>
+              <td>Solo con <strong>fuente de alta presión</strong> y vía espiratoria permeable. No sirve la bolsa autoinflable</td>
+              <td>Bolsa o ventilador por conector de 15 mm</td>
+              <td>Bolsa o ventilador, con vía aérea protegida por balón</td>
+            </tr>
+            <tr>
+              <td>Tiempo en estudios</td>
+              <td>Rápida de insertar, pero con alta tasa de fracaso clínico en el NAP4</td>
+              <td>Mediana de <strong>101 s</strong> en banco y hasta <strong>298 s</strong> en modelo porcino obeso con hemorragia</td>
+              <td>Mediana de <strong>45–109 s</strong> según el modelo; la más rápida en la mayoría de las comparaciones</td>
+            </tr>
+            <tr>
+              <td>A favor</td>
+              <td>Mínimamente invasiva; opción pediátrica de puente</td>
+              <td>Familiar para quien usa Seldinger a diario; en cadáver produjo <strong>menos lesiones vasculares</strong> que la técnica quirúrgica y fue la mejor valorada entre los dispositivos percutáneos</td>
+              <td>Recomendada como técnica preferente por la DAS 2015; pocos pasos, poco material, alta tasa de éxito al primer intento</td>
+            </tr>
+            <tr>
+              <td>En contra</td>
+              <td>Barotrauma, no protege de aspiración, obstrucción y acodamiento frecuentes</td>
+              <td><strong>Muchos pasos</strong>, cada uno con un modo de fallo; se deteriora bajo estrés y en cuello obeso o sangrante</td>
+              <td>Sangra más y es psicológicamente más difícil de iniciar; requiere entrenamiento regular</td>
+            </tr>
+            <tr>
+              <td>Uso razonable</td>
+              <td>Puente en pediatría o cuando es lo único disponible</td>
+              <td>Operador entrenado en el kit, reparo palpable, paciente no obeso</td>
+              <td><strong>Opción por defecto en el adulto</strong>, y rescate obligado cuando el kit falla</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;margin-bottom:0;">
+        <span class="warning-icon">ℹ️</span>
+        <span>Casi toda la comparación proviene de <strong>maniquíes, modelos porcinos y cadáveres</strong>, no de
+        pacientes: no hay ensayos clínicos aleatorizados de cricotiroidotomía en CICO, y no los habrá. Los tiempos
+        citados sirven para dimensionar el problema, no como estándar de rendimiento. <strong>La variable que más pesa
+        en la práctica es cuál de las tres ha practicado el operador este año.</strong></span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 11 · TRAMPAS -->
+  <div class="section s11" id="s11" style="animation-delay:0.46s;">
+    <div class="section-header" onclick="toggleSection('s11')">
+      <span class="section-num">11</span>
+      <div>
+        <div class="section-title">Trampas y errores frecuentes</div>
+        <div class="section-subtitle">Lo que convierte un rescate posible en una muerte evitable</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Decidir tarde.</strong> Es el error dominante en el NAP4: intentos repetidos de intubación hasta que el acceso frontal se hace sobre un paciente ya hipóxico, bradicárdico o en paro.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No declararlo en voz alta.</strong> Mientras nadie diga «estamos en CICO», el equipo sigue trayendo laringoscopios en lugar del kit.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Soltar la laringe</strong> para recibir una pieza del kit. Se pierde el reparo y, con sangre en el campo, ya no se recupera.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Puncionar sin aspirar</strong> o sin suero en la jeringa: se pierde la única confirmación disponible en el momento de la entrada.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dirigir la aguja o la guía hacia cefálico.</strong> La cánula queda contra las cuerdas o en el vestíbulo laríngeo, y no ventila.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Forzar la guía contra una resistencia.</strong> Si no desliza, no está en la tráquea: retirar y repuncionar es más rápido que reparar una vía falsa.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dilatar sin incisión de piel suficiente.</strong> La cánula se dobla, el dilatador se atasca y se pierden 30 segundos que no sobran.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Ventilar a presión antes de confirmar.</strong> Si está en un trayecto falso, cada insuflación agrega enfisema y borra los reparos para el siguiente intento.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Prescindir de la capnografía</strong> «porque se ve que entra aire». Es el factor que el NAP4 asoció con la mayoría de los desenlaces catastróficos en urgencias y unidades críticas.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Ventilar una cánula fina con bolsa autoinflable</strong> y creer que se está oxigenando.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Insistir con el kit</strong> tras un intento fallido, teniendo el bisturí sobre el campo.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No fijar la cánula</strong> o no sedar al paciente que despierta: la decanulación accidental de una vía aérea conseguida a duras penas suele ser irreversible.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No practicar.</strong> Es un procedimiento que la mayoría hará una o dos veces en su vida profesional. El entrenamiento periódico con el kit real del servicio es lo único que sostiene el desempeño el día que ocurra.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    presencial en el procedimiento. La <strong>cricotiroidotomía es un procedimiento de alto riesgo</strong> que
+    requiere operador entrenado y el respaldo institucional correspondiente; leer este checklist no sustituye la
+    práctica con el kit real del servicio. Los <strong>calibres, tamaños de cánula, contenidos del kit y ángulos
+    descritos son orientativos</strong>: verifica el set disponible en tu unidad, sus instrucciones de uso y la
+    compatibilidad de sus conectores antes de necesitarlo. Las <strong>dosis de bloqueadores neuromusculares y de
+    sedación deben confirmarse</strong> con el protocolo institucional, ajustadas a peso, comorbilidad y situación
+    hemodinámica. El <strong>umbral de edad pediátrica</strong>, la técnica alternativa en niños, el sistema de
+    oxigenación para cánulas finas y el <strong>plazo de conversión a vía aérea definitiva</strong> varían entre
+    fuentes y servicios y deben <strong>verificarse con el protocolo institucional</strong>. Las <strong>metas de
+    tiempo del cronómetro son referenciales y no constituyen un estándar validado</strong>; los tiempos citados
+    provienen de estudios en maniquíes, modelos animales y cadáveres, no de pacientes. El cronómetro y el checklist
+    <strong>no guardan ningún dato</strong>: el registro del procedimiento se hace en la ficha clínica.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Frerk C, Mitchell VS, McNarry AF, et al. <em>Difficult Airway Society 2015 guidelines for management of unanticipated difficult intubation in adults.</em> Br J Anaesth. 2015;115(6):827–848. <a href="https://doi.org/10.1093/bja/aev371" target="_blank" rel="noopener">DOI: 10.1093/bja/aev371</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/26556848/" target="_blank" rel="noopener">PMID 26556848</a> — Plan D: la cricotiroidotomía con bisturí es la técnica de rescate recomendada, con relajación neuromuscular asegurada y límite en el número de intentos previos.</div>
+      <div class="ref-item">Cook TM, Woodall N, Frerk C, et al. <em>Major complications of airway management in the UK: results of the Fourth National Audit Project (NAP4). Part 1: anaesthesia.</em> Br J Anaesth. 2011;106(5):617–631. <a href="https://doi.org/10.1093/bja/aer058" target="_blank" rel="noopener">DOI: 10.1093/bja/aer058</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/21447488/" target="_blank" rel="noopener">PMID 21447488</a> — Origen de la observación sobre el fracaso de las técnicas con cánula y la demora en el acceso frontal del cuello.</div>
+      <div class="ref-item">Cook TM, Woodall N, Harper J, Benger J. <em>Major complications of airway management in the UK (NAP4). Part 2: intensive care and emergency departments.</em> Br J Anaesth. 2011;106(5):632–642. <a href="https://doi.org/10.1093/bja/aer059" target="_blank" rel="noopener">DOI: 10.1093/bja/aer059</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/21447489/" target="_blank" rel="noopener">PMID 21447489</a> — La ausencia de capnografía contribuyó al 74 % de los casos de muerte o daño neurológico permanente en unidades críticas y urgencias.</div>
+      <div class="ref-item">Apfelbaum JL, Hagberg CA, Connis RT, et al. <em>2022 American Society of Anesthesiologists Practice Guidelines for Management of the Difficult Airway.</em> Anesthesiology. 2022;136(1):31–81. <a href="https://doi.org/10.1097/ALN.0000000000004002" target="_blank" rel="noopener">DOI: 10.1097/ALN.0000000000004002</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/34762729/" target="_blank" rel="noopener">PMID 34762729</a> — Marco general del manejo de la vía aérea difícil y del acceso invasivo de emergencia.</div>
+      <div class="ref-item">Aslani A, Ng SC, Hurley M, et al. <em>Accuracy of identification of the cricothyroid membrane in female subjects using palpation: an observational study.</em> Anesth Analg. 2012;114(5):987–992. <a href="https://doi.org/10.1213/ANE.0b013e31824970ba" target="_blank" rel="noopener">DOI: 10.1213/ANE.0b013e31824970ba</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/22366848/" target="_blank" rel="noopener">PMID 22366848</a> — Identificación correcta en 10/41 mujeres no obesas y 0/15 obesas, con errores de hasta 3 cm.</div>
+      <div class="ref-item">Lamb A, Zhang J, Hung O, et al. <em>Accuracy of identifying the cricothyroid membrane by anesthesia trainees and staff in a Canadian institution.</em> Can J Anaesth. 2015;62(5):495–503. <a href="https://doi.org/10.1007/s12630-015-0326-y" target="_blank" rel="noopener">DOI: 10.1007/s12630-015-0326-y</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/25637060/" target="_blank" rel="noopener">PMID 25637060</a> — Acierto del 72 % en hombres no obesos y del 24 % en mujeres no obesas.</div>
+      <div class="ref-item">Schaumann N, Lorenz V, Schellongowski P, et al. <em>Evaluation of Seldinger technique emergency cricothyroidotomy versus standard surgical cricothyroidotomy in 200 cadavers.</em> Anesthesiology. 2005;102(1):7–11. <a href="https://doi.org/10.1097/00000542-200501000-00005" target="_blank" rel="noopener">DOI: 10.1097/00000542-200501000-00005</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/15618780/" target="_blank" rel="noopener">PMID 15618780</a> — Técnica de Seldinger más rápida hasta la primera ventilación y sin lesiones vasculares, frente a seis punciones de vasos tiroideos con la técnica quirúrgica.</div>
+      <div class="ref-item">Murphy C, Rooney SJ, Maharaj CH, Laffey JG, Harte BH. <em>Comparison of three cuffed emergency percutaneous cricothyroidotomy devices to conventional surgical cricothyroidotomy in a porcine model.</em> Br J Anaesth. 2011;106(1):57–64. <a href="https://doi.org/10.1093/bja/aeq294" target="_blank" rel="noopener">DOI: 10.1093/bja/aeq294</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/21037267/" target="_blank" rel="noopener">PMID 21037267</a> — El dispositivo de Seldinger con balón fue insertado con éxito por los 20 participantes y fue el único mejor valorado que la técnica quirúrgica.</div>
+      <div class="ref-item">Chrisman L, King W, Wimble K, et al. <em>Surgicric 2: a comparative bench study with two established emergency cricothyroidotomy techniques in a porcine model.</em> Br J Anaesth. 2016;117(2):236–242. <a href="https://doi.org/10.1093/bja/aew174" target="_blank" rel="noopener">DOI: 10.1093/bja/aew174</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/27440636/" target="_blank" rel="noopener">PMID 27440636</a> — Técnica quirúrgica con mediana de 62 s, más rápida que el kit de Melker, con 100 % de éxito en dos intentos y menor trauma de la pared traqueal posterior.</div>
+      <div class="ref-item">Chang SS, Tong QJ, Beh ZY, Quek KH, Ang BH. <em>A bench study comparing between scalpel-bougie technique and cannula-to-Melker technique in emergency cricothyroidotomy in a porcine model.</em> Korean J Anesthesiol. 2018;71(4):289–295. <a href="https://doi.org/10.4097/kja.d.18.00025" target="_blank" rel="noopener">DOI: 10.4097/kja.d.18.00025</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/29843506/" target="_blank" rel="noopener">PMID 29843506</a> — Mediana de 45,2 s con bisturí-bougie frente a 101,3 s con cánula-a-Melker; ambos con 100 % de éxito en dos intentos. Apoya el entrenamiento anual.</div>
+      <div class="ref-item">Karlsson T, Brännström A, Gellerfors M, Gustavsson J, Günther M. <em>Comparison of emergency surgical cricothyroidotomy and percutaneous cricothyroidotomy by experienced airway providers in an obese, in vivo porcine hemorrhage airway model.</em> Mil Med Res. 2022;9(1):57. <a href="https://doi.org/10.1186/s40779-022-00418-8" target="_blank" rel="noopener">DOI: 10.1186/s40779-022-00418-8</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/36217208/" target="_blank" rel="noopener">PMID 36217208</a> — Mediana de 109 s (quirúrgica) frente a 298 s (percutánea), con supervivencia de 6/6 y 2/6 respectivamente; el paro ocurrió entre los 137 y los 233 s desde el CICO.</div>
+      <div class="ref-item">Didion N, Pohlmann F, Pirlich N, et al. <em>Favour the best in case of emergency cricothyroidotomy — a randomized cross-over trial on manikin focused training and simulation of common devices.</em> PeerJ. 2024;12:e17788. <a href="https://doi.org/10.7717/peerj.17788" target="_blank" rel="noopener">DOI: 10.7717/peerj.17788</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/39193513/" target="_blank" rel="noopener">PMID 39193513</a> — Las técnicas quirúrgicas fueron más rápidas que la de Seldinger y el entrenamiento previo acortó el tiempo hasta la decisión.</div>
+      <div class="ref-item">Benkhadra M, Lenfant F, Nemetz W, et al. <em>A comparison of two emergency cricothyroidotomy kits in human cadavers.</em> Anesth Analg. 2008;106(1):182–185. <a href="https://doi.org/10.1213/01.ane.0000296457.55791.34" target="_blank" rel="noopener">DOI: 10.1213/01.ane.0000296457.55791.34</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/18165576/" target="_blank" rel="noopener">PMID 18165576</a> — El kit de Seldinger produjo menos lesiones de la pared traqueal posterior que el dispositivo comparado.</div>
+      <div class="ref-item">Watanabe H, Nakazawa H, Tokumine J, et al. <em>Development of a novel ultrasound-guided needle cricothyroidotomy device.</em> J Clin Med. 2025;14(16):5871. <a href="https://doi.org/10.3390/jcm14165871" target="_blank" rel="noopener">DOI: 10.3390/jcm14165871</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/40869699/" target="_blank" rel="noopener">PMID 40869699</a> — Origen de los tiempos comparativos de identificación ecográfica (mediana 80 s) frente a palpación (22 s).</div>
+      <div class="ref-item">Referencias localizadas mediante PubMed. El umbral de edad pediátrica, el calibre y el sistema de oxigenación de las cánulas finas, los tamaños y el contenido exacto del kit disponible, las dosis de bloqueo neuromuscular y sedación, y el plazo de conversión a vía aérea definitiva deben contrastarse con el <strong>protocolo institucional vigente</strong> y con los equipos de anestesia, otorrinolaringología y cirugía de referencia. Los criterios de manejo del trauma cervical y la edad de indicación pediátrica citados corresponden a las recomendaciones del <em>Advanced Trauma Life Support</em> (ATLS) del American College of Surgeons.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Checklist con progreso ────────────────────────────────────────
+  const SECTIONS = ['s1', 's3', 's5', 's6'];
+  const totals = {};
+  SECTIONS.forEach(s => {
+    const list = document.getElementById('list-' + s);
+    totals[s] = list ? list.querySelectorAll('.check-item').length : 0;
+  });
+  const TOTAL_CHECKS = SECTIONS.reduce((acc, s) => acc + totals[s], 0);
+
+  function countChecked(section) {
+    return document.querySelectorAll('#list-' + section + ' .check-item.checked').length;
+  }
+
+  function toggle(el, section) {
+    el.classList.toggle('checked');
+    updateCount(section);
+    updateProgress();
+  }
+
+  function updateCount(section) {
+    const el = document.getElementById('count-' + section);
+    if (!el) return;
+    const n = countChecked(section);
+    const t = totals[section];
+    el.textContent = n + '/' + t;
+    if (t > 0 && n === t) {
+      el.style.background = 'rgba(16,185,129,0.15)';
+      el.style.borderColor = 'rgba(16,185,129,0.3)';
+      el.style.color = '#6ee7b7';
+    } else {
+      el.style.background = '';
+      el.style.borderColor = '';
+      el.style.color = '';
+    }
+  }
+
+  function updateProgress() {
+    const done = SECTIONS.reduce((acc, s) => acc + countChecked(s), 0);
+    const pct = TOTAL_CHECKS ? Math.round((done / TOTAL_CHECKS) * 100) : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.check-item.checked').forEach(el => el.classList.remove('checked'));
+    SECTIONS.forEach(updateCount);
+    updateProgress();
+  }
+
+  SECTIONS.forEach(updateCount);
+  updateProgress();
+
+  // ── Cronómetro (sin persistencia) ─────────────────────────────────
+  let swStart = null;
+  let swAccum = 0;
+  let swTick = null;
+
+  function swElapsed() {
+    return swAccum + (swStart !== null ? Date.now() - swStart : 0);
+  }
+
+  function fmt(ms) {
+    const total = Math.floor(ms / 1000);
+    const m = String(Math.floor(total / 60)).padStart(2, '0');
+    const s = String(total % 60).padStart(2, '0');
+    return m + ':' + s;
+  }
+
+  function swRender() {
+    const ms = swElapsed();
+    const disp = document.getElementById('swDisplay');
+    disp.textContent = fmt(ms);
+    disp.classList.toggle('warn', ms >= 60000 && ms < 120000);
+    disp.classList.toggle('late', ms >= 120000);
+  }
+
+  function swToggle() {
+    const btn = document.getElementById('swToggle');
+    const cap = document.getElementById('swCaption');
+    if (swStart === null) {
+      swStart = Date.now();
+      swTick = setInterval(swRender, 200);
+      btn.textContent = '⏸ Detener';
+      cap.textContent = 'Corriendo desde la declaración de CICO';
+    } else {
+      swAccum += Date.now() - swStart;
+      swStart = null;
+      clearInterval(swTick);
+      swTick = null;
+      btn.textContent = '▶ Continuar';
+      cap.textContent = 'En pausa';
+      swRender();
+    }
+  }
+
+  function swReset() {
+    if (swTick) clearInterval(swTick);
+    swTick = null;
+    swStart = null;
+    swAccum = 0;
+    document.getElementById('swToggle').textContent = '▶ Iniciar';
+    document.getElementById('swCaption').textContent = 'Detenido · parte el reloj al declarar CICO';
+    document.querySelectorAll('.ms').forEach(ms => {
+      ms.classList.remove('done', 'over');
+      const goal = ms.dataset.goal;
+      ms.querySelector('.ms-goal').textContent = (goal === '150' ? 'tope ~' : 'meta ~') + goal + ' s';
+    });
+    swRender();
+  }
+
+  function markMs(el) {
+    if (el.classList.contains('done')) {
+      el.classList.remove('done', 'over');
+      const goal = el.dataset.goal;
+      el.querySelector('.ms-goal').textContent = (goal === '150' ? 'tope ~' : 'meta ~') + goal + ' s';
+      return;
+    }
+    if (swStart === null && swAccum === 0) swToggle();
+    const secs = Math.round(swElapsed() / 1000);
+    const goal = parseInt(el.dataset.goal, 10);
+    el.classList.add('done');
+    el.classList.toggle('over', secs > goal);
+    el.querySelector('.ms-goal').textContent = secs + ' s · meta ' + goal + ' s';
+  }
+
+  swRender();
+</script>
+</body>
+</html>
