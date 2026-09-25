@@ -95,6 +95,13 @@ será reemplazada en el index por su página de la sección "Síntomas cardinale
 
 ## 3. Procedimientos HALO
 
+Cada checklist HALO nuevo se agrega automáticamente como tarjeta en
+`index.html`, dentro de la sección "Procedimientos HALO" (crear la sección
+si aún no existe). Esto ya está cubierto por la regla general del paso 5 de
+"Cómo trabaja el agente diario", pero se deja explícito aquí porque es la
+sección con más ítems pendientes: ningún checklist de este bloque se da por
+terminado sin su tarjeta correspondiente en el index.
+
 - [x] Cricotiroidotomía percutánea usando kit con aguja —
       `checklist-cricotiroidotomia.html` (checklist con cronómetro e hitos).
       Incluye la conversión a bisturí-bougie-tubo, que es la técnica de rescate
