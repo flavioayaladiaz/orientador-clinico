@@ -108,7 +108,15 @@ terminado sin su tarjeta correspondiente en el index.
       preferente según la DAS 2015. Pendiente de validación: metas de tiempo del
       cronómetro, umbral de edad pediátrica, tamaños del kit disponible en el
       servicio y plazo de conversión a vía aérea definitiva.
-- [ ] Toracotomía de reanimación (clamshell y clasica izquierda), con enfasis en las indicaciones, la temporalidad, el instrumental específico con fotos de referencia, intubación monobronquial para aislar el pulmon izquierdo y tubo pleural al lado derecho.
+- [x] Toracotomía de reanimación (clamshell y clasica izquierda), con enfasis en las indicaciones, la temporalidad, el instrumental específico con fotos de referencia, intubación monobronquial para aislar el pulmon izquierdo y tubo pleural al lado derecho. —
+      `checklist-toracotomia-reanimacion.html` (checklist con cronómetro e hitos).
+      El instrumental va con **esquemas vectoriales, no fotografías**, para que la
+      página siga funcionando sin conexión y sin imágenes de terceros; la página
+      recomienda fotografiar la caja real del servicio. Pendiente de validación:
+      metas de tiempo del cronómetro, energías de desfibrilación interna, contenido
+      de la caja disponible, tiempo tolerable de clampeo aórtico y criterios locales
+      de suspensión. La intubación monobronquial derecha se presenta como adjunto
+      de exposición basado en opinión de expertos, sin evidencia de desenlace.
 - [ ] Histerotomía de reanimación (cesárea perimortem)
 - [ ] Pericardiocentesis de emergencia (ecoguiada usando transductor de alta frecuencia en visión paraesternal larga con aguja en plano)
 - [ ] Cantotomía lateral y cantólisis
