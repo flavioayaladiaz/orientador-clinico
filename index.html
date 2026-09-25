@@ -30,6 +30,21 @@
     --display: 'Syne', system-ui, sans-serif;
   }
 
+  :root[data-theme="light"] {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --surface2: #eef1f5;
+    --border: rgba(15,23,42,0.10);
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --text-dim: #475569;
+  }
+  :root[data-theme="light"] body::before {
+    background-image:
+      linear-gradient(rgba(15,23,42,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
+  }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
@@ -134,6 +149,22 @@
   }
   #installBtn:hover { background: rgba(20,184,166,0.18); }
   #installBtn:active { transform: scale(0.97); }
+
+  .theme-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .theme-btn:hover { color: var(--text); border-color: var(--text-muted); }
 
   /* SECCIÓN */
   .section-label {
@@ -297,6 +328,7 @@
   <div class="statusbar">
     <span class="chip" id="netChip"><span class="dot"></span><span id="netText">En línea</span></span>
     <span class="chip" id="swChip">Listo para uso offline</span>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Cambiar tema claro u oscuro">◐</button>
     <button id="installBtn" type="button">⤓ Instalar app</button>
   </div>
 
@@ -628,6 +660,28 @@
 
   </div>
 
+  <!-- COORDINACIÓN UEH -->
+  <div class="section-label" style="margin-top:34px;">Coordinación UEH</div>
+  <div class="cards">
+
+    <a class="card" href="./plan-imv.html" style="--accent:var(--amber); --glow:rgba(245,158,11,0.10); animation-delay:1.24s;">
+      <div class="card-inner">
+        <div class="card-main">
+          <span class="card-tag">Respuesta hospitalaria</span>
+          <div class="card-title">Plan IMV</div>
+          <div class="card-desc">Qué hacer cuando SAMU anuncia un incidente con múltiples víctimas: activar, liberar la urgencia, asignar el mando, clasificar y dar destino, en orden de ejecución.</div>
+          <div class="card-meta">
+            <span class="pill">Activación</span>
+            <span class="pill">Mando y roles</span>
+            <span class="pill">Triage</span>
+          </div>
+        </div>
+        <div class="card-arrow">→</div>
+      </div>
+    </a>
+
+  </div>
+
   <div class="note">
     <strong>Uso clínico.</strong> Orientador Clínico es una ayuda memoria de apoyo a la atención de urgencia: no reemplaza el juicio clínico ni los protocolos vigentes del servicio. Verifica dosis y contraindicaciones antes de administrar cualquier fármaco.
   </div>
@@ -640,6 +694,18 @@
 </div>
 
 <script>
+  // ── Tema claro / oscuro ───────────────────────────────────────────
+  (function() {
+    var root = document.documentElement, KEY = 'oc-theme';
+    try { var t = localStorage.getItem(KEY); if (t) root.setAttribute('data-theme', t); } catch (e) {}
+    var btn = document.getElementById('themeBtn');
+    if (btn) btn.addEventListener('click', function() {
+      var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem(KEY, next); } catch (e) {}
+    });
+  })();
+
   // ── Estado de conexión ───────────────────────────────────────────
   const netChip = document.getElementById('netChip');
   const netText = document.getElementById('netText');

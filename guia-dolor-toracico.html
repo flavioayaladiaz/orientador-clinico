@@ -33,6 +33,21 @@
     --display: 'Syne', system-ui, sans-serif;
   }
 
+  :root[data-theme="light"] {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --surface2: #eef1f5;
+    --border: rgba(15,23,42,0.10);
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --text-dim: #475569;
+  }
+  :root[data-theme="light"] body::before {
+    background-image:
+      linear-gradient(rgba(15,23,42,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
+  }
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
@@ -70,11 +85,19 @@
   /* HEADER */
   .header { margin-bottom: 40px; animation: fadeUp 0.6s ease both; }
 
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
   .back-link {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    margin-bottom: 16px;
+    margin-bottom: 0;
     color: var(--text-muted);
     text-decoration: none;
     font-family: var(--mono);
@@ -83,6 +106,23 @@
     transition: color 0.2s;
   }
   .back-link:hover { color: var(--text); }
+
+  .theme-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+    font-size: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .theme-btn:hover { color: var(--text); border-color: var(--text-muted); }
 
   .header-badge {
     display: inline-flex;
@@ -571,7 +611,10 @@
 
   <!-- HEADER -->
   <div class="header">
-    <a class="back-link" href="./index.html">← Volver</a>
+    <div class="header-top">
+      <a class="back-link" href="./index.html">← Volver</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Cambiar tema claro u oscuro">◐</button>
+    </div>
     <div class="header-badge">Motivo de consulta</div>
     <h1>Dolor <span>torácico</span></h1>
     <p class="header-sub">
@@ -1583,6 +1626,18 @@
     HEART_IDS.forEach(id => { document.getElementById(id).value = ''; });
     renderHeart();
   });
+</script>
+<script>
+(function() {
+  var root = document.documentElement, KEY = 'oc-theme';
+  try { var t = localStorage.getItem(KEY); if (t) root.setAttribute('data-theme', t); } catch (e) {}
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function() {
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+  });
+})();
 </script>
 </body>
 </html>
