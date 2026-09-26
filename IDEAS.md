@@ -117,7 +117,21 @@ terminado sin su tarjeta correspondiente en el index.
       de la caja disponible, tiempo tolerable de clampeo aórtico y criterios locales
       de suspensión. La intubación monobronquial derecha se presenta como adjunto
       de exposición basado en opinión de expertos, sin evidencia de desenlace.
-- [ ] Histerotomía de reanimación (cesárea perimortem)
+- [x] Histerotomía de reanimación (cesárea perimortem) —
+      `checklist-histerotomia-reanimacion.html` (checklist con cronómetro e hitos).
+      Se presenta como **maniobra de reanimación materna**, no fetal: indicación por
+      altura uterina (fondo en el ombligo o por encima), desplazamiento uterino manual
+      izquierdo en lugar de inclinación lateral, accesos sobre el diafragma, incisión
+      vertical media e histerotomía clásica con esquemas vectoriales, causas reversibles
+      A–H de la declaración AHA 2015, y manejo posterior de la madre y del recién nacido.
+      La regla de los 4 minutos se explicita como recomendación basada en opinión experta
+      (Katz 1986/2005) y se contrasta con CAPS 2017, Einav 2012, la revisión de paro
+      extrahospitalario de Leech 2024 y el metaanálisis de Rajendran, para desarmar el
+      «ya pasaron más de cinco minutos» como motivo para no hacerla. Pendiente de
+      validación: todas las metas de tiempo del cronómetro salvo la de 4–5 minutos, los
+      esquemas de uterotónicos y antibióticos, el umbral local de viabilidad neonatal,
+      los criterios de hipotermia terapéutica neonatal, el contenido de la caja y los
+      criterios de suspensión (sin criterio validado en esta población).
 - [ ] Pericardiocentesis de emergencia (ecoguiada usando transductor de alta frecuencia en visión paraesternal larga con aguja en plano)
 - [ ] Cantotomía lateral y cantólisis
 - [ ] Instalación de sonda de taponamiento esofagogástrico (balón de
