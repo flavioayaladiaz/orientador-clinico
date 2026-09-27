@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Checklist · Pericardiocentesis de emergencia</title>
+<meta name="description" content="Checklist con cronómetro para la pericardiocentesis de emergencia ecoguiada con transductor lineal de alta frecuencia en ventana paraesternal y aguja en plano: cómo se confirma el taponamiento, a quién no se le punciona, por qué intubar antes de drenar puede matar, mapeo de la arteria torácica interna con Doppler color, los ocho pasos de la técnica, el test de microburbujas, cuánto drenar y el síndrome de descompresión pericárdica.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(20,184,166,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(239,68,68,0.06) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 36px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(20,184,166,0.1);
+    border: 1px solid rgba(20,184,166,0.28);
+    color: #5eead4;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  .header-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--teal);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--teal);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #14b8a6, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .header-sub strong { color: #fff; font-weight: 500; }
+  .header-sub em { color: #fcd34d; font-style: normal; }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .section-check-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .s1 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s1 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s2 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s3 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s3 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s4 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s4 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s5 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s5 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s6 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s6 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s7 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s7 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s8 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s8 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s9 .section-num { background: rgba(239,68,68,0.10); color: #fecaca; border: 1px solid rgba(239,68,68,0.18); }
+  .s9 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s10 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s10 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s11 .section-num { background: rgba(99,102,241,0.12); color: #c7d2fe; border: 1px solid rgba(99,102,241,0.18); }
+  .s11 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+
+  /* CRONÓMETRO */
+  .stopwatch {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+  .sw-display {
+    font-family: var(--mono);
+    font-size: clamp(40px, 11vw, 60px);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #fff;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .sw-display.warn { color: #fcd34d; }
+  .sw-display.late { color: #fca5a5; }
+  .sw-caption {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+  .sw-controls { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+  .sw-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .sw-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .sw-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+  .sw-btn.primary {
+    background: rgba(20,184,166,0.14);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .sw-btn.primary:hover { background: rgba(20,184,166,0.22); color: #99f6e4; }
+
+  .milestones { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .ms {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .ms:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .ms:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .ms.done { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); color: #6ee7b7; }
+  .ms-goal {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .ms.done .ms-goal { color: #6ee7b7; border-color: rgba(16,185,129,0.4); }
+  .ms.done.over .ms-goal { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+  }
+  .check-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .check-item:hover::before { opacity: 1; }
+  .check-item:hover { border-color: rgba(255,255,255,0.12); }
+  .check-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .check-item.checked { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+  .check-item.checked::before { opacity: 0.5; }
+
+  .checkbox {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+    background: transparent;
+  }
+  .check-item.checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .checkmark {
+    opacity: 0;
+    transform: scale(0) rotate(-10deg);
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .check-item.checked .checkmark { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  .check-label {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-dim);
+    transition: color 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+  .check-item.checked .check-label {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(100,116,139,0.5);
+  }
+  .check-label strong { color: #fff; font-weight: 500; }
+  .check-label em { color: #fcd34d; font-style: normal; }
+  .check-step {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+
+  /* PROGRESO */
+  .progress-bottom {
+    margin-top: 6px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .progress-bar-track {
+    flex: 1;
+    min-width: 120px;
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #14b8a6, #3b82f6);
+    border-radius: 100px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px rgba(20,184,166,0.5);
+  }
+  .progress-label { font-family: var(--mono); font-size: 12px; color: var(--text-dim); white-space: nowrap; }
+  #progress-pct { color: var(--teal); font-weight: 500; }
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+  /* BANNERS */
+  .warning-banner, .info-banner, .go-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #fca5a5; }
+  .info-banner { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.18); color: #bfdbfe; }
+  .go-banner { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); color: #6ee7b7; }
+  .warning-banner strong, .info-banner strong, .go-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em, .go-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+  .plain-item.good { background: rgba(16,185,129,0.05); border-color: rgba(16,185,129,0.16); }
+  .plain-item.good strong { color: #6ee7b7; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ESQUEMAS */
+  .figure {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 16px 14px;
+    margin-bottom: 14px;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .fig-caption {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .fig-caption strong { color: var(--text-dim); font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--teal); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .ms { align-items: flex-start; flex-wrap: wrap; }
+    .ms-goal { margin-left: 0; }
+    .sw-btn { flex: 1; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <div class="header-badge">Procedimiento HALO · Checklist</div>
+    <h1>Pericardiocentesis <span>de emergencia</span></h1>
+    <p class="header-sub">
+      El taponamiento cardíaco es una de las pocas causas de shock que se revierte con una aguja y <strong>en
+      minutos</strong>. También es una de las pocas en que las maniobras reflejas del box —intubar, sedar, dar
+      vasodilatadores— <em>matan al paciente antes de que alguien piense en el pericardio</em>. Esta página describe
+      la técnica <strong>ecoguiada en ventana paraesternal con transductor lineal de alta frecuencia y aguja en
+      plano</strong>: el operador ve la punta de la aguja durante todo su trayecto, identifica con Doppler color la
+      arteria torácica interna y se queda medial al borde del pulmón. En la serie que describió el abordaje
+      medial-lateral en plano (11 pacientes con taponamiento en urgencia), el procedimiento de ocho pasos tomó
+      <strong>309 ± 76 segundos</strong> y la presión sistólica subió de una mediana de <strong>53 a 90 mmHg</strong>,
+      sin complicaciones. Es una serie pequeña y retrospectiva, no un ensayo: la técnica es prometedora, no probada.
+      Aquí están la confirmación del diagnóstico, a quién <em>no</em> se le punciona, el mapeo de la ventana, los ocho
+      pasos, el test de microburbujas, cuánto drenar y qué vigilar después.
+    </p>
+  </div>
+
+  <!-- 01 · ¿ES TAPONAMIENTO? -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">¿Es taponamiento, o es solo derrame?</div>
+        <div class="section-subtitle">Diagnóstico clínico, confirmación ecográfica y las trampas</div>
+      </div>
+      <span class="section-check-count" id="count-s1">0/6</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>El taponamiento <strong>es un diagnóstico clínico y hemodinámico</strong>; la ecografía confirma que el
+        derrame es la causa y guía la punción. <strong>El tamaño del derrame no define el taponamiento.</strong> La
+        curva presión–volumen del pericardio tiene forma de J: una acumulación <em>rápida</em> de poco líquido dispara
+        la presión intrapericárdica, mientras que una acumulación <em>lenta</em> de 1–2 litros puede no tener ninguna
+        consecuencia hemodinámica. Lo que manda es la velocidad, no los milímetros.</span>
+      </div>
+
+      <div class="subhead">Lo que se ve al lado de la camilla</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🩺</span><span><strong>Hipotensión, taquicardia, presión venosa central elevada y disnea</strong>, habitualmente con pulso paradójico. La tríada de Beck (hipotensión, ingurgitación yugular y ruidos cardíacos apagados) es <em>tardía e insensible</em>: esperar a que esté completa es esperar el paro.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📉</span><span><strong>Pulso paradójico:</strong> caída de la presión sistólica &gt; 10 mmHg en inspiración. Se pierde o se vuelve difícil de interpretar en el paciente con <em>ventilación con presión positiva</em>, en la hipovolemia grave, en la insuficiencia aórtica y en el derrame localizado.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧠</span><span><strong>Pistas del contexto que apuntan al pericardio:</strong> neoplasia conocida, uremia y diálisis, tuberculosis, post-infarto, post-cirugía cardíaca, post-procedimiento (marcapasos, ablación, angioplastía), disección aórtica, trauma torácico, anticoagulación, pericarditis reciente, lupus u otra enfermedad autoinmune.</span></div>
+      </div>
+
+      <div class="subhead">Los signos ecográficos, en el orden en que aparecen</div>
+      <div class="figure">
+        <svg viewBox="0 0 660 300" role="img" aria-label="Esquema de los signos ecográficos del taponamiento: panel izquierdo con eje largo paraesternal mostrando derrame pericárdico circunferencial y colapso diastólico del ventrículo derecho; panel derecho con vena cava inferior dilatada sin colapso respiratorio.">
+          <g font-family="DM Mono, monospace" font-size="11" fill="#94a3b8">
+            <!-- Panel izquierdo: eje largo paraesternal -->
+            <rect x="14" y="14" width="310" height="230" rx="10" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="26" y="34" fill="#5eead4" font-size="12">Eje largo paraesternal</text>
+            <!-- saco pericárdico -->
+            <ellipse cx="170" cy="140" rx="128" ry="84" fill="rgba(59,130,246,0.10)" stroke="#60a5fa" stroke-width="1.6"/>
+            <!-- derrame anecoico -->
+            <ellipse cx="170" cy="140" rx="112" ry="70" fill="rgba(14,20,35,0.85)" stroke="#334155" stroke-width="1"/>
+            <!-- corazon -->
+            <path d="M104,140 Q118,86 176,88 Q238,92 244,140 Q238,190 176,194 Q118,192 104,140 Z" fill="rgba(239,68,68,0.10)" stroke="#fca5a5" stroke-width="1.6"/>
+            <!-- ventriculo derecho colapsado -->
+            <path d="M122,124 Q150,108 186,118 Q152,130 122,150 Z" fill="rgba(245,158,11,0.22)" stroke="#fcd34d" stroke-width="1.6"/>
+            <text x="126" y="112" fill="#fcd34d" font-size="10.5">VD colapsado</text>
+            <text x="196" y="160" fill="#fca5a5" font-size="10.5">VI</text>
+            <!-- flecha al derrame -->
+            <line x1="60" y1="216" x2="96" y2="182" stroke="#60a5fa" stroke-width="1.4" marker-end="url(#ah)"/>
+            <text x="26" y="232" fill="#60a5fa" font-size="10.5">derrame anecoico</text>
+            <!-- Panel derecho: VCI -->
+            <rect x="338" y="14" width="308" height="230" rx="10" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="350" y="34" fill="#5eead4" font-size="12">VCI subxifoidea</text>
+            <!-- higado -->
+            <path d="M350,60 Q430,48 500,62 L500,120 Q430,112 350,124 Z" fill="rgba(255,255,255,0.03)" stroke="#475569" stroke-width="1"/>
+            <text x="356" y="92" fill="#64748b" font-size="10.5">hígado</text>
+            <!-- VCI dilatada -->
+            <rect x="366" y="132" width="220" height="52" rx="6" fill="rgba(59,130,246,0.16)" stroke="#60a5fa" stroke-width="1.8"/>
+            <text x="376" y="154" fill="#bfdbfe" font-size="11">VCI dilatada</text>
+            <text x="376" y="172" fill="#bfdbfe" font-size="11">sin colapso inspiratorio</text>
+            <!-- inspiracion / espiracion -->
+            <line x1="366" y1="200" x2="586" y2="200" stroke="#475569" stroke-width="1" stroke-dasharray="4 4"/>
+            <text x="366" y="220" fill="#64748b" font-size="10.5">inspiración</text>
+            <text x="512" y="220" fill="#64748b" font-size="10.5">espiración</text>
+            <text x="366" y="236" fill="#fca5a5" font-size="10.5">colapso &lt; 50 % = plétora</text>
+            <defs>
+              <marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="#60a5fa"/>
+              </marker>
+            </defs>
+          </g>
+        </svg>
+        <div class="fig-caption">
+          <strong>Esquema orientativo, no una imagen ecográfica real ni un dibujo anatómico a escala.</strong> El signo
+          más precoz y más útil en urgencia es el <strong>colapso diastólico del ventrículo derecho</strong> —la cámara
+          de pared más delgada y presión más baja es la primera en ceder— acompañado de una <strong>vena cava inferior
+          dilatada que no colapsa</strong>. Ambos se buscan en el mismo estudio dirigido de shock, antes de tocar una
+          aguja.
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Signo</th><th>Qué se busca</th><th>Advertencia</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Derrame pericárdico</strong></td>
+              <td><span class="dose-main">Separación de las hojas pericárdicas</span><br><span class="dose-note">clasificación semicuantitativa ESC en diástole: leve &lt; 10 mm · moderado 10–20 mm · grave &gt; 20 mm</span></td>
+              <td>Es el requisito, no el diagnóstico. Distinguir de grasa epicárdica, derrame pleural y quiste pericárdico.</td>
+            </tr>
+            <tr>
+              <td><strong>Colapso diastólico del VD</strong></td>
+              <td><span class="dose-main">Pared libre del VD que se invagina en diástole</span></td>
+              <td>El signo más útil en urgencia. <em>Puede faltar</em> cuando hay hipertrofia del VD o hipertensión pulmonar, porque el VD resiste más.</td>
+            </tr>
+            <tr>
+              <td><strong>Colapso sistólico de la aurícula derecha</strong></td>
+              <td><span class="dose-main">Invaginación de la pared auricular en sístole</span></td>
+              <td>Sensible pero menos específico si es breve; gana peso si ocupa más de un tercio del ciclo.</td>
+            </tr>
+            <tr>
+              <td><strong>Plétora de la VCI</strong></td>
+              <td><span class="dose-main">VCI dilatada con colapso inspiratorio &lt; 50 %</span></td>
+              <td>Su <em>ausencia</em> obliga a dudar del taponamiento —salvo en el paciente hipovolémico, en quien el taponamiento «de baja presión» puede cursar con VCI normal.</td>
+            </tr>
+            <tr>
+              <td><strong>Vaivén del septum</strong></td>
+              <td><span class="dose-main">Desplazamiento septal respirofásico</span><br><span class="dose-note">«corazón que se mece» en derrames grandes</span></td>
+              <td>Expresión de la interdependencia ventricular: lo que entra a un ventrículo sale del otro.</td>
+            </tr>
+            <tr>
+              <td><strong>Variación Doppler de los flujos de entrada</strong></td>
+              <td><span class="dose-main">Variación respiratoria mitral &gt; 25 % y tricuspídea &gt; 40 %</span></td>
+              <td>Confirmatoria cuando hay tiempo y ventana. <em>No se espera a medirla</em> en el paciente que se está muriendo.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Las trampas que hacen perder el diagnóstico</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">⚠</span><span><strong>Hipovolemia concomitante.</strong> El taponamiento <em>de baja presión</em> —paciente deshidratado, sangrando o en diálisis— atenúa todos los signos ecográficos y clínicos. Un derrame moderado en un paciente hipovolémico e hipotenso puede ser taponamiento: reponer volumen desenmascara los signos.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠</span><span><strong>Derrame localizado o tabicado.</strong> Típico del <em>postoperado cardíaco</em> y del derrame organizado: la compresión es regional, los signos clásicos no aparecen y el abordaje percutáneo suele fracasar. Si es exclusivamente posterior, este abordaje no sirve.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠</span><span><strong>Ventilación con presión positiva.</strong> Cambia y a veces invierte el pulso paradójico, y agrava la hemodinamia. Si el paciente ya está ventilado, el diagnóstico se apoya más en la ecografía y en la respuesta a la punción que en el examen.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠</span><span><strong>Derrame grande sin taponamiento.</strong> No se punciona un derrame por ser grande. Sin compromiso hemodinámico ni signos de taponamiento, la punción es un procedimiento electivo, diagnóstico o guiado por el protocolo institucional, <em>no una urgencia del box</em>.</span></div>
+      </div>
+
+      <div class="subhead">Checklist del diagnóstico</div>
+      <div class="checklist" id="list-s1">
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">A · Shock</span><strong>Hay compromiso hemodinámico:</strong> hipotensión, mala perfusión, taquicardia, oliguria o deterioro de conciencia. <em>Sin esto no hay indicación de urgencia.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">B · Derrame</span><strong>Hay derrame pericárdico en la ecografía</strong> y se ha medido la separación máxima de las hojas pericárdicas.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">C · Fisiología</span><strong>Hay al menos un signo de fisiología de taponamiento:</strong> colapso diastólico del VD, colapso sistólico de la AD, plétora de la VCI o vaivén septal.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">D · Otras causas</span><strong>Se han descartado en la misma ecografía las otras causas de shock</strong> con VCI dilatada: embolia pulmonar con VD dilatado e hipocinético, falla del VD, neumotórax a tensión, falla biventricular. <em>El derrame puede ser un acompañante inocente.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">E · Etiología</span><strong>Se ha planteado una causa</strong>, porque de ella depende si la aguja es el tratamiento o es un error: trauma, disección aórtica, post-cirugía cardíaca y rotura de pared libre <em>cambian la conducta</em> (sección 02).</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">F · En voz alta</span><strong>Se ha dicho el diagnóstico en voz alta al equipo</strong> y se ha nombrado un operador, un ecografista y alguien que lleve el reloj. <em>«Esto es un taponamiento y lo vamos a puncionar»</em> ordena la sala en una frase.</span>
+        </button>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./guia-dolor-toracico.html">Profundizar: dolor torácico y sus causas letales →</a>
+        <a class="cross-link" href="./algoritmo-shock-cardiogenico.html">Shock cardiogénico y falla de VD →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · ¿SE PUNCIONA O SE OPERA? -->
+  <div class="section s2" id="s2" style="animation-delay:0.10s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">¿Se punciona, se opera o se abre el tórax?</div>
+        <div class="section-subtitle">La decisión que se toma antes de pedir el equipo</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="go-banner">
+        <span class="warning-icon">✔</span>
+        <span><strong>La indicación clásica y sólida:</strong> taponamiento con compromiso hemodinámico de causa
+        <strong>médica</strong> —neoplásico, urémico, infeccioso, inflamatorio, post-procedimiento, idiopático— en un
+        paciente con derrame accesible. Ahí el drenaje es el tratamiento, es urgente y no espera a otro servicio. Las
+        guías europeas de enfermedades del pericardio lo plantean como drenaje urgente y proponen además un sistema de
+        triage para decidir el momento y el lugar del procedimiento.</span>
+      </div>
+
+      <div class="subhead">Cuatro escenarios donde la aguja no es la respuesta</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Escenario</th><th>Por qué la punción falla o daña</th><th>Qué se hace</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Taponamiento traumático</strong><br><span class="dose-note">penetrante o contuso</span></td>
+              <td>El hemopericardio traumático <strong>coagula</strong>: la aguja aspira poco o nada, da falsa seguridad y <em>consume los minutos de la toracotomía</em>. La herida cardíaca sigue sangrando mientras se punciona.</td>
+              <td><strong>Toracotomía o esternotomía.</strong> La punción solo cabe como puente improvisado cuando no hay ninguna posibilidad quirúrgica y hay traslado en curso, y aun así es poco fiable. Ver el checklist de toracotomía de reanimación.</td>
+            </tr>
+            <tr>
+              <td><strong>Disección aórtica aguda tipo A</strong></td>
+              <td>El taponamiento es por sangre que sigue entrando desde la aorta. Vaciar el pericardio <strong>puede reanudar el sangrado</strong> al subir la presión y restaurar el gradiente.</td>
+              <td><strong>Reparación aórtica de urgencia.</strong> Si la paciente o el paciente no sobrevive hasta pabellón, <em>drenaje pericárdico controlado</em>: catéter pigtail 8F y aspiración intermitente por ciclos solo hasta una sistólica de ≈ 90 mmHg. En la serie japonesa de 18 casos el volumen total aspirado fue de 40 ± 31 mL y <strong>10 de 18 necesitaron ≤ 30 mL</strong>, sin complicaciones atribuibles al drenaje.</td>
+            </tr>
+            <tr>
+              <td><strong>Rotura de pared libre post-infarto</strong></td>
+              <td>Es una solución de continuidad del miocardio. El drenaje no la cierra y la mejoría es transitoria.</td>
+              <td><strong>Cirugía inmediata.</strong> El drenaje, si se hace, es explícitamente un puente al pabellón y se avisa como tal.</td>
+            </tr>
+            <tr>
+              <td><strong>Postoperado cardíaco con coágulo tabicado</strong></td>
+              <td>Colección organizada, con frecuencia posterior y loculada: el catéter percutáneo no la evacúa.</td>
+              <td><strong>Reexploración quirúrgica</strong> o drenaje quirúrgico, según el equipo de cirugía cardíaca.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Cuándo este abordaje concreto no es factible</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Derrame exclusivamente posterior.</strong> No hay ventana paraesternal que puncionar. Suele además ser un derrame organizado postquirúrgico, en el que el abordaje percutáneo no es eficiente.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Enfisema subcutáneo importante.</strong> El aire en la pared torácica impide ver cualquier cosa con el transductor: el abordaje paraesternal es inviable.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Separación pericárdica &lt; 1 cm en la ventana paraesternal.</strong> Es el umbral con que se seleccionaron los pacientes de la serie original: por debajo de eso el blanco es demasiado estrecho para una aguja en plano y el riesgo de puncionar el miocardio sube. Buscar otra ventana o esperar mejor visión, no forzar.</span></div>
+        <div class="plain-item"><span class="bullet-icon">↻</span><span><strong>Si esta ruta no sirve:</strong> abordaje <strong>subxifoideo</strong> o <strong>apical</strong> guiado por ecocardiografía con transductor sectorial, o cirugía. Cada ruta tiene su precio: el subxifoideo expone hígado, corazón y vena cava inferior; el apical es transpleural y puede dar neumotórax o contaminar la pleura.</span></div>
+      </div>
+
+      <div class="subhead">Si el paciente está en paro</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🫀</span><span><strong>Paro en AESP con derrame y signos de taponamiento, causa médica:</strong> el drenaje es una de las causas reversibles y se hace <em>durante</em> la reanimación, sin detener las compresiones más que el instante de la imagen. La ventana se obtiene en la pausa de análisis del ritmo.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🔪</span><span><strong>Paro traumático con taponamiento:</strong> <strong>no es una indicación de aguja, es una indicación de tórax abierto.</strong> Puncionar aquí retrasa lo único que puede funcionar.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏱</span><span><strong>Mientras se prepara:</strong> compresiones de calidad, oxígeno, accesos, adrenalina según el algoritmo, y alguien mapeando la ventana con el transductor lineal en paralelo. No se hace en serie lo que se puede hacer en paralelo.</span></div>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./checklist-toracotomia-reanimacion.html">Toracotomía de reanimación →</a>
+        <a class="cross-link" href="./algoritmo-diseccion-aortica.html">Disección aórtica aguda →</a>
+        <a class="cross-link" href="./checklist-politrauma_2.html">Politrauma · ABCDE →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · CRONÓMETRO, HITOS Y ROLES -->
+  <div class="section s3" id="s3" style="animation-delay:0.14s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Cronómetro, hitos y roles</div>
+        <div class="section-subtitle">Cinco minutos de procedimiento, medidos en una serie de once pacientes</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="stopwatch">
+        <div class="sw-display" id="swDisplay">00:00</div>
+        <div class="sw-caption" id="swCaption">Detenido · parte el reloj cuando se reconoce el taponamiento</div>
+        <div class="sw-controls">
+          <button type="button" class="sw-btn primary" id="swToggle" onclick="swToggle()">▶ Iniciar</button>
+          <button type="button" class="sw-btn" onclick="swReset()">↺ Reiniciar</button>
+        </div>
+        <div class="milestones" id="milestones">
+          <button type="button" class="ms" data-goal="60" data-prefix="meta ~" onclick="markMs(this)"><span>Taponamiento reconocido y dicho en voz alta · operador, ecografista y reloj asignados</span><span class="ms-goal">meta ~60 s</span></button>
+          <button type="button" class="ms" data-goal="90" data-prefix="meta ~" onclick="markMs(this)"><span>Decisión tomada: se punciona, o esto es pabellón / tórax abierto</span><span class="ms-goal">meta ~90 s</span></button>
+          <button type="button" class="ms" data-goal="150" data-prefix="meta ~" onclick="markMs(this)"><span>Estabilización que no daña: oxígeno, accesos, volumen prudente, <em>sin</em> intubar</span><span class="ms-goal">meta ~150 s</span></button>
+          <button type="button" class="ms" data-goal="240" data-prefix="meta ~" onclick="markMs(this)"><span>Ventana mapeada con transductor lineal: esternón, arteria torácica interna con Doppler, borde pulmonar, derrame &gt; 1 cm</span><span class="ms-goal">meta ~240 s</span></button>
+          <button type="button" class="ms" data-goal="330" data-prefix="meta ~" onclick="markMs(this)"><span>Campo estéril, anestesia local, aguja en plano dentro del espacio pericárdico</span><span class="ms-goal">meta ~330 s</span></button>
+          <button type="button" class="ms" data-goal="390" data-prefix="meta ~" onclick="markMs(this)"><span>Microburbujas confirmadas · primera aspiración · presión arterial subiendo</span><span class="ms-goal">meta ~390 s</span></button>
+          <button type="button" class="ms" data-goal="480" data-prefix="meta ~" onclick="markMs(this)"><span>Guía y catéter in situ por técnica de Seldinger, fijados y conectados</span><span class="ms-goal">meta ~480 s</span></button>
+          <button type="button" class="ms" data-goal="600" data-prefix="meta ~" onclick="markMs(this)"><span>Ecografía de control · muestras enviadas · destino y tratamiento de la causa definidos</span><span class="ms-goal">meta ~600 s</span></button>
+        </div>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span>El <strong>único</strong> anclaje publicado de estas metas es el tiempo total del procedimiento de ocho
+        pasos en la serie original: <strong>309 ± 76 segundos</strong> desde el inicio de la preparación, en manos de
+        dos médicos de urgencia certificados en ecografía cardíaca focalizada, con 11 pacientes. El reparto interno de
+        los hitos es <em>una distribución razonable de ese mismo intervalo</em> para que alguien cante los tiempos y se
+        note el estancamiento: <strong>no es un estándar validado ni sirve para calificar al operador.</strong> Ajústalo
+        al equipamiento y al entrenamiento de tu servicio.</span>
+      </div>
+
+      <div class="subhead">Roles: quién hace qué</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>Operador:</strong> punciona. Sostiene el transductor con una mano y la aguja con la otra, y <em>no aparta la vista de la pantalla</em>. No dirige la reanimación ni maneja la vía aérea. Anuncia cada paso: «entro», «veo la punta», «estoy en pericardio», «sale líquido».</span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>Ecografista / segundo operador:</strong> hace el estudio inicial con el transductor sectorial, mapea la ventana con el lineal y queda disponible para repetir la imagen mientras el operador mantiene el campo. En un solo operador entrenado esto se fusiona, pero <em>dos manos y dos transductores son mejores que uno</em>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>Líder:</strong> no punciona. Mantiene el algoritmo, vigila que nadie intube antes de drenar, prepara la alternativa quirúrgica y decide si se convierte de ruta o de procedimiento.</span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span><strong>Enfermería / técnico:</strong> monitor con presión no invasiva frecuente o línea arterial si ya está, dos accesos venosos, bandeja estéril abierta, suero fisiológico con aire ya cargado para las microburbujas, llave de tres pasos y jeringas listas.</span></div>
+        <div class="plain-item"><span class="bullet-icon">5</span><span><strong>Tiempo y registro:</strong> lleva el cronómetro y anota <strong>cuatro datos que después se piden todos</strong>: hora del reconocimiento, hora de la aguja en pericardio, hora del catéter y volumen aspirado inicial. Recuerda en voz alta lo que se olvida: <em>«¿muestras?»</em>, <em>«¿radiografía?»</em>, <em>«¿eco de control?»</em>.</span></div>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;margin-bottom:0;">
+        <span class="warning-icon">⚠️</span>
+        <span>Este cronómetro <strong>no guarda ningún dato</strong> ni queda registrado en el dispositivo: al recargar
+        la página se pierde. El registro clínico del procedimiento se hace en la ficha.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · ESTABILIZAR SIN MATAR -->
+  <div class="section s4" id="s4" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Estabilizar sin matarlo mientras preparas</div>
+        <div class="section-subtitle">Por qué intubar antes de drenar es el error letal clásico</div>
+      </div>
+      <span class="section-check-count" id="count-s4">0/6</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">☠️</span>
+        <span>El corazón taponado tiene un <strong>volumen de eyección fijo y bajo</strong>, y sostiene el gasto solo a
+        base de <strong>taquicardia y presión de llenado alta</strong>. Todo lo que baje el retorno venoso, la
+        frecuencia o el tono vascular lo lleva al paro. <strong>La inducción anestésica y la ventilación con presión
+        positiva hacen las tres cosas a la vez.</strong> De ahí la regla que ordena esta sección:
+        <em>primero se drena, después se intuba</em>. Es una regla de consenso y fisiología, no de ensayo clínico, y es
+        de las pocas en urgencia que casi todos los textos repiten igual.</span>
+      </div>
+
+      <div class="subhead">Qué evitar, y qué hacer en su lugar</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>No</th><th>Por qué</th><th>En su lugar</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Intubar y ventilar con presión positiva</strong></td>
+              <td>La presión intratorácica positiva reduce el retorno venoso en un corazón que depende de él por completo. Es el mecanismo del paro «al intubar».</td>
+              <td><strong>Drenar primero.</strong> Mantener al paciente <em>respirando espontáneamente</em>, semisentado si lo tolera, con oxígeno a alto flujo.</td>
+            </tr>
+            <tr>
+              <td><strong>Sedación profunda o inducción estándar</strong></td>
+              <td>Vasodilatación y pérdida del tono simpático que sostenía la perfusión.</td>
+              <td>Anestesia <strong>local</strong> y analgesia titulada. Si la agitación impide el procedimiento, dosis mínimas y con vasopresor cargado.</td>
+            </tr>
+            <tr>
+              <td><strong>Vasodilatadores, nitratos, diuréticos</strong></td>
+              <td>Bajan precarga o tono en un paciente precarga-dependiente. El diurético empeora un «edema» que no es de volumen.</td>
+              <td>Nada de eso. El tratamiento del taponamiento <strong>no es farmacológico.</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Esperar exámenes o corregir la coagulación antes de drenar</strong></td>
+              <td>En el taponamiento con shock, el tiempo de laboratorio es tiempo de isquemia. La coagulopatía es un factor de riesgo, no una contraindicación absoluta.</td>
+              <td>Pedir plaquetas o plasma <em>en paralelo</em> si corresponde, sin retrasar la punción en el paciente inestable. El umbral y la conducta exactos <strong>se verifican con el protocolo institucional</strong>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Si intubar es inevitable</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">⚠</span><span><strong>Que la aguja esté lista antes que el laringoscopio.</strong> Campo estéril armado, ventana mapeada, operador con guantes: si el paciente se cae al inducir, la punción es la reanimación, no una decisión posterior.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Inducción que preserve precarga y tono</strong>, vasopresor en bolos pequeños disponible, volumen corriendo, y <em>las presiones de ventilación más bajas que permitan oxigenar</em>: poco volumen corriente, poca PEEP, frecuencia moderada. El fármaco y las dosis exactas <strong>se verifican con el protocolo institucional</strong> de secuencia rápida del servicio.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧑‍⚕️</span><span><strong>Dos operadores distintos:</strong> uno para la vía aérea y otro para el pericardio, trabajando a la vez. Un solo médico haciendo las dos cosas en serie es la receta del paro.</span></div>
+      </div>
+
+      <div class="subhead">Checklist de estabilización</div>
+      <div class="checklist" id="list-s4">
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">A · Posición y oxígeno</span><strong>Paciente semisentado si lo tolera</strong>, oxígeno a alto flujo, monitorización continua con presión arterial frecuente y saturometría. <em>Respirando espontáneamente.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">B · Accesos</span><strong>Dos accesos venosos periféricos de buen calibre.</strong> Si hay tiempo y manos, línea arterial para ver en tiempo real el efecto de cada mililitro aspirado —pero <em>no se retrasa la punción por instalarla</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">C · Volumen prudente</span><strong>Bolo pequeño de cristaloide</strong> (del orden de 250–500 mL, reevaluando) solo si hay hipovolemia o taponamiento de baja presión. Sube la presión de llenado y gana minutos; <em>no trata nada</em> y en el paciente ya congestivo es dañino. El esquema de fluidos <strong>se ajusta al protocolo institucional</strong>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">D · Vasopresor como puente</span><strong>Noradrenalina si la hipotensión es extrema</strong>, para sostener la perfusión coronaria y cerebral mientras se prepara el procedimiento. La dosis y la dilución <strong>se verifican con el protocolo institucional</strong>. <em>Un vasopresor no descomprime un pericardio.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">E · Nada que baje precarga</span><strong>Se ha dicho en voz alta que no se intuba, no se seda profundo y no se dan vasodilatadores ni diuréticos</strong> hasta que el pericardio esté drenado, salvo indicación imperiosa y con la aguja lista.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">F · Plan B activado</span><strong>Cirugía cardíaca o cardiología avisadas</strong>, y desfibrilador, carro de paro y bandeja de toracotomía en la sala. Se punciona con el plan de rescate ya presente, no con el plan de ir a buscarlo.</span>
+        </button>
+      </div>
+
+      <div class="progress-bottom">
+        <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBar"></div></div>
+        <div class="progress-label"><span id="progress-pct">0%</span> del checklist</div>
+        <button type="button" class="reset-btn" onclick="resetAll()">↺ Reiniciar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · MAPEO DE LA VENTANA -->
+  <div class="section s5" id="s5" style="animation-delay:0.22s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Mapeo de la ventana paraesternal</div>
+        <div class="section-subtitle">Esternón, arteria torácica interna con Doppler, borde del pulmón</div>
+      </div>
+      <span class="section-check-count" id="count-s5">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Este abordaje se apoya en la <strong>muesca cardíaca</strong>: la zona paraesternal izquierda donde el
+        pulmón no cubre el pericardio y este queda expuesto contra la pared torácica. Se reconoce con el transductor
+        porque <strong>ahí no hay tejido pulmonar sobre el saco pericárdico</strong>. Entre la arteria torácica interna
+        —medial, apenas lateral al esternón— y el borde donde reaparece el deslizamiento pleural —lateral— queda un
+        corredor. <em>Ese corredor es todo el procedimiento.</em> Se usan dos transductores: el <strong>sectorial
+        (≈ 1,7–4 MHz)</strong> para el diagnóstico, y el <strong>lineal de alta frecuencia (≈ 4–12 MHz)</strong> para
+        mapear y para puncionar.</span>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 700 400" role="img" aria-label="Esquema del corredor paraesternal izquierdo: corte transversal de la pared torácica con el esternón a la izquierda, la arteria torácica interna apenas lateral al esternón, el borde de deslizamiento pleural más lateral, y entre ambos el corredor seguro que lleva al derrame pericárdico situado por delante del ventrículo derecho. Se dibuja la aguja en plano entrando a 45 grados en dirección medial a lateral hasta el espacio pericárdico.">
+          <g font-family="DM Mono, monospace" font-size="11" fill="#94a3b8">
+            <!-- etiquetas superiores -->
+            <text x="198" y="40" fill="#fca5a5" font-size="11">arteria torácica interna</text>
+            <text x="198" y="56" fill="#fca5a5" font-size="10.5">Doppler color · NO tocar</text>
+            <line x1="180" y1="64" x2="180" y2="116" stroke="#fca5a5" stroke-width="1.3" stroke-dasharray="3 3"/>
+            <text x="662" y="40" text-anchor="end" fill="#60a5fa" font-size="11">borde de deslizamiento pleural</text>
+            <line x1="446" y1="48" x2="446" y2="112" stroke="#60a5fa" stroke-width="1.3" stroke-dasharray="3 3"/>
+            <!-- etiqueta de la aguja -->
+            <text x="172" y="70" text-anchor="end" fill="#fcd34d" font-size="11">aguja en plano · 45°</text>
+            <text x="172" y="86" text-anchor="end" fill="#64748b" font-size="10.5">medial → lateral</text>
+            <!-- piel y pared torácica -->
+            <text x="32" y="104" fill="#cbd5e1" font-size="11">piel</text>
+            <line x1="30" y1="110" x2="660" y2="110" stroke="#cbd5e1" stroke-width="2.4"/>
+            <rect x="30" y="110" width="630" height="38" fill="rgba(255,255,255,0.04)"/>
+            <!-- esternón -->
+            <rect x="30" y="110" width="124" height="84" rx="8" fill="rgba(226,232,240,0.14)" stroke="#cbd5e1" stroke-width="1.6"/>
+            <text x="52" y="158" fill="#e2e8f0" font-size="12">esternón</text>
+            <!-- arteria torácica interna -->
+            <circle cx="180" cy="129" r="10" fill="rgba(239,68,68,0.30)" stroke="#fca5a5" stroke-width="2"/>
+            <!-- corredor -->
+            <rect x="196" y="110" width="246" height="38" fill="rgba(20,184,166,0.16)" stroke="#5eead4" stroke-width="1.4" stroke-dasharray="5 4"/>
+            <text x="292" y="134" fill="#5eead4" font-size="11">CORREDOR SEGURO</text>
+            <!-- pulmón -->
+            <path d="M446,116 L660,116 L660,262 L520,252 L462,182 L446,152 Z" fill="rgba(59,130,246,0.10)" stroke="#60a5fa" stroke-width="1.6"/>
+            <text x="554" y="200" fill="#bfdbfe" font-size="11">pulmón</text>
+            <!-- pericardio parietal -->
+            <text x="32" y="216" fill="#fcd34d" font-size="10.5">pericardio parietal</text>
+            <line x1="168" y1="210" x2="198" y2="194" stroke="#fcd34d" stroke-width="1.2" stroke-dasharray="3 3"/>
+            <path d="M182,192 Q312,178 436,194" fill="none" stroke="#fcd34d" stroke-width="2.4"/>
+            <!-- derrame -->
+            <path d="M182,194 Q312,180 436,196 Q438,244 312,254 Q192,246 182,194 Z" fill="rgba(14,20,35,0.9)" stroke="#334155" stroke-width="1"/>
+            <text x="232" y="228" fill="#94a3b8" font-size="11">derrame</text>
+            <!-- medida de la separación -->
+            <line x1="452" y1="198" x2="452" y2="250" stroke="#fcd34d" stroke-width="1.2"/>
+            <line x1="446" y1="198" x2="458" y2="198" stroke="#fcd34d" stroke-width="1.2"/>
+            <line x1="446" y1="250" x2="458" y2="250" stroke="#fcd34d" stroke-width="1.2"/>
+            <line x1="452" y1="252" x2="452" y2="282" stroke="#fcd34d" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="452" y="296" fill="#fcd34d" font-size="10.5">separación &gt; 10 mm</text>
+            <!-- ventrículo derecho -->
+            <path d="M188,262 Q312,244 440,264 L440,352 Q312,366 188,352 Z" fill="rgba(239,68,68,0.12)" stroke="#fca5a5" stroke-width="1.8"/>
+            <text x="238" y="314" fill="#fca5a5" font-size="12">ventrículo derecho</text>
+            <!-- aguja en plano -->
+            <line x1="186" y1="90" x2="326" y2="230" stroke="#fcd34d" stroke-width="3"/>
+            <polygon points="326,230 313,223 318,214" fill="#fcd34d"/>
+          </g>
+        </svg>
+        <div class="fig-caption">
+          <strong>Esquema orientativo, no a escala ni una imagen ecográfica real.</strong> El corredor se define con el
+          transductor en cada paciente, no con centímetros de libro: la posición de la arteria torácica interna y la
+          extensión de la muesca cardíaca varían. En la serie original la distancia de la piel al pericardio parietal
+          tuvo una <strong>mediana de 15 mm</strong> (rango intercuartílico 12–17 mm) y el derrame una
+          <strong>mediana de 20 mm</strong>: el blanco es superficial, y de ahí que un transductor de alta frecuencia lo
+          resuelva mejor que uno sectorial. <em>El espacio intercostal exacto lo decide la ventana, no el dibujo.</em>
+        </div>
+      </div>
+
+      <div class="subhead">La secuencia del mapeo, en el orden en que se hace</div>
+      <div class="checklist" id="list-s5">
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">1 · Posición</span><strong>Paciente en decúbito supino, ecógrafo a su izquierda, operador a su derecha</strong>, con la pantalla en la línea de visión directa del operador —sin tener que girar la cabeza— y los ajustes de imagen ya hechos.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">2 · Esternón</span><strong>Con el transductor lineal, perfilar el esternón en corte transversal.</strong> Es la referencia fija desde la que se avanza lateralmente: sin esternón identificado no hay mapa.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">3 · Arteria torácica interna</span><strong>Deslizar lateralmente e identificar la arteria torácica interna con Doppler color.</strong> Corre apenas lateral al borde del esternón. <em>Este paso es el que evita la complicación más hemorrágica de la ruta paraesternal</em>: no se punciona hasta haberla visto y haber decidido por dónde no pasar.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">4 · Borde del pulmón</span><strong>Identificar la línea pleural con deslizamiento pulmonar</strong> y marcar dónde empieza. Ese punto es el límite lateral del corredor: pasado él, la aguja atraviesa pulmón. La <strong>muesca cardíaca</strong> es justamente el tramo donde el pulmón no se interpone.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">5 · Blanco y medidas</span><strong>Elegir el punto de máxima separación parietal-visceral</strong> dentro del corredor y medir: la separación debe ser <strong>&gt; 1 cm</strong>, y se anota la <strong>distancia de la piel al pericardio parietal</strong> para saber cuánta aguja se va a introducir antes de esperar líquido.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">6 · Costillas</span><strong>Entrar por el espacio intercostal, sobre el borde superior de la costilla inferior</strong>, lejos del paquete neurovascular que corre por el borde inferior de la costilla de arriba. La aguja no pasa por hueso: si topa, se reposiciona, no se empuja.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">7 · Ajuste final</span><strong>Ajustar profundidad y foco para que en pantalla queden solo el derrame y el ventrículo derecho.</strong> Cuanto menos se ve, mejor se ve: una imagen recortada al blanco hace que la punta de la aguja sea grande y evidente.</span>
+        </button>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;margin-bottom:0;">
+        <span class="warning-icon">⚠️</span>
+        <span>La <strong>limitación práctica</strong> de esta técnica es que exige <strong>dos transductores</strong>: el
+        sectorial para el diagnóstico de taponamiento y el lineal para el procedimiento. Verificar que ambos existen y
+        funcionan <em>antes</em> de que haga falta, y saber en qué carro están, forma parte de la preparación del
+        servicio.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · MATERIAL -->
+  <div class="section s6" id="s6" style="animation-delay:0.26s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Material</div>
+        <div class="section-subtitle">Lo imprescindible, lo que ordena el después, y lo que se olvida</div>
+      </div>
+      <span class="section-check-count" id="count-s6">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="go-banner">
+        <span class="warning-icon">✔</span>
+        <span>Con un <strong>transductor lineal, una aguja y una jeringa</strong> se puede salvar al paciente. Todo lo
+        demás sirve para dejar un drenaje estable, tomar muestras y no repetir el procedimiento en dos horas. La
+        ausencia de un kit completo no es razón para no puncionar a un paciente que se está muriendo de taponamiento;
+        <em>sí es razón para haber armado la caja antes de que llegara</em>.</span>
+      </div>
+
+      <div class="checklist" id="list-s6">
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Imagen</span><strong>Transductor lineal de alta frecuencia (≈ 4–12 MHz) con funda estéril y gel estéril</strong>, más el <strong>transductor sectorial (≈ 1,7–4 MHz)</strong> para el estudio cardíaco. Doppler color operativo y preajuste guardado.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Asepsia</span><strong>Guantes y delantal estériles, mascarilla, clorhexidina o povidona, paños de campo.</strong> El paciente inestable no exime de asepsia: la infección del espacio pericárdico es una complicación que se paga semanas después.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Anestesia local</span><strong>Lidocaína al 1–2 % con aguja fina para piel y plano intercostal.</strong> La dosis máxima por peso y la conveniencia de usar o no vasoconstrictor <strong>se verifican con el protocolo institucional</strong>. En el paciente en paro este paso se omite.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Aguja</span><strong>Aguja de punción de calibre adecuado para pasar una guía</strong> —habitualmente <strong>18G</strong>, larga (tipo aguja espinal o la del kit)—. Dado que aquí el blanco es superficial, importa más el control del ángulo que la longitud. <em>El calibre y el largo disponibles en el servicio se verifican con el kit real.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Drenaje</span><strong>Kit de pericardiocentesis o de vía central: guía en J, dilatador, bisturí del 11 y catéter</strong> —pigtail de <strong>6–8F</strong> o catéter de lumen único—, con llave de tres pasos, alargador y bolsa colectora. El contenido exacto del kit disponible <strong>se verifica con el servicio</strong>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Microburbujas</span><strong>Jeringa de 10 mL con suero fisiológico y un poco de aire, agitada</strong>, lista antes de puncionar. Es la que confirma que la punta está en el pericardio y no en el ventrículo. <em>Prepararla después, con la aguja dentro, es perder el momento de usarla.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Muestras</span><strong>Tubos y frascos rotulados antes de empezar:</strong> citológico, cultivo corriente y de anaerobios, micobacterias si hay sospecha de tuberculosis, recuento celular, LDH y proteínas, y adenosina-deaminasa donde esté disponible. El panel exacto <strong>se define con el protocolo institucional</strong>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Rescate</span><strong>Monitor y desfibrilador conectados, carro de paro, y la bandeja de toracotomía en la sala</strong> si el contexto es traumático o si se sospecha rotura. Teléfono de cirugía cardíaca marcado, no buscado.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · LA TÉCNICA -->
+  <div class="section s7" id="s7" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">La punción, en ocho pasos</div>
+        <div class="section-subtitle">Aguja en plano, medial a lateral, con la punta siempre visible</div>
+      </div>
+      <span class="section-check-count" id="count-s7">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>«En plano» significa que la aguja viaja dentro del plano del haz</strong>, en el eje largo del
+        transductor, de modo que se ve <em>toda</em> la aguja y no solo un punto brillante. Esa es la diferencia con la
+        pericardiocentesis ecoguiada clásica: en la técnica tradicional con transductor sectorial y sin aguja montada,
+        la aguja <strong>no se visualiza de forma continua en el 56–75 % de los casos</strong>. Aquí el trayecto se
+        controla de principio a fin.</span>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 680 340" role="img" aria-label="Esquema comparativo de la aguja fuera de plano y en plano: a la izquierda el haz corta la aguja transversalmente y en la pantalla solo aparece un punto brillante de posición ambigua; a la derecha la aguja viaja dentro del plano del haz, entra por el borde del transductor y en la pantalla se ve toda su longitud con la punta identificable dentro del derrame.">
+          <g font-family="DM Mono, monospace" font-size="11" fill="#94a3b8">
+            <!-- Panel izquierdo: fuera de plano -->
+            <rect x="14" y="14" width="318" height="310" rx="10" fill="rgba(239,68,68,0.04)" stroke="#7f1d1d" stroke-width="1.2"/>
+            <text x="28" y="36" fill="#fca5a5" font-size="12">Fuera de plano · lo que NO se quiere</text>
+            <!-- transductor -->
+            <rect x="96" y="58" width="150" height="22" rx="5" fill="rgba(226,232,240,0.16)" stroke="#cbd5e1" stroke-width="1.4"/>
+            <text x="126" y="74" fill="#e2e8f0" font-size="10.5">transductor</text>
+            <!-- haz -->
+            <path d="M96,80 L246,80 L234,210 L108,210 Z" fill="rgba(59,130,246,0.07)" stroke="#1e3a5f" stroke-width="1"/>
+            <!-- aguja perpendicular al plano -->
+            <line x1="36" y1="196" x2="306" y2="124" stroke="#fcd34d" stroke-width="3"/>
+            <circle cx="171" cy="160" r="6" fill="#fcd34d"/>
+            <text x="252" y="114" fill="#fcd34d" font-size="10.5">aguja</text>
+            <!-- pantalla -->
+            <rect x="96" y="232" width="150" height="58" rx="6" fill="rgba(10,14,26,0.9)" stroke="#334155" stroke-width="1.2"/>
+            <circle cx="171" cy="261" r="4.5" fill="#fcd34d"/>
+            <text x="96" y="310" fill="#64748b" font-size="10">un punto: ¿es la punta?</text>
+            <!-- Panel derecho: en plano -->
+            <rect x="348" y="14" width="318" height="310" rx="10" fill="rgba(20,184,166,0.04)" stroke="#134e4a" stroke-width="1.2"/>
+            <text x="362" y="36" fill="#5eead4" font-size="12">En plano · la técnica de esta página</text>
+            <!-- transductor -->
+            <rect x="430" y="58" width="150" height="22" rx="5" fill="rgba(226,232,240,0.16)" stroke="#cbd5e1" stroke-width="1.4"/>
+            <text x="460" y="74" fill="#e2e8f0" font-size="10.5">transductor</text>
+            <!-- haz -->
+            <path d="M430,80 L580,80 L568,210 L442,210 Z" fill="rgba(20,184,166,0.07)" stroke="#134e4a" stroke-width="1"/>
+            <!-- pericardio y derrame dentro del haz -->
+            <path d="M442,150 Q504,142 568,152" fill="none" stroke="#fcd34d" stroke-width="1.6" opacity="0.5"/>
+            <path d="M442,152 Q504,144 568,154 L568,186 Q504,194 442,184 Z" fill="rgba(14,20,35,0.85)" stroke="#334155" stroke-width="0.8"/>
+            <text x="444" y="204" fill="#94a3b8" font-size="10">derrame</text>
+            <!-- aguja dentro del plano -->
+            <line x1="398" y1="92" x2="492" y2="186" stroke="#fcd34d" stroke-width="3"/>
+            <polygon points="492,186 479,179 484,170" fill="#fcd34d"/>
+            <text x="502" y="182" fill="#fcd34d" font-size="10.5">punta</text>
+            <!-- pantalla -->
+            <rect x="430" y="232" width="150" height="58" rx="6" fill="rgba(10,14,26,0.9)" stroke="#334155" stroke-width="1.2"/>
+            <line x1="442" y1="246" x2="536" y2="272" stroke="#fcd34d" stroke-width="2.4"/>
+            <polygon points="536,272 525,267 528,261" fill="#fcd34d"/>
+            <text x="430" y="310" fill="#5eead4" font-size="10">toda la aguja y su punta</text>
+          </g>
+        </svg>
+        <div class="fig-caption">
+          <strong>Esquema conceptual.</strong> La regla operativa que se deriva del dibujo es una sola y no admite
+          excepciones: <strong>si no se ve la punta, la aguja no avanza.</strong> Perder la punta no se resuelve
+          empujando un poco más para «encontrarla»; se resuelve deteniéndose, retirando unos milímetros y recuperando la
+          alineación del transductor.
+        </div>
+      </div>
+
+      <div class="subhead">Los ocho pasos</div>
+      <div class="checklist" id="list-s7">
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 1 · Posición</span><strong>Paciente supino, ecógrafo a la izquierda, operador a la derecha, pantalla en la línea de visión.</strong> Ajustes de imagen hechos antes de tocar al paciente.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 2 · Preparación</span><strong>Asepsia del hemitórax izquierdo, campo estéril, funda estéril en el transductor.</strong> Anestesia local si el paciente está consciente y hay segundos para ella.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 3 · Reparos</span><strong>Identificar con el transductor lineal: esternón, arteria torácica interna con Doppler, deslizamiento pleural, derrame y borde del ventrículo derecho</strong>, y elegir el punto de máxima separación parietal-visceral (sección 05 completa).</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 4 · Imagen</span><strong>Ajustar profundidad y foco para que en pantalla queden solo el derrame y el ventrículo derecho.</strong> Esta es la imagen con la que se va a puncionar: si no está limpia ahora, no lo estará con la aguja dentro.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 5 · Punción</span><strong>Aguja en plano, abordaje medial a lateral, con un ángulo de unos 45°</strong>, avanzando <em>en pequeños incrementos y solo con la punta a la vista</em>, a través de piel, músculo intercostal y pericardio parietal, hasta ver la punta dentro del espacio pericárdico. Aspirar suavemente mientras se avanza.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 6 · Confirmar y aliviar</span><strong>Inyectar el suero con microburbujas y ver la imagen de «llamarada» dentro del saco pericárdico.</strong> Confirmada la posición, aspirar con jeringa y llave de tres pasos <strong>hasta la estabilización hemodinámica</strong> (sección 08 y 09).</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 7 · Guía y catéter</span><strong>Pasar la guía bajo visión directa</strong>, retirar la aguja, dilatar el trayecto subcutáneo y dejar el catéter en el espacio pericárdico con técnica de Seldinger. <em>Nada de dilatar sin haber visto la guía dentro del pericardio.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 8 · Drenaje y control</span><strong>Fijar el catéter, conectar el sistema de drenaje y dejarlo in situ</strong>, con ecografía de control inmediata y luego <strong>cada 24 horas o según la evolución</strong>, para verificar que el derrame no se reacumula y que no hay complicaciones.</span>
+        </button>
+      </div>
+
+      <div class="subhead">Los cuatro errores técnicos que más se ven</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Avanzar sin ver la punta.</strong> El error del que se derivan casi todos los demás. Si la punta se pierde: parar, retroceder, realinear.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Mirar la aguja en vez de la pantalla.</strong> La mano aprende a trabajar con la vista en el monitor; en un procedimiento de aguja en plano, mirar el campo es quedarse ciego.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dilatar o pasar el catéter sin confirmación.</strong> Una aguja de 18G en el ventrículo derecho suele ser tolerable; un dilatador y un catéter de 8F en el ventrículo derecho es una urgencia quirúrgica. La confirmación no es un trámite.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Perseguir un blanco de menos de 1 cm.</strong> Si la separación no alcanza, la aguja está a milímetros del miocardio. Cambiar de ventana, de ruta o de procedimiento.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · CONFIRMACIÓN -->
+  <div class="section s8" id="s8" style="animation-delay:0.34s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Confirmación: microburbujas y sangre</div>
+        <div class="section-subtitle">Cómo se sabe que la punta está donde se cree</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>El <strong>test de microburbujas</strong> es el árbitro. Se inyecta por la aguja una pequeña cantidad de
+        suero fisiológico agitado con aire y se observa en la misma ventana paraesternal con el transductor lineal:
+        las burbujas aparecen como una <strong>«llamarada»</strong> brillante. <strong>Dónde</strong> aparece esa
+        llamarada es la respuesta: en el <em>espacio pericárdico</em> significa que la punta está bien; dentro de la
+        <em>cavidad del ventrículo derecho</em>, y sobre todo si las burbujas se lavan de inmediato hacia la circulación
+        pulmonar, significa que la aguja es intracardíaca.</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Lo que ves</th><th>Interpretación</th><th>Conducta</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Burbujas en el saco pericárdico</strong></td>
+              <td><span class="dose-main">Punta en el espacio pericárdico</span></td>
+              <td>Aspirar, pasar la guía bajo visión, continuar con el paso 7.</td>
+            </tr>
+            <tr>
+              <td><strong>Burbujas dentro del ventrículo derecho</strong></td>
+              <td><span class="dose-main">Punta intracardíaca</span></td>
+              <td><strong>No dilatar, no pasar catéter.</strong> Retirar la aguja, reevaluar la ventana y el ángulo, y buscar con la ecografía un derrame que crezca: la punción del VD con aguja fina habitualmente se sella, pero exige vigilancia estrecha y aviso a cirugía si el derrame aumenta o el paciente se deteriora.</td>
+            </tr>
+            <tr>
+              <td><strong>Sale sangre y no está claro de dónde</strong></td>
+              <td><span class="dose-main">Hemopericardio o sangre intracardíaca</span></td>
+              <td>El <strong>test de microburbujas decide</strong>. Como apoyo: si el derrame <em>disminuye</em> a medida que se aspira y la hemodinamia <em>mejora</em>, la sangre es pericárdica; si el hematocrito aspirado es idéntico al sistémico y el derrame no cambia, sospechar intracardíaco.</td>
+            </tr>
+            <tr>
+              <td><strong>No sale nada con la punta aparentemente bien puesta</strong></td>
+              <td><span class="dose-main">Coágulo, derrame organizado, o punta contra una hoja pericárdica</span></td>
+              <td>Reposicionar milimétricamente bajo visión. Si persiste, <strong>plantear que el contenido está coagulado</strong> —típico del hemopericardio traumático y del postoperado— y considerar la ruta quirúrgica.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Dos cosas en las que no conviene confiar</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">⚠</span><span><strong>La «corriente de lesión» del electrocardiograma</strong> al contactar el epicardio con la aguja es un marcador histórico, insensible y tardío. Con guía ecográfica en tiempo real no cumple ninguna función: no reemplaza ver la punta.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠</span><span><strong>La prueba de que «la sangre pericárdica no coagula».</strong> Se cita mucho y falla en los dos sentidos: el hemopericardio agudo <em>sí</em> coagula, y es exactamente el escenario traumático en que la punción no corresponde. No es un criterio con el que decidir.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · CUÁNTO DRENAR -->
+  <div class="section s9" id="s9" style="animation-delay:0.38s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Cuánto drenar · síndrome de descompresión pericárdica</div>
+        <div class="section-subtitle">Poco basta, y vaciar todo de golpe tiene su propia complicación</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="go-banner">
+        <span class="warning-icon">✔</span>
+        <span><strong>La misma curva en J que explica el taponamiento explica el alivio:</strong> si poco volumen
+        acumulado rápido disparó la presión, <em>sacar poco volumen la baja mucho</em>. En la serie de drenaje
+        controlado por taponamiento crítico en disección tipo A, el volumen total aspirado fue de <strong>40 ± 31
+        mL</strong> y <strong>10 de 18 pacientes respondieron con ≤ 30 mL</strong>, subiendo la sistólica de 64 ± 8 a
+        95 ± 11 mmHg. La meta de la primera aspiración no es vaciar el saco: <strong>es recuperar perfusión.</strong>
+        </span>
+      </div>
+
+      <div class="subhead">Cuánto se sacó en la práctica</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Escenario</th><th>Volumen</th><th>Lectura</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Taponamiento en urgencia, causa médica</strong><br><span class="dose-note">serie del abordaje paraesternal en plano, 11 pacientes</span></td>
+              <td><span class="dose-main">Primera aspiración: mediana 580 mL</span><br><span class="dose-main">Total de la hospitalización: mediana 1030 mL</span></td>
+              <td>Derrames grandes y de instalación lenta admiten drenajes altos. La presión sistólica subió de una mediana de 53 a 90 mmHg y la frecuencia bajó de 120 a 98 lpm; 7 de 11 pacientes pudieron suspender vasopresores.</td>
+            </tr>
+            <tr>
+              <td><strong>Taponamiento crítico en disección aórtica tipo A</strong><br><span class="dose-note">drenaje controlado como puente a pabellón</span></td>
+              <td><span class="dose-main">Total: 40 ± 31 mL</span><br><span class="dose-note">10 de 18 con ≤ 30 mL</span></td>
+              <td><strong>Aquí se drena poco y a propósito</strong>, en ciclos intermitentes, apuntando a una sistólica de ≈ 90 mmHg para no reanudar el sangrado aórtico. Todos llegaron a cirugía; mortalidad intrahospitalaria 16,7 %, sin complicaciones atribuibles al drenaje.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">El síndrome de descompresión pericárdica</div>
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Deterioro hemodinámico paradójico, edema pulmonar o disfunción ventricular <em>después</em> de un
+        drenaje exitoso.</strong> Es raro, se reconoce poco y tiene mortalidad alta. En una revisión sistemática de 59
+        casos, la fracción de eyección cayó de una media de <strong>55,8 ± 14,6 % antes del procedimiento a 30 ± 15,1 %
+        después</strong>; la causa más frecuente del derrame era neoplásica (35,6 %). Una revisión posterior de 72
+        casos describe fallo derecho, izquierdo o biventricular en proporciones similares, con presentación
+        <strong>inmediata, aguda o subaguda</strong>, como insuficiencia respiratoria hipoxémica o como shock. Las
+        hipótesis apuntan a desacople precarga-poscarga, isquemia microvascular y estado adrenérgico. <em>El único
+        tratamiento descrito es el soporte precoz</em>: reconocerlo temprano es todo lo que hay.</span>
+      </div>
+
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🐢</span><span><strong>Drenar de forma gradual y por etapas</strong> en vez de vaciar el saco de una vez, dejando el catéter para completar el drenaje en horas, es la precaución que se recomienda de forma habitual. El <strong>volumen máximo por sesión</strong> —la cifra que suele citarse es del orden de un litro— y el esquema de drenaje escalonado son <strong>convenciones que deben verificarse con el protocolo institucional</strong>: no provienen de un ensayo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">👀</span><span><strong>Qué vigilar en la hora siguiente:</strong> hipoxemia nueva, crépitos, necesidad creciente de oxígeno, hipotensión que reaparece con el pericardio ya vacío, o caída de la función ventricular en el control ecográfico. Cualquiera de esas obliga a pensar en descompresión pericárdica antes que en «reacumulación».</span></div>
+        <div class="plain-item good"><span class="bullet-icon">✔</span><span><strong>Lo que no se debe deducir de esto:</strong> el riesgo de descompresión <em>no</em> es una razón para no drenar un taponamiento con shock. Es una razón para drenar <strong>lo necesario, no todo</strong>, y para quedarse mirando al paciente después.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · DESPUÉS -->
+  <div class="section s10" id="s10" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Después de la punción</div>
+        <div class="section-subtitle">Lo que convierte un rescate en un tratamiento</div>
+      </div>
+      <span class="section-check-count" id="count-s10">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>La pericardiocentesis <strong>trata la fisiología, no la enfermedad</strong>. El derrame neoplásico se
+        reacumula, el urémico vuelve si no se dializa, el purulento necesita antibiótico y con frecuencia drenaje
+        quirúrgico, el inflamatorio necesita tratamiento antiinflamatorio. <em>El paciente no está resuelto porque subió
+        la presión.</em></span>
+      </div>
+
+      <div class="checklist" id="list-s10">
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">A · Catéter</span><strong>Catéter fijado, apósito estéril, llave de tres pasos cerrada y sistema de drenaje conectado</strong>, con el volumen drenado registrado por turno y el aspecto del líquido descrito.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">B · Ecografía inmediata</span><strong>Control ecográfico al terminar:</strong> derrame residual, resolución del colapso del VD, calibre de la VCI, función ventricular y ausencia de derrame nuevo o creciente. Esta imagen es el punto de comparación de todas las siguientes.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">C · Pulmón</span><strong>Descartar neumotórax</strong> con ecografía pulmonar y radiografía de tórax según el protocolo del servicio. Con la ruta paraesternal en plano el riesgo es bajo porque se permanece medial al borde del pulmón, <em>pero bajo no es cero</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">D · Muestras</span><strong>Enviar el líquido con la etiqueta correcta:</strong> citológico, cultivos, recuento, bioquímica y estudio de tuberculosis según sospecha. <em>La muestra del primer drenaje no se recupera después:</em> si se descarta, el diagnóstico etiológico se pierde o exige repetir el procedimiento.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">E · Destino</span><strong>Cama monitorizada o unidad de paciente crítico</strong>, con entrega explícita a cardiología o a cirugía cardiovascular. Todo paciente con catéter pericárdico es un paciente monitorizado hasta que alguien decida lo contrario.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">F · Seguimiento</span><strong>Ecografía de control cada 24 horas o cuando la clínica lo indique</strong>, y retiro del catéter cuando el débito cae y el derrame no se reacumula. El <strong>umbral de débito para retirarlo</strong> —suele citarse del orden de 25–50 mL en 24 horas— y el tiempo máximo de permanencia <strong>se verifican con el protocolo institucional</strong>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">G · La causa</span><strong>Tratamiento de la etiología iniciado o derivado</strong>, y decisión sobre manejo definitivo del derrame recurrente —ventana pericárdica, pericardiotomía con balón, tratamiento intrapericárdico— con el equipo correspondiente. <em>Consignar además los cuatro tiempos del procedimiento en la ficha.</em></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 11 · COMPLICACIONES -->
+  <div class="section s11" id="s11" style="animation-delay:0.46s;">
+    <div class="section-header" onclick="toggleSection('s11')">
+      <span class="section-num">11</span>
+      <div>
+        <div class="section-title">Complicaciones y qué hacer con cada una</div>
+        <div class="section-subtitle">Y las cifras que se pueden y no se pueden citar</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Complicación</th><th>Cómo se reconoce</th><th>Conducta</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Punción del miocardio</strong></td>
+              <td>Microburbujas en el VD, sangre pulsátil, derrame que crece, deterioro brusco.</td>
+              <td>Retirar la aguja, <strong>no dilatar</strong>, vigilar con ecografía seriada. Si el derrame aumenta o el paciente se deteriora: cirugía cardíaca de inmediato.</td>
+            </tr>
+            <tr>
+              <td><strong>Catéter dentro del ventrículo</strong></td>
+              <td>Dilatación y cateterización sin confirmar. Sangre con hematocrito sistémico y pulsátil por el catéter.</td>
+              <td><strong>No retirar el catéter.</strong> Llamar a cirugía cardiovascular: el catéter está taponando el orificio que él mismo creó, y sacarlo fuera de pabellón puede desencadenar un hemopericardio incontrolable. <em>Esta es la razón por la que el paso 6 no se omite nunca.</em></td>
+            </tr>
+            <tr>
+              <td><strong>Lesión de la arteria torácica interna</strong></td>
+              <td>Hematoma de pared torácica que crece, hemotórax, shock sin derrame pericárdico que lo explique.</td>
+              <td>Compresión, reanimación con hemoderivados y <strong>control quirúrgico o endovascular</strong>. Puede ser exanguinante. Es precisamente la lesión que el mapeo con Doppler del paso 3 existe para evitar.</td>
+            </tr>
+            <tr>
+              <td><strong>Neumotórax</strong></td>
+              <td>Pérdida del deslizamiento pleural, hipoxemia, deterioro ventilatorio.</td>
+              <td>Según cuantía y estado: observación o drenaje pleural. Más propio de la ruta apical o transpleural que de la paraesternal en plano.</td>
+            </tr>
+            <tr>
+              <td><strong>Arritmias</strong></td>
+              <td>Extrasístoles al contactar el epicardio; taquicardia o fibrilación ventricular.</td>
+              <td>Retirar unos milímetros suele bastar. Desfibrilador conectado desde antes de empezar.</td>
+            </tr>
+            <tr>
+              <td><strong>Lesión hepática, gástrica o de la vena cava</strong></td>
+              <td>Dolor abdominal, sangre en el aspirado, inestabilidad sin explicación cardíaca.</td>
+              <td>Propia del <strong>abordaje subxifoideo</strong>, del que esta ruta prescinde por completo. Imagen, cirugía según hallazgos.</td>
+            </tr>
+            <tr>
+              <td><strong>Síndrome de descompresión pericárdica</strong></td>
+              <td>Edema pulmonar o shock <em>después</em> del drenaje exitoso, con caída de la función ventricular.</td>
+              <td>Soporte precoz: oxigenación o ventilación, inótropos, vigilancia estrecha (sección 09).</td>
+            </tr>
+            <tr>
+              <td><strong>Fracaso del drenaje</strong></td>
+              <td>No sale líquido, o sale y el paciente no mejora.</td>
+              <td>Reevaluar el diagnóstico —¿era taponamiento?—, plantear contenido coagulado o derrame tabicado, y <strong>escalar a la ruta quirúrgica</strong>. Insistir con la aguja no vence un coágulo.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Las cifras de complicaciones, con su letra chica</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📊</span><span><strong>Técnica ecoguiada clásica:</strong> las cifras recogidas en la serie del abordaje paraesternal describen <strong>3,5 % de complicaciones menores y 1,2 % de mayores</strong> para la técnica estándar. La misma revisión cita una serie con predominio subxifoideo con <strong>21 % de complicaciones</strong> (0,9 % mayores y 20,1 % menores) y otra, con abordaje subcostal y apical, con <strong>1,3 %</strong> en total. La dispersión es enorme y refleja poblaciones, rutas y definiciones distintas.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠</span><span><strong>Lo que no se puede afirmar:</strong> la serie que describió el abordaje paraesternal medial-lateral en plano tuvo <strong>cero complicaciones en 11 pacientes</strong>. Con 11 pacientes, cero complicaciones <em>no demuestra que la técnica sea más segura</em>: es compatible con tasas de complicación relevantes. Los propios autores la presentan como «teóricamente libre de complicaciones» y piden validación en poblaciones mayores. La ventaja mecánica —ver la punta, ver el Doppler, evitar hígado y pulmón— es plausible y está bien argumentada; la ventaja clínica <strong>no está demostrada</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🎓</span><span><strong>Quién la hizo:</strong> en esa serie el procedimiento lo realizaron <strong>dos médicos de urgencia certificados en ecografía cardíaca focalizada</strong>. El tiempo de 309 segundos y la ausencia de complicaciones corresponden a ese nivel de entrenamiento. <em>La técnica se aprende con simulación y supervisión, no leyendo esta página.</em></span></div>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./index.html">← Volver al índice</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    presencial en el procedimiento. La <strong>pericardiocentesis de emergencia es un procedimiento de alto riesgo</strong>,
+    con complicaciones potencialmente letales (punción miocárdica, lesión coronaria, lesión de la arteria torácica
+    interna, neumotórax, arritmias), que requiere competencia demostrada en ecografía en el punto de atención,
+    respaldo institucional y plan quirúrgico de rescate disponible; leer este checklist no sustituye la práctica
+    supervisada ni la simulación. El <strong>abordaje paraesternal en plano con transductor lineal de alta
+    frecuencia</strong> descrito aquí proviene de una <strong>serie retrospectiva de 11 pacientes y un reporte de
+    caso</strong>: es una técnica prometedora de <strong>certeza muy baja</strong>, no un estándar comparado con las
+    rutas subxifoidea o apical, y su elección debe acordarse con el <strong>protocolo institucional</strong>. Las
+    <strong>metas de tiempo del cronómetro son referenciales y no constituyen un estándar validado</strong>: solo el
+    tiempo total de 309 ± 76 segundos proviene de esa serie, y el reparto interno de los hitos es una distribución
+    razonable propuesta para esta página. Todas las <strong>dosis y volúmenes</strong> mencionados —anestésico local,
+    bolos de cristaloide, vasopresores, volumen de la primera aspiración, límite de drenaje por sesión, umbral de
+    débito para retirar el catéter— son órdenes de magnitud habituales y <strong>deben verificarse con el protocolo
+    institucional</strong> y el formulario nacional antes de aplicarse. Del mismo modo deben verificarse con el
+    <strong>protocolo institucional</strong> y con los equipos de cardiología, cirugía cardiovascular, imágenes y UPC
+    de referencia: el calibre y largo de la aguja y del catéter disponibles en el kit real del servicio, el panel de
+    muestras del líquido pericárdico, la política de radiografía de tórax posprocedimiento, el manejo de la
+    coagulopatía antes de puncionar, la conducta local en el <strong>taponamiento traumático</strong> y en el
+    <strong>taponamiento por disección aórtica</strong>, y la disponibilidad de pabellón para el rescate quirúrgico.
+    Los <strong>criterios ecográficos</strong> citados corresponden a los signos convencionales de taponamiento y
+    pueden estar atenuados o ausentes en la hipovolemia, la hipertensión pulmonar y el derrame tabicado. Los
+    <strong>esquemas son dibujos orientativos, no imágenes ecográficas ni ilustraciones anatómicas a escala.</strong>
+    El contenido es para <strong>pacientes adultos</strong>; la pericardiocentesis pediátrica y neonatal se rige por el
+    protocolo del servicio. El cronómetro y el checklist <strong>no guardan ningún dato</strong>: el registro del
+    procedimiento se hace en la ficha clínica.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Osman A, Wan Chuan T, Ab Rahman J, Via G, Tavazzi G. <em>Ultrasound-guided pericardiocentesis: a novel parasternal approach.</em> Eur J Emerg Med. 2018;25(5):322–327. <a href="https://doi.org/10.1097/MEJ.0000000000000471" target="_blank" rel="noopener">DOI: 10.1097/MEJ.0000000000000471</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/28509710/" target="_blank" rel="noopener">PMID 28509710</a> — <strong>Referencia principal de la técnica de esta página.</strong> Serie retrospectiva de 11 pacientes con taponamiento en un servicio de urgencia terciario, tratados con abordaje paraesternal medial-lateral, aguja en plano y transductor lineal de 4–12 MHz (diagnóstico previo con sectorial de 1,7–4 MHz). Umbral de inclusión: derrame &gt; 1 cm en la ventana paraesternal. Procedimiento de ocho pasos en 309 ± 76,4 s; presión sistólica de mediana 53 a 90 mmHg (p = 0,005) y frecuencia de 120 a 98 lpm (p &lt; 0,001); derrame de mediana 20 mm y distancia piel-pericardio de 15 mm (RIC 12–17); primera aspiración de mediana 580 mL y total de 1030 mL; 100 % de éxito y <strong>cero complicaciones</strong>, con mortalidad intrahospitalaria a 30 días de 18 % por causas no relacionadas. Contiene también el test de microburbujas con imagen de «llamarada», las cifras de complicaciones de las técnicas comparadas (estándar ecoguiada 3,5 % menores y 1,2 % mayores; serie subxifoidea 21 %; serie subcostal-apical 1,3 %), el dato de que la aguja no se visualiza de forma continua en 56–75 % de las técnicas ecoguiadas convencionales, y las limitaciones del abordaje (requiere dos transductores; inviable en derrame exclusivamente posterior y en enfisema subcutáneo grave).</div>
+      <div class="ref-item">Mohammed NA, Al-Zubairi TA, Al-Soumai MH. <em>A case report on ultrasound-guided pericardiocentesis with a right parasternal approach: a novel in-plane lateral-to-medial technique.</em> Int J Emerg Med. 2024;17(1):15. <a href="https://doi.org/10.1186/s12245-024-00592-7" target="_blank" rel="noopener">DOI: 10.1186/s12245-024-00592-7</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/38302868/" target="_blank" rel="noopener">PMID 38302868</a> — Reporte de un caso (lactante de 14 meses) con la variante paraesternal <em>derecha</em> y trayecto lateral-medial, también en plano y con transductor de alta frecuencia. Describe explícitamente el corredor seguro entre el punto de deslizamiento pleural y los vasos torácicos internos, y sugiere utilidad en derrames loculados alrededor de la aurícula derecha.</div>
+      <div class="ref-item">Adler Y, Charron P, Imazio M, et al. <em>2015 ESC Guidelines for the diagnosis and management of pericardial diseases.</em> Eur Heart J. 2015;36(42):2921–2964. <a href="https://doi.org/10.1093/eurheartj/ehv318" target="_blank" rel="noopener">DOI: 10.1093/eurheartj/ehv318</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/26320112/" target="_blank" rel="noopener">PMID 26320112</a> — Documento de referencia del escenario: taponamiento como diagnóstico clínico, clasificación semicuantitativa del derrame (leve &lt; 10 mm, moderado 10–20 mm, grave &gt; 20 mm), drenaje urgente del taponamiento, sistema de triage propuesto para decidir el momento y el lugar de la pericardiocentesis, y estudio etiológico del líquido.</div>
+      <div class="ref-item">Hayashi T, Tsukube T, Yamashita T, et al. <em>Impact of controlled pericardial drainage on critical cardiac tamponade with acute type A aortic dissection.</em> Circulation. 2012;126(11 Suppl 1):S97–S101. <a href="https://doi.org/10.1161/CIRCULATIONAHA.111.082685" target="_blank" rel="noopener">DOI: 10.1161/CIRCULATIONAHA.111.082685</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/22966000/" target="_blank" rel="noopener">PMID 22966000</a> — 175 disecciones tipo A operadas, 43 con taponamiento al ingreso; 18 sin respuesta a volumen recibieron drenaje pericárdico controlado con catéter pigtail 8F y aspiración intermitente hasta una sistólica de ≈ 90 mmHg. Sistólica de 64,3 ± 8,2 a 94,8 ± 10,5 mmHg; volumen total aspirado 40,1 ± 30,6 mL, con <strong>10 de 18 pacientes que requirieron solo ≤ 30 mL</strong>; todos llegaron a reparación aórtica; mortalidad intrahospitalaria 16,7 % y <strong>ninguna complicación ni muerte atribuible al drenaje</strong>.</div>
+      <div class="ref-item">Amro A, Mansoor K, Amro M, et al. <em>A Comprehensive Systemic Literature Review of Pericardial Decompression Syndrome: Often Unrecognized and Potentially Fatal Syndrome.</em> Curr Cardiol Rev. 2021;17(1):101–110. <a href="https://doi.org/10.2174/1573403X16666200607184501" target="_blank" rel="noopener">DOI: 10.2174/1573403X16666200607184501</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/32515313/" target="_blank" rel="noopener">PMID 32515313</a> — Revisión sistemática de 59 casos de síndrome de descompresión pericárdica (edad media 48 ± 17 años; pericardiocentesis en 52,5 % y pericardiostomía en 45,8 %; causa neoplásica en 35,6 %). Fracción de eyección de 55,8 ± 14,6 % antes a 30 ± 15,1 % después del procedimiento. Concluye que el reconocimiento precoz y el soporte son las únicas medidas terapéuticas disponibles.</div>
+      <div class="ref-item">Sarode K, Patel A, Arrington K, Makhija R, Mukherjee D. <em>Pericardial Decompression Syndrome: A Comprehensive Review of a Controversial Entity.</em> Int J Angiol. 2024;33(3):139–147. <a href="https://doi.org/10.1055/s-0044-1780536" target="_blank" rel="noopener">DOI: 10.1055/s-0044-1780536</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/39131808/" target="_blank" rel="noopener">PMID 39131808</a> — Revisión de 72 casos publicados entre 1983 y 2022: heterogeneidad fenotípica con fallo derecho, izquierdo o biventricular en proporciones similares, y presentación inmediata, aguda o subaguda como insuficiencia respiratoria hipoxémica o shock. Discute las hipótesis fisiopatológicas (desacople precarga-poscarga, isquemia microvascular, estado adrenérgico) y deja constancia de que la existencia misma de la entidad es discutida.</div>
+      <div class="ref-item">Burlew CC, Moore EE, Moore FA, et al. <em>Western Trauma Association critical decisions in trauma: resuscitative thoracotomy.</em> J Trauma Acute Care Surg. 2012;73(6):1359–1363. <a href="https://doi.org/10.1097/TA.0b013e318270d2df" target="_blank" rel="noopener">DOI: 10.1097/TA.0b013e318270d2df</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/23188227/" target="_blank" rel="noopener">PMID 23188227</a> — Base del desvío del escenario traumático: en el trauma con taponamiento el procedimiento indicado es la toracotomía de reanimación, con indicaciones estratificadas por mecanismo y tiempo de reanimación cardiopulmonar prehospitalaria. No existen ensayos aleatorizados; las recomendaciones se basan en estudios observacionales y opinión experta.</div>
+      <div class="ref-item">Referencias localizadas mediante <strong>PubMed</strong>. Los aspectos <strong>convencionales</strong> descritos en esta página y <strong>no respaldados individualmente por estudios de desenlace</strong> son: la prioridad de drenar antes de intubar y el resto de las precauciones para no bajar la precarga (razonamiento fisiológico y consenso de textos de urgencia), la entrada por el borde superior de la costilla inferior, la composición de la caja y del panel de muestras, el drenaje escalonado y el límite de volumen por sesión, el umbral de débito para retirar el catéter, la conducta de no retirar un catéter mal posicionado en el ventrículo fuera de pabellón, y el descrédito de la «corriente de lesión» del electrocardiograma y de la prueba de coagulación de la sangre aspirada como métodos de confirmación. Todos ellos deben contrastarse con el <strong>protocolo institucional vigente</strong>.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Checklist con progreso ────────────────────────────────────────
+  const SECTIONS = ['s1', 's4', 's5', 's6', 's7', 's10'];
+  const totals = {};
+  SECTIONS.forEach(s => {
+    const list = document.getElementById('list-' + s);
+    totals[s] = list ? list.querySelectorAll('.check-item').length : 0;
+  });
+  const TOTAL_CHECKS = SECTIONS.reduce((acc, s) => acc + totals[s], 0);
+
+  function countChecked(section) {
+    return document.querySelectorAll('#list-' + section + ' .check-item.checked').length;
+  }
+
+  function toggle(el, section) {
+    el.classList.toggle('checked');
+    updateCount(section);
+    updateProgress();
+  }
+
+  function updateCount(section) {
+    const el = document.getElementById('count-' + section);
+    if (!el) return;
+    const n = countChecked(section);
+    const t = totals[section];
+    el.textContent = n + '/' + t;
+    if (t > 0 && n === t) {
+      el.style.background = 'rgba(16,185,129,0.15)';
+      el.style.borderColor = 'rgba(16,185,129,0.3)';
+      el.style.color = '#6ee7b7';
+    } else {
+      el.style.background = '';
+      el.style.borderColor = '';
+      el.style.color = '';
+    }
+  }
+
+  function updateProgress() {
+    const done = SECTIONS.reduce((acc, s) => acc + countChecked(s), 0);
+    const pct = TOTAL_CHECKS ? Math.round((done / TOTAL_CHECKS) * 100) : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.check-item.checked').forEach(el => el.classList.remove('checked'));
+    SECTIONS.forEach(updateCount);
+    updateProgress();
+  }
+
+  SECTIONS.forEach(updateCount);
+  updateProgress();
+
+  // ── Cronómetro (sin persistencia) ─────────────────────────────────
+  let swStart = null;
+  let swAccum = 0;
+  let swTick = null;
+
+  function swElapsed() {
+    return swAccum + (swStart !== null ? Date.now() - swStart : 0);
+  }
+
+  function fmt(ms) {
+    const total = Math.floor(ms / 1000);
+    const m = String(Math.floor(total / 60)).padStart(2, '0');
+    const s = String(total % 60).padStart(2, '0');
+    return m + ':' + s;
+  }
+
+  function swRender() {
+    const ms = swElapsed();
+    const disp = document.getElementById('swDisplay');
+    disp.textContent = fmt(ms);
+    disp.classList.toggle('warn', ms >= 300000 && ms < 600000);
+    disp.classList.toggle('late', ms >= 600000);
+  }
+
+  function swToggle() {
+    const btn = document.getElementById('swToggle');
+    const cap = document.getElementById('swCaption');
+    if (swStart === null) {
+      swStart = Date.now();
+      swTick = setInterval(swRender, 200);
+      btn.textContent = '⏸ Detener';
+      cap.textContent = 'Corriendo desde el reconocimiento del taponamiento';
+    } else {
+      swAccum += Date.now() - swStart;
+      swStart = null;
+      clearInterval(swTick);
+      swTick = null;
+      btn.textContent = '▶ Continuar';
+      cap.textContent = 'En pausa';
+      swRender();
+    }
+  }
+
+  function msLabel(el) {
+    return el.dataset.prefix + el.dataset.goal + ' s';
+  }
+
+  function swReset() {
+    if (swTick) clearInterval(swTick);
+    swTick = null;
+    swStart = null;
+    swAccum = 0;
+    document.getElementById('swToggle').textContent = '▶ Iniciar';
+    document.getElementById('swCaption').textContent = 'Detenido · parte el reloj cuando se reconoce el taponamiento';
+    document.querySelectorAll('.ms').forEach(ms => {
+      ms.classList.remove('done', 'over');
+      ms.querySelector('.ms-goal').textContent = msLabel(ms);
+    });
+    swRender();
+  }
+
+  function markMs(el) {
+    if (el.classList.contains('done')) {
+      el.classList.remove('done', 'over');
+      el.querySelector('.ms-goal').textContent = msLabel(el);
+      return;
+    }
+    if (swStart === null && swAccum === 0) swToggle();
+    const secs = Math.round(swElapsed() / 1000);
+    const goal = parseInt(el.dataset.goal, 10);
+    el.classList.add('done');
+    el.classList.toggle('over', secs > goal);
+    el.querySelector('.ms-goal').textContent = secs + ' s · meta ' + goal + ' s';
+  }
+
+  swRender();
+</script>
+</body>
+</html>

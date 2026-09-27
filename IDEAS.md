@@ -132,7 +132,25 @@ terminado sin su tarjeta correspondiente en el index.
       esquemas de uterotónicos y antibióticos, el umbral local de viabilidad neonatal,
       los criterios de hipotermia terapéutica neonatal, el contenido de la caja y los
       criterios de suspensión (sin criterio validado en esta población).
-- [ ] Pericardiocentesis de emergencia (ecoguiada usando transductor de alta frecuencia en visión paraesternal larga con aguja en plano)
+- [x] Pericardiocentesis de emergencia (ecoguiada usando transductor de alta frecuencia en
+      visión paraesternal larga con aguja en plano) — `checklist-pericardiocentesis.html`
+      (checklist con cronómetro e hitos). La técnica sigue el abordaje **paraesternal
+      medial-lateral con aguja en plano y transductor lineal de alta frecuencia** de Osman
+      2018 (Eur J Emerg Med), con sus ocho pasos, el umbral de derrame > 1 cm, el mapeo de
+      la arteria torácica interna con Doppler color y el test de microburbujas («llamarada»)
+      como confirmación. Se insiste en dos desvíos que salvan vidas: **no puncionar el
+      taponamiento traumático** (es toracotomía) y **no intubar antes de drenar**. Incluye el
+      drenaje controlado de la disección tipo A (Hayashi 2012: 40 ± 31 mL, 10/18 con ≤ 30 mL)
+      y el síndrome de descompresión pericárdica. Esquemas vectoriales, sin imágenes de
+      terceros. Pendiente de validación: todas las metas de tiempo del cronómetro salvo el
+      total de 309 ± 76 s de la serie original; el calibre y largo de aguja y catéter del kit
+      real del servicio; dosis máxima del anestésico local; esquema de fluidos y vasopresor;
+      límite de volumen por sesión de drenaje y umbral de débito para retirar el catéter;
+      panel de muestras del líquido; política de radiografía posprocedimiento; manejo de la
+      coagulopatía previa; y la conducta local en taponamiento traumático y por disección.
+      Nota de certeza: el abordaje descrito se apoya en una serie retrospectiva de 11
+      pacientes y un reporte de caso — es prometedor, no un estándar comparado con las rutas
+      subxifoidea y apical.
 - [ ] Cantotomía lateral y cantólisis
 - [ ] Instalación de sonda de taponamiento esofagogástrico (balón de
       Sengstaken-Blakemore)
