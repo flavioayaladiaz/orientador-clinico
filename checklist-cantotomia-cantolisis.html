@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Checklist · Cantotomía lateral y cantólisis</title>
+<meta name="description" content="Checklist con cronómetro para la cantotomía lateral con cantólisis inferior en el síndrome compartimental orbitario: cómo se reconoce sin TC, cómo se descarta el globo abierto antes de cortar, anatomía del tendón cantal lateral y sus dos cruras, los siete pasos del procedimiento, los criterios de éxito, qué hacer cuando la presión no baja y por qué la ventana de 90 minutos no es una razón para no hacerlo.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(16,185,129,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(239,68,68,0.06) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 36px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.28);
+    color: #6ee7b7;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  .header-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--emerald);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--emerald);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #10b981, #14b8a6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .header-sub strong { color: #fff; font-weight: 500; }
+  .header-sub em { color: #fcd34d; font-style: normal; }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .section-check-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .s1 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s1 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s2 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s3 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s3 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s4 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s4 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s5 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s5 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s6 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s6 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s7 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s7 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s8 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s8 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s9 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s9 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s10 .section-num { background: rgba(239,68,68,0.10); color: #fecaca; border: 1px solid rgba(239,68,68,0.18); }
+  .s10 { --accent: var(--red); --accent-glow: var(--red-glow); }
+
+  /* CRONÓMETRO */
+  .stopwatch {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+  .sw-display {
+    font-family: var(--mono);
+    font-size: clamp(40px, 11vw, 60px);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #fff;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .sw-display.warn { color: #fcd34d; }
+  .sw-display.late { color: #fca5a5; }
+  .sw-caption {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+  .sw-controls { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+  .sw-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .sw-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .sw-btn:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+  .sw-btn.primary {
+    background: rgba(16,185,129,0.14);
+    border-color: rgba(16,185,129,0.45);
+    color: #6ee7b7;
+  }
+  .sw-btn.primary:hover { background: rgba(16,185,129,0.22); color: #a7f3d0; }
+
+  .milestones { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .ms {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .ms:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .ms:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .ms.done { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); color: #6ee7b7; }
+  .ms-goal {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .ms.done .ms-goal { color: #6ee7b7; border-color: rgba(16,185,129,0.4); }
+  .ms.done.over .ms-goal { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+  }
+  .check-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .check-item:hover::before { opacity: 1; }
+  .check-item:hover { border-color: rgba(255,255,255,0.12); }
+  .check-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .check-item.checked { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+  .check-item.checked::before { opacity: 0.5; }
+
+  .checkbox {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+    background: transparent;
+  }
+  .check-item.checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .checkmark {
+    opacity: 0;
+    transform: scale(0) rotate(-10deg);
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .check-item.checked .checkmark { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  .check-label {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-dim);
+    transition: color 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+  .check-item.checked .check-label {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(100,116,139,0.5);
+  }
+  .check-label strong { color: #fff; font-weight: 500; }
+  .check-label em { color: #fcd34d; font-style: normal; }
+  .check-step {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+
+  /* PROGRESO */
+  .progress-bottom {
+    margin-top: 6px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .progress-bar-track {
+    flex: 1;
+    min-width: 120px;
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #14b8a6);
+    border-radius: 100px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px rgba(16,185,129,0.5);
+  }
+  .progress-label { font-family: var(--mono); font-size: 12px; color: var(--text-dim); white-space: nowrap; }
+  #progress-pct { color: var(--emerald); font-weight: 500; }
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+  /* BANNERS */
+  .warning-banner, .info-banner, .go-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #fca5a5; }
+  .info-banner { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.18); color: #bfdbfe; }
+  .go-banner { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); color: #6ee7b7; }
+  .warning-banner strong, .info-banner strong, .go-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em, .go-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+  .plain-item.good { background: rgba(16,185,129,0.05); border-color: rgba(16,185,129,0.16); }
+  .plain-item.good strong { color: #6ee7b7; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ESQUEMAS */
+  .figure {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 16px 14px;
+    margin-bottom: 14px;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .fig-caption {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .fig-caption strong { color: var(--text-dim); font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(16,185,129,0.3);
+    background: rgba(16,185,129,0.08);
+    color: #6ee7b7;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(16,185,129,0.16); transform: translateX(2px); }
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--emerald); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .ms { align-items: flex-start; flex-wrap: wrap; }
+    .ms-goal { margin-left: 0; }
+    .sw-btn { flex: 1; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <div class="header-badge">Procedimiento HALO · Checklist</div>
+    <h1>Cantotomía lateral <span>y cantólisis</span></h1>
+    <p class="header-sub">
+      El síndrome compartimental orbitario es la <strong>única urgencia oftalmológica que se resuelve con una tijera
+      en el box</strong>, y la única en que el tiempo que se pierde no se recupera: la órbita es un cono óseo cerrado,
+      y la sangre o el edema que entran detrás del globo elevan la presión hasta que se detiene la perfusión del nervio
+      óptico y de la retina. El diagnóstico es <strong>clínico</strong> —dolor, proptosis tensa, visión que cae,
+      resistencia a la retropulsión, defecto pupilar aferente, presión intraocular alta— y <em>esperar la tomografía es
+      el error que deja ciego al paciente</em>. El procedimiento es corto, se hace con instrumental de curación y lo
+      decisivo no es la cantotomía, sino <strong>cortar la crura inferior del tendón cantal lateral</strong>: en el
+      modelo cadavérico, la cantotomía sola baja la presión de forma <em>parcial</em>, y solo la cantólisis inferior la
+      lleva bajo 20 mmHg. Aquí están el reconocimiento, cómo descartar el globo abierto antes de cortar, la anatomía
+      que hay que tener en la cabeza, los siete pasos, los criterios de éxito y qué hacer cuando la presión no baja.
+    </p>
+  </div>
+
+  <!-- 01 · ¿ES SÍNDROME COMPARTIMENTAL ORBITARIO? -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">¿Es síndrome compartimental orbitario?</div>
+        <div class="section-subtitle">Diagnóstico clínico, al lado de la camilla, sin esperar imagen</div>
+      </div>
+      <span class="section-check-count" id="count-s1">0/6</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>El síndrome compartimental orbitario <strong>es un diagnóstico clínico</strong>. La órbita es un cono
+        óseo rígido cerrado por delante por el septum orbitario y por los tendones cantales: cuando un hematoma
+        retrobulbar, un enfisema o un edema ocupan ese espacio, la presión sube, el globo se desplaza hacia adelante y
+        el tendón cantal lateral actúa como <em>una correa que impide que la órbita se descomprima sola</em>. Cortar esa
+        correa es todo el procedimiento. <strong>La tomografía confirma la causa, no hace el diagnóstico</strong>, y
+        llega después de la descompresión.</span>
+      </div>
+
+      <div class="subhead">Lo que se ve y se palpa</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">👁️</span><span><strong>Visión que cae</strong> (agudeza visual peor, visión de colores apagada, campo que se estrecha) y <strong>dolor ocular intenso y desproporcionado</strong>, muchas veces con náuseas. En el paciente inconsciente o intubado, el dolor y la agudeza <em>no están disponibles</em>: manda el resto.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🔦</span><span><strong>Defecto pupilar aferente relativo (DPAR)</strong> con la prueba de la linterna oscilante. Es el hallazgo objetivo más útil cuando el paciente no coopera, y <em>sigue siendo evaluable en el paciente sedado</em> mientras no se hayan usado midriáticos ni haya trauma del iris. Documéntalo antes de cortar: después no se puede reconstruir.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🫧</span><span><strong>Proptosis tensa con resistencia a la retropulsión:</strong> al presionar suavemente el globo con los pulgares sobre el párpado cerrado, el ojo <em>no se hunde</em> —«ojo pétreo»—. Este es el signo que más rápido separa la equimosis periorbitaria simple del compartimento cerrado. <strong>No lo hagas si sospechas globo abierto</strong> (sección 02).</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚫</span><span><strong>Oftalmoplejía:</strong> restricción dolorosa de la motilidad en todas las direcciones, no en una sola. La limitación <em>aislada</em> de la mirada hacia arriba con hipoestesia infraorbitaria apunta a atrapamiento en una fractura de piso de órbita, que es otro problema.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📈</span><span><strong>Presión intraocular elevada.</strong> El umbral convencional para actuar es <strong>&gt; 40 mmHg junto con signos clínicos</strong>; en un modelo cadavérico de distensión orbitaria progresiva, la pérdida de distensibilidad de la órbita ocurrió con una PIO media de <strong>43,0 mmHg</strong>, y la presión intraocular y la presión del compartimento orbitario se comportaron como buenos sustitutos una de otra (r = 0,99). Mide con tonómetro de contacto (Tono-Pen, iCare) <em>si lo tienes y si no hay sospecha de globo abierto</em>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Quemosis, equimosis subconjuntival y párpados tensos e indurados</strong> que no se dejan abrir. Un fondo de ojo con palidez retiniana, pulsatilidad de la arteria central o edema de papila es un hallazgo <em>tardío</em>: si esperas a verlo, el daño ya está hecho.</span></div>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>No existe una combinación obligatoria de signos.</strong> La serie de referencia definió el
+        síndrome como la suma de <em>visión disminuida, proptosis, resistencia a la retropulsión, presión intraocular
+        elevada y DPAR</em>, pero en urgencia rara vez están los cinco: un paciente intubado tras un trauma facial
+        puede ofrecerte solo proptosis tensa, DPAR y un ojo que no se hunde. <strong>Eso basta.</strong> El costo de una
+        cantotomía innecesaria es una cicatriz palpebral que se repara; el de una cantotomía omitida es una ceguera
+        definitiva.</span>
+      </div>
+
+      <div class="subhead">De dónde viene: no todo es trauma</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Escenario</th><th>Qué lo produce y qué cambia</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Trauma facial u orbitario</td>
+              <td><strong>Hemorragia retrobulbar</strong>, la causa más frecuente. En una serie de 3.514 traumas craneomaxilofaciales atendidos en urgencia, hubo <strong>9 casos (0,26 %)</strong> de síndrome compartimental por hematoma orbitario: es raro, y por eso se pasa por alto. Ojo con el dato de esa misma serie: <strong>7 de 9 pacientes estaban en estado hipocoagulable</strong>.</td>
+            </tr>
+            <tr>
+              <td>Fractura orbitaria desplazada</td>
+              <td>La fractura suele ser <em>protectora</em> —descomprime la órbita hacia el seno—, pero <strong>no siempre</strong>: los septos fibrosos de Koornneef compartimentan la grasa orbitaria y permiten que el síndrome ocurra igual. Una revisión sistemática reunió 18 casos publicados con fractura desplazada y síndrome compartimental concurrente. <em>La presencia de fractura no descarta nada.</em></td>
+            </tr>
+            <tr>
+              <td>Anticoagulación y coagulopatía</td>
+              <td>Trauma trivial, esfuerzo, tos o Valsalva en paciente anticoagulado. Es el grupo en que hay que <strong>vigilar activamente</strong> aunque la presentación inicial sea banal, sobre todo en adultos mayores, en hipertensión mal controlada y en pacientes con compromiso de conciencia que no pueden avisar que ven mal.</td>
+            </tr>
+            <tr>
+              <td>Posprocedimiento y posquirúrgico</td>
+              <td><strong>Bloqueo retrobulbar o periocular</strong> (descrito incluso tras bloqueo infratroclear para sondaje de vía lagrimal en paciente sin anticoagulantes), cirugía endoscópica nasosinusal, cirugía orbitaria o palpebral, blefaroplastía, reducción de fracturas. Aparece en el pabellón o en recuperación, cuando nadie está mirando el ojo.</td>
+            </tr>
+            <tr>
+              <td>Infeccioso e inflamatorio</td>
+              <td>Celulitis orbitaria y <strong>absceso subperióstico</strong> —descrito incluso como complicación intraoperatoria del drenaje endoscópico, por presión transmitida desde el seno—, mucormicosis, tiroiditis orbitaria. Aquí la descompresión es un puente: el tratamiento es antibiótico o antifúngico y drenaje.</td>
+            </tr>
+            <tr>
+              <td>Enfisema orbitario</td>
+              <td>Fractura de pared medial más un estornudo o un sonado de nariz. Puede ser dramático y de instalación en segundos. <em>Se descomprime igual</em>, y se le prohíbe al paciente sonarse la nariz.</td>
+            </tr>
+            <tr>
+              <td>Reanimación masiva y quemados</td>
+              <td>Edema orbitario por volumen, en paralelo con el síndrome compartimental abdominal. El paciente está sedado y no avisa: en el gran quemado facial y en la reanimación con volúmenes muy altos, <strong>la PIO y la retropulsión deben examinarse activamente</strong>. Umbral y frecuencia de ese control: <em>verificar con protocolo institucional</em>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Ecografía en el punto de atención: ayuda, no decide</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔊</span><span><strong>Transductor lineal de alta frecuencia, gel abundante, párpado cerrado y cero presión sobre el globo.</strong> Frente a la tomografía, la ecografía ocular hecha por médicos de urgencia mostró <strong>sensibilidad 95,7 % y especificidad 99,7 % para el hematoma retrobulbar</strong> en una cohorte prospectiva de 232 pacientes con trauma ocular; en un modelo cadavérico, médicos de urgencia de distinto nivel lo identificaron con sensibilidad 87 % y especificidad 88 %.</span></div>
+        <div class="plain-item"><span class="bullet-icon">👀</span><span><strong>Qué buscar:</strong> colección heterogénea retrobulbar, deformidad del polo posterior del globo por la presión («signo de la púa de guitarra») y vaina del nervio óptico distendida. Son <em>signos de apoyo</em>; los umbrales numéricos publicados para la deformación del polo posterior y para el diámetro de la vaina en este escenario <strong>no están bien establecidos: verificar con protocolo institucional</strong> antes de usarlos como criterio.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🛑</span><span><strong>Ecografía contraindicada si sospechas globo abierto</strong>, y <strong>una ecografía normal no descarta el síndrome compartimental</strong>: la presión es el problema, no la imagen. Si el cuadro clínico es compatible, se corta aunque la ecografía no muestre un hematoma evidente.</span></div>
+      </div>
+
+      <div class="subhead">Confirmación</div>
+      <div class="checklist" id="list-s1">
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Agudeza visual de cada ojo documentada</strong> con lo que haya: tarjeta de bolsillo, letras del carné, contar dedos, movimiento de mano, percepción de luz. <em>Una línea en la ficha, antes de tocar nada.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Pupilas y DPAR con linterna oscilante</strong>, documentados. Sin midriáticos previos.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Proptosis y resistencia a la retropulsión</strong> comprobadas —solo si el globo está íntegro— y comparadas con el ojo sano.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Presión intraocular medida</strong> si hay tonómetro y no hay sospecha de globo abierto. Si no hay tonómetro, <em>la palpación bidigital comparativa no es cuantitativa pero sirve</em>: el síndrome no se descarta por no poder medir.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Hora de inicio de los síntomas preguntada y anotada</strong> —no para decidir si se hace, sino para el registro y para el pronóstico (sección 08).</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Anticoagulantes, antiagregantes y coagulopatía</strong> preguntados de entrada: cambian el sangrado del procedimiento y el tratamiento de la causa.</span>
+        </button>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./guia-policontusiones.html">Trauma facial contuso · examen segmentario →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · ANTES DE CORTAR -->
+  <div class="section s2" id="s2" style="animation-delay:0.10s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Antes de cortar: el globo abierto y los dos desvíos</div>
+        <div class="section-subtitle">La única contraindicación que importa, y las dos trampas que retrasan</div>
+      </div>
+      <span class="section-check-count" id="count-s2">0/5</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">🛑</span>
+        <span><strong>Globo abierto o rotura ocular sospechada = no se corta, no se presiona, no se mide la presión, no
+        se hace ecografía.</strong> Cualquier maniobra que aumente la presión sobre un globo roto puede <em>extruir el
+        contenido intraocular</em> y transformar un ojo recuperable en una enucleación. Escudo rígido, cabecera
+        elevada, analgesia, antieméticos, nada por la boca, oftalmología <strong>ahora</strong> y tomografía de órbita
+        con cortes finos. Si además hay signos claros de compartimento, la decisión de descomprimir es del
+        oftalmólogo y se toma con el ojo a la vista, no a ciegas en el box.</span>
+      </div>
+
+      <div class="subhead">Signos de globo abierto que hay que buscar antes de tocar</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">💧</span><span><strong>Laceración corneal o escleral visible</strong>, prolapso de tejido uveal (mancha oscura sobre la esclera o la córnea) o salida de humor acuoso (<em>test de Seidel positivo</em> con fluoresceína, si hay lámpara de hendidura y tiempo).</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🌑</span><span><strong>Pupila en gota o descentrada</strong>, apuntando hacia el sitio de la herida; cámara anterior <strong>plana</strong> (rotura anterior) o <strong>anormalmente profunda</strong> (rotura posterior); hifema.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🩸</span><span><strong>Hemorragia subconjuntival bullosa de 360°</strong>, quemosis hemorrágica que oculta la esclera, globo hipotónico y de forma irregular.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🔩</span><span><strong>Mecanismo de alta energía con proyección de material</strong> —esmeril, martillo sobre metal, vidrio, arma de fuego— o sospecha de <strong>cuerpo extraño intraocular</strong>, aunque el ojo se vea aceptable. La pregunta es del mecanismo, no de la inspección.</span></div>
+      </div>
+
+      <div class="subhead">Desvío 1 · «Primero la tomografía»</div>
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>Este es <strong>el error que más visión cuesta</strong>. La tomografía documenta el hematoma, la fractura
+        y el cuerpo extraño, pero <em>no mide la presión de la órbita</em> y consume exactamente el tiempo que el
+        nervio óptico no tiene. La recomendación explícita de la literatura de urgencia y maxilofacial es que la
+        <strong>tomografía siga a la descompresión</strong>, no al revés. Si el paciente ya está en el escáner cuando
+        aparecen los signos, no se termina el estudio: se saca de la máquina y se corta. La misma lógica vale para la
+        interconsulta: <strong>se llama a oftalmología mientras se prepara el material, no antes de decidir.</strong>
+        En urgencias sin oftalmólogo presencial, el procedimiento lo hace el médico de urgencia.</span>
+      </div>
+
+      <div class="subhead">Desvío 2 · «Ya pasaron más de 90 minutos»</div>
+      <div class="go-banner">
+        <span class="warning-icon">✅</span>
+        <span>La ventana clásica de <strong>90–120 minutos</strong> viene de un modelo experimental: en el primate, el
+        clampeo transitorio de la arteria central de la retina produjo <strong>daño irreparable a los 105 minutos y
+        recuperación completa a los 97–98</strong>, de donde salió la regla de que «la retina tolera hasta unos 100
+        minutos de isquemia». Es un modelo de oclusión arterial completa en monos, <em>no</em> del síndrome
+        compartimental humano, donde la perfusión suele estar reducida y no abolida. En la serie clínica disponible
+        (15 pacientes), <strong>los 5 intervenidos antes de 3 horas recuperaron algo de visión, y también lo hicieron 6
+        de 10 intervenidos después de 3 horas</strong>; la última intervención con mejoría de agudeza se hizo <strong>9
+        horas</strong> después de la lesión. El tiempo sí importa —a más demora, menos recuperación (p = 0,03)—, pero
+        los propios autores recomiendan <strong>hacer la cantotomía en todos los pacientes con síndrome compartimental,
+        independientemente del tiempo transcurrido</strong>. El reloj es una razón para apurarse, nunca una razón para
+        no hacerlo.</span>
+      </div>
+
+      <div class="subhead">Antes de tomar la tijera</div>
+      <div class="checklist" id="list-s2">
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Globo abierto descartado</strong> por inspección y por mecanismo. Si hay duda razonable: escudo, oftalmología urgente, <em>no se corta</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Diagnóstico dicho en voz alta</strong> —«esto es un compartimento orbitario, vamos a hacer cantotomía y cantólisis»— y anotado con los hallazgos que lo sostienen.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Nadie está esperando la tomografía ni la llegada del oftalmólogo</strong> para descomprimir. La interconsulta ya salió y corre en paralelo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Consentimiento</strong> según la situación: informado si el paciente está lúcido —explicar en una frase que es para salvar la visión y que deja una cicatriz reparable—, o <em>por urgencia vital del órgano</em> si no puede otorgarlo, dejándolo consignado.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Lesiones que compiten resueltas o delegadas:</strong> vía aérea, hemorragia exanguinante y trauma craneoencefálico grave van primero. La cantotomía se hace <em>en paralelo</em>, no en vez de la reanimación.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · CRONÓMETRO, HITOS Y ROLES -->
+  <div class="section s3" id="s3" style="animation-delay:0.14s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Cronómetro, hitos y roles</div>
+        <div class="section-subtitle">El reloj parte cuando se reconoce el cuadro, no cuando llega el material</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="stopwatch">
+        <div class="sw-display" id="swDisplay">00:00</div>
+        <div class="sw-caption" id="swCaption">Detenido · parte el reloj cuando reconoces el compartimento orbitario</div>
+        <div class="sw-controls">
+          <button type="button" class="sw-btn primary" id="swToggle" onclick="swToggle()">▶ Iniciar</button>
+          <button type="button" class="sw-btn" onclick="swReset()">↺ Reiniciar</button>
+        </div>
+        <div class="milestones" id="milestones">
+          <button type="button" class="ms" data-goal="60" data-prefix="meta ~" onclick="markMs(this)"><span>Diagnóstico dicho en voz alta · agudeza, pupilas y DPAR documentados · globo abierto descartado</span><span class="ms-goal">meta ~60 s</span></button>
+          <button type="button" class="ms" data-goal="120" data-prefix="meta ~" onclick="markMs(this)"><span>Decisión tomada: se corta ahora. <em>Nadie va a la tomografía</em>. Oftalmología avisada en paralelo</span><span class="ms-goal">meta ~120 s</span></button>
+          <button type="button" class="ms" data-goal="240" data-prefix="meta ~" onclick="markMs(this)"><span>Bandeja abierta, paciente posicionado, anestesia local infiltrada (4 min)</span><span class="ms-goal">meta ~240 s</span></button>
+          <button type="button" class="ms" data-goal="360" data-prefix="meta ~" onclick="markMs(this)"><span>Cantotomía hecha: incisión horizontal completa del canto lateral al reborde (6 min)</span><span class="ms-goal">meta ~360 s</span></button>
+          <button type="button" class="ms" data-goal="480" data-prefix="meta ~" onclick="markMs(this)"><span><strong>Cantólisis inferior hecha</strong>: crura inferior seccionada, párpado inferior suelto (8 min)</span><span class="ms-goal">meta ~480 s</span></button>
+          <button type="button" class="ms" data-goal="540" data-prefix="meta ~" onclick="markMs(this)"><span>Reevaluación: PIO, agudeza, pupila y retropulsión comparadas con las de antes (9 min)</span><span class="ms-goal">meta ~540 s</span></button>
+          <button type="button" class="ms" data-goal="720" data-prefix="meta ~" onclick="markMs(this)"><span>Si no bajó: cantólisis superior o escalamiento decidido y ejecutado (12 min)</span><span class="ms-goal">meta ~720 s</span></button>
+          <button type="button" class="ms" data-goal="900" data-prefix="meta ~" onclick="markMs(this)"><span>Causa tratada (reversión de anticoagulación), imagen pedida si cambia la conducta, destino definido (15 min)</span><span class="ms-goal">meta ~900 s</span></button>
+        </div>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Ninguna de estas metas es un estándar validado.</strong> El único anclaje temporal publicado es
+        indirecto: la tolerancia retiniana de <strong>~100 minutos</strong> a la isquemia completa en el modelo de
+        primate, de donde nace la ventana convencional de 90–120 minutos <em>desde el inicio del cuadro</em> —no desde
+        que parte este cronómetro—. El reparto interno de los hitos es <strong>una distribución razonable propuesta
+        para esta página</strong>, pensada para que alguien cante los tiempos y se note el estancamiento: no sirve para
+        calificar al operador. Ajústalo a tu servicio.</span>
+      </div>
+
+      <div class="subhead">Roles: quién hace qué</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>Operador:</strong> corta. Una sola tarea. Anuncia cada paso —«infiltro», «hago la cantotomía», «tenso el párpado», «siento la crura», «corto»— para que el equipo pueda seguirlo y detenerlo. No dirige la reanimación ni maneja la vía aérea.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>Ayudante:</strong> sostiene la cabeza, ilumina el campo con foco frontal o linterna, seca con gasa —<em>secar, no presionar</em>— y pasa el instrumental. Es quien impide que el operador corte a ciegas sobre un charco de sangre.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>Líder:</strong> no corta. Mantiene el resto de la reanimación, vigila que nadie mande al paciente a la tomografía, llama a oftalmología y prepara el escalamiento (sección 08).</span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span><strong>Enfermería:</strong> monitor, analgesia y sedación según indicación, antiemético, tonómetro a mano para la reevaluación, y las medidas de la sección 04 que se administran <em>mientras</em> se prepara la bandeja.</span></div>
+        <div class="plain-item"><span class="bullet-icon">5</span><span><strong>Tiempo y registro:</strong> lleva el cronómetro y anota <strong>cinco datos que después se piden todos</strong>: hora de inicio del cuadro, hora del diagnóstico, agudeza y pupilas <em>previas</em>, hora de la cantólisis, y agudeza, pupilas y PIO <em>posteriores</em>. Recuerda en voz alta lo que se olvida: <em>«¿reevaluaste?»</em>, <em>«¿llamaron a oftalmología?»</em>, <em>«¿hay que revertir el anticoagulante?»</em>.</span></div>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;margin-bottom:0;">
+        <span class="warning-icon">⚠️</span>
+        <span>Este cronómetro <strong>no guarda ningún dato</strong> ni queda registrado en el dispositivo: al recargar
+        la página se pierde. El registro clínico del procedimiento se hace en la ficha.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · MEDIDAS MIENTRAS PREPARAS -->
+  <div class="section s4" id="s4" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Lo que se hace mientras preparas la bandeja</div>
+        <div class="section-subtitle">Todo esto gana minutos; nada de esto reemplaza la tijera</div>
+      </div>
+      <span class="section-check-count" id="count-s4">0/6</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Ninguna medida farmacológica ha demostrado salvar la visión en el síndrome compartimental
+        orbitario.</strong> Los fármacos de esta sección bajan la producción de humor acuoso o arrastran agua fuera del
+        ojo; <em>no descomprimen la órbita</em>, que es donde está el problema. Se usan como puente <strong>en paralelo
+        con la preparación del procedimiento</strong>, nunca en lugar de él ni como excusa para «esperar a ver si
+        responde». Si al terminar de administrarlos todavía no has cortado, algo salió mal.</span>
+      </div>
+
+      <div class="subhead">Medidas físicas · gratis e inmediatas</div>
+      <div class="plain-list">
+        <div class="plain-item good"><span class="bullet-icon">🛏️</span><span><strong>Cabecera a 30–45°</strong> si la columna y la hemodinamia lo permiten. Baja la presión venosa orbitaria sin costo ni riesgo.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">✋</span><span><strong>Cero presión sobre el globo:</strong> nada de parches compresivos, apósitos apretados, collares que compriman las yugulares, ni retractores palpebrales apoyados en el ojo. Si hay que ver el ojo, se separan los párpados <em>apoyando sobre el reborde óseo</em>.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">🤢</span><span><strong>Evitar toda maniobra de Valsalva:</strong> analgesia adecuada, <strong>antiemético</strong> precoz, tratar la tos y la agitación. Prohibir sonarse la nariz —obligatorio si hay enfisema orbitario o fractura de pared medial—.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">💉</span><span><strong>Corregir la causa en paralelo:</strong> revertir la anticoagulación y corregir la coagulopatía según el fármaco y el protocolo local, controlar la hipertensión arterial extrema. En la serie de traumas maxilofaciales, <strong>casi 8 de cada 10 pacientes con este síndrome estaban hipocoagulados</strong>. Esquema de reversión: <em>verificar con protocolo institucional</em>.</span></div>
+      </div>
+
+      <div class="subhead">Fármacos puente · verificar todos con el protocolo local</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Fármaco</th><th>Dosis habitual</th><th>Advertencias</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Acetazolamida</td>
+              <td><span class="dose-main">500 mg EV</span><br><span class="dose-note">alternativa 250–500 mg VO</span></td>
+              <td>Inhibidor de la anhidrasa carbónica: reduce la producción de humor acuoso. <strong>La presentación endovenosa puede no estar disponible en el servicio: verificar con farmacia.</strong> Precaución en falla renal, acidosis metabólica, alergia a sulfas y en el paciente con trauma craneoencefálico.</td>
+            </tr>
+            <tr>
+              <td>Manitol</td>
+              <td><span class="dose-main">1–2 g/kg EV</span><br><span class="dose-note">en 30–60 min</span></td>
+              <td>Osmótico. <em>Puede empeorar la hipotensión y el shock hemorrágico</em>: en el politrauma inestable se piensa dos veces. Requiere diuresis y control de electrolitos y osmolalidad. <strong>Dosis exacta y velocidad: verificar con protocolo institucional.</strong></td>
+            </tr>
+            <tr>
+              <td>Timolol 0,5 % tópico</td>
+              <td><span class="dose-main">1 gota</span></td>
+              <td>Betabloqueador tópico. <strong>Contraindicado en asma, EPOC con broncoespasmo, bradicardia significativa y bloqueo AV avanzado</strong>; se absorbe por vía sistémica. No usar si hay sospecha de globo abierto.</td>
+            </tr>
+            <tr>
+              <td>Corticoides sistémicos</td>
+              <td><span class="dose-note">sin esquema recomendado aquí</span></td>
+              <td>Figuran en protocolos maxilofaciales clásicos junto al manitol y la acetazolamida, pero <strong>la evidencia que los sostiene en este escenario es muy débil</strong> y su uso en el trauma craneoencefálico asociado es desfavorable. <strong>Decisión con oftalmología y protocolo institucional; no retrasan ni sustituyen la descompresión.</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Checklist de las medidas puente</div>
+      <div class="checklist" id="list-s4">
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Cabecera elevada 30–45°</strong> y ninguna compresión sobre el ojo ni sobre el cuello.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Analgesia y antiemético administrados</strong>; agitación y tos controladas.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Hipotensores oculares indicados</strong> según disponibilidad y contraindicaciones, <em>sin que su administración retrase la bandeja</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Anticoagulación y coagulopatía en curso de reversión</strong> si corresponde; exámenes de coagulación y hemograma pedidos.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Oftalmología o cirugía maxilofacial avisadas</strong>, con la hora de la llamada anotada. Se avisa <em>mientras</em> se prepara, no después de terminar.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Nadie está esperando el efecto de los fármacos</strong> para decidir si corta. La bandeja ya está abierta.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · ANATOMÍA -->
+  <div class="section s5" id="s5" style="animation-delay:0.22s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">La anatomía que hay que tener en la cabeza</div>
+        <div class="section-subtitle">El tendón cantal lateral, sus dos cruras y el tubérculo de Whitnall</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Todo el procedimiento se explica con una sola imagen: el <strong>tendón cantal lateral</strong> es la
+        correa que ancla los párpados al reborde orbitario lateral, en el <strong>tubérculo de Whitnall</strong>, unos
+        milímetros <em>por dentro</em> del borde óseo. Se divide en dos cruras, superior e inferior. Esa correa, junto
+        con el septum orbitario, cierra la órbita por delante. <strong>Cortar la piel del canto (cantotomía) abre el
+        acceso; cortar la crura inferior (cantólisis) es lo que descomprime.</strong> Si el párpado inferior no queda
+        suelto, el procedimiento no está hecho.</span>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 680 330" role="img" aria-label="Esquema frontal del ojo derecho con el reborde orbitario lateral, el angulo del canto lateral y el tendon cantal lateral dividido en crura superior y crura inferior, que convergen en el tuberculo de Whitnall situado por dentro del reborde oseo. Se indica la linea de la cantotomia horizontal desde el angulo cantal hacia el reborde y se senala que la crura inferior es la que se secciona.">
+          <g font-family="DM Mono, monospace" font-size="11" fill="#94a3b8">
+            <rect x="12" y="12" width="656" height="306" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="28" y="36" fill="#6ee7b7" font-size="12">Ojo derecho · vista frontal</text>
+
+            <!-- reborde orbitario -->
+            <path d="M60,74 Q240,46 410,82 Q470,110 468,178 Q460,246 380,270 Q230,298 90,260 Q32,234 36,168 Q40,102 60,74 Z" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="7 5"/>
+            <text x="470" y="292" fill="#64748b" font-size="10">reborde orbitario óseo</text>
+
+            <!-- glandula lagrimal -->
+            <ellipse cx="398" cy="100" rx="29" ry="16" fill="rgba(245,158,11,0.14)" stroke="#f59e0b" stroke-width="1.2"/>
+            <text x="322" y="58" fill="#64748b" font-size="9.5">(superolateral · se respeta)</text>
+            <text x="322" y="72" fill="#fcd34d" font-size="10">glándula lagrimal</text>
+            <path d="M392,78 L396,84" stroke="#f59e0b" stroke-width="1"/>
+
+            <!-- hendidura palpebral y globo -->
+            <path d="M118,168 Q222,108 382,166 Q222,230 118,168 Z" fill="rgba(255,255,255,0.05)" stroke="#cbd5e1" stroke-width="1.8"/>
+            <circle cx="238" cy="167" r="33" fill="rgba(59,130,246,0.14)" stroke="#93c5fd" stroke-width="1.4"/>
+            <circle cx="238" cy="167" r="13" fill="#0a0e1a" stroke="#e2e8f0" stroke-width="1.2"/>
+            <text x="150" y="104" fill="#bfdbfe" font-size="10.5">globo</text>
+            <path d="M178,110 L218,140" stroke="#3b82f6" stroke-width="1" stroke-dasharray="3 3"/>
+
+            <!-- linea de cantotomia -->
+            <line x1="382" y1="166" x2="452" y2="166" stroke="#6ee7b7" stroke-width="2.4" stroke-dasharray="6 4"/>
+            <path d="M262,284 L404,180" stroke="#6ee7b7" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="34" y="292" fill="#6ee7b7" font-size="10.5">1 · cantotomía: corte horizontal (1–2 cm)</text>
+
+            <!-- tendon cantal lateral -->
+            <path d="M382,166 L438,140" stroke="#f472b6" stroke-width="3.4" stroke-linecap="round"/>
+            <path d="M382,166 L436,196" stroke="#f472b6" stroke-width="4.8" stroke-linecap="round"/>
+            <circle cx="442" cy="168" r="6" fill="#f472b6"/>
+            <circle cx="382" cy="166" r="5.5" fill="#fcd34d"/>
+            <text x="316" y="104" fill="#fcd34d" font-size="10.5">ángulo</text>
+            <path d="M352,110 L378,158" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3 3"/>
+
+            <text x="458" y="136" fill="#f9a8d4" font-size="10.5">crura superior</text>
+            <text x="458" y="170" fill="#f9a8d4" font-size="10.5">tubérculo de Whitnall</text>
+            <text x="458" y="184" fill="#64748b" font-size="10">(por dentro del reborde)</text>
+            <text x="458" y="214" fill="#f9a8d4" font-size="11">crura inferior</text>
+            <text x="458" y="228" fill="#fca5a5" font-size="10.5">← se corta ésta</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Esquema orientativo, no una ilustración anatómica a escala.</strong> La crura
+        inferior es la que se secciona en la cantólisis inferior. La glándula lagrimal ocupa el cuadrante superolateral
+        y es una de las razones por las que <em>primero</em> se corta abajo y solo después, si hace falta, arriba.</div>
+      </div>
+
+      <div class="subhead">Por qué la cantotomía sola no basta</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✂️</span><span><strong>Es el error técnico más frecuente y el más caro.</strong> En el modelo cadavérico con síndrome compartimental simulado (8 órbitas), la cantotomía lateral redujo la presión intraocular <em>solo de forma parcial</em> en las 8; la <strong>cantólisis inferior la bajó de forma significativa por debajo de 20 mmHg en 7 de 8 órbitas</strong>, y en 2 hizo falta además la cantólisis superior. La septólisis inferior y superior añadidas no aportaron reducción adicional en ese modelo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📏</span><span><strong>Cuánto baja:</strong> en otro modelo cadavérico, la cantotomía con cantólisis superior e inferior redujo la presión orbitaria un promedio de <strong>58,7 mmHg (65,2 %) al primer minuto</strong> y de 65,3 mmHg (72,6 %) a los 16 minutos, mientras la órbita control mantenía la presión alta sin intervención. La descompresión es inmediata: <em>si no ves cambio, revisa si realmente cortaste el tendón</em>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧵</span><span><strong>El endpoint es táctil y visual, no anatómico:</strong> el párpado inferior debe quedar <em>libre</em>, separable del reborde, «como una manga suelta». Mientras siga anclado, queda tendón por cortar.</span></div>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 680 340" role="img" aria-label="Esquema de los dos gestos del procedimiento. Panel izquierdo: cantotomia, tijera recta que corta horizontalmente desde el angulo cantal lateral hacia el reborde orbitario, en todo el espesor. Panel derecho: cantolisis inferior, pinza con dientes que tracciona el parpado inferior hacia afuera y abajo tensando la crura inferior, y tijera orientada hacia abajo y hacia atras, hacia el reborde oseo y alejandose del globo, para seccionarla.">
+          <g font-family="DM Mono, monospace" font-size="11" fill="#94a3b8">
+            <!-- Panel A -->
+            <rect x="12" y="12" width="320" height="316" rx="10" fill="rgba(16,185,129,0.04)" stroke="#065f46" stroke-width="1.2"/>
+            <text x="26" y="34" fill="#6ee7b7" font-size="12">Paso A · Cantotomía</text>
+            <path d="M56,152 Q136,108 230,152 Q136,196 56,152 Z" fill="rgba(255,255,255,0.05)" stroke="#cbd5e1" stroke-width="1.6"/>
+            <circle cx="136" cy="152" r="24" fill="rgba(59,130,246,0.14)" stroke="#93c5fd" stroke-width="1.2"/>
+            <circle cx="230" cy="152" r="4.5" fill="#fcd34d"/>
+            <line x1="230" y1="152" x2="286" y2="152" stroke="#6ee7b7" stroke-width="2.6" stroke-dasharray="6 4"/>
+            <path d="M294,134 L240,149 M294,170 L240,155" stroke="#e2e8f0" stroke-width="2.4" stroke-linecap="round"/>
+            <circle cx="300" cy="131" r="5" fill="none" stroke="#e2e8f0" stroke-width="1.8"/>
+            <circle cx="300" cy="173" r="5" fill="none" stroke="#e2e8f0" stroke-width="1.8"/>
+            <text x="28" y="224" font-size="10.5">Tijera recta de punta roma, horizontal,</text>
+            <text x="28" y="240" font-size="10.5">del ángulo cantal al reborde: 1–2 cm,</text>
+            <text x="28" y="256" font-size="10.5">en <tspan fill="#fff">todo el espesor</tspan>: piel, músculo</text>
+            <text x="28" y="272" font-size="10.5">y conjuntiva.</text>
+            <text x="28" y="300" fill="#fca5a5" font-size="10.5">Todavía no descomprimiste nada.</text>
+
+            <!-- Panel B -->
+            <rect x="348" y="12" width="320" height="316" rx="10" fill="rgba(239,68,68,0.04)" stroke="#7f1d1d" stroke-width="1.2"/>
+            <text x="362" y="34" fill="#fca5a5" font-size="12">Paso B · Cantólisis inferior</text>
+            <!-- parpado superior en su sitio -->
+            <path d="M392,152 Q468,110 558,150" fill="none" stroke="#cbd5e1" stroke-width="1.8"/>
+            <circle cx="468" cy="150" r="24" fill="rgba(59,130,246,0.14)" stroke="#93c5fd" stroke-width="1.2"/>
+            <!-- parpado inferior traccionado afuera y abajo -->
+            <path d="M392,156 Q474,198 568,196" fill="none" stroke="#cbd5e1" stroke-width="2.6"/>
+            <!-- pinza con dientes -->
+            <path d="M570,192 L604,180 M570,200 L604,210" stroke="#fcd34d" stroke-width="2.4" stroke-linecap="round"/>
+            <text x="574" y="232" fill="#fcd34d" font-size="10">pinza: tracción</text>
+            <text x="574" y="246" fill="#fcd34d" font-size="10">afuera y abajo</text>
+            <!-- tijera hacia abajo y atras, aproximandose desde arriba -->
+            <path d="M506,146 L560,194 M496,156 L550,204" stroke="#e2e8f0" stroke-width="2.4" stroke-linecap="round"/>
+            <!-- crura inferior tensa, por encima de la tijera para que se vea -->
+            <line x1="556" y1="150" x2="590" y2="192" stroke="#f472b6" stroke-width="4.8" stroke-linecap="round"/>
+            <text x="366" y="250" fill="#f9a8d4" font-size="10.5">crura inferior tensa</text>
+            <path d="M494,246 L574,178" stroke="#f472b6" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="366" y="300" font-size="10.5">Tijera <tspan fill="#fff">hacia abajo y hacia atrás</tspan>, contra el</text>
+            <text x="366" y="316" font-size="10.5">reborde óseo y <tspan fill="#6ee7b7">alejándose del globo</tspan>.</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Esquemas orientativos, no ilustraciones anatómicas a escala.</strong> El gesto
+        que define la cantólisis es la tracción: se tensa el párpado inferior hacia afuera y hacia abajo hasta
+        <em>palpar la cuerda</em> con la punta cerrada de la tijera —el «rasgueo»— y recién entonces se corta.</div>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 680 250" role="img" aria-label="Comparación de la orientación de la tijera durante la cantólisis. Panel izquierdo en rojo: tijera apuntando hacia el globo ocular, orientación incorrecta con riesgo de lesión del globo y del músculo recto lateral. Panel derecho en verde: tijera apuntando hacia abajo y hacia atrás, hacia el reborde orbitario lateral, alejándose del globo, orientación correcta.">
+          <g font-family="DM Mono, monospace" font-size="11" fill="#94a3b8">
+            <rect x="12" y="12" width="320" height="226" rx="10" fill="rgba(239,68,68,0.05)" stroke="#7f1d1d" stroke-width="1.2"/>
+            <text x="26" y="34" fill="#fca5a5" font-size="12">✗ Nunca hacia el globo</text>
+            <circle cx="120" cy="130" r="38" fill="rgba(59,130,246,0.14)" stroke="#93c5fd" stroke-width="1.4"/>
+            <circle cx="120" cy="130" r="14" fill="#0a0e1a" stroke="#e2e8f0" stroke-width="1.2"/>
+            <path d="M282,104 L176,122 M282,120 L176,132" stroke="#fca5a5" stroke-width="2.6" stroke-linecap="round"/>
+            <text x="26" y="204" fill="#fca5a5" font-size="10.5">Lesión del globo, del recto lateral</text>
+            <text x="26" y="220" fill="#fca5a5" font-size="10.5">y de la vía lagrimal.</text>
+
+            <rect x="348" y="12" width="320" height="226" rx="10" fill="rgba(16,185,129,0.05)" stroke="#065f46" stroke-width="1.2"/>
+            <text x="362" y="34" fill="#6ee7b7" font-size="12">✓ Abajo y atrás, al hueso</text>
+            <circle cx="456" cy="126" r="38" fill="rgba(59,130,246,0.14)" stroke="#93c5fd" stroke-width="1.4"/>
+            <circle cx="456" cy="126" r="14" fill="#0a0e1a" stroke="#e2e8f0" stroke-width="1.2"/>
+            <path d="M566,74 L566,190" stroke="#475569" stroke-width="2.6" stroke-dasharray="7 5"/>
+            <text x="574" y="80" fill="#64748b" font-size="10">reborde</text>
+            <path d="M524,108 L580,164 M514,120 L570,176" stroke="#6ee7b7" stroke-width="2.6" stroke-linecap="round"/>
+            <text x="362" y="204" fill="#6ee7b7" font-size="10.5">La punta viaja pegada al reborde óseo,</text>
+            <text x="362" y="220" fill="#6ee7b7" font-size="10.5">en dirección contraria al ojo.</text>
+          </g>
+        </svg>
+        <div class="fig-caption">La regla del gesto: <strong>si la punta de la tijera apunta al ojo, está mal
+        orientada.</strong> Se corta contra el hueso, no contra el globo.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · MATERIAL -->
+  <div class="section s6" id="s6" style="animation-delay:0.26s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Material</div>
+        <div class="section-subtitle">Todo cabe en una bandeja de curación: la escasez no es excusa</div>
+      </div>
+      <span class="section-check-count" id="count-s6">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="go-banner">
+        <span class="warning-icon">✅</span>
+        <span>Este es uno de los pocos procedimientos de rescate que <strong>no necesita una caja especial</strong>:
+        tijera, pinza, jeringa y gasas. Lo único que conviene dejar preparado de antemano es la <strong>tijera recta de
+        punta roma y la pinza con dientes</strong>, porque son lo que falta a las tres de la mañana. Vale la pena que el
+        servicio arme un paquete rotulado y lo deje junto al carro de vía aérea.</span>
+      </div>
+
+      <div class="subhead">Lo indispensable</div>
+      <div class="checklist" id="list-s6">
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Corte</span><strong>Tijera recta, de punta roma, idealmente de iris o de Stevens.</strong> Si no hay, sirve una tijera de curación recta de punta roma. <em>Punta roma, no fina</em>: la punta aguda es la que perfora el globo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Tracción</span><strong>Pinza con dientes (Adson con dientes o similar).</strong> Sin tracción no hay tensión, y sin tensión no se siente la crura ni se corta donde corresponde.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Hemostasia</span><strong>Pinza hemostática recta (mosquito o Kelly).</strong> Se usa para clampear el canto lateral 1–2 minutos antes de cortar: aplasta el tejido y reduce el sangrado de la incisión. <em>Opcional y prescindible si el tiempo apremia.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Anestesia</span><strong>Lidocaína al 1–2 % con epinefrina, jeringa de 3–5 mL y aguja fina (25–27 G).</strong> La epinefrina ayuda a la hemostasia local. <em>Dosis máxima por peso y disponibilidad de la presentación: verificar con protocolo institucional.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Campo</span><strong>Antiséptico apto para la zona periocular, gasas, campo estéril y guantes.</strong> <em>Povidona yodada al 5 % oftálmica si está disponible</em>; evitar el alcohol y la clorhexidina en contacto con la superficie ocular. <strong>Antiséptico de elección: verificar con protocolo institucional.</strong></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Luz</span><strong>Foco frontal o linterna en manos del ayudante.</strong> El canto lateral queda en sombra con la lámpara de techo, y cortar en la sombra es cortar a ciegas.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Control</span><strong>Tonómetro portátil si el servicio lo tiene</strong> (Tono-Pen, iCare), para documentar la presión antes y después. No tenerlo no impide hacer el procedimiento ni evaluarlo: la agudeza, la pupila y la retropulsión siguen siendo criterios válidos.</span>
+        </button>
+      </div>
+
+      <div class="warning-banner" style="margin-bottom:0;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Lo que no se necesita:</strong> pabellón, microscopio, electrobisturí ni sutura inmediata. La
+        herida <em>se deja abierta</em>: cerrarla anula la descompresión. La reparación palpebral es diferida y la hace
+        oftalmología u oculoplastia.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · EL PROCEDIMIENTO -->
+  <div class="section s7" id="s7" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">El procedimiento, en siete pasos</div>
+        <div class="section-subtitle">Cantotomía lateral y cantólisis inferior</div>
+      </div>
+      <span class="section-check-count" id="count-s7">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>El procedimiento dura menos de lo que cuesta decidirse.</strong> La dificultad real no es
+        técnica: es que casi nadie lo ha hecho antes. En una encuesta a médicos en formación de oftalmología del Reino
+        Unido, <strong>20 de 23 residentes junior (87 %) nunca habían realizado una cantotomía de urgencia</strong>, y
+        la confianza se asociaba a haber hecho cursos, rotaciones de oculoplastia y casos electivos. <em>Si es tu
+        primera vez, lo será para casi todos: sigue los pasos, anuncia cada uno y no improvises la dirección de la
+        tijera.</em></span>
+      </div>
+
+      <div class="checklist" id="list-s7">
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 1 · Posición y preparación</span><strong>Paciente en decúbito supino con la cabecera elevada, cabeza estabilizada por el ayudante, luz dirigida al canto lateral.</strong> Antisepsia periocular y campo. El operador se ubica del lado del ojo afectado, con la bandeja al alcance de la mano dominante.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 2 · Anestesia local</span><strong>Infiltrar 1–2 mL de lidocaína con epinefrina en el canto lateral, dirigiendo la aguja <em>hacia el reborde orbitario lateral</em> y nunca hacia el globo</strong>, aspirando antes de inyectar. En el paciente inconsciente igual se infiltra por el efecto vasoconstrictor. <em>Si el paciente está por perder la visión y la anestesia demora, el procedimiento se hace igual: la analgesia sistémica va en paralelo.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 3 · Clampeo (opcional)</span><strong>Aplicar la pinza hemostática recta sobre el canto lateral, desde el ángulo hacia el reborde, durante 1–2 minutos.</strong> Aplasta el tejido y reduce el sangrado de la incisión, lo que permite ver lo que se corta en el paso siguiente. <em>Se omite sin culpa si el paciente está perdiendo visión delante tuyo.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 4 · Cantotomía</span><strong>Con la tijera recta de punta roma, cortar horizontalmente desde el ángulo cantal lateral hacia el reborde orbitario, en todo el espesor —piel, orbicular y conjuntiva—, aproximadamente 1–2 cm.</strong> Un solo corte firme, no varios cortes tímidos. <em>Al terminar este paso todavía no has descomprimido nada</em>: has abierto el acceso al tendón.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 5 · Tensar y palpar</span><strong>Tomar el borde lateral del párpado inferior con la pinza con dientes y traccionarlo hacia afuera y hacia abajo, alejándolo de la cara.</strong> Con la punta <em>cerrada</em> de la tijera, palpar el borde del reborde orbitario y recorrer hacia abajo hasta sentir la cuerda tensa de la crura inferior: es el <strong>«rasgueo»</strong>, y suena y se siente como una cuerda de guitarra. <em>Si no la sientes, no estás traccionando lo suficiente.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 6 · Cantólisis inferior</span><strong>Con la tijera orientada hacia <em>abajo y hacia atrás</em>, apuntando al reborde óseo y alejándose del globo, seccionar la crura inferior del tendón cantal lateral.</strong> Es un corte de 1–2 cm, contra el hueso. Se repite el rasgueo y se vuelve a cortar hasta que <strong>el párpado inferior queda completamente suelto y separable del reborde</strong>. La división incompleta del tendón es la causa número uno de fracaso.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 7 · Comprobar</span><strong>Reevaluar de inmediato: presión intraocular, agudeza visual, pupila y DPAR, y retropulsión del globo</strong>, y compararlas con los valores anotados antes de cortar. <strong>La herida se deja abierta</strong>, cubierta con gasa humedecida con suero fisiológico y pomada lubricante ocular si hay; nunca con un apósito compresivo.</span>
+        </button>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;margin-bottom:0;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Sangrará, y eso no es una complicación.</strong> El canto lateral está muy vascularizado y el
+        paciente suele estar anticoagulado. La respuesta es compresión <em>sobre el reborde óseo</em>, gasa y
+        paciencia, nunca compresión sobre el globo ni un punto de sutura que vuelva a cerrar lo que acabas de
+        abrir.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · ¿FUNCIONÓ? -->
+  <div class="section s8" id="s8" style="animation-delay:0.34s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">¿Funcionó? Y qué hacer si la presión no baja</div>
+        <div class="section-subtitle">Criterios de éxito, cantólisis superior y las alternativas publicadas</div>
+      </div>
+      <span class="section-check-count" id="count-s8">0/5</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Criterios de éxito · se comprueban en el minuto siguiente</div>
+      <div class="checklist" id="list-s8">
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>El párpado inferior quedó libre</strong> y se separa del reborde orbitario sin resistencia. Este es el criterio <em>técnico</em>: si no se cumple, el procedimiento no está terminado.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>La presión intraocular bajó.</strong> La meta habitual es llevarla <strong>bajo 40 mmHg</strong>, e idealmente bajo 30; en el modelo cadavérico la cantólisis inferior la llevó bajo 20 mmHg en 7 de 8 órbitas y la caída fue <em>inmediata</em>. <strong>El umbral exacto a exigir: verificar con protocolo institucional y con oftalmología.</strong></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>El globo vuelve a ser retropulsable</strong> y la proptosis disminuye visiblemente. Es el equivalente palpable de la caída de presión cuando no hay tonómetro.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>La agudeza visual, el DPAR o ambos mejoran.</strong> Puede ser inmediato o tardar horas: <em>la falta de mejoría visual inmediata no significa que el procedimiento fracasó</em>, mientras la presión haya bajado.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Todo lo anterior quedó anotado con hora</strong>, junto a los valores previos. Sin el «antes» no se puede demostrar el «después».</span>
+        </button>
+      </div>
+
+      <div class="subhead">Si la presión no bajó: la escalera</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Paso</th><th>Qué hacer y qué dice la evidencia</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1 · Revisar tu propio corte</td>
+              <td><strong>Lo más probable es que la crura inferior no esté seccionada por completo.</strong> Vuelve a traccionar el párpado, repite el rasgueo con la punta cerrada y corta lo que quede. En el modelo cadavérico la cantotomía sola dejaba la presión alta en las 8 órbitas: es exactamente este escenario. <em>Antes de escalar, descarta la división incompleta.</em></td>
+            </tr>
+            <tr>
+              <td>2 · Cantólisis superior</td>
+              <td>Seccionar también la <strong>crura superior</strong>, con la misma maniobra pero traccionando el párpado <em>superior</em> hacia afuera y arriba, y la tijera dirigida hacia arriba y atrás contra el reborde. Fue necesaria en <strong>2 de 8 órbitas</strong> del modelo cadavérico para completar la descompresión. Riesgo añadido: la glándula lagrimal y sus conductos están en ese cuadrante.</td>
+            </tr>
+            <tr>
+              <td>3 · Alternativas publicadas</td>
+              <td>Si el acceso es imposible por edema extremo o el operador no logra identificar el tendón, hay técnicas descritas con reducción de presión comparable en modelo cadavérico: la <strong>división vertical del párpado</strong> (reducción de 63 mmHg al primer minuto frente a 58,7 de la cantotomía con cantólisis) y la incisión <strong>paracantal «de un solo corte»</strong> (PIO final media 19 vs 14 mmHg; diferencia no significativa, p = 0,36), esta última ya usada con éxito en un caso real de urgencia. El <strong>«canthal cutdown»</strong> añadió un 74 % de reducción adicional de presión orbitaria sobre la cantotomía con cantólisis inferior. <em>Son opciones de rescate descritas en pocos modelos y casos aislados, no el estándar: úsalas si la técnica convencional falla o está fuera de tu alcance, y consúltalas con oftalmología.</em></td>
+            </tr>
+            <tr>
+              <td>4 · Descompresión formal</td>
+              <td><strong>Orbitotomía y descompresión ósea, drenaje del hematoma o del absceso, en pabellón.</strong> Es el destino de todo paciente que no responde, y también de varios que sí responden: la cantotomía es una medida de rescate, no el tratamiento definitivo de la causa. En la serie de traumas maxilofaciales se asoció la cantotomía con cantólisis inferior a la septólisis y a la disección cuidadosa del cuadrante inferotemporal de la órbita.</td>
+            </tr>
+            <tr>
+              <td>5 · Reevaluar el diagnóstico</td>
+              <td>Si la órbita está blanda, la presión es normal y la visión sigue mal, <strong>el problema no era el compartimento</strong>: neuropatía óptica traumática, avulsión del nervio, oclusión de la arteria central de la retina, lesión del globo o lesión quiasmática o cortical. Cambia de algoritmo y consulta.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Qué esperar del resultado</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📊</span><span><strong>El pronóstico es serio y depende del tiempo.</strong> En la serie de 15 pacientes con hemorragia retrobulbar, la demora hasta la intervención se asoció a menor recuperación visual (p = 0,03); de los 3 que llegaron <em>sin percepción de luz</em>, solo 1 recuperó visión (intervenido a 1,7 horas) y los 2 intervenidos a 5 y 8,7 horas no recuperaron nada. En la serie de 9 pacientes con trauma craneomaxilofacial, <strong>la visión se preservó en 3 de 8</strong>.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">🕐</span><span><strong>Y aun así, se hace siempre.</strong> Más de la mitad de los pacientes intervenidos <em>después</em> de los 90 minutos clásicos mejoraron su agudeza, y hubo mejoría documentada con intervención a las 9 horas. <strong>La recomendación explícita de los autores es realizar la cantotomía en todos los pacientes con síndrome compartimental orbitario, sin importar el tiempo transcurrido.</strong></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · DESPUÉS -->
+  <div class="section s9" id="s9" style="animation-delay:0.38s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Después de la descompresión</div>
+        <div class="section-subtitle">Herida abierta, ojo vigilado y causa tratada</div>
+      </div>
+      <span class="section-check-count" id="count-s9">0/6</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="checklist" id="list-s9">
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Herida</span><strong>Se deja abierta.</strong> Gasa humedecida con suero fisiológico, lubricante ocular en pomada para proteger la córnea expuesta, <em>sin apósito compresivo</em>. La reparación palpebral es diferida y la hace oftalmología u oculoplastia, con buen resultado funcional y estético habitual.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Vigilancia</span><strong>Reevaluación seriada de agudeza, pupila, DPAR, proptosis y presión intraocular.</strong> <em>El síndrome puede recurrir</em> si el sangrado continúa. Frecuencia y duración de los controles: <strong>verificar con protocolo institucional</strong> (una pauta razonable es cada 15–30 minutos las primeras horas, y luego espaciar según evolución).</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Imagen</span><strong>Ahora sí: tomografía de órbita con cortes finos</strong>, para documentar el hematoma, las fracturas, el cuerpo extraño y el estado del nervio óptico, y para planificar la cirugía. Después de la descompresión, no antes.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Causa</span><strong>Tratar lo que llenó la órbita:</strong> completar la reversión de la anticoagulación, controlar la hipertensión, antibióticos y drenaje si es infeccioso, reposo y prohibición de sonarse la nariz si es enfisema, y evaluación quirúrgica de las fracturas.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Destino</span><strong>Hospitalización con evaluación oftalmológica formal.</strong> Este paciente no se va de alta desde urgencias. El servicio de destino —oftalmología, maxilofacial, UPC según el resto del trauma— <em>se define con el protocolo local</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Registro</span><strong>Dejar escrito con hora:</strong> hallazgos que motivaron el diagnóstico, agudeza y pupilas antes y después, hora de la cantólisis, técnica empleada (cantólisis inferior, superior o ambas), presión antes y después, y a quién se avisó. Es la parte del procedimiento que más se olvida y la que más se pide después.</span>
+        </button>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./checklist-politrauma_2.html">Politrauma · secuencia ABCDE →</a>
+        <a class="cross-link" href="./algoritmo-tec-grave.html">TEC grave e hipertensión endocraneal →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · COMPLICACIONES Y CERTEZA -->
+  <div class="section s10" id="s10" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Complicaciones, errores y qué tan seguros estamos</div>
+        <div class="section-subtitle">Lo que sale mal, y la letra chica de la evidencia</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Complicación</th><th>Cómo se evita y qué hacer</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lesión iatrogénica del globo</td>
+              <td>La más temida. Se evita con <strong>tijera de punta roma</strong>, con la punta siempre orientada <strong>hacia el reborde óseo y en dirección contraria al ojo</strong>, y descartando el globo abierto antes de empezar. Si ocurre: escudo rígido, no manipular más, oftalmología inmediata.</td>
+            </tr>
+            <tr>
+              <td>Lesión del músculo recto lateral</td>
+              <td>Por cortar hacia dentro y hacia el globo en vez de contra el hueso. Se manifiesta como diplopía posterior. Documentar la motilidad y derivar.</td>
+            </tr>
+            <tr>
+              <td>Lesión de la glándula lagrimal y sus conductos</td>
+              <td>Ocupa el cuadrante <strong>superolateral</strong>. Es la razón por la que se hace primero la cantólisis <em>inferior</em> y solo después, si la presión no baja, la superior.</td>
+            </tr>
+            <tr>
+              <td>Sangrado de la herida</td>
+              <td>Esperable, sobre todo en el paciente anticoagulado. Compresión <em>sobre el reborde óseo</em>, gasa, epinefrina en el anestésico local, clampeo previo. <strong>Nunca comprimir el globo ni suturar para cohibir</strong>: eso reconstituye el compartimento.</td>
+            </tr>
+            <tr>
+              <td>Ptosis y malposición palpebral</td>
+              <td>Ptosis leve transitoria descrita incluso en casos con buena evolución (por ejemplo, ~1 mm durante 2 meses en un caso publicado). Ectropión o redondeo del canto son secuelas reparables. <em>Es un precio aceptable por una visión conservada.</em></td>
+            </tr>
+            <tr>
+              <td>Infección de la herida</td>
+              <td>Poco frecuente. Antisepsia razonable y control de herida. Profilaxis antibiótica: <strong>verificar con protocolo institucional</strong>.</td>
+            </tr>
+            <tr>
+              <td>Fracaso por división incompleta</td>
+              <td><strong>La complicación más frecuente en la práctica no es una lesión: es un procedimiento a medias.</strong> Se previene comprobando que el párpado inferior quede suelto y verificando la caída de presión antes de dar el procedimiento por terminado.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Los cinco errores que describen los propios servicios de urgencia</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">1</span><span><strong>No hacer el diagnóstico.</strong> Es raro —0,26 % de los traumas craneomaxilofaciales de una serie— y se confunde con equimosis periorbitaria banal. En el paciente inconsciente, nadie se queja de que no ve.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">2</span><span><strong>Retrasar el tratamiento definitivo</strong> esperando la interconsulta o el traslado.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">3</span><span><strong>Depender de la imagen.</strong> La tomografía va después.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">4</span><span><strong>No bajar la presión intraocular</strong>: conformarse con la cantotomía y no completar la <em>cantólisis</em>, ni verificar el resultado.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">5</span><span><strong>No descartar el globo abierto</strong> antes de presionar, medir o cortar.</span></div>
+      </div>
+
+      <div class="subhead">Nota de certeza</div>
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>No existen ensayos aleatorizados sobre este procedimiento, ni los habrá.</strong> Lo que sostiene
+        la práctica es: fisiología (una cavidad cerrada que se abre), <strong>modelos cadavéricos</strong> —de 6 a 12
+        órbitas por estudio— que muestran caídas de presión grandes e inmediatas, <strong>series clínicas pequeñas</strong>
+        (15 y 9 pacientes) con desenlaces visuales heterogéneos, y consenso de textos de urgencia, oftalmología y
+        cirugía maxilofacial. La ventana temporal clásica proviene de un <strong>modelo animal de oclusión arterial
+        completa</strong>, no del síndrome compartimental humano. Existe además al menos un caso publicado de síndrome
+        compartimental aparente por hemorragia retrobulbar que recuperó por completo la visión en 48 horas
+        <em>sin tratamiento alguno</em>, lo que recuerda que la historia natural no está bien caracterizada y que no
+        todo lo que parece compartimento lo es. Nada de esto cambia la conducta —ante el cuadro clínico, se
+        descomprime—, pero sí obliga a ser honesto sobre el nivel de certeza y a <strong>ajustar umbrales, fármacos y
+        criterios al protocolo institucional vigente</strong>.</span>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./index.html">← Volver al índice</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="progress-bottom" style="margin-top:20px;">
+    <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBar"></div></div>
+    <div class="progress-label"><span id="progress-pct">0%</span> del checklist</div>
+    <button type="button" class="reset-btn" onclick="resetAll()">↺ Reiniciar</button>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    presencial en el procedimiento. La <strong>cantotomía lateral con cantólisis es un procedimiento de alto
+    riesgo</strong>, con complicaciones potencialmente irreversibles (lesión del globo ocular, del músculo recto
+    lateral y de la glándula lagrimal, hemorragia y malposición palpebral), y está <strong>contraindicada ante
+    sospecha de globo abierto o rotura ocular</strong>: leer este checklist no sustituye la práctica supervisada ni la
+    simulación. No existen ensayos aleatorizados que respalden la técnica; la evidencia disponible proviene de
+    <strong>modelos cadavéricos de 6 a 12 órbitas, series clínicas de 9 a 15 pacientes y consenso de expertos</strong>,
+    y la ventana temporal clásica de 90–120 minutos deriva de un <strong>modelo de oclusión arterial en primates</strong>,
+    no del síndrome compartimental humano. Las <strong>metas de tiempo del cronómetro son referenciales y no
+    constituyen un estándar validado</strong>: el reparto de los hitos es una distribución razonable propuesta para
+    esta página. Todos los <strong>fármacos, dosis y umbrales</strong> mencionados —lidocaína con epinefrina y su dosis
+    máxima por peso, acetazolamida y su disponibilidad endovenosa, manitol, timolol, corticoides sistémicos, el umbral
+    de presión intraocular para indicar y para dar por exitoso el procedimiento, el esquema de reversión de la
+    anticoagulación, la profilaxis antibiótica, el antiséptico periocular y la frecuencia de los controles
+    posteriores— <strong>deben verificarse con el protocolo institucional</strong> y con el formulario nacional antes
+    de aplicarse, así como el instrumental realmente disponible en el servicio, la conducta local ante el globo abierto
+    concurrente y el uso de las técnicas alternativas descritas en la sección 08. Los umbrales ecográficos citados para
+    la deformación del polo posterior del globo y para el diámetro de la vaina del nervio óptico en este escenario
+    <strong>no están bien establecidos y deben verificarse con protocolo institucional</strong>. Los <strong>esquemas
+    son dibujos orientativos, no imágenes ecográficas ni ilustraciones anatómicas a escala.</strong> El contenido es
+    para <strong>pacientes adultos</strong>; la cantotomía pediátrica se rige por el protocolo del servicio. El
+    cronómetro y el checklist <strong>no guardan ningún dato</strong>: el registro del procedimiento se hace en la
+    ficha clínica.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Referencias localizadas y verificadas mediante <strong>PubMed</strong>.</div>
+      <div class="ref-item">Haubner F, Jägle H, Nunes DP, et al. <em>Orbital compartment: effects of emergent canthotomy and cantholysis.</em> Eur Arch Otorhinolaryngol. 2015;272(2):479–483. <a href="https://doi.org/10.1007/s00405-014-3238-5" target="_blank" rel="noopener">DOI: 10.1007/s00405-014-3238-5</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/25115315/" target="_blank" rel="noopener">PMID 25115315</a> — <strong>Referencia técnica principal de esta página.</strong> Ocho órbitas de 4 cadáveres frescos con síndrome compartimental simulado por inyección de material viscoso y volumetría orbitaria por tomografía. La cantotomía lateral redujo la presión intraocular solo <em>parcialmente</em> en las 8 órbitas; la <strong>cantólisis inferior la bajo de 20 mmHg en 7 de 8</strong>, y en 2 fue necesaria además la cantólisis superior. La septólisis inferior y superior añadidas tras la cantotomía con cantólisis no aportaron beneficio adicional.</div>
+      <div class="ref-item">Bailey LA, van Brummen AJ, Ghergherehchi LM, Chuang AZ, Richani K, Phillips ME. <em>Visual Outcomes of Patients With Retrobulbar Hemorrhage Undergoing Lateral Canthotomy and Cantholysis.</em> Ophthalmic Plast Reconstr Surg. 2019;35(6):586–589. <a href="https://doi.org/10.1097/IOP.0000000000001401" target="_blank" rel="noopener">DOI: 10.1097/IOP.0000000000001401</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/31693632/" target="_blank" rel="noopener">PMID 31693632</a> — <strong>Base del desvío «ya pasaron 90 minutos».</strong> Estudio retrospectivo de 15 pacientes con síndrome compartimental por hemorragia retrobulbar. Los 5 intervenidos antes de 3 horas recuperaron algo de visión, y también 6 de 10 intervenidos después de 3 horas; la intervención más tardía con mejoría de agudeza fue a las <strong>9 horas</strong>. Mayor demora se asoció a menor recuperación (p = 0,03). De los 3 que llegaron sin percepción de luz, 1 recuperó 20/40 (1,7 h) y 2 no recuperaron (5 y 8,7 h). Los autores <strong>recomiendan realizar el procedimiento en todos los pacientes, independientemente del tiempo transcurrido</strong>.</div>
+      <div class="ref-item">Hayreh SS, Kolder HE, Weingeist TA. <em>Central retinal artery occlusion and retinal tolerance time.</em> Ophthalmology. 1980;87(1):75–78. <a href="https://doi.org/10.1016/s0161-6420(80)35283-4" target="_blank" rel="noopener">DOI: 10.1016/s0161-6420(80)35283-4</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/6769079/" target="_blank" rel="noopener">PMID 6769079</a> — Origen de la ventana temporal clásica. Oclusión transitoria de la arteria central de la retina en 63 ojos de macacos rhesus mediante orbitotomía lateral y clampeo de 15 a 270 minutos: daño irreparable tras <strong>105 minutos</strong> de isquemia y buena recuperación tras <strong>97 minutos</strong>; «la retina del mono tolera hasta 100 minutos de isquemia, no más». Ampliado en Hayreh SS, Weingeist TA. Br J Ophthalmol. 1980;64(11):818–825. <a href="https://doi.org/10.1136/bjo.64.11.818" target="_blank" rel="noopener">DOI: 10.1136/bjo.64.11.818</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/7426553/" target="_blank" rel="noopener">PMID 7426553</a>. <strong>Es un modelo animal de oclusión arterial completa, no del síndrome compartimental orbitario.</strong></div>
+      <div class="ref-item">Murali S, Davis C, McCrea MJ, Plewa MC. <em>Orbital compartment syndrome: Pearls and pitfalls for the emergency physician.</em> J Am Coll Emerg Physicians Open. 2021;2(2):e12372. <a href="https://doi.org/10.1002/emp2.12372" target="_blank" rel="noopener">DOI: 10.1002/emp2.12372</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/33733246/" target="_blank" rel="noopener">PMID 33733246</a> — Revisión desde la urgencia. Fuente de los <strong>cinco errores</strong> de la sección 10: no hacer el diagnóstico, retrasar el tratamiento definitivo, depender en exceso de la imagen, no lograr bajar la presión intraocular y no descartar la rotura del globo. Insiste en la <strong>división completa del tendón cantal inferior</strong>, en evitar la lesión iatrogénica durante el procedimiento y en la consulta oftalmológica precoz.</div>
+      <div class="ref-item">Papadiochos I, Petsinis V, Sarivalasis SE, et al. <em>Acute orbital compartment syndrome due to traumatic hemorrhage: 4-year case series and relevant literature review with emphasis on its management.</em> Oral Maxillofac Surg. 2023;27(1):101–116. <a href="https://doi.org/10.1007/s10006-021-01036-9" target="_blank" rel="noopener">DOI: 10.1007/s10006-021-01036-9</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/35083570/" target="_blank" rel="noopener">PMID 35083570</a> — Serie de 49 meses: <strong>9 casos (0,26 %) entre 3.514 traumas craneomaxilofaciales</strong>; 7 recibieron cantotomía lateral con cantólisis inferior y 6 septólisis; la visión se preservó en 3 de 8 evaluables; <strong>7 de 9 tenían estado hipocoagulable</strong>. Recomienda explícitamente que <strong>la tomografía siga a la descompresión</strong> y vigilancia estrecha en anticoagulados, hipertensos, traumatismo craneal y adultos mayores.</div>
+      <div class="ref-item">Rowh AD, Ufberg JW, Chan TC, Vilke GM, Harrigan RA. <em>Lateral canthotomy and cantholysis: emergency management of orbital compartment syndrome.</em> J Emerg Med. 2015;48(3):325–330. <a href="https://doi.org/10.1016/j.jemermed.2014.11.002" target="_blank" rel="noopener">DOI: 10.1016/j.jemermed.2014.11.002</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/25524455/" target="_blank" rel="noopener">PMID 25524455</a> — Descripción paso a paso del procedimiento al lado de la camilla con instrumental simple, ilustrada, desde la medicina de urgencia.</div>
+      <div class="ref-item">Ballard SR, Enzenauer RW, O'Donnell T, Fleming JC, Risk G, Waite AN. <em>Emergency lateral canthotomy and cantholysis: a simple procedure to preserve vision from sight threatening orbital hemorrhage.</em> J Spec Oper Med. 2009;9(3):26–32. <a href="https://doi.org/10.55460/1CLD-XJUV" target="_blank" rel="noopener">DOI: 10.55460/1CLD-XJUV</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/19739474/" target="_blank" rel="noopener">PMID 19739474</a> — Revisión del mecanismo, diagnóstico y técnica en entornos sin especialista disponible, que argumenta que el procedimiento puede y debe ser realizado por personal no oftalmólogo entrenado.</div>
+      <div class="ref-item">Chelnis J, Kim J, Meador A, Oester AE, Fleming JC, Fowler BT. <em>Structural Limits of Orbital Compliance and Treatment Options for Pathologic Orbital Pressure.</em> Ophthalmic Plast Reconstr Surg. 2024;40(1):34–38. <a href="https://doi.org/10.1097/IOP.0000000000002480" target="_blank" rel="noopener">DOI: 10.1097/IOP.0000000000002480</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/37552488/" target="_blank" rel="noopener">PMID 37552488</a> — Doce órbitas cadavéricas volumizadas progresivamente. La <strong>presión intraocular y la presión del compartimento orbitario se correlacionaron casi perfectamente (r = 0,99)</strong>; la pérdida de distensibilidad orbitaria ocurrió con una PIO media de <strong>43,0 mmHg</strong>; la reducción media de PIO tras el tratamiento fue de 56,2 mmHg y la cantólisis lateral, la septólisis superior y la inferior fueron estadísticamente equivalentes.</div>
+      <div class="ref-item">Elpers J, Areephanthu C, Timoney PJ, Nunery WR, Lee HBH, Fu R. <em>Efficacy of vertical lid split versus lateral canthotomy and cantholysis in the management of orbital compartment syndrome.</em> Orbit. 2021;40(3):222–227. <a href="https://doi.org/10.1080/01676830.2020.1767154" target="_blank" rel="noopener">DOI: 10.1080/01676830.2020.1767154</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/32460574/" target="_blank" rel="noopener">PMID 32460574</a> — Siete órbitas cadavéricas. La cantotomía con cantólisis superior e inferior bajó la presión orbitaria <strong>58,7 mmHg (65,2 %) al primer minuto</strong> y 65,3 mmHg (72,6 %) a los 16 minutos; la división vertical del párpado, 63 mmHg (61,0 %) y 78 mmHg (75,5 %). La órbita control mantuvo la presión alta. Ambas técnicas fueron comparables.</div>
+      <div class="ref-item">Blandford AD, Young JM, Arepalli S, Li A, Hwang CJ, Perry JD. <em>Paracanthal "One-Snip" Decompression in a Cadaver Model of Retrobulbar Hemorrhage.</em> Ophthalmic Plast Reconstr Surg. 2018;34(5):428–431. <a href="https://doi.org/10.1097/IOP.0000000000001032" target="_blank" rel="noopener">DOI: 10.1097/IOP.0000000000001032</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/29369152/" target="_blank" rel="noopener">PMID 29369152</a> — Seis órbitas de 3 cadáveres: la cantotomía con cantólisis inferior llevó la PIO a una media de <strong>14 mmHg</strong> (caída media 32 mmHg) y la incisión paracantal «de un solo corte» a <strong>19 mmHg</strong> (caída 22 mmHg); sin diferencia significativa en reducción de PIO (p = 0,36) ni de proptosis (p = 0,23). Aplicación en un paciente real: Yarter JT, Racht J, Michels KS. Am J Emerg Med. 2022;64:206.e1–206.e3. <a href="https://doi.org/10.1016/j.ajem.2022.11.027" target="_blank" rel="noopener">DOI: 10.1016/j.ajem.2022.11.027</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/36564334/" target="_blank" rel="noopener">PMID 36564334</a>.</div>
+      <div class="ref-item">Strand AT, Czyz CN, Gibson A. <em>Canthal cutdown for emergent treatment of orbital compartment syndrome.</em> Orbit. 2017;36(5):285–292. <a href="https://doi.org/10.1080/01676830.2017.1337175" target="_blank" rel="noopener">DOI: 10.1080/01676830.2017.1337175</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/28812399/" target="_blank" rel="noopener">PMID 28812399</a> — Doce órbitas cadavéricas con dos sensores de presión. El «canthal cutdown» aportó un <strong>74 % de reducción adicional de presión orbitaria</strong> respecto de la cantotomía con cantólisis inferior (p = 0,01), y mantuvo la presión basal tras reinyección simulando hemorragia activa.</div>
+      <div class="ref-item">Zogheib S, Sukkarieh G, Mjaess G, Abou Zeid S. <em>Displaced Orbital Fractures with Concurrent Orbital Compartment Syndrome: A Case-Based Systematic Review.</em> Facial Plast Surg. 2022;38(3):274–278. <a href="https://doi.org/10.1055/s-0041-1740290" target="_blank" rel="noopener">DOI: 10.1055/s-0041-1740290</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/34905802/" target="_blank" rel="noopener">PMID 34905802</a> — Revisión sistemática de <strong>18 casos</strong> con fractura orbitaria desplazada y síndrome compartimental concurrente: la fractura suele ser protectora, pero la compartimentación de la grasa orbitaria por los septos de Koornneef permite que el síndrome ocurra igual. La cantotomía con cantólisis inferolateral se usó en el 50 % de los casos.</div>
+      <div class="ref-item">Ojaghihaghighi S, Lombardi KM, Davis S, Vahdati SS, Sorkhabi R, Pourmand A. <em>Diagnosis of Traumatic Eye Injuries With Point-of-Care Ocular Ultrasonography in the Emergency Department.</em> Ann Emerg Med. 2019;74(3):365–371. <a href="https://doi.org/10.1016/j.annemergmed.2019.02.001" target="_blank" rel="noopener">DOI: 10.1016/j.annemergmed.2019.02.001</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/30905470/" target="_blank" rel="noopener">PMID 30905470</a> — Cohorte prospectiva de 232 pacientes (351 ojos) con trauma ocular, ecografía con transductor lineal de 7–15 MHz por médicos de urgencia: <strong>sensibilidad 95,7 % y especificidad 99,7 % para el hematoma retrobulbar</strong> frente a la tomografía. Complementado por Carlin E, Palmieri A, Bajaj T, Nelson M. West J Emerg Med. 2020;21(3):622–625 (modelo cadavérico; sensibilidad 87 %, especificidad 88 %). <a href="https://doi.org/10.5811/westjem.2020.1.45081" target="_blank" rel="noopener">DOI: 10.5811/westjem.2020.1.45081</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/32421510/" target="_blank" rel="noopener">PMID 32421510</a>.</div>
+      <div class="ref-item">Lim CS, Malick H, Berry-Brincat A. <em>Emergency canthotomy and cantholysis — Factors affecting confidence among ophthalmic trainees in the United Kingdom.</em> Indian J Ophthalmol. 2021;69(9):2385–2388. <a href="https://doi.org/10.4103/ijo.IJO_278_21" target="_blank" rel="noopener">DOI: 10.4103/ijo.IJO_278_21</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/34427227/" target="_blank" rel="noopener">PMID 34427227</a> — Encuesta a 45 médicos en formación: <strong>20 de 23 residentes junior (87 %) nunca habían realizado el procedimiento de urgencia</strong>. La confianza se asoció a cursos, rotación de oculoplastia y casos electivos previos.</div>
+      <div class="ref-item">Causas no traumáticas citadas en la sección 01: Arıcı C, Gönen B, Mergen B, Sarıcı AM. <em>Orbital compartment syndrome secondary to retrobulbar hematoma after infratrochlear nerve block for nasolacrimal probing.</em> Ulus Travma Acil Cerrahi Derg. 2022;28(5):711–713. <a href="https://doi.org/10.14744/tjtes.2020.67932" target="_blank" rel="noopener">DOI: 10.14744/tjtes.2020.67932</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/35485473/" target="_blank" rel="noopener">PMID 35485473</a> (paciente sin anticoagulantes; ptosis residual de ~1 mm durante 2 meses). See A, Gan EC. <em>Orbital compartment syndrome during endoscopic drainage of subperiosteal orbital abscess.</em> Am J Otolaryngol. 2015;36(6):828–831. <a href="https://doi.org/10.1016/j.amjoto.2015.07.017" target="_blank" rel="noopener">DOI: 10.1016/j.amjoto.2015.07.017</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/26545481/" target="_blank" rel="noopener">PMID 26545481</a>.</div>
+      <div class="ref-item">Ujam A, Perry M. <em>Emergency management for orbital compartment syndrome — is decompression mandatory?</em> Int J Oral Maxillofac Surg. 2016;45(11):1435–1437. <a href="https://doi.org/10.1016/j.ijom.2016.08.001" target="_blank" rel="noopener">DOI: 10.1016/j.ijom.2016.08.001</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/27575394/" target="_blank" rel="noopener">PMID 27575394</a> — <strong>Caso discordante, citado por honestidad.</strong> Paciente con proptosis aguda y pérdida visual por aparente hemorragia retrobulbar en su único ojo vidente que no recibió ningún tratamiento y recuperó por completo la visión en 48 horas. Los autores lo usan para señalar que la historia natural del cuadro está mal caracterizada. <em>No modifica la conducta recomendada en esta página.</em></div>
+      <div class="ref-item">Aspectos <strong>convencionales</strong> descritos aquí y <strong>no respaldados individualmente por estudios de desenlace</strong>: el clampeo previo del canto con pinza hemostática, la maniobra de «rasgueo» del tendón, el uso de lidocaína con epinefrina y su volumen, dejar la herida abierta con lubricante ocular, la frecuencia de los controles posteriores, el umbral de presión intraocular para dar por exitoso el procedimiento, la preferencia por la cantólisis inferior antes que la superior para proteger la glándula lagrimal, y la contraindicación ante globo abierto. Todos provienen de razonamiento anatómico y consenso de textos de urgencia y oftalmología, y deben contrastarse con el <strong>protocolo institucional vigente</strong>.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Checklist con progreso ────────────────────────────────────────
+  const SECTIONS = ['s1', 's2', 's4', 's6', 's7', 's8', 's9'];
+  const totals = {};
+  SECTIONS.forEach(s => {
+    const list = document.getElementById('list-' + s);
+    totals[s] = list ? list.querySelectorAll('.check-item').length : 0;
+  });
+  const TOTAL_CHECKS = SECTIONS.reduce((acc, s) => acc + totals[s], 0);
+
+  function countChecked(section) {
+    return document.querySelectorAll('#list-' + section + ' .check-item.checked').length;
+  }
+
+  function toggle(el, section) {
+    el.classList.toggle('checked');
+    updateCount(section);
+    updateProgress();
+  }
+
+  function updateCount(section) {
+    const el = document.getElementById('count-' + section);
+    if (!el) return;
+    const n = countChecked(section);
+    const t = totals[section];
+    el.textContent = n + '/' + t;
+    if (t > 0 && n === t) {
+      el.style.background = 'rgba(16,185,129,0.15)';
+      el.style.borderColor = 'rgba(16,185,129,0.3)';
+      el.style.color = '#6ee7b7';
+    } else {
+      el.style.background = '';
+      el.style.borderColor = '';
+      el.style.color = '';
+    }
+  }
+
+  function updateProgress() {
+    const done = SECTIONS.reduce((acc, s) => acc + countChecked(s), 0);
+    const pct = TOTAL_CHECKS ? Math.round((done / TOTAL_CHECKS) * 100) : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.check-item.checked').forEach(el => el.classList.remove('checked'));
+    SECTIONS.forEach(updateCount);
+    updateProgress();
+  }
+
+  SECTIONS.forEach(updateCount);
+  updateProgress();
+
+  // ── Cronómetro (sin persistencia) ─────────────────────────────────
+  let swStart = null;
+  let swAccum = 0;
+  let swTick = null;
+
+  function swElapsed() {
+    return swAccum + (swStart !== null ? Date.now() - swStart : 0);
+  }
+
+  function fmt(ms) {
+    const total = Math.floor(ms / 1000);
+    const m = String(Math.floor(total / 60)).padStart(2, '0');
+    const s = String(total % 60).padStart(2, '0');
+    return m + ':' + s;
+  }
+
+  function swRender() {
+    const ms = swElapsed();
+    const disp = document.getElementById('swDisplay');
+    disp.textContent = fmt(ms);
+    disp.classList.toggle('warn', ms >= 540000 && ms < 900000);
+    disp.classList.toggle('late', ms >= 900000);
+  }
+
+  function swToggle() {
+    const btn = document.getElementById('swToggle');
+    const cap = document.getElementById('swCaption');
+    if (swStart === null) {
+      swStart = Date.now();
+      swTick = setInterval(swRender, 200);
+      btn.textContent = '⏸ Detener';
+      cap.textContent = 'Corriendo desde el reconocimiento del compartimento orbitario';
+    } else {
+      swAccum += Date.now() - swStart;
+      swStart = null;
+      clearInterval(swTick);
+      swTick = null;
+      btn.textContent = '▶ Continuar';
+      cap.textContent = 'En pausa';
+      swRender();
+    }
+  }
+
+  function msLabel(el) {
+    return el.dataset.prefix + el.dataset.goal + ' s';
+  }
+
+  function swReset() {
+    if (swTick) clearInterval(swTick);
+    swTick = null;
+    swStart = null;
+    swAccum = 0;
+    document.getElementById('swToggle').textContent = '▶ Iniciar';
+    document.getElementById('swCaption').textContent = 'Detenido · parte el reloj cuando reconoces el compartimento orbitario';
+    document.querySelectorAll('.ms').forEach(ms => {
+      ms.classList.remove('done', 'over');
+      ms.querySelector('.ms-goal').textContent = msLabel(ms);
+    });
+    swRender();
+  }
+
+  function markMs(el) {
+    if (el.classList.contains('done')) {
+      el.classList.remove('done', 'over');
+      el.querySelector('.ms-goal').textContent = msLabel(el);
+      return;
+    }
+    if (swStart === null && swAccum === 0) swToggle();
+    const secs = Math.round(swElapsed() / 1000);
+    const goal = parseInt(el.dataset.goal, 10);
+    el.classList.add('done');
+    el.classList.toggle('over', secs > goal);
+    el.querySelector('.ms-goal').textContent = secs + ' s · meta ' + goal + ' s';
+  }
+
+  swRender();
+</script>
+</body>
+</html>

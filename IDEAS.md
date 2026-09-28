@@ -151,7 +151,28 @@ terminado sin su tarjeta correspondiente en el index.
       Nota de certeza: el abordaje descrito se apoya en una serie retrospectiva de 11
       pacientes y un reporte de caso — es prometedor, no un estándar comparado con las rutas
       subxifoidea y apical.
-- [ ] Cantotomía lateral y cantólisis
+- [x] Cantotomía lateral y cantólisis — `checklist-cantotomia-cantolisis.html`
+      (checklist con cronómetro e hitos). El énfasis está en tres cosas: el diagnóstico es
+      **clínico y no espera la tomografía**; la **cantotomía sola no descomprime** —en el
+      modelo cadavérico de Haubner 2014 solo la cantólisis inferior bajó la presión bajo
+      20 mmHg, y en 2 de 8 órbitas hizo falta también la superior—; y el **globo abierto es
+      la única contraindicación real**. Se desarma además el «ya pasaron 90 minutos»: la
+      ventana clásica viene del modelo de oclusión arterial en primates de Hayreh 1980
+      (daño irreparable a los 105 min, recuperación a los 97), mientras que en la serie
+      clínica de Bailey 2019 más de la mitad de los intervenidos después de 3 horas
+      recuperaron visión, con mejoría documentada hasta las 9 horas, y los autores
+      recomiendan hacerla siempre. Incluye las alternativas publicadas (división vertical
+      del párpado, paracantal «de un solo corte», canthal cutdown) como rescate de certeza
+      baja, y esquemas vectoriales de la anatomía del tendón cantal lateral, de los dos
+      gestos y de la orientación de la tijera. Pendiente de validación: todas las metas de
+      tiempo del cronómetro; la dosis máxima de lidocaína con epinefrina y la
+      disponibilidad de acetazolamida endovenosa en el servicio; los esquemas de manitol,
+      timolol y corticoides; el esquema de reversión de anticoagulación; el umbral de
+      presión intraocular para indicar y para dar por exitoso el procedimiento; el
+      antiséptico periocular y la profilaxis antibiótica; la frecuencia de los controles
+      posteriores; los umbrales ecográficos del polo posterior y de la vaina del nervio
+      óptico; el instrumental realmente disponible; y la conducta local ante globo abierto
+      concurrente.
 - [ ] Instalación de sonda de taponamiento esofagogástrico (balón de
       Sengstaken-Blakemore)
 - [ ] Colocación de marcapasos transvenoso de emergencia
