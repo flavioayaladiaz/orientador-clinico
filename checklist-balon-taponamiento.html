@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Checklist · Sonda de balón esofagogástrico</title>
+<meta name="description" content="Checklist con cronómetro para la instalación de la sonda de taponamiento esofagogástrico (Sengstaken-Blakemore, Minnesota y Linton-Nachlas) en la hemorragia variceal masiva refractaria: cuándo es el momento del balón, por qué se intuba antes, prueba de balones y armado de la mesa, inserción con laringoscopio y bougie, inflado escalonado del balón gástrico y tracción, cuándo se infla el balón esofágico, las 24 horas de reloj, el retiro y las complicaciones.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(239,68,68,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(245,158,11,0.06) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 36px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.28);
+    color: #fca5a5;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  .header-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--red);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--red);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #ef4444, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .header-sub strong { color: #fff; font-weight: 500; }
+  .header-sub em { color: #fcd34d; font-style: normal; }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .section-check-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .s1 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s1 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s2 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s3 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s3 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s4 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s4 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s5 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s5 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s6 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s6 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s7 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s7 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s8 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s8 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s9 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s9 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s10 .section-num { background: rgba(239,68,68,0.10); color: #fecaca; border: 1px solid rgba(239,68,68,0.18); }
+  .s10 { --accent: var(--red); --accent-glow: var(--red-glow); }
+
+  /* CRONÓMETRO */
+  .stopwatch {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+  .sw-display {
+    font-family: var(--mono);
+    font-size: clamp(40px, 11vw, 60px);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #fff;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .sw-display.warn { color: #fcd34d; }
+  .sw-display.late { color: #fca5a5; }
+  .sw-caption {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+  .sw-controls { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+  .sw-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .sw-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .sw-btn:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+  .sw-btn.primary {
+    background: rgba(16,185,129,0.14);
+    border-color: rgba(16,185,129,0.45);
+    color: #6ee7b7;
+  }
+  .sw-btn.primary:hover { background: rgba(16,185,129,0.22); color: #a7f3d0; }
+
+  .milestones { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .ms {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .ms:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .ms:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .ms.done { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); color: #6ee7b7; }
+  .ms-goal {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .ms.done .ms-goal { color: #6ee7b7; border-color: rgba(16,185,129,0.4); }
+  .ms.done.over .ms-goal { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+  }
+  .check-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .check-item:hover::before { opacity: 1; }
+  .check-item:hover { border-color: rgba(255,255,255,0.12); }
+  .check-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .check-item.checked { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+  .check-item.checked::before { opacity: 0.5; }
+
+  .checkbox {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+    background: transparent;
+  }
+  .check-item.checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .checkmark {
+    opacity: 0;
+    transform: scale(0) rotate(-10deg);
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .check-item.checked .checkmark { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  .check-label {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-dim);
+    transition: color 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+  .check-item.checked .check-label {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(100,116,139,0.5);
+  }
+  .check-label strong { color: #fff; font-weight: 500; }
+  .check-label em { color: #fcd34d; font-style: normal; }
+  .check-step {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+
+  /* PROGRESO */
+  .progress-bottom {
+    margin-top: 6px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .progress-bar-track {
+    flex: 1;
+    min-width: 120px;
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #14b8a6);
+    border-radius: 100px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px rgba(16,185,129,0.5);
+  }
+  .progress-label { font-family: var(--mono); font-size: 12px; color: var(--text-dim); white-space: nowrap; }
+  #progress-pct { color: var(--emerald); font-weight: 500; }
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+  /* BANNERS */
+  .warning-banner, .info-banner, .go-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #fca5a5; }
+  .info-banner { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.18); color: #bfdbfe; }
+  .go-banner { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); color: #6ee7b7; }
+  .warning-banner strong, .info-banner strong, .go-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em, .go-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+  .plain-item.good { background: rgba(16,185,129,0.05); border-color: rgba(16,185,129,0.16); }
+  .plain-item.good strong { color: #6ee7b7; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ESQUEMAS */
+  .figure {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 16px 14px;
+    margin-bottom: 14px;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .fig-caption {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .fig-caption strong { color: var(--text-dim); font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(16,185,129,0.3);
+    background: rgba(16,185,129,0.08);
+    color: #6ee7b7;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(16,185,129,0.16); transform: translateX(2px); }
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--emerald); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .ms { align-items: flex-start; flex-wrap: wrap; }
+    .ms-goal { margin-left: 0; }
+    .sw-btn { flex: 1; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <div class="header-badge">Procedimiento HALO · Checklist</div>
+    <h1>Sonda de balón <span>esofagogástrico</span></h1>
+    <p class="header-sub">
+      La sonda de taponamiento —<strong>Sengstaken-Blakemore</strong>, <strong>Minnesota</strong> o
+      <strong>Linton-Nachlas</strong>— no trata nada: <strong>compra horas</strong>. Se instala cuando la hemorragia
+      variceal no se controla con el fármaco vasoactivo y la endoscopia, o cuando la endoscopia no es posible ahora, y
+      su único objetivo es llegar vivo al tratamiento definitivo (ligadura, <em>stent</em> esofágico, TIPS o traslado)
+      dentro de <strong>24 horas</strong>. Es un procedimiento con cifras incómodas y hay que conocerlas antes de
+      empezar: en el metaanálisis de terapias puente, el taponamiento con balón <strong>falló en controlar el sangrado
+      en 35,5 %</strong> de los casos, tuvo <strong>eventos adversos en más del 20 %</strong> y <strong>9,7 % de esos
+      eventos terminaron en muerte</strong>. Dos decisiones concentran casi todo ese riesgo: <em>intubar antes de
+      instalar</em> —la aspiración es la complicación clásica y se previene con la vía aérea— y
+      <em>no inflar nunca el balón gástrico sin saber que está en el estómago</em>, porque inflarlo en el esófago lo
+      rompe y mata. Aquí están la indicación, la preparación en paralelo, el armado de la mesa, la inserción, el
+      inflado escalonado con tracción, el balón esofágico, las 24 horas de reloj y el retiro.
+    </p>
+  </div>
+
+  <!-- 01 · ¿ES EL MOMENTO DEL BALÓN? -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">¿Es el momento del balón?</div>
+        <div class="section-subtitle">Indicación, contraindicaciones y el plan de salida antes de instalar</div>
+      </div>
+      <span class="section-check-count" id="count-s1">0/6</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>El balón es un puente, no un tratamiento.</strong> El consenso de Baveno VII lo sitúa
+        exclusivamente como <strong>medida temporal en la hemorragia variceal refractaria</strong>, por un
+        <strong>máximo de 24 horas</strong>, con el paciente en una unidad de cuidados intensivos y con
+        <strong>vía aérea protegida</strong>, y señala que donde esté disponible el <em>stent</em> esofágico metálico
+        autoexpandible es preferible. Instalar un balón sin haber nombrado en voz alta qué viene después —y a qué
+        hora— es la forma más común de que las 24 horas se cumplan sin que nadie haya organizado nada.</span>
+      </div>
+
+      <div class="subhead">Cuándo sí</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Hemorragia variceal que no se controla</strong> pese a fármaco vasoactivo esplácnico y terapia endoscópica. Es el escenario clásico: ocurre en torno al <strong>10–20 %</strong> de los episodios de sangrado variceal agudo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🌊</span><span><strong>Exanguinación que impide la endoscopia:</strong> el campo está lleno de sangre, no se ve nada, o el paciente no tolera el procedimiento. El balón permite lavar, estabilizar y volver a mirar.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🌙</span><span><strong>Endoscopia no disponible ahora</strong> —sin endoscopista de turno, sin torre, de madrugada— en un paciente que se está desangrando. <em>La alternativa real no es una endoscopia mejor: es ninguna.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🚑</span><span><strong>Puente al traslado</strong> hacia un centro con endoscopia terapéutica, radiología intervencional o TIPS. Si tu hospital no tiene el tratamiento definitivo, <strong>el traslado es el tratamiento</strong> y el balón es lo que permite hacerlo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🎈</span><span><strong>Várices gástricas fúndicas:</strong> lo que comprime es <strong>el balón gástrico traccionado</strong> —sonda de Linton-Nachlas, o el balón gástrico de la Sengstaken/Minnesota—. <em>El balón esofágico no sirve para várices del fondo gástrico.</em></span></div>
+      </div>
+
+      <div class="subhead">Cuándo no, o no todavía</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🫁</span><span><strong>Sin vía aérea protegida.</strong> No es un detalle logístico: en la serie de 151 episodios del Hospital Clínic, la única complicación grave fue la <strong>aspiración pulmonar (10 %)</strong>, se asoció al grado de encefalopatía y <strong>se previno con intubación orotraqueal previa al taponamiento</strong>. Si no puedes asegurar la vía aérea, resuelve eso primero.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🛑</span><span><strong>Sangrado ya controlado.</strong> No se instala «por si acaso»: el balón solo acumula riesgo cuando no hay sangrado que comprimir.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">❓</span><span><strong>Origen no variceal.</strong> Está diseñado para várices. En hemorragia no variceal (úlcera, Mallory-Weiss, tumor) su uso es excepcional y fuera de indicación; hay reportes de rescate, no una recomendación. <em>Verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🔪</span><span><strong>Cirugía esofagogástrica reciente, estenosis esofágica conocida o sospecha de perforación esofágica</strong>: contraindicaciones relativas o absolutas según el caso. <em>Verificar con protocolo institucional</em> y, si hay tiempo, discutir con cirugía o gastroenterología.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧭</span><span><strong>Sin plan de salida nombrado.</strong> No es una contraindicación formal, pero sí una trampa: antes de inflar, alguien debe decir en voz alta <em>qué</em> tratamiento definitivo se va a hacer, <em>dónde</em> y <em>a qué hora</em>.</span></div>
+      </div>
+
+      <div class="subhead">Confirmación</div>
+      <div class="checklist" id="list-s1">
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Origen variceal confirmado o altamente probable</strong>: cirrosis conocida o estigmas de hepatopatía, hematemesis masiva, endoscopia previa con várices, o endoscopia de este episodio que las mostró sangrando.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Está dicho por qué se pone:</strong> fracaso de la terapia estándar, endoscopia imposible ahora, o puente al traslado. <em>Una frase en la ficha.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Plan de salida nombrado con hora:</strong> endoscopia, <em>stent</em>, TIPS o traslado, y quién lo va a hacer. El balón dura <strong>24 horas como máximo</strong>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Vía aérea asegurada o asegurándose ahora</strong>, con el equipo y la persona a cargo definidos.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Contraindicaciones revisadas:</strong> cirugía esofagogástrica reciente, estenosis conocida, sospecha de perforación.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Equipo informado y roles repartidos</strong>: quién inserta, quién infla y controla presiones, quién registra tiempos y volúmenes, quién habla con la familia.</span>
+        </button>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./algoritmo-hda-variceal.html">Algoritmo completo de HDA variceal →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · LO QUE CORRE EN PARALELO -->
+  <div class="section s2" id="s2" style="animation-delay:0.10s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Lo que corre en paralelo mientras se arma el balón</div>
+        <div class="section-subtitle">Vía aérea, volumen, fármacos, antibiótico y llamadas — todo al mismo tiempo</div>
+      </div>
+      <span class="section-check-count" id="count-s2">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Intubar antes, no después.</strong> El paciente que necesita un balón está vomitando sangre, con
+        encefalopatía, y va a recibir una sonda gruesa por la boca con maniobras que provocan náusea. La serie de
+        <strong>151 episodios consecutivos</strong> de taponamiento mostró aspiración pulmonar en el <strong>10 %</strong>,
+        asociada al grado de encefalopatía y <strong>prevenida por la intubación orotraqueal previa</strong>. La
+        discusión sobre intubar o no antes de una endoscopia en hemorragia digestiva <em>no es esta discusión</em>: aquí
+        la vía aérea es parte del procedimiento.</span>
+      </div>
+
+      <div class="subhead">Los cinco frentes</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🫁</span><span><strong>Vía aérea:</strong> intubación con secuencia rápida por el operador más experimentado, aspiración potente lista y doble sistema de aspiración. Cabecera a <strong>30–45°</strong> una vez intubado. Sedación y analgesia suficientes: una sonda de taponamiento con tracción no se tolera despierto.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Circulación:</strong> dos vías gruesas o acceso central, protocolo de transfusión masiva activado si corresponde, calentador de fluidos, calcio y control de la temperatura. La meta transfusional es <strong>restrictiva (hemoglobina ~7 g/dL)</strong>: <em>sobretransfundir sube la presión portal y favorece el resangrado.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Fármaco vasoactivo esplácnico, ya:</strong> <strong>terlipresina 2 mg IV cada 4 h</strong> las primeras 48 h (luego 1 mg cada 4 h), u <strong>octreotida 50 µg en bolo seguido de 50 µg/h</strong> donde no haya terlipresina. <em>No se suspende porque se instaló el balón</em>: actúan sobre mecanismos distintos.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🦠</span><span><strong>Antibiótico profiláctico:</strong> <strong>ceftriaxona 1 g IV cada 24 h</strong> es el esquema habitual en cirrosis con hemorragia digestiva; ajustar a la epidemiología y resistencia locales. <em>Verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">📞</span><span><strong>Llamadas en paralelo:</strong> endoscopia, unidad de cuidados intensivos, radiología intervencional (TIPS), banco de sangre y —si el centro no tiene tratamiento definitivo— <strong>activación del traslado ahora</strong>, no cuando el balón ya esté puesto.</span></div>
+      </div>
+
+      <div class="info-banner">
+        <span class="warning-icon">🧪</span>
+        <span><strong>Coagulopatía:</strong> la corrección rutinaria del INR con plasma <strong>no está recomendada</strong>
+        en la hemorragia variceal —el INR no mide el riesgo de sangrado en cirrosis y el volumen de plasma sube la
+        presión portal—. Los umbrales de plaquetas y fibrinógeno, el uso de concentrado de fibrinógeno o de
+        antifibrinolíticos y el manejo del paciente anticoagulado <strong>deben seguir el protocolo institucional</strong>.</span>
+      </div>
+
+      <div class="subhead">Checklist de preparación</div>
+      <div class="checklist" id="list-s2">
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Paciente intubado</strong>, capnografía conectada, sedoanalgesia en infusión y cabecera a 30–45°.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Dos aspiraciones funcionando</strong> y probadas: una para la vía aérea, otra para el campo y la sonda.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Accesos vasculares gruesos</strong> y transfusión en curso con meta restrictiva; banco de sangre avisado del escenario.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Terlipresina u octreotida administradas</strong> y anotada la hora.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Ceftriaxona administrada</strong> y anotada la hora.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Endoscopia, UCI y radiología intervencional avisadas</strong>; si no hay recurso local, <em>traslado activado</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Radiografía portátil avisada</strong> para confirmar la posición del balón gástrico antes del inflado completo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Familia informada</strong> de que se trata de una medida temporal de alto riesgo en un cuadro de mortalidad elevada.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · CRONÓMETRO, HITOS Y ROLES -->
+  <div class="section s3" id="s3" style="animation-delay:0.14s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Cronómetro, hitos y roles</div>
+        <div class="section-subtitle">El reloj parte cuando se decide poner el balón</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="stopwatch">
+        <div class="sw-display" id="swDisplay">00:00</div>
+        <div class="sw-caption" id="swCaption">Detenido · parte el reloj cuando se decide instalar el balón</div>
+        <div class="sw-controls">
+          <button type="button" class="sw-btn primary" id="swToggle" onclick="swToggle()">▶ Iniciar</button>
+          <button type="button" class="sw-btn" onclick="swReset()">↺ Reiniciar</button>
+        </div>
+        <div class="milestones" id="milestones">
+          <button type="button" class="ms" data-goal="60" data-prefix="meta ~" onclick="markMs(this)"><span>Decisión dicha en voz alta, roles repartidos, endoscopia / UCI / intervencional avisadas</span><span class="ms-goal">meta ~60 s</span></button>
+          <button type="button" class="ms" data-goal="240" data-prefix="meta ~" onclick="markMs(this)"><span>Vía aérea asegurada y sedoanalgesia corriendo (4 min)</span><span class="ms-goal">meta ~240 s</span></button>
+          <button type="button" class="ms" data-goal="360" data-prefix="meta ~" onclick="markMs(this)"><span>Sonda probada fuera del paciente, marcada y lubricada · mesa y tijera listas (6 min)</span><span class="ms-goal">meta ~360 s</span></button>
+          <button type="button" class="ms" data-goal="480" data-prefix="meta ~" onclick="markMs(this)"><span>Sonda en el estómago: aspirado gástrico obtenido, profundidad anotada (8 min)</span><span class="ms-goal">meta ~480 s</span></button>
+          <button type="button" class="ms" data-goal="600" data-prefix="meta ~" onclick="markMs(this)"><span><strong>Balón gástrico inflado por completo y traccionado</strong>, posición marcada en la arcada (10 min)</span><span class="ms-goal">meta ~600 s</span></button>
+          <button type="button" class="ms" data-goal="720" data-prefix="meta ~" onclick="markMs(this)"><span>Sangrado reevaluado por el puerto gástrico y decidido si se infla el balón esofágico (12 min)</span><span class="ms-goal">meta ~720 s</span></button>
+          <button type="button" class="ms" data-goal="1200" data-prefix="meta ~" onclick="markMs(this)"><span>Radiografía tomada, fijación definitiva, <strong>hora de inflado escrita en la pizarra y en la ficha</strong> (20 min)</span><span class="ms-goal">meta ~1200 s</span></button>
+          <button type="button" class="ms" data-goal="1800" data-prefix="meta ~" onclick="markMs(this)"><span>Terapia definitiva acordada con hora y lugar (endoscopia, <em>stent</em>, TIPS o traslado) · traslado a UCI (30 min)</span><span class="ms-goal">meta ~1800 s</span></button>
+        </div>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Ninguna de estas metas es un estándar validado</strong>, con una excepción parcial: en un taller de
+        simulación con 28 residentes de urgencia, el tiempo promedio de <em>inserción del dispositivo</em> fue de
+        <strong>3 minutos y 49 segundos</strong> —sobre un simulador, con el paciente ya preparado—. El resto del reparto
+        de hitos es una distribución razonable propuesta para esta página y <strong>debe ajustarse al protocolo
+        institucional</strong>. El único plazo con respaldo de consenso es el otro reloj: el de las
+        <strong>24 horas</strong> de permanencia máxima.</span>
+      </div>
+
+      <div class="subhead">Roles mínimos</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>Operador:</strong> inserta la sonda y la posiciona. No suelta la sonda hasta que esté fijada.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>Ayudante de balones:</strong> infla en incrementos cuando el operador lo pide, clampea, controla la presión del balón esofágico con el manómetro y <em>dice en voz alta cada volumen y cada presión</em>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>Vía aérea:</strong> el que intubó se queda con la vía aérea, la aspiración y la sedación.</span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span><strong>Registro:</strong> anota hora de inflado, volumen del balón gástrico, presión del esofágico, profundidad marcada, tracción aplicada y hora límite de las 24 horas.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · LA SONDA Y LA MESA -->
+  <div class="section s4" id="s4" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Qué sonda es y cómo se arma la mesa</div>
+        <div class="section-subtitle">Tres dispositivos distintos, y la prueba de balones que nunca se salta</div>
+      </div>
+      <span class="section-check-count" id="count-s4">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="figure">
+        <svg viewBox="0 0 680 320" role="img" aria-label="Esquema comparativo de los tres dispositivos de taponamiento. Panel izquierdo: sonda de Sengstaken-Blakemore, con balon gastrico redondo distal, balon esofagico alargado proximal y tres lumenes (balon gastrico, balon esofagico y aspiracion gastrica). Panel central: sonda de Minnesota, igual a la anterior pero con un cuarto lumen de aspiracion esofagica por encima del balon esofagico. Panel derecho: sonda de Linton-Nachlas, con un unico balon gastrico de gran volumen y sin balon esofagico.">
+          <g font-family="DM Mono, monospace" font-size="10.5" fill="#94a3b8">
+            <!-- Panel A: Sengstaken-Blakemore -->
+            <rect x="10" y="12" width="212" height="296" rx="10" fill="rgba(239,68,68,0.04)" stroke="#7f1d1d" stroke-width="1.2"/>
+            <text x="24" y="34" fill="#fca5a5" font-size="11.5">Sengstaken-Blakemore</text>
+            <text x="24" y="50" fill="#64748b" font-size="9.5">3 lúmenes · 2 balones</text>
+            <line x1="116" y1="62" x2="116" y2="288" stroke="#cbd5e1" stroke-width="3"/>
+            <rect x="104" y="112" width="24" height="70" rx="12" fill="rgba(59,130,246,0.16)" stroke="#93c5fd" stroke-width="1.6"/>
+            <ellipse cx="116" cy="224" rx="42" ry="30" fill="rgba(239,68,68,0.16)" stroke="#fca5a5" stroke-width="1.8"/>
+            <circle cx="116" cy="280" r="3.5" fill="#e2e8f0"/>
+            <text x="24" y="108" fill="#bfdbfe" font-size="9.5">balón esofágico</text>
+            <text x="24" y="122" fill="#64748b" font-size="9">(30–45 mmHg)</text>
+            <text x="24" y="206" fill="#fca5a5" font-size="9.5">balón gástrico</text>
+            <text x="24" y="292" fill="#64748b" font-size="9">aspiración gástrica</text>
+            <path d="M92,288 L112,282" stroke="#475569" stroke-width="1"/>
+            <text x="150" y="300" fill="#fcd34d" font-size="9">no aspira el esófago</text>
+
+            <!-- Panel B: Minnesota -->
+            <rect x="234" y="12" width="212" height="296" rx="10" fill="rgba(16,185,129,0.04)" stroke="#065f46" stroke-width="1.2"/>
+            <text x="248" y="34" fill="#6ee7b7" font-size="11.5">Minnesota</text>
+            <text x="248" y="50" fill="#64748b" font-size="9.5">4 lúmenes · 2 balones</text>
+            <line x1="340" y1="62" x2="340" y2="288" stroke="#cbd5e1" stroke-width="3"/>
+            <rect x="328" y="112" width="24" height="70" rx="12" fill="rgba(59,130,246,0.16)" stroke="#93c5fd" stroke-width="1.6"/>
+            <ellipse cx="340" cy="224" rx="42" ry="30" fill="rgba(239,68,68,0.16)" stroke="#fca5a5" stroke-width="1.8"/>
+            <circle cx="340" cy="100" r="4" fill="#6ee7b7"/>
+            <circle cx="340" cy="280" r="3.5" fill="#e2e8f0"/>
+            <text x="248" y="96" fill="#6ee7b7" font-size="9.5">aspiración esofágica</text>
+            <text x="248" y="150" fill="#bfdbfe" font-size="9.5">balón esofágico</text>
+            <text x="248" y="206" fill="#fca5a5" font-size="9.5">balón gástrico</text>
+            <text x="248" y="292" fill="#64748b" font-size="9">aspiración gástrica</text>
+            <text x="374" y="300" fill="#6ee7b7" font-size="9">preferible si está</text>
+
+            <!-- Panel C: Linton-Nachlas -->
+            <rect x="458" y="12" width="212" height="296" rx="10" fill="rgba(245,158,11,0.04)" stroke="#78350f" stroke-width="1.2"/>
+            <text x="472" y="34" fill="#fcd34d" font-size="11.5">Linton-Nachlas</text>
+            <text x="472" y="50" fill="#64748b" font-size="9.5">1 balón gástrico grande</text>
+            <line x1="564" y1="62" x2="564" y2="288" stroke="#cbd5e1" stroke-width="3"/>
+            <ellipse cx="564" cy="212" rx="54" ry="42" fill="rgba(245,158,11,0.16)" stroke="#fcd34d" stroke-width="1.8"/>
+            <circle cx="564" cy="120" r="4" fill="#6ee7b7"/>
+            <circle cx="564" cy="278" r="3.5" fill="#e2e8f0"/>
+            <text x="472" y="112" fill="#6ee7b7" font-size="9.5">aspiración esofágica</text>
+            <text x="472" y="176" fill="#fcd34d" font-size="9.5">balón gástrico</text>
+            <text x="472" y="190" fill="#64748b" font-size="9">de gran volumen</text>
+            <text x="472" y="300" fill="#fcd34d" font-size="9">várices gástricas</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Esquema orientativo, no una ilustración a escala.</strong> Los tres dispositivos
+        se instalan igual; cambian los balones y los puertos. <strong>Los volúmenes y presiones exactos los define el
+        inserto del fabricante del kit disponible en el servicio</strong>: léelo antes, no durante.</div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Sonda</th><th>Balones y puertos</th><th>Cuándo y qué cuidar</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Sengstaken-Blakemore</td>
+              <td><strong>3 lúmenes:</strong> balón gástrico, balón esofágico y aspiración gástrica. <span class="dose-note">Balón gástrico habitualmente 250–500 mL de aire según el modelo</span></td>
+              <td>La más difundida. <strong>No tiene puerto de aspiración esofágica</strong>: la saliva y la sangre se acumulan sobre el balón esofágico y aumentan el riesgo de aspiración. Solución convencional: <strong>pasar una sonda nasogástrica adicional hasta justo por encima del balón esofágico</strong> y aspirarla de forma continua o intermitente.</td>
+            </tr>
+            <tr>
+              <td>Minnesota</td>
+              <td><strong>4 lúmenes:</strong> agrega la <strong>aspiración esofágica</strong> por encima del balón esofágico. <span class="dose-note">Balón gástrico de mayor volumen que la Sengstaken en la mayoría de los modelos</span></td>
+              <td><strong>Preferible cuando está disponible</strong>, justamente porque resuelve el problema anterior con un puerto propio. Se maneja exactamente igual.</td>
+            </tr>
+            <tr>
+              <td>Linton-Nachlas</td>
+              <td><strong>Un solo balón gástrico de gran volumen</strong> (sin balón esofágico), con aspiración gástrica y esofágica</td>
+              <td>Pensada para <strong>várices gástricas fúndicas</strong>, donde lo que comprime es el balón gástrico traccionado contra el cardias. Hemostasia del 88 % en la serie de 33 episodios gástricos del Hospital Clínic. <em>Rara vez disponible: verificar qué hay realmente en el servicio.</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">La mesa</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Dos o tres jeringas de 50–60 mL de cono catéter</strong> (las de rosca no calzan en todos los puertos), suero fisiológico y lubricante abundante.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🗜️</span><span><strong>Clamps o pinzas con protección de goma</strong> para cada lumen —o los tapones que trae el kit— y llaves de tres pasos.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📏</span><span><strong>Manómetro para el balón esofágico:</strong> manómetro aneroide o esfigmomanómetro conectado con llave de tres pasos. <em>El balón esofágico se infla por presión, no por volumen.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🔦</span><span><strong>Laringoscopio o videolaringoscopio y pinza Magill</strong> para dirigir la punta al esófago, y un <strong>bougie</strong> como estilete externo si la sonda se enrolla en la orofaringe.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⚖️</span><span><strong>Sistema de tracción:</strong> bolsa de suero de 500 mL a 1 L, cordón o venda, y una polea improvisada en el soporte de suero o en la baranda de la camilla. Algunos servicios usan un casco de tracción. <em>El peso exacto y el método se ajustan al protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">✂️</span><span><strong>Tijera pegada a la cabecera de la cama.</strong> No en el carro, no en el bolsillo: <strong>a la vista, junto al paciente</strong>. Si el balón migra y obstruye la vía aérea, la maniobra es cortar la sonda de un tijeretazo —corta todos los lúmenes a la vez— y retirarla.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏷️</span><span><strong>Cinta adhesiva y marcador</strong> para rotular cada puerto (<em>GÁSTRICO / ESOFÁGICO / ASPIRACIÓN</em>) y marcar la profundidad en la arcada dentaria. Confundir puertos es cómo se infla el balón equivocado.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧊</span><span><strong>Truco convencional:</strong> enfriar la sonda —refrigerada o en suero frío— la rigidiza y facilita el paso. Es práctica habitual descrita en textos de procedimientos, sin estudios comparativos.</span></div>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">🎈</span>
+        <span><strong>La prueba de balones no se salta nunca, aunque el paciente se esté desangrando.</strong> Un balón
+        con fuga descubierto <em>dentro</em> del paciente cuesta repetir todo el procedimiento; descubierto sobre la
+        mesa cuesta treinta segundos.</span>
+      </div>
+
+      <div class="subhead">Checklist de preparación de la sonda</div>
+      <div class="checklist" id="list-s4">
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Inserto del fabricante leído</strong>: volumen máximo del balón gástrico y presión del esofágico para <em>este</em> kit.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Balón gástrico inflado fuera del paciente</strong> al volumen objetivo y revisado —sumergido en suero o por palpación y auscultación— para descartar fugas. Luego <strong>desinflado por completo</strong>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Balón esofágico probado con el manómetro</strong> a la presión de trabajo y desinflado por completo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Puertos rotulados</strong> con cinta y marcador, y cada uno con su jeringa o clamp asignado.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Sonda lubricada generosamente</strong> en toda la porción distal.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Sistema de tracción armado antes de insertar</strong>: bolsa, cordón y polea listos, no improvisados con el balón ya inflado.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Tijera pegada a la cabecera</strong>, a la vista de todo el equipo, y el equipo sabe para qué está.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label">Si es una <strong>Sengstaken-Blakemore</strong>: <strong>sonda nasogástrica adicional preparada</strong> para aspirar por encima del balón esofágico.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · INSERCIÓN -->
+  <div class="section s5" id="s5" style="animation-delay:0.22s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Inserción, paso a paso</div>
+        <div class="section-subtitle">Por la boca, con laringoscopio, hasta 50 cm — y confirmar antes de inflar</div>
+      </div>
+      <span class="section-check-count" id="count-s5">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="figure">
+        <svg viewBox="0 0 680 350" role="img" aria-label="Esquema sagital del trayecto de la sonda. Se ve la cabeza de perfil con el tubo endotraqueal en la traquea, la sonda de taponamiento entrando por la boca y bajando por el esofago, la linea del diafragma y el estomago. El balon gastrico queda por debajo del diafragma, dentro del estomago, y se marca la profundidad aproximada de 50 centimetros en la arcada dentaria.">
+          <g font-family="DM Mono, monospace" font-size="10.5" fill="#94a3b8">
+            <rect x="12" y="12" width="656" height="326" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="28" y="36" fill="#fca5a5" font-size="12">Trayecto · vista sagital</text>
+
+            <!-- cabeza de perfil -->
+            <path d="M96,96 Q120,58 168,60 Q212,62 224,98 Q232,124 214,142 L214,162 Q196,176 168,176 Q132,176 116,160 Q96,142 96,96 Z" fill="rgba(255,255,255,0.04)" stroke="#64748b" stroke-width="1.6"/>
+            <path d="M118,150 Q150,160 186,152" stroke="#64748b" stroke-width="1.2" fill="none"/>
+            <text x="102" y="52" fill="#64748b" font-size="9.5">paciente intubado · cabecera 30–45°</text>
+
+            <!-- traquea con tubo -->
+            <path d="M176,168 Q186,204 196,236" stroke="#3b82f6" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.5"/>
+            <text x="212" y="212" fill="#bfdbfe" font-size="9.5">tubo endotraqueal</text>
+
+            <!-- esofago -->
+            <path d="M150,166 Q156,220 160,262 Q162,286 176,300" stroke="#475569" stroke-width="18" fill="none" stroke-linecap="round" opacity="0.45"/>
+            <text x="60" y="230" fill="#64748b" font-size="9.5">esófago</text>
+            <path d="M104,234 L136,232" stroke="#475569" stroke-width="1"/>
+
+            <!-- diafragma -->
+            <line x1="120" y1="272" x2="380" y2="272" stroke="#f59e0b" stroke-width="1.6" stroke-dasharray="7 5"/>
+            <text x="300" y="266" fill="#fcd34d" font-size="9.5">diafragma</text>
+
+            <!-- estomago -->
+            <path d="M176,300 Q186,282 214,280 Q286,276 312,318 Q330,354 268,352 Q206,350 186,330 Q172,316 176,300 Z" fill="rgba(255,255,255,0.03)" stroke="#94a3b8" stroke-width="1.6"/>
+            <text x="332" y="336" fill="#64748b" font-size="9.5">estómago</text>
+
+            <!-- sonda -->
+            <path d="M104,140 Q140,150 150,172 Q156,222 160,262 Q164,292 196,306 L242,314" stroke="#fca5a5" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <ellipse cx="248" cy="315" rx="30" ry="22" fill="rgba(239,68,68,0.16)" stroke="#fca5a5" stroke-width="1.8"/>
+            <text x="286" y="300" fill="#fca5a5" font-size="10">balón gástrico</text>
+            <text x="286" y="314" fill="#6ee7b7" font-size="9.5">por debajo del diafragma</text>
+
+            <!-- marca 50 cm -->
+            <circle cx="112" cy="142" r="5" fill="#fcd34d"/>
+            <text x="34" y="132" fill="#fcd34d" font-size="10">marca ~50 cm</text>
+            <text x="34" y="146" fill="#64748b" font-size="9">en la arcada dentaria</text>
+
+            <!-- nota lateral -->
+            <rect x="404" y="60" width="252" height="176" rx="10" fill="rgba(239,68,68,0.05)" stroke="#7f1d1d" stroke-width="1.1"/>
+            <text x="420" y="84" fill="#fca5a5" font-size="10.5">Antes de inflar del todo</text>
+            <text x="420" y="106" font-size="9.5">1 · aspirar contenido gástrico</text>
+            <text x="420" y="124" font-size="9.5">2 · inflar 50 mL y confirmar</text>
+            <text x="420" y="142" font-size="9.5">3 · radiografía: el balón bajo</text>
+            <text x="432" y="156" font-size="9.5">el diafragma, no en el tórax</text>
+            <text x="420" y="178" fill="#fcd34d" font-size="9.5">La auscultación NO confirma</text>
+            <text x="420" y="196" fill="#fcd34d" font-size="9.5">la posición.</text>
+            <text x="420" y="220" fill="#6ee7b7" font-size="9.5">Dolor o resistencia al inflar</text>
+            <text x="420" y="234" fill="#6ee7b7" font-size="9.5">= parar y desinflar.</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Esquema orientativo, no una ilustración anatómica a escala.</strong> La
+        profundidad de ~50 cm en la arcada es una referencia habitual para asegurar que el balón gástrico quedó en el
+        estómago; <strong>no sustituye la confirmación radiográfica</strong>.</div>
+      </div>
+
+      <div class="subhead">Los pasos</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>Vía oral, no nasal.</strong> En urgencia la boca permite una sonda más gruesa, es más rápida y <em>evita la epistaxis en un paciente coagulopático</em>, que puede terminar siendo un segundo foco de sangrado difícil de controlar. Colocar un bloque de mordida o fijar de modo que el paciente no ocluya la sonda.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>Laringoscopia directa o video, con pinza Magill</strong>, para dirigir la punta hacia el esófago bajo visión. Insertar a ciegas es lo que hace que la sonda se enrolle en la orofaringe o se vaya a la tráquea.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>Si la sonda se enrolla: el bougie como estilete externo.</strong> Técnica descrita en una serie de 4 casos (3 Minnesota, 1 Sengstaken): se introduce el extremo recto del bougie <strong>unos 0,5 cm dentro del puerto de aspiración gástrica más proximal</strong> y se usa para <em>empujar</em> la sonda hacia el esófago bajo visión laringoscópica; el bougie se retira con suavidad una vez inflado el balón gástrico y hecha la tracción. <em>Serie pequeña, sin complicaciones reportadas: es un recurso, no un estándar.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span><strong>Avanzar hasta ~50 cm</strong> medidos en la arcada dentaria, más allá de la marca del balón gástrico. Avanzar de más es seguro; avanzar de menos es lo peligroso.</span></div>
+        <div class="plain-item"><span class="bullet-icon">5</span><span><strong>Aspirar por el puerto gástrico:</strong> obtener contenido gástrico o sangre apoya la posición. <em>La auscultación epigástrica del burbujeo no es confirmación suficiente.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">6</span><span><strong>Confirmar antes del inflado completo:</strong> inflar 50 mL de aire en el balón gástrico y tomar la <strong>radiografía</strong> —portátil, al lado de la camilla—. El balón debe verse <strong>bajo el diafragma</strong>. Solo entonces se completa el inflado (sección 06).</span></div>
+      </div>
+
+      <div class="info-banner">
+        <span class="warning-icon">🧭</span>
+        <span><strong>¿Y si no hay radiografía disponible en ese minuto?</strong> El principio no cambia: nadie infla a
+        ciegas. Las alternativas son inflar los primeros 50 mL y buscar <strong>dolor, resistencia o desplazamiento</strong>
+        (en el paciente sedado: taquicardia súbita, hipertensión, resistencia al émbolo), y —donde haya operador
+        entrenado— visualizar el balón en el antro gástrico con ecografía. <strong>Ninguna de estas alternativas está
+        validada como equivalente a la radiografía</strong>: son lo que hay cuando el paciente no puede esperar.
+        <em>Verificar la conducta con el protocolo institucional.</em></span>
+      </div>
+
+      <div class="subhead">Checklist de inserción</div>
+      <div class="checklist" id="list-s5">
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Paciente intubado, sedado y con cabecera elevada</strong>; aspiración en la mano del ayudante.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Inserción oral bajo visión</strong> con laringoscopio y Magill; bougie disponible como estilete externo si se enrolla.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Sonda a ~50 cm</strong> en la arcada dentaria, sin resistencia.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Contenido gástrico aspirado</strong> por el puerto gástrico y lavado inicial hecho si hace falta.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>50 mL de aire en el balón gástrico</strong> y <strong>radiografía tomada</strong> —o, si es imposible, alternativa documentada en la ficha.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Posición subdiafragmática confirmada</strong> y dicha en voz alta antes de continuar.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Ninguna maniobra de inflado completo hecha hasta aquí.</strong></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · INFLADO GÁSTRICO Y TRACCIÓN -->
+  <div class="section s6" id="s6" style="animation-delay:0.26s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Inflado del balón gástrico y tracción</div>
+        <div class="section-subtitle">El paso que controla el sangrado — y el que mata si se hace en el esófago</div>
+      </div>
+      <span class="section-check-count" id="count-s6">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">☠️</span>
+        <span><strong>Inflar el balón gástrico dentro del esófago lo rompe.</strong> En la serie clásica de 50 episodios
+        de taponamiento, la <strong>rotura esofágica por inflado del balón gástrico en el esófago causó 3 muertes
+        (8 % de los episodios)</strong>. Es la complicación más letal del procedimiento y es <em>completamente
+        evitable</em>: posición confirmada, inflado escalonado, y <strong>parar ante cualquier dolor o resistencia</strong>.
+        En el paciente sedado el equivalente del dolor es la <strong>taquicardia o hipertensión súbitas, la agitación o
+        la resistencia inesperada del émbolo</strong>: si aparece, se desinfla y se reevalúa la posición.</span>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 680 330" role="img" aria-label="Esquema comparativo de dos situaciones. Panel izquierdo, correcto: el balon gastrico esta inflado dentro del estomago y traccionado hacia arriba contra el cardias, comprimiendo las varices del cardias y del esofago distal. Panel derecho, error letal: el balon esta inflado dentro del esofago, que se distiende y se rompe.">
+          <g font-family="DM Mono, monospace" font-size="10.5" fill="#94a3b8">
+            <!-- Panel correcto -->
+            <rect x="10" y="12" width="324" height="306" rx="10" fill="rgba(16,185,129,0.04)" stroke="#065f46" stroke-width="1.2"/>
+            <text x="26" y="34" fill="#6ee7b7" font-size="11.5">Correcto · balón en el estómago</text>
+            <path d="M150,52 Q152,110 156,156" stroke="#475569" stroke-width="20" fill="none" stroke-linecap="round" opacity="0.4"/>
+            <line x1="60" y1="162" x2="300" y2="162" stroke="#f59e0b" stroke-width="1.4" stroke-dasharray="6 4"/>
+            <text x="238" y="156" fill="#fcd34d" font-size="9">diafragma</text>
+            <path d="M156,176 Q168,158 196,156 Q262,152 286,196 Q302,232 244,232 Q186,232 168,210 Q152,192 156,176 Z" fill="rgba(255,255,255,0.03)" stroke="#94a3b8" stroke-width="1.5"/>
+            <ellipse cx="200" cy="188" rx="34" ry="25" fill="rgba(16,185,129,0.16)" stroke="#6ee7b7" stroke-width="1.8"/>
+            <path d="M150,52 L150,176" stroke="#fca5a5" stroke-width="3.4" fill="none"/>
+            <path d="M150,176 Q170,180 178,186" stroke="#fca5a5" stroke-width="3.4" fill="none"/>
+            <!-- varices comprimidas -->
+            <circle cx="140" cy="140" r="4" fill="rgba(99,102,241,0.6)"/>
+            <circle cx="164" cy="132" r="4" fill="rgba(99,102,241,0.6)"/>
+            <circle cx="146" cy="118" r="3.4" fill="rgba(99,102,241,0.6)"/>
+            <text x="200" y="120" fill="#a5b4fc" font-size="9.5">várices del cardias</text>
+            <text x="200" y="134" fill="#6ee7b7" font-size="9.5">comprimidas</text>
+            <!-- flecha traccion -->
+            <path d="M150,96 L150,58" stroke="#6ee7b7" stroke-width="2.4" marker-end="url(#arrUp)"/>
+            <text x="34" y="80" fill="#6ee7b7" font-size="10">tracción</text>
+            <text x="34" y="94" fill="#64748b" font-size="9">~0,5–1 kg</text>
+            <text x="26" y="266" font-size="9.5">El balón, inflado bajo el diafragma y</text>
+            <text x="26" y="282" font-size="9.5">traccionado, se apoya en el cardias y</text>
+            <text x="26" y="298" font-size="9.5">comprime las várices desde abajo.</text>
+
+            <!-- Panel error -->
+            <rect x="346" y="12" width="324" height="306" rx="10" fill="rgba(239,68,68,0.05)" stroke="#7f1d1d" stroke-width="1.2"/>
+            <text x="362" y="34" fill="#fca5a5" font-size="11.5">Error letal · balón en el esófago</text>
+            <path d="M486,52 Q488,110 492,164" stroke="#475569" stroke-width="20" fill="none" stroke-linecap="round" opacity="0.4"/>
+            <line x1="396" y1="176" x2="636" y2="176" stroke="#f59e0b" stroke-width="1.4" stroke-dasharray="6 4"/>
+            <text x="574" y="170" fill="#fcd34d" font-size="9">diafragma</text>
+            <path d="M492,190 Q504,172 532,170 Q598,166 622,210 Q638,246 580,246 Q522,246 504,224 Q488,206 492,190 Z" fill="rgba(255,255,255,0.03)" stroke="#94a3b8" stroke-width="1.5"/>
+            <ellipse cx="487" cy="112" rx="30" ry="24" fill="rgba(239,68,68,0.2)" stroke="#fca5a5" stroke-width="1.8"/>
+            <path d="M486,52 L486,86" stroke="#fca5a5" stroke-width="3.4"/>
+            <path d="M462,96 L442,82 M512,96 L532,82 M464,130 L444,144 M510,130 L530,144" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+            <text x="362" y="200" fill="#fca5a5" font-size="9.5">El esófago no tolera el volumen</text>
+            <text x="362" y="216" fill="#fca5a5" font-size="9.5">del balón gástrico: se desgarra.</text>
+            <text x="362" y="240" font-size="9.5">Se evita con: posición confirmada,</text>
+            <text x="362" y="256" font-size="9.5">inflado en escalones y parar ante</text>
+            <text x="362" y="272" font-size="9.5">dolor o resistencia.</text>
+            <text x="362" y="298" fill="#fcd34d" font-size="9.5">3 muertes en 50 episodios (8 %).</text>
+          </g>
+          <defs>
+            <marker id="arrUp" markerWidth="9" markerHeight="9" refX="4.5" refY="7" orient="auto">
+              <path d="M4.5,0 L9,8 L0,8 Z" fill="#6ee7b7"/>
+            </marker>
+          </defs>
+        </svg>
+        <div class="fig-caption"><strong>Esquema orientativo, no una ilustración anatómica a escala.</strong> La
+        hemostasia la produce el <strong>balón gástrico traccionado contra el cardias</strong>; el balón esofágico es un
+        segundo tiempo que solo se usa si el sangrado continúa.</div>
+      </div>
+
+      <div class="subhead">La secuencia de inflado</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>Primeros 50 mL de aire</strong> y confirmación de posición (sección 05). <em>Nunca se pasa de aquí sin confirmar.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>Completar en escalones de ~100 mL</strong> hasta el volumen que indica el inserto del kit. Como orden de magnitud, los balones gástricos de las sondas de Sengstaken-Blakemore suelen inflarse con <strong>250–500 mL de aire</strong>, los de Minnesota con volúmenes mayores y el de Linton-Nachlas con hasta ~600 mL. <strong>El número que manda es el del fabricante del kit disponible: verificar.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>Aire, no agua ni suero</strong>, salvo que el fabricante indique otra cosa: el aire permite desinflar rápido, que es exactamente lo que hace falta en una emergencia. <em>Verificar con el inserto y con el protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span><strong>Clampear el puerto del balón gástrico</strong> y dejarlo rotulado con el volumen y la hora.</span></div>
+        <div class="plain-item"><span class="bullet-icon">5</span><span><strong>Retirar con suavidad hasta sentir el tope</strong>: el balón se apoya en el cardias. No es un tirón, es una tracción sostenida hasta la resistencia.</span></div>
+        <div class="plain-item"><span class="bullet-icon">6</span><span><strong>Aplicar tracción continua de ~0,5 a 1 kg</strong> con una bolsa de suero sobre una polea, o con el sistema que use el servicio. <em>La magnitud exacta del peso, el método de fijación y la duración de la tracción varían entre protocolos y no están estandarizados: verificar con protocolo institucional.</em> Demasiada tracción produce necrosis de la mucosa y migración; muy poca no comprime nada.</span></div>
+        <div class="plain-item"><span class="bullet-icon">7</span><span><strong>Marcar la profundidad en la arcada</strong> con cinta y marcador, fotografiarla o anotarla en la ficha. <strong>Esa marca es el detector de migración</strong> en los controles siguientes.</span></div>
+        <div class="plain-item"><span class="bullet-icon">8</span><span><strong>Reevaluar el sangrado</strong> por el puerto de aspiración gástrica: en la mayoría de los casos el sangrado se detiene <em>solo con el balón gástrico</em>. Si se detuvo, <strong>no se infla el balón esofágico</strong>.</span></div>
+      </div>
+
+      <div class="go-banner">
+        <span class="warning-icon">📈</span>
+        <span><strong>Lo que se puede esperar.</strong> En la serie de 151 episodios, la hemostasia mantenida al menos
+        24 horas se logró en el <strong>91,5 %</strong> de los tratados con Sengstaken-Blakemore por várices esofágicas
+        y en el <strong>88 %</strong> de los tratados con Linton-Nachlas por várices gástricas; un ensayo aleatorizado
+        posterior mostró eficacia hemostática del <strong>86,5 %</strong> con taponamiento. Pero la
+        <strong>hemostasia permanente fue solo del 47,7 %</strong>: <em>aproximadamente la mitad vuelve a sangrar al
+        desinflar</em>. Esa cifra es la razón de que el balón solo tenga sentido con un tratamiento definitivo
+        organizado.</span>
+      </div>
+
+      <div class="subhead">Checklist de inflado</div>
+      <div class="checklist" id="list-s6">
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Posición subdiafragmática confirmada</strong> antes de pasar de 50 mL.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Inflado en escalones</strong>, diciendo el volumen en voz alta, hasta el volumen del fabricante.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Ningún dolor, resistencia ni cambio hemodinámico brusco</strong> durante el inflado. Si lo hubo: se desinfló y se reevaluó la posición.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Puerto clampeado y rotulado</strong> con volumen y hora.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Tracción aplicada</strong> y anotada (peso y método), con el sistema fijado de forma estable.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Profundidad marcada</strong> en la arcada dentaria y registrada en la ficha.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Sangrado reevaluado</strong> por el puerto gástrico y el resultado dicho en voz alta.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Hora de inflado escrita en la pizarra</strong> y hora límite de 24 h calculada y anotada.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · BALÓN ESOFÁGICO -->
+  <div class="section s7" id="s7" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Balón esofágico: solo si sigue sangrando</div>
+        <div class="section-subtitle">Se infla por presión, se controla con manómetro y es el que produce necrosis</div>
+      </div>
+      <span class="section-check-count" id="count-s7">0/5</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>Es un segundo tiempo, no parte del primero.</strong> El balón esofágico se infla
+        <strong>únicamente si el sangrado continúa</strong> con el balón gástrico inflado y traccionado. Es el que
+        produce la isquemia de la mucosa esofágica y, con ella, la ulceración, la necrosis y la perforación tardía.
+        Cada minuto que está inflado cuenta.</span>
+      </div>
+
+      <div class="subhead">Cómo</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📏</span><span><strong>Se infla por presión, con manómetro</strong> —no por volumen—. El rango convencional es de <strong>30 a 45 mmHg</strong>: suficiente para exceder la presión de las várices, por debajo de la presión de perfusión de la mucosa. <em>Verificar el rango con el inserto del kit y el protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">⏱️</span><span><strong>Control de presión al menos cada hora</strong>, registrado. Una presión que cae sugiere fuga o migración; una presión que sube sin que nadie infle sugiere desplazamiento o cambio de posición del paciente.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫧</span><span><strong>Usar la presión mínima que detiene el sangrado</strong> y reducirla en cuanto el sangrado ceda.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧻</span><span><strong>Aspirar por encima del balón:</strong> puerto esofágico de la Minnesota, o sonda nasogástrica colocada justo por encima del balón en la Sengstaken-Blakemore. Es lo que evita que la saliva y la sangre represadas terminen en el pulmón.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔁</span><span><strong>Desinflado intermitente:</strong> varios protocolos desinflan brevemente el balón esofágico cada 6–8 horas para reducir la isquemia de la mucosa, y muchos recomiendan desinflarlo antes que el gástrico y mucho antes de las 24 horas. <strong>No hay evidencia comparativa que defina el esquema óptimo: verificar con protocolo institucional.</strong></span></div>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">🛑</span>
+        <span><strong>Nunca se infla el balón esofágico si no está confirmada la posición del gástrico.</strong> Y si el
+        balón gástrico se desinfla o se sospecha migración, <strong>lo primero que se desinfla es el esofágico</strong>:
+        un balón esofágico inflado con el gástrico suelto puede subir y ocluir la vía aérea.</span>
+      </div>
+
+      <div class="subhead">Checklist del balón esofágico</div>
+      <div class="checklist" id="list-s7">
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>El sangrado continúa</strong> pese al balón gástrico inflado y traccionado, y está documentado.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Manómetro conectado</strong> y presión objetivo acordada antes de inflar.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Presión inicial registrada</strong> con hora, y control horario programado en la hoja de enfermería.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Aspiración por encima del balón</strong> instalada y funcionando.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Plan de desinflado escrito</strong>: a qué hora se reevalúa y en qué orden se desinflan los balones.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · LAS 24 HORAS -->
+  <div class="section s8" id="s8" style="animation-delay:0.34s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Las 24 horas: vigilancia y plan de salida</div>
+        <div class="section-subtitle">Lo que se hace mientras el balón está puesto — y lo que tiene que estar listo al final</div>
+      </div>
+      <span class="section-check-count" id="count-s8">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⏳</span>
+        <span><strong>Máximo 24 horas.</strong> Es el plazo del consenso de Baveno VII, y no se cumple solo: alguien
+        tiene que escribir la hora de inflado en la pizarra, calcular la hora límite y hacerse cargo de que a esa hora
+        exista un tratamiento definitivo hecho o en curso. <em>El balón no se «deja puesto a ver cómo evoluciona».</em></span>
+      </div>
+
+      <div class="subhead">Vigilancia</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span><strong>UCI, siempre</strong>, con monitorización continua, sedoanalgesia, cabecera a 30–45° y la <strong>tijera a la cabecera</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📍</span><span><strong>Marca de profundidad revisada en cada turno</strong> y tras cada movilización, traslado o cambio de posición. Una marca que se movió es una migración hasta que se demuestre lo contrario.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫁</span><span><strong>Dificultad respiratoria súbita, estridor o desaturación</strong> en el paciente no intubado, o presiones de vía aérea nuevas en el intubado: sospechar <strong>migración del balón</strong> → <strong>cortar la sonda con la tijera y retirarla</strong>, sin perder tiempo desinflando puerto por puerto.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💢</span><span><strong>Dolor torácico nuevo, enfisema subcutáneo, derrame pleural o fiebre inexplicada</strong>: sospechar <strong>perforación esofágica</strong>. Imagen y cirugía ahora.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Débito por los puertos de aspiración</strong> cuantificado y registrado: es el marcador de si el taponamiento está funcionando.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Sigue todo lo demás:</strong> vasoactivo esplácnico, antibiótico, transfusión con meta restrictiva, control de la encefalopatía, lactulosa cuando corresponda y búsqueda de precipitantes (infección, peritonitis bacteriana espontánea).</span></div>
+      </div>
+
+      <div class="subhead">Las salidas</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Salida</th><th>Qué es</th><th>Cuándo</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Endoscopia terapéutica</td>
+              <td>Ligadura con bandas de las várices esofágicas, o cianoacrilato en várices gástricas donde haya experiencia</td>
+              <td>La salida habitual: se programa apenas el paciente está estabilizado, con el balón aún puesto y el equipo preparado para desinflar en la sala de endoscopia o en la UCI.</td>
+            </tr>
+            <tr>
+              <td><em>Stent</em> esofágico autoexpandible</td>
+              <td>Prótesis metálica cubierta específica para várices esofágicas</td>
+              <td><strong>Donde esté disponible, es preferible al balón</strong>: en el ensayo aleatorizado que los comparó, el éxito terapéutico fue <strong>66 % con stent frente a 20 % con balón</strong>, con mejor control del sangrado (85 % vs 47 %) y menos eventos adversos graves. Puede permanecer días, lo que da tiempo real para organizar el TIPS. <em>No sirve para várices gástricas fúndicas.</em></td>
+            </tr>
+            <tr>
+              <td>TIPS de rescate</td>
+              <td>Cortocircuito portosistémico intrahepático transyugular</td>
+              <td>Es el tratamiento que <strong>resuelve</strong> el sangrado refractario porque descomprime el sistema portal. Decisión conjunta con hepatología y radiología intervencional.</td>
+            </tr>
+            <tr>
+              <td>Traslado</td>
+              <td>Derivación a un centro con endoscopia terapéutica, radiología intervencional o TIPS</td>
+              <td><strong>Si tu centro no tiene tratamiento definitivo, el traslado es el tratamiento.</strong> Se activa al instalar el balón, no cuando se acaban las 24 horas. Trasladar con balón exige vía aérea asegurada, tracción fijada, tijera en la ambulancia y el equipo informado de cómo cortar.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Checklist de las 24 horas</div>
+      <div class="checklist" id="list-s8">
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Hora límite de 24 h escrita</strong> en la pizarra, en la ficha y en el pase de turno.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Paciente en UCI</strong>, monitorizado, sedado y con la vía aérea asegurada.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Tijera visible en la cabecera</strong> y el equipo de turno sabe cuándo usarla.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Controles programados</strong>: presión del balón esofágico, marca de profundidad, débito y examen respiratorio.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Tratamiento definitivo agendado</strong> con hora, lugar y responsable.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Si hay traslado:</strong> unidad, ruta, vía aérea, tracción fijada y tijera a bordo verificadas antes de salir.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Terapia médica completa continuada</strong>: vasoactivo, antibiótico, transfusión restrictiva y manejo de la encefalopatía.</span>
+        </button>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./algoritmo-hda-variceal.html">Algoritmo de HDA variceal · shock y falla hepática →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · RETIRO -->
+  <div class="section s9" id="s9" style="animation-delay:0.38s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Desinflado y retiro</div>
+        <div class="section-subtitle">El momento de más riesgo de resangrado — y la maniobra de emergencia</div>
+      </div>
+      <span class="section-check-count" id="count-s9">0/6</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">🔄</span>
+        <span><strong>Cerca de la mitad de los pacientes vuelve a sangrar al desinflar</strong> —hemostasia permanente
+        del 47,7 % en la serie de 151 episodios—. Por eso el desinflado <strong>no se hace de madrugada, solo y sin
+        plan</strong>: se hace donde y cuando el tratamiento definitivo pueda ejecutarse de inmediato, con el equipo
+        presente, sangre disponible y la vía aérea asegurada.</span>
+      </div>
+
+      <div class="subhead">Orden del desinflado</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>Primero el balón esofágico</strong>, si estaba inflado, y observar. Es el que más daña la mucosa y el primero que sobra.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>Después se libera la tracción</strong> y se observa un período antes de tocar el balón gástrico.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>Por último el balón gástrico</strong>, dejando la sonda en su sitio, desinflada, durante un período de observación antes de retirarla: si resangra, ya está puesta y se vuelve a inflar sin repetir la inserción.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏲️</span><span><strong>Los intervalos exactos entre cada paso y el tiempo de observación con la sonda desinflada varían entre protocolos y no están estandarizados</strong> —se describen desde algunas horas hasta cerca de 24—. <em>Verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item good"><span class="bullet-icon">✅</span><span><strong>Condiciones para desinflar:</strong> sangrado controlado, hemodinamia estable, vía aérea asegurada, sangre disponible, equipo y sala de endoscopia o pabellón listos, y el tratamiento definitivo decidido.</span></div>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">✂️</span>
+        <span><strong>Maniobra de emergencia: cortar.</strong> Si el balón migra hacia la hipofaringe y compromete la
+        vía aérea, la conducta es <strong>cortar la sonda de un tijeretazo por encima de la boca</strong> —el corte
+        atraviesa todos los lúmenes a la vez y los balones se desinflan— y retirarla. No es el momento de buscar la
+        jeringa correcta. Esa es la razón de que la tijera esté pegada a la cabecera desde el primer minuto.</span>
+      </div>
+
+      <div class="subhead">Checklist de retiro</div>
+      <div class="checklist" id="list-s9">
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Tratamiento definitivo hecho o inmediatamente disponible</strong>, con el equipo presente.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Sangre disponible y accesos permeables</strong> antes de desinflar.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Balón esofágico desinflado primero</strong>, con período de observación documentado.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Tracción liberada</strong> y reevaluación hecha antes de tocar el balón gástrico.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Balón gástrico desinflado</strong> y sonda dejada en su sitio durante la observación acordada.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Registro completo en la ficha:</strong> horas de inflado y desinflado, volúmenes, presiones, tracción, complicaciones y tratamiento definitivo realizado.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · COMPLICACIONES Y CERTEZA -->
+  <div class="section s10" id="s10" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Complicaciones, errores y qué tan seguros estamos</div>
+        <div class="section-subtitle">Lo que sale mal, y la letra chica de la evidencia</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Complicación</th><th>Cómo se evita y qué hacer</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Rotura esofágica</td>
+              <td>La más letal. Casi siempre por <strong>inflar el balón gástrico dentro del esófago</strong>: 3 muertes en 50 episodios (8 %) en la serie clásica. Se evita con confirmación de posición, inflado escalonado y detención ante dolor o resistencia. Si ocurre: cirugía y cuidados intensivos ahora.</td>
+            </tr>
+            <tr>
+              <td>Aspiración pulmonar</td>
+              <td>La más frecuente: <strong>10 %</strong> en la serie de 151 episodios, asociada a la encefalopatía y <strong>prevenida por la intubación previa</strong>. Se reduce además con cabecera elevada y aspiración por encima del balón esofágico.</td>
+            </tr>
+            <tr>
+              <td>Migración y obstrucción de la vía aérea</td>
+              <td>Por tracción excesiva, balón gástrico subinflado o balón esofágico inflado con el gástrico suelto. Se detecta por la marca de profundidad y por el deterioro respiratorio súbito. Conducta: <strong>cortar la sonda y retirarla</strong>.</td>
+            </tr>
+            <tr>
+              <td>Ulceración y necrosis de la mucosa esofágica</td>
+              <td>Por presión y tiempo. Se limita respetando el <strong>máximo de 24 horas</strong>, usando la presión mínima eficaz y desinflando el balón esofágico apenas se pueda.</td>
+            </tr>
+            <tr>
+              <td>Necrosis por presión en labios, mejillas y narinas</td>
+              <td>Subestimada: en una serie pediátrica de 19 niños apareció en el <strong>31 %</strong>, junto con ulceración de la mucosa gástrica en el 16 %. Se previene con protección cutánea, revisión de los puntos de apoyo en cada turno y cuidado de la fijación. <em>Serie pediátrica; esta página es para adultos, pero el mecanismo es el mismo.</em></td>
+            </tr>
+            <tr>
+              <td>Resangrado al desinflar</td>
+              <td>Alrededor de la mitad de los casos. Se maneja planificando el desinflado junto al tratamiento definitivo, no antes.</td>
+            </tr>
+            <tr>
+              <td>Dolor torácico, agitación, arritmias</td>
+              <td>Frecuentes con el balón esofágico inflado. Sedoanalgesia adecuada; descartar antes migración y perforación en lugar de atribuirlo sin más a la incomodidad.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Los cinco errores que se repiten</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">1</span><span><strong>Instalar sin vía aérea.</strong> La aspiración es la complicación clásica y es evitable.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">2</span><span><strong>Inflar el balón gástrico sin confirmar la posición.</strong> Es el error que rompe el esófago.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">3</span><span><strong>Inflar el balón esofágico de entrada</strong>, sin comprobar primero si el gástrico traccionado ya detuvo el sangrado.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">4</span><span><strong>No fijar la hora límite</strong>: el balón se queda puesto más de 24 horas porque nadie escribió cuándo empezó.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">5</span><span><strong>Instalar sin plan de salida.</strong> Un balón sin endoscopia, <em>stent</em>, TIPS o traslado organizado solo traslada la muerte unas horas.</span></div>
+      </div>
+
+      <div class="subhead">Nota de certeza</div>
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>La evidencia que sostiene este procedimiento es antigua, observacional y poco favorable.</strong>
+        Las cifras de eficacia provienen de series de los años ochenta y noventa (91,5 % de hemostasia inicial, 47,7 %
+        permanente) y de un ensayo aleatorizado frente a vasopresina que hoy no representa el tratamiento estándar. El
+        <strong>metaanálisis moderno de terapias puente</strong> es menos amable: <strong>fracaso en el control del
+        sangrado en 35,5 %</strong>, eventos adversos en más del 20 % y <strong>9,7 % de ellos mortales</strong>. El
+        único ensayo aleatorizado que comparó el balón con el <em>stent</em> esofágico —28 pacientes— favoreció
+        claramente al <em>stent</em> (éxito 66 % vs 20 %). <strong>El balón sigue en los algoritmos porque está
+        disponible en cualquier hospital a cualquier hora, no porque sea la mejor opción.</strong> La técnica en sí
+        —volúmenes, presiones, magnitud y duración de la tracción, esquemas de desinflado intermitente, tiempo de
+        observación antes de retirar— <strong>no está estandarizada ni respaldada por estudios comparativos</strong>:
+        se apoya en insertos de fabricantes, textos de procedimientos y consenso, y <strong>debe ajustarse al kit y al
+        protocolo institucional</strong>.</span>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./algoritmo-hda-variceal.html">Algoritmo de HDA variceal →</a>
+        <a class="cross-link" href="./index.html">← Volver al índice</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="progress-bottom" style="margin-top:20px;">
+    <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBar"></div></div>
+    <div class="progress-label"><span id="progress-pct">0%</span> del checklist</div>
+    <button type="button" class="reset-btn" onclick="resetAll()">↺ Reiniciar</button>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    presencial en el procedimiento. La <strong>instalación de una sonda de taponamiento esofagogástrico es un
+    procedimiento de alto riesgo</strong>, con complicaciones potencialmente mortales —rotura esofágica, aspiración
+    pulmonar, migración con obstrucción de la vía aérea, necrosis de la mucosa—: leer este checklist no sustituye la
+    práctica supervisada ni la simulación. <strong>Los volúmenes del balón gástrico, la presión del balón esofágico, la
+    magnitud y duración de la tracción, los esquemas de desinflado intermitente, el orden y los tiempos del retiro y el
+    uso de aire o líquido para el inflado dependen del modelo de sonda disponible y deben verificarse con el inserto
+    del fabricante y con el protocolo institucional</strong> antes de aplicarse. Lo mismo vale para los fármacos y
+    esquemas mencionados —terlipresina, octreotida, ceftriaxona, umbrales de transfusión y manejo de la coagulopatía—,
+    para la conducta ante contraindicaciones relativas (cirugía esofagogástrica reciente, estenosis conocida, sospecha
+    de perforación) y para el uso del dispositivo en hemorragia no variceal, que es excepcional y fuera de indicación.
+    Las <strong>metas de tiempo del cronómetro son referenciales y no constituyen un estándar validado</strong>: el
+    único plazo respaldado por consenso es el máximo de <strong>24 horas</strong> de permanencia, y la única
+    referencia temporal publicada que se cita —3 min 49 s de inserción promedio— proviene de un taller de
+    <strong>simulación con 28 residentes</strong>, no de pacientes. Los <strong>esquemas son dibujos orientativos, no
+    ilustraciones anatómicas a escala ni imágenes radiológicas.</strong> El contenido es para <strong>pacientes
+    adultos</strong>; el taponamiento pediátrico requiere sondas de tamaño adecuado y se rige por el protocolo del
+    servicio. El cronómetro y el checklist <strong>no guardan ningún dato</strong>: el registro del procedimiento se
+    hace en la ficha clínica.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Referencias localizadas y verificadas mediante <strong>PubMed</strong>.</div>
+      <div class="ref-item">Rodrigues SG, Cárdenas A, Escorsell À, Bosch J. <em>Balloon Tamponade and Esophageal Stenting for Esophageal Variceal Bleeding in Cirrhosis: A Systematic Review and Meta-analysis.</em> Semin Liver Dis. 2019;39(2):178–194. <a href="https://doi.org/10.1055/s-0039-1678726" target="_blank" rel="noopener">DOI: 10.1055/s-0039-1678726</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/30912098/" target="_blank" rel="noopener">PMID 30912098</a> — <strong>Fuente de las cifras modernas de esta página.</strong> El taponamiento con balón tuvo un <strong>fracaso agrupado en el control del sangrado a corto plazo de 35,5 %</strong>, eventos adversos en más del 20 % de los casos y <strong>9,7 % de ellos mortales</strong>. Los <em>stents</em> fallaron en 12,7 % (corto plazo) y 21,5 % (mediano plazo), con migración en 23,8 %. Mortalidad a mediano plazo similar entre ambas terapias.</div>
+      <div class="ref-item">Escorsell À, Pavel O, Cárdenas A, et al. <em>Esophageal balloon tamponade versus esophageal stent in controlling acute refractory variceal bleeding: A multicenter randomized, controlled trial.</em> Hepatology. 2016;63(6):1957–1967. <a href="https://doi.org/10.1002/hep.28360" target="_blank" rel="noopener">DOI: 10.1002/hep.28360</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/26600191/" target="_blank" rel="noopener">PMID 26600191</a> — <strong>Único ensayo aleatorizado que compara ambas técnicas.</strong> Veintiocho pacientes (15 sonda de Sengstaken-Blakemore, 13 <em>stent</em> SX-ELLA Danis): éxito terapéutico <strong>66 % con stent vs 20 % con balón</strong> (p = 0,025), control del sangrado 85 % vs 47 % (p = 0,037), eventos adversos graves 15 % vs 47 % (p = 0,077). Sin diferencias en supervivencia a 6 semanas.</div>
+      <div class="ref-item">Panés J, Terés J, Bosch J, Rodés J. <em>Efficacy of balloon tamponade in treatment of bleeding gastric and esophageal varices. Results in 151 consecutive episodes.</em> Dig Dis Sci. 1988;33(4):454–459. <a href="https://doi.org/10.1007/BF01536031" target="_blank" rel="noopener">DOI: 10.1007/BF01536031</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/3280273/" target="_blank" rel="noopener">PMID 3280273</a> — <strong>Base de la regla «intubar antes».</strong> Ciento cincuenta y un episodios consecutivos: Sengstaken-Blakemore en 118 casos de várices esofágicas y Linton-Nachlas en 33 de várices gástricas. Hemostasia de al menos 24 h en <strong>91,5 %</strong> y <strong>88 %</strong> respectivamente; <strong>hemostasia permanente 47,7 %</strong>. La única complicación grave fue la <strong>aspiración pulmonar (10 %)</strong>, asociada al grado de encefalopatía (p &lt; 0,001) y <strong>prevenida por la intubación orotraqueal previa al taponamiento</strong>.</div>
+      <div class="ref-item">Chojkier M, Conn HO. <em>Esophageal tamponade in the treatment of bleeding varices. A decadal progress report.</em> Dig Dis Sci. 1980;25(4):267–272. <a href="https://doi.org/10.1007/BF01308516" target="_blank" rel="noopener">DOI: 10.1007/BF01308516</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/6967005/" target="_blank" rel="noopener">PMID 6967005</a> — <strong>Origen de la advertencia sobre la rotura esofágica.</strong> Cincuenta episodios en 39 pacientes (41 con Sengstaken-Blakemore, 9 con sonda de Linton): hemorragia controlada al menos 24 h en el 40 %, mortalidad del 90 %, y <strong>rotura del esófago por inflado del balón gástrico dentro del esófago en 3 casos, todos fatales (8 %)</strong>. Los autores concluyen que el papel del taponamiento es secundario.</div>
+      <div class="ref-item">Terés J, Planas R, Panés J, et al. <em>Vasopressin/nitroglycerin infusion vs. esophageal tamponade in the treatment of acute variceal bleeding: a randomized controlled trial.</em> Hepatology. 1990;11(6):964–968. <a href="https://doi.org/10.1002/hep.1840110609" target="_blank" rel="noopener">DOI: 10.1002/hep.1840110609</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/2114350/" target="_blank" rel="noopener">PMID 2114350</a> — Ciento ocho pacientes cirróticos: eficacia hemostática del <strong>86,5 % con taponamiento</strong> (Sengstaken-Blakemore para várices esofágicas, Linton-Nachlas para gástricas) frente a 66 % con vasopresina más nitroglicerina (p &lt; 0,01), sin diferencias en resangrado a 72 h ni en mortalidad. <em>El comparador ya no es el tratamiento estándar actual.</em></div>
+      <div class="ref-item">de Franchis R, Bosch J, Garcia-Tsao G, Reiberger T, Ripoll C; Baveno VII Faculty. <em>Baveno VII — Renewing consensus in portal hypertension.</em> J Hepatol. 2022;76(4):959–974. <a href="https://doi.org/10.1016/j.jhep.2021.12.022" target="_blank" rel="noopener">DOI: 10.1016/j.jhep.2021.12.022</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/35120736/" target="_blank" rel="noopener">PMID 35120736</a> — Consenso de referencia en hipertensión portal y hemorragia variceal aguda: el taponamiento con balón se reserva como <strong>puente temporal, por un máximo de 24 horas, en unidad de cuidados intensivos y con vía aérea protegida</strong>, y el <em>stent</em> esofágico autoexpandible se considera alternativa preferible donde esté disponible.</div>
+      <div class="ref-item">Bridwell RE, Long B, Ramzy M, Gottlieb M. <em>Balloon Tamponade for the Management of Gastrointestinal Bleeding.</em> J Emerg Med. 2022;62(4):545–558. <a href="https://doi.org/10.1016/j.jemermed.2021.11.004" target="_blank" rel="noopener">DOI: 10.1016/j.jemermed.2021.11.004</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/35065859/" target="_blank" rel="noopener">PMID 35065859</a> — <strong>Revisión técnica de referencia desde la medicina de urgencia:</strong> indicaciones (paciente inestable con hemorragia masiva, endoscopia fallida, no disponible o diferida, o necesidad de estabilizar para trasladar), diferencias entre las sondas de Linton-Nachlas, Sengstaken-Blakemore y Minnesota, y descripción de la técnica con sus errores frecuentes.</div>
+      <div class="ref-item">Whitford RC, Liebman J, Baez J. <em>Bougie-Facilitated Tamponade Balloon Placement for Massive Esophagogastric Variceal Hemorrhage: A Case Series and Novel Procedural Technique Description.</em> J Emerg Med. 2023;64(3):338–344. <a href="https://doi.org/10.1016/j.jemermed.2022.12.019" target="_blank" rel="noopener">DOI: 10.1016/j.jemermed.2022.12.019</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/36868943/" target="_blank" rel="noopener">PMID 36868943</a> — <strong>Origen del truco del bougie</strong> de la sección 05. Cuatro casos (3 sondas de Minnesota, 1 Sengstaken-Blakemore) en que el extremo recto del bougie, introducido ~0,5 cm en el puerto de aspiración gástrica más proximal, se usó como estilete externo bajo visión laringoscópica para resolver el enrollamiento en la orofaringe. Sin complicaciones aparentes. <em>Serie de 4 casos: recurso, no estándar.</em></div>
+      <div class="ref-item">Vempati A, Tarchione A. <em>Evaluating the Realism of a Task Trainer and the Impact on Residents' Confidence in Managing Massive Upper Gastrointestinal Bleeding Among Emergency Medicine Residents.</em> Cureus. 2024;16(11):e73076. <a href="https://doi.org/10.7759/cureus.73076" target="_blank" rel="noopener">DOI: 10.7759/cureus.73076</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/39650889/" target="_blank" rel="noopener">PMID 39650889</a> — Taller de simulación con 28 residentes de urgencia: tiempo promedio de inserción del dispositivo de <strong>3 minutos y 49 segundos</strong> sobre un simulador de bajo costo. <strong>Es la única referencia temporal citada en el cronómetro</strong>, y proviene de simulación, no de pacientes.</div>
+      <div class="ref-item">Jayakumar S, Odulaja A, Patel S, Davenport M, Ade-Ajayi N. <em>Surviving Sengstaken.</em> J Pediatr Surg. 2015;50(7):1142–1146. <a href="https://doi.org/10.1016/j.jpedsurg.2014.12.014" target="_blank" rel="noopener">DOI: 10.1016/j.jpedsurg.2014.12.014</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/25783327/" target="_blank" rel="noopener">PMID 25783327</a> — Serie de 19 niños con hematemesis potencialmente mortal. Complicaciones: <strong>necrosis por presión en labios y mejillas 31 %</strong>, ulceración de la mucosa gástrica 16 %, desplazamiento 6 %; mortalidad 31 %. <em>Población pediátrica, citada por el patrón de complicaciones mecánicas, no por la conducta en adultos.</em></div>
+      <div class="ref-item">Henry Z, Patel K, Patton H, Saad W. <em>AGA Clinical Practice Update on Management of Bleeding Gastric Varices: Expert Review.</em> Clin Gastroenterol Hepatol. 2021;19(6):1098–1107.e1. <a href="https://doi.org/10.1016/j.cgh.2021.01.027" target="_blank" rel="noopener">DOI: 10.1016/j.cgh.2021.01.027</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/33493693/" target="_blank" rel="noopener">PMID 33493693</a> — Revisión de expertos sobre várices gástricas, donde la evidencia es de series y estudios pequeños, y el <em>stent</em> esofágico no resuelve el sangrado del fondo gástrico.</div>
+      <div class="ref-item">Zuckerman MJ, Elhanafi S, Mendoza Ladd A. <em>Endoscopic Treatment of Esophageal Varices.</em> Clin Liver Dis. 2022;26(1):21–37. <a href="https://doi.org/10.1016/j.cld.2021.08.003" target="_blank" rel="noopener">DOI: 10.1016/j.cld.2021.08.003</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/34802661/" target="_blank" rel="noopener">PMID 34802661</a> — Contexto endoscópico: la ligadura con bandas es el tratamiento de elección del sangrado variceal agudo, y la sonda de Sengstaken-Blakemore o el <em>stent</em> metálico cubierto quedan para el sangrado refractario al tratamiento farmacológico y endoscópico estándar.</div>
+      <div class="ref-item">Aspectos <strong>convencionales</strong> descritos aquí y <strong>no respaldados individualmente por estudios de desenlace</strong>: la profundidad de referencia de ~50 cm en la arcada dentaria, el inflado inicial de 50 mL antes de la radiografía, los escalones de ~100 mL, el rango de 30–45 mmHg del balón esofágico, la tracción de ~0,5–1 kg y su método, el desinflado intermitente cada 6–8 h, el orden y los tiempos del retiro, el enfriamiento previo de la sonda, la preferencia por la vía oral sobre la nasal, el uso de aire en lugar de líquido, la sonda nasogástrica accesoria por encima del balón esofágico y la tijera en la cabecera. Provienen de textos de procedimientos, insertos de fabricantes y consenso, y deben contrastarse con el <strong>kit disponible y el protocolo institucional vigente</strong>.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Checklist con progreso ────────────────────────────────────────
+  const SECTIONS = ['s1', 's2', 's4', 's5', 's6', 's7', 's8', 's9'];
+  const totals = {};
+  SECTIONS.forEach(s => {
+    const list = document.getElementById('list-' + s);
+    totals[s] = list ? list.querySelectorAll('.check-item').length : 0;
+  });
+  const TOTAL_CHECKS = SECTIONS.reduce((acc, s) => acc + totals[s], 0);
+
+  function countChecked(section) {
+    return document.querySelectorAll('#list-' + section + ' .check-item.checked').length;
+  }
+
+  function toggle(el, section) {
+    el.classList.toggle('checked');
+    updateCount(section);
+    updateProgress();
+  }
+
+  function updateCount(section) {
+    const el = document.getElementById('count-' + section);
+    if (!el) return;
+    const n = countChecked(section);
+    const t = totals[section];
+    el.textContent = n + '/' + t;
+    if (t > 0 && n === t) {
+      el.style.background = 'rgba(16,185,129,0.15)';
+      el.style.borderColor = 'rgba(16,185,129,0.3)';
+      el.style.color = '#6ee7b7';
+    } else {
+      el.style.background = '';
+      el.style.borderColor = '';
+      el.style.color = '';
+    }
+  }
+
+  function updateProgress() {
+    const done = SECTIONS.reduce((acc, s) => acc + countChecked(s), 0);
+    const pct = TOTAL_CHECKS ? Math.round((done / TOTAL_CHECKS) * 100) : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.check-item.checked').forEach(el => el.classList.remove('checked'));
+    SECTIONS.forEach(updateCount);
+    updateProgress();
+  }
+
+  SECTIONS.forEach(updateCount);
+  updateProgress();
+
+  // ── Cronómetro (sin persistencia) ─────────────────────────────────
+  let swStart = null;
+  let swAccum = 0;
+  let swTick = null;
+
+  function swElapsed() {
+    return swAccum + (swStart !== null ? Date.now() - swStart : 0);
+  }
+
+  function fmt(ms) {
+    const total = Math.floor(ms / 1000);
+    const m = String(Math.floor(total / 60)).padStart(2, '0');
+    const s = String(total % 60).padStart(2, '0');
+    return m + ':' + s;
+  }
+
+  function swRender() {
+    const ms = swElapsed();
+    const disp = document.getElementById('swDisplay');
+    disp.textContent = fmt(ms);
+    disp.classList.toggle('warn', ms >= 720000 && ms < 1200000);
+    disp.classList.toggle('late', ms >= 1200000);
+  }
+
+  function swToggle() {
+    const btn = document.getElementById('swToggle');
+    const cap = document.getElementById('swCaption');
+    if (swStart === null) {
+      swStart = Date.now();
+      swTick = setInterval(swRender, 200);
+      btn.textContent = '⏸ Detener';
+      cap.textContent = 'Corriendo desde la decisión de instalar el balón';
+    } else {
+      swAccum += Date.now() - swStart;
+      swStart = null;
+      clearInterval(swTick);
+      swTick = null;
+      btn.textContent = '▶ Continuar';
+      cap.textContent = 'En pausa';
+      swRender();
+    }
+  }
+
+  function msLabel(el) {
+    return el.dataset.prefix + el.dataset.goal + ' s';
+  }
+
+  function swReset() {
+    if (swTick) clearInterval(swTick);
+    swTick = null;
+    swStart = null;
+    swAccum = 0;
+    document.getElementById('swToggle').textContent = '▶ Iniciar';
+    document.getElementById('swCaption').textContent = 'Detenido · parte el reloj cuando se decide instalar el balón';
+    document.querySelectorAll('.ms').forEach(ms => {
+      ms.classList.remove('done', 'over');
+      ms.querySelector('.ms-goal').textContent = msLabel(ms);
+    });
+    swRender();
+  }
+
+  function markMs(el) {
+    if (el.classList.contains('done')) {
+      el.classList.remove('done', 'over');
+      el.querySelector('.ms-goal').textContent = msLabel(el);
+      return;
+    }
+    if (swStart === null && swAccum === 0) swToggle();
+    const secs = Math.round(swElapsed() / 1000);
+    const goal = parseInt(el.dataset.goal, 10);
+    el.classList.add('done');
+    el.classList.toggle('over', secs > goal);
+    el.querySelector('.ms-goal').textContent = secs + ' s · meta ' + goal + ' s';
+  }
+
+  swRender();
+</script>
+</body>
+</html>

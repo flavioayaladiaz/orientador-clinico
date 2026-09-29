@@ -173,8 +173,28 @@ terminado sin su tarjeta correspondiente en el index.
       posteriores; los umbrales ecográficos del polo posterior y de la vaina del nervio
       óptico; el instrumental realmente disponible; y la conducta local ante globo abierto
       concurrente.
-- [ ] Instalación de sonda de taponamiento esofagogástrico (balón de
-      Sengstaken-Blakemore)
+- [x] Instalación de sonda de taponamiento esofagogástrico (balón de
+      Sengstaken-Blakemore) — `checklist-balon-taponamiento.html` (checklist con
+      cronómetro e hitos). Cubre las tres sondas (Sengstaken-Blakemore, Minnesota y
+      Linton-Nachlas) y se presenta como lo que es: un **puente de 24 horas como máximo**
+      hacia endoscopia, *stent* esofágico, TIPS o traslado, con las cifras modernas por
+      delante (metaanálisis de Rodrigues 2019: fracaso en el control del sangrado 35,5 %,
+      eventos adversos > 20 % y 9,7 % de ellos mortales). Dos desvíos organizan la página:
+      **intubar antes de instalar** —aspiración del 10 % en la serie de 151 episodios de
+      Panés 1988, asociada a la encefalopatía y prevenida por la intubación previa— y
+      **no inflar nunca el balón gástrico sin confirmar que está bajo el diafragma**
+      (Chojkier y Conn 1980: 3 muertes por rotura esofágica en 50 episodios, 8 %). Incluye
+      el bougie como estilete externo (Whitford 2023), el inflado escalonado con tracción,
+      el balón esofágico como segundo tiempo, la tijera en la cabecera y el desinflado
+      planificado junto al tratamiento definitivo (hemostasia permanente de solo 47,7 %).
+      Esquemas vectoriales, sin imágenes de terceros. Pendiente de validación: todas las
+      metas de tiempo del cronómetro salvo el máximo de 24 horas de Baveno VII (la única
+      referencia temporal citada, 3 min 49 s de inserción, viene de simulación); los
+      volúmenes del balón gástrico, la presión del esofágico, la magnitud y duración de la
+      tracción, el uso de aire o líquido, los esquemas de desinflado intermitente y los
+      tiempos del retiro, todos dependientes del kit real del servicio; la conducta cuando
+      no hay radiografía disponible; el manejo local de la coagulopatía; y la conducta ante
+      contraindicaciones relativas y ante hemorragia no variceal.
 - [ ] Colocación de marcapasos transvenoso de emergencia
 - [ ] Toracostomía simple (a dedo) y colocación de tubo pleural en paro o
       shock traumático
