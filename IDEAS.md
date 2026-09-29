@@ -108,10 +108,71 @@ terminado sin su tarjeta correspondiente en el index.
       preferente según la DAS 2015. Pendiente de validación: metas de tiempo del
       cronómetro, umbral de edad pediátrica, tamaños del kit disponible en el
       servicio y plazo de conversión a vía aérea definitiva.
-- [ ] Toracotomía de reanimación (clamshell y clasica izquierda), con enfasis en las indicaciones, la temporalidad, el instrumental específico con fotos de referencia, intubación monobronquial para aislar el pulmon izquierdo y tubo pleural al lado derecho.
-- [ ] Histerotomía de reanimación (cesárea perimortem)
-- [ ] Pericardiocentesis de emergencia (ecoguiada usando transductor de alta frecuencia en visión paraesternal larga con aguja en plano)
-- [ ] Cantotomía lateral y cantólisis
+- [x] Toracotomía de reanimación (clamshell y clasica izquierda), con enfasis en las indicaciones, la temporalidad, el instrumental específico con fotos de referencia, intubación monobronquial para aislar el pulmon izquierdo y tubo pleural al lado derecho. —
+      `checklist-toracotomia-reanimacion.html` (checklist con cronómetro e hitos).
+      El instrumental va con **esquemas vectoriales, no fotografías**, para que la
+      página siga funcionando sin conexión y sin imágenes de terceros; la página
+      recomienda fotografiar la caja real del servicio. Pendiente de validación:
+      metas de tiempo del cronómetro, energías de desfibrilación interna, contenido
+      de la caja disponible, tiempo tolerable de clampeo aórtico y criterios locales
+      de suspensión. La intubación monobronquial derecha se presenta como adjunto
+      de exposición basado en opinión de expertos, sin evidencia de desenlace.
+- [x] Histerotomía de reanimación (cesárea perimortem) —
+      `checklist-histerotomia-reanimacion.html` (checklist con cronómetro e hitos).
+      Se presenta como **maniobra de reanimación materna**, no fetal: indicación por
+      altura uterina (fondo en el ombligo o por encima), desplazamiento uterino manual
+      izquierdo en lugar de inclinación lateral, accesos sobre el diafragma, incisión
+      vertical media e histerotomía clásica con esquemas vectoriales, causas reversibles
+      A–H de la declaración AHA 2015, y manejo posterior de la madre y del recién nacido.
+      La regla de los 4 minutos se explicita como recomendación basada en opinión experta
+      (Katz 1986/2005) y se contrasta con CAPS 2017, Einav 2012, la revisión de paro
+      extrahospitalario de Leech 2024 y el metaanálisis de Rajendran, para desarmar el
+      «ya pasaron más de cinco minutos» como motivo para no hacerla. Pendiente de
+      validación: todas las metas de tiempo del cronómetro salvo la de 4–5 minutos, los
+      esquemas de uterotónicos y antibióticos, el umbral local de viabilidad neonatal,
+      los criterios de hipotermia terapéutica neonatal, el contenido de la caja y los
+      criterios de suspensión (sin criterio validado en esta población).
+- [x] Pericardiocentesis de emergencia (ecoguiada usando transductor de alta frecuencia en
+      visión paraesternal larga con aguja en plano) — `checklist-pericardiocentesis.html`
+      (checklist con cronómetro e hitos). La técnica sigue el abordaje **paraesternal
+      medial-lateral con aguja en plano y transductor lineal de alta frecuencia** de Osman
+      2018 (Eur J Emerg Med), con sus ocho pasos, el umbral de derrame > 1 cm, el mapeo de
+      la arteria torácica interna con Doppler color y el test de microburbujas («llamarada»)
+      como confirmación. Se insiste en dos desvíos que salvan vidas: **no puncionar el
+      taponamiento traumático** (es toracotomía) y **no intubar antes de drenar**. Incluye el
+      drenaje controlado de la disección tipo A (Hayashi 2012: 40 ± 31 mL, 10/18 con ≤ 30 mL)
+      y el síndrome de descompresión pericárdica. Esquemas vectoriales, sin imágenes de
+      terceros. Pendiente de validación: todas las metas de tiempo del cronómetro salvo el
+      total de 309 ± 76 s de la serie original; el calibre y largo de aguja y catéter del kit
+      real del servicio; dosis máxima del anestésico local; esquema de fluidos y vasopresor;
+      límite de volumen por sesión de drenaje y umbral de débito para retirar el catéter;
+      panel de muestras del líquido; política de radiografía posprocedimiento; manejo de la
+      coagulopatía previa; y la conducta local en taponamiento traumático y por disección.
+      Nota de certeza: el abordaje descrito se apoya en una serie retrospectiva de 11
+      pacientes y un reporte de caso — es prometedor, no un estándar comparado con las rutas
+      subxifoidea y apical.
+- [x] Cantotomía lateral y cantólisis — `checklist-cantotomia-cantolisis.html`
+      (checklist con cronómetro e hitos). El énfasis está en tres cosas: el diagnóstico es
+      **clínico y no espera la tomografía**; la **cantotomía sola no descomprime** —en el
+      modelo cadavérico de Haubner 2014 solo la cantólisis inferior bajó la presión bajo
+      20 mmHg, y en 2 de 8 órbitas hizo falta también la superior—; y el **globo abierto es
+      la única contraindicación real**. Se desarma además el «ya pasaron 90 minutos»: la
+      ventana clásica viene del modelo de oclusión arterial en primates de Hayreh 1980
+      (daño irreparable a los 105 min, recuperación a los 97), mientras que en la serie
+      clínica de Bailey 2019 más de la mitad de los intervenidos después de 3 horas
+      recuperaron visión, con mejoría documentada hasta las 9 horas, y los autores
+      recomiendan hacerla siempre. Incluye las alternativas publicadas (división vertical
+      del párpado, paracantal «de un solo corte», canthal cutdown) como rescate de certeza
+      baja, y esquemas vectoriales de la anatomía del tendón cantal lateral, de los dos
+      gestos y de la orientación de la tijera. Pendiente de validación: todas las metas de
+      tiempo del cronómetro; la dosis máxima de lidocaína con epinefrina y la
+      disponibilidad de acetazolamida endovenosa en el servicio; los esquemas de manitol,
+      timolol y corticoides; el esquema de reversión de anticoagulación; el umbral de
+      presión intraocular para indicar y para dar por exitoso el procedimiento; el
+      antiséptico periocular y la profilaxis antibiótica; la frecuencia de los controles
+      posteriores; los umbrales ecográficos del polo posterior y de la vaina del nervio
+      óptico; el instrumental realmente disponible; y la conducta local ante globo abierto
+      concurrente.
 - [ ] Instalación de sonda de taponamiento esofagogástrico (balón de
       Sengstaken-Blakemore)
 - [ ] Colocación de marcapasos transvenoso de emergencia

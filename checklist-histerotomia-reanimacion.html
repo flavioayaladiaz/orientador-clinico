@@ -1,0 +1,1822 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Checklist · Histerotomía de reanimación</title>
+<meta name="description" content="Checklist con cronómetro para la histerotomía de reanimación (cesárea perimortem) en el paro cardíaco materno: indicación por altura uterina, desplazamiento uterino manual izquierdo, la regla de los 4 minutos y qué dicen los datos modernos, instrumental mínimo con esquemas de referencia, técnica paso a paso de la incisión vertical media y la histerotomía clásica, causas reversibles del paro materno, manejo posterior de la madre y del recién nacido, y criterios de suspensión.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(239,68,68,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(20,184,166,0.06) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 36px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.28);
+    color: #fca5a5;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  .header-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--red);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--red);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #ef4444, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .header-sub strong { color: #fff; font-weight: 500; }
+  .header-sub em { color: #fcd34d; font-style: normal; }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .section-check-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .s1 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s1 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s2 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s2 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s3 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s3 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s4 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s4 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s5 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s5 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s6 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s6 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s7 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s7 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s8 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s8 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s9 .section-num { background: rgba(59,130,246,0.10); color: #bfdbfe; border: 1px solid rgba(59,130,246,0.18); }
+  .s9 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s10 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s10 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s11 .section-num { background: rgba(99,102,241,0.12); color: #c7d2fe; border: 1px solid rgba(99,102,241,0.18); }
+  .s11 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s12 .section-num { background: rgba(239,68,68,0.10); color: #fecaca; border: 1px solid rgba(239,68,68,0.18); }
+  .s12 { --accent: var(--red); --accent-glow: var(--red-glow); }
+
+  /* CRONÓMETRO */
+  .stopwatch {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+  .sw-display {
+    font-family: var(--mono);
+    font-size: clamp(40px, 11vw, 60px);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #fff;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .sw-display.warn { color: #fcd34d; }
+  .sw-display.late { color: #fca5a5; }
+  .sw-caption {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+  .sw-controls { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+  .sw-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .sw-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .sw-btn:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+  .sw-btn.primary {
+    background: rgba(239,68,68,0.14);
+    border-color: rgba(239,68,68,0.45);
+    color: #fca5a5;
+  }
+  .sw-btn.primary:hover { background: rgba(239,68,68,0.22); color: #fecaca; }
+
+  .milestones { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .ms {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .ms:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .ms:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .ms.done { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); color: #6ee7b7; }
+  .ms-goal {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .ms.done .ms-goal { color: #6ee7b7; border-color: rgba(16,185,129,0.4); }
+  .ms.done.over .ms-goal { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+  }
+  .check-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .check-item:hover::before { opacity: 1; }
+  .check-item:hover { border-color: rgba(255,255,255,0.12); }
+  .check-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .check-item.checked { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+  .check-item.checked::before { opacity: 0.5; }
+
+  .checkbox {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+    background: transparent;
+  }
+  .check-item.checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .checkmark {
+    opacity: 0;
+    transform: scale(0) rotate(-10deg);
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .check-item.checked .checkmark { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  .check-label {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-dim);
+    transition: color 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+  .check-item.checked .check-label {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(100,116,139,0.5);
+  }
+  .check-label strong { color: #fff; font-weight: 500; }
+  .check-label em { color: #fcd34d; font-style: normal; }
+  .check-step {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+
+  /* PROGRESO */
+  .progress-bottom {
+    margin-top: 6px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .progress-bar-track {
+    flex: 1;
+    min-width: 120px;
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ef4444, #f59e0b);
+    border-radius: 100px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px rgba(239,68,68,0.5);
+  }
+  .progress-label { font-family: var(--mono); font-size: 12px; color: var(--text-dim); white-space: nowrap; }
+  #progress-pct { color: var(--red); font-weight: 500; }
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+  /* BANNERS */
+  .warning-banner, .info-banner, .go-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #fca5a5; }
+  .info-banner { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.18); color: #bfdbfe; }
+  .go-banner { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); color: #6ee7b7; }
+  .warning-banner strong, .info-banner strong, .go-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em, .go-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+  .plain-item.good { background: rgba(16,185,129,0.05); border-color: rgba(16,185,129,0.16); }
+  .plain-item.good strong { color: #6ee7b7; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ESQUEMAS */
+  .figure {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 16px 14px;
+    margin-bottom: 14px;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .fig-caption {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .fig-caption strong { color: var(--text-dim); font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--red); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .ms { align-items: flex-start; flex-wrap: wrap; }
+    .ms-goal { margin-left: 0; }
+    .sw-btn { flex: 1; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <div class="header-badge">Procedimiento HALO · Checklist</div>
+    <h1>Histerotomía <span>de reanimación</span></h1>
+    <p class="header-sub">
+      Antes se llamaba <strong>cesárea perimortem</strong>, y ese nombre hizo daño: hacía pensar en un procedimiento
+      para salvar al feto de una madre que se está muriendo. Es lo contrario. La histerotomía de reanimación
+      <strong>es una maniobra de reanimación materna</strong>: vaciar el útero descomprime la vena cava y la aorta,
+      devuelve el retorno venoso, mejora la eficacia de las compresiones y reduce el consumo de oxígeno. El recién
+      nacido es un beneficio adicional, no el objetivo. De ahí se desprenden las dos consecuencias que más cuesta
+      interiorizar: <em>se hace aunque el feto esté muerto</em>, y <em>se hace en el lugar donde está ocurriendo la
+      reanimación</em>, no en pabellón. En la cohorte prospectiva británica del CAPS, el intervalo entre el colapso y
+      la histerotomía fue de <strong>3 minutos en las mujeres que sobrevivieron y 12 minutos en las que murieron</strong>.
+      Esta página cubre la indicación, el reloj, el instrumental mínimo, la técnica, las causas reversibles propias del
+      paro materno y el manejo posterior de las dos pacientes que quedan.
+    </p>
+  </div>
+
+  <!-- 01 · ¿ESTÁ INDICADA? -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">¿Está indicada en esta paciente?</div>
+        <div class="section-subtitle">Tres condiciones, altura uterina y los mitos que retrasan la decisión</div>
+      </div>
+      <span class="section-check-count" id="count-s1">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>La indicación se sostiene en <strong>tres condiciones simultáneas</strong> y en ninguna más:
+        <strong>(1)</strong> paro cardíaco materno, <strong>(2)</strong> fondo uterino a la altura del ombligo o por
+        encima, y <strong>(3)</strong> ausencia de retorno de circulación con reanimación de buena calidad. No se
+        necesita ecografía, ni edad gestacional exacta, ni latidos fetales, ni consentimiento, ni obstetra presente,
+        ni pabellón, ni anestesia. <em>Cada cosa que se agrega a esa lista cuesta minutos que no existen.</em></span>
+      </div>
+
+      <div class="subhead">Por qué funciona: la fisiología en tres frases</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🫀</span><span><strong>Compresión aortocava.</strong> Desde alrededor de las 20 semanas el útero comprime la vena cava inferior y la aorta contra la columna cuando la paciente está en decúbito supino. En paro, con el gasto cardíaco que generan las compresiones —una fracción del normal—, esa obstrucción del retorno venoso es determinante.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>El útero de término es un órgano de altísimo flujo.</strong> Vaciarlo devuelve volumen a la circulación central y elimina un territorio que consume y secuestra. La descompresión es inmediata y no reversible: no hay que sostener ninguna maniobra después.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫁</span><span><strong>Mejora la ventilación.</strong> Desaparecen la elevación diafragmática y la reducción de la capacidad residual funcional que hacen que la embarazada desature en segundos y sea difícil de ventilar.</span></div>
+      </div>
+
+      <div class="subhead">Cómo se decide la edad gestacional en 5 segundos: la altura uterina</div>
+      <div class="figure">
+        <svg viewBox="0 0 640 260" role="img" aria-label="Esquema de altura uterina: silueta del abdomen materno en decúbito supino con las marcas del pubis, del ombligo y del apéndice xifoides, indicando que el fondo uterino a la altura del ombligo corresponde aproximadamente a 20 semanas, cuatro traveses de dedo sobre el ombligo a 28 semanas y el reborde costal a término.">
+          <g font-family="DM Mono, monospace" font-size="11" fill="#94a3b8">
+            <!-- silueta del tronco -->
+            <path d="M120,210 L120,70 Q120,44 152,44 L470,44 Q500,44 500,70 L500,210 Z" fill="rgba(255,255,255,0.02)" stroke="#475569" stroke-width="1.5"/>
+            <!-- columna -->
+            <line x1="120" y1="200" x2="500" y2="200" stroke="#475569" stroke-width="2" stroke-dasharray="6 4"/>
+            <text x="126" y="222" fill="#64748b">columna · plano de compresión</text>
+            <!-- útero de término -->
+            <ellipse cx="330" cy="130" rx="106" ry="72" fill="rgba(99,102,241,0.14)" stroke="#a5b4fc" stroke-width="2"/>
+            <text x="286" y="136" fill="#c7d2fe" font-size="12">útero</text>
+            <!-- referencias óseas -->
+            <circle cx="500" cy="152" r="5" fill="#fcd34d"/>
+            <text x="470" y="182" fill="#fcd34d">pubis</text>
+            <circle cx="330" cy="58" r="5" fill="#5eead4"/>
+            <text x="300" y="34" fill="#5eead4">ombligo</text>
+            <circle cx="150" cy="58" r="5" fill="#fca5a5"/>
+            <text x="120" y="34" fill="#fca5a5">xifoides</text>
+            <!-- niveles -->
+            <line x1="330" y1="66" x2="330" y2="200" stroke="#5eead4" stroke-width="1.6" stroke-dasharray="3 3"/>
+            <line x1="244" y1="80" x2="244" y2="200" stroke="#fcd34d" stroke-width="1.6" stroke-dasharray="3 3"/>
+            <line x1="176" y1="70" x2="176" y2="200" stroke="#fca5a5" stroke-width="1.6" stroke-dasharray="3 3"/>
+            <line x1="500" y1="72" x2="518" y2="72" stroke="#5eead4" stroke-width="1.6" stroke-dasharray="3 3"/>
+            <text x="524" y="76" fill="#5eead4" font-size="12">Ombligo</text>
+            <text x="524" y="92">≈ 20 sem · umbral</text>
+            <line x1="500" y1="122" x2="518" y2="122" stroke="#fcd34d" stroke-width="1.6" stroke-dasharray="3 3"/>
+            <text x="524" y="126" fill="#fcd34d" font-size="12">+4 traveses</text>
+            <text x="524" y="142">≈ 28 sem</text>
+            <line x1="500" y1="172" x2="518" y2="172" stroke="#fca5a5" stroke-width="1.6" stroke-dasharray="3 3"/>
+            <text x="524" y="176" fill="#fca5a5" font-size="12">Reborde costal</text>
+            <text x="524" y="192">≈ término</text>
+          </g>
+        </svg>
+        <div class="fig-caption">
+          <strong>Esquema orientativo, no a escala.</strong> El criterio operativo es binario y se palpa con una mano:
+          <strong>¿el fondo uterino llega al ombligo o lo supera?</strong> Si la respuesta es sí, la histerotomía está
+          indicada cuando hay paro y no hay retorno de circulación. Las correspondencias con semanas son aproximadas y
+          se distorsionan con la obesidad, el embarazo múltiple, el polihidramnios y los miomas: <em>sirven para
+          conversar con neonatología, no para decidir si se opera.</em>
+        </div>
+      </div>
+
+      <div class="subhead">Qué cambia según la edad gestacional estimada</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Edad gestacional</th><th>¿Se hace?</th><th>Para quién es el beneficio</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>&lt; 20 semanas</strong><br><span class="dose-note">fondo bajo el ombligo</span></td>
+              <td><span class="dose-main">No está indicada</span></td>
+              <td>El útero no comprime la cava lo suficiente para que vaciarlo cambie la hemodinamia. La reanimación es la de cualquier adulto.</td>
+            </tr>
+            <tr>
+              <td><strong>20–23 semanas</strong><br><span class="dose-note">fondo en el ombligo o algo sobre él</span></td>
+              <td><span class="dose-main">Sí</span></td>
+              <td><strong>Solo materno.</strong> No se espera sobrevida del feto. Esto no la contraindica: la indicación nunca fue fetal.</td>
+            </tr>
+            <tr>
+              <td><strong>≥ 24 semanas</strong><br><span class="dose-note">o el umbral de viabilidad del servicio</span></td>
+              <td><span class="dose-main">Sí</span></td>
+              <td><strong>Materno y fetal.</strong> Se activa además el equipo de reanimación neonatal. El umbral exacto de viabilidad y de reanimación activa del prematuro extremo <em>se verifica con el protocolo institucional</em> y con neonatología.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>La decisión no depende del feto.</strong> No se busca latido fetal, no se espera el monitor, no
+        se pide ecografía obstétrica y no cambia nada si se sabe que el feto ya estaba muerto. Buscar el bienestar
+        fetal antes de decidir es el error conceptual más frecuente y el que más minutos consume.</span>
+      </div>
+
+      <div class="subhead">Antes de tomar el bisturí: siete confirmaciones</div>
+      <div class="checklist" id="list-s1">
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paro</span><strong>Hay paro cardíaco materno confirmado</strong> —sin respuesta, sin respiración normal, sin pulso— y no un desvanecimiento, una convulsión eclámptica ni una hipotensión profunda. En el shock grave sin paro la conducta es tratar la causa y considerar la interrupción del embarazo <em>en pabellón</em>, no una histerotomía de reanimación en el box.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Altura uterina</span><strong>El fondo uterino está a la altura del ombligo o por encima.</strong> Se palpa, no se calcula. Si está claramente por debajo, este checklist no aplica.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">RCP de calidad</span><strong>Se está haciendo reanimación de buena calidad, con desplazamiento uterino manual izquierdo, vía aérea manejada y accesos por encima del diafragma</strong>, y aun así no hay retorno de circulación. La histerotomía no reemplaza la reanimación: se hace <em>encima</em> de ella y sin detenerla.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Aquí</span><strong>Se hará en el lugar donde está la paciente.</strong> Trasladar a pabellón a una paciente en paro interrumpe las compresiones, consume los minutos que definen el desenlace y no mejora nada: el procedimiento no requiere ni anestesia ni asepsia quirúrgica completa.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Operador</span><strong>Está definido quién incide.</strong> El orden de preferencia es obstetra, cirujano, urgenciólogo o el médico más entrenado presente. <em>No se espera a quien viene en camino</em> si eso saca el procedimiento de la ventana útil: que el servicio tenga esto resuelto y escrito por adelantado es parte de la preparación, no de la emergencia.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Neonatología</span><strong>Se llamó al equipo de reanimación neonatal en el mismo momento</strong> en que se anunció la histerotomía, con cuna de calor radiante en la sala. Es un equipo distinto: nadie que esté reanimando a la madre se hace cargo del recién nacido.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">En voz alta</span><strong>La decisión se anuncia en voz alta y con la hora:</strong> «paro materno a las 14:07, útero sobre el ombligo, hago histerotomía de reanimación». Ese anuncio ordena la sala, reparte los roles y fija el punto de partida del reloj.</span>
+        </button>
+      </div>
+
+      <div class="subhead">Lo que NO es una histerotomía de reanimación</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Una cesárea de urgencia por sufrimiento fetal.</strong> Esa es una cesárea, con anestesia, en pabellón y con indicación fetal. Aquí la paciente está en paro.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Una interrupción del embarazo por deterioro materno sin paro.</strong> En la paciente grave pero con circulación —eclampsia, HELLP, sepsis, cardiopatía descompensada— el camino es estabilizar y coordinar la interrupción con obstetricia y anestesia, <em>no</em> abrir en la sala de reanimación.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>El parto de una paciente con muerte cerebral y feto viable.</strong> Es una decisión planificada, ética y obstétrica, con tiempo para conversarla. Nada que ver con este checklist.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · CRONÓMETRO Y ROLES -->
+  <div class="section s2" id="s2" style="animation-delay:0.10s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Cronómetro, hitos y roles</div>
+        <div class="section-subtitle">La regla de los 4 minutos, y qué hacer cuando ya se pasó</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="stopwatch">
+        <div class="sw-display" id="swDisplay">00:00</div>
+        <div class="sw-caption" id="swCaption">Detenido · parte el reloj en el momento del paro</div>
+        <div class="sw-controls">
+          <button type="button" class="sw-btn primary" id="swToggle" onclick="swToggle()">▶ Iniciar</button>
+          <button type="button" class="sw-btn" onclick="swReset()">↺ Reiniciar</button>
+        </div>
+        <div class="milestones" id="milestones">
+          <button type="button" class="ms" data-goal="30" data-prefix="meta ~" onclick="markMs(this)"><span>Paro reconocido · compresiones iniciadas · desplazamiento uterino manual izquierdo</span><span class="ms-goal">meta ~30 s</span></button>
+          <button type="button" class="ms" data-goal="60" data-prefix="meta ~" onclick="markMs(this)"><span>Código materno activado · neonatología llamada · bisturí pedido</span><span class="ms-goal">meta ~60 s</span></button>
+          <button type="button" class="ms" data-goal="120" data-prefix="meta ~" onclick="markMs(this)"><span>Vía aérea manejada · accesos sobre el diafragma · causas reversibles en voz alta</span><span class="ms-goal">meta ~120 s</span></button>
+          <button type="button" class="ms" data-goal="240" data-prefix="meta ~" onclick="markMs(this)"><span>Incisión iniciada (la regla clásica: minuto 4)</span><span class="ms-goal">meta ~240 s</span></button>
+          <button type="button" class="ms" data-goal="300" data-prefix="meta ~" onclick="markMs(this)"><span>Recién nacido extraído y entregado a neonatología</span><span class="ms-goal">meta ~300 s</span></button>
+          <button type="button" class="ms" data-goal="360" data-prefix="meta ~" onclick="markMs(this)"><span>Placenta extraída · útero y abdomen empacados</span><span class="ms-goal">meta ~360 s</span></button>
+          <button type="button" class="ms" data-goal="420" data-prefix="meta ~" onclick="markMs(this)"><span>Reevaluación del ritmo y de las causas con el útero vacío</span><span class="ms-goal">meta ~420 s</span></button>
+          <button type="button" class="ms" data-goal="600" data-prefix="decisión ~" onclick="markMs(this)"><span>Decisión: pabellón, RCP extracorpórea o suspensión</span><span class="ms-goal">decisión ~600 s</span></button>
+        </div>
+      </div>
+
+      <div class="subhead">La regla de los 4 minutos: de dónde viene y qué hacer con ella</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📖</span><span><strong>De dónde viene.</strong> La recomendación de iniciar la histerotomía a los <strong>4 minutos</strong> del paro, con el nacimiento al minuto 5, se propuso en 1986 a partir de razonamiento fisiológico y de una revisión de casos, no de un estudio comparativo. Su propia revisión de seguimiento, en 2005, concluyó que los datos publicados <em>«apoyan, pero están lejos de demostrar»</em> esa ventana. Es una recomendación basada en opinión experta y así sigue.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📊</span><span><strong>Qué se logra en la vida real.</strong> En el CAPS británico (66 paros en el embarazo, incidencia 2,78 por 100.000 embarazos, sobrevida materna 58 %) la histerotomía se hizo en 49 mujeres y la mediana desde el colapso fue de <strong>3 minutos en las sobrevivientes y 12 minutos en las fallecidas</strong>. En la revisión de 94 casos de Einav, hacerla <strong>dentro de 10 minutos</strong> se asoció a mejor desenlace materno (OR 7,42) y <strong>en ningún caso empeoró</strong> a la madre.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">✔</span><span><strong>La conclusión práctica, que es la que importa.</strong> Los 4 minutos son una meta para <em>empezar temprano</em>, no un plazo de vencimiento. Un metaanálisis reciente encontró sobrevida materna con histerotomías realizadas a los 10–12 minutos, y una revisión sistemática de paros extrahospitalarios documenta sobrevida materna con buen resultado neurológico hasta los <strong>29 minutos</strong> del colapso y sobrevida neonatal hasta los <strong>47 minutos</strong>. <em>«Ya pasaron más de cinco minutos» no es un motivo para no hacerla.</em> La certeza de esta evidencia es muy baja y no cambia la meta de las guías, pero sí desarma la única excusa que se escucha en la sala.</span></div>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span>Estas metas son <strong>referenciales</strong>. Solo la de los 4–5 minutos proviene de una recomendación
+        publicada; las demás son una repartición razonable de ese mismo intervalo para que alguien cante los tiempos en
+        voz alta y se detecte el estancamiento. <em>No constituyen un estándar validado ni sirven para calificar al
+        operador.</em> Ajústalas al protocolo y al entrenamiento de tu servicio.</span>
+      </div>
+
+      <div class="subhead">Roles: quién hace qué</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>Compresiones:</strong> posición estándar de las manos en la mitad inferior del esternón, profundidad y frecuencia habituales, relevo cada 2 minutos. <strong>No se detienen para incidir.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>Desplazamiento uterino manual izquierdo:</strong> una sola persona, dedicada, desde que se reconoce el paro y hasta que el útero se abre. Es el rol que más se omite y el que no cuesta nada (sección 03).</span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>Vía aérea:</strong> intubación precoz por el operador más experimentado disponible, con tubo de calibre menor al habitual, oxígeno al 100 % y conciencia de que esta paciente desatura y se llena de contenido gástrico más rápido que cualquier otra.</span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span><strong>Operador de la histerotomía:</strong> incide, extrae, empaca. No dirige la reanimación, no lleva el reloj y no atiende al recién nacido. Anuncia en voz alta cada paso («entro al útero», «nace», «placenta fuera», «empacado»).</span></div>
+        <div class="plain-item"><span class="bullet-icon">5</span><span><strong>Líder de la reanimación:</strong> no opera. Mantiene el algoritmo de paro, recorre las causas reversibles propias del embarazo (sección 06), <strong>canta el minuto 4</strong> y decide cuándo se detiene todo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">6</span><span><strong>Equipo de reanimación neonatal:</strong> separado, con su propia cuna de calor radiante, su bolsa-máscara y su material de vía aérea, en la misma sala. Se llama al mismo tiempo que se anuncia la histerotomía, no cuando el niño ya nació.</span></div>
+        <div class="plain-item"><span class="bullet-icon">7</span><span><strong>Tiempo y registro:</strong> lleva el cronómetro y anota <strong>cuatro horas que después se piden todas</strong>: hora del paro, hora de la incisión, hora del nacimiento y hora del retorno de circulación. Recuerda en voz alta lo que se olvida: <em>«¿placenta?»</em>, <em>«¿empacado?»</em>, <em>«¿oxitocina cuando haya pulso?»</em>.</span></div>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;margin-bottom:0;">
+        <span class="warning-icon">⚠️</span>
+        <span>Este cronómetro <strong>no guarda ningún dato</strong> ni queda registrado en el dispositivo: al recargar
+        la página se pierde. El registro clínico del procedimiento se hace en la ficha.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · LA REANIMACIÓN QUE CORRE EN PARALELO -->
+  <div class="section s3" id="s3" style="animation-delay:0.14s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">La reanimación que corre en paralelo</div>
+        <div class="section-subtitle">Qué cambia respecto del adulto no embarazado, y qué no cambia nada</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>La mayor parte del algoritmo de paro <strong>no se modifica</strong> en el embarazo, y conviene decirlo
+        antes que las excepciones: misma posición de las manos, misma profundidad y frecuencia de las compresiones,
+        <strong>mismas energías de desfibrilación</strong> y <strong>mismas dosis de fármacos</strong> —adrenalina 1 mg
+        cada 3–5 minutos, amiodarona según el ritmo—. La cantidad de energía que llega al feto con una desfibrilación es
+        despreciable. Inventar modificaciones donde no las hay es otra forma de perder tiempo.</span>
+      </div>
+
+      <div class="subhead">Las cuatro cosas que sí cambian</div>
+      <div class="figure">
+        <svg viewBox="0 0 640 262" role="img" aria-label="Esquema del desplazamiento uterino manual izquierdo: corte transversal del abdomen materno mostrando el útero comprimiendo la vena cava inferior y la aorta contra la columna, y el mismo corte con el útero desplazado hacia la izquierda de la paciente, liberando los grandes vasos.">
+          <g font-family="DM Mono, monospace" font-size="11" fill="#94a3b8">
+            <!-- panel izquierdo: comprimido -->
+            <g transform="translate(20,10)">
+              <text x="0" y="12" fill="#fca5a5" font-size="12">SUPINA · comprimido</text>
+              <ellipse cx="130" cy="120" rx="118" ry="80" fill="rgba(255,255,255,0.02)" stroke="#475569" stroke-width="1.5"/>
+              <!-- columna -->
+              <rect x="112" y="176" width="36" height="24" rx="6" fill="rgba(148,163,184,0.2)" stroke="#94a3b8" stroke-width="1.5"/>
+              <text x="96" y="214" fill="#64748b">columna</text>
+              <!-- vasos aplastados -->
+              <ellipse cx="102" cy="168" rx="16" ry="5" fill="rgba(59,130,246,0.35)" stroke="#93c5fd" stroke-width="1.5"/>
+              <ellipse cx="150" cy="168" rx="11" ry="5" fill="rgba(239,68,68,0.35)" stroke="#fca5a5" stroke-width="1.5"/>
+              <!-- útero -->
+              <ellipse cx="126" cy="106" rx="72" ry="56" fill="rgba(99,102,241,0.18)" stroke="#a5b4fc" stroke-width="2"/>
+              <text x="98" y="110" fill="#c7d2fe" font-size="12">útero</text>
+              <!-- flechas de presión -->
+              <path d="M126,162 L126,178" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arrHr)"/>
+              <text x="0" y="222" fill="#fca5a5">cava y aorta aplastadas</text>
+              <text x="0" y="238" fill="#fca5a5">contra la columna</text>
+            </g>
+            <!-- panel derecho: desplazado -->
+            <g transform="translate(350,10)">
+              <text x="0" y="12" fill="#6ee7b7" font-size="12">DESPLAZAMIENTO MANUAL · libre</text>
+              <ellipse cx="130" cy="120" rx="118" ry="80" fill="rgba(255,255,255,0.02)" stroke="#475569" stroke-width="1.5"/>
+              <rect x="112" y="176" width="36" height="24" rx="6" fill="rgba(148,163,184,0.2)" stroke="#94a3b8" stroke-width="1.5"/>
+              <!-- vasos abiertos -->
+              <circle cx="102" cy="166" r="11" fill="rgba(59,130,246,0.35)" stroke="#93c5fd" stroke-width="1.5"/>
+              <circle cx="150" cy="167" r="8" fill="rgba(239,68,68,0.35)" stroke="#fca5a5" stroke-width="1.5"/>
+              <!-- útero desplazado a la izquierda de la paciente (derecha del esquema) -->
+              <ellipse cx="176" cy="100" rx="70" ry="54" fill="rgba(16,185,129,0.14)" stroke="#6ee7b7" stroke-width="2"/>
+              <text x="150" y="104" fill="#6ee7b7" font-size="12">útero</text>
+              <!-- manos empujando -->
+              <path d="M74,104 L112,104" stroke="#6ee7b7" stroke-width="2.5" marker-end="url(#arrHg)"/>
+              <path d="M74,126 L112,126" stroke="#6ee7b7" stroke-width="2.5" marker-end="url(#arrHg)"/>
+              <text x="0" y="222" fill="#6ee7b7">dos manos desde la derecha</text>
+              <text x="0" y="238" fill="#6ee7b7">empujan hacia la izquierda</text>
+            </g>
+            <defs>
+              <marker id="arrHr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#ef4444" stroke="none"/>
+              </marker>
+              <marker id="arrHg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#6ee7b7" stroke="none"/>
+              </marker>
+            </defs>
+          </g>
+        </svg>
+        <div class="fig-caption">
+          <strong>Esquema orientativo, no a escala.</strong> Corte transversal del abdomen visto desde los pies.
+          <strong>Dos manos</strong> desde el lado derecho de la paciente empujan el útero hacia la izquierda; o
+          <strong>una mano</strong> desde el lado izquierdo lo tracciona hacia sí. Lo que se busca es sacar el útero de
+          encima de la cava y la aorta <em>sin mover el tórax</em>, para no degradar las compresiones. Se sostiene sin
+          interrupción hasta que se abre el útero, y después ya no hace falta.
+        </div>
+      </div>
+
+      <div class="plain-list">
+        <div class="plain-item good"><span class="bullet-icon">1</span><span><strong>Desplazamiento uterino manual izquierdo, no inclinación lateral de la mesa.</strong> Inclinar a la paciente reduce la fuerza y la profundidad de las compresiones y complica la vía aérea; el desplazamiento manual descomprime los grandes vasos con la paciente plana, que es la posición en la que se comprime bien. La paciente permanece <strong>en decúbito supino, sin cuñas ni inclinación</strong>.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">2</span><span><strong>Accesos vasculares por encima del diafragma.</strong> Dos vías gruesas en las extremidades superiores, o intraósea humeral, o vía central yugular o subclavia. Un fármaco o un volumen administrado por una vía femoral tiene que atravesar precisamente el segmento de cava que el útero está comprimiendo: <em>puede no llegar nunca</em>.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">3</span><span><strong>Vía aérea temprana y con el mejor operador disponible.</strong> Edema y friabilidad de la mucosa, mamas voluminosas que estorban al laringoscopio, capacidad residual funcional reducida, consumo de oxígeno aumentado y riesgo alto de aspiración. Se elige un <strong>tubo de menor calibre</strong> que el que correspondería (habitualmente <strong>6,0–7,0 mm</strong>), se prepara el plan de rescate desde el primer intento y se usa videolaringoscopio si hay. Capnografía continua siempre.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">4</span><span><strong>Retirar los monitores fetales</strong> (tocodinamómetro, transductor de frecuencia cardíaca fetal, electrodo interno) antes de desfibrilar, y no volver a ponerlos: el registro fetal no cambia ninguna decisión durante el paro.</span></div>
+      </div>
+
+      <div class="subhead">Lo que NO se hace</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No se traslada a pabellón</strong> a una paciente en paro para hacer la histerotomía.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No se espera el ecógrafo</strong> para confirmar edad gestacional, vitalidad fetal o posición placentaria.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No se pide consentimiento</strong> ni se busca a la familia para autorizar: es una maniobra de reanimación en una paciente en paro.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No se administra anestesia ni analgesia</strong> para incidir. Si hay retorno de circulación durante el procedimiento, entonces sí entra anestesia de inmediato.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No se pierde tiempo en asepsia quirúrgica completa.</strong> Un chorro de antiséptico sobre el abdomen si está a mano, y se incide. Los campos, el lavado de manos y el instrumental contado pertenecen al cierre en pabellón, no al paro.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No se detienen las compresiones</strong> ni para incidir, ni para extraer, ni para empacar.</span></div>
+      </div>
+
+      <div class="link-row" style="margin-top:4px;">
+        <a class="cross-link" href="./checklist-politrauma_2.html">Paro traumático · secuencia ABCDE →</a>
+        <a class="cross-link" href="./checklist-toracotomia-reanimacion.html">Toracotomía de reanimación →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · INSTRUMENTAL MÍNIMO -->
+  <div class="section s4" id="s4" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">El instrumental mínimo</div>
+        <div class="section-subtitle">Un bisturí basta para empezar; el resto ordena lo que viene después</div>
+      </div>
+      <span class="section-check-count" id="count-s4">0/5</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="go-banner">
+        <span class="warning-icon">✔</span>
+        <span><strong>Lo único imprescindible es un bisturí.</strong> Todo lo demás mejora las condiciones, pero la
+        ausencia de una caja completa <em>no</em> es una razón para no hacer el procedimiento. Si hay que elegir una sola
+        frase de esta sección: con un bisturí y unas manos se puede extraer al recién nacido; con la caja completa se
+        puede además controlar la hemorragia después.</span>
+      </div>
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Los esquemas siguientes son <strong>dibujos vectoriales, no fotografías</strong>: la página funciona sin
+        conexión y no incorpora imágenes de terceros. Sirven para reconocer la <em>forma</em> del instrumento cuando
+        alguien lo pide por su nombre. <strong>El ejercicio que realmente prepara es otro:</strong> armar una caja de
+        histerotomía sellada, dejarla en la sala de reanimación, fotografiarla desplegada y pegar esa foto dentro de la
+        tapa. Las cajas varían entre hospitales.</span>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 640 300" role="img" aria-label="Esquema del instrumental de la caja de histerotomía: bisturí con hoja número 10 o 22, tijera de Mayo recta, dos pinzas Kocher para el cordón, pinza de disección, separador de Richardson, porta-agujas con sutura reabsorbible y compresas de laparotomía.">
+          <g font-family="DM Mono, monospace" font-size="11" fill="#94a3b8">
+
+            <!-- Fila 1 -->
+            <g transform="translate(20,20)">
+              <rect x="0" y="26" width="72" height="12" rx="2" fill="rgba(148,163,184,0.18)" stroke="#94a3b8" stroke-width="1.5"/>
+              <path d="M72,26 L110,24 L116,32 L72,38 Z" fill="rgba(239,68,68,0.2)" stroke="#ef4444" stroke-width="1.5"/>
+              <text x="0" y="60" fill="#fca5a5" font-size="12">Bisturí hoja 10 o 22</text>
+              <text x="0" y="76">dos montados · el único indispensable</text>
+            </g>
+            <g transform="translate(200,20)">
+              <circle cx="8" cy="18" r="8" fill="none" stroke="#94a3b8" stroke-width="2"/>
+              <circle cx="8" cy="42" r="8" fill="none" stroke="#94a3b8" stroke-width="2"/>
+              <path d="M16,20 L58,30 L108,26" fill="none" stroke="#94a3b8" stroke-width="2.5"/>
+              <path d="M16,40 L58,30 L108,34" fill="none" stroke="#94a3b8" stroke-width="2.5"/>
+              <circle cx="58" cy="30" r="3" fill="#64748b"/>
+              <text x="0" y="60" fill="#e2e8f0" font-size="12">Tijera de Mayo recta</text>
+              <text x="0" y="76">amplía la histerotomía · corta el cordón</text>
+            </g>
+            <g transform="translate(400,20)">
+              <circle cx="8" cy="18" r="8" fill="none" stroke="#fcd34d" stroke-width="2"/>
+              <circle cx="8" cy="42" r="8" fill="none" stroke="#fcd34d" stroke-width="2"/>
+              <path d="M16,22 L54,30 L104,30" fill="none" stroke="#fcd34d" stroke-width="3"/>
+              <path d="M16,38 L54,30 L104,34" fill="none" stroke="#fcd34d" stroke-width="3"/>
+              <path d="M78,29 v6 M86,29 v6 M94,29 v6" stroke="#fcd34d" stroke-width="1.2"/>
+              <text x="0" y="60" fill="#fcd34d" font-size="12">2 pinzas Kocher o Kelly</text>
+              <text x="0" y="76">clampean el cordón antes de cortar</text>
+            </g>
+
+            <!-- Fila 2 -->
+            <g transform="translate(20,150)">
+              <path d="M0,30 L64,24 L70,30 L64,36 Z" fill="none" stroke="#94a3b8" stroke-width="2"/>
+              <path d="M0,30 L64,36" fill="none" stroke="#94a3b8" stroke-width="1"/>
+              <text x="0" y="60" fill="#e2e8f0" font-size="12">Pinza de disección</text>
+              <text x="0" y="76">toma el peritoneo para elevarlo</text>
+            </g>
+            <g transform="translate(200,150)">
+              <path d="M0,10 L0,40 Q0,50 12,50 L54,50" fill="none" stroke="#a5b4fc" stroke-width="3"/>
+              <rect x="-8" y="0" width="18" height="12" rx="3" fill="rgba(99,102,241,0.2)" stroke="#a5b4fc" stroke-width="1.5"/>
+              <path d="M54,44 L54,56" stroke="#a5b4fc" stroke-width="3"/>
+              <text x="0" y="76" fill="#a5b4fc" font-size="12">Separador de Richardson</text>
+              <text x="0" y="92">o valvas · retrae la pared</text>
+            </g>
+            <g transform="translate(400,150)">
+              <circle cx="8" cy="14" r="7" fill="none" stroke="#5eead4" stroke-width="2"/>
+              <circle cx="8" cy="30" r="7" fill="none" stroke="#5eead4" stroke-width="2"/>
+              <path d="M15,17 L56,22 L15,27 Z" fill="none" stroke="#5eead4" stroke-width="2"/>
+              <path d="M60,22 q14,-12 26,0" fill="none" stroke="#fcd34d" stroke-width="1.5"/>
+              <text x="0" y="60" fill="#5eead4" font-size="12">Porta-agujas + sutura 0 / 1</text>
+              <text x="0" y="76">reabsorbible · solo si hay circulación</text>
+            </g>
+
+            <!-- Fila 3 -->
+            <g transform="translate(200,265)">
+              <rect x="0" y="0" width="52" height="26" rx="4" fill="rgba(255,255,255,0.06)" stroke="#94a3b8" stroke-width="1.5"/>
+              <path d="M0,9 h52 M0,18 h52" stroke="#94a3b8" stroke-width="0.8"/>
+              <text x="66" y="18" fill="#e2e8f0" font-size="12">Compresas de laparotomía · empaquetamiento</text>
+            </g>
+
+          </g>
+        </svg>
+        <div class="fig-caption">
+          <strong>Esquemas orientativos, no a escala ni fotográficos.</strong> La caja de histerotomía de reanimación es
+          deliberadamente pobre: cuantas más piezas tiene, más demora en abrirse y más se parece a una cirugía
+          programada. El <strong>bisturí y el aspirador</strong> son lo crítico; el porta-agujas solo entra en juego si
+          la paciente recupera circulación, y el cierre definitivo es en pabellón.
+        </div>
+      </div>
+
+      <div class="subhead">Lista mínima de la caja</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Elemento</th><th>Para qué</th></tr></thead>
+          <tbody>
+            <tr><td>Bisturí con hoja n.º 10 o 22 (mango n.º 3 o 4), <strong>dos montados</strong></td><td>Incisión de la pared abdominal y apertura del útero. Es el único elemento sin el cual el procedimiento no existe.</td></tr>
+            <tr><td>Tijera de Mayo recta robusta</td><td>Ampliar la histerotomía si no se amplía con los dedos, y cortar el cordón.</td></tr>
+            <tr><td><strong>Dos pinzas</strong> Kocher o Kelly, o dos clamps de cordón</td><td>Clampear el cordón en dos puntos antes de cortarlo.</td></tr>
+            <tr><td>Pinza de disección con dientes</td><td>Tomar y elevar el peritoneo para abrirlo sin lesionar intestino ni vejiga.</td></tr>
+            <tr><td>Separador de Richardson o valvas anchas</td><td>Retraer la pared abdominal, indispensable en la paciente obesa.</td></tr>
+            <tr><td>Aspirador Yankauer de gran calibre y frasco con capacidad</td><td>Líquido amniótico y sangre en cantidad. Sin aspiración no se ve el plano del útero.</td></tr>
+            <tr><td>Compresas de laparotomía (varias)</td><td><strong>Empaquetamiento</strong> del útero y de la cavidad abdominal, que es la hemostasia temporal de este procedimiento.</td></tr>
+            <tr><td>Porta-agujas + sutura reabsorbible <strong>del 0 o del 1</strong></td><td>Cierre uterino solo si hay retorno de circulación y no se puede trasladar de inmediato. Durante el paro no se sutura.</td></tr>
+            <tr><td>Antiséptico en frasco (clorhexidina o povidona)</td><td>Un chorro sobre el abdomen. No se pincela ni se espera que seque.</td></tr>
+            <tr><td>Paño estéril grande o campo</td><td>Cubrir el abdomen empacado para el traslado a pabellón.</td></tr>
+            <tr><td><strong>Material de reanimación neonatal completo</strong> + cuna de calor radiante + dos clamps de cordón</td><td>Es la mitad olvidada de la caja. Se prepara en paralelo, en la misma sala, por el equipo de neonatología.</td></tr>
+            <tr><td>Uterotónicos y ácido tranexámico accesibles (sección 05)</td><td>Se piden al mismo tiempo que el bisturí, para que estén en la mano cuando aparezca el pulso.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Prueba de realidad del servicio</div>
+      <div class="checklist" id="list-s4">
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Dónde</span><strong>Sé en qué carro y en qué cajón está el bisturí</strong> de la sala de reanimación, sin buscarlo. Si la respuesta es «lo pido a pabellón», el servicio no está preparado.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Caja</span><strong>Existe una caja de histerotomía sellada en la sala de reanimación</strong> (o un set desechable equivalente) y alguien la revisa con periodicidad definida.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Neonatal</span><strong>Hay cuna de calor radiante y material de reanimación neonatal alcanzables desde la sala de adultos</strong>, y está escrito a quién se llama y por qué número.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Quién</span><strong>Está definido por escrito quién incide</strong> en el turno de noche y en el fin de semana, cuando no hay obstetra en el edificio. Esta es la pregunta que más veces queda sin respuesta.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Simulacro</span><strong>El equipo ha hecho al menos un simulacro de paro materno</strong> en la sala real, con el reloj corriendo y con el llamado a neonatología incluido. La primera vez que se hace esto no debería ser con una paciente.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · TÉCNICA -->
+  <div class="section s5" id="s5" style="animation-delay:0.22s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Técnica paso a paso</div>
+        <div class="section-subtitle">Incisión vertical media, histerotomía clásica, extracción y empaquetamiento</div>
+      </div>
+      <span class="section-check-count" id="count-s5">0/10</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="figure">
+        <svg viewBox="0 0 640 300" role="img" aria-label="Esquema de las incisiones: a la izquierda, la incisión vertical media de la pared abdominal desde el ombligo hasta el pubis; a la derecha, la histerotomía vertical clásica en la línea media del cuerpo uterino, ampliada con los dedos hacia el fondo y protegiendo al feto.">
+          <g font-family="DM Mono, monospace" font-size="11" fill="#94a3b8">
+
+            <!-- panel 1: pared abdominal -->
+            <g transform="translate(20,14)">
+              <text x="0" y="12" fill="#fca5a5" font-size="12">1 · PARED ABDOMINAL</text>
+              <!-- abdomen -->
+              <path d="M40,40 Q20,150 40,258 L200,258 Q220,150 200,40 Z" fill="rgba(255,255,255,0.02)" stroke="#475569" stroke-width="1.5"/>
+              <!-- ombligo -->
+              <circle cx="120" cy="86" r="5" fill="#5eead4"/>
+              <text x="134" y="90" fill="#5eead4">ombligo</text>
+              <!-- pubis -->
+              <path d="M96,238 Q120,248 144,238" fill="none" stroke="#fcd34d" stroke-width="2"/>
+              <text x="152" y="244" fill="#fcd34d">pubis</text>
+              <!-- incisión -->
+              <line x1="120" y1="94" x2="120" y2="232" stroke="#ef4444" stroke-width="4" stroke-linecap="round"/>
+              <text x="0" y="284" fill="#fca5a5">vertical media · ombligo → pubis</text>
+            </g>
+
+            <!-- panel 2: útero -->
+            <g transform="translate(250,14)">
+              <text x="0" y="12" fill="#fcd34d" font-size="12">2 · HISTEROTOMÍA CLÁSICA</text>
+              <!-- útero -->
+              <path d="M110,40 Q184,60 184,160 Q184,236 110,244 Q36,236 36,160 Q36,60 110,40 Z" fill="rgba(99,102,241,0.14)" stroke="#a5b4fc" stroke-width="2"/>
+              <text x="60" y="66" fill="#c7d2fe">fondo</text>
+              <!-- reflejo vesical / vejiga -->
+              <path d="M74,242 Q110,262 146,242" fill="rgba(59,130,246,0.18)" stroke="#93c5fd" stroke-width="1.8"/>
+              <text x="152" y="256" fill="#93c5fd">vejiga</text>
+              <!-- incisión uterina -->
+              <line x1="110" y1="74" x2="110" y2="232" stroke="#fcd34d" stroke-width="4" stroke-linecap="round" stroke-dasharray="14 6"/>
+              <!-- inicio pequeño -->
+              <rect x="101" y="140" width="18" height="34" rx="4" fill="rgba(239,68,68,0.25)" stroke="#ef4444" stroke-width="1.6"/>
+              <text x="198" y="158" fill="#fca5a5" font-size="12">se parte aquí</text>
+              <text x="198" y="174">2–3 cm con bisturí</text>
+              <!-- flechas de ampliación -->
+              <path d="M110,134 L110,100" stroke="#fcd34d" stroke-width="2.2" marker-end="url(#arrU)"/>
+              <path d="M110,180 L110,214" stroke="#fcd34d" stroke-width="2.2" marker-end="url(#arrU)"/>
+              <text x="198" y="108" fill="#fcd34d" font-size="12">se amplía</text>
+              <text x="198" y="124">con los dedos</text>
+              <text x="0" y="284" fill="#fcd34d">línea media del cuerpo · nunca transversal baja</text>
+            </g>
+
+            <defs>
+              <marker id="arrU" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#fcd34d" stroke="none"/>
+              </marker>
+            </defs>
+          </g>
+        </svg>
+        <div class="fig-caption">
+          <strong>Esquemas orientativos, no a escala ni ilustraciones anatómicas.</strong> Las dos incisiones son
+          <strong>verticales y en la línea media</strong>, y esa es la diferencia técnica con la cesárea habitual: la
+          Pfannenstiel con histerotomía transversal baja es más lenta, expone menos y requiere disecar el reflejo
+          vesical. La histerotomía se <strong>inicia pequeña</strong> en la mitad del cuerpo uterino, y solo cuando se ve
+          líquido o membranas se amplía hacia el fondo y hacia abajo, con los dedos protegiendo al feto.
+        </div>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>En la embarazada de término la pared abdominal está <strong>adelgazada y el útero está inmediatamente por
+        debajo</strong>. La primera incisión se hace con control, sin hundir el bisturí: se entra al útero cuando se
+        decide entrar, no por accidente. Los dos vecinos que se lesionan por apuro son el <strong>intestino</strong>
+        (al abrir el peritoneo) y la <strong>vejiga</strong> (al prolongar la incisión hacia abajo).</span>
+      </div>
+
+      <div class="subhead">Secuencia</div>
+      <div class="checklist" id="list-s5">
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">A · Sin pausas</span><strong>Las compresiones continúan durante todo el procedimiento</strong>, y el desplazamiento uterino manual se mantiene hasta el momento en que se abre el útero. El operador trabaja sobre un abdomen que se mueve: se asume y se sigue.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">B · Exposición</span><strong>Descubrir el abdomen por completo, chorro de antiséptico si está a mano, doble guante y escudo facial.</strong> En la paciente obesa, <strong>dos personas retraen el panículo hacia la cabeza</strong> y la incisión se hace sobre el abdomen así expuesto; no se incide debajo del pliegue.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">C · Piel y aponeurosis</span><strong>Incisión vertical media desde el ombligo hasta la sínfisis del pubis</strong>, atravesando piel, celular subcutáneo y aponeurosis (línea alba) con trazos firmes y repetidos en el mismo surco. Es la vía más rápida y la que da mejor exposición para el operador no obstetra.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">D · Peritoneo</span><strong>Separar los rectos en la línea media y abrir el peritoneo elevándolo</strong> con la pinza de disección, en la parte <em>alta</em> de la incisión y hacia el ombligo, lejos de la vejiga. Ampliar con tijera o con los dedos. Si hay sonda vesical instalada, vaciar la vejiga; si no hay, no se pierde tiempo instalándola.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">E · Histerotomía</span><strong>Incisión vertical clásica en la línea media del cuerpo uterino:</strong> se inicia con <strong>2–3 cm</strong> de bisturí en la mitad del útero, hasta ver líquido amniótico o membranas. Después se amplía con tijera o con los dedos <strong>hacia el fondo y hacia abajo</strong>, con dos dedos dentro protegiendo al feto de la hoja. Si la placenta es anterior y queda en el camino, <em>se atraviesa</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">F · Extracción</span><strong>Extraer al recién nacido</strong> tomando la presentación que se encuentre —cabeza, nalgas o un pie— con tracción suave y sostenida, ayudando con presión sobre el fondo desde fuera. <strong>Clampear el cordón en dos puntos y cortar entre ellos.</strong> El pinzamiento tardío del cordón <em>no</em> aplica aquí. Entregar al equipo de neonatología y <strong>cantar la hora del nacimiento</strong>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">G · Placenta</span><strong>Extraer la placenta</strong> con tracción del cordón y extracción manual, y barrer la cavidad con una compresa. Dejar la placenta dentro mantiene sangrado activo y es una de las omisiones más frecuentes cuando la atención se va al recién nacido.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">H · Empaquetamiento</span><strong>Empacar el útero y la cavidad abdominal con compresas y cubrir con un paño.</strong> Durante el paro <em>no se cierra por planos</em>: la hemostasia es por compresión y el cierre definitivo es en pabellón. Contar y anotar las compresas que quedan dentro.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">I · Con retorno de circulación</span><strong>Uterotónicos, ácido tranexámico, masaje uterino bimanual, antibiótico de amplio espectro, sedoanalgesia y traslado a pabellón</strong> para hemostasia y cierre. Aparece anestesia: hasta este momento la paciente no recibió ninguna.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">J · Sin retorno de circulación</span><strong>Continuar la reanimación con el útero vacío.</strong> El beneficio hemodinámico de la descompresión no es instantáneo: no se suspende inmediatamente después de extraer al recién nacido. Se vuelve a recorrer la lista de causas reversibles (sección 06) y se evalúa la RCP extracorpórea antes de plantear la suspensión.</span>
+        </button>
+      </div>
+
+      <div class="progress-bottom">
+        <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBar"></div></div>
+        <div class="progress-label"><span id="progress-pct">0%</span> del checklist</div>
+        <button type="button" class="reset-btn" onclick="resetAll()">↺ Reiniciar</button>
+      </div>
+
+      <div class="subhead">Fármacos del minuto siguiente al pulso</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Fármaco</th><th>Dosis habitual</th><th>Advertencias</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Oxitocina</strong></td>
+              <td><span class="dose-main">5 UI IV lenta y diluida</span>, o 10 UI IM<br><span class="dose-note">luego infusión de mantención</span></td>
+              <td><em>Nunca en bolo rápido:</em> produce vasodilatación, hipotensión y taquicardia, lo último que tolera una paciente que acaba de recuperar circulación. El esquema de infusión y la concentración <strong>se verifican con el protocolo institucional</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Ácido tranexámico</strong></td>
+              <td><span class="dose-main">1 g IV en 10 minutos</span><br><span class="dose-note">repetible según protocolo</span></td>
+              <td>Precoz. Forma parte del manejo de la hemorragia posparto; el esquema de la segunda dosis <strong>se verifica con el protocolo institucional</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Misoprostol</strong></td>
+              <td><span class="dose-main">800 µg</span><br><span class="dose-note">sublingual o rectal</span></td>
+              <td>Alternativa o coadyuvante cuando la atonía persiste. Provoca fiebre y escalofríos que después se confunden con sepsis.</td>
+            </tr>
+            <tr>
+              <td><strong>Metilergometrina</strong></td>
+              <td><span class="dose-main">0,2 mg IM</span></td>
+              <td><strong>Contraindicada en hipertensión, preeclampsia y eclampsia</strong>, que son justamente causas frecuentes de este escenario. Nunca IV en bolo.</td>
+            </tr>
+            <tr>
+              <td><strong>Carbetocina</strong></td>
+              <td><span class="dose-main">100 µg IV</span><br><span class="dose-note">si está disponible</span></td>
+              <td>Dosis única. Disponibilidad y lugar en el esquema <em>verificar con protocolo institucional</em>.</td>
+            </tr>
+            <tr>
+              <td><strong>Gluconato de calcio</strong></td>
+              <td><span class="dose-main">1 g IV</span><br><span class="dose-note">10 mL al 10 %</span></td>
+              <td>Antídoto de la <strong>toxicidad por sulfato de magnesio</strong>. Si la paciente tenía magnesio en infusión, <strong>suspenderlo</strong> y administrar calcio (sección 06).</td>
+            </tr>
+            <tr>
+              <td><strong>Emulsión lipídica al 20 %</strong></td>
+              <td><span class="dose-main">bolo 1,5 mL/kg</span><br><span class="dose-note">seguido de infusión</span></td>
+              <td>Toxicidad sistémica por anestésicos locales. El esquema completo de bolo, repetición e infusión <strong>se verifica con el protocolo institucional</strong> y debe estar impreso junto al frasco.</td>
+            </tr>
+            <tr>
+              <td><strong>Antibiótico de amplio espectro</strong></td>
+              <td><span class="dose-main">según protocolo local</span></td>
+              <td>El procedimiento se hizo sin asepsia quirúrgica: la profilaxis no es opcional. El esquema <strong>se define con el protocolo institucional</strong>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fig-caption" style="margin-top:10px;">
+        <strong>Todas las dosis de esta tabla deben verificarse antes de administrar.</strong> Están citadas como órdenes
+        de magnitud habituales para ayudar a reconocer un error grueso, no como prescripción. En una paciente que acaba
+        de salir de un paro, con coagulopatía y hemodinamia frágil, la vía y la velocidad de administración importan
+        tanto como la dosis.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · CAUSAS REVERSIBLES -->
+  <div class="section s6" id="s6" style="animation-delay:0.26s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Causas reversibles del paro materno</div>
+        <div class="section-subtitle">La lista A–H, que no es la de las 4 H y las 4 T</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>La histerotomía resuelve la compresión aortocava, no la causa del paro. Mientras se opera, alguien recorre
+        esta lista en voz alta. Es la lista de la declaración de la American Heart Association sobre paro cardíaco en el
+        embarazo: <strong>las 4 H y las 4 T habituales aparecen solo dentro de la letra G</strong>, porque en esta
+        paciente lo que más frecuentemente la mató no está en ellas.</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Letra</th><th>Causa</th><th>Qué hacer ahora</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>A</strong><br><span class="dose-note">Anestésicas</span></td>
+              <td>Toxicidad sistémica por <strong>anestésicos locales</strong>, bloqueo neuroaxial alto o total, vía aérea fallida, aspiración.</td>
+              <td><strong>Emulsión lipídica al 20 %</strong> si hubo anestesia local o regional reciente. Vasopresores y vía aérea definitiva en el bloqueo alto. En el CAPS británico, <strong>16 de 66 paros</strong> se debieron exclusivamente a la anestesia obstétrica, 12 de ellos en mujeres con obesidad: es la causa más prevenible de todas.</td>
+            </tr>
+            <tr>
+              <td><strong>B</strong><br><span class="dose-note">Bleeding · hemorragia</span></td>
+              <td>Atonía uterina, acretismo, desprendimiento de placenta, rotura uterina, embarazo ectópico roto, coagulopatía, hemorragia oculta.</td>
+              <td><strong>Protocolo de transfusión masiva</strong>, ácido tranexámico 1 g, calcio, calor. Buscar el sangrado: abdomen, útero, retroperitoneo, sitio quirúrgico. Sin volumen, ninguna otra maniobra funciona.</td>
+            </tr>
+            <tr>
+              <td><strong>C</strong><br><span class="dose-note">Cardiovascular</span></td>
+              <td>Infarto, <strong>disección aórtica</strong>, miocardiopatía periparto, valvulopatía, arritmia, cardiopatía congénita, hipertensión pulmonar.</td>
+              <td>Ecocardiografía en cuanto no interfiera. La disección y el infarto en la embarazada joven se piensan tarde. <a href="./algoritmo-diseccion-aortica.html" style="color:#60a5fa;">Ver algoritmo de disección aórtica</a>.</td>
+            </tr>
+            <tr>
+              <td><strong>D</strong><br><span class="dose-note">Drogas y fármacos</span></td>
+              <td><strong>Sulfato de magnesio</strong>, opioides, insulina, error de fármaco o de dosis, anafilaxia, intoxicación.</td>
+              <td><strong>Suspender la infusión de magnesio y administrar gluconato de calcio 1 g IV.</strong> Naloxona si hay opioides. Adrenalina y volumen en la anafilaxia. Revisar físicamente las bombas y las bajadas conectadas.</td>
+            </tr>
+            <tr>
+              <td><strong>E</strong><br><span class="dose-note">Embólicas</span></td>
+              <td><strong>Tromboembolismo pulmonar</strong>, <strong>embolia de líquido amniótico</strong>, embolia aérea.</td>
+              <td>Sospechar TEP ante paro súbito con actividad eléctrica sin pulso: considerar trombólisis durante la reanimación y RCP extracorpórea. La embolia de líquido amniótico se presenta con colapso, coagulopatía de consumo precoz y hemorragia masiva; el tratamiento es de soporte.</td>
+            </tr>
+            <tr>
+              <td><strong>F</strong><br><span class="dose-note">Fiebre · sepsis</span></td>
+              <td>Corioamnionitis, endometritis, pielonefritis, sepsis de cualquier foco.</td>
+              <td>Antibióticos de amplio espectro precoces, volumen, control del foco. <a href="./checklist-sepsis_4.html" style="color:#60a5fa;">Ver checklist de sepsis</a>.</td>
+            </tr>
+            <tr>
+              <td><strong>G</strong><br><span class="dose-note">General</span></td>
+              <td>Las <strong>4 H y 4 T</strong> de siempre: hipoxia, hipovolemia, hipo o hiperkalemia y otros trastornos electrolíticos, hipotermia; neumotórax a tensión, taponamiento, tóxicos, trombosis.</td>
+              <td>El algoritmo estándar, sin modificaciones de dosis ni de energía por el embarazo.</td>
+            </tr>
+            <tr>
+              <td><strong>H</strong><br><span class="dose-note">Hipertensión</span></td>
+              <td><strong>Preeclampsia severa, eclampsia, síndrome HELLP</strong> y sus consecuencias: hemorragia intracraneal, edema pulmonar, rotura hepática, desprendimiento de placenta.</td>
+              <td>Control de la presión, sulfato de magnesio para la convulsión —con conciencia de la letra D—, imagen cerebral tras el retorno de circulación y laboratorio con plaquetas, pruebas hepáticas y hemólisis.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;margin-bottom:0;">
+        <span class="warning-icon">⚠️</span>
+        <span>La <strong>distribución de causas varía según el país y el nivel del servicio</strong>: en las series
+        británicas dominan la anestesia obstétrica y la hemorragia, y en otros contextos pesan más la hemorragia y los
+        trastornos hipertensivos. <em>Conviene conocer las causas de mortalidad materna de la propia red asistencial</em>
+        en lugar de asumir la epidemiología de una cohorte ajena.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · LA MADRE CON RETORNO DE CIRCULACIÓN -->
+  <div class="section s7" id="s7" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">La madre, si recupera circulación</div>
+        <div class="section-subtitle">Lo difícil ya pasó; lo que mata ahora es la hemorragia</div>
+      </div>
+      <span class="section-check-count" id="count-s7">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>Una paciente con útero abierto, sin suturar, que estuvo en paro, recibió compresiones y transfusión, y
+        cuyo útero no se contrae: <strong>la hemorragia posparto no es una complicación posible, es el escenario
+        esperado</strong>. Se anticipa con los uterotónicos ya cargados y el protocolo de transfusión masiva ya activado,
+        no cuando se ve el sangrado.</span>
+      </div>
+
+      <div class="checklist" id="list-s7">
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Pabellón</span><strong>Traslado inmediato a pabellón</strong> para hemostasia, revisión de la histerotomía y cierre definitivo, con anestesia y con el equipo quirúrgico. El box no es el lugar para terminar nada.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Hemorragia</span><strong>Escalada completa de la hemorragia posparto:</strong> masaje bimanual, uterotónicos, ácido tranexámico, transfusión con control de calcio y temperatura, y las medidas quirúrgicas si no cede —balón intrauterino, suturas compresivas, ligaduras, histerectomía—. Se escala rápido, no en secuencia lenta.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Posición</span><strong>Ya no hay compresión aortocava:</strong> se suspende el desplazamiento uterino manual y no hace falta ninguna posición lateral. El cuidado post-paro es el del adulto.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Post-paro</span><strong>Paquete de cuidados post-paro:</strong> normoxemia y normocapnia, control de la temperatura según el protocolo del servicio, glicemia, tratamiento de las convulsiones, electrocardiograma y ecocardiografía. La evidencia específica en la paciente obstétrica es de extrapolación: <em>verificar con protocolo institucional</em>, en especial el manejo dirigido de temperatura en una paciente que además está sangrando.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Causa</span><strong>Cerrar el diagnóstico etiológico:</strong> ecocardiografía, angioTAC de tórax si se sospecha tromboembolismo y la paciente lo tolera, imagen cerebral si hubo trastorno hipertensivo o convulsión, coagulación completa, plaquetas, pruebas hepáticas y troponina. El paro materno sin causa aclarada deja a la paciente expuesta a repetirlo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Infección</span><strong>Antibiótico de amplio espectro y consideración de la herida como sucia.</strong> El procedimiento se hizo sin asepsia quirúrgica, con instrumental abierto de apuro y en un box: la vigilancia de infección de sitio operatorio y de endometritis empieza el mismo día.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Pendientes</span><strong>Lo que se olvida al día siguiente:</strong> inmunoglobulina anti-D si corresponde al grupo sanguíneo, tromboprofilaxis en cuanto la hemostasia lo permita, conversación sobre lactancia o su supresión, apoyo de salud mental y, si el recién nacido falleció o está en cuidados intensivos, acompañamiento del duelo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Registro</span><strong>Dejar en la ficha las cuatro horas y la indicación:</strong> hora del paro, hora de la incisión, hora del nacimiento, hora del retorno de circulación, altura uterina al momento de decidir, quién operó, quién estuvo presente y cuántas compresas quedaron dentro. Es lo que sostiene el análisis del caso y la revisión médico-legal.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · EL RECIÉN NACIDO -->
+  <div class="section s8" id="s8" style="animation-delay:0.34s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">El recién nacido</div>
+        <div class="section-subtitle">Un segundo paciente, con un segundo equipo</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">👶</span><span><strong>Se espera lo peor y se prepara para eso:</strong> apnea, bradicardia, acidosis severa y necesidad de ventilación con presión positiva, intubación y compresiones. Este niño estuvo el mismo tiempo que su madre sin circulación efectiva. La reanimación es la neonatal estándar, sin atajos por el mecanismo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">👶</span><span><strong>Equipo separado y en paralelo:</strong> nadie que esté reanimando a la madre atiende al recién nacido. Cuna de calor radiante, bolsa-máscara del tamaño correcto, material de vía aérea, aspiración y oxígeno preparados <em>antes</em> del nacimiento.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🌡</span><span><strong>Prevención de la hipotermia desde el primer segundo:</strong> secado, gorro, bolsa de polietileno si es prematuro, calor ambiental. La hipotermia no intencional empeora la acidosis y la coagulopatía.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧠</span><span><strong>Encefalopatía hipóxico-isquémica:</strong> es el escenario previsible y hay una ventana terapéutica corta para la hipotermia terapéutica neonatal. Se avisa a neonatología <em>de inmediato</em> para que la evaluación de criterios empiece al nacer. Los <strong>criterios de inclusión, el rango de edad gestacional y la ventana de tiempo se verifican con el protocolo institucional</strong> y con la unidad de neonatología de referencia.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏱</span><span><strong>No se retrasa el pinzamiento del cordón.</strong> Se clampea y se corta de inmediato para sacar al niño del campo y empezar su reanimación, y para que el operador siga con la placenta y el empaquetamiento.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📉</span><span><strong>Si es prematuro</strong>, se suma todo el paquete del prematuro: control estricto de temperatura, presión positiva continua o ventilación según respuesta, surfactante si corresponde, accesos umbilicales y traslado a la unidad. Hay sobrevivientes descritos desde las <strong>26 semanas</strong> incluso tras paros extrahospitalarios prolongados, lo que refuerza que se llame a neonatología y no se prejuzgue el desenlace.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Lo que no se hace:</strong> no se demora la extracción para «preparar mejor» al equipo neonatal, no se interrumpe la reanimación materna para ayudar con el niño, y no se decide de antemano que el niño no será reanimado por el tiempo transcurrido. Esa evaluación la hace el equipo de neonatología con el niño en la mano.</span></div>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;margin-bottom:0;">
+        <span class="warning-icon">ℹ️</span>
+        <span>Esta página es de contenido para <strong>adultos</strong> y no desarrolla la reanimación neonatal, que
+        tendrá su propia página en este proyecto. Hasta entonces, la referencia es el <strong>protocolo de reanimación
+        neonatal del servicio</strong> y el equipo de neonatología de turno.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · ESCENARIOS ESPECIALES -->
+  <div class="section s9" id="s9" style="animation-delay:0.38s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Escenarios especiales</div>
+        <div class="section-subtitle">Extrahospitalario, trauma, obesidad, embarazo múltiple</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Paro extrahospitalario o llegada en paro</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🚑</span><span><strong>Los números son duros y hay que conocerlos:</strong> en la revisión sistemática de histerotomías de reanimación por paro extrahospitalario, la sobrevida materna al alta fue del <strong>4,5 %</strong> y la neonatal del <strong>45 %</strong>. La sobrevida materna con función neurológica normal se documentó hasta <strong>29 minutos</strong> desde el colapso, y la neonatal hasta <strong>47 minutos</strong>. La certeza de la evidencia es muy baja: son series y casos publicados, con sesgo de publicación evidente.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">✔</span><span><strong>Lo que se hace con eso:</strong> si la paciente llega en paro con el útero sobre el ombligo, se hace igual, y se hace en el box de llegada. El tiempo transcurrido informa el pronóstico que se conversará después con la familia, <em>no</em> autoriza a omitir el procedimiento.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📍</span><span><strong>Si el paro ocurre en la calle y el traslado va a demorar</strong>, hacerla en el lugar es una posibilidad descrita —y así se lograron varios de esos sobrevivientes—, pero exige operador entrenado, decisión institucional previa y equipo prehospitalario preparado: <em>no es una decisión que se improvise en la escena</em>.</span></div>
+      </div>
+
+      <div class="subhead">Paro traumático en la embarazada</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>El orden no cambia por el embarazo:</strong> control de la hemorragia externa, toracostomías bilaterales, volumen y sangre, y la histerotomía como parte del mismo paquete simultáneo —no como un paso posterior—. En el trauma, la causa del paro casi siempre es hipovolemia: vaciar el útero ayuda, pero sin transfusión no rescata a nadie.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫀</span><span><strong>Si además hay indicación de toracotomía de reanimación</strong> (herida penetrante torácica con signos de vida), ambas pueden ser necesarias y no compiten: se reparten entre dos operadores si hay dos.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⚠️</span><span><strong>Desprendimiento de placenta</strong> tras trauma abdominal contuso, incluso de mecanismo aparentemente menor. Es una causa de paro materno y de muerte fetal que se manifiesta con retraso.</span></div>
+      </div>
+      <div class="link-row">
+        <a class="cross-link" href="./checklist-politrauma_2.html">Checklist de politrauma →</a>
+        <a class="cross-link" href="./checklist-toracotomia-reanimacion.html">Toracotomía de reanimación →</a>
+      </div>
+
+      <div class="subhead">Obesidad</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">⚖️</span><span><strong>Es el escenario más difícil y no es infrecuente:</strong> pared abdominal gruesa, panículo que oculta el campo, compresiones menos eficaces, vía aérea difícil y mayor riesgo de complicación anestésica —en el CAPS británico, 12 de las 16 pacientes que se paran por causa anestésica tenían obesidad—. <strong>Dos personas retraen el panículo hacia la cabeza</strong>, se incide sobre el abdomen así expuesto, se usa el separador desde el comienzo y se anticipa que la incisión será más profunda y más larga.</span></div>
+      </div>
+
+      <div class="subhead">Embarazo múltiple</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">👥</span><span><strong>Mayor compresión aortocava, mayor volumen uterino y más de un recién nacido.</strong> Se avisa a neonatología el número esperado si se conoce, y se pide un equipo por cada niño. La técnica no cambia; la histerotomía vertical suele necesitar más extensión.</span></div>
+      </div>
+
+      <div class="subhead">Lo que queda fuera de esta página</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Paciente con muerte cerebral y feto viable:</strong> soporte prolongado y parto programado. Es una decisión ética, obstétrica y familiar con tiempo para tomarse, no una maniobra de reanimación.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Paro materno en el intraoperatorio de una cesárea ya iniciada:</strong> el manejo lo conduce el equipo quirúrgico y anestésico presente, con la ventaja de que el abdomen ya está abierto. La lista de causas de la sección 06 sigue aplicando, empezando por la letra A.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · CUÁNDO SUSPENDER -->
+  <div class="section s10" id="s10" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Cuándo suspender, y qué viene después</div>
+        <div class="section-subtitle">La decisión más difícil de la sala, y el cuidado del equipo</div>
+      </div>
+      <span class="section-check-count" id="count-s10">0/6</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>No existe un criterio validado para suspender la reanimación en el paro materno.</strong> Los
+        elementos que se citan habitualmente —asistolia persistente pese al útero vacío, capnografía muy baja sostenida,
+        ausencia de actividad cardíaca en la ecografía, ausencia de una causa reversible identificada y tratada— provienen
+        de la reanimación del adulto y no han sido estudiados en esta población. <strong>Los umbrales concretos, el
+        tiempo mínimo de reanimación y quién toma la decisión se verifican con el protocolo institucional.</strong></span>
+      </div>
+
+      <div class="checklist" id="list-s10">
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Útero vacío</span><strong>Antes de plantear la suspensión, el útero tiene que estar vacío.</strong> Suspender una reanimación en una paciente con útero sobre el ombligo <em>sin haber hecho la histerotomía</em> es dejar sin tratar la causa más corregible del fracaso de las compresiones.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Lista A–H</span><strong>Las ocho causas se recorrieron en voz alta y las tratables se trataron:</strong> magnesio suspendido y calcio administrado, emulsión lipídica si hubo anestésico local, transfusión masiva si hay hemorragia, trombólisis considerada si se sospecha tromboembolismo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">RCP extracorpórea</span><strong>Se evaluó la RCP extracorpórea antes de suspender.</strong> Es una paciente joven, con causas potencialmente reversibles y buen estado basal: el perfil que más se beneficia de ella donde existe. Si el servicio no tiene programa, conviene saberlo <em>antes</em> y tener definido el centro de derivación.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Decisión</span><strong>La suspensión la anuncia el líder, en voz alta, con la hora,</strong> después de preguntar explícitamente si alguien del equipo tiene algo más que aportar. Nadie suspende por su cuenta mientras otro sigue comprimiendo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Familia</span><strong>La conversación con la familia la da una persona con nombre, sentada, sin ambigüedad y mencionando al recién nacido.</strong> Esta familia recibe dos noticias en la misma frase y va a recordar cómo se las dieron. Se ofrece acompañamiento, se explica qué se hizo y por qué, y se resuelve el procedimiento médico-legal que corresponda.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Equipo</span><strong>Debriefing el mismo turno, y revisión del caso en el comité de morbimortalidad materna.</strong> Una muerte materna con histerotomía en la sala es uno de los eventos más duros que ocurren en un servicio de urgencia: el debriefing no es un trámite de calidad, es la forma de que el equipo siga funcionando la semana siguiente. Se ofrece apoyo de salud mental por nombre y con hora, no «si alguien lo necesita, avise».</span>
+        </button>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;margin-bottom:0;">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>Sobre la responsabilidad legal:</strong> la literatura publicada sobre este procedimiento es
+        consistente en que el riesgo medicolegal de <em>hacerlo</em> con indicación es bajo, y el de <em>omitirlo</em>
+        cuando estaba indicado no lo es. Lo que protege es el registro: indicación, altura uterina, horas, quién decidió
+        y quién operó. El manejo del fallecido y la certificación se rigen por la <strong>normativa médico-legal
+        local</strong>.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 11 · ERRORES Y SEGURIDAD -->
+  <div class="section s11" id="s11" style="animation-delay:0.46s;">
+    <div class="section-header" onclick="toggleSection('s11')">
+      <span class="section-num">11</span>
+      <div>
+        <div class="section-title">Los errores que se repiten</div>
+        <div class="section-subtitle">Y la seguridad del equipo</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No hacerla.</strong> Es, por lejos, el error dominante. Se disfraza de tres formas: «esperemos al obstetra», «subámosla a pabellón» y «traigan el ecógrafo». Las tres consumen exactamente los minutos que el procedimiento necesita.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Usar el reloj como excusa.</strong> «Ya pasaron más de cinco minutos» no es una indicación de no hacerla: hay sobrevida materna descrita hasta los 29 minutos y neonatal hasta los 47.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Buscar el bienestar fetal antes de decidir.</strong> La indicación es materna. Un feto muerto no contraindica nada.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Inclinar la mesa en lugar de desplazar el útero con las manos.</strong> La inclinación empeora las compresiones, que es lo único que mantiene viva a la paciente mientras se decide.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Instalar la vía en la femoral.</strong> El fármaco tiene que pasar justamente por donde el útero comprime. Todo por encima del diafragma.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Llamar a neonatología cuando el niño ya nació.</strong> Se llama junto con pedir el bisturí.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Incisión demasiado corta.</strong> Obliga a ampliar en un campo lleno de líquido y sangre y hace imposible extraer al feto sin desgarrar. Va del ombligo al pubis desde el comienzo.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Entrar al útero con la incisión de piel</strong>, o lesionar intestino al abrir el peritoneo, o extender la histerotomía hacia abajo hasta la vejiga.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Detener las compresiones para operar.</strong> No se detienen en ningún momento.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Olvidar la placenta y el empaquetamiento</strong> porque toda la atención se fue al recién nacido. Es el momento exacto en que el rol de tiempo y checklist tiene que hablar.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Perder a la madre por hemorragia después de haberla recuperado.</strong> Útero abierto, atónico y coagulopático: los uterotónicos y el ácido tranexámico se piden antes de que aparezca el pulso, no después.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Pasar oxitocina en bolo rápido</strong> a una paciente que acaba de recuperar circulación.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Quedarse cerrando en el box</strong> en vez de empacar y trasladar a pabellón.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No registrar las horas</strong>, que después se piden todas y ya nadie las recuerda.</span></div>
+      </div>
+
+      <div class="subhead">Seguridad del equipo</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🛡</span><span><strong>Doble guante, escudo facial y delantal impermeable</strong> antes de la incisión. El líquido amniótico y la sangre salen en volumen y a presión, sobre un campo en el que además alguien está comprimiendo el tórax.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🛡</span><span><strong>Un solo par de manos con instrumento cortante en el campo.</strong> Los objetos punzocortantes se anuncian en voz alta y se dejan en una bandeja, nunca se pasan mano a mano en un box en movimiento.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🛡</span><span><strong>Contar y anotar las compresas</strong> que quedan dentro del abdomen antes del traslado, y avisarlo explícitamente al equipo de pabellón.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🛡</span><span><strong>Registrar toda exposición</strong> —corte, pinchazo o salpicadura a mucosas— y activar el protocolo de profilaxis post-exposición del servicio el mismo día, sin esperar el final del turno.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    presencial en el procedimiento. La <strong>histerotomía de reanimación es un procedimiento de altísimo riesgo,
+    irreversible y de indicación estrecha</strong>, que requiere decisión institucional previa, operador respaldado y
+    equipo de reanimación neonatal disponible; leer este checklist no sustituye la práctica supervisada, la simulación
+    ni la capacitación formal en reanimación materna y manejo obstétrico de urgencia. La <strong>ventana de 4–5
+    minutos</strong> proviene de una recomendación <strong>basada en opinión experta</strong> (Katz 1986, revisada en
+    2005), y las cifras de sobrevida citadas provienen de <strong>series, revisiones sistemáticas y cohortes
+    observacionales de certeza baja o muy baja</strong> —no existen ensayos controlados—, con sesgo de publicación y de
+    selección; deben adaptarse a la realidad del servicio. Las <strong>demás metas de tiempo del cronómetro son
+    referenciales y no constituyen un estándar validado.</strong> Todas las <strong>dosis</strong> mencionadas
+    —uterotónicos, ácido tranexámico, gluconato de calcio, emulsión lipídica, antibióticos— son órdenes de magnitud
+    habituales y <strong>deben verificarse con el protocolo institucional</strong> y el formulario nacional antes de
+    administrar, junto con sus contraindicaciones, dilución y velocidad de infusión. Del mismo modo se deben verificar
+    con el <strong>protocolo institucional</strong> y con los equipos de obstetricia, anestesia, neonatología y UPC de
+    referencia: el <strong>umbral local de viabilidad neonatal</strong>, los <strong>criterios y la ventana de la
+    hipotermia terapéutica neonatal</strong>, el contenido de la caja de histerotomía, el esquema antibiótico, el manejo
+    dirigido de temperatura en la paciente que sangra, la disponibilidad de RCP extracorpórea y los
+    <strong>criterios de suspensión de la reanimación</strong>, para los cuales <strong>no existe un criterio validado
+    en esta población</strong>. Los <strong>esquemas son dibujos orientativos, no fotografías ni ilustraciones
+    anatómicas a escala.</strong> El contenido es para <strong>pacientes adultas</strong>; la reanimación neonatal se
+    rige por el protocolo del servicio. El manejo del fallecido y la certificación se rigen por la <strong>normativa
+    médico-legal local</strong>. El cronómetro y el checklist <strong>no guardan ningún dato</strong>: el registro del
+    procedimiento se hace en la ficha clínica.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Jeejeebhoy FM, Zelop CM, Lipman S, et al. <em>Cardiac Arrest in Pregnancy: A Scientific Statement From the American Heart Association.</em> Circulation. 2015;132(18):1747–1773. <a href="https://doi.org/10.1161/CIR.0000000000000300" target="_blank" rel="noopener">DOI: 10.1161/CIR.0000000000000300</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/26443610/" target="_blank" rel="noopener">PMID 26443610</a> — Documento de referencia del escenario: umbral de fondo uterino a la altura del ombligo, desplazamiento uterino manual izquierdo en lugar de inclinación lateral, accesos por encima del diafragma, ausencia de modificaciones en dosis y energías, y la lista A–H de causas del paro materno.</div>
+      <div class="ref-item">Lipman S, Cohen S, Einav S, et al. <em>The Society for Obstetric Anesthesia and Perinatology consensus statement on the management of cardiac arrest in pregnancy.</em> Anesth Analg. 2014;118(5):1003–1016. <a href="https://doi.org/10.1213/ANE.0000000000000171" target="_blank" rel="noopener">DOI: 10.1213/ANE.0000000000000171</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/24781570/" target="_blank" rel="noopener">PMID 24781570</a> — Organización del equipo, listas de verificación de bolsillo, manejo de la vía aérea de la embarazada y toxicidad por anestésicos locales.</div>
+      <div class="ref-item">Lott C, Truhlář A, Alfonzo A, et al. <em>European Resuscitation Council Guidelines 2021: Cardiac arrest in special circumstances.</em> Resuscitation. 2021;161:152–219. <a href="https://doi.org/10.1016/j.resuscitation.2021.02.011" target="_blank" rel="noopener">DOI: 10.1016/j.resuscitation.2021.02.011</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/33773826/" target="_blank" rel="noopener">PMID 33773826</a> — Recomendación europea de realizar la histerotomía de reanimación si no hay retorno de circulación tras 4 minutos en la paciente con fondo uterino a la altura del ombligo o por encima, y manejo del paro en circunstancias especiales.</div>
+      <div class="ref-item">Katz VL, Dotters DJ, Droegemueller W. <em>Perimortem cesarean delivery.</em> Obstet Gynecol. 1986;68(4):571–576. <a href="https://pubmed.ncbi.nlm.nih.gov/3528956/" target="_blank" rel="noopener">PMID 3528956</a> — Origen histórico de la regla de los 4 minutos, derivada de razonamiento fisiológico y revisión de casos publicados, no de un estudio comparativo.</div>
+      <div class="ref-item">Katz V, Balderston K, DeFreest M. <em>Perimortem cesarean delivery: were our assumptions correct?</em> Am J Obstet Gynecol. 2005;192(6):1916–1920. <a href="https://doi.org/10.1016/j.ajog.2005.02.038" target="_blank" rel="noopener">DOI: 10.1016/j.ajog.2005.02.038</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/15970850/" target="_blank" rel="noopener">PMID 15970850</a> — Revisión de 38 casos: en 12 de 18 reportes con datos hemodinámicos el nacimiento precedió al retorno del pulso, y <strong>en ningún caso la paciente empeoró</strong> con el procedimiento. Los autores concluyen que los datos «apoyan, pero están lejos de demostrar» la ventana de 4 minutos, y advierten del enorme sesgo de selección.</div>
+      <div class="ref-item">Einav S, Kaufman N, Sela HY. <em>Maternal cardiac arrest and perimortem caesarean delivery: evidence or expert-based?</em> Resuscitation. 2012;83(10):1191–1200. <a href="https://doi.org/10.1016/j.resuscitation.2012.05.005" target="_blank" rel="noopener">DOI: 10.1016/j.resuscitation.2012.05.005</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/22613275/" target="_blank" rel="noopener">PMID 22613275</a> — 94 casos entre 1980 y 2010: sobrevida materna 54,3 %, con buena categoría neurológica en 78,4 % de las sobrevivientes. La histerotomía <strong>dentro de 10 minutos</strong> se asoció a mejor desenlace materno (OR 7,42) y el paro intrahospitalario también (OR 5,17); fue beneficiosa para la madre en 31,7 % de los casos y <strong>perjudicial en ninguno</strong>.</div>
+      <div class="ref-item">Beckett VA, Knight M, Sharpe P. <em>The CAPS Study: incidence, management and outcomes of cardiac arrest in pregnancy in the UK: a prospective, descriptive study.</em> BJOG. 2017;124(9):1374–1381. <a href="https://doi.org/10.1111/1471-0528.14521" target="_blank" rel="noopener">DOI: 10.1111/1471-0528.14521</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/28233414/" target="_blank" rel="noopener">PMID 28233414</a> — Cohorte prospectiva nacional (UKOSS): 66 paros, incidencia 2,78 por 100.000 embarazos (1:36.000), sobrevida materna 58 %. Histerotomía en 49 mujeres, 11 de ellas en el servicio de urgencia; <strong>mediana desde el colapso de 3 minutos en las sobrevivientes y 12 minutos en las fallecidas</strong> (p = 0,001). 16 paros se debieron exclusivamente a la anestesia obstétrica, 12 en mujeres con obesidad.</div>
+      <div class="ref-item">Leech C, Nutbeam T, Chu J, et al. <em>Maternal and neonatal outcomes following resuscitative hysterotomy for out of hospital cardiac arrest: A systematic review.</em> Resuscitation. 2024;207:110479. <a href="https://doi.org/10.1016/j.resuscitation.2024.110479" target="_blank" rel="noopener">DOI: 10.1016/j.resuscitation.2024.110479</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/39736393/" target="_blank" rel="noopener">PMID 39736393</a> — 42 publicaciones, 66 mujeres y 68 recién nacidos con paro extrahospitalario: sobrevida materna al alta 4,5 % y neonatal 45,0 %. Intervalo más largo compatible con sobrevida materna neurológicamente normal: <strong>29 minutos</strong>; con sobrevida neonatal: <strong>47 minutos</strong>. Sobrevivientes neonatales desde las 26 semanas. Certeza de la evidencia muy baja por riesgo de sesgo.</div>
+      <div class="ref-item">Rajendran G, Mahalingam S, Ramkumar A, et al. <em>Resuscitative Hysterotomy and Maternal and Neonatal Mortality in Maternal Cardiac Arrest Patients — A Systematic Review and Meta-analysis.</em> Can J Cardiol. 2026;42(4):850–860 (publicación en línea: 30 de septiembre de 2025). <a href="https://doi.org/10.1016/j.cjca.2025.09.025" target="_blank" rel="noopener">DOI: 10.1016/j.cjca.2025.09.025</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/41038532/" target="_blank" rel="noopener">PMID 41038532</a> — 12 estudios, 507 pacientes: las sobrevivientes fueron operadas a un tiempo medio de 12,55 ± 4,85 minutos, significativamente menor que las no sobrevivientes, y la sobrevida neonatal se asoció a un tiempo medio de 10,25 ± 5,5 minutos. Heterogeneidad alta y certeza muy baja: los autores <strong>no proponen cambiar la meta de tiempo de las guías</strong>, pero documentan sobrevida más allá de los 5 minutos clásicos.</div>
+      <div class="ref-item">Referencias localizadas mediante <strong>PubMed</strong>. Los aspectos <strong>técnicos</strong> descritos (incisión vertical media de la pared, apertura del peritoneo, histerotomía vertical clásica iniciada en el cuerpo y ampliada con los dedos, manejo de la placenta anterior, extracción de la placenta, empaquetamiento, retracción del panículo en la paciente obesa y contenido de la caja) corresponden a <strong>descripciones convencionales de textos y cursos de reanimación materna y urgencia obstétrica</strong>, y <strong>no están respaldados individualmente por estudios de desenlace</strong>. Los esquemas de uterotónicos y antibióticos, el umbral de viabilidad neonatal, los criterios de hipotermia terapéutica neonatal y los criterios de suspensión deben contrastarse con el <strong>protocolo institucional vigente</strong>.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Checklist con progreso ────────────────────────────────────────
+  const SECTIONS = ['s1', 's4', 's5', 's7', 's10'];
+  const totals = {};
+  SECTIONS.forEach(s => {
+    const list = document.getElementById('list-' + s);
+    totals[s] = list ? list.querySelectorAll('.check-item').length : 0;
+  });
+  const TOTAL_CHECKS = SECTIONS.reduce((acc, s) => acc + totals[s], 0);
+
+  function countChecked(section) {
+    return document.querySelectorAll('#list-' + section + ' .check-item.checked').length;
+  }
+
+  function toggle(el, section) {
+    el.classList.toggle('checked');
+    updateCount(section);
+    updateProgress();
+  }
+
+  function updateCount(section) {
+    const el = document.getElementById('count-' + section);
+    if (!el) return;
+    const n = countChecked(section);
+    const t = totals[section];
+    el.textContent = n + '/' + t;
+    if (t > 0 && n === t) {
+      el.style.background = 'rgba(16,185,129,0.15)';
+      el.style.borderColor = 'rgba(16,185,129,0.3)';
+      el.style.color = '#6ee7b7';
+    } else {
+      el.style.background = '';
+      el.style.borderColor = '';
+      el.style.color = '';
+    }
+  }
+
+  function updateProgress() {
+    const done = SECTIONS.reduce((acc, s) => acc + countChecked(s), 0);
+    const pct = TOTAL_CHECKS ? Math.round((done / TOTAL_CHECKS) * 100) : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.check-item.checked').forEach(el => el.classList.remove('checked'));
+    SECTIONS.forEach(updateCount);
+    updateProgress();
+  }
+
+  SECTIONS.forEach(updateCount);
+  updateProgress();
+
+  // ── Cronómetro (sin persistencia) ─────────────────────────────────
+  let swStart = null;
+  let swAccum = 0;
+  let swTick = null;
+
+  function swElapsed() {
+    return swAccum + (swStart !== null ? Date.now() - swStart : 0);
+  }
+
+  function fmt(ms) {
+    const total = Math.floor(ms / 1000);
+    const m = String(Math.floor(total / 60)).padStart(2, '0');
+    const s = String(total % 60).padStart(2, '0');
+    return m + ':' + s;
+  }
+
+  function swRender() {
+    const ms = swElapsed();
+    const disp = document.getElementById('swDisplay');
+    disp.textContent = fmt(ms);
+    disp.classList.toggle('warn', ms >= 180000 && ms < 300000);
+    disp.classList.toggle('late', ms >= 300000);
+  }
+
+  function swToggle() {
+    const btn = document.getElementById('swToggle');
+    const cap = document.getElementById('swCaption');
+    if (swStart === null) {
+      swStart = Date.now();
+      swTick = setInterval(swRender, 200);
+      btn.textContent = '⏸ Detener';
+      cap.textContent = 'Corriendo desde el momento del paro';
+    } else {
+      swAccum += Date.now() - swStart;
+      swStart = null;
+      clearInterval(swTick);
+      swTick = null;
+      btn.textContent = '▶ Continuar';
+      cap.textContent = 'En pausa';
+      swRender();
+    }
+  }
+
+  function msLabel(el) {
+    return el.dataset.prefix + el.dataset.goal + ' s';
+  }
+
+  function swReset() {
+    if (swTick) clearInterval(swTick);
+    swTick = null;
+    swStart = null;
+    swAccum = 0;
+    document.getElementById('swToggle').textContent = '▶ Iniciar';
+    document.getElementById('swCaption').textContent = 'Detenido · parte el reloj en el momento del paro';
+    document.querySelectorAll('.ms').forEach(ms => {
+      ms.classList.remove('done', 'over');
+      ms.querySelector('.ms-goal').textContent = msLabel(ms);
+    });
+    swRender();
+  }
+
+  function markMs(el) {
+    if (el.classList.contains('done')) {
+      el.classList.remove('done', 'over');
+      el.querySelector('.ms-goal').textContent = msLabel(el);
+      return;
+    }
+    if (swStart === null && swAccum === 0) swToggle();
+    const secs = Math.round(swElapsed() / 1000);
+    const goal = parseInt(el.dataset.goal, 10);
+    el.classList.add('done');
+    el.classList.toggle('over', secs > goal);
+    el.querySelector('.ms-goal').textContent = secs + ' s · meta ' + goal + ' s';
+  }
+
+  swRender();
+</script>
+</body>
+</html>
