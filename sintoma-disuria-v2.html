@@ -31,6 +31,16 @@
     --mono: 'DM Mono', ui-monospace, monospace;
     --sans: 'DM Sans', system-ui, sans-serif;
     --display: 'Syne', system-ui, sans-serif;
+    --strong: #fff;
+    --ink-rgb: 255,255,255;
+    --t-red: #fca5a5;
+    --t-green: #6ee7b7;
+    --t-indigo: #a5b4fc;
+    --t-amber: #fcd34d;
+    --t-amber2: #fde68a;
+    --t-blue: #93c5fd;
+    --t-teal: #5eead4;
+    --t-red2: #fecaca;
   }
 
   :root[data-theme="light"] {
@@ -41,6 +51,16 @@
     --text: #1e293b;
     --text-muted: #64748b;
     --text-dim: #475569;
+    --strong: #0f172a;
+    --ink-rgb: 15,23,42;
+    --t-red: #b91c1c;
+    --t-green: #047857;
+    --t-indigo: #4338ca;
+    --t-amber: #b45309;
+    --t-amber2: #92400e;
+    --t-blue: #1d4ed8;
+    --t-teal: #0f766e;
+    --t-red2: #991b1b;
   }
   :root[data-theme="light"] body::before {
     background-image:
@@ -130,7 +150,7 @@
     gap: 8px;
     background: rgba(16,185,129,0.1);
     border: 1px solid rgba(16,185,129,0.25);
-    color: #6ee7b7;
+    color: var(--t-green);
     font-family: var(--mono);
     font-size: 11px;
     letter-spacing: 0.12em;
@@ -146,7 +166,7 @@
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -0.02em;
-    color: #fff;
+    color: var(--strong);
   }
   h1 span {
     background: linear-gradient(135deg, #10b981, #14b8a6);
@@ -185,7 +205,7 @@
     border-bottom: 1px solid var(--border);
     transition: background 0.2s;
   }
-  .section-header:hover { background: rgba(255,255,255,0.02); }
+  .section-header:hover { background: rgba(var(--ink-rgb),0.02); }
   .section-header > div { flex: 1; min-width: 0; }
 
   .section-num {
@@ -197,7 +217,7 @@
     border-radius: 100px;
     flex-shrink: 0;
   }
-  .section-title { font-family: var(--display); font-size: 15px; font-weight: 700; color: #fff; }
+  .section-title { font-family: var(--display); font-size: 15px; font-weight: 700; color: var(--strong); }
   .section-subtitle { font-size: 12px; color: var(--text-muted); font-family: var(--mono); margin-top: 2px; }
 
   .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
@@ -205,9 +225,9 @@
   .section.collapsed .section-body { display: none; }
   .section-body { padding: 20px 24px 24px; }
 
-  .s1 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
-  .s2 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
-  .s3 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s1 .section-num { background: rgba(239,68,68,0.15); color: var(--t-red); border: 1px solid rgba(239,68,68,0.2); }
+  .s2 .section-num { background: rgba(16,185,129,0.12); color: var(--t-green); border: 1px solid rgba(16,185,129,0.2); }
+  .s3 .section-num { background: rgba(99,102,241,0.12); color: var(--t-indigo); border: 1px solid rgba(99,102,241,0.2); }
 
   /* TRIAGE */
   .q-label {
@@ -238,12 +258,12 @@
     text-align: left;
     line-height: 1.4;
   }
-  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt:hover { border-color: rgba(var(--ink-rgb),0.18); color: var(--text); }
   .opt:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
-  .opt.on { background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.45); color: #6ee7b7; }
-  .grp-C .opt.on  { background: rgba(239,68,68,0.14);  border-color: rgba(239,68,68,0.5);  color: #fca5a5; }
+  .opt.on { background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.45); color: var(--t-green); }
+  .grp-C .opt.on  { background: rgba(239,68,68,0.14);  border-color: rgba(239,68,68,0.5);  color: var(--t-red); }
   .grp-B2 .opt.on { background: rgba(99,102,241,0.14); border-color: rgba(99,102,241,0.5); color: #c7d2fe; }
-  .grp-B1 .opt.on { background: rgba(245,158,11,0.13); border-color: rgba(245,158,11,0.5); color: #fcd34d; }
+  .grp-B1 .opt.on { background: rgba(245,158,11,0.13); border-color: rgba(245,158,11,0.5); color: var(--t-amber); }
   .opt .sub { display: block; font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-top: 3px; }
   .opt.on .sub { color: inherit; opacity: 0.8; }
 
@@ -256,7 +276,7 @@
     border-radius: 12px;
     border: 1px dashed rgba(16,185,129,0.4);
     background: rgba(16,185,129,0.05);
-    color: #6ee7b7;
+    color: var(--t-green);
     cursor: pointer;
     text-align: left;
     transition: all 0.18s;
@@ -281,7 +301,7 @@
   .verdict.placeholder { font-family: var(--mono); font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
   .verdict-main { flex: 1; min-width: 220px; }
   .verdict-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
-  .verdict-title { font-family: var(--display); font-size: 18px; font-weight: 700; color: #fff; line-height: 1.25; }
+  .verdict-title { font-family: var(--display); font-size: 18px; font-weight: 700; color: var(--strong); line-height: 1.25; }
   .verdict-why { font-size: 12.5px; color: var(--text-dim); margin-top: 6px; line-height: 1.5; }
   .verdict.p-A  { border-left-color: var(--emerald); }
   .verdict.p-B1 { border-left-color: var(--amber); }
@@ -294,18 +314,18 @@
     letter-spacing: 0.04em;
     padding: 11px 16px;
     border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.18);
-    background: rgba(255,255,255,0.05);
-    color: #fff;
+    border: 1px solid rgba(var(--ink-rgb),0.18);
+    background: rgba(var(--ink-rgb),0.05);
+    color: var(--strong);
     cursor: pointer;
     white-space: nowrap;
   }
-  .go-btn:hover { background: rgba(255,255,255,0.1); }
+  .go-btn:hover { background: rgba(var(--ink-rgb),0.1); }
 
   .link-btn {
     background: none;
     border: none;
-    color: #93c5fd;
+    color: var(--t-blue);
     font-family: var(--mono);
     font-size: 12px;
     cursor: pointer;
@@ -336,7 +356,7 @@
   .path-tab:focus-visible { outline: 2px solid var(--tab-accent); outline-offset: 2px; }
   .path-tab .code { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--tab-accent); }
   .path-tab .name { display: block; font-family: var(--display); font-size: 13.5px; font-weight: 700; margin-top: 3px; line-height: 1.2; }
-  .path-tab.active { background: var(--surface2); color: #fff; box-shadow: 0 0 0 1px var(--tab-accent) inset; }
+  .path-tab.active { background: var(--surface2); color: var(--strong); box-shadow: 0 0 0 1px var(--tab-accent) inset; }
   .t-A  { --tab-accent: var(--emerald); }
   .t-B1 { --tab-accent: var(--amber); }
   .t-B2 { --tab-accent: var(--indigo); }
@@ -355,7 +375,7 @@
 
   .panel-head { margin-bottom: 14px; }
   .panel-code { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tab-accent); }
-  .panel-title { font-family: var(--display); font-size: 22px; font-weight: 800; color: #fff; line-height: 1.2; margin-top: 4px; }
+  .panel-title { font-family: var(--display); font-size: 22px; font-weight: 800; color: var(--strong); line-height: 1.2; margin-top: 4px; }
   .panel-crit { font-size: 13px; color: var(--text-dim); margin-top: 6px; line-height: 1.55; }
 
 
@@ -378,12 +398,12 @@
     background: rgba(239,68,68,0.07);
     padding: 14px 16px;
   }
-  .stop-title { font-family: var(--display); font-weight: 800; font-size: 15px; color: #fca5a5; margin-bottom: 8px; letter-spacing: 0.01em; }
+  .stop-title { font-family: var(--display); font-weight: 800; font-size: 15px; color: var(--t-red); margin-bottom: 8px; letter-spacing: 0.01em; }
   .stop ul, .order ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-  .stop li { font-size: 13.5px; color: #fecaca; line-height: 1.5; padding-left: 22px; position: relative; }
+  .stop li { font-size: 13.5px; color: var(--t-red2); line-height: 1.5; padding-left: 22px; position: relative; }
   .stop li::before { content: '✕'; position: absolute; left: 2px; color: var(--red); font-weight: 700; }
   .stop .why { margin-top: 10px; font-size: 12.5px; color: var(--text-dim); line-height: 1.55; }
-  .stop .why strong { color: #fff; font-weight: 500; }
+  .stop .why strong { color: var(--strong); font-weight: 500; }
 
   .order {
     border-radius: 14px;
@@ -391,7 +411,7 @@
     background: rgba(16,185,129,0.06);
     padding: 14px 16px;
   }
-  .order-title { font-family: var(--display); font-weight: 800; font-size: 15px; color: #6ee7b7; margin-bottom: 8px; }
+  .order-title { font-family: var(--display); font-weight: 800; font-size: 15px; color: var(--t-green); margin-bottom: 8px; }
   .order li { font-size: 13.5px; color: var(--text); line-height: 1.5; padding-left: 22px; position: relative; }
   .order li::before { content: '✓'; position: absolute; left: 2px; color: var(--emerald); font-weight: 700; }
   .order li .cond { color: var(--text-muted); font-family: var(--mono); font-size: 11.5px; }
@@ -401,7 +421,7 @@
   .inst-rule {
     margin-top: 10px;
     font-size: 12.5px;
-    color: #fde68a;
+    color: var(--t-amber2);
     background: rgba(245,158,11,0.07);
     border: 1px solid rgba(245,158,11,0.25);
     border-radius: 10px;
@@ -427,7 +447,7 @@
     font-family: var(--sans);
     transition: all 0.18s;
   }
-  .med:hover { border-color: rgba(255,255,255,0.18); }
+  .med:hover { border-color: rgba(var(--ink-rgb),0.18); }
   .med:focus-visible { outline: 2px solid var(--tab-accent); outline-offset: 2px; }
   .med .radio {
     width: 16px; height: 16px; border-radius: 50%;
@@ -435,9 +455,9 @@
     flex-shrink: 0; margin-top: 2px;
   }
   .med.multi .radio { border-radius: 5px; }
-  .med.on { border-color: var(--tab-accent); background: rgba(255,255,255,0.04); }
+  .med.on { border-color: var(--tab-accent); background: rgba(var(--ink-rgb),0.04); }
   .med.on .radio { border-color: var(--tab-accent); background: var(--tab-accent); box-shadow: inset 0 0 0 3px var(--surface2); }
-  .med-name { font-size: 14px; color: #fff; font-weight: 500; }
+  .med-name { font-size: 14px; color: var(--strong); font-weight: 500; }
   .med-dose { font-family: var(--mono); font-size: 12.5px; color: var(--text); margin-top: 2px; }
   .med-note { font-size: 12px; color: var(--text-muted); margin-top: 3px; line-height: 1.45; }
 
@@ -449,9 +469,9 @@
     padding: 10px 12px;
     border-radius: 10px;
     border: 1px solid var(--border);
-    background: rgba(255,255,255,0.02);
+    background: rgba(var(--ink-rgb),0.02);
   }
-  .avoid strong { color: #fca5a5; font-weight: 500; }
+  .avoid strong { color: var(--t-red); font-weight: 500; }
 
   /* TABLA COMPACTA */
   .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
@@ -472,7 +492,7 @@
   td { padding: 11px 14px; border-bottom: 1px solid var(--border); color: var(--text-dim); vertical-align: top; line-height: 1.5; }
   tr:last-child td { border-bottom: none; }
   td:first-child { font-weight: 600; color: var(--text); }
-  td .dose-main { color: #fff; font-weight: 500; font-family: var(--mono); font-size: 12.5px; }
+  td .dose-main { color: var(--strong); font-weight: 500; font-family: var(--mono); font-size: 12.5px; }
   td .dose-note { color: var(--text-muted); font-size: 12px; }
 
   /* CHECKLIST */
@@ -491,7 +511,7 @@
   .check input { accent-color: var(--emerald); width: 17px; height: 17px; margin-top: 1px; flex-shrink: 0; cursor: pointer; }
   .check:has(input:checked) { color: var(--text); border-color: rgba(16,185,129,0.35); }
   .check-status { font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); margin-top: 8px; }
-  .check-status.ok { color: #6ee7b7; }
+  .check-status.ok { color: var(--t-green); }
 
   /* COPIADO */
   .copy-box {
@@ -505,7 +525,7 @@
     padding: 10px 12px 10px 16px;
     border-bottom: 1px solid rgba(59,130,246,0.2);
   }
-  .copy-bar span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #93c5fd; }
+  .copy-bar span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--t-blue); }
   .copy-btn {
     font-family: var(--display);
     font-weight: 700;
@@ -548,7 +568,7 @@
     line-height: 1.55;
     color: var(--text-dim);
   }
-  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item strong { color: var(--strong); font-weight: 500; }
   .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
 
   .warning-banner {
@@ -559,10 +579,10 @@
     line-height: 1.55;
     background: rgba(239,68,68,0.08);
     border: 1px solid rgba(239,68,68,0.22);
-    color: #fca5a5;
+    color: var(--t-red);
     margin-top: 12px;
   }
-  .warning-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner strong { color: var(--strong); font-weight: 500; }
 
   .cross-link {
     display: inline-flex;
@@ -573,7 +593,7 @@
     border-radius: 11px;
     border: 1px solid rgba(20,184,166,0.3);
     background: rgba(20,184,166,0.08);
-    color: #5eead4;
+    color: var(--t-teal);
     text-decoration: none;
     font-family: var(--mono);
     font-size: 12px;
@@ -597,7 +617,7 @@
     transition: border-color 0.2s, transform 0.15s;
   }
   .deep-link:hover { border-color: rgba(20,184,166,0.4); transform: translateX(2px); }
-  .deep-link strong { display: block; font-family: var(--display); font-size: 15px; color: #fff; margin-bottom: 3px; }
+  .deep-link strong { display: block; font-family: var(--display); font-size: 15px; color: var(--strong); margin-bottom: 3px; }
   .deep-link span { font-size: 12.5px; line-height: 1.5; }
   .deep-link .arr { font-family: var(--mono); color: var(--teal); font-size: 18px; flex-shrink: 0; }
 
@@ -656,7 +676,7 @@
     color: var(--text-dim);
     line-height: 1.6;
   }
-  .thanks strong { color: #6ee7b7; font-weight: 500; }
+  .thanks strong { color: var(--t-green); font-weight: 500; }
 
   .footer {
     margin-top: 28px;
@@ -677,7 +697,7 @@
 
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+  ::-webkit-scrollbar-thumb { background: rgba(var(--ink-rgb),0.1); border-radius: 100px; }
 
   @media (max-width: 600px) {
     .wrapper { padding: 32px 16px 60px; }
@@ -919,13 +939,13 @@
       </table>
     </div>
     <div class="avoid">
-      <strong style="color:#fff">Amikacina:</strong> dosis de 500 mg a 1 g en 30 min; &gt; 1 g en 60 min. Monitorizar niveles plasmáticos;
+      <strong style="color:var(--strong)">Amikacina:</strong> dosis de 500 mg a 1 g en 30 min; &gt; 1 g en 60 min. Monitorizar niveles plasmáticos;
       en ERC o falla renal aguda, ajustar según niveles y clearance de creatinina. Evitar en el embarazo.
     </div>
     <div class="avoid">
-      <strong style="color:#fff">Riesgo de BLEE:</strong> antibiótico en las últimas 4 semanas, DM2, ERC, cirrosis, paciente institucionalizado
+      <strong style="color:var(--strong)">Riesgo de BLEE:</strong> antibiótico en las últimas 4 semanas, DM2, ERC, cirrosis, paciente institucionalizado
       u hospitalización reciente (en este último caso, considerar el score de Tumbarello).<br>
-      <strong style="color:#fff">Riesgo de <em>Pseudomonas</em>:</strong> litiasis con ITU a repetición, catéter urinario permanente, biopsia prostática, diabetes.
+      <strong style="color:var(--strong)">Riesgo de <em>Pseudomonas</em>:</strong> litiasis con ITU a repetición, catéter urinario permanente, biopsia prostática, diabetes.
     </div>
 
     <div class="block-label">Destino</div>
@@ -1142,9 +1162,9 @@
                 pt: 'Cefadroxilo 500 mg: 1 cápsula cada 12 horas por 7 días.' },
     cotri21:  { name: 'Cotrimoxazol forte', dose: '800/160 mg c/12 h VO × 21 días', note: 'Protocolo HUAP para cistitis y prostatitis en el hombre. No usar con alergia a sulfas.',
                 pt: 'Cotrimoxazol forte 800/160 mg: 1 comprimido cada 12 horas por 21 días. No suspender antes aunque se sienta bien. Beba abundante agua.' },
-    cotriITS: { name: 'Cotrimoxazol forte + tratamiento de ITS', dose: 'Cotrimoxazol forte c/12 h × 21 días + ceftriaxona 2 g EV dosis única + azitromicina 1 g VO dosis única', note: 'Hombre joven. Derivar a UNACESS.',
-                pt: 'Cotrimoxazol forte 800/160 mg: 1 comprimido cada 12 horas por 21 días. No suspender antes aunque se sienta bien. Beba abundante agua.',
-                box: 'Hoy recibió en este servicio una dosis única de ceftriaxona inyectable y de azitromicina 1 g, para tratar una posible infección de transmisión sexual. Debe acudir a UNACESS para completar su estudio; su pareja también debe consultar.' },
+    cotriITS: { name: 'Cotrimoxazol forte + tratamiento de ITS', dose: 'Cotrimoxazol forte c/12 h × 21 días + ceftriaxona 2 g EV dosis única + doxiciclina 100 mg c/12 h VO × 7 días', note: 'Hombre joven. Derivar a UNACESS.',
+                pt: 'Cotrimoxazol forte 800/160 mg: 1 comprimido cada 12 horas por 21 días. No suspender antes aunque se sienta bien. Beba abundante agua.\n• Doxiciclina 100 mg: 1 comprimido cada 12 horas por 7 días, con un vaso de agua y sin acostarse en los 30 minutos siguientes. Evite el sol directo.',
+                box: 'Hoy recibió en este servicio una dosis única de ceftriaxona inyectable, para tratar una posible infección de transmisión sexual. Debe acudir a UNACESS para completar su estudio; su pareja también debe consultar.' },
     embCefa:  { name: 'Cefadroxilo', dose: '500 mg c/12 h VO × 7 días', note: 'Seguro en todo el embarazo.',
                 pt: 'Cefadroxilo 500 mg: 1 cápsula cada 12 horas por 7 días.' },
     embNitro: { name: 'Nitrofurantoína macrocristales', dose: '100 mg c/12 h VO × 7 días', note: 'Evitar desde las 37 semanas y en el déficit de G6PD.',
