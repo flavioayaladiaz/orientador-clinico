@@ -303,3 +303,4 @@ en su sección temática, porque el agente recorre el archivo en orden.
 - [ ] Sedación en el paciente agitado - Combinando la escala BARS para el tratamiento sugerido y sugiriendo ketamina im en casos de agitación peligrosa, haciendo énfasis en aportar oxígeno a alta concentración tras sedar al paciente.
 - [ ] Parocardiorespiratorio (PCR) traumático
 - [ ] Pancreatitis - Desde el leve al grave con necesidad de UCI. Biliar, Hipercalcemia, por alcohol y trigliceridos. Integrado con calculadora APACHE 
+- [ ] Epistaxis - Taponamiento anterior con "burrito" de algodon empapado con acido tranexamico + lidocaina + adrenalina, taponamiento con merocell y rapidrhino, además de cauterización con nitrato de plata; y taponamiento posterior con Sonda Foley. Con indicaciones de cuando hospitalizar y/o ineicar antibioticos y cuando no.
