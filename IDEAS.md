@@ -195,7 +195,27 @@ terminado sin su tarjeta correspondiente en el index.
       tiempos del retiro, todos dependientes del kit real del servicio; la conducta cuando
       no hay radiografía disponible; el manejo local de la coagulopatía; y la conducta ante
       contraindicaciones relativas y ante hemorragia no variceal.
-- [ ] Colocación de marcapasos transvenoso de emergencia
+- [x] Colocación de marcapasos transvenoso de emergencia —
+      `checklist-marcapasos-transvenoso.html` (checklist con cronómetro e hitos). Se presenta como el
+      escalón que viene después de que atropina, cronotropos y marcapasos transcutáneo no alcanzaron, y no
+      como un trámite previo al definitivo: en la encuesta regional de Betts 2003, **31,9 % de las
+      instalaciones tuvo alguna complicación** y estas retrasaron el implante definitivo en 22,9 % de los
+      pacientes, mientras que en la comparación de Birkhahn 2004 urgenciólogos y cardiólogos tuvieron éxito y
+      complicaciones equivalentes. Tres desvíos organizan la página: **la captura del transcutáneo suele ser
+      falsa** (Kimbrell 2024: 19 de 23 pacientes con captura eléctrica falsa pese a pulso palpado; +40 mmHg
+      con captura verdadera vs −1 mmHg con la falsa), **el catéter se navega mirando algo** —ECG
+      intracavitario con la elevación del ST como señal de contacto endocárdico, o ecografía subxifoidea
+      (Aguilera 2000: éxito en 8/9 y mala posición detectada en 3; Blanco 2014: catéter enrollado en la cava
+      inferior pese a morfología de BRI)— y **la captura eléctrica no es el final**: umbral medido, margen de
+      seguridad, sensado comprobado y captura mecánica confirmada. Incluye las dos reglas del balón, el
+      algoritmo de «no captura» de afuera hacia adentro y el reloj de las 48 horas (Betts: infección 17/86
+      sobre 48 h vs 2/55). Esquemas vectoriales, sin imágenes de terceros. Pendiente de validación: todas las
+      metas de tiempo del cronómetro salvo la mediana de 30 min de Betts; los calibres del introductor y del
+      catéter y el volumen del balón del kit real; las profundidades en centímetros; el umbral aceptable, el
+      múltiplo de seguridad de la salida y los valores de sensibilidad del generador disponible; la
+      frecuencia de sobremarcha en torsades; la disponibilidad y dosis de isoproterenol; el régimen de reposo
+      y anticoagulación mientras el electrodo está puesto; la conducta ante coagulopatía o trombólisis
+      prevista, hipotermia grave e intoxicación digitálica; y la técnica y observación al retirar.
 - [ ] Toracostomía simple (a dedo) y colocación de tubo pleural en paro o
       shock traumático
 - [ ] Aspiración e irrigación intracavernosa para priapismo isquémico

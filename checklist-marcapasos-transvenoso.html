@@ -1,0 +1,1943 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Checklist · Marcapasos transvenoso de emergencia</title>
+<meta name="description" content="Checklist con cronómetro para la instalación de un marcapasos transvenoso de emergencia en la bradicardia con compromiso hemodinámico: cuándo se indica y qué va antes, marcapasos transcutáneo como puente y la trampa de la captura falsa, acceso venoso central y armado de la mesa, navegación del catéter con balón guiada por electrocardiograma intracavitario y ecografía, umbral de captura y programación del generador, confirmación de la posición, qué hacer cuando no captura, cuidados posteriores y complicaciones.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(245,158,11,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(99,102,241,0.07) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 36px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.28);
+    color: #fca5a5;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  .header-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--red);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--red);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #f59e0b, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .header-sub strong { color: #fff; font-weight: 500; }
+  .header-sub em { color: #fcd34d; font-style: normal; }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .section-check-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .s1 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s1 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s2 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s3 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s3 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s4 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s4 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s5 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s5 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s6 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s6 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s7 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s7 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s8 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s8 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s9 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s9 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s10 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s10 { --accent: var(--red); --accent-glow: var(--red-glow); }
+
+  /* CRONÓMETRO */
+  .stopwatch {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+  .sw-display {
+    font-family: var(--mono);
+    font-size: clamp(40px, 11vw, 60px);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #fff;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .sw-display.warn { color: #fcd34d; }
+  .sw-display.late { color: #fca5a5; }
+  .sw-caption {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+  .sw-controls { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+  .sw-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .sw-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .sw-btn:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+  .sw-btn.primary {
+    background: rgba(16,185,129,0.14);
+    border-color: rgba(16,185,129,0.45);
+    color: #6ee7b7;
+  }
+  .sw-btn.primary:hover { background: rgba(16,185,129,0.22); color: #a7f3d0; }
+
+  .milestones { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .ms {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .ms:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .ms:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .ms.done { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); color: #6ee7b7; }
+  .ms-goal {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .ms.done .ms-goal { color: #6ee7b7; border-color: rgba(16,185,129,0.4); }
+  .ms.done.over .ms-goal { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+  }
+  .check-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .check-item:hover::before { opacity: 1; }
+  .check-item:hover { border-color: rgba(255,255,255,0.12); }
+  .check-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .check-item.checked { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+  .check-item.checked::before { opacity: 0.5; }
+
+  .checkbox {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+    background: transparent;
+  }
+  .check-item.checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .checkmark {
+    opacity: 0;
+    transform: scale(0) rotate(-10deg);
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .check-item.checked .checkmark { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  .check-label {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-dim);
+    transition: color 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+  .check-item.checked .check-label {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(100,116,139,0.5);
+  }
+  .check-label strong { color: #fff; font-weight: 500; }
+  .check-label em { color: #fcd34d; font-style: normal; }
+  .check-step {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+
+  /* PROGRESO */
+  .progress-bottom {
+    margin-top: 6px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .progress-bar-track {
+    flex: 1;
+    min-width: 120px;
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #14b8a6);
+    border-radius: 100px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px rgba(16,185,129,0.5);
+  }
+  .progress-label { font-family: var(--mono); font-size: 12px; color: var(--text-dim); white-space: nowrap; }
+  #progress-pct { color: var(--emerald); font-weight: 500; }
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+  /* BANNERS */
+  .warning-banner, .info-banner, .go-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #fca5a5; }
+  .info-banner { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.18); color: #bfdbfe; }
+  .go-banner { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); color: #6ee7b7; }
+  .warning-banner strong, .info-banner strong, .go-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em, .go-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+  .plain-item.good { background: rgba(16,185,129,0.05); border-color: rgba(16,185,129,0.16); }
+  .plain-item.good strong { color: #6ee7b7; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ESQUEMAS */
+  .figure {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 16px 14px;
+    margin-bottom: 14px;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .fig-caption {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .fig-caption strong { color: var(--text-dim); font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(16,185,129,0.3);
+    background: rgba(16,185,129,0.08);
+    color: #6ee7b7;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(16,185,129,0.16); transform: translateX(2px); }
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--emerald); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .ms { align-items: flex-start; flex-wrap: wrap; }
+    .ms-goal { margin-left: 0; }
+    .sw-btn { flex: 1; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <div class="header-badge">Procedimiento HALO · Checklist</div>
+    <h1>Marcapasos <span>transvenoso</span> de emergencia</h1>
+    <p class="header-sub">
+      Se instala cuando la bradicardia ya está comprometiendo al paciente y <strong>lo anterior no alcanzó</strong>:
+      atropina, cronotropos en infusión y marcapasos transcutáneo. Es un procedimiento de urgencia real, no una
+      formalidad previa al marcapasos definitivo: en la serie regional de Betts, <strong>una de cada tres
+      instalaciones tuvo alguna complicación</strong> (31,9 %), y esas complicaciones retrasaron el implante
+      definitivo en el 22,9 % de los pacientes. Al mismo tiempo, es una técnica que el médico de urgencia puede hacer
+      bien: en la comparación de Birkhahn, urgenciólogos y cardiólogos tuvieron tasas de éxito y complicaciones
+      equivalentes. Tres ideas organizan esta página: <em>la captura del transcutáneo suele ser falsa</em> —en una
+      serie prehospitalaria, 19 de 23 pacientes tenían captura eléctrica falsa pese a pulso palpado—, <em>el catéter
+      se navega mirando algo</em> —electrocardiograma intracavitario, ecografía o ambos, nunca a ciegas si se puede
+      evitar—, y <em>la captura eléctrica no es el final</em>: hay que confirmar captura mecánica, medir el umbral,
+      dejar margen de seguridad y fijar el catéter. Aquí están la indicación, lo que corre en paralelo, el acceso, la
+      navegación, la programación del generador, la confirmación de posición, el algoritmo de «no captura», los
+      cuidados posteriores y las complicaciones.
+    </p>
+  </div>
+
+  <!-- 01 · ¿ES EL MOMENTO? -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">¿Es el momento del marcapasos transvenoso?</div>
+        <div class="section-subtitle">Indicación, lo que va antes y los escenarios en que estimular no resuelve</div>
+      </div>
+      <span class="section-check-count" id="count-s1">0/6</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>La indicación es hemodinámica, no electrocardiográfica.</strong> Lo que decide no es el número
+        en el monitor ni el grado de bloqueo: es que la bradicardia esté produciendo <strong>hipotensión, shock,
+        angina, insuficiencia cardíaca aguda, síncope repetido o compromiso de conciencia</strong>, y que las medidas
+        farmacológicas y el marcapasos transcutáneo no lo hayan resuelto. Un bloqueo completo con escape de 45 lpm,
+        asintomático y con buena presión, se monitoriza y se deriva; no se punciona de urgencia.</span>
+      </div>
+
+      <div class="subhead">Cuándo sí</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🫀</span><span><strong>Bradicardia con compromiso hemodinámico refractaria</strong> a atropina y a cronotropos en infusión, o en la que el <strong>marcapasos transcutáneo falla, no captura o no se tolera</strong>. Es la indicación clásica de urgencia.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚫</span><span><strong>Bloqueo auriculoventricular de alto grado sintomático</strong>: Mobitz II, bloqueo AV completo, bloqueo 2:1 con QRS ancho o bloqueo de rama alternante. <em>Son bloqueos infranodales: la atropina no suele servir y el escape es lento e inestable.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🌀</span><span><strong>Estimulación de sobremarcha (<em>overdrive</em>)</strong> en taquicardia ventricular polimorfa dependiente de pausa o bradicardia —torsades de pointes recurrente—, donde subir la frecuencia acorta el QT y suprime las pausas que la disparan.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Bradicardia por tóxicos o fármacos</strong> (betabloqueadores, bloqueadores de canales de calcio, digoxina, intoxicación por oleandro) mientras el antídoto y el soporte hacen efecto. <em>Con una advertencia importante: en el shock cardiotóxico, capturar eléctricamente no garantiza gasto cardíaco.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">⏱️</span><span><strong>Pausas sinusales prolongadas o paro sinusal sintomático</strong> con enfermedad del nodo sinusal, cuando la inestabilidad es repetida y no se controla con fármacos.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span><strong>Puente al marcapasos definitivo o al traslado</strong> cuando el implante definitivo no puede hacerse ahora y el paciente no tolera esperar sin respaldo.</span></div>
+      </div>
+
+      <div class="subhead">Cuándo no, o no todavía</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">💀</span><span><strong>Paro cardíaco en asistolia.</strong> Estimular no mejora los desenlaces y <strong>no se recomienda</strong> en el paro asistólico: consume tiempo y manos que se necesitan en las compresiones y en las causas reversibles.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🙂</span><span><strong>Bradicardia asintomática y estable</strong>, incluido el bloqueo completo bien tolerado: monitorización, cardiología y camino al definitivo, sin punción de urgencia.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🧪</span><span><strong>Causa reversible que aún no se trató.</strong> <strong>Hiperkalemia</strong>, intoxicación, hipoxia, hipotermia, isquemia aguda: si no se corrigen, el marcapasos <em>tampoco va a capturar</em> —el umbral sube justamente por eso—. Se tratan en paralelo, no después.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚡</span><span><strong>Si el marcapasos definitivo puede instalarse ahora mismo</strong>, con el equipo disponible, ese es el camino: el transvenoso temporal agrega un procedimiento y sus complicaciones. <em>Depende por completo de la disponibilidad local — verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Coagulopatía grave o trombólisis inminente:</strong> no es una contraindicación absoluta, pero cambia el sitio de punción —<strong>evitar la subclavia</strong>, que no es compresible— y obliga a ecoguiar el acceso. <em>Verificar con protocolo institucional.</em></span></div>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">🧊</span>
+        <span><strong>Dos escenarios donde el catéter mismo es el riesgo.</strong> En la <strong>hipotermia grave</strong>
+        la manipulación del corazón derecho puede desencadenar fibrilación ventricular difícil de revertir hasta que
+        el paciente se recaliente; en la <strong>intoxicación digitálica</strong> el miocardio está irritable y la
+        conducta de primera línea es el antídoto, no el electrodo. En ambos, la decisión de instalar igual se toma con
+        el equipo tratante y según el <em>protocolo institucional</em>, no por reflejo del algoritmo de bradicardia.</span>
+      </div>
+
+      <div class="subhead">Confirmación</div>
+      <div class="checklist" id="list-s1">
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Hay compromiso hemodinámico atribuible a la bradicardia</strong>, dicho en voz alta: presión, perfusión, conciencia, angina o falla cardíaca. <em>No es «la frecuencia está baja».</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Atropina y cronotropos ya se usaron o están claramente indicados como insuficientes</strong> (bloqueo infranodal, corazón trasplantado, tóxicos).</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Causas reversibles buscadas y en tratamiento</strong>: potasio, tóxicos y fármacos, isquemia aguda, hipoxia, hipotermia, presión intracraneal elevada.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Electrocardiograma de 12 derivaciones tomado y guardado</strong> antes de estimular: es la única oportunidad de documentar el ritmo y el bloqueo de base, y de ver un infarto que explique todo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Plan de salida nombrado:</strong> quién instala el marcapasos definitivo, dónde y cuándo —o a qué centro se traslada—. <em>El temporal es un puente y su riesgo crece con las horas.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Roles repartidos y cardiología / UCI avisadas</strong>: quién punciona y navega, quién opera el generador, quién vigila monitor y pulso, quién registra.</span>
+        </button>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./algoritmo-intoxicacion-ccb-betabloqueadores.html">Bradicardia por cardiotóxicos →</a>
+        <a class="cross-link" href="./algoritmo-shock-cardiogenico.html">Shock cardiogénico →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · LO QUE CORRE EN PARALELO -->
+  <div class="section s2" id="s2" style="animation-delay:0.10s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Lo que corre en paralelo: fármacos y transcutáneo</div>
+        <div class="section-subtitle">El puente que sostiene al paciente mientras se arma el transvenoso</div>
+      </div>
+      <span class="section-check-count" id="count-s2">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>La captura del transcutáneo suele ser falsa.</strong> En una serie prehospitalaria de 23
+        pacientes estimulados por bradicardia, <strong>19 (82,6 %) tenían captura eléctrica falsa</strong> —el
+        artefacto del estímulo y la contracción del músculo esquelético imitan un QRS ancho— <strong>pese a que en
+        los 23 se había documentado «captura mecánica» por pulso palpado</strong>. Los que sí capturaron de verdad
+        subieron la presión sistólica una mediana de <strong>+40 mmHg</strong>; los de captura falsa, <strong>−1
+        mmHg</strong>. La corriente mediana de captura verdadera fue de <strong>95 mA</strong>. Traducción práctica:
+        <em>un trazado que «se ve capturando» a 60 mA y un paciente que sigue hipotenso es casi siempre captura
+        falsa</em>, y es exactamente el paciente que necesita el transvenoso ahora.</span>
+      </div>
+
+      <div class="subhead">Fármacos, en orden</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Fármaco</th><th>Dosis</th><th>Cuándo sirve y cuándo no</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Atropina</td>
+              <td><span class="dose-main">1 mg EV en bolo</span><br><span class="dose-note">repetir cada 3–5 min · máximo total 3 mg</span></td>
+              <td>Primera línea de la bradicardia sintomática. <strong>Poco útil o inútil en el bloqueo infranodal</strong> (Mobitz II, bloqueo completo con QRS ancho) y en el <strong>corazón trasplantado</strong>, donde además puede producir bradicardia paradójica. No retrasar el marcapasos esperando una tercera dosis.</td>
+            </tr>
+            <tr>
+              <td>Adrenalina</td>
+              <td><span class="dose-main">2–10 µg/min en infusión</span><br><span class="dose-note">titular por frecuencia y presión</span></td>
+              <td>Útil cuando además hay hipotensión o shock. Titular al efecto; vigilar isquemia y arritmia ventricular.</td>
+            </tr>
+            <tr>
+              <td>Dopamina</td>
+              <td><span class="dose-main">5–20 µg/kg/min en infusión</span><br><span class="dose-note">titular por frecuencia y presión</span></td>
+              <td>Alternativa a la adrenalina en el algoritmo de bradicardia. Misma lógica: sostiene mientras se prepara el transvenoso.</td>
+            </tr>
+            <tr>
+              <td>Isoproterenol</td>
+              <td><span class="dose-note">Si está disponible en el servicio · <em>verificar dosis y disponibilidad con protocolo institucional</em></span></td>
+              <td>Cronotropo puro, clásico en el bloqueo AV. <strong>Disponibilidad irregular en Chile:</strong> no contar con él en la planificación del box.</td>
+            </tr>
+            <tr>
+              <td>Antídotos según causa</td>
+              <td><span class="dose-note">Calcio, glucagón, insulina en altas dosis, anticuerpos antidigoxina, gluconato de calcio y manejo de la hiperkalemia — <em>según protocolo</em></span></td>
+              <td>En bradicardia tóxica o metabólica, <strong>el antídoto y la corrección electrolítica son el tratamiento</strong>; el marcapasos solo compra tiempo y con frecuencia captura mal.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Marcapasos transcutáneo bien puesto</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔲</span><span><strong>Parches en posición anteroposterior</strong> siempre que se pueda: uno sobre el precordio izquierdo y otro en la espalda, entre la escápula y la columna. Piel seca, sin vello atrapado y sin parches sobre dispositivos implantados.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💤</span><span><strong>Sedación y analgesia desde el primer estímulo.</strong> La estimulación transcutánea duele mucho; el paciente que se agita o no la tolera es un paciente subestimulado. <em>Fármaco y dosis según el protocolo del servicio y la hemodinamia.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🎚️</span><span><strong>Frecuencia 60–80 lpm</strong> y <strong>subir la corriente hasta capturar</strong>, luego dejarla algo por encima del umbral. En la serie citada, la captura verdadera se logró con una corriente mediana de <strong>95 mA</strong>: si a 50 mA «parece» capturar, desconfía.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">🫲</span><span><strong>Confirmar captura mecánica con algo que no sea el monitor:</strong> pulso femoral (no el carotídeo, que se confunde con la contracción muscular del propio estímulo), línea arterial si está instalada, o <strong>ecografía a pie de cama viendo la contracción ventricular en cada espiga</strong>. Es el método más confiable.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📈</span><span><strong>Captura eléctrica verdadera</strong> = espiga seguida de <strong>QRS ancho <em>y</em> onda T</strong>, coherentes latido a latido. El artefacto de estímulo sin onda T que lo siga no es captura.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏳</span><span><strong>El transcutáneo es un puente de minutos a pocas horas</strong>, no una solución: mal tolerado, dependiente de la corriente y con captura poco fiable. Si se necesita más que eso, se necesita el transvenoso.</span></div>
+      </div>
+
+      <div class="subhead">En paralelo, mientras se arma</div>
+      <div class="checklist" id="list-s2">
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Parches de marcapasos transcutáneo puestos y el equipo probado</strong>, aunque todavía no se esté estimulando. <em>Son también los parches de desfibrilación si el paciente fibrila durante la navegación.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Captura mecánica del transcutáneo verificada</strong> por pulso femoral, línea arterial o ecografía —no solo por el trazado del monitor.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Sedoanalgesia indicada y corriendo</strong> si el transcutáneo está activo, ajustada a la presión del paciente.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Dos vías periféricas o una vía útil además del sitio de punción</strong>, monitor con desfibrilador a la mano, oxígeno y capnografía si el paciente está grave.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Potasio, gases y glicemia enviados</strong> y, si hay sospecha clínica, <strong>hiperkalemia tratada empíricamente</strong> sin esperar el resultado.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Lista de fármacos del paciente revisada</strong>: betabloqueadores, bloqueadores de canales de calcio, digoxina, amiodarona, ivabradina, clonidina. <em>Suspender lo que corresponda y avisarlo.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Isquemia aguda descartada o en manejo</strong>: el bloqueo AV del infarto inferior suele ser transitorio y responder a la reperfusión; el del infarto anterior anuncia un daño extenso del sistema de conducción. <em>Avisar a hemodinamia si corresponde.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Consentimiento conversado con paciente o familia</strong> cuando la situación lo permite, y anotado.</span>
+        </button>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./guia-dolor-toracico.html">Lectura del ECG en isquemia →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · CRONÓMETRO, HITOS Y ROLES -->
+  <div class="section s3" id="s3" style="animation-delay:0.14s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Cronómetro, hitos y roles</div>
+        <div class="section-subtitle">El reloj parte cuando se decide instalar el transvenoso</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="stopwatch">
+        <div class="sw-display" id="swDisplay">00:00</div>
+        <div class="sw-caption" id="swCaption">Detenido · parte el reloj cuando se decide instalar el transvenoso</div>
+        <div class="sw-controls">
+          <button type="button" class="sw-btn primary" id="swToggle" onclick="swToggle()">▶ Iniciar</button>
+          <button type="button" class="sw-btn" onclick="swReset()">↺ Reiniciar</button>
+        </div>
+        <div class="milestones" id="milestones">
+          <button type="button" class="ms" data-goal="60" data-prefix="meta ~" onclick="markMs(this)"><span>Decisión dicha en voz alta, roles repartidos, cardiología y UCI avisadas</span><span class="ms-goal">meta ~60 s</span></button>
+          <button type="button" class="ms" data-goal="180" data-prefix="meta ~" onclick="markMs(this)"><span><strong>Puente funcionando</strong>: transcutáneo con captura mecánica confirmada o cronotropo corriendo (3 min)</span><span class="ms-goal">meta ~180 s</span></button>
+          <button type="button" class="ms" data-goal="420" data-prefix="meta ~" onclick="markMs(this)"><span>Introductor instalado con ecoguía y asegurado · yugular interna derecha o subclavia izquierda (7 min)</span><span class="ms-goal">meta ~420 s</span></button>
+          <button type="button" class="ms" data-goal="600" data-prefix="meta ~" onclick="markMs(this)"><span>Balón probado, catéter conectado al generador y al ECG, generador encendido y programado (10 min)</span><span class="ms-goal">meta ~600 s</span></button>
+          <button type="button" class="ms" data-goal="900" data-prefix="meta ~" onclick="markMs(this)"><span><strong>Captura eléctrica y mecánica en ventrículo derecho</strong>, balón desinflado (15 min)</span><span class="ms-goal">meta ~900 s</span></button>
+          <button type="button" class="ms" data-goal="1080" data-prefix="meta ~" onclick="markMs(this)"><span>Umbral medido, salida en margen de seguridad, sensibilidad ajustada, modo demanda (18 min)</span><span class="ms-goal">meta ~1080 s</span></button>
+          <button type="button" class="ms" data-goal="1320" data-prefix="meta ~" onclick="markMs(this)"><span>Catéter fijado, profundidad anotada, apósito estéril, introductor bloqueado (22 min)</span><span class="ms-goal">meta ~1320 s</span></button>
+          <button type="button" class="ms" data-goal="1800" data-prefix="meta ~" onclick="markMs(this)"><span>Radiografía tomada e interpretada, ECG de 12 derivaciones estimulado, destino y marcapasos definitivo gestionados (30 min)</span><span class="ms-goal">meta ~1800 s</span></button>
+        </div>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Ninguna de estas metas es un estándar validado.</strong> El único dato publicado que ancla el
+        reparto es el de la encuesta regional de Betts: en 144 procedimientos, la <strong>mediana del tiempo total
+        fue de 30 minutos</strong>, con un rango enorme (1 a 150 min), más corta cuando el operador era cardiólogo
+        (24 vs 45 min) o tenía más de 20 procedimientos de experiencia. El resto del reparto es una distribución
+        razonable propuesta para esta página y <strong>debe ajustarse al protocolo institucional</strong>. Un
+        procedimiento que se alarga no es solo lento: en esa misma serie, <strong>los tiempos largos se asociaron a
+        más infección</strong> (mediana 55 min en los infectados vs 30 min).</span>
+      </div>
+
+      <div class="subhead">Roles mínimos</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>Operador:</strong> punciona, instala el introductor y navega el catéter. No suelta el catéter hasta que esté fijado.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>Ayudante estéril:</strong> infla y desinfla el balón cuando el operador lo pide, <em>dice en voz alta «balón inflado» y «balón desinflado»</em>, y pasa el material.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>Operador del generador:</strong> maneja frecuencia, salida y sensibilidad, canta los cambios y avisa en cuanto aparece captura. <em>Nunca se toca el generador sin decirlo.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span><strong>Vigilancia:</strong> monitor, pulso femoral o línea arterial, presión y ecografía. Es quien confirma la <strong>captura mecánica</strong> y quien avisa una arritmia durante la navegación.</span></div>
+        <div class="plain-item"><span class="bullet-icon">5</span><span><strong>Registro:</strong> hora de inicio, sitio de punción, profundidad final del catéter, umbral medido, salida y sensibilidad programadas, frecuencia y modo, y hora de la radiografía.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · EQUIPO, ACCESO Y MESA -->
+  <div class="section s4" id="s4" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Equipo, sitio de punción y armado de la mesa</div>
+        <div class="section-subtitle">Dónde se punciona, qué catéter es y las tres pruebas que no se saltan</div>
+      </div>
+      <span class="section-check-count" id="count-s4">0/9</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="figure">
+        <svg viewBox="0 0 680 300" role="img" aria-label="Esquema de los sitios de punción venosa central para un marcapasos transvenoso. En el centro se representa el torso de frente con el corazon y tres puntos de puncion numerados: uno en la vena yugular interna derecha, dos en la vena subclavia izquierda y tres en la vena femoral, cada uno con su trayecto hasta el ventriculo derecho. A la izquierda una leyenda describe cada ruta: la yugular interna derecha es la mas recta y compresible, la subclavia izquierda es comoda de fijar pero no compresible, y la femoral tiene un trayecto largo que suele requerir fluoroscopia. A la derecha, una regla practica: si el paciente ya tiene un acceso central util y del calibre adecuado, usarlo.">
+          <g font-family="DM Mono, monospace" font-size="10.5" fill="#94a3b8">
+            <rect x="12" y="12" width="656" height="276" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="28" y="36" fill="#fcd34d" font-size="12">Rutas al ventrículo derecho · vista frontal</text>
+
+            <!-- leyenda izquierda -->
+            <circle cx="36" cy="66" r="7" fill="#10b981"/><text x="32" y="70" fill="#062f21" font-size="9">1</text>
+            <text x="52" y="70" fill="#6ee7b7" font-size="10.5">Yugular interna derecha</text>
+            <text x="52" y="84" font-size="9.5">ruta más recta y corta al VD</text>
+            <text x="52" y="97" font-size="9.5">compresible · ecoguía fácil</text>
+
+            <circle cx="36" cy="132" r="7" fill="#3b82f6"/><text x="32" y="136" fill="#0b1f3d" font-size="9">2</text>
+            <text x="52" y="136" fill="#bfdbfe" font-size="10.5">Subclavia izquierda</text>
+            <text x="52" y="150" font-size="9.5">curva suave · cómoda de fijar</text>
+            <text x="52" y="163" fill="#fca5a5" font-size="9.5">no compresible: evitar si hay</text>
+            <text x="52" y="176" fill="#fca5a5" font-size="9.5">coagulopatía o trombólisis</text>
+
+            <circle cx="36" cy="212" r="7" fill="#f59e0b"/><text x="32" y="216" fill="#3b2405" font-size="9">3</text>
+            <text x="52" y="216" fill="#fcd34d" font-size="10.5">Femoral</text>
+            <text x="52" y="230" font-size="9.5">trayecto largo · suele</text>
+            <text x="52" y="243" font-size="9.5">requerir fluoroscopia</text>
+
+            <!-- torso -->
+            <circle cx="366" cy="62" r="17" fill="rgba(255,255,255,0.03)" stroke="#475569" stroke-width="1.3"/>
+            <path d="M330,90 Q348,74 366,78 Q384,74 402,90 L424,124 L424,272 L308,272 L308,124 Z" fill="rgba(255,255,255,0.03)" stroke="#475569" stroke-width="1.3"/>
+
+            <!-- corazon -->
+            <path d="M338,156 Q368,146 386,172 Q402,198 374,214 Q346,228 332,204 Q322,180 338,156 Z" fill="rgba(239,68,68,0.10)" stroke="#fca5a5" stroke-width="1.3"/>
+            <text x="340" y="172" fill="#fca5a5" font-size="9.5">AD</text>
+            <circle cx="368" cy="204" r="4" fill="#6ee7b7"/>
+            <line x1="296" y1="240" x2="362" y2="208" stroke="#065f46" stroke-width="1"/>
+            <text x="248" y="248" fill="#6ee7b7" font-size="9">ápex VD</text>
+
+            <!-- ruta 1 · yugular interna derecha -->
+            <path d="M344,92 Q340,126 350,150 Q356,172 362,192" stroke="#6ee7b7" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <circle cx="344" cy="92" r="6" fill="#10b981"/><text x="340" y="96" fill="#062f21" font-size="9">1</text>
+
+            <!-- ruta 2 · subclavia izquierda -->
+            <path d="M400,116 Q384,130 374,150 Q368,172 366,190" stroke="#93c5fd" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <circle cx="402" cy="115" r="6" fill="#3b82f6"/><text x="398" y="119" fill="#0b1f3d" font-size="9">2</text>
+
+            <!-- ruta 3 · femoral -->
+            <path d="M336,268 Q346,246 356,222" stroke="#fcd34d" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-dasharray="6 4"/>
+            <circle cx="334" cy="270" r="6" fill="#f59e0b"/><text x="330" y="274" fill="#3b2405" font-size="9">3</text>
+
+            <!-- regla practica -->
+            <rect x="452" y="92" width="200" height="132" rx="10" fill="rgba(16,185,129,0.05)" stroke="#065f46" stroke-width="1.1"/>
+            <text x="468" y="116" fill="#6ee7b7" font-size="10.5">Regla práctica</text>
+            <text x="468" y="140" font-size="9.5">Si el paciente ya tiene un</text>
+            <text x="468" y="153" font-size="9.5">acceso central útil y del</text>
+            <text x="468" y="166" font-size="9.5">calibre adecuado, úsalo:</text>
+            <text x="468" y="186" fill="#6ee7b7" font-size="9.5">una punción menos.</text>
+            <text x="468" y="208" fill="#fcd34d" font-size="9">Comprobar antes que acepte</text>
+            <text x="468" y="219" fill="#fcd34d" font-size="9">el catéter de estimulación.</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Esquema orientativo, no una ilustración anatómica a escala.</strong> La
+        revisión para urgenciólogos de Long 2023 señala la <strong>yugular interna derecha</strong> y la
+        <strong>subclavia izquierda</strong> como los sitios óptimos. La elección real se ajusta a la anatomía, la
+        coagulación, la ecografía y la mano del operador — y a qué sitio piensa usar cardiología para el marcapasos
+        definitivo. <em>Verificar con protocolo institucional.</em></div>
+      </div>
+
+      <div class="subhead">Qué se necesita en la mesa</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🧵</span><span><strong>Set de acceso venoso central con introductor de vaina y válvula hemostática</strong>, del <strong>mismo calibre o mayor que el catéter de estimulación</strong> (los kits habituales son de 5 o 6 Fr). <em>El número exacto lo dice el envase del kit del servicio: mirarlo antes de abrirlo.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🎈</span><span><strong>Catéter de estimulación bipolar con balón en la punta</strong> (semiflotante, tipo Swan). El balón es lo que permite navegar con el flujo sanguíneo sin fluoroscopia. Algunos kits traen catéter rígido sin balón: navegarlo a ciegas es mucho más difícil y más arritmogénico.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔌</span><span><strong>Generador externo con pilas nuevas o de repuesto a la vista</strong>, y los cables de conexión del catéter al generador. <strong>Probar el generador antes de puncionar</strong>: si está sin batería, se descubre ahora.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📉</span><span><strong>Pinza cocodrilo y cable de derivación precordial</strong> para el electrocardiograma intracavitario (sección 05), si se va a navegar con ECG.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔊</span><span><strong>Ecógrafo encendido, con transductor sectorial (cardíaco) y transductor lineal</strong>: el lineal para el acceso vascular, el sectorial para ver el catéter entrar al ventrículo y para confirmar la captura mecánica.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💧</span><span><strong>Manga estéril larga para el catéter</strong> (la que trae el kit): protege la porción externa y permite reposicionarlo después sin contaminarlo. <em>Colocarla antes de introducir el catéter, no después.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🪡</span><span><strong>Material de fijación:</strong> sutura, apósito transparente estéril y algún sistema para asegurar el asa del catéter. La <strong>salida del catéter de su posición es una de las complicaciones más frecuentes</strong>, con mediana de un día.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⚡</span><span><strong>Desfibrilador conectado con parches puestos.</strong> Navegar por el ventrículo derecho provoca extrasístoles y, a veces, taquicardia o fibrilación ventricular. <em>Los mismos parches del transcutáneo sirven.</em></span></div>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">🎈</span>
+        <span><strong>Las tres pruebas que no se saltan, aunque el paciente esté mal.</strong> Uno: <strong>probar el
+        balón</strong> inflándolo con el volumen que indique el catéter (habitualmente 1,5 mL de aire) y comprobar
+        que se desinfla por completo. Dos: <strong>probar el generador</strong> —enciende, tiene batería, los diales
+        responden—. Tres: <strong>verificar la conexión y la polaridad</strong>, electrodo distal (punta) al polo
+        <em>negativo</em> y proximal al <em>positivo</em>. Las tres juntas toman menos de un minuto; descubrir
+        cualquiera de las tres con el catéter dentro del paciente cuesta el procedimiento entero.</span>
+      </div>
+
+      <div class="subhead">Checklist de preparación</div>
+      <div class="checklist" id="list-s4">
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Sitio de punción elegido y dicho en voz alta</strong>, con el motivo: yugular interna derecha por ser la ruta más directa, subclavia izquierda por estabilidad, femoral si no hay otra.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Coagulación y anticoagulantes revisados</strong> y el sitio ajustado en consecuencia: <em>si hay coagulopatía o trombólisis prevista, ruta compresible y ecoguía.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Asepsia completa: gorro, mascarilla, bata y guantes estériles, campo amplio</strong> y antiséptico según el protocolo del servicio. <em>No es un procedimiento «rápido y sucio»: la infección fue la complicación que más se asoció al tiempo y a la permanencia.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Acceso venoso central puncionado bajo ecografía</strong> e introductor instalado, purgado y asegurado. <em>La vaina debe aceptar el catéter de estimulación: comprobarlo antes.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Balón probado y desinflado</strong>, con el volumen que indique el catéter, y la jeringa del balón dejada conectada y con el émbolo en cero.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Manga estéril colocada sobre el catéter</strong> antes de introducirlo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Generador probado, con batería, conectado al catéter con la polaridad correcta</strong> (distal al negativo, proximal al positivo) y con las conexiones apretadas.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Desfibrilador conectado con parches puestos</strong> y el equipo avisado de que pueden aparecer extrasístoles o arritmia ventricular durante la navegación.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Método de navegación decidido:</strong> electrocardiograma intracavitario, ecografía o ambos. <em>Navegar completamente a ciegas es el escenario con más fracaso y más complicaciones.</em></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · INSERCIÓN Y NAVEGACIÓN -->
+  <div class="section s5" id="s5" style="animation-delay:0.22s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Inserción y navegación del catéter</div>
+        <div class="section-subtitle">Balón arriba para avanzar, balón abajo para retirar — y siempre mirando algo</div>
+      </div>
+      <span class="section-check-count" id="count-s5">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">🎈</span>
+        <span><strong>Dos reglas del balón, y no tienen excepción.</strong> Uno: <strong>no inflar el balón dentro de
+        la vaina del introductor</strong> —se rompe o daña la válvula—: primero avanzar el catéter hasta salir de la
+        vaina (habitualmente unos <strong>10–15 cm</strong> desde el conector) y recién ahí inflar. Dos: <strong>se
+        avanza siempre con el balón inflado y se retira siempre con el balón desinflado</strong>. Retirar con el
+        balón inflado puede enganchar cuerdas tendinosas, la válvula tricúspide o el propio introductor.</span>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 680 340" role="img" aria-label="Esquema del trayecto del cateter de estimulacion desde la vena yugular interna derecha hasta el apex del ventriculo derecho, con las profundidades orientativas: quince a veinte centimetros en la auricula derecha, unos veinticinco centimetros en la valvula tricuspide y treinta a treinta y cinco centimetros en el apex del ventriculo derecho. Un recuadro lateral indica que desde la subclavia izquierda se suman unos cinco centimetros y desde la femoral el trayecto es mucho mas largo, y que pasados los cuarenta centimetros sin captura hay que sospechar que el cateter se enrollo.">
+          <g font-family="DM Mono, monospace" font-size="10.5" fill="#94a3b8">
+            <rect x="12" y="12" width="656" height="316" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="28" y="36" fill="#5eead4" font-size="12">Profundidades orientativas desde yugular interna derecha</text>
+
+            <!-- vena cava y corazon -->
+            <path d="M120,62 Q124,110 140,146" stroke="#475569" stroke-width="16" fill="none" stroke-linecap="round" opacity="0.45"/>
+            <text x="24" y="90" fill="#64748b" font-size="9.5">vena yugular</text>
+            <text x="24" y="103" fill="#64748b" font-size="9.5">interna derecha</text>
+
+            <path d="M140,146 Q156,178 176,196" stroke="#475569" stroke-width="18" fill="none" stroke-linecap="round" opacity="0.4"/>
+            <text x="96" y="168" fill="#64748b" font-size="9.5">VCS</text>
+
+            <!-- auricula derecha -->
+            <ellipse cx="216" cy="204" rx="48" ry="38" fill="rgba(59,130,246,0.10)" stroke="#93c5fd" stroke-width="1.5"/>
+            <text x="196" y="182" fill="#bfdbfe" font-size="10">AD</text>
+
+            <!-- valvula tricuspide -->
+            <line x1="258" y1="196" x2="272" y2="234" stroke="#fcd34d" stroke-width="2.4"/>
+            <text x="252" y="182" fill="#fcd34d" font-size="9.5">tricúspide</text>
+
+            <!-- ventriculo derecho -->
+            <path d="M266,196 Q346,206 392,258 Q420,292 368,300 Q296,306 272,262 Q260,230 266,196 Z" fill="rgba(239,68,68,0.10)" stroke="#fca5a5" stroke-width="1.5"/>
+            <text x="322" y="246" fill="#fca5a5" font-size="10">VD</text>
+            <text x="384" y="270" fill="#6ee7b7" font-size="9.5">ápex</text>
+
+            <!-- cateter -->
+            <path d="M118,68 Q126,118 144,150 Q166,186 208,202 Q252,216 300,248 Q332,270 364,286" stroke="#5eead4" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+            <circle cx="366" cy="287" r="7" fill="rgba(20,184,166,0.35)" stroke="#5eead4" stroke-width="1.6"/>
+
+            <!-- marcas -->
+            <circle cx="206" cy="201" r="4.5" fill="#93c5fd"/>
+            <text x="96" y="252" fill="#bfdbfe" font-size="10">15–20 cm · AD</text>
+            <circle cx="268" cy="224" r="4.5" fill="#fcd34d"/>
+            <text x="192" y="326" fill="#fcd34d" font-size="10">~25 cm · tricúspide</text>
+            <circle cx="366" cy="287" r="4" fill="#6ee7b7"/>
+            <text x="392" y="316" fill="#6ee7b7" font-size="10">30–35 cm · ápex VD</text>
+
+            <!-- recuadro lateral -->
+            <rect x="436" y="52" width="216" height="182" rx="10" fill="rgba(245,158,11,0.05)" stroke="#78350f" stroke-width="1.1"/>
+            <text x="452" y="76" fill="#fcd34d" font-size="10.5">Ajuste según el acceso</text>
+            <text x="452" y="98" font-size="9.5">Subclavia izquierda: sumar</text>
+            <text x="464" y="111" font-size="9.5">unos 5 cm a cada marca</text>
+            <text x="452" y="131" font-size="9.5">Femoral: trayecto mucho más</text>
+            <text x="464" y="144" font-size="9.5">largo y suele necesitar</text>
+            <text x="464" y="157" font-size="9.5">fluoroscopia</text>
+            <text x="452" y="181" fill="#fca5a5" font-size="9.5">Más de ~40 cm sin captura:</text>
+            <text x="464" y="194" fill="#fca5a5" font-size="9.5">el catéter probablemente</text>
+            <text x="464" y="207" fill="#fca5a5" font-size="9.5">se enrolló. Desinflar,</text>
+            <text x="464" y="220" fill="#fca5a5" font-size="9.5">retirar a 15–20 cm y repetir.</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Esquema orientativo, no una ilustración anatómica a escala.</strong> Las
+        profundidades son <strong>referencias convencionales, no medidas validadas</strong>: varían con la altura del
+        paciente, el sitio de punción y el modelo de catéter. Se usan para <em>sospechar</em> que algo va mal, no
+        para confirmar que va bien: la confirmación es la captura, la ecografía y la radiografía.</div>
+      </div>
+
+      <div class="subhead">Secuencia</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>Paciente monitorizado, con el transcutáneo listo</strong> y el desfibrilador conectado. Posición supina o con leve Trendelenburg si la hemodinamia lo permite.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>Introducir el catéter por la vaina hasta unos 10–15 cm</strong>, con el balón desinflado, hasta estar seguro de haber salido del introductor.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>Inflar el balón</strong> con el volumen del catéter (habitualmente 1,5 mL de aire) y <strong>bloquear la llave</strong>. Decirlo en voz alta: <em>«balón inflado»</em>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span><strong>Encender el generador antes de avanzar</strong>, en modo demanda, con frecuencia <strong>10–20 lpm por sobre el ritmo propio</strong> (o 60–80 si no hay ritmo útil) y <strong>salida alta</strong>. Así la captura aparece sola en cuanto la punta llega al ventrículo derecho, y es la señal más útil de la navegación.</span></div>
+        <div class="plain-item"><span class="bullet-icon">5</span><span><strong>Avanzar suave y continuo</strong>, siguiendo el electrocardiograma intracavitario o la imagen ecográfica. Sin empujar contra resistencia.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">6</span><span><strong>Cuando aparece captura ventricular</strong>: detenerse, <strong>desinflar el balón</strong> y decirlo en voz alta. Recién con el balón desinflado se hacen los ajustes finos de posición.</span></div>
+        <div class="plain-item"><span class="bullet-icon">7</span><span><strong>Asentar la punta en las trabéculas del ápex</strong> con un avance mínimo y suave, sin forzar. <em>Un avance excesivo es una de las formas de perforar el ventrículo derecho — la maniobra y su magnitud se ajustan al protocolo institucional.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">8</span><span><strong>Si se pasó de largo o se enrolló:</strong> desinflar, <strong>retirar hasta 15–20 cm</strong>, volver a inflar y reintentar. Girar la cabeza del paciente al lado contrario o inclinarlo levemente hacia la derecha ayuda a que el balón cruce la tricúspide. <em>Nunca retirar con el balón inflado.</em></span></div>
+      </div>
+
+      <div class="subhead">Navegar con electrocardiograma intracavitario</div>
+
+      <div class="figure">
+        <svg viewBox="0 0 680 250" role="img" aria-label="Cuatro trazados esquematicos del electrocardiograma intracavitario segun la posicion de la punta del cateter. En la vena cava superior la onda P es negativa y el QRS pequeño. En la auricula derecha la onda P es muy grande y bifasica, mayor que el QRS. En el ventriculo derecho sin contacto con la pared el QRS se hace grande y la onda P se achica. Cuando la punta toca el endocardio aparece elevacion del segmento ST, la llamada corriente de lesion, que es la señal de contacto.">
+          <g font-family="DM Mono, monospace" font-size="10" fill="#94a3b8">
+            <rect x="12" y="10" width="656" height="230" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="28" y="34" fill="#5eead4" font-size="12">Electrodo distal conectado a una derivación precordial</text>
+
+            <!-- panel 1 VCS -->
+            <rect x="26" y="48" width="150" height="132" rx="9" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1"/>
+            <text x="40" y="68" fill="#bfdbfe" font-size="10">VCS</text>
+            <path d="M40,130 L58,130 L64,142 L70,130 L86,130 L92,116 L96,146 L102,130 L162,130" stroke="#93c5fd" stroke-width="1.7" fill="none"/>
+            <text x="40" y="164" font-size="9">P negativa · QRS pequeño</text>
+
+            <!-- panel 2 AD -->
+            <rect x="188" y="48" width="150" height="132" rx="9" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1"/>
+            <text x="202" y="68" fill="#a5b4fc" font-size="10">Aurícula derecha</text>
+            <path d="M202,128 L216,128 L224,94 L232,146 L240,128 L254,128 L260,118 L264,138 L270,128 L324,128" stroke="#a5b4fc" stroke-width="1.7" fill="none"/>
+            <text x="202" y="164" font-size="9">P enorme y bifásica</text>
+            <text x="202" y="176" font-size="9">P mayor que el QRS</text>
+
+            <!-- panel 3 VD sin contacto -->
+            <rect x="350" y="48" width="150" height="132" rx="9" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1"/>
+            <text x="364" y="68" fill="#fcd34d" font-size="10">VD sin contacto</text>
+            <path d="M364,128 L382,128 L386,122 L390,128 L402,128 L408,90 L416,152 L422,128 L486,128" stroke="#fcd34d" stroke-width="1.7" fill="none"/>
+            <text x="364" y="164" font-size="9">QRS grande · P pequeña</text>
+
+            <!-- panel 4 contacto endocardio -->
+            <rect x="512" y="48" width="142" height="132" rx="9" fill="rgba(16,185,129,0.05)" stroke="#065f46" stroke-width="1.1"/>
+            <text x="526" y="68" fill="#6ee7b7" font-size="10">Contacto endocárdico</text>
+            <path d="M526,128 L544,128 L548,122 L552,128 L562,128 L568,90 L576,150 L582,106 L604,106 L612,124 L642,124" stroke="#6ee7b7" stroke-width="1.9" fill="none"/>
+            <text x="526" y="164" fill="#6ee7b7" font-size="9">Elevación del ST</text>
+            <text x="526" y="176" font-size="9">«corriente de lesión»</text>
+
+            <text x="28" y="212" fill="#fcd34d" font-size="9.5">La elevación del ST aparece cuando la punta toca la pared: es señal de contacto, no de infarto.</text>
+            <text x="28" y="228" fill="#fca5a5" font-size="9.5">Si el QRS se achica de nuevo, la punta se fue al tracto de salida o a la arteria pulmonar: retroceder.</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Trazados esquemáticos, no registros reales.</strong> Técnica: se conecta el
+        <strong>electrodo distal del catéter a una derivación precordial del monitor con una pinza cocodrilo</strong>
+        y se observa la morfología mientras se avanza. La revisión de Long 2023 describe la
+        <strong>elevación del segmento ST como el signo de que la punta contacta el endocardio</strong>. <em>La
+        conexión exacta y su seguridad eléctrica dependen del monitor y del cable: verificar con protocolo
+        institucional y con el manual del equipo.</em></div>
+      </div>
+
+      <div class="subhead">Navegar con ecografía</div>
+      <div class="plain-list">
+        <div class="plain-item good"><span class="bullet-icon">🔊</span><span><strong>Es lo que más mejora el procedimiento cuando no hay fluoroscopia.</strong> En la serie prospectiva de Aguilera en urgencia, la estimulación transvenosa ecoguiada fue exitosa en <strong>8 de 9 pacientes</strong> con bloqueo completo, y la ecografía <strong>detectó y permitió corregir la mala posición del catéter en 3</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🪟</span><span><strong>Ventanas útiles:</strong> subxifoidea y subxifoidea modificada (las que menos estorban el campo estéril del cuello), apical de 4 cámaras y paraesternal. Se busca ver el catéter cruzar la tricúspide y apoyarse en el ventrículo derecho.</span></div>
+        <div class="plain-item"><span class="bullet-icon">👁️</span><span><strong>La ecografía ve lo que el electrocardiograma no ve.</strong> En el caso publicado por Blanco y Nomura, el catéter capturaba con morfología de bloqueo de rama izquierda —aparentemente perfecto— y la ecografía mostró que <strong>estaba enrollado en la vena cava inferior</strong> con la punta apenas en el ventrículo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫧</span><span><strong>Si el catéter no se ve:</strong> la inyección de suero agitado por la vaina puede ayudar a identificar la cavidad y el trayecto. <em>Uso descrito, sin evidencia comparativa.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">📺</span><span><strong>Si la ventana transtorácica es mala</strong> —obesidad, enfisema, tórax operado— y el servicio dispone de <strong>ecocardiografía transesofágica</strong> con operador entrenado, es una alternativa descrita para guiar la punta. <em>Reporte de caso: recurso, no estándar.</em></span></div>
+      </div>
+
+      <div class="subhead">Checklist de la navegación</div>
+      <div class="checklist" id="list-s5">
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Catéter avanzado más allá de la punta de la vaina antes de inflar</strong> el balón (≈10–15 cm).</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Balón inflado, llave bloqueada y dicho en voz alta.</strong> Solo se avanza con el balón inflado.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Generador encendido y estimulando antes de avanzar</strong>, en demanda, frecuencia por sobre la propia y salida alta.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Método de guía en uso durante todo el avance</strong> (ECG intracavitario, ecografía o ambos), con alguien mirando esa pantalla y nada más.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Extrasistolia ventricular durante el avance interpretada como lo que es</strong>: la punta está irritando el ventrículo. Si aparece taquicardia ventricular sostenida, <strong>retirar unos centímetros primero</strong> y tratar según corresponda.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Balón desinflado apenas hay captura</strong>, y dicho en voz alta antes de cualquier movimiento fino.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Profundidad final leída en las marcas del catéter y anotada</strong>, junto con el sitio de punción. <em>Es el número que permitirá saber después si se movió.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Si el paciente tiene bloqueo de rama izquierda previo</strong>, el equipo sabe que el catéter puede producir bloqueo de rama derecha y con ello <strong>bloqueo completo o asistolia</strong>: el transcutáneo queda armado y listo para disparar.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · CAPTURA Y PROGRAMACIÓN -->
+  <div class="section s6" id="s6" style="animation-delay:0.26s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Captura, umbral y programación del generador</div>
+        <div class="section-subtitle">Los tres diales, el margen de seguridad y por qué la captura eléctrica no basta</div>
+      </div>
+      <span class="section-check-count" id="count-s6">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="figure">
+        <svg viewBox="0 0 680 280" role="img" aria-label="Esquema del panel de un generador externo de marcapasos temporal, con sus tres controles: frecuencia en latidos por minuto, salida en miliamperios y sensibilidad en milivoltios. Se explica que un numero menor de milivoltios significa mayor sensibilidad. A la derecha, esquema de la busqueda del umbral de captura: se baja la salida hasta que se pierde la captura y luego se deja la salida en un multiplo del umbral como margen de seguridad.">
+          <g font-family="DM Mono, monospace" font-size="10.5" fill="#94a3b8">
+            <rect x="12" y="12" width="656" height="256" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="28" y="36" fill="#6ee7b7" font-size="12">Los tres controles del generador</text>
+
+            <!-- panel generador -->
+            <rect x="28" y="50" width="286" height="200" rx="12" fill="rgba(255,255,255,0.03)" stroke="#475569" stroke-width="1.4"/>
+
+            <circle cx="82" cy="100" r="26" fill="rgba(245,158,11,0.10)" stroke="#fcd34d" stroke-width="1.6"/>
+            <line x1="82" y1="100" x2="94" y2="82" stroke="#fcd34d" stroke-width="2.2" stroke-linecap="round"/>
+            <text x="120" y="94" fill="#fcd34d" font-size="10.5">FRECUENCIA · lpm</text>
+            <text x="120" y="108" font-size="9.5">60–80 habitual · 10–20 sobre</text>
+            <text x="120" y="121" font-size="9.5">el ritmo propio al navegar</text>
+
+            <circle cx="82" cy="158" r="26" fill="rgba(239,68,68,0.10)" stroke="#fca5a5" stroke-width="1.6"/>
+            <line x1="82" y1="158" x2="98" y2="150" stroke="#fca5a5" stroke-width="2.2" stroke-linecap="round"/>
+            <text x="120" y="152" fill="#fca5a5" font-size="10.5">SALIDA · mA</text>
+            <text x="120" y="166" font-size="9.5">alta al navegar · luego</text>
+            <text x="120" y="179" font-size="9.5">múltiplo del umbral medido</text>
+
+            <circle cx="82" cy="216" r="26" fill="rgba(59,130,246,0.10)" stroke="#93c5fd" stroke-width="1.6"/>
+            <line x1="82" y1="216" x2="68" y2="200" stroke="#93c5fd" stroke-width="2.2" stroke-linecap="round"/>
+            <text x="120" y="210" fill="#bfdbfe" font-size="10.5">SENSIBILIDAD · mV</text>
+            <text x="120" y="224" fill="#fcd34d" font-size="9.5">número menor = MÁS sensible</text>
+            <text x="120" y="237" font-size="9.5">al revés de lo que parece</text>
+
+            <!-- umbral -->
+            <rect x="336" y="50" width="316" height="200" rx="12" fill="rgba(16,185,129,0.04)" stroke="#065f46" stroke-width="1.2"/>
+            <text x="354" y="76" fill="#6ee7b7" font-size="11">Buscar el umbral de captura</text>
+
+            <text x="354" y="102" font-size="9.5">1 · Frecuencia por sobre la propia</text>
+            <text x="354" y="120" font-size="9.5">2 · Bajar la salida de a poco</text>
+            <text x="354" y="138" font-size="9.5">3 · Anotar el mA más bajo que</text>
+            <text x="366" y="151" font-size="9.5">todavía captura = UMBRAL</text>
+            <text x="354" y="169" font-size="9.5">4 · Subir a un múltiplo del umbral</text>
+            <text x="366" y="182" fill="#6ee7b7" font-size="9.5">como margen de seguridad</text>
+
+            <line x1="354" y1="202" x2="634" y2="202" stroke="#334155" stroke-width="1"/>
+            <text x="354" y="222" fill="#fcd34d" font-size="9.5">Umbral habitualmente ≤ 1 mA con</text>
+            <text x="354" y="235" fill="#fcd34d" font-size="9.5">buena posición. Sobre 2 mA: recolocar.</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Esquema genérico:</strong> los generadores reales varían en diales, rangos y
+        rótulos. <strong>Los valores concretos de umbral aceptable, margen de seguridad y sensibilidad se toman del
+        manual del equipo y del protocolo institucional</strong>, no de este dibujo.</div>
+      </div>
+
+      <div class="subhead">Programación inicial</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Parámetro</th><th>Punto de partida habitual</th><th>Cómo se ajusta</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Modo</td>
+              <td><span class="dose-main">Demanda (VVI)</span><br><span class="dose-note">asincrónico solo por indicación puntual</span></td>
+              <td>En demanda el generador <strong>inhibe el estímulo cuando detecta un latido propio</strong>, que es lo que se quiere casi siempre. El modo asincrónico estimula pase lo que pase y puede caer sobre la onda T.</td>
+            </tr>
+            <tr>
+              <td>Frecuencia</td>
+              <td><span class="dose-main">60–80 lpm</span><br><span class="dose-note">al navegar: 10–20 lpm sobre el ritmo propio</span></td>
+              <td>Se sube si el paciente sigue con bajo gasto y se tolera. En <strong>torsades dependiente de pausa se usa sobremarcha a frecuencias más altas</strong> (del orden de 90–110 lpm) para acortar el QT: <em>la frecuencia objetivo se define con cardiología y según protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Salida</td>
+              <td><span class="dose-main">Alta mientras se navega</span><br><span class="dose-note">luego, múltiplo del umbral medido</span></td>
+              <td>Con salida alta la captura aparece apenas la punta llega al ventrículo. Después se mide el umbral y se deja un <strong>margen de seguridad (convencionalmente 2–3 veces el umbral)</strong>. <em>El múltiplo exacto se toma del protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Sensibilidad</td>
+              <td><span class="dose-main">Del orden de 2 mV</span><br><span class="dose-note">verificar el rango del equipo</span></td>
+              <td><strong>Número menor = más sensible.</strong> Se comprueba bajando la frecuencia por debajo de la propia y confirmando que el indicador de «sensado» marca cada latido y <strong>no aparecen espigas</strong>. <em>El valor exacto depende del generador.</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="go-banner">
+        <span class="warning-icon">✅</span>
+        <span><strong>Captura completa son tres cosas, no una.</strong> <strong>(1) Espiga seguida de QRS ancho y su
+        onda T</strong>, latido a latido, en el monitor. <strong>(2) Pulso o presión que acompañen a cada espiga</strong>
+        —pulso femoral, línea arterial o contracción vista por ecografía—. <strong>(3) El paciente mejora</strong>:
+        sube la presión, mejora la perfusión, recupera conciencia. Si hay 1 sin 2, es captura falsa o disociación
+        electromecánica y hay que buscar por qué.</span>
+      </div>
+
+      <div class="subhead">Checklist de programación</div>
+      <div class="checklist" id="list-s6">
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Captura eléctrica 1:1 confirmada</strong>: cada espiga produce un QRS ancho con su onda T.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Captura mecánica confirmada</strong> por pulso femoral, línea arterial o ecografía, y presión arterial medida y anotada después de capturar.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Umbral de captura medido y anotado en la ficha</strong> con la hora. <em>Es el valor de referencia contra el que se comparará mañana.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Umbral alto (por sobre ~2 mA) tratado como problema de posición</strong>, no como motivo para subir la salida y seguir: <em>recolocar antes de fijar.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Salida dejada con margen de seguridad</strong> sobre el umbral y anotada.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Sensado comprobado</strong> bajando la frecuencia por debajo del ritmo propio: el generador sensa y no dispara espigas sobre los latidos del paciente.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Modo demanda, frecuencia, salida y sensibilidad escritos en la ficha y en la pizarra</strong>, junto con la hora de instalación. <strong>Tapa de seguridad del generador puesta</strong> para que nadie cambie un dial sin querer.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · CONFIRMAR LA POSICIÓN -->
+  <div class="section s7" id="s7" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Confirmar dónde quedó la punta</div>
+        <div class="section-subtitle">Morfología del QRS estimulado, ecografía y radiografía — las tres, no una</div>
+      </div>
+      <span class="section-check-count" id="count-s7">0/6</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="figure">
+        <svg viewBox="0 0 680 320" role="img" aria-label="Comparacion de la morfologia del QRS estimulado. Panel izquierdo: patron de bloqueo de rama izquierda, con QRS predominantemente negativo en la derivacion V1 y eje superior con QRS negativo en las derivaciones inferiores, que orienta a punta en el apex del ventriculo derecho. Panel central: patron de bloqueo de rama izquierda con eje inferior, que orienta a tracto de salida del ventriculo derecho. Panel derecho: patron de bloqueo de rama derecha, con QRS predominantemente positivo en V1, que obliga a revisar la posicion porque puede indicar estimulacion del ventriculo izquierdo, del seno coronario o el paso por una comunicacion septal, aunque tambien se describe con la punta bien puesta.">
+          <g font-family="DM Mono, monospace" font-size="10" fill="#94a3b8">
+            <rect x="12" y="10" width="656" height="300" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="28" y="34" fill="#5eead4" font-size="12">Morfología del QRS estimulado en V1 y en las derivaciones inferiores</text>
+
+            <!-- panel apex VD -->
+            <rect x="26" y="48" width="200" height="246" rx="10" fill="rgba(16,185,129,0.05)" stroke="#065f46" stroke-width="1.1"/>
+            <text x="42" y="70" fill="#6ee7b7" font-size="10.5">Ápex de VD · esperado</text>
+            <text x="42" y="94" font-size="9">V1</text>
+            <path d="M62,118 L74,118 L76,110 L80,118 L92,118 L96,152 L104,118 L208,118" stroke="#6ee7b7" stroke-width="1.7" fill="none"/>
+            <text x="42" y="178" font-size="9">II · III · aVF</text>
+            <path d="M62,212 L74,212 L76,204 L80,212 L92,212 L96,246 L104,212 L208,212" stroke="#6ee7b7" stroke-width="1.7" fill="none"/>
+            <text x="42" y="268" fill="#6ee7b7" font-size="9.5">BRI + eje superior</text>
+            <text x="42" y="282" font-size="9">negativo en V1 y en inferiores</text>
+
+            <!-- panel TSVD -->
+            <rect x="240" y="48" width="200" height="246" rx="10" fill="rgba(245,158,11,0.05)" stroke="#78350f" stroke-width="1.1"/>
+            <text x="256" y="70" fill="#fcd34d" font-size="10.5">Tracto de salida de VD</text>
+            <text x="256" y="94" font-size="9">V1</text>
+            <path d="M276,118 L288,118 L290,110 L294,118 L306,118 L310,152 L318,118 L422,118" stroke="#fcd34d" stroke-width="1.7" fill="none"/>
+            <text x="256" y="178" font-size="9">II · III · aVF</text>
+            <path d="M276,212 L288,212 L290,206 L294,212 L306,212 L310,190 L318,212 L422,212" stroke="#fcd34d" stroke-width="1.7" fill="none"/>
+            <text x="256" y="268" fill="#fcd34d" font-size="9.5">BRI + eje inferior</text>
+            <text x="256" y="282" font-size="9">posición menos estable</text>
+
+            <!-- panel BRD -->
+            <rect x="454" y="48" width="200" height="246" rx="10" fill="rgba(239,68,68,0.05)" stroke="#7f1d1d" stroke-width="1.1"/>
+            <text x="470" y="70" fill="#fca5a5" font-size="10.5">BRD · revisar posición</text>
+            <text x="470" y="94" font-size="9">V1</text>
+            <path d="M490,132 L502,132 L504,126 L508,132 L518,132 L522,102 L530,132 L636,132" stroke="#fca5a5" stroke-width="1.7" fill="none"/>
+            <text x="470" y="164" font-size="9">QRS positivo en V1</text>
+            <text x="470" y="192" fill="#fca5a5" font-size="9">¿ventrículo izquierdo?</text>
+            <text x="470" y="206" fill="#fca5a5" font-size="9">¿seno coronario?</text>
+            <text x="470" y="220" fill="#fca5a5" font-size="9">¿comunicación septal?</text>
+            <text x="470" y="254" fill="#fcd34d" font-size="9">También ocurre con la punta</text>
+            <text x="470" y="268" fill="#fcd34d" font-size="9">bien puesta: confirmar con</text>
+            <text x="470" y="282" fill="#fcd34d" font-size="9">ecografía y radiografía.</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Trazados esquemáticos, no registros reales.</strong> La regla clásica es que
+        la estimulación del ventrículo derecho da <strong>morfología de bloqueo de rama izquierda</strong>, y que un
+        patrón de <strong>bloqueo de rama derecha obliga a revisar</strong>. Pero no es un signo perfecto: el patrón
+        de rama derecha también se describe con la punta correctamente alojada en el ventrículo derecho. <em>Por eso
+        la conducta no es retirar por reflejo, sino confirmar con ecografía y radiografía.</em></div>
+      </div>
+
+      <div class="subhead">Las tres confirmaciones</div>
+      <div class="plain-list">
+        <div class="plain-item good"><span class="bullet-icon">📈</span><span><strong>Electrocardiograma de 12 derivaciones estimulado.</strong> Se toma y se guarda: es el documento contra el cual se compararán todos los trazados posteriores. Punta en ápex del ventrículo derecho: <strong>morfología de bloqueo de rama izquierda con eje superior</strong> (QRS negativo en II, III y aVF).</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔊</span><span><strong>Ecografía a pie de cama.</strong> Se busca tres cosas: la punta <strong>dentro del ventrículo derecho</strong>, la <strong>contracción ventricular sincronizada con cada espiga</strong> y la <strong>ausencia de derrame pericárdico</strong>. Esta última es la que descarta la perforación.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩻</span><span><strong>Radiografía de tórax.</strong> Confirma el trayecto y la punta, y —igual de importante— <strong>descarta el neumotórax</strong> del acceso yugular o subclavio. Un catéter que cruza la línea media hacia la derecha en la radiografía lateral, o que apunta hacia atrás, orienta a seno coronario.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚨</span><span><strong>Combinación que obliga a detenerse:</strong> patrón de bloqueo de rama derecha <em>más</em> umbral que sube <em>más</em> estimulación del diafragma (hipo rítmico) <em>más</em> derrame pericárdico nuevo. Eso es <strong>perforación hasta demostrar lo contrario</strong>: ecografía inmediata, avisar a cardiología y cirugía, y no retirar el catéter sin equipo preparado para un taponamiento.</span></div>
+      </div>
+
+      <div class="subhead">Checklist de confirmación</div>
+      <div class="checklist" id="list-s7">
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Electrocardiograma de 12 derivaciones estimulado tomado y guardado</strong>, con la morfología descrita en la ficha.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Ecografía hecha:</strong> punta en el ventrículo derecho, contracción con cada espiga y <strong>sin derrame pericárdico</strong>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Radiografía de tórax pedida y mirada por quien instaló</strong>, no solo informada: posición del catéter y <strong>neumotórax descartado</strong>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Patrón de bloqueo de rama derecha investigado, no ignorado ni «corregido» a ciegas</strong>: ecografía primero, decisión con cardiología.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Estimulación del diafragma buscada activamente</strong> (hipo rítmico sincronizado con la espiga): si aparece, recolocar.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Profundidad del catéter en la marca y umbral registrados como línea de base</strong>, para poder detectar el desplazamiento cuando ocurra.</span>
+        </button>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./checklist-pericardiocentesis.html">Si aparece taponamiento →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · CUANDO NO CAPTURA -->
+  <div class="section s8" id="s8" style="animation-delay:0.34s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Cuando no captura: de afuera hacia adentro</div>
+        <div class="section-subtitle">Primero el cable, después el dial, después el catéter, después el paciente</div>
+      </div>
+      <span class="section-check-count" id="count-s8">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⏱️</span>
+        <span><strong>Lo primero no es el diagnóstico: es sostener al paciente.</strong> Apenas se pierde la captura
+        en un paciente dependiente, <strong>se enciende el marcapasos transcutáneo y se reinicia el cronotropo</strong>
+        mientras alguien resuelve el problema. Buscar la causa con el paciente en asistolia es la secuencia
+        equivocada.</span>
+      </div>
+
+      <div class="subhead">Qué se ve en el monitor, y qué significa</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Patrón</th><th>Qué está fallando</th><th>Qué hacer</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>No hay espigas</td>
+              <td>Generador apagado o sin batería, cable suelto o roto, o el generador está <strong>sobresensando</strong> (interpreta ruido, miopotenciales u ondas T como latidos propios y se inhibe)</td>
+              <td>Revisar encendido, batería y conexiones. Si es sobresensado: <strong>bajar la sensibilidad</strong> —es decir, <em>subir</em> el número de mV— o, en paciente dependiente y como medida transitoria, pasar a modo asincrónico. <em>Verificar la maniobra con el manual del equipo.</em></td>
+            </tr>
+            <tr>
+              <td>Espigas sin QRS</td>
+              <td><strong>Fallo de captura.</strong> Salida insuficiente, catéter desplazado o mal apoyado, umbral que subió por causa metabólica o farmacológica, o perforación</td>
+              <td>Subir la salida al máximo. Si con eso captura, hay un problema de umbral: buscar la causa. Si no captura ni al máximo: <strong>revisar posición</strong> (marca, ecografía, radiografía) y recolocar.</td>
+            </tr>
+            <tr>
+              <td>Captura intermitente</td>
+              <td>Desplazamiento parcial o punta mal apoyada. <strong>Es la complicación tardía más típica</strong> y en la serie de Betts ocurrió a una mediana de un día</td>
+              <td>Ecografía y radiografía, comparar con la profundidad anotada al instalar, recolocar. <em>Ningún factor predijo el desplazamiento en esa serie: no basta con «era un paciente tranquilo».</em></td>
+            </tr>
+            <tr>
+              <td>Espigas donde no corresponden</td>
+              <td><strong>Subsensado</strong>: el generador no ve los latidos propios y estimula encima, con riesgo de caer sobre la onda T</td>
+              <td><strong>Subir la sensibilidad</strong> —<em>bajar</em> el número de mV— y revisar posición y conexiones.</td>
+            </tr>
+            <tr>
+              <td>Captura eléctrica sin pulso</td>
+              <td>Disociación electromecánica: shock profundo, taponamiento, tromboembolismo, hipovolemia, intoxicación cardiotóxica. <strong>El marcapasos hace su trabajo; el músculo no</strong></td>
+              <td>Es un problema del paciente, no del catéter: ecografía inmediata buscando derrame, contractilidad y vena cava, y manejo del shock. <em>Frecuente y frustrante en la intoxicación por bloqueadores de canales de calcio y betabloqueadores.</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Causas de umbral alto que no se arreglan moviendo el catéter</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🧪</span><span><strong>Hiperkalemia</strong>, acidosis grave, hipoxia e hipotermia: todas <strong>elevan el umbral de captura</strong>. Un marcapasos que deja de capturar puede ser el primer aviso de que el potasio subió.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">💊</span><span><strong>Antiarrítmicos y fármacos</strong> (clase I, amiodarona, betabloqueadores en dosis altas) también suben el umbral. Revisar qué se administró desde que se midió el umbral inicial.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🫀</span><span><strong>Infarto o cicatriz en el punto de contacto:</strong> la punta está sobre tejido que no se despolariza. La solución es recolocar en otra zona, no subir la salida.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🩸</span><span><strong>Perforación:</strong> umbral que sube de golpe, estimulación diafragmática, dolor pleurítico, hipotensión, derrame nuevo. <em>Ecografía ahora; no retirar el catéter sin equipo preparado.</em></span></div>
+      </div>
+
+      <div class="subhead">Checklist de rescate</div>
+      <div class="checklist" id="list-s8">
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Transcutáneo encendido y cronotropo reiniciado</strong> mientras se busca la causa, si el paciente depende del marcapasos.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Generador revisado:</strong> encendido, batería, diales en los valores anotados, tapa de seguridad. <em>Cambiar la batería o el generador completo es más rápido que diagnosticar una batería a medias.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Conexiones revisadas y reapretadas</strong> en ambos extremos, cable inspeccionado en toda su longitud, polaridad confirmada.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Salida subida al máximo y umbral remedido</strong>, comparándolo con el valor anotado al instalar.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Profundidad del catéter comparada con la marca anotada</strong> y <strong>ecografía repetida</strong> buscando posición y derrame.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Potasio, gases, temperatura y fármacos administrados revisados</strong> antes de concluir que el problema es mecánico.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Recolocación hecha con técnica estéril y con la manga protectora</strong>, o catéter nuevo si la manga ya no protege. <em>Reposicionar con guantes no estériles y catéter descubierto es cómo se siembra una bacteriemia.</em></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · DESPUÉS -->
+  <div class="section s9" id="s9" style="animation-delay:0.38s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Después: fijar, vigilar y salir</div>
+        <div class="section-subtitle">El reloj que importa ahora es cuántas horas lleva puesto</div>
+      </div>
+      <span class="section-check-count" id="count-s9">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>Cuanto menos tiempo, mejor.</strong> En la serie de Betts, la <strong>infección fue
+        claramente más frecuente cuando el electrodo permaneció más de 48 horas</strong> (17 de 86 frente a 2 de 55)
+        y cuando el procedimiento había durado más. El consenso chino de urgencia de 2023 recomienda explícitamente
+        <strong>acortar el tiempo de soporte con marcapasos temporal</strong> para reducir complicaciones, junto con
+        reposo en cama y anticoagulación posterior. Traducción: desde el minuto en que captura, el objetivo del
+        equipo es <strong>que el paciente llegue al marcapasos definitivo o a la recuperación de su ritmo lo antes
+        posible</strong>. <em>El régimen de anticoagulación y de reposo se define con el protocolo institucional.</em></span>
+      </div>
+
+      <div class="subhead">Fijación y cuidados</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🪡</span><span><strong>Fijar el catéter al introductor y el introductor a la piel</strong>, dejar un <strong>asa de holgura</strong> asegurada a la piel y cubrir con apósito transparente estéril. Se han descrito técnicas específicas para reducir el desplazamiento en urgencia —como el doblez en «alfa» y la tunelización de la serie de Gunaseelan—: <em>son propuestas de casos, no un estándar.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">📏</span><span><strong>Marcar y anotar la profundidad</strong> del catéter en el punto de entrada. En cada turno se compara con el número escrito.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔒</span><span><strong>Generador fijado al paciente o a la cama</strong> —nunca colgando ni suelto sobre las sábanas—, con la <strong>tapa de seguridad puesta</strong> y las pilas de repuesto en la unidad.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🛏️</span><span><strong>Reposo y movilización restringida</strong>: el brazo y el cuello del lado de la punción, y la posición del paciente, son la principal causa de desplazamiento. <em>El grado de reposo se define según protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">📋</span><span><strong>Controles por turno, escritos:</strong> umbral de captura, salida y sensibilidad programadas, frecuencia, profundidad en la marca, estado del sitio de punción y batería del generador.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🌡️</span><span><strong>Vigilar infección</strong>: fiebre, aspecto del sitio, hemocultivos si hay sospecha. Es la complicación que crece con las horas.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚚</span><span><strong>Todo traslado es un momento de riesgo</strong>: se acompaña con el transcutáneo disponible, monitor, y alguien que sepa qué hacer si se pierde la captura en el ascensor.</span></div>
+      </div>
+
+      <div class="subhead">La salida</div>
+      <div class="plain-list">
+        <div class="plain-item good"><span class="bullet-icon">🫀</span><span><strong>Marcapasos definitivo</strong> cuando la causa es irreversible: bloqueo AV completo o de alto grado persistente, enfermedad del nodo sinusal sintomática. En la serie de Betts <strong>las complicaciones del temporal retrasaron el implante definitivo en el 22,9 % de los pacientes</strong>: cada día de más cuesta.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">♻️</span><span><strong>Retiro sin definitivo</strong> cuando la causa era reversible y se resolvió: intoxicación aclarada, potasio corregido, bloqueo del infarto inferior que se recuperó tras la reperfusión, fármaco suspendido. <em>La observación antes de retirar y el descenso progresivo de la frecuencia de respaldo se hacen según protocolo institucional y con cardiología.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">📞</span><span><strong>Si el centro no implanta definitivos:</strong> el traslado es el tratamiento, y el temporal es lo que permite hacerlo. Coordinarlo desde la primera hora, no cuando se cumplan las 48.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🛡️</span><span><strong>Al retirar</strong>: monitorización continua, transcutáneo disponible y vigilancia del sitio de punción. <em>La técnica y el tiempo de observación posterior se ajustan al protocolo institucional.</em></span></div>
+      </div>
+
+      <div class="subhead">Checklist posterior</div>
+      <div class="checklist" id="list-s9">
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Catéter e introductor fijados</strong>, con asa de holgura asegurada y apósito estéril puesto.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Profundidad, umbral, salida, sensibilidad, frecuencia y modo escritos en la ficha</strong> y visibles en la unidad.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Hora de instalación anotada</strong>, con la meta explícita de <strong>no superar las 48 horas</strong> sin una decisión sobre el definitivo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Generador asegurado, con tapa puesta y pilas de repuesto</strong> identificadas en la unidad.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Marcapasos transcutáneo disponible junto al paciente</strong> mientras dure el temporal, y el equipo de turno sabe dónde está.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Destino definido:</strong> unidad monitorizada o UCI, con cardiología informada y fecha u hora estimada del marcapasos definitivo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Causa reversible reevaluada explícitamente</strong>: potasio, fármacos, isquemia, tóxicos. <em>Si se corrigió, el paciente podría no necesitar un definitivo.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Entrega de turno hecha en voz alta</strong>: qué se instaló, por qué, con qué parámetros, qué se espera y qué hacer si se pierde la captura.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · COMPLICACIONES Y CERTEZA -->
+  <div class="section s10" id="s10" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Complicaciones, errores y qué tan seguros estamos</div>
+        <div class="section-subtitle">Lo que sale mal, y la letra chica de la evidencia</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Complicaciones</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Complicación</th><th>Cuándo aparece</th><th>Qué hacer</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Del acceso venoso</td>
+              <td>Neumotórax, punción arterial, hematoma, hemotórax. Inmediatas</td>
+              <td>Ecoguiar siempre el acceso. Radiografía posterior obligatoria en acceso yugular o subclavio. <strong>Evitar la subclavia si hay coagulopatía o trombólisis</strong>: no se comprime.</td>
+            </tr>
+            <tr>
+              <td>Arritmia durante la navegación</td>
+              <td>Extrasistolia ventricular casi siempre; taquicardia o fibrilación ventricular con menor frecuencia</td>
+              <td>La extrasistolia indica que la punta está en el ventrículo y suele ceder al dejar de manipular. Si hay arritmia sostenida: <strong>retirar unos centímetros primero</strong> y tratar. Desfibrilador conectado desde antes.</td>
+            </tr>
+            <tr>
+              <td>Bloqueo completo en paciente con bloqueo de rama izquierda</td>
+              <td>Durante la navegación, al lesionar la rama derecha</td>
+              <td>Es previsible: <strong>en todo paciente con bloqueo de rama izquierda previo se deja el transcutáneo armado</strong> y el generador listo para estimular apenas el catéter llegue.</td>
+            </tr>
+            <tr>
+              <td>Perforación del ventrículo derecho y taponamiento</td>
+              <td>Durante o después. Sospechar por umbral que sube, estimulación diafragmática, dolor, hipotensión</td>
+              <td><strong>Ecografía inmediata.</strong> Si hay taponamiento, avisar a cardiología y cirugía; no retirar el catéter sin equipo preparado para drenar.</td>
+            </tr>
+            <tr>
+              <td>Desplazamiento y pérdida de captura</td>
+              <td>Tardía. En la serie de Betts, a una mediana de <strong>un día</strong>, sin factores predictores</td>
+              <td>Control por turno de profundidad y umbral, fijación cuidadosa, reposo. Recolocación estéril.</td>
+            </tr>
+            <tr>
+              <td>Infección y bacteriemia</td>
+              <td>Tardía. <strong>Mucho más frecuente con el electrodo puesto más de 48 horas</strong> y con procedimientos largos</td>
+              <td>Asepsia completa en la instalación, manga protectora, apósito estéril y, sobre todo, <strong>reducir el tiempo de permanencia</strong>.</td>
+            </tr>
+            <tr>
+              <td>Trombosis venosa</td>
+              <td>Tardía</td>
+              <td>Relacionada con el catéter y la inmovilidad. <em>La profilaxis y la anticoagulación se definen con el protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Estimulación diafragmática y anudamiento del catéter</td>
+              <td>Durante o después</td>
+              <td>El hipo rítmico sincronizado con la espiga indica mala posición: recolocar. Ante resistencia al retirar, <strong>no forzar</strong>: imagen y apoyo especializado.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Errores que se repiten</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🎭</span><span><strong>Creerle al transcutáneo.</strong> Un trazado que «parece» capturar con el paciente igual de hipotenso es casi siempre captura falsa: en la serie prehospitalaria citada, el 82,6 % lo eran, con pulso supuestamente palpado en todos.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🎈</span><span><strong>Retirar con el balón inflado</strong>, o inflarlo dentro del introductor. Las dos maniobras están en la lista de cosas que nunca se hacen.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🔇</span><span><strong>Detenerse en la captura eléctrica.</strong> Sin umbral medido, margen de seguridad y sensado comprobado, el marcapasos funciona hoy y falla esta noche.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🧪</span><span><strong>Estimular en vez de corregir.</strong> Hiperkalemia, intoxicación o hipoxia no tratadas hacen que el marcapasos no capture — y el problema se lee como falla técnica.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🗓️</span><span><strong>Dejar que pasen los días.</strong> El temporal no es un destino: su riesgo de infección y desplazamiento crece con las horas y puede terminar retrasando el definitivo.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🙈</span><span><strong>No mirar la radiografía uno mismo.</strong> El neumotórax y la punta en seno coronario se ven ahí, no en el informe que llega mañana.</span></div>
+      </div>
+
+      <div class="subhead">Qué tan seguros estamos</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📉</span><span><strong>La base de evidencia es delgada y antigua.</strong> No hay ensayos aleatorizados que comparen técnicas de instalación en urgencia. Lo que hay son series, encuestas de práctica, revisiones narrativas y consensos de expertos.</span></div>
+        <div class="plain-item"><span class="bullet-icon">✋</span><span><strong>Sí es un procedimiento del médico de urgencia:</strong> en la comparación retrospectiva de Birkhahn, urgenciólogos y cardiólogos tuvieron <strong>éxito del 97 % y 95 %</strong> y complicaciones del <strong>23 % y 20 %</strong>, sin diferencias y sin complicaciones que causaran muerte o discapacidad prolongada.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⚖️</span><span><strong>Pero es frecuente que algo salga mal:</strong> 31,9 % de las instalaciones tuvieron complicaciones en la encuesta regional de Betts, y la experiencia del operador se asoció a menos complicaciones inmediatas y a procedimientos más cortos. <em>Es un argumento a favor de pedir ayuda temprano, no de no hacerlo.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🔊</span><span><strong>La guía ecográfica está respaldada por series pequeñas</strong> (9 pacientes en la serie de Aguilera) y por consenso; la vía transesofágica, por reportes de caso. Son mejoras plausibles y recomendadas, no estándares comparados en ensayos.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔢</span><span><strong>Las cifras concretas de esta página —profundidades en centímetros, umbral aceptable, múltiplo de seguridad, sensibilidad en milivoltios, volumen del balón— son convenciones de textos de procedimientos e insertos de fabricante</strong>, no resultados de estudios. <em>Deben contrastarse con el kit y el protocolo del servicio.</em></span></div>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./algoritmo-intoxicacion-ccb-betabloqueadores.html">Intoxicación por cardiotóxicos →</a>
+        <a class="cross-link" href="./index.html">← Volver al índice</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="progress-bottom" style="margin-top:20px;">
+    <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBar"></div></div>
+    <div class="progress-label"><span id="progress-pct">0%</span> del checklist</div>
+    <button type="button" class="reset-btn" onclick="resetAll()">↺ Reiniciar</button>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    presencial en el procedimiento. La <strong>instalación de un marcapasos transvenoso de emergencia es un
+    procedimiento de alto riesgo</strong>, con complicaciones potencialmente mortales —neumotórax, arritmia
+    ventricular durante la navegación, perforación del ventrículo derecho con taponamiento, bacteriemia—: leer este
+    checklist no sustituye la práctica supervisada ni la simulación. <strong>Los calibres del introductor y del
+    catéter, el volumen de inflado del balón, las profundidades en centímetros, el umbral de captura aceptable, el
+    múltiplo de seguridad de la salida, los valores de sensibilidad y las frecuencias de sobremarcha dependen del
+    kit y del generador disponibles y deben verificarse con el inserto del fabricante, con el manual del equipo y
+    con el protocolo institucional</strong> antes de aplicarse. Lo mismo vale para los fármacos y esquemas
+    mencionados —atropina, adrenalina, dopamina, isoproterenol, sedoanalgesia para el marcapasos transcutáneo,
+    antídotos y manejo de la hiperkalemia—, para el régimen de reposo y anticoagulación mientras el electrodo está
+    puesto, para la conducta ante coagulopatía o trombólisis prevista, y para la técnica y la observación al
+    retirar. Las <strong>metas de tiempo del cronómetro son referenciales y no constituyen un estándar
+    validado</strong>: la única referencia publicada citada es la mediana de <strong>30 minutos</strong> de tiempo
+    total de la encuesta regional de Betts, con un rango de 1 a 150 minutos. Los <strong>esquemas y trazados son
+    dibujos orientativos, no ilustraciones anatómicas a escala ni registros electrocardiográficos reales.</strong>
+    El contenido es para <strong>pacientes adultos</strong>; la estimulación temporal pediátrica requiere material
+    de tamaño adecuado y se rige por el protocolo del servicio. El cronómetro y el checklist <strong>no guardan
+    ningún dato</strong>: el registro del procedimiento se hace en la ficha clínica.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Referencias localizadas y verificadas mediante <strong>PubMed</strong>.</div>
+      <div class="ref-item">Long B, Bridwell RE, DeVivo A, Gottlieb M. <em>Transvenous Pacemaker Placement: A Review for Emergency Clinicians.</em> J Emerg Med. 2023;66(4):e492–e502. <a href="https://doi.org/10.1016/j.jemermed.2023.11.018" target="_blank" rel="noopener">DOI: 10.1016/j.jemermed.2023.11.018</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/38453595/" target="_blank" rel="noopener">PMID 38453595</a> — <strong>Revisión de referencia de esta página.</strong> Indicaciones (bradicardia sintomática por bloqueo AV y disfunción del nodo sinusal con inestabilidad, sobremarcha en torsades, fracaso del transcutáneo), <strong>yugular interna derecha y subclavia izquierda como sitios óptimos</strong>, avance del catéter con balón hasta obtener captura electromecánica en el ventrículo derecho, <strong>guía ecográfica por ventana subxifoidea o subxifoidea modificada</strong>, <strong>elevación del ST en el registro intracavitario como señal de contacto endocárdico</strong> y enfoque sistemático del fallo de captura.</div>
+      <div class="ref-item">Betts TR. <em>Regional survey of temporary transvenous pacing procedures and complications.</em> Postgrad Med J. 2003;79(934):463–465. <a href="https://doi.org/10.1136/pmj.79.934.463" target="_blank" rel="noopener">DOI: 10.1136/pmj.79.934.463</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/12954959/" target="_blank" rel="noopener">PMID 12954959</a> — <strong>Fuente de las cifras de complicaciones y de tiempo de esta página.</strong> Ciento cuarenta y cuatro procedimientos en 111 pacientes: mediana de <strong>30 minutos</strong> (1–150), más corta con cardiólogo (24 vs 45 min) y con operador experimentado. Accesos: subclavia 46,8 %, yugular interna 33,3 %, femoral 19,8 %. <strong>50 complicaciones en 46 de 144 procedimientos (31,9 %)</strong>; menos complicaciones inmediatas con operadores experimentados; <strong>infección más frecuente con el electrodo puesto más de 48 horas</strong> (17/86 vs 2/55) y con procedimientos largos (55 vs 30 min); desplazamiento a una mediana de 1 día sin factores predictores; <strong>las complicaciones retrasaron el marcapasos definitivo en 22,9 %</strong>.</div>
+      <div class="ref-item">Birkhahn RH, Gaeta TJ, Tloczkowski J, et al. <em>Emergency medicine-trained physicians are proficient in the insertion of transvenous pacemakers.</em> Ann Emerg Med. 2004;43(4):469–474. <a href="https://doi.org/10.1016/j.annemergmed.2003.09.019" target="_blank" rel="noopener">DOI: 10.1016/j.annemergmed.2003.09.019</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/15039689/" target="_blank" rel="noopener">PMID 15039689</a> — Revisión retrospectiva de 117 instalaciones supervisadas (30 por urgenciólogos, 87 por cardiólogos): éxito <strong>97 % vs 95 %</strong> y complicaciones <strong>23 % vs 20 %</strong>, sin diferencia estadística y <strong>sin complicaciones que causaran muerte ni discapacidad prolongada</strong>.</div>
+      <div class="ref-item">Kimbrell J, Kreinbrook J, Poke D, et al. <em>False Electrical Capture in Prehospital Transcutaneous Pacing by Paramedics: A Case Series.</em> Prehosp Emerg Care. 2024;28(7):928–936. <a href="https://doi.org/10.1080/10903127.2024.2321287" target="_blank" rel="noopener">DOI: 10.1080/10903127.2024.2321287</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/38407212/" target="_blank" rel="noopener">PMID 38407212</a> — <strong>Origen de la advertencia sobre la captura falsa del transcutáneo.</strong> De 23 pacientes estimulados, <strong>19 (82,6 %) tenían captura eléctrica falsa</strong> pese a captura mecánica documentada por pulso palpado en los 23. Cambio mediano de presión sistólica: <strong>+40 mmHg con captura verdadera vs −1 mmHg con captura falsa</strong>; corriente mediana 95 mA vs 70 mA. <em>Serie retrospectiva de un solo sistema prehospitalario, 23 pacientes.</em></div>
+      <div class="ref-item">Aguilera PA, Durham BA, Riley DA. <em>Emergency transvenous cardiac pacing placement using ultrasound guidance.</em> Ann Emerg Med. 2000;36(3):224–227. <a href="https://doi.org/10.1067/mem.2000.108654" target="_blank" rel="noopener">DOI: 10.1067/mem.2000.108654</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/10969224/" target="_blank" rel="noopener">PMID 10969224</a> — Serie prospectiva de <strong>9 pacientes</strong> con bloqueo completo estimulados por urgenciólogos con guía ecográfica: éxito en <strong>8 de 9 (88,9 %)</strong> y <strong>detección y corrección de mala posición en 3</strong>. <em>Serie pequeña: sustento de la recomendación, no prueba definitiva.</em></div>
+      <div class="ref-item">Blanco P, Nomura JT. <em>An atypical misplacement of a temporary pacing catheter diagnosed and resolved by ultrasound.</em> Am J Emerg Med. 2014;32(10):1296.e1–3. <a href="https://doi.org/10.1016/j.ajem.2014.03.013" target="_blank" rel="noopener">DOI: 10.1016/j.ajem.2014.03.013</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/24736126/" target="_blank" rel="noopener">PMID 24736126</a> — Caso que ilustra el límite del electrocardiograma como única guía: captura con morfología de bloqueo de rama izquierda y, sin embargo, <strong>catéter enrollado en la vena cava inferior</strong> con la punta apenas en el ventrículo derecho, detectado solo por ecografía.</div>
+      <div class="ref-item">Sjaus A, Fayad A. <em>The Use of Subcostal Echocardiographic Views to Guide the Insertion of a Right Ventricular Temporary Transvenous Pacemaker — Description of the Technique.</em> J Cardiothorac Vasc Anesth. 2019;33(10):2797–2803. <a href="https://doi.org/10.1053/j.jvca.2019.01.033" target="_blank" rel="noopener">DOI: 10.1053/j.jvca.2019.01.033</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/30770181/" target="_blank" rel="noopener">PMID 30770181</a> — Descripción técnica de las <strong>ventanas subcostales</strong> para guiar la punta: visualización en tiempo real del catéter respecto de las estructuras cardíacas, sin radiación, con detección precoz de complicaciones como el taponamiento.</div>
+      <div class="ref-item">Adi O, Fong CP, Kho Huei Tze M, et al. <em>Transesophageal echocardiography (TEE)-guided transvenous pacing (TVP) in emergency department.</em> Ultrasound J. 2023;15(1):35. <a href="https://doi.org/10.1186/s13089-023-00332-7" target="_blank" rel="noopener">DOI: 10.1186/s13089-023-00332-7</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/37603103/" target="_blank" rel="noopener">PMID 37603103</a> — Protocolo descrito para guiar el catéter con <strong>ecocardiografía transesofágica</strong> cuando la ventana transtorácica es insuficiente. <em>Reporte de caso: alternativa de rescate, no estándar.</em></div>
+      <div class="ref-item">Emergency Medicine Branch of Chinese Medical Association; Bedside Temporary Cardiac Pacing Consensus Emergency Expert Group. <em>Chinese emergency expert consensus on bedside temporary cardiac pacing (2023).</em> Zhonghua Wei Zhong Bing Ji Jiu Yi Xue. 2023;35(7):678–683. <a href="https://doi.org/10.3760/cma.j.cn121430-20230228-00124" target="_blank" rel="noopener">DOI: 10.3760/cma.j.cn121430-20230228-00124</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/37545442/" target="_blank" rel="noopener">PMID 37545442</a> — Consenso específico de urgencia con 13 recomendaciones sobre elección entre transcutáneo y transvenoso, acceso venoso preferente, objetivo y mejor método de guía del electrodo a pie de cama, parámetros por defecto del generador e indicaciones. Recomienda <strong>guía ecográfica</strong> y <strong>acortar el tiempo de soporte</strong> para reducir complicaciones, con reposo y anticoagulación posteriores. <em>Texto en chino con resumen en inglés.</em></div>
+      <div class="ref-item">Kusumoto FM, Schoenfeld MH, Barrett C, et al. <em>2018 ACC/AHA/HRS Guideline on the Evaluation and Management of Patients With Bradycardia and Cardiac Conduction Delay.</em> Circulation. 2018;140(8):e382–e482. <a href="https://doi.org/10.1161/CIR.0000000000000628" target="_blank" rel="noopener">DOI: 10.1161/CIR.0000000000000628</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/30586772/" target="_blank" rel="noopener">PMID 30586772</a> — Guía de referencia sobre bradicardia y trastornos de conducción: evaluación, causas reversibles, papel de la atropina y de los cronotropos, y criterios de estimulación temporal y definitiva.</div>
+      <div class="ref-item">Glikson M, Nielsen JC, Kronborg MB, et al. <em>2021 ESC Guidelines on cardiac pacing and cardiac resynchronization therapy.</em> Eur Heart J. 2021;42(35):3427–3520. <a href="https://doi.org/10.1093/eurheartj/ehab364" target="_blank" rel="noopener">DOI: 10.1093/eurheartj/ehab364</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/34455430/" target="_blank" rel="noopener">PMID 34455430</a> — Guía europea de estimulación cardíaca, con recomendaciones sobre estimulación temporal y sobre la conveniencia de <strong>limitarla y avanzar al dispositivo definitivo cuando corresponde</strong>.</div>
+      <div class="ref-item">Panchal AR, Bartos JA, Cabañas JG, et al. <em>Part 3: Adult Basic and Advanced Life Support: 2020 American Heart Association Guidelines for Cardiopulmonary Resuscitation and Emergency Cardiovascular Care.</em> Circulation. 2020;142(16_suppl_2):S366–S468. <a href="https://doi.org/10.1161/CIR.0000000000000916" target="_blank" rel="noopener">DOI: 10.1161/CIR.0000000000000916</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/33081529/" target="_blank" rel="noopener">PMID 33081529</a> — Algoritmo de bradicardia con compromiso hemodinámico: <strong>atropina como primera línea</strong>, cronotropos en infusión y estimulación transcutánea o transvenosa cuando la atropina falla; y la indicación de que <strong>la estimulación no se recomienda en el paro cardíaco asistólico</strong>.</div>
+      <div class="ref-item">Sodeck GH, Domanovits H, Meron G, et al. <em>Compromising bradycardia: management in the emergency department.</em> Resuscitation. 2007;73(1):96–102. <a href="https://doi.org/10.1016/j.resuscitation.2006.08.006" target="_blank" rel="noopener">DOI: 10.1016/j.resuscitation.2006.08.006</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/17212976/" target="_blank" rel="noopener">PMID 17212976</a> — Registro de 277 pacientes con bradicardia comprometedora en urgencia: bloqueo AV de alto grado en el 48 %, y mecanismos de fondo repartidos entre trastorno primario de la conducción (49 %), <strong>efecto adverso de fármacos (21 %)</strong>, infarto (14 %), falla de marcapasos (6 %), intoxicación (6 %) y trastorno electrolítico (4 %). <strong>Alrededor del 20 % necesitó estimulación temporal</strong> y el 50 % terminó con marcapasos definitivo; mortalidad a 30 días 5 %.</div>
+      <div class="ref-item">Gunaseelan R, Sasikumar M, Nithya B, et al. <em>The Alpha-bent and Tunneling: A Novel Technique for Fixing the Transvenous Pacer Lead during Temporary Transvenous Pacing in the Emergency Department.</em> J Emerg Trauma Shock. 2021;14(4):246–248. <a href="https://doi.org/10.4103/JETS.JETS_152_20" target="_blank" rel="noopener">DOI: 10.4103/JETS.JETS_152_20</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/35125793/" target="_blank" rel="noopener">PMID 35125793</a> — Dos técnicas de fijación del electrodo descritas desde la urgencia para reducir el desplazamiento, en un servicio donde la indicación frecuente es la intoxicación por oleandro. <em>Serie de casos: propuesta, no estándar.</em></div>
+      <div class="ref-item">Yaqub Y, Perez-Verdia A, Jenkins LA, et al. <em>Temporary Transvenous Cardiac Pacing in Patients With Acute Myocardial Infarction Predicts Increased Mortality.</em> Cardiol Res. 2012;3(1):1–7. <a href="https://doi.org/10.4021/cr111w" target="_blank" rel="noopener">DOI: 10.4021/cr111w</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/28357017/" target="_blank" rel="noopener">PMID 28357017</a> — Setenta y tres marcapasos temporales en cuatro años: solo el <strong>2,46 % de los pacientes con infarto</strong> los requirió, y esos pacientes tuvieron una <strong>mortalidad del 27,6 % frente al 8,9 %</strong> de los infartos que no lo necesitaron. <em>Necesitar un marcapasos temporal en el infarto marca a un grupo de mayor riesgo.</em></div>
+      <div class="ref-item">Aspectos <strong>convencionales</strong> descritos aquí y <strong>no respaldados individualmente por estudios de desenlace</strong>: las profundidades de referencia (15–20 cm en aurícula derecha, ~25 cm en la tricúspide, 30–35 cm en el ápex desde la yugular interna derecha, y el ajuste de ~5 cm desde la subclavia izquierda), el avance de 10–15 cm antes de inflar el balón, el volumen de inflado de 1,5 mL, el umbral objetivo de ≤ 1 mA y el límite de ~2 mA para recolocar, el margen de seguridad de 2–3 veces el umbral, la sensibilidad del orden de 2 mV, la frecuencia inicial de 60–80 lpm y la de sobremarcha de 90–110 lpm en torsades, la conexión del electrodo distal a una derivación precordial para el registro intracavitario, el enfriamiento o preformado del catéter, el uso de suero agitado para identificar la punta, el asa de holgura y el objetivo de no superar las 48 horas de permanencia. Provienen de revisiones narrativas, textos de procedimientos, insertos de fabricantes y consenso de expertos, y deben contrastarse con el <strong>kit y el generador disponibles y con el protocolo institucional vigente</strong>.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Checklist con progreso ────────────────────────────────────────
+  const SECTIONS = ['s1', 's2', 's4', 's5', 's6', 's7', 's8', 's9'];
+  const totals = {};
+  SECTIONS.forEach(s => {
+    const list = document.getElementById('list-' + s);
+    totals[s] = list ? list.querySelectorAll('.check-item').length : 0;
+  });
+  const TOTAL_CHECKS = SECTIONS.reduce((acc, s) => acc + totals[s], 0);
+
+  function countChecked(section) {
+    return document.querySelectorAll('#list-' + section + ' .check-item.checked').length;
+  }
+
+  function toggle(el, section) {
+    el.classList.toggle('checked');
+    updateCount(section);
+    updateProgress();
+  }
+
+  function updateCount(section) {
+    const el = document.getElementById('count-' + section);
+    if (!el) return;
+    const n = countChecked(section);
+    const t = totals[section];
+    el.textContent = n + '/' + t;
+    if (t > 0 && n === t) {
+      el.style.background = 'rgba(16,185,129,0.15)';
+      el.style.borderColor = 'rgba(16,185,129,0.3)';
+      el.style.color = '#6ee7b7';
+    } else {
+      el.style.background = '';
+      el.style.borderColor = '';
+      el.style.color = '';
+    }
+  }
+
+  function updateProgress() {
+    const done = SECTIONS.reduce((acc, s) => acc + countChecked(s), 0);
+    const pct = TOTAL_CHECKS ? Math.round((done / TOTAL_CHECKS) * 100) : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.check-item.checked').forEach(el => el.classList.remove('checked'));
+    SECTIONS.forEach(updateCount);
+    updateProgress();
+  }
+
+  SECTIONS.forEach(updateCount);
+  updateProgress();
+
+  // ── Cronómetro (sin persistencia) ─────────────────────────────────
+  let swStart = null;
+  let swAccum = 0;
+  let swTick = null;
+
+  function swElapsed() {
+    return swAccum + (swStart !== null ? Date.now() - swStart : 0);
+  }
+
+  function fmt(ms) {
+    const total = Math.floor(ms / 1000);
+    const m = String(Math.floor(total / 60)).padStart(2, '0');
+    const s = String(total % 60).padStart(2, '0');
+    return m + ':' + s;
+  }
+
+  function swRender() {
+    const ms = swElapsed();
+    const disp = document.getElementById('swDisplay');
+    disp.textContent = fmt(ms);
+    disp.classList.toggle('warn', ms >= 900000 && ms < 1800000);
+    disp.classList.toggle('late', ms >= 1800000);
+  }
+
+  function swToggle() {
+    const btn = document.getElementById('swToggle');
+    const cap = document.getElementById('swCaption');
+    if (swStart === null) {
+      swStart = Date.now();
+      swTick = setInterval(swRender, 200);
+      btn.textContent = '⏸ Detener';
+      cap.textContent = 'Corriendo desde la decisión de instalar el transvenoso';
+    } else {
+      swAccum += Date.now() - swStart;
+      swStart = null;
+      clearInterval(swTick);
+      swTick = null;
+      btn.textContent = '▶ Continuar';
+      cap.textContent = 'En pausa';
+      swRender();
+    }
+  }
+
+  function msLabel(el) {
+    return el.dataset.prefix + el.dataset.goal + ' s';
+  }
+
+  function swReset() {
+    if (swTick) clearInterval(swTick);
+    swTick = null;
+    swStart = null;
+    swAccum = 0;
+    document.getElementById('swToggle').textContent = '▶ Iniciar';
+    document.getElementById('swCaption').textContent = 'Detenido · parte el reloj cuando se decide instalar el transvenoso';
+    document.querySelectorAll('.ms').forEach(ms => {
+      ms.classList.remove('done', 'over');
+      ms.querySelector('.ms-goal').textContent = msLabel(ms);
+    });
+    swRender();
+  }
+
+  function markMs(el) {
+    if (el.classList.contains('done')) {
+      el.classList.remove('done', 'over');
+      el.querySelector('.ms-goal').textContent = msLabel(el);
+      return;
+    }
+    if (swStart === null && swAccum === 0) swToggle();
+    const secs = Math.round(swElapsed() / 1000);
+    const goal = parseInt(el.dataset.goal, 10);
+    el.classList.add('done');
+    el.classList.toggle('over', secs > goal);
+    el.querySelector('.ms-goal').textContent = secs + ' s · meta ' + goal + ' s';
+  }
+
+  swRender();
+</script>
+</body>
+</html>
