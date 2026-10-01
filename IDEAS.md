@@ -216,8 +216,36 @@ terminado sin su tarjeta correspondiente en el index.
       frecuencia de sobremarcha en torsades; la disponibilidad y dosis de isoproterenol; el régimen de reposo
       y anticoagulación mientras el electrodo está puesto; la conducta ante coagulopatía o trombólisis
       prevista, hipotermia grave e intoxicación digitálica; y la técnica y observación al retirar.
-- [ ] Toracostomía simple (a dedo) y colocación de tubo pleural en paro o
-      shock traumático
+- [x] Toracostomía simple (a dedo) y colocación de tubo pleural en paro o
+      shock traumático — `checklist-toracostomia-tubo-pleural.html` (checklist con cronómetro
+      e hitos). Separa los dos procedimientos que suelen confundirse: la **toracostomía simple**
+      —incisión, disección roma y dedo dentro de la pleura, sin tubo— como gesto del paro y del
+      paciente con ventilación a presión positiva, y el **tubo pleural** como lo que viene después.
+      Tres desvíos la organizan: **la aguja falla seguido** (metaanálisis de Laan 2016: pared de
+      42,8 mm en el 2.º EIC línea medioclavicular contra 34,3 mm en el 4.º–5.º EIC línea axilar
+      anterior, con fracaso de la aguja de 5 cm de 38 % contra 13 %; serie de Lesperance: entre
+      39 % y 76 % de las agujas prehospitalarias no alcanzó la pleura y al menos el 39 % no tenía
+      neumotórax); **la aguja no drena sangre** (serie de autopsias de von Vopelius-Feldt 2025:
+      hemotórax en el 70 % de los paros traumáticos y fracaso de la aguja en el 42 % de los
+      hemotórax masivos); y **la toracostomía abierta solo se mantiene abierta mientras haya
+      ventilación a presión positiva**, de modo que el tubo no es opcional cuando el paciente
+      vuelve a ventilar solo, se traslada o recupera circulación. Incluye el triángulo de seguridad
+      y la advertencia del diafragma, los cuatro gestos de la técnica con esquemas vectoriales, la
+      discusión del calibre con los tres ensayos aleatorizados de 14 Fr contra 28–32 Fr —señalando
+      que **todos excluyeron a los pacientes in extremis**, que son los de esta página—, el
+      algoritmo de «no mejora» de afuera hacia adentro, y una sección explícita de grado de certeza
+      que dice que **ningún estudio ha mostrado mejoría de sobrevida al aumentar la descompresión
+      torácica en el paro traumático** (Alqudah 2021, Benhamed 2023, Harris 2022). Esquemas
+      vectoriales, sin imágenes de terceros. Pendiente de validación: todas las metas de tiempo del
+      cronómetro (no hay referencia publicada de tiempos para este procedimiento); el calibre del
+      tubo en el paciente inestable; el tamaño de la incisión y el instrumental real de la bandeja
+      del servicio; el anestésico local y su dosis máxima; el nivel de aspiración; los umbrales de
+      débito que indican cirugía (≈ 1500 mL inmediatos o ≈ 200 mL/h) y la conducta asociada; el
+      esquema y la duración de los antibióticos (EAST: evidencia insuficiente en ambos sentidos);
+      el esquema de analgesia y los bloqueos disponibles; la política de radiografía
+      posprocedimiento; el uso de autotransfusión y de ácido tranexámico; la técnica de fijación y
+      de cierre; la frecuencia con que se revisa una toracostomía abierta y el plazo máximo para
+      convertirla en tubo; los criterios y la técnica de retiro; y el material pediátrico.
 - [ ] Aspiración e irrigación intracavernosa para priapismo isquémico
 - [ ] Artrocentesis diagnóstica de grandes articulaciones en sospecha de
       artritis séptica (guiada por ecografía)

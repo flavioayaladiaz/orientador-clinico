@@ -1,0 +1,1975 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Checklist · Toracostomía simple y tubo pleural</title>
+<meta name="description" content="Checklist con cronómetro para la toracostomía simple (a dedo) y la colocación de tubo pleural en el paro y el shock traumático: cuándo descomprimir sin esperar imagen, por qué la aguja falla y el dedo no, el triángulo de seguridad, la técnica de disección roma paso a paso, la conversión a tubo pleural y su calibre, confirmación con trampa de agua, ecografía y radiografía, el algoritmo de «no mejora», el débito y los criterios de pabellón, y las complicaciones.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99,102,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(20,184,166,0.07) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 36px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.28);
+    color: #fca5a5;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  .header-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--red);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--red);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #6366f1, #14b8a6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .header-sub strong { color: #fff; font-weight: 500; }
+  .header-sub em { color: #fcd34d; font-style: normal; }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .section-check-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .s1 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s1 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s2 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s3 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s3 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s4 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s4 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s5 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s5 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s6 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s6 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s7 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s7 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s8 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s8 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s9 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s9 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s10 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s10 { --accent: var(--red); --accent-glow: var(--red-glow); }
+
+  /* CRONÓMETRO */
+  .stopwatch {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+  .sw-display {
+    font-family: var(--mono);
+    font-size: clamp(40px, 11vw, 60px);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #fff;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .sw-display.warn { color: #fcd34d; }
+  .sw-display.late { color: #fca5a5; }
+  .sw-caption {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+  .sw-controls { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+  .sw-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .sw-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .sw-btn:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+  .sw-btn.primary {
+    background: rgba(16,185,129,0.14);
+    border-color: rgba(16,185,129,0.45);
+    color: #6ee7b7;
+  }
+  .sw-btn.primary:hover { background: rgba(16,185,129,0.22); color: #a7f3d0; }
+
+  .milestones { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .ms {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .ms:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .ms:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .ms.done { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); color: #6ee7b7; }
+  .ms-goal {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .ms.done .ms-goal { color: #6ee7b7; border-color: rgba(16,185,129,0.4); }
+  .ms.done.over .ms-goal { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+  }
+  .check-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .check-item:hover::before { opacity: 1; }
+  .check-item:hover { border-color: rgba(255,255,255,0.12); }
+  .check-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .check-item.checked { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+  .check-item.checked::before { opacity: 0.5; }
+
+  .checkbox {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+    background: transparent;
+  }
+  .check-item.checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .checkmark {
+    opacity: 0;
+    transform: scale(0) rotate(-10deg);
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .check-item.checked .checkmark { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  .check-label {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-dim);
+    transition: color 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+  .check-item.checked .check-label {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(100,116,139,0.5);
+  }
+  .check-label strong { color: #fff; font-weight: 500; }
+  .check-label em { color: #fcd34d; font-style: normal; }
+  .check-step {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+
+  /* PROGRESO */
+  .progress-bottom {
+    margin-top: 6px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .progress-bar-track {
+    flex: 1;
+    min-width: 120px;
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #14b8a6);
+    border-radius: 100px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px rgba(16,185,129,0.5);
+  }
+  .progress-label { font-family: var(--mono); font-size: 12px; color: var(--text-dim); white-space: nowrap; }
+  #progress-pct { color: var(--emerald); font-weight: 500; }
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+  /* BANNERS */
+  .warning-banner, .info-banner, .go-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #fca5a5; }
+  .info-banner { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.18); color: #bfdbfe; }
+  .go-banner { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); color: #6ee7b7; }
+  .warning-banner strong, .info-banner strong, .go-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em, .go-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+  .plain-item.good { background: rgba(16,185,129,0.05); border-color: rgba(16,185,129,0.16); }
+  .plain-item.good strong { color: #6ee7b7; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ESQUEMAS */
+  .figure {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 16px 14px;
+    margin-bottom: 14px;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .fig-caption {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .fig-caption strong { color: var(--text-dim); font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(16,185,129,0.3);
+    background: rgba(16,185,129,0.08);
+    color: #6ee7b7;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(16,185,129,0.16); transform: translateX(2px); }
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--emerald); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .ms { align-items: flex-start; flex-wrap: wrap; }
+    .ms-goal { margin-left: 0; }
+    .sw-btn { flex: 1; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <div class="header-badge">Procedimiento HALO · Checklist</div>
+    <h1>Toracostomía <span>simple</span> y tubo pleural</h1>
+    <p class="header-sub">
+      En el paro y en el shock traumático la descompresión del tórax no es un examen que se pide: es un gesto que se
+      hace con bisturí, pinza y dedo, antes de la radiografía y muchas veces antes de la ecografía. Esta página
+      separa dos procedimientos que suelen confundirse: la <strong>toracostomía simple</strong> —incisión, disección
+      roma y dedo dentro de la pleura, sin tubo— que es el gesto del paro y del paciente con ventilación a presión
+      positiva, y el <strong>tubo pleural</strong>, que es lo que se instala después, cuando hay sangre que drenar o
+      el paciente vuelve a ventilar solo. Tres ideas la organizan. <em>La aguja falla seguido</em>: en el metaanálisis
+      de Laan, el fracaso de la descompresión con aguja de 5 cm llegó al 38 % en el segundo espacio medioclavicular,
+      y en una serie con tomografía hasta el 76 % de las agujas prehospitalarias no alcanzó la pleura. <em>La aguja no
+      drena sangre</em>: en la serie de autopsias de von Vopelius-Feldt, el 70 % de los paros traumáticos tenía
+      hemotórax y la aguja no lo descomprimió en el 42 % de los casos. Y <em>la toracostomía abierta solo se mantiene
+      abierta mientras haya ventilación a presión positiva</em>: si el paciente recupera ventilación espontánea y nadie
+      puso el tubo, la tensión puede volver. Aquí están la indicación, el reparto de roles y tiempos, el triángulo de
+      seguridad, la técnica paso a paso, la conversión a tubo, la confirmación, el algoritmo de «no mejora», el manejo
+      posterior y las complicaciones.
+    </p>
+  </div>
+
+  <!-- 01 · ¿ES EL MOMENTO? -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">¿Es el momento de abrir el tórax con el dedo?</div>
+        <div class="section-subtitle">Indicación clínica, el paquete HOTT y lo que la descompresión no arregla</div>
+      </div>
+      <span class="section-check-count" id="count-s1">0/6</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>El diagnóstico de neumotórax a tensión es clínico y no espera imagen.</strong> En el paciente
+        hipotenso, hipoxémico o en paro, con mecanismo torácico, la decisión se toma al lado de la camilla con el
+        cuadro: <strong>hipotensión, hipoxemia, murmullo abolido, y en el paciente ventilado un alza brusca de la
+        presión de la vía aérea</strong>. La desviación traqueal y la ingurgitación yugular son tardías y poco
+        confiables en el paciente hipovolémico. Si el servicio tiene ecografía y hay un operador libre, mirar el
+        deslizamiento pleural toma segundos y es mucho mejor que la radiografía en decúbito —en la revisión Cochrane
+        de Chan, sensibilidad <strong>0,91 contra 0,47</strong>—; pero <em>la ecografía acompaña la decisión, no la
+        retrasa.</em></span>
+      </div>
+
+      <div class="subhead">Cuándo sí</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💀</span><span><strong>Paro cardíaco traumático: toracostomía digital bilateral como parte del paquete, no como paso secuencial.</strong> La guía del Consejo Europeo de Reanimación organiza el paro traumático alrededor de tratar las causas reversibles <em>simultáneamente</em> —hipoxia, hipovolemia, neumotórax a tensión y taponamiento (<strong>HOTT</strong>)—, con las compresiones en un lugar subordinado. La descompresión bilateral es la forma más rápida de descartar y tratar la «T».</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫁</span><span><strong>Neumotórax a tensión clínico en el paciente con ventilación a presión positiva</strong> (ventilado o con bolsa-máscara): es el escenario en que la tensión se instala más rápido y en que la toracostomía abierta funciona sola, sin tubo, mientras dure esa ventilación.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📉</span><span><strong>Shock traumático que no responde a volumen ni a sangre</strong>, sin otra causa evidente. La descompresión es a la vez prueba diagnóstica y tratamiento: si sale aire a presión o sangre, se encontró la causa; si no sale nada en ninguno de los dos lados, el tórax deja de ser la explicación y hay que buscar en otra parte.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🪡</span><span><strong>Después de que la descompresión con aguja falló.</strong> Las guías de atención táctica de víctimas de combate recomiendan <strong>un máximo de dos intentos con aguja</strong> y, si el paciente sigue en shock y el operador tiene la competencia, pasar a toracostomía simple o tubo pleural. No hay un tercer pinchazo que valga la pena.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Hemotórax masivo con shock: aquí el gesto completo es el tubo, no solo el dedo.</strong> El dedo confirma y abre, pero la sangre necesita un drenaje de calibre adecuado, sangre y plasma corriendo, y el cirujano avisado <em>antes</em> de ver cuánto sale.</span></div>
+        <div class="plain-item"><span class="bullet-icon">✈️</span><span><strong>Antes de un traslado o de ventilar a presión positiva a un paciente con neumotórax conocido</strong>, cuando no habrá cómo resolverlo en camino. <em>La decisión de descomprimir profilácticamente antes de un traslado depende del protocolo local y del tiempo de viaje — verificar con protocolo institucional.</em></span></div>
+      </div>
+
+      <div class="subhead">Cuándo no, o no todavía</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🙂</span><span><strong>Neumotórax pequeño en paciente estable que respira espontáneamente.</strong> No es un procedimiento HALO: es una decisión de observación, oxígeno, imagen y eventual drenaje electivo. Abrir el tórax de un paciente estable le agrega todos los riesgos y ninguno de los beneficios. <em>Los umbrales de tamaño y de observación se rigen por el protocolo institucional.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🫀</span><span><strong>Cuando la causa del paro es taponamiento o hemorragia intratorácica exanguinante</strong>, descomprimir no basta: el camino es la <strong>toracotomía de reanimación</strong>, y la toracostomía digital es apenas el gesto que la precede y que descarta la «T» antes de abrir.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⛔</span><span><strong>Paro traumático en el que ya se cumplen los criterios locales de suspensión</strong> (tiempos prolongados sin reanimación, lesiones incompatibles con la vida, asistolia sin signos de vida según la norma del servicio). <em>Los criterios exactos varían: verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🧠</span><span><strong>Paro médico con trauma secundario.</strong> El paciente que cae porque hizo un paro no es un paro traumático: abrirle los dos hemitórax lo demora todo. La historia y el mecanismo importan antes de tomar el bisturí.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚑</span><span><strong>Cuando el procedimiento retrasa el traslado y la causa es hemorrágica.</strong> En la serie de Harris, la toracostomía simple prehospitalaria alargó el tiempo en escena (16,8 contra 11,5 minutos) sin mejorar el retorno de circulación, y los autores plantean que en el trauma penetrante urbano conviene priorizar el traslado. <em>En urgencia hospitalaria este argumento no aplica: el pabellón está al lado.</em></span></div>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚖️</span>
+        <span><strong>Descomprimir no es lo mismo que salvar, y conviene saberlo antes de hacerlo.</strong> Cuando en
+        Victoria se introdujo un protocolo de paro traumático que priorizaba las causas reversibles, la toracostomía
+        digital pasó de casi cero a más de un quinto de los casos <strong>sin mejorar la sobrevida al alta</strong>
+        (Alqudah 2021). Lo mismo ocurrió en Francia tras las guías europeas de 2015: la descompresión torácica
+        bilateral subió de 13,7 % a 16,5 % <strong>sin cambios en el retorno de circulación ni en la sobrevida</strong>
+        (Benhamed 2023). Eso no significa que no deba hacerse: significa que <strong>vale cuando la causa está ahí</strong>
+        —y en el paro traumático el hemotórax está en el 70 % y el aire sale en alrededor de un tercio de las
+        toracostomías— y que <em>no reemplaza el control de la hemorragia, la sangre ni la vía aérea</em>, que son los
+        que mueven la aguja.</span>
+      </div>
+
+      <div class="subhead">Confirmación antes de cortar</div>
+      <div class="checklist" id="list-s1">
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>La indicación se dijo en voz alta</strong>: «paro traumático, descompresión bilateral» o «shock con sospecha de tensión, descompresión derecha». <em>Nadie corta un tórax en silencio.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>El lado o los lados están decididos y marcados.</strong> En el paro traumático la decisión por defecto es <strong>bilateral</strong>; fuera del paro, el lado del mecanismo, del murmullo abolido o del hallazgo ecográfico.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Las otras causas reversibles están corriendo en paralelo</strong>, no después: vía aérea y oxigenación, control de hemorragia externa, acceso y sangre, y ecografía para taponamiento. <em>HOTT es simultáneo.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Está claro si este paciente necesita además toracotomía</strong> y quién la decide. Si la sospecha es taponamiento o hemorragia intratorácica masiva en trauma penetrante, la toracostomía digital es el paso previo, no el destino.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Banco de sangre, cirugía y pabellón avisados</strong> si hay sospecha de hemotórax masivo, <em>antes</em> de medir el débito. Avisar después de ver 1500 mL es llegar tarde.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Roles repartidos y cronómetro listo</strong>: quién abre cada lado, quién vigila monitor y ventilación, quién registra y canta los tiempos.</span>
+        </button>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./checklist-politrauma_2.html">Secuencia de politrauma →</a>
+        <a class="cross-link" href="./checklist-toracotomia-reanimacion.html">Toracotomía de reanimación →</a>
+        <a class="cross-link" href="./checklist-pericardiocentesis.html">Taponamiento y pericardiocentesis →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · POR QUÉ EL DEDO Y NO LA AGUJA -->
+  <div class="section s2" id="s2" style="animation-delay:0.10s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Por qué el dedo y no la aguja</div>
+        <div class="section-subtitle">Grosor de la pared, fracaso del catéter y lo que la aguja nunca va a drenar</div>
+      </div>
+      <span class="section-check-count" id="count-s2">0/5</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">🪡</span>
+        <span><strong>La aguja es un puente de segundos, no una solución.</strong> Tres hallazgos lo resumen. Uno:
+        <strong>no llega</strong> —en el metaanálisis de Laan, el grosor medio de la pared torácica es de 42,8 mm en el
+        segundo espacio intercostal medioclavicular y de 34,3 mm en el cuarto o quinto espacio en la línea axilar
+        anterior, con fracaso de la aguja de 5 cm en <strong>38 %</strong> y <strong>13 %</strong> respectivamente—.
+        Dos: <strong>a veces no había nada que descomprimir</strong> —en la serie de Lesperance, de 335 pacientes con
+        descompresión prehospitalaria y tomografía posterior, entre 39 % y 76 % de los catéteres no alcanzó el espacio
+        pleural y al menos el <strong>39 % no tenía neumotórax a tensión</strong>—. Tres, el más importante en el paro
+        traumático: <strong>la aguja no drena sangre</strong>.</span>
+      </div>
+
+      <div class="subhead">Grosor de la pared y fracaso según el sitio</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Sitio</th><th>Grosor medio de la pared</th><th>Fracaso con aguja de 5 cm</th><th>Lo que hay que saber</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2.º EIC · línea medioclavicular</td>
+              <td><span class="dose-main">42,8 mm</span><br><span class="dose-note">IC 95 % 38,8–46,8</span></td>
+              <td><span class="dose-main">38 %</span><br><span class="dose-note">IC 95 % 24–54</span></td>
+              <td>El sitio clásico y el que más falla con catéter corto. En el modelo cadavérico de Leatherman, además, <strong>se sale con el movimiento</strong>: 67 % de desplazamiento tras el traslado contra 17 % en el sitio axilar.</td>
+            </tr>
+            <tr>
+              <td>4.º–5.º EIC · línea axilar media</td>
+              <td><span class="dose-main">39,9 mm</span><br><span class="dose-note">IC 95 % 28,7–51,0</span></td>
+              <td><span class="dose-main">31 %</span><br><span class="dose-note">IC 95 % 10–64</span></td>
+              <td>Intermedio. Es el punto que coincide con el sitio de la toracostomía y del tubo.</td>
+            </tr>
+            <tr>
+              <td>4.º–5.º EIC · línea axilar anterior</td>
+              <td><span class="dose-main">34,3 mm</span><br><span class="dose-note">IC 95 % 28,2–40,5</span></td>
+              <td><span class="dose-main">13 %</span><br><span class="dose-note">IC 95 % 8–22 · p = 0,01</span></td>
+              <td><strong>El de menor fracaso predicho.</strong> Ojo con la contracara: con catéter de 8 cm en el lado <em>izquierdo</em>, Chang describió una distancia media a la estructura vital más cercana de 91,8 mm y riesgo de lesión en una proporción no despreciable; <strong>entrar perpendicular a la pared</strong> la reduce.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="figure" style="margin-top:14px;">
+        <svg viewBox="0 0 680 290" role="img" aria-label="Esquema comparativo entre descompresión con aguja y toracostomía a dedo. A la izquierda se representa en corte la pared torácica con piel, grasa, musculo y pleura, y una aguja corta de cinco centimetros que no alcanza el espacio pleural, con la leyenda del grosor medio de la pared en los distintos sitios. A la derecha se representa la misma pared con una incision y un dedo que atraviesa todas las capas y entra en el espacio pleural, con la leyenda de que el dedo confirma, abre y no depende del grosor de la pared. Abajo una franja indica que la aguja no drena sangre y que en el paro traumatico el setenta por ciento tiene hemotorax.">
+          <g font-family="DM Mono, monospace" font-size="10.5" fill="#94a3b8">
+            <rect x="12" y="12" width="656" height="266" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="28" y="36" fill="#fcd34d" font-size="12">Corte de la pared torácica · por qué el calibre del gesto importa</text>
+
+            <!-- panel izquierdo: aguja -->
+            <text x="44" y="62" fill="#fca5a5" font-size="11">Aguja de 5 cm</text>
+            <rect x="44" y="72" width="250" height="18" fill="rgba(245,158,11,0.12)" stroke="#475569" stroke-width="0.9"/>
+            <text x="300" y="85" font-size="9">piel</text>
+            <rect x="44" y="90" width="250" height="30" fill="rgba(245,158,11,0.07)" stroke="#475569" stroke-width="0.9"/>
+            <text x="300" y="110" font-size="9">tejido subcutáneo</text>
+            <rect x="44" y="120" width="250" height="26" fill="rgba(239,68,68,0.10)" stroke="#475569" stroke-width="0.9"/>
+            <text x="300" y="138" font-size="9">músculo</text>
+            <line x1="44" y1="150" x2="294" y2="150" stroke="#93c5fd" stroke-width="2"/>
+            <text x="300" y="154" fill="#93c5fd" font-size="9">pleura parietal</text>
+            <rect x="44" y="152" width="250" height="40" fill="rgba(59,130,246,0.06)" stroke="none"/>
+            <text x="60" y="176" fill="#bfdbfe" font-size="9.5">espacio pleural</text>
+            <!-- aguja que no llega -->
+            <line x1="150" y1="58" x2="150" y2="142" stroke="#fca5a5" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="150" cy="142" r="4" fill="#ef4444"/>
+            <text x="160" y="134" fill="#fca5a5" font-size="9">no llega</text>
+            <text x="44" y="214" font-size="9.5">Pared media: 42,8 mm (2.º EIC LMC)</text>
+            <text x="44" y="227" font-size="9.5">34,3 mm (4.º–5.º EIC LAA)</text>
+            <text x="44" y="243" fill="#fca5a5" font-size="9.5">Fracaso: 38 % vs 13 % según el sitio</text>
+
+            <!-- panel derecho: dedo -->
+            <text x="392" y="62" fill="#6ee7b7" font-size="11">Incisión y dedo</text>
+            <rect x="392" y="72" width="230" height="18" fill="rgba(245,158,11,0.12)" stroke="#475569" stroke-width="0.9"/>
+            <rect x="392" y="90" width="230" height="30" fill="rgba(245,158,11,0.07)" stroke="#475569" stroke-width="0.9"/>
+            <rect x="392" y="120" width="230" height="26" fill="rgba(239,68,68,0.10)" stroke="#475569" stroke-width="0.9"/>
+            <line x1="392" y1="150" x2="622" y2="150" stroke="#93c5fd" stroke-width="2"/>
+            <rect x="392" y="152" width="230" height="40" fill="rgba(59,130,246,0.06)" stroke="none"/>
+            <!-- canal abierto -->
+            <path d="M486,72 L476,192 L532,192 L522,72 Z" fill="rgba(16,185,129,0.14)" stroke="#10b981" stroke-width="1.4"/>
+            <path d="M504,66 L504,178" stroke="#6ee7b7" stroke-width="7" stroke-linecap="round"/>
+            <circle cx="504" cy="178" r="7" fill="#10b981"/>
+            <text x="540" y="172" fill="#6ee7b7" font-size="9">dedo dentro</text>
+            <text x="392" y="214" font-size="9.5">El canal no depende del grosor</text>
+            <text x="392" y="227" font-size="9.5">de la pared: confirma y abre</text>
+            <text x="392" y="243" fill="#6ee7b7" font-size="9.5">en el mismo gesto.</text>
+
+            <!-- franja inferior -->
+            <rect x="28" y="252" width="624" height="16" rx="6" fill="rgba(239,68,68,0.07)" stroke="#7f1d1d" stroke-width="0.9"/>
+            <text x="40" y="264" fill="#fca5a5" font-size="9.5">La aguja no drena sangre · en el paro traumático el 70 % tiene hemotórax y la aguja falló en descomprimirlo en el 42 % (serie de autopsias)</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Esquema orientativo, no una ilustración anatómica a escala.</strong> Las
+        cifras de grosor y fracaso vienen del metaanálisis de Laan 2016; las de hemotórax y fracaso de la aguja, de la
+        serie de autopsias de von Vopelius-Feldt 2025. <em>El material disponible en el servicio —largo y calibre real
+        de los catéteres de descompresión— debe verificarse con protocolo institucional.</em></div>
+      </div>
+
+      <div class="subhead">Lo que sí sabemos de la toracostomía simple</div>
+      <div class="plain-list">
+        <div class="plain-item good"><span class="bullet-icon">📜</span><span><strong>La técnica está descrita desde 1995</strong>, cuando Deakin y el servicio aéreo del Royal London publicaron 45 casos de toracostomía simple como alternativa al tubo en la escena: más rápida, más simple y sin los riesgos de instalar el drenaje en la calle.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">🫁</span><span><strong>Funciona cuando hay algo que descomprimir.</strong> En la serie prospectiva italiana de Massarutti, 55 pacientes con toracostomía simple en escena: la saturación subió de <strong>86,4 % a 98,5 %</strong>, se encontró neumotórax o hemoneumotórax en el 91,5 %, y <strong>no hubo ningún caso de tensión recurrente</strong> ni de sangrado mayor o infección pleural.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">🛡️</span><span><strong>Es segura en manos entrenadas.</strong> En la cohorte australiana de Hannon, 179 toracostomías digitales en 103 pacientes (73,8 % bilaterales) hechas por paramédicos de rescate aéreo, con <strong>tres complicaciones potenciales</strong> en total; y de los 38 pacientes a los que se les tomó radiografía antes de instalar el tubo, <strong>ninguno mostró neumotórax a tensión</strong>: la descompresión había funcionado.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📊</span><span><strong>El rendimiento en el paro traumático es modesto y hay que saberlo.</strong> En la serie de Dickson, de 57 pacientes en paro traumático con toracostomía simple, salió aire en el <strong>32 %</strong>, hubo retorno de circulación en el 25 %, y el <strong>7 % se fue de alta neurológicamente intacto</strong>. La revisión sistemática de Robitaille-Fortin reporta «éxito» de la toracostomía digital tras paro traumático entre 9,7 % y 32 % según la definición usada.</span></div>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">⏳</span>
+        <span><strong>El desvío que cuesta vidas en la otra dirección.</strong> La toracostomía abierta <em>solo se
+        mantiene descomprimida mientras el paciente recibe ventilación a presión positiva</em>: la vía de salida
+        depende de que la presión intratorácica sea positiva. Si el paciente recupera ventilación espontánea, o si se
+        extuba, o si nadie vuelve a revisar la incisión con el dedo, <strong>la tensión puede reaparecer sobre una
+        herida que parece resuelta</strong>. Por eso la toracostomía simple sin tubo es una medida de la fase de paro
+        y de ventilación controlada, con un plazo corto y una pregunta explícita después: <em>«¿este paciente ya
+        necesita el tubo?»</em>.</span>
+      </div>
+
+      <div class="subhead">Confirmación</div>
+      <div class="checklist" id="list-s2">
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Si ya se usó aguja, no se intenta una tercera vez.</strong> Dos intentos como máximo y se pasa al gesto abierto. <em>Insistir con la aguja es perder los únicos minutos que quedan.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Si hay sospecha de sangre, el plan es el tubo desde el inicio</strong>, no el dedo solo: la aguja no la drena y la incisión abierta tampoco la vacía de forma controlada.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Si la descompresión con aguja fue «exitosa», igual se reevalúa.</strong> El catéter se tapa, se acoda y se sale: una mejoría transitoria tras la aguja no cierra el tema.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Está explícito quién vuelve a revisar la toracostomía abierta con el dedo</strong> y cada cuánto, mientras no haya tubo. <em>La frecuencia de la revisión no está estandarizada — definirla con el protocolo institucional.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s2')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Si el paciente va a dejar la ventilación a presión positiva</strong> —extubación, recuperación de ventilación espontánea, traslado sin ventilador—, <strong>el tubo se instala antes</strong>, no después.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · CRONÓMETRO, HITOS Y ROLES -->
+  <div class="section s3" id="s3" style="animation-delay:0.14s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Cronómetro, hitos y roles</div>
+        <div class="section-subtitle">El reloj parte cuando se decide descomprimir</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="stopwatch">
+        <div class="sw-display" id="swDisplay">00:00</div>
+        <div class="sw-caption" id="swCaption">Detenido · parte el reloj cuando se decide descomprimir</div>
+        <div class="sw-controls">
+          <button type="button" class="sw-btn primary" id="swToggle" onclick="swToggle()">▶ Iniciar</button>
+          <button type="button" class="sw-btn" onclick="swReset()">↺ Reiniciar</button>
+        </div>
+        <div class="milestones" id="milestones">
+          <button type="button" class="ms" data-goal="30" data-prefix="meta ~" onclick="markMs(this)"><span>Decisión dicha en voz alta, lados definidos, bisturí y pinza en la mano (30 s)</span><span class="ms-goal">meta ~30 s</span></button>
+          <button type="button" class="ms" data-goal="90" data-prefix="meta ~" onclick="markMs(this)"><span><strong>Primer hemitórax abierto y dedo dentro de la pleura</strong>, hallazgo cantado: aire, sangre o nada (90 s)</span><span class="ms-goal">meta ~90 s</span></button>
+          <button type="button" class="ms" data-goal="150" data-prefix="meta ~" onclick="markMs(this)"><span>Segundo hemitórax abierto si la indicación era bilateral, hallazgo cantado (2 min 30 s)</span><span class="ms-goal">meta ~150 s</span></button>
+          <button type="button" class="ms" data-goal="210" data-prefix="meta ~" onclick="markMs(this)"><span>Respuesta reevaluada: presión, saturación, presión de la vía aérea, pulso · decisión «tubo sí o no» (3 min 30 s)</span><span class="ms-goal">meta ~210 s</span></button>
+          <button type="button" class="ms" data-goal="360" data-prefix="meta ~" onclick="markMs(this)"><span><strong>Tubo pleural instalado y conectado a trampa de agua</strong> en el lado que lo necesita, fijado con sutura (6 min)</span><span class="ms-goal">meta ~360 s</span></button>
+          <button type="button" class="ms" data-goal="480" data-prefix="meta ~" onclick="markMs(this)"><span>Débito inicial medido y cantado · cirugía y pabellón avisados si supera el umbral local (8 min)</span><span class="ms-goal">meta ~480 s</span></button>
+          <button type="button" class="ms" data-goal="600" data-prefix="meta ~" onclick="markMs(this)"><span>Ecografía de control del lado tratado y radiografía de tórax pedida (10 min)</span><span class="ms-goal">meta ~600 s</span></button>
+          <button type="button" class="ms" data-goal="900" data-prefix="meta ~" onclick="markMs(this)"><span>Registro completo: hora, lados, hallazgo, calibre, profundidad, débito, destino (15 min)</span><span class="ms-goal">meta ~900 s</span></button>
+        </div>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Ninguna de estas metas es un estándar validado.</strong> No existe una referencia publicada de
+        tiempos para la toracostomía simple ni para el tubo pleural de urgencia: el reparto de arriba es una
+        distribución razonable propuesta para esta página y <strong>debe ajustarse al protocolo institucional</strong>.
+        El único dato de tiempo comparativo que aparece en la literatura citada es indirecto y apunta en sentido
+        contrario a la prisa: en la serie de Harris, la toracostomía simple prehospitalaria alargó el tiempo en escena
+        en unos cinco minutos. <em>En el box esos minutos se pagan distinto que en la calle, pero igual se cuentan.</em></span>
+      </div>
+
+      <div class="subhead">Roles mínimos</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>Operador del lado derecho y operador del lado izquierdo.</strong> Si hay dos manos entrenadas, los dos lados se abren <em>a la vez</em>: en el paro traumático eso ahorra el minuto que más vale. Si hay una sola, se empieza por el lado del mecanismo o del hallazgo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>Vía aérea y ventilación:</strong> mantiene la ventilación a presión positiva —de la que depende que la toracostomía abierta siga funcionando—, vigila la presión de la vía aérea y avisa cuando cambia.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>Vigilancia hemodinámica:</strong> monitor, pulso central, ecografía. Es quien dice si la descompresión sirvió, en una frase: <em>«subió la presión»</em> o <em>«no cambió nada»</em>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span><strong>Circulante:</strong> abre el material, prepara la trampa de agua con agua estéril <em>antes</em> de que se pida el tubo, y tiene el segundo equipo listo por si el otro lado también se abre.</span></div>
+        <div class="plain-item"><span class="bullet-icon">5</span><span><strong>Tiempo y registro:</strong> lleva el cronómetro, canta los hitos y hace las dos preguntas que más se olvidan: <em>«¿el otro lado?»</em> y <em>«¿este paciente ya necesita el tubo?»</em>.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · SITIO, POSICIÓN Y MESA -->
+  <div class="section s4" id="s4" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Sitio, posición y mesa</div>
+        <div class="section-subtitle">El triángulo de seguridad, el material mínimo y la protección del operador</div>
+      </div>
+      <span class="section-check-count" id="count-s4">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="figure">
+        <svg viewBox="0 0 680 320" role="img" aria-label="Esquema del triangulo de seguridad para la toracostomia. Se representa el torso de perfil con el brazo en abduccion sobre la cabeza. El triangulo queda delimitado por delante por el borde lateral del musculo pectoral mayor, por detras por el borde anterior del musculo dorsal ancho, por abajo por una linea horizontal a la altura del pezon que corresponde aproximadamente al quinto espacio intercostal, y con el vertice en la axila. Dentro del triangulo se marca con una cruz el punto de entrada en el cuarto o quinto espacio intercostal en la linea axilar anterior. A la derecha una leyenda enumera los tres bordes y el punto, y una advertencia señala que por debajo de esa linea horizontal esta el diafragma, el higado a la derecha y el bazo a la izquierda.">
+          <g font-family="DM Mono, monospace" font-size="10.5" fill="#94a3b8">
+            <rect x="12" y="12" width="656" height="296" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="28" y="36" fill="#fcd34d" font-size="12">Triángulo de seguridad · vista lateral, brazo en abducción</text>
+
+            <!-- brazo abducido -->
+            <path d="M196,86 Q220,52 268,46 Q300,44 318,54" stroke="#475569" stroke-width="1.4" fill="none"/>
+            <path d="M196,110 Q226,76 270,70 Q302,68 320,78" stroke="#475569" stroke-width="1.4" fill="none"/>
+            <text x="286" y="40" font-size="9">brazo sobre la cabeza</text>
+
+            <!-- torso de perfil -->
+            <path d="M150,96 Q146,160 152,222 Q158,268 176,286 L300,286 Q318,262 320,220 Q322,156 312,100 Q268,78 196,86 Z" fill="rgba(255,255,255,0.03)" stroke="#475569" stroke-width="1.4"/>
+
+            <!-- triangulo -->
+            <path d="M232,104 L188,232 L300,232 Z" fill="rgba(16,185,129,0.10)" stroke="#10b981" stroke-width="1.6" stroke-dasharray="5 3"/>
+
+            <!-- bordes rotulados -->
+            <line x1="232" y1="104" x2="300" y2="232" stroke="#6ee7b7" stroke-width="2.4"/>
+            <line x1="232" y1="104" x2="188" y2="232" stroke="#93c5fd" stroke-width="2.4"/>
+            <line x1="188" y1="232" x2="300" y2="232" stroke="#fcd34d" stroke-width="2.4"/>
+
+            <!-- punto de entrada -->
+            <line x1="266" y1="182" x2="282" y2="198" stroke="#ef4444" stroke-width="2.6" stroke-linecap="round"/>
+            <line x1="282" y1="182" x2="266" y2="198" stroke="#ef4444" stroke-width="2.6" stroke-linecap="round"/>
+            <circle cx="274" cy="190" r="16" fill="none" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="3 3"/>
+            <text x="296" y="178" fill="#fca5a5" font-size="9.5">punto de entrada</text>
+
+            <!-- zona prohibida -->
+            <path d="M176,236 Q230,250 302,236 L300,286 L176,286 Z" fill="rgba(239,68,68,0.07)" stroke="#7f1d1d" stroke-width="1" stroke-dasharray="4 3"/>
+            <text x="196" y="266" fill="#fca5a5" font-size="9">diafragma · hígado · bazo</text>
+
+            <!-- leyenda derecha -->
+            <rect x="372" y="60" width="280" height="222" rx="10" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1"/>
+
+            <line x1="388" y1="86" x2="408" y2="86" stroke="#6ee7b7" stroke-width="2.4"/>
+            <text x="418" y="90" fill="#6ee7b7" font-size="10">Borde anterior</text>
+            <text x="418" y="104" font-size="9.5">borde lateral del pectoral mayor</text>
+
+            <line x1="388" y1="126" x2="408" y2="126" stroke="#93c5fd" stroke-width="2.4"/>
+            <text x="418" y="130" fill="#bfdbfe" font-size="10">Borde posterior</text>
+            <text x="418" y="144" font-size="9.5">borde anterior del dorsal ancho</text>
+
+            <line x1="388" y1="166" x2="408" y2="166" stroke="#fcd34d" stroke-width="2.4"/>
+            <text x="418" y="170" fill="#fcd34d" font-size="10">Borde inferior</text>
+            <text x="418" y="184" font-size="9.5">línea horizontal a la altura del pezón</text>
+            <text x="418" y="197" font-size="9.5">(≈ 5.º espacio intercostal)</text>
+
+            <line x1="382" y1="212" x2="396" y2="226" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="396" y1="212" x2="382" y2="226" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round"/>
+            <text x="418" y="216" fill="#fca5a5" font-size="10">Punto</text>
+            <text x="418" y="230" font-size="9.5">4.º–5.º EIC, línea axilar anterior</text>
+
+            <text x="388" y="258" fill="#fca5a5" font-size="9.5">Por debajo del borde inferior está</text>
+            <text x="388" y="270" fill="#fca5a5" font-size="9.5">el diafragma: hígado a la derecha,</text>
+            <text x="388" y="282" fill="#fca5a5" font-size="9.5">bazo a la izquierda.</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Esquema orientativo, no una ilustración anatómica a escala.</strong> El
+        triángulo de seguridad es una convención anatómica de amplio uso para el sitio de drenaje pleural; el punto
+        del 4.º–5.º espacio intercostal en la línea axilar anterior es, además, el de <strong>menor grosor de pared
+        y menor fracaso predicho</strong> en el metaanálisis de Laan. <em>Contar los espacios en el paciente real,
+        y no confiar solo en la referencia del pezón, que se desplaza con la edad, el hábito corporal y el embarazo
+        — verificar con protocolo institucional.</em></div>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">🔻</span>
+        <span><strong>El error que convierte una toracostomía en una laparotomía.</strong> Entrar demasiado bajo mete
+        el dedo en el abdomen: a la derecha, hígado; a la izquierda, bazo y a veces estómago. El riesgo sube cuando el
+        paciente está en decúbito con el diafragma elevado, en la embarazada, en el paciente obeso, y cuando la ruptura
+        diafragmática ya subió vísceras al tórax. <strong>Palpar y contar los espacios</strong> antes de cortar, y
+        <strong>reconocer con el dedo</strong> apenas se entra: si lo que se toca es liso, resbaloso y con costillas
+        alrededor, es pleura; si se toca una superficie firme y lisa como una cúpula, probablemente es diafragma o
+        hígado. En ese caso se retira, se reevalúa el nivel y se vuelve a entrar más arriba.</span>
+      </div>
+
+      <div class="subhead">Posición</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🙆</span><span><strong>Brazo del lado a intervenir en abducción, con la mano sobre la cabeza</strong> o sujetada por un ayudante. Abre la axila, estira la pared y pone el triángulo a la vista. En el paro, alguien lo sostiene mientras siguen las compresiones.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🛏️</span><span><strong>Paciente en decúbito supino</strong>, camilla a la altura del operador. En el paro no se cambia de posición ni se levanta la cabecera por el procedimiento.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📍</span><span><strong>Marcar el sitio antes de abrir el campo:</strong> palpar la costilla, contar los espacios, dejar la marca. <em>En el apuro, el sitio «a ojo» es el que termina bajo el diafragma.</em></span></div>
+      </div>
+
+      <div class="subhead">Material mínimo en la mesa</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔪</span><span><strong>Bisturí con hoja ancha (habitualmente N.º 10 o N.º 11)</strong> para la incisión de piel. <em>El número que trae la bandeja del servicio es el que manda.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🗜️</span><span><strong>Pinza hemostática curva grande, tipo Kelly o Rochester.</strong> Es el instrumento del procedimiento: con ella se diseca el músculo, se perfora la pleura y se guía el tubo. <strong>Nunca se usa trocar</strong>: la técnica de disección roma tiene menos complicaciones que la del trocar.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧤</span><span><strong>Doble guante, idealmente con un par reforzado.</strong> Las costillas fracturadas tienen bordes que cortan, y el dedo entra ciego. <em>Es la lesión del operador más frecuente y la más evitable.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🫙</span><span><strong>Tubo pleural y trampa de agua, armada con agua estéril y lista antes de pedirla.</strong> Para el paciente traumatizado inestable la elección convencional es un tubo de <strong>28–32 Fr</strong>; la sección 06 discute cuándo un calibre menor es razonable. <em>El calibre disponible y el que indica el protocolo del servicio mandan.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🪡</span><span><strong>Sutura gruesa (seda 0 o 1), portaagujas, tijera, apósito y cinta.</strong> Un tubo que se sale a los diez minutos es un tubo que hay que volver a instalar, con otra incisión y otro riesgo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Anestésico local si el paciente tiene cualquier grado de conciencia.</strong> <em>El agente, la concentración y la dosis máxima por peso dependen de lo disponible en el servicio — verificar con protocolo institucional.</em> En el paciente en paro o profundamente inconsciente no se demora el procedimiento por esto, pero se documenta.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔊</span><span><strong>Ecógrafo encendido con transductor lineal</strong>, si hay un operador libre: sirve antes (deslizamiento pleural, líquido) y después (reexpansión, posición). No detiene la decisión.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Si se espera hemotórax:</strong> sistema de recolección que permita medir el débito, sangre y plasma pedidos, y <em>el sistema de autotransfusión si el servicio lo usa — verificar con protocolo institucional.</em></span></div>
+      </div>
+
+      <div class="subhead">Checklist de preparación</div>
+      <div class="checklist" id="list-s4">
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Sitio</span><strong>Espacios contados y punto marcado</strong> en el 4.º–5.º EIC, línea axilar anterior, dentro del triángulo de seguridad. <em>No por debajo de la línea del pezón.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Posición</span><strong>Brazo en abducción y sostenido</strong>, campo expuesto desde la línea axilar anterior hasta la posterior.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Protección</span><strong>Doble guante puesto</strong>, con protección ocular y pechera. Hay sangre y hay bordes óseos.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Instrumental</span><strong>Bisturí y pinza curva grande en la mano</strong>, no en la bandeja del fondo. Sin trocar.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Drenaje</span><strong>Tubo del calibre decidido y trampa de agua armada con agua estéril</strong>, al alcance, aunque todavía no se sepa si se va a usar.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Fijación</span><strong>Sutura, portaagujas y apósito listos</strong> antes de empezar, no buscados después con el tubo en la mano.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Bilateral</span><strong>Si la indicación es bilateral, hay dos equipos preparados</strong> o está claro el orden y quién abre el segundo lado.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Ventilación</span><strong>La ventilación a presión positiva está asegurada y alguien la vigila</strong>: es lo que mantiene útil una toracostomía abierta sin tubo.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · TORACOSTOMÍA SIMPLE PASO A PASO -->
+  <div class="section s5" id="s5" style="animation-delay:0.22s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Toracostomía simple paso a paso</div>
+        <div class="section-subtitle">Incisión, disección roma, pleura y barrido con el dedo</div>
+      </div>
+      <span class="section-check-count" id="count-s5">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="figure">
+        <svg viewBox="0 0 680 300" role="img" aria-label="Esquema de la tecnica de toracostomia simple en cuatro pasos. En el primer panel se ven dos costillas con el paquete vasculonervioso intercostal corriendo por el borde inferior de la costilla superior, y la incision marcada sobre el borde superior de la costilla inferior. En el segundo panel una pinza curva diseca de forma roma el musculo intercostal apuntando hacia el borde superior de la costilla inferior. En el tercer panel la punta cerrada de la pinza perfora la pleura parietal y luego se abren las ramas para ampliar el orificio. En el cuarto panel el dedo entra en el espacio pleural y hace un barrido circular para confirmar que esta en la pleura y liberar adherencias.">
+          <g font-family="DM Mono, monospace" font-size="10" fill="#94a3b8">
+            <rect x="12" y="12" width="656" height="276" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="28" y="34" fill="#fcd34d" font-size="12">Cuatro gestos · corte entre dos costillas</text>
+
+            <!-- PANEL 1 -->
+            <text x="34" y="58" fill="#5eead4" font-size="10.5">1 · dónde cortar</text>
+            <rect x="30" y="66" width="140" height="22" rx="7" fill="rgba(226,232,240,0.14)" stroke="#64748b" stroke-width="1.1"/>
+            <text x="176" y="80" font-size="8.5">costilla superior</text>
+            <circle cx="52" cy="94" r="4" fill="#ef4444"/><circle cx="64" cy="94" r="4" fill="#3b82f6"/><circle cx="76" cy="94" r="3.4" fill="#fcd34d"/>
+            <text x="86" y="98" fill="#fca5a5" font-size="8.5">paquete intercostal</text>
+            <rect x="30" y="136" width="140" height="22" rx="7" fill="rgba(226,232,240,0.14)" stroke="#64748b" stroke-width="1.1"/>
+            <text x="176" y="151" font-size="8.5">costilla inferior</text>
+            <line x1="44" y1="130" x2="130" y2="130" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
+            <text x="34" y="180" fill="#6ee7b7" font-size="9">Incisión y entrada</text>
+            <text x="34" y="192" fill="#6ee7b7" font-size="9">sobre el borde</text>
+            <text x="34" y="204" fill="#6ee7b7" font-size="9">SUPERIOR de la</text>
+            <text x="34" y="216" fill="#6ee7b7" font-size="9">costilla inferior.</text>
+            <text x="34" y="234" fill="#fca5a5" font-size="9">El paquete corre bajo</text>
+            <text x="34" y="246" fill="#fca5a5" font-size="9">la costilla de arriba.</text>
+
+            <!-- PANEL 2 -->
+            <text x="222" y="58" fill="#5eead4" font-size="10.5">2 · disección roma</text>
+            <rect x="218" y="66" width="130" height="22" rx="7" fill="rgba(226,232,240,0.14)" stroke="#64748b" stroke-width="1.1"/>
+            <rect x="218" y="136" width="130" height="22" rx="7" fill="rgba(226,232,240,0.14)" stroke="#64748b" stroke-width="1.1"/>
+            <rect x="218" y="88" width="130" height="48" fill="rgba(239,68,68,0.08)"/>
+            <path d="M232,196 Q256,166 276,140" stroke="#cbd5e1" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <path d="M246,200 Q268,172 288,142" stroke="#cbd5e1" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <circle cx="240" cy="200" r="7" fill="none" stroke="#cbd5e1" stroke-width="3"/>
+            <text x="218" y="226" font-size="9">Pinza curva, punta</text>
+            <text x="218" y="238" font-size="9">cerrada, apoyada en</text>
+            <text x="218" y="250" font-size="9">el borde superior.</text>
+
+            <!-- PANEL 3 -->
+            <text x="396" y="58" fill="#5eead4" font-size="10.5">3 · pleura</text>
+            <rect x="392" y="66" width="130" height="22" rx="7" fill="rgba(226,232,240,0.14)" stroke="#64748b" stroke-width="1.1"/>
+            <rect x="392" y="136" width="130" height="22" rx="7" fill="rgba(226,232,240,0.14)" stroke="#64748b" stroke-width="1.1"/>
+            <line x1="392" y1="118" x2="522" y2="118" stroke="#93c5fd" stroke-width="2.4"/>
+            <text x="392" y="112" fill="#93c5fd" font-size="8.5">pleura parietal</text>
+            <path d="M446,118 L430,96" stroke="#cbd5e1" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M452,118 L470,96" stroke="#cbd5e1" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M438,124 Q449,134 460,124" stroke="#6ee7b7" stroke-width="2" fill="none"/>
+            <text x="392" y="182" font-size="9">Perforar con la punta</text>
+            <text x="392" y="194" font-size="9">cerrada; abrir las ramas</text>
+            <text x="392" y="206" font-size="9">y retirar la pinza</text>
+            <text x="392" y="218" fill="#6ee7b7" font-size="9">abierta, no cerrada.</text>
+            <text x="392" y="238" fill="#fcd34d" font-size="9">Sale aire a presión o</text>
+            <text x="392" y="250" fill="#fcd34d" font-size="9">sangre: cantarlo.</text>
+
+            <!-- PANEL 4 -->
+            <text x="560" y="58" fill="#5eead4" font-size="10.5">4 · dedo</text>
+            <rect x="556" y="66" width="96" height="22" rx="7" fill="rgba(226,232,240,0.14)" stroke="#64748b" stroke-width="1.1"/>
+            <rect x="556" y="136" width="96" height="22" rx="7" fill="rgba(226,232,240,0.14)" stroke="#64748b" stroke-width="1.1"/>
+            <path d="M604,166 L604,110" stroke="#6ee7b7" stroke-width="9" stroke-linecap="round"/>
+            <circle cx="604" cy="110" r="8" fill="#10b981"/>
+            <path d="M578,104 A26,20 0 1,0 630,104" stroke="#6ee7b7" stroke-width="1.6" fill="none" stroke-dasharray="4 3"/>
+            <text x="556" y="188" font-size="9">Barrido de 360°:</text>
+            <text x="556" y="200" font-size="9">confirma pleura,</text>
+            <text x="556" y="212" font-size="9">libera adherencias,</text>
+            <text x="556" y="224" font-size="9">descarta que estés</text>
+            <text x="556" y="236" fill="#fca5a5" font-size="9">bajo el diafragma.</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Esquemas orientativos, no ilustraciones anatómicas a escala.</strong> La
+        <strong>disección roma</strong> —y no el trocar— es la técnica con menor tasa de complicaciones descrita en
+        las revisiones de complicaciones del drenaje pleural. <em>El tamaño de la incisión, el instrumental exacto y
+        la secuencia local se verifican con el protocolo institucional y con el entrenamiento presencial.</em></div>
+      </div>
+
+      <div class="subhead">La secuencia</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>Palpar y marcar.</strong> Costilla, espacio, línea axilar anterior, dentro del triángulo. Si el paciente responde al dolor, infiltrar el anestésico local <em>en el trayecto completo, incluida la pleura parietal, que es lo que más duele</em>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>Incisión de 3 a 4 cm paralela a la costilla</strong>, a través de piel y celular subcutáneo. Una incisión corta obliga a forzar después; una incisión cómoda es más segura y más rápida. <em>La longitud exacta se ajusta al hábito del paciente y al calibre del tubo previsto.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>Disección roma con la pinza curva hacia el borde SUPERIOR de la costilla inferior.</strong> El paquete vasculonervioso intercostal corre por el <em>borde inferior de la costilla de arriba</em>: caminar sobre la costilla de abajo lo evita. Se abre y se cierra la pinza para separar la musculatura, sin cortar.</span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span><strong>Perforar la pleura parietal con la punta cerrada</strong>, de forma controlada, sosteniendo la pinza cerca de la punta para no hundirla más de lo necesario. Entonces <strong>se abren las ramas</strong> para ampliar el orificio y <strong>se retira la pinza abierta</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">5</span><span><strong>Entrar con el dedo y hacer un barrido de 360°.</strong> Esto cumple tres funciones a la vez: <strong>confirma que estás en el espacio pleural</strong> (se palpa pulmón y la cara interna de las costillas), <strong>libera adherencias</strong> que impedirían pasar el tubo, y <strong>descarta estar bajo el diafragma</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">6</span><span><strong>Cantar el hallazgo en voz alta.</strong> «Sale aire a presión», «sale sangre», «no sale nada». Esa frase es un dato clínico mayor: cambia el diagnóstico, cambia el pronóstico y queda en la ficha.</span></div>
+        <div class="plain-item"><span class="bullet-icon">7</span><span><strong>Reevaluar al paciente antes de pasar al otro lado o al tubo:</strong> presión, saturación, presión de la vía aérea, pulso. En la serie de Massarutti la saturación subió en promedio doce puntos tras el procedimiento; si nada cambia, eso también es información.</span></div>
+        <div class="plain-item"><span class="bullet-icon">8</span><span><strong>Si se deja abierta (sin tubo), cubrir con un apósito NO oclusivo</strong> y dejar la pregunta programada: <em>«¿este paciente ya necesita el tubo?»</em>. Un apósito que sella convierte la toracostomía en una trampa de aire.</span></div>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">🩻</span>
+        <span><strong>Si el dedo no entra en la pleura, el problema no se resuelve empujando más fuerte.</strong>
+        Las causas habituales son el espacio equivocado, la pared más gruesa de lo esperado, el trayecto que se desvió
+        hacia arriba o hacia abajo y la adherencia pleural. La conducta es <strong>retirar, reorientar y volver a
+        disecar</strong> —o cambiar de espacio—, nunca forzar con la punta de la pinza a ciegas y en profundidad:
+        así es como se perfora el pulmón, el diafragma o el corazón. <em>Si hay ecógrafo y un operador libre, mirar el
+        sitio antes del segundo intento cuesta segundos.</em></span>
+      </div>
+
+      <div class="subhead">Checklist del procedimiento</div>
+      <div class="checklist" id="list-s5">
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">1 · Sitio</span><strong>Espacio palpado y marcado</strong>, dentro del triángulo, con anestesia local si corresponde.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">2 · Incisión</span><strong>Incisión paralela a la costilla</strong>, suficientemente amplia para trabajar cómodo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">3 · Trayecto</span><strong>Disección roma sobre el borde superior de la costilla inferior</strong>, con pinza curva. <em>Sin trocar y sin bisturí en profundidad.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">4 · Pleura</span><strong>Pleura perforada con punta cerrada y orificio ampliado</strong> abriendo las ramas; pinza retirada abierta.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">5 · Dedo</span><strong>Barrido digital de 360° hecho</strong>: pleura confirmada, adherencias liberadas, diafragma descartado.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">6 · Hallazgo</span><strong>Hallazgo cantado y registrado</strong>: aire, sangre, ambos o nada, en cada lado.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">7 · Respuesta</span><strong>Paciente reevaluado</strong>: presión, saturación, presión de la vía aérea, pulso. <em>Y el otro lado, si la indicación era bilateral.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">8 · Cobertura</span><strong>Apósito no oclusivo si queda abierta</strong>, y responsable nombrado para volver a revisarla con el dedo.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · DEL DEDO AL TUBO -->
+  <div class="section s6" id="s6" style="animation-delay:0.26s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Del dedo al tubo</div>
+        <div class="section-subtitle">Cuándo se completa, qué calibre, hacia dónde se dirige y cómo se fija</div>
+      </div>
+      <span class="section-check-count" id="count-s6">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="go-banner">
+        <span class="warning-icon">✅</span>
+        <span><strong>La buena noticia es que el trabajo difícil ya está hecho.</strong> Si la toracostomía simple se
+        hizo bien, el tubo entra por el mismo túnel, guiado por el dedo que ya conoce el camino: se introduce la punta
+        con la pinza montada o con el dedo como guía, se avanza con el trayecto ya explorado y <strong>no se vuelve a
+        disecar</strong>. Esa es, de hecho, la razón de ser de la secuencia: primero abrir y confirmar, después drenar.</span>
+      </div>
+
+      <div class="subhead">Cuándo se pone el tubo</div>
+      <div class="plain-list">
+        <div class="plain-item good"><span class="bullet-icon">🩸</span><span><strong>Siempre que haya sangre.</strong> La toracostomía abierta no drena un hemotórax de forma controlada ni permite medir el débito, que es el dato que decide el pabellón.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">💓</span><span><strong>Apenas hay retorno de circulación</strong> en el paro traumático. Es el momento en que el paciente deja de estar «parado» y empieza a necesitar un tórax funcionando, y es también el momento en que más se olvida.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">🫁</span><span><strong>Antes de que el paciente vuelva a ventilar espontáneamente o se extube.</strong> Sin presión positiva, la incisión abierta deja de ser una válvula de salida fiable.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">🚚</span><span><strong>Antes de cualquier traslado</strong> —a tomografía, a pabellón, a otro centro— donde nadie va a poder volver a meter el dedo si el paciente se deteriora en el camino.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🕐</span><span><strong>Y, en general, en cuanto la reanimación lo permita.</strong> <em>No hay un plazo máximo validado para mantener una toracostomía abierta sin tubo: el criterio es clínico y local — verificar con protocolo institucional.</em></span></div>
+      </div>
+
+      <div class="subhead">Qué calibre</div>
+      <div class="info-banner">
+        <span class="warning-icon">📏</span>
+        <span><strong>El debate del calibre está resuelto para el paciente estable y abierto para el inestable.</strong>
+        Tres ensayos aleatorizados compararon catéteres finos con tubos gruesos en hemotórax traumático: el ensayo
+        multicéntrico <strong>P-CAT</strong> de Kulvatunyou (119 pacientes, 14 Fr percutáneo contra 28–32 Fr) encontró
+        <strong>la misma tasa de fracaso —11 % contra 13 %—</strong> y una experiencia de inserción claramente mejor
+        con el catéter fino (puntaje mediano 1 contra 3); el ensayo unicéntrico previo de Bauman mostró lo mismo
+        (10 % contra 17 %); y el ensayo de McCartt halló que un tubo recto de 14 Fr por técnica de Seldinger es
+        <strong>no inferior</strong> al de 28 Fr. <strong>El punto que no hay que perder de vista:</strong> los tres
+        ensayos <em>excluyeron explícitamente a los pacientes in extremis que requerían tubo de emergencia</em> — es
+        decir, exactamente a los pacientes de esta página.</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Escenario</th><th>Elección convencional</th><th>Qué sustenta y qué no</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Paro traumático o shock con hemotórax</td>
+              <td><span class="dose-main">Tubo 28–32 Fr</span><br><span class="dose-note">por el túnel de la toracostomía</span></td>
+              <td>Convención, <strong>no evidencia aleatorizada</strong>: estos pacientes quedaron fuera de los ensayos de calibre. El argumento es la velocidad de drenaje de sangre y coágulos y el hecho de que el trayecto ya está abierto. <em>Verificar con protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Hemotórax traumático en paciente estable</td>
+              <td><span class="dose-main">14 Fr o 28–32 Fr</span><br><span class="dose-note">ambos razonables</span></td>
+              <td>Aquí sí hay ensayos aleatorizados: <strong>misma eficacia, menos dolor con el catéter fino</strong> (P-CAT, Bauman, McCartt).</td>
+            </tr>
+            <tr>
+              <td>Neumotórax traumático simple en paciente estable</td>
+              <td><span class="dose-main">14 Fr</span><br><span class="dose-note">pigtail percutáneo</span></td>
+              <td>En el ensayo de Kulvatunyou 2014, menor dolor en el sitio de inserción con igual éxito y complicaciones. <em>Este escenario no es un procedimiento HALO y suele resolverse fuera de la reanimación.</em></td>
+            </tr>
+            <tr>
+              <td>Paciente pediátrico</td>
+              <td><span class="dose-main">Según peso y edad</span></td>
+              <td>Esta página está escrita para <strong>adultos</strong>. El espacio intercostal pediátrico es estrecho —0,44 cm al año cero y 1,12 cm a los diez años en la serie tomográfica de Leonhard— y el material debe ser el adecuado. <em>Verificar con protocolo institucional y con el material pediátrico del servicio.</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Hacia dónde se dirige</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🧭</span><span><strong>La dirección clásica es hacia atrás y hacia arriba</strong> para el aire y hacia atrás y abajo para la sangre; en la práctica de urgencia, con un solo tubo que tiene que servir para las dos cosas, se busca una posición <strong>posterior y apical</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🛏️</span><span><strong>Un truco con evidencia preliminar:</strong> en el modelo cadavérico de Peschman, apuntar el tubo <em>«más hacia la camilla que hacia la cabeza»</em> redujo la colocación dentro de una cisura de <strong>41 % a 13 %</strong> (OR 0,22). <em>Es un estudio de concepto en cadáveres, no una práctica validada clínicamente — pero no cuesta nada y no cambia el equipo ni el tiempo.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">📐</span><span><strong>La malposición es frecuente y hay que buscarla, no suponerla ausente.</strong> En la serie prospectiva de Huber-Wagner en politraumatizados, con tomografía de control, <strong>una de cada cuatro</strong> de las sondas puestas por vía lateral quedó mal posicionada (25 %), la mayoría dentro de una cisura; la mayoría no daba síntomas, pero algunas tuvieron que reponerse.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔢</span><span><strong>Todos los orificios del tubo dentro del tórax.</strong> El último orificio lateral debe quedar claramente por dentro de la pared: si queda a caballo, se produce enfisema subcutáneo y el sistema no sella. Anotar la marca en centímetros a nivel de la piel.</span></div>
+      </div>
+
+      <div class="subhead">Fijación y cierre</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🪢</span><span><strong>Sutura gruesa que fije el tubo a la piel</strong> y un punto de afrontamiento de la incisión a cada lado. Dejar preparado el punto de cierre —anudado solo al retirar el tubo— es la práctica habitual. <em>La técnica concreta (punto en bolsa de tabaco, colchonero horizontal, cierre diferido) varía entre servicios: verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🩹</span><span><strong>Apósito estéril y fijación del tubo a la pared torácica con una lazada de holgura</strong>, para que un tirón del circuito no lo saque.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⛔</span><span><strong>Nunca pinzar un tubo en un paciente con fuga de aire</strong>, ni para trasladarlo ni para «probar». Pinzar un tubo con fuga reconstruye el neumotórax a tensión, esta vez con el drenaje puesto y la falsa seguridad de que está resuelto.</span></div>
+      </div>
+
+      <div class="subhead">Checklist del tubo</div>
+      <div class="checklist" id="list-s6">
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Decisión</span><strong>Se dijo explícitamente si este lado lleva tubo y por qué</strong>: sangre, retorno de circulación, traslado o fin de la ventilación controlada.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Calibre</span><strong>Calibre elegido y dicho en voz alta</strong>, acorde al escenario y al material del servicio.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Vía</span><strong>El tubo entra por el túnel ya disecado</strong>, guiado por el dedo o por la pinza montada. <em>No se vuelve a disecar y no se usa trocar.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Dirección</span><strong>Dirigido hacia posterior y apical</strong>, apuntando más hacia la camilla que hacia la cabeza.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Profundidad</span><strong>Todos los orificios dentro del tórax</strong> y marca en centímetros anotada a nivel de la piel.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Conexión</span><strong>Conectado a la trampa de agua</strong> con el sello bajo agua antes de soltar el tubo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Fijación</span><strong>Suturado, con punto de cierre preparado, apósito y lazada de holgura.</strong></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Otro lado</span><strong>Se preguntó por el otro hemitórax.</strong> Si se abrieron los dos, se decide el tubo en los dos por separado.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · CONFIRMAR QUE FUNCIONÓ -->
+  <div class="section s7" id="s7" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Confirmar que funcionó</div>
+        <div class="section-subtitle">Trampa de agua, ecografía, radiografía y lo que cada una puede decir</div>
+      </div>
+      <span class="section-check-count" id="count-s7">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Las cuatro señales al lado de la camilla</div>
+      <div class="plain-list">
+        <div class="plain-item good"><span class="bullet-icon">💨</span><span><strong>Salida de aire o de sangre en el momento de entrar.</strong> Es la confirmación más inmediata de que había algo y de que estás en el espacio correcto.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">🌊</span><span><strong>Oscilación de la columna de agua con la respiración</strong> en el sello bajo agua: indica que el tubo comunica con el espacio pleural. <em>Si no oscila, sospechar tubo tapado, acodado o fuera de la pleura — sección 08.</em></span></div>
+        <div class="plain-item good"><span class="bullet-icon">🫧</span><span><strong>Burbujeo:</strong> hay fuga de aire. Al principio es esperable mientras se evacúa el neumotórax; <strong>un burbujeo continuo que no cede</strong> sugiere fuga persistente —lesión de vía aérea grande, lesión parenquimatosa importante— o una fuga en el sistema y los conectores.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">🩺</span><span><strong>Mejoría clínica:</strong> presión, saturación, pulso, y en el paciente ventilado la <strong>caída de la presión máxima de la vía aérea</strong>. Es el desenlace que importa; los otros tres son el mecanismo.</span></div>
+      </div>
+
+      <div class="subhead">Imagen: qué pedir y en qué orden</div>
+      <div class="info-banner">
+        <span class="warning-icon">🔊</span>
+        <span><strong>La ecografía gana a la radiografía en decúbito y está a la mano.</strong> En la revisión Cochrane
+        de Chan, sobre 13 estudios y pacientes de urgencia, la ecografía torácica hecha por médicos no radiólogos
+        de primera línea tuvo <strong>sensibilidad 0,91 (IC 95 % 0,85–0,94)</strong> contra <strong>0,47
+        (IC 95 % 0,31–0,63)</strong> de la radiografía en decúbito, con especificidad prácticamente idéntica (≈1,00).
+        Traducido: en una cohorte con 30 % de neumotórax, la radiografía en decúbito dejaría pasar 16 de cada 30 y la
+        ecografía 3. Para <em>confirmar la reexpansión</em>, la reaparición del deslizamiento pleural en el lado
+        tratado es un signo rápido y específico.</span>
+      </div>
+
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>Ecografía primero</strong>, en el mismo box, en cuanto haya un operador libre: posición, reexpansión, líquido residual, y de paso el resto del eFAST.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>Radiografía de tórax después</strong>, para ver la <strong>posición del tubo</strong> —que es lo que la ecografía hace peor— y el volumen residual. <em>La política local sobre la radiografía posprocedimiento obligatoria y su oportunidad se verifica con el protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>Tomografía cuando el paciente la necesite por otras razones</strong>, no para controlar el tubo. Es, eso sí, el examen que revela las malposiciones que nadie sospechaba: en la serie de Huber-Wagner, una de cada cinco sondas estaba mal puesta y la mayoría no daba síntomas.</span></div>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">🖼️</span>
+        <span><strong>Una radiografía normal después de una toracostomía no significa que no había neumotórax.</strong>
+        Significa, casi siempre, lo contrario: que la descompresión funcionó. En la cohorte australiana de Hannon,
+        de los 38 pacientes con radiografía tomada antes de instalar el tubo definitivo, <strong>ninguno mostraba
+        neumotórax a tensión</strong>. Interpretar esa placa como «no era necesario» es leer el resultado del
+        tratamiento como si fuera el diagnóstico de base.</span>
+      </div>
+
+      <div class="subhead">Checklist de confirmación</div>
+      <div class="checklist" id="list-s7">
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Sello bajo agua verificado</strong>: el tubo del sistema está sumergido, el frasco en posición vertical y <strong>por debajo del nivel del tórax</strong>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Oscilación observada y anotada</strong>, y burbujeo descrito: ausente, inicial o continuo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Respuesta clínica evaluada y dicha</strong>: presión, saturación, presión de la vía aérea, murmullo. <em>Si no hubo respuesta, se pasa a la sección 08 ahora, no después de la radiografía.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Ecografía del lado tratado hecha</strong>: deslizamiento pleural recuperado, líquido residual estimado.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Radiografía pedida</strong> para posición del tubo y volumen residual, sin que su espera retrase ninguna decisión.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Aspiración definida</strong>: se conecta o no, y a cuánto. <em>El uso de aspiración y su nivel dependen del sistema y del protocolo institucional.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Débito inicial medido y cantado</strong>, con la hora. Es el número con el que empieza a contarse todo lo demás.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · CUANDO NO MEJORA -->
+  <div class="section s8" id="s8" style="animation-delay:0.34s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Cuando no mejora</div>
+        <div class="section-subtitle">De afuera hacia adentro: el sistema, el tubo, el otro lado y el otro diagnóstico</div>
+      </div>
+      <span class="section-check-count" id="count-s8">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">🧭</span>
+        <span><strong>El orden importa: siempre de afuera hacia adentro.</strong> Lo más frecuente y lo más fácil de
+        arreglar está en el sistema y en el tubo, no en el paciente. Recorrer la lista en ese orden evita dos errores
+        caros: tratar como refractario a un paciente con un tubo acodado, y perder minutos revisando conectores en un
+        paciente que en realidad tiene taponamiento.</span>
+      </div>
+
+      <div class="subhead">1 · El sistema</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔌</span><span><strong>Recorrer el circuito completo con la mano</strong>, desde la piel hasta el frasco: acodamientos, conexiones sueltas, sello sin agua, frasco volcado o por encima del tórax, aspiración no conectada. <em>Es lo primero y toma quince segundos.</em></span></div>
+      </div>
+
+      <div class="subhead">2 · El tubo</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📐</span><span><strong>¿Está donde crees?</strong> La malposición más común es la intracisural —17 de 20 malposiciones laterales en la serie de Huber-Wagner—, seguida de la posición subcutánea y la extratorácica. Un tubo sin oscilación ni débito, con neumotórax persistente, está mal puesto hasta que se demuestre lo contrario.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⛔</span><span><strong>Un tubo que se salió no se vuelve a meter.</strong> Reintroducir un tubo parcialmente salido lleva al espacio pleural todo lo que estaba fuera. Se retira y se instala uno nuevo, por un sitio nuevo. <em>Lo mismo vale para «empujarlo un poco más» cuando ya estaba fijado.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>¿Está tapado por un coágulo?</strong> Típico del hemotórax: débito abundante que se detiene de golpe, con hemotórax que persiste en la imagen y oscilación perdida. <em>Las maniobras de desobstrucción y el ordeñe del tubo dependen del protocolo institucional; cuando el coágulo gana, lo que corresponde es otro tubo o pabellón.</em></span></div>
+      </div>
+
+      <div class="subhead">3 · El otro lado</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">↔️</span><span><strong>La pregunta que más veces salva: «¿y el otro hemitórax?».</strong> En el paro traumático y en el politraumatizado el neumotórax bilateral es frecuente —en la cohorte de Hannon, el 73,8 % de los pacientes recibió procedimiento bilateral—. Un solo lado tratado puede dejar intacta la causa.</span></div>
+      </div>
+
+      <div class="subhead">4 · El otro diagnóstico</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Posibilidad</th><th>Qué la delata</th><th>Qué hacer</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Taponamiento cardíaco</td>
+              <td>Shock que no responde con tórax ya descomprimido; derrame pericárdico y colapso de cavidades derechas en la ecografía; mecanismo penetrante en la «caja».</td>
+              <td><strong>Toracotomía de reanimación</strong> en el traumático; la pericardiocentesis <em>no</em> es la conducta en el taponamiento traumático.</td>
+            </tr>
+            <tr>
+              <td>Hemorragia exanguinante (torácica, abdominal, pélvica, de miembros)</td>
+              <td>No sale aire en ninguno de los dos lados y el paciente sigue en shock; FAST positivo; pelvis inestable.</td>
+              <td><strong>Sangre y control quirúrgico del foco.</strong> El tórax ya dijo lo que tenía que decir.</td>
+            </tr>
+            <tr>
+              <td>Intubación bronquial selectiva</td>
+              <td>Murmullo abolido unilateral <em>sin</em> hallazgo en la toracostomía de ese lado, con tubo orotraqueal demasiado profundo.</td>
+              <td><strong>Retirar el tubo orotraqueal</strong> hasta la marca correcta y reauscultar. <em>Es un diagnóstico que se hace mirando el número en la comisura.</em></td>
+            </tr>
+            <tr>
+              <td>Gastrotórax a tensión por rotura diafragmática</td>
+              <td>Cuadro idéntico al neumotórax a tensión, pero la descompresión no resuelve o resuelve poco; estómago o asas en el tórax en la imagen.</td>
+              <td><strong>Reparación quirúrgica.</strong> Descrito como causa de shock obstructivo que simula el neumotórax a tensión; ojo con la contaminación pleural al puncionar.</td>
+            </tr>
+            <tr>
+              <td>Fuga de aire masiva por lesión traqueobronquial</td>
+              <td>Burbujeo continuo e intenso, pulmón que no reexpande pese a tubo bien puesto, enfisema subcutáneo que progresa.</td>
+              <td><strong>Cirugía de tórax y broncoscopia</strong>; valorar un segundo tubo. <em>Decisión conjunta con el equipo quirúrgico.</em></td>
+            </tr>
+            <tr>
+              <td>Causa no traumática del paro</td>
+              <td>La historia no cuadra: el paciente se desplomó <em>antes</em> del trauma.</td>
+              <td>Volver al algoritmo del paro no traumático y a sus causas reversibles.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">🔁</span>
+        <span><strong>Y el escenario propio de esta técnica: la tensión que vuelve sobre una toracostomía abierta.</strong>
+        Ocurre cuando el paciente deja la ventilación a presión positiva, cuando la incisión se cierra por coágulo o
+        edema, o cuando un apósito oclusivo sella lo que debía quedar abierto. El signo es el deterioro en un paciente
+        que ya había respondido. <strong>La conducta es volver a entrar con el dedo por la misma incisión</strong> —y,
+        esta vez, poner el tubo.</span>
+      </div>
+
+      <div class="subhead">Checklist de «no mejora»</div>
+      <div class="checklist" id="list-s8">
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">1 · Sistema</span><strong>Circuito recorrido con la mano</strong> de la piel al frasco: acodaduras, conexiones, sello, altura y aspiración.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">2 · Tubo</span><strong>Posición y permeabilidad evaluadas</strong>: oscilación, débito, marca en la piel, ecografía. <em>Un tubo que no oscila ni drena está mal puesto o tapado.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">3 · Dedo</span><strong>Se volvió a entrar con el dedo por la incisión</strong> si se trataba de una toracostomía abierta sin tubo y el paciente se deterioró.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">4 · Otro lado</span><strong>El otro hemitórax fue descomprimido o descartado</strong> con dedo o ecografía, no por suposición.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">5 · Vía aérea</span><strong>Profundidad del tubo orotraqueal verificada</strong> y ventilación reauscultada. <em>La intubación bronquial imita un hemitórax silencioso.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">6 · Corazón</span><strong>Ecografía cardíaca hecha</strong> buscando taponamiento, y decisión sobre toracotomía tomada con el equipo quirúrgico.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">7 · Sangre</span><strong>El foco hemorrágico se buscó en otra parte</strong> —abdomen, pelvis, retroperitoneo, extremidades— y la transfusión va al ritmo que el paciente necesita.</span>
+        </button>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./checklist-toracotomia-reanimacion.html">Cuándo abrir el tórax →</a>
+        <a class="cross-link" href="./checklist-politrauma_2.html">Secuencia ABCDE y destino →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · DESPUÉS -->
+  <div class="section s9" id="s9" style="animation-delay:0.38s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Después: débito, destino y retiro</div>
+        <div class="section-subtitle">El número que decide el pabellón, el hemotórax retenido y el cierre</div>
+      </div>
+      <span class="section-check-count" id="count-s9">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">🔢</span>
+        <span><strong>Los umbrales clásicos de débito son una convención, no una regla validada.</strong> Las cifras
+        que circulan —<strong>alrededor de 1500 mL de salida inmediata</strong>, o <strong>del orden de 200 mL por
+        hora mantenidos durante dos a cuatro horas</strong>— provienen de los textos y cursos clásicos de trauma y
+        <em>no de ensayos</em>. Sirven como gatillo para llamar, no como permiso para esperar: <strong>el estado
+        hemodinámico y la respuesta a la transfusión pesan más que el número del frasco</strong>, y un paciente que
+        no se estabiliza va a pabellón aunque el débito no haya llegado al umbral. <em>Los umbrales exactos y la
+        conducta asociada se verifican con el protocolo institucional y con el equipo quirúrgico.</em></span>
+      </div>
+
+      <div class="subhead">Lo que se hace en las primeras horas</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📈</span><span><strong>Débito inicial y luego horario, anotado con la hora.</strong> La tendencia dice más que cualquier valor aislado: un débito que sube es sangrado activo; uno que se detiene de golpe puede ser un coágulo, no una mejoría.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Reanimación con hemoderivados según el protocolo de transfusión masiva del servicio</strong>, no con cristaloides en volumen. <em>Las razones de componentes, el uso de ácido tranexámico y los umbrales de activación se rigen por el protocolo institucional de trauma.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">♻️</span><span><strong>Autotransfusión del hemotórax</strong> si el servicio dispone del sistema y el caso lo permite. <em>Disponibilidad, contraindicaciones y técnica: verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Antibióticos: la evidencia no obliga ni en un sentido ni en otro.</strong> La guía de manejo de la Eastern Association for the Surgery of Trauma concluye que <strong>no hay evidencia suficiente para recomendar ni para desaconsejar</strong> el uso presuntivo de antibióticos en el drenaje pleural por hemoneumotórax traumático. <em>Lo que se use, y por cuánto tiempo, lo define el protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">😣</span><span><strong>Analgesia planificada desde el primer momento.</strong> El tubo pleural duele, y el dolor mal tratado es el que impide toser, moviliza menos el tórax y termina en atelectasia y neumonía. En los ensayos de calibre, el dolor fue justamente la diferencia a favor del catéter fino. <em>El esquema analgésico y los bloqueos regionales disponibles se definen con el protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">📋</span><span><strong>Registro completo en la ficha:</strong> hora de la decisión, lados, hallazgo en cada lado, calibre, profundidad en centímetros, débito inicial, respuesta clínica, imagen de control y quién hizo cada cosa.</span></div>
+      </div>
+
+      <div class="subhead">Hemotórax retenido</div>
+      <div class="info-banner">
+        <span class="warning-icon">⏳</span>
+        <span><strong>La sangre que queda en el tórax no se reabsorbe: se organiza y se infecta.</strong> En la serie
+        de Lin, sobre 136 pacientes operados por hemotórax retenido tras trauma cerrado, los intervenidos por
+        videotoracoscopia <strong>dentro de los primeros tres días</strong> tuvieron menos infección, menos días de
+        ventilación y menos estadía; los operados <strong>al séptimo día o después</strong> tuvieron más cultivos
+        positivos en el líquido pleural y en el esputo y peores desenlaces. Los autores concluyen que la cirugía
+        puede retrasarse por las lesiones asociadas, pero <strong>no debería pasar de los seis días</strong>. En la
+        práctica: si al control hay colección residual significativa, <em>el equipo de tórax se involucra temprano,
+        no cuando ya está tabicada.</em></span>
+      </div>
+
+      <div class="subhead">Retiro del tubo y cierre de la toracostomía</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">✂️</span><span><strong>Los criterios de retiro son los habituales del servicio</strong>: sin fuga de aire, pulmón reexpandido en la imagen y débito por debajo del umbral local en 24 horas. <em>Las cifras exactas, la necesidad o no de un periodo previo sin aspiración, y la maniobra respiratoria en el momento de retirarlo, se verifican con el protocolo institucional.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⛔</span><span><strong>No pinzar el tubo como «prueba» en un paciente con fuga de aire.</strong> Si el servicio usa periodos de pinzamiento antes del retiro, es con criterios específicos, supervisión y en pacientes sin fuga.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩹</span><span><strong>Cierre:</strong> se anuda el punto preparado y se cubre con apósito. Si quedó una <strong>toracostomía abierta sin tubo</strong> y el paciente ya no la necesita, se cierra formalmente y se documenta —no se deja «que cierre sola»—. <em>La técnica de cierre y el control posterior se rigen por el protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🩻</span><span><strong>Control de imagen después del retiro</strong>, buscando neumotórax de recidiva, con el plazo que indique el protocolo del servicio.</span></div>
+      </div>
+
+      <div class="subhead">Checklist posterior</div>
+      <div class="checklist" id="list-s9">
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Débito inicial y horario registrados con la hora</strong>, y alguien nombrado para vigilarlos.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Umbral de llamada al cirujano acordado y dicho en voz alta</strong>, antes de alcanzarlo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Transfusión y hemostasia según el protocolo de trauma del servicio</strong>, con el laboratorio de coagulación en camino.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Decisión sobre antibióticos tomada según el protocolo local</strong> y anotada —con o sin ellos—, sabiendo que la evidencia no obliga.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Plan de analgesia escrito</strong>, no «según necesidad» a secas.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Destino definido</strong>: pabellón, unidad de paciente crítico, traslado. <em>Y quién acompaña, con el tubo nunca pinzado.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Colección residual buscada en el control</strong> y equipo de tórax involucrado temprano si la hay. <em>El hemotórax retenido se resuelve en días, no en semanas.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Toda toracostomía abierta sin tubo está contabilizada</strong>: o lleva tubo, o está cerrada formalmente y documentada. <em>Ninguna queda olvidada bajo un apósito.</em></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · COMPLICACIONES Y CERTEZA -->
+  <div class="section s10" id="s10" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Complicaciones y grado de certeza</div>
+        <div class="section-subtitle">Lo que puede salir mal y cuánto sostiene cada afirmación de esta página</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Complicaciones</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Complicación</th><th>Cómo aparece</th><th>Cómo se previene o se trata</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Malposición del tubo</td>
+              <td>Intracisural (la más frecuente por vía lateral), subcutánea, extratorácica, intraparenquimatosa. Sin oscilación, sin débito, neumotórax que persiste.</td>
+              <td>Disección roma, dedo antes del tubo, dirección hacia posterior y «más hacia la camilla». Control con imagen y <strong>recolocación con tubo nuevo</strong>, no reintroducción.</td>
+            </tr>
+            <tr>
+              <td>Lesión de órgano abdominal</td>
+              <td>Hígado, bazo, estómago. Entrada demasiado baja o diafragma elevado.</td>
+              <td>Contar los espacios, respetar el borde inferior del triángulo, reconocer con el dedo antes de meter nada. Si ocurre: <strong>cirugía</strong>.</td>
+            </tr>
+            <tr>
+              <td>Lesión pulmonar, cardíaca o de grandes vasos</td>
+              <td>Hemorragia brusca por el tubo, deterioro inmediato. Clásicamente asociada al uso de trocar o a la fuerza a ciegas.</td>
+              <td><strong>Nunca trocar, nunca empujar a ciegas.</strong> Si ocurre: pabellón y equipo de tórax.</td>
+            </tr>
+            <tr>
+              <td>Hemorragia por el paquete intercostal</td>
+              <td>Sangrado que no viene del tórax sino de la pared, por entrar pegado al borde inferior de la costilla superior.</td>
+              <td>Caminar siempre sobre el <strong>borde superior de la costilla inferior</strong>. Compresión, revisión y, si no cede, exploración quirúrgica.</td>
+            </tr>
+            <tr>
+              <td>Infección: del sitio y empiema</td>
+              <td>Fiebre, secreción, colección tabicada en la imagen. Más probable con hemotórax retenido y con el tubo puesto más tiempo.</td>
+              <td>Técnica estéril en lo posible —en el paro «lo posible» es poco, y eso se documenta—, drenaje completo y <strong>resolución temprana del hemotórax retenido</strong>.</td>
+            </tr>
+            <tr>
+              <td>Enfisema subcutáneo</td>
+              <td>Crepitación que progresa. Suele significar orificio del tubo fuera de la pleura, tubo tapado o fuga grande.</td>
+              <td>Revisar posición y permeabilidad; buscar fuga mayor. <em>El enfisema por sí solo rara vez es el problema; es el aviso de otro.</em></td>
+            </tr>
+            <tr>
+              <td>Edema pulmonar de reexpansión</td>
+              <td>Hipoxemia tras reexpandir un pulmón colapsado de larga data, sobre todo con drenaje rápido de gran volumen.</td>
+              <td>Es poco frecuente en trauma agudo. <em>Las estrategias de drenaje gradual y sus límites de volumen se rigen por el protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Lesión del operador</td>
+              <td>Corte con un borde costal fracturado o pinchazo, con exposición a sangre.</td>
+              <td><strong>Doble guante</strong>, explorar con la pinza antes que con el dedo cuando hay fracturas, y protocolo de exposición a fluidos si ocurre.</td>
+            </tr>
+            <tr>
+              <td>Tensión recurrente sobre toracostomía abierta</td>
+              <td>Deterioro en un paciente que ya había respondido, al perder la ventilación a presión positiva o al sellarse la incisión.</td>
+              <td>Reentrar con el dedo e <strong>instalar el tubo</strong>. Apósito no oclusivo mientras tanto.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Grado de certeza de lo que dice esta página</div>
+      <div class="plain-list">
+        <div class="plain-item good"><span class="bullet-icon">🟢</span><span><strong>Bien sustentado.</strong> Que la aguja de 5 cm falla con frecuencia y que el sitio axilar anterior tiene la pared más delgada y el menor fracaso predicho (metaanálisis y series tomográficas). Que la ecografía supera a la radiografía en decúbito para el neumotórax (revisión Cochrane). Que en el hemotórax traumático <em>del paciente estable</em> el catéter de 14 Fr es tan eficaz como el tubo de 28–32 Fr y duele menos (tres ensayos aleatorizados).</span></div>
+        <div class="plain-item"><span class="bullet-icon">🟡</span><span><strong>Sustentado por estudios observacionales.</strong> Que la toracostomía simple es segura y efectiva en manos entrenadas (Deakin, Massarutti, Hannon, Dickson). Que la malposición del tubo es frecuente y mayoritariamente intracisural por vía lateral (Huber-Wagner). Que el hemotórax retenido conviene resolverlo temprano (Lin).</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🔴</span><span><strong>Sin evidencia de beneficio en desenlaces duros.</strong> Ningún estudio ha mostrado que aumentar la frecuencia de la descompresión torácica en el paro traumático mejore la sobrevida: ni el cambio de protocolo de Victoria (Alqudah), ni el seguimiento nacional francés tras las guías europeas (Benhamed), ni la comparación prehospitalaria de Harris. <em>Se hace porque trata una causa reversible cuando está presente, no porque exista un ensayo que demuestre que salva.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚪</span><span><strong>Convención, sin respaldo individual de estudios de desenlace.</strong> Todas las metas de tiempo del cronómetro; el calibre 28–32 Fr en el paciente inestable (excluido de los ensayos); los umbrales de 1500 mL y 200 mL/h; el nivel de aspiración; los criterios y la técnica de retiro; el esquema y la duración de los antibióticos; la frecuencia con que se revisa una toracostomía abierta; el plazo máximo para convertirla en tubo; la dirección «hacia la camilla» (modelo cadavérico); y el tamaño exacto de la incisión. <strong>Todo esto se contrasta con el protocolo institucional vigente y con el material real del servicio.</strong></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="progress-bottom" style="margin-top:20px;">
+    <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBar"></div></div>
+    <div class="progress-label"><span id="progress-pct">0%</span> del checklist</div>
+    <button type="button" class="reset-btn" onclick="resetAll()">↺ Reiniciar</button>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    presencial en el procedimiento. La <strong>toracostomía y la instalación de un tubo pleural son procedimientos
+    invasivos de alto riesgo</strong>, con complicaciones potencialmente mortales —lesión de pulmón, corazón, grandes
+    vasos, diafragma, hígado o bazo, hemorragia del paquete intercostal, empiema—: leer este checklist no sustituye
+    la práctica supervisada ni la simulación. <strong>El sitio de punción, el calibre del tubo, el tamaño de la
+    incisión, el nivel de aspiración, los umbrales de débito que indican cirugía, los criterios y la técnica de
+    retiro, el esquema y la duración de los antibióticos, el anestésico local y su dosis máxima, el esquema de
+    analgesia, la política de radiografía posprocedimiento, el uso de autotransfusión y de ácido tranexámico, y la
+    frecuencia con que se revisa una toracostomía abierta dependen del material disponible y deben verificarse con
+    el protocolo institucional</strong> antes de aplicarse. Las <strong>metas de tiempo del cronómetro son
+    referenciales y no constituyen un estándar validado</strong>: no existe una referencia publicada de tiempos para
+    este procedimiento, y el reparto propuesto aquí es una distribución razonable, no una norma. Los
+    <strong>esquemas son dibujos orientativos, no ilustraciones anatómicas a escala.</strong> El contenido es para
+    <strong>pacientes adultos</strong>; el drenaje pleural pediátrico requiere material de tamaño adecuado —el
+    espacio intercostal es estrecho desde el nacimiento— y se rige por el protocolo del servicio. Conviene además
+    tener presente que <strong>ningún estudio ha demostrado que aumentar la frecuencia de la descompresión torácica
+    en el paro traumático mejore la sobrevida</strong>: el procedimiento trata una causa reversible cuando está
+    presente y no reemplaza el control de la hemorragia, la transfusión ni la vía aérea. El cronómetro y el checklist
+    <strong>no guardan ningún dato</strong>: el registro del procedimiento se hace en la ficha clínica.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Referencias localizadas y verificadas mediante <strong>PubMed</strong>.</div>
+      <div class="ref-item">Laan DV, Vu TDN, Thiels CA, et al. <em>Chest wall thickness and decompression failure: A systematic review and meta-analysis comparing anatomic locations in needle thoracostomy.</em> Injury. 2016;47(4):797–804. <a href="https://doi.org/10.1016/j.injury.2015.11.045" target="_blank" rel="noopener">DOI: 10.1016/j.injury.2015.11.045</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/26724173/" target="_blank" rel="noopener">PMID 26724173</a> — <strong>Fuente de la tabla de grosor y fracaso por sitio.</strong> Quince estudios para grosor y trece para efectividad: pared de <strong>42,79 mm</strong> en el 2.º EIC línea medioclavicular, <strong>39,85 mm</strong> en línea axilar media y <strong>34,33 mm</strong> en línea axilar anterior; fracaso con aguja de 5 cm de <strong>38 %, 31 % y 13 %</strong> respectivamente (p = 0,01). <em>Metaanálisis de estudios observacionales.</em></div>
+      <div class="ref-item">Lesperance RN, Carroll CM, Aden JK, et al. <em>Failure Rate of Prehospital Needle Decompression for Tension Pneumothorax in Trauma Patients.</em> Am Surg. 2018;84(11):1750–1755. · <a href="https://pubmed.ncbi.nlm.nih.gov/30747628/" target="_blank" rel="noopener">PMID 30747628</a> — Trescientos treinta y cinco pacientes con descompresión prehospitalaria y tomografía posterior: según el método radiológico usado, <strong>39 % o 76 % de los catéteres no alcanzó el espacio pleural</strong>, y <strong>al menos el 39 % no tenía neumotórax a tensión</strong>. La pared del lado lesionado era más gruesa que la del sano; con catéter de 8 cm en el 5.º EIC línea axilar anterior había riesgo de lesión cardíaca en el 42 %.</div>
+      <div class="ref-item">von Vopelius-Feldt J, Persaud A, Jones S, et al. <em>Hemothorax and needle thoracostomies in prehospital traumatic cardiac arrest: An autopsy series of 172 cases.</em> Resusc Plus. 2025;25:101012. <a href="https://doi.org/10.1016/j.resplu.2025.101012" target="_blank" rel="noopener">DOI: 10.1016/j.resplu.2025.101012</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/40688253/" target="_blank" rel="noopener">PMID 40688253</a> — <strong>Origen del argumento «la aguja no drena sangre».</strong> Ciento setenta y dos paros traumáticos prehospitalarios con informe forense: <strong>hemotórax en el 70 %</strong>; se hizo descompresión con aguja en 40 casos y <strong>falló en descomprimir el hemotórax masivo en 14 de 33 (42 %)</strong>. Los autores piden investigar la toracostomía digital en este escenario.</div>
+      <div class="ref-item">Chang SJ, Ross SW, Kiefer DJ, et al. <em>Evaluation of 8.0-cm needle at the fourth anterior axillary line for needle chest decompression of tension pneumothorax.</em> J Trauma Acute Care Surg. 2014;76(4):1029–1034. <a href="https://doi.org/10.1097/TA.0000000000000158" target="_blank" rel="noopener">DOI: 10.1097/TA.0000000000000158</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/24662868/" target="_blank" rel="noopener">PMID 24662868</a> — Con catéter de 8 cm la descompresión radiológica superó el <strong>96 %</strong> en ambos sitios, frente a 66–81 % con el de 5 cm; en el 4.º EIC axilar anterior <em>izquierdo</em>, la distancia media a la estructura vital más cercana fue de 91,8 mm, y <strong>entrar perpendicular a la pared</strong> elevó la tasa de no lesión a más del 91 %.</div>
+      <div class="ref-item">Deakin CD, Davies G, Wilson A. <em>Simple thoracostomy avoids chest drain insertion in prehospital trauma.</em> J Trauma. 1995;39(2):373–374. <a href="https://doi.org/10.1097/00005373-199508000-00031" target="_blank" rel="noopener">DOI: 10.1097/00005373-199508000-00031</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/7674410/" target="_blank" rel="noopener">PMID 7674410</a> — <strong>Descripción original de la técnica</strong> en 45 pacientes atendidos en la vía pública por el servicio aéreo del Royal London: más rápida y más simple que el drenaje, evitando los riesgos de instalar el tubo en la escena.</div>
+      <div class="ref-item">Massarutti D, Trillò G, Berlot G, et al. <em>Simple thoracostomy in prehospital trauma management is safe and effective: a 2-year experience by helicopter emergency medical crews.</em> Eur J Emerg Med. 2006;13(5):276–280. <a href="https://doi.org/10.1097/00063110-200610000-00006" target="_blank" rel="noopener">DOI: 10.1097/00063110-200610000-00006</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/16969232/" target="_blank" rel="noopener">PMID 16969232</a> — Serie prospectiva de 55 pacientes: saturación de <strong>86,4 ± 10,2 % a 98,5 ± 4,7 %</strong>; neumotórax o hemoneumotórax en el 91,5 % y hemotórax en el 5,1 %; <strong>sin sangrado mayor, laceración pulmonar, infección pleural ni tensión recurrente</strong>; 72,7 % sobrevivió al alta.</div>
+      <div class="ref-item">Hannon L, St Clair T, Smith K, et al. <em>Finger thoracostomy in patients with chest trauma performed by paramedics on a helicopter emergency medical service.</em> Emerg Med Australas. 2020;32(4):650–656. <a href="https://doi.org/10.1111/1742-6723.13549" target="_blank" rel="noopener">DOI: 10.1111/1742-6723.13549</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/32564497/" target="_blank" rel="noopener">PMID 32564497</a> — Ciento tres casos y <strong>179 toracostomías digitales</strong> (73,8 % bilaterales), mediana de Injury Severity Score 41: <strong>tres complicaciones potenciales</strong> y, de los 38 pacientes con radiografía previa al tubo definitivo, <strong>ninguno con neumotórax a tensión</strong>. Los autores concluyen que, dadas las limitaciones de la aguja, debería ser el abordaje preferente.</div>
+      <div class="ref-item">Dickson RL, Gleisberg G, Aiken M, et al. <em>Emergency Medical Services Simple Thoracostomy for Traumatic Cardiac Arrest: Postimplementation Experience in a Ground-based Suburban/Rural Emergency Medical Services Agency.</em> J Emerg Med. 2018;55(3):366–371. <a href="https://doi.org/10.1016/j.jemermed.2018.05.027" target="_blank" rel="noopener">DOI: 10.1016/j.jemermed.2018.05.027</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/29958708/" target="_blank" rel="noopener">PMID 29958708</a> — Cincuenta y siete pacientes en paro traumático: <strong>salida de aire en el 32 %</strong>, retorno de circulación en el 25 %, 11 % vivo a las 24 horas y <strong>7 % de alta neurológicamente intacto</strong>; todos los sobrevivientes fueron trauma cerrado con actividad eléctrica sin pulso. Sin lesiones del personal.</div>
+      <div class="ref-item">Robitaille-Fortin M, Norman S, Archer T, Mercier E. <em>Prehospital Decompression of Pneumothorax: A Systematic Review of Recent Evidence.</em> Prehosp Disaster Med. 2021;36(4):450–459. <a href="https://doi.org/10.1017/S1049023X21000509" target="_blank" rel="noopener">DOI: 10.1017/S1049023X21000509</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/34030755/" target="_blank" rel="noopener">PMID 34030755</a> — Veinte estudios, nivel de evidencia bajo: mejoría subjetiva tras descompresión con aguja entre 18 % y 86 %; <strong>éxito de la toracostomía digital tras paro traumático entre 9,7 % y 32 %</strong>; recomienda aguja de más de 7 cm y señala que la evidencia sobre la toracostomía digital es limitada.</div>
+      <div class="ref-item">Butler FK, Holcomb JB, Shackelford SA, et al. <em>Management of Suspected Tension Pneumothorax in Tactical Combat Casualty Care: TCCC Guidelines Change 17-02.</em> J Spec Oper Med. 2018;18(2):19–35. <a href="https://doi.org/10.55460/XB1Z-3BJU" target="_blank" rel="noopener">DOI: 10.55460/XB1Z-3BJU</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/29889952/" target="_blank" rel="noopener">PMID 29889952</a> — <strong>Origen de la regla de los dos intentos.</strong> Acepta el sitio lateral (5.º EIC línea axilar anterior) o el anterior (2.º EIC línea medioclavicular), aguja de 10 G o 14 G de 8,25 cm, entrada <strong>perpendicular hasta el cono y sostenida 5 a 10 segundos</strong>; define el éxito por el silbido de aire, la mejoría de la dificultad respiratoria, la saturación y los signos de shock; y recomienda <strong>no más de dos descompresiones con aguja</strong> antes de pasar a toracostomía simple o tubo si el paciente sigue en shock y el operador tiene la competencia.</div>
+      <div class="ref-item">Lott C, Truhlář A, Alfonzo A, et al. <em>European Resuscitation Council Guidelines 2021: Cardiac arrest in special circumstances.</em> Resuscitation. 2021;161:152–219. <a href="https://doi.org/10.1016/j.resuscitation.2021.02.011" target="_blank" rel="noopener">DOI: 10.1016/j.resuscitation.2021.02.011</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/33773826/" target="_blank" rel="noopener">PMID 33773826</a> — Guía de referencia del <strong>paro en circunstancias especiales</strong>, incluido el paro traumático y el neumotórax a tensión: tratamiento simultáneo de las causas reversibles por delante de las compresiones convencionales.</div>
+      <div class="ref-item">Alqudah Z, Nehme Z, Williams B, et al. <em>Survival outcomes in emergency medical services witnessed traumatic out-of-hospital cardiac arrest after the introduction of a trauma-based resuscitation protocol.</em> Resuscitation. 2021;168:65–74. <a href="https://doi.org/10.1016/j.resuscitation.2021.09.011" target="_blank" rel="noopener">DOI: 10.1016/j.resuscitation.2021.09.011</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/34555487/" target="_blank" rel="noopener">PMID 34555487</a> — Cuatrocientos noventa paros traumáticos presenciados: con el nuevo protocolo la toracostomía digital intraparo pasó de <strong>0,9 % a 22,8 %</strong>, junto con más sangre y más inmovilización, <strong>sin mejoría en la sobrevida al alta</strong> (OR ajustado 1,29; IC 95 % 0,51–3,23).</div>
+      <div class="ref-item">Benhamed A, Mercier E, Freyssenge J, et al. <em>Impact of the 2015 European guidelines for resuscitation on traumatic cardiac arrest outcomes and prehospital management: A French nationwide interrupted time-series analysis.</em> Resuscitation. 2023;186:109763. <a href="https://doi.org/10.1016/j.resuscitation.2023.109763" target="_blank" rel="noopener">DOI: 10.1016/j.resuscitation.2023.109763</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/36924821/" target="_blank" rel="noopener">PMID 36924821</a> — Casi cinco mil paros traumáticos en el registro nacional francés: tras las guías de 2015 aumentaron el control de hemorragia externa, la transfusión y la <strong>descompresión torácica bilateral (13,7 % a 16,5 %)</strong>, <strong>sin cambios en retorno de circulación, sobrevida ni desenlace neurológico</strong>.</div>
+      <div class="ref-item">Harris CT, Taghavi S, Bird E, et al. <em>Prehospital Simple Thoracostomy Does Not Improve Patient Outcomes Compared to Needle Thoracostomy in Severely Injured Trauma Patients.</em> Am Surg. 2023;89(5):1736–1743. <a href="https://doi.org/10.1177/00031348221075746" target="_blank" rel="noopener">DOI: 10.1177/00031348221075746</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/35142224/" target="_blank" rel="noopener">PMID 35142224</a> — Sesenta y cuatro procedimientos en 48 pacientes: sin diferencias en respuesta, salida de aire o sangre ni retorno de circulación, y <strong>mayor tiempo en escena con la toracostomía simple (16,8 contra 11,5 minutos)</strong>. Los autores plantean priorizar el traslado en el trauma penetrante urbano. <em>Serie retrospectiva pequeña.</em></div>
+      <div class="ref-item">Chan KK, Joo DA, McRae AD, et al. <em>Chest ultrasonography versus supine chest radiography for diagnosis of pneumothorax in trauma patients in the emergency department.</em> Cochrane Database Syst Rev. 2020;7(7):CD013031. <a href="https://doi.org/10.1002/14651858.CD013031.pub2" target="_blank" rel="noopener">DOI: 10.1002/14651858.CD013031.pub2</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/32702777/" target="_blank" rel="noopener">PMID 32702777</a> — <strong>Fuente de la comparación de imagen.</strong> Trece estudios: ecografía por médicos no radiólogos de primera línea con sensibilidad <strong>0,91 (IC 95 % 0,85–0,94)</strong> contra <strong>0,47 (IC 95 % 0,31–0,63)</strong> de la radiografía en decúbito, con especificidad equivalente (≈1,00). Riesgo de sesgo alto o incierto en la mayoría de los estudios.</div>
+      <div class="ref-item">Huber-Wagner S, Körner M, Ehrt A, et al. <em>Emergency chest tube placement in trauma care — which approach is preferable?</em> Resuscitation. 2007;72(2):226–233. <a href="https://doi.org/10.1016/j.resuscitation.2006.06.038" target="_blank" rel="noopener">DOI: 10.1016/j.resuscitation.2006.06.038</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/17141396/" target="_blank" rel="noopener">PMID 17141396</a> — <strong>Fuente de las cifras de malposición.</strong> Ciento un tubos en 68 politraumatizados con tomografía de control: malposición en <strong>2 de 21 (9,5 %) por vía ventral y 20 de 80 (25 %) por vía lateral</strong>, con <strong>17 posiciones intracisurales, todas laterales</strong> (p = 0,013); 6 de los 22 tubos mal posicionados tuvieron disfunción clínicamente relevante y debieron recolocarse. Los autores concluyen que ambas vías siguen siendo aceptables.</div>
+      <div class="ref-item">Kulvatunyou N, Bauman ZM, Zein Edine SB, et al. <em>The small (14 Fr) percutaneous catheter (P-CAT) versus large (28–32 Fr) open chest tube for traumatic hemothorax: A multicenter randomized clinical trial.</em> J Trauma Acute Care Surg. 2021;91(5):809–813. <a href="https://doi.org/10.1097/TA.0000000000003180" target="_blank" rel="noopener">DOI: 10.1097/TA.0000000000003180</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/33843831/" target="_blank" rel="noopener">PMID 33843831</a> — <strong>Ensayo de referencia sobre el calibre.</strong> Ciento diecinueve pacientes aleatorizados: fracaso <strong>11 % contra 13 %</strong> (p = 0,74), sin diferencias en débito, días de tubo ni estadía, y mejor experiencia de inserción con el catéter fino (mediana 1 contra 3; p &lt; 0,001). <strong>Excluyó explícitamente a los pacientes in extremis que requerían tubo de emergencia.</strong></div>
+      <div class="ref-item">Bauman ZM, Kulvatunyou N, Joseph B, et al. <em>Randomized Clinical Trial of 14-French (14F) Pigtail Catheters versus 28–32F Chest Tubes in the Management of Patients with Traumatic Hemothorax and Hemopneumothorax.</em> World J Surg. 2021;45(3):880–886. <a href="https://doi.org/10.1007/s00268-020-05852-0" target="_blank" rel="noopener">DOI: 10.1007/s00268-020-05852-0</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/33415448/" target="_blank" rel="noopener">PMID 33415448</a> — Ensayo unicéntrico previo, 43 pacientes: fracaso <strong>10 % contra 17 %</strong> (p = 0,49) y mejor tolerancia del catéter fino. También excluyó a quienes requerían tubo de emergencia.</div>
+      <div class="ref-item">McCartt J, Ross SW, Cunningham KW, et al. <em>A Randomized Non-Inferiority Clinical Trial of 14Fr Thal versus 28Fr Tube Thoracostomy for Traumatic Hemothorax.</em> Am Surg. 2025;91(4):579–586. <a href="https://doi.org/10.1177/00031348241308907" target="_blank" rel="noopener">DOI: 10.1177/00031348241308907</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/39700058/" target="_blank" rel="noopener">PMID 39700058</a> — Ciento nueve pacientes: fracaso de drenaje <strong>8,3 % contra 3,9 %</strong>, <strong>no inferioridad</strong> con margen del 15 % y sin diferencias en complicaciones ni reingresos.</div>
+      <div class="ref-item">Kulvatunyou N, Erickson L, Vijayasekaran A, et al. <em>Randomized clinical trial of pigtail catheter versus chest tube in injured patients with uncomplicated traumatic pneumothorax.</em> Br J Surg. 2014;101(2):17–22. <a href="https://doi.org/10.1002/bjs.9377" target="_blank" rel="noopener">DOI: 10.1002/bjs.9377</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/24375295/" target="_blank" rel="noopener">PMID 24375295</a> — Cuarenta pacientes con neumotórax traumático no complicado: <strong>menos dolor en el sitio de inserción</strong> con el catéter de 14 Fr, con igual éxito, duración y complicaciones.</div>
+      <div class="ref-item">Moore FO, Duane TM, Hu CKC, et al. <em>Presumptive antibiotic use in tube thoracostomy for traumatic hemopneumothorax: an Eastern Association for the Surgery of Trauma practice management guideline.</em> J Trauma Acute Care Surg. 2012;73(5 Suppl 4):S341–S344. <a href="https://doi.org/10.1097/TA.0b013e31827018c7" target="_blank" rel="noopener">DOI: 10.1097/TA.0b013e31827018c7</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/23114491/" target="_blank" rel="noopener">PMID 23114491</a> — <strong>Fuente de la postura sobre antibióticos.</strong> Revisión sistemática de la literatura 1997–2011: <strong>evidencia insuficiente para recomendar ni para desaconsejar</strong> el uso presuntivo de antibióticos para reducir empiema o neumonía en el drenaje por hemoneumotórax traumático.</div>
+      <div class="ref-item">Lin HL, Huang WY, Yang C, et al. <em>How early should VATS be performed for retained haemothorax in blunt chest trauma?</em> Injury. 2014;45(9):1359–1364. <a href="https://doi.org/10.1016/j.injury.2014.05.036" target="_blank" rel="noopener">DOI: 10.1016/j.injury.2014.05.036</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/24985468/" target="_blank" rel="noopener">PMID 24985468</a> — Ciento treinta y seis pacientes operados por hemotórax retenido: los intervenidos <strong>a los 7 días o más</strong> tuvieron más cultivos positivos, más días de ventilación y de tubo y mayor estadía; los desenlaces fueron mejores operando <strong>dentro de los 3 días</strong> y los autores recomiendan <strong>no pasar de los 6 días</strong>. <em>Serie retrospectiva.</em></div>
+      <div class="ref-item">Peschman JR, Fitzsimmons AJ, Borgert AJ, et al. <em>Aim More Toward the Bed than the Head: A Proof-of-Concept Pilot Study on a Simple Technique for Keeping Trauma Thoracostomy Tubes Out of Lung Fissures.</em> WMJ. 2024;123(5):356–360. · <a href="https://pubmed.ncbi.nlm.nih.gov/39509620/" target="_blank" rel="noopener">PMID 39509620</a> — Seiscientas cincuenta toracostomías en tres cadáveres: colocación dentro de una cisura en <strong>41 % apuntando hacia la cabeza contra 13 % apuntando hacia la camilla</strong> (OR 0,22; IC 95 % 0,14–0,33). <em>Modelo cadavérico de prueba de concepto: propuesta, no práctica validada clínicamente.</em></div>
+      <div class="ref-item">Kwiatt M, Tarbox A, Seamon MJ, et al. <em>Thoracostomy tubes: A comprehensive review of complications and related topics.</em> Int J Crit Illn Inj Sci. 2014;4(2):143–155. <a href="https://doi.org/10.4103/2229-5151.134182" target="_blank" rel="noopener">DOI: 10.4103/2229-5151.134182</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/25024942/" target="_blank" rel="noopener">PMID 25024942</a> — Revisión de referencia de las complicaciones del drenaje pleural: lesión abdominal y torácica, fístulas, trauma vascular, neumotórax recurrente, infección del sitio y tubo no funcionante o mal posicionado, con estrategias de prevención y manejo.</div>
+      <div class="ref-item">Kesieme EB, Dongo A, Ezemba N, et al. <em>Tube thoracostomy: complications and its management.</em> Pulm Med. 2012;2012:256878. <a href="https://doi.org/10.1155/2012/256878" target="_blank" rel="noopener">DOI: 10.1155/2012/256878</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/22028963/" target="_blank" rel="noopener">PMID 22028963</a> — <strong>Sustento de la recomendación de disección roma.</strong> Revisión que clasifica las complicaciones en técnicas e infecciosas y concluye que <strong>la técnica de disección roma tiene menos complicaciones que la del trocar</strong>.</div>
+      <div class="ref-item">Leatherman ML, Held JM, Fluke LM, et al. <em>Relative device stability of anterior versus axillary needle decompression for tension pneumothorax during casualty movement: Preliminary analysis of a human cadaver model.</em> J Trauma Acute Care Surg. 2017;83(1 Suppl 1):S136–S141. <a href="https://doi.org/10.1097/TA.0000000000001488" target="_blank" rel="noopener">DOI: 10.1097/TA.0000000000001488</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/28383466/" target="_blank" rel="noopener">PMID 28383466</a> — Ochenta y cuatro descompresiones en siete cadáveres: tras el traslado simulado, el catéter del 2.º EIC medioclavicular se desplazó en el <strong>67 %</strong> contra el <strong>17 %</strong> del 5.º EIC axilar anterior (p = 0,001). <em>Modelo cadavérico.</em></div>
+      <div class="ref-item">Leonhard G, Overhoff D, Wessel L, et al. <em>Determining optimal needle size for decompression of tension pneumothorax in children — a CT-based study.</em> Scand J Trauma Resusc Emerg Med. 2019;27(1):90. <a href="https://doi.org/10.1186/s13049-019-0671-x" target="_blank" rel="noopener">DOI: 10.1186/s13049-019-0671-x</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/31604472/" target="_blank" rel="noopener">PMID 31604472</a> — <strong>Base de la advertencia pediátrica.</strong> Ciento treinta y nueve niños y 278 mediciones en el 4.º EIC línea axilar anterior: el espacio intercostal mide <strong>0,44 ± 0,13 cm al nacer, 0,78 ± 0,22 cm a los 5 años y 1,12 ± 0,36 cm a los 10 años</strong>. El material pediátrico no es el del adulto.</div>
+      <div class="ref-item">Shinjo T, Tanaka Y, Izawa Y, et al. <em>The need to suspect tension gastrothorax as a cause of obstructive shock in trauma care: A case report.</em> Int J Surg Case Rep. 2024;118:109612. <a href="https://doi.org/10.1016/j.ijscr.2024.109612" target="_blank" rel="noopener">DOI: 10.1016/j.ijscr.2024.109612</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/38581944/" target="_blank" rel="noopener">PMID 38581944</a> — <em>Reporte de un caso</em> que ilustra el gastrotórax a tensión por rotura diafragmática como diagnóstico que imita el neumotórax a tensión, con la advertencia de la contaminación pleural si se punciona un estómago herniado.</div>
+      <div class="ref-item">Aspectos <strong>convencionales</strong> descritos aquí y <strong>no respaldados individualmente por estudios de desenlace</strong>: todas las metas de tiempo del cronómetro; el calibre 28–32 Fr para el paciente inestable (población excluida de los ensayos de calibre); los umbrales de aproximadamente 1500 mL de salida inmediata y de 200 mL/hora como gatillo quirúrgico; el nivel de aspiración; los criterios, la maniobra respiratoria y la técnica de retiro del tubo; el esquema y la duración de los antibióticos; la técnica concreta de fijación y de cierre; la frecuencia con que se revisa una toracostomía abierta y el plazo máximo para convertirla en tubo; el tamaño exacto de la incisión; el uso de autotransfusión; y la conducta ante contraindicaciones relativas. Provienen de textos y cursos de trauma, revisiones narrativas, insertos de fabricantes y consenso de expertos, y deben contrastarse con el <strong>material realmente disponible y con el protocolo institucional vigente</strong>.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Checklist con progreso ────────────────────────────────────────
+  const SECTIONS = ['s1', 's2', 's4', 's5', 's6', 's7', 's8', 's9'];
+  const totals = {};
+  SECTIONS.forEach(s => {
+    const list = document.getElementById('list-' + s);
+    totals[s] = list ? list.querySelectorAll('.check-item').length : 0;
+  });
+  const TOTAL_CHECKS = SECTIONS.reduce((acc, s) => acc + totals[s], 0);
+
+  function countChecked(section) {
+    return document.querySelectorAll('#list-' + section + ' .check-item.checked').length;
+  }
+
+  function toggle(el, section) {
+    el.classList.toggle('checked');
+    updateCount(section);
+    updateProgress();
+  }
+
+  function updateCount(section) {
+    const el = document.getElementById('count-' + section);
+    if (!el) return;
+    const n = countChecked(section);
+    const t = totals[section];
+    el.textContent = n + '/' + t;
+    if (t > 0 && n === t) {
+      el.style.background = 'rgba(16,185,129,0.15)';
+      el.style.borderColor = 'rgba(16,185,129,0.3)';
+      el.style.color = '#6ee7b7';
+    } else {
+      el.style.background = '';
+      el.style.borderColor = '';
+      el.style.color = '';
+    }
+  }
+
+  function updateProgress() {
+    const done = SECTIONS.reduce((acc, s) => acc + countChecked(s), 0);
+    const pct = TOTAL_CHECKS ? Math.round((done / TOTAL_CHECKS) * 100) : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.check-item.checked').forEach(el => el.classList.remove('checked'));
+    SECTIONS.forEach(updateCount);
+    updateProgress();
+  }
+
+  SECTIONS.forEach(updateCount);
+  updateProgress();
+
+  // ── Cronómetro (sin persistencia) ─────────────────────────────────
+  let swStart = null;
+  let swAccum = 0;
+  let swTick = null;
+
+  function swElapsed() {
+    return swAccum + (swStart !== null ? Date.now() - swStart : 0);
+  }
+
+  function fmt(ms) {
+    const total = Math.floor(ms / 1000);
+    const m = String(Math.floor(total / 60)).padStart(2, '0');
+    const s = String(total % 60).padStart(2, '0');
+    return m + ':' + s;
+  }
+
+  function swRender() {
+    const ms = swElapsed();
+    const disp = document.getElementById('swDisplay');
+    disp.textContent = fmt(ms);
+    disp.classList.toggle('warn', ms >= 300000 && ms < 900000);
+    disp.classList.toggle('late', ms >= 900000);
+  }
+
+  function swToggle() {
+    const btn = document.getElementById('swToggle');
+    const cap = document.getElementById('swCaption');
+    if (swStart === null) {
+      swStart = Date.now();
+      swTick = setInterval(swRender, 200);
+      btn.textContent = '⏸ Detener';
+      cap.textContent = 'Corriendo desde la decisión de descomprimir';
+    } else {
+      swAccum += Date.now() - swStart;
+      swStart = null;
+      clearInterval(swTick);
+      swTick = null;
+      btn.textContent = '▶ Continuar';
+      cap.textContent = 'En pausa';
+      swRender();
+    }
+  }
+
+  function msLabel(el) {
+    return el.dataset.prefix + el.dataset.goal + ' s';
+  }
+
+  function swReset() {
+    if (swTick) clearInterval(swTick);
+    swTick = null;
+    swStart = null;
+    swAccum = 0;
+    document.getElementById('swToggle').textContent = '▶ Iniciar';
+    document.getElementById('swCaption').textContent = 'Detenido · parte el reloj cuando se decide descomprimir';
+    document.querySelectorAll('.ms').forEach(ms => {
+      ms.classList.remove('done', 'over');
+      ms.querySelector('.ms-goal').textContent = msLabel(ms);
+    });
+    swRender();
+  }
+
+  function markMs(el) {
+    if (el.classList.contains('done')) {
+      el.classList.remove('done', 'over');
+      el.querySelector('.ms-goal').textContent = msLabel(el);
+      return;
+    }
+    if (swStart === null && swAccum === 0) swToggle();
+    const secs = Math.round(swElapsed() / 1000);
+    const goal = parseInt(el.dataset.goal, 10);
+    el.classList.add('done');
+    el.classList.toggle('over', secs > goal);
+    el.querySelector('.ms-goal').textContent = secs + ' s · meta ' + goal + ' s';
+  }
+
+  swRender();
+</script>
+</body>
+</html>
