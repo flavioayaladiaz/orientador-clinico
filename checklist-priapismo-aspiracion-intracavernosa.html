@@ -1,0 +1,2101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Checklist · Aspiración e irrigación intracavernosa (priapismo isquémico)</title>
+<meta name="description" content="Checklist con cronómetro para la aspiración e irrigación intracavernosa con fenilefrina en el priapismo isquémico: cómo distinguirlo del priapismo arterial y de la erección prolongada postinyección, por qué el reloj manda, anestesia del pene, sitio y calibre de punción, aspiración hasta sangre roja, preparación y dosis de fenilefrina con monitorización, el algoritmo de «no cede», la escalada a shunt y prótesis, el estudio de la causa y la prevención de recurrencias.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99,102,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(20,184,166,0.07) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 36px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.28);
+    color: #fca5a5;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  .header-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--red);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--red);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #6366f1, #14b8a6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .header-sub strong { color: #fff; font-weight: 500; }
+  .header-sub em { color: #fcd34d; font-style: normal; }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .section-check-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .s1 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s1 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s2 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s3 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s3 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s4 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s4 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s5 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s5 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s6 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s6 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s7 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s7 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s8 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s8 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s9 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s9 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s10 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s10 { --accent: var(--red); --accent-glow: var(--red-glow); }
+
+  /* CRONÓMETRO */
+  .stopwatch {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+  .sw-display {
+    font-family: var(--mono);
+    font-size: clamp(40px, 11vw, 60px);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #fff;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .sw-display.warn { color: #fcd34d; }
+  .sw-display.late { color: #fca5a5; }
+  .sw-caption {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+  .sw-controls { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+  .sw-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .sw-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .sw-btn:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+  .sw-btn.primary {
+    background: rgba(16,185,129,0.14);
+    border-color: rgba(16,185,129,0.45);
+    color: #6ee7b7;
+  }
+  .sw-btn.primary:hover { background: rgba(16,185,129,0.22); color: #a7f3d0; }
+
+  .milestones { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .ms {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .ms:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .ms:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .ms.done { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); color: #6ee7b7; }
+  .ms-goal {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .ms.done .ms-goal { color: #6ee7b7; border-color: rgba(16,185,129,0.4); }
+  .ms.done.over .ms-goal { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+  }
+  .check-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .check-item:hover::before { opacity: 1; }
+  .check-item:hover { border-color: rgba(255,255,255,0.12); }
+  .check-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .check-item.checked { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+  .check-item.checked::before { opacity: 0.5; }
+
+  .checkbox {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+    background: transparent;
+  }
+  .check-item.checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .checkmark {
+    opacity: 0;
+    transform: scale(0) rotate(-10deg);
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .check-item.checked .checkmark { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  .check-label {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-dim);
+    transition: color 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+  .check-item.checked .check-label {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(100,116,139,0.5);
+  }
+  .check-label strong { color: #fff; font-weight: 500; }
+  .check-label em { color: #fcd34d; font-style: normal; }
+  .check-step {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+
+  /* PROGRESO */
+  .progress-bottom {
+    margin-top: 6px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .progress-bar-track {
+    flex: 1;
+    min-width: 120px;
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #14b8a6);
+    border-radius: 100px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px rgba(16,185,129,0.5);
+  }
+  .progress-label { font-family: var(--mono); font-size: 12px; color: var(--text-dim); white-space: nowrap; }
+  #progress-pct { color: var(--emerald); font-weight: 500; }
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+  /* BANNERS */
+  .warning-banner, .info-banner, .go-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #fca5a5; }
+  .info-banner { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.18); color: #bfdbfe; }
+  .go-banner { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); color: #6ee7b7; }
+  .warning-banner strong, .info-banner strong, .go-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em, .go-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+  .plain-item.good { background: rgba(16,185,129,0.05); border-color: rgba(16,185,129,0.16); }
+  .plain-item.good strong { color: #6ee7b7; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ESQUEMAS */
+  .figure {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 16px 14px;
+    margin-bottom: 14px;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .fig-caption {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .fig-caption strong { color: var(--text-dim); font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(16,185,129,0.3);
+    background: rgba(16,185,129,0.08);
+    color: #6ee7b7;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(16,185,129,0.16); transform: translateX(2px); }
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--emerald); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .ms { align-items: flex-start; flex-wrap: wrap; }
+    .ms-goal { margin-left: 0; }
+    .sw-btn { flex: 1; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <div class="header-badge">Procedimiento HALO · Checklist</div>
+    <h1>Aspiración e <span>irrigación</span> intracavernosa</h1>
+    <p class="header-sub">
+      El priapismo isquémico es un <strong>síndrome compartimental de un órgano</strong>: el cuerpo cavernoso queda
+      sin flujo, se vuelve hipóxico, hipercápnico y acidótico, y el músculo liso que sostiene la erección se muere
+      por horas. El tratamiento de primera línea no es una derivación: es un procedimiento de box que hace el médico
+      de urgencia —anestesia del pene, punción lateral del cuerpo cavernoso, aspiración de la sangre estancada e
+      inyección de fenilefrina diluida— y que la guía de la AUA y la SMSNA recomienda <strong>antes de cualquier
+      intervención quirúrgica</strong>. Tres ideas organizan la página. <em>El reloj no es retórico</em>: en el estudio
+      ultraestructural de Spycher y Hauri la necrosis extensa del músculo liso aparece <strong>pasadas las 24 horas</strong>
+      y el coágulo con destrucción del endotelio <strong>pasadas las 48</strong>; en la serie de Zacharakis el
+      procedimiento de rescate resolvió el <strong>100 %</strong> de los priapismos de menos de 24 horas y solo el
+      <strong>30 %</strong> de los de más de 48. <em>No todo priapismo se punciona</em>: el priapismo arterial —pene
+      parcialmente rígido, indoloro, tras trauma perineal— no es una emergencia y aspirarlo o inyectarle fenilefrina
+      no lo resuelve. Y <em>la fenilefrina se monitoriza</em>: la guía exige medir presión arterial y frecuencia
+      cardíaca, porque el riesgo no está en el pene sino en el resto del paciente. Aquí están el triaje, el reparto de
+      roles y tiempos, la preparación, la anestesia, la punción, la aspiración, la dilución y las dosis, el algoritmo
+      de «no cede», la escalada quirúrgica, el estudio de la causa y la prevención de la próxima vez.
+    </p>
+  </div>
+
+  <!-- 01 · ¿ES ESTE EL PRIAPISMO QUE SE PUNCIONA? -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">¿Es este el priapismo que se punciona?</div>
+        <div class="section-subtitle">Isquémico, arterial o erección prolongada postinyección: tres cuadros con tres conductas distintas</div>
+      </div>
+      <span class="section-check-count" id="count-s1">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>La definición operativa es simple y el diagnóstico es clínico.</strong> Priapismo es una
+        erección que <strong>persiste más de 4 horas</strong>, que continúa más allá del estímulo sexual o que no
+        tiene relación con él. El subtipo isquémico —de bajo flujo, veno-oclusivo— es el que constituye emergencia:
+        <strong>pene rígido, doloroso, con cuerpos cavernosos duros a la palpación y glande blando</strong>. La guía
+        de la AUA y la SMSNA es explícita en que <em>todo paciente con priapismo se evalúa de inmediato para definir
+        el subtipo</em>, y en que el isquémico recibe intervención precoz. La gasometría cavernosa y la ecografía
+        <strong>confirman, no autorizan</strong>: se toman en el mismo gesto de la punción y no se espera su resultado
+        para tratar. La guía de la EAU, que clasifica el priapismo en <strong>isquémico, arterial y
+        «tartamudeante»</strong>, sitúa el inicio de la intervención <strong>dentro de las primeras 4 a 6 horas</strong>
+        —descompresión de los cuerpos cavernosos por aspiración más inyección intracavernosa de un simpaticomimético—.</span>
+      </div>
+
+      <div class="subhead">Los tres cuadros, lado a lado</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>&nbsp;</th><th>Isquémico (bajo flujo)</th><th>Arterial (alto flujo, no isquémico)</th><th>Erección prolongada postinyección</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cómo se ve</td>
+              <td><strong>Rígido y doloroso.</strong> Cuerpos cavernosos duros, glande blando. El dolor crece con las horas.</td>
+              <td><strong>Parcialmente rígido e indoloro</strong>, o con molestia mínima. Suele poder aumentar su rigidez con el estímulo.</td>
+              <td>Rígido, aún <strong>sin dolor o con dolor leve</strong>, dentro de las primeras horas tras una inyección intracavernosa.</td>
+            </tr>
+            <tr>
+              <td>Antecedente típico</td>
+              <td>Fármacos (trazodona, antipsicóticos), inyección intracavernosa, drogas, enfermedad de células falciformes, neoplasia hematológica, idiopático.</td>
+              <td><strong>Trauma perineal o peneano</strong> (caída a horcajadas, patada, bicicleta), a veces cirugía o instrumentación uretral. Puede aparecer días después.</td>
+              <td>Alprostadil, papaverina o fentolamina puestas en consulta, autoinyección prescrita o uso recreativo.</td>
+            </tr>
+            <tr>
+              <td>Gasometría cavernosa</td>
+              <td><strong>pH &lt; 7,25 · pO₂ &lt; 30 mmHg · pCO₂ &gt; 60 mmHg.</strong> Sangre oscura, espesa.</td>
+              <td><strong>pH ≈ 7,40 · pO₂ &gt; 90 mmHg · pCO₂ &lt; 40 mmHg.</strong> <em>Sangre roja brillante al aspirar</em> —el hallazgo que describió Bastuba en los 7 casos de su serie.</td>
+              <td>Puede ser normal o levemente isquémica según el tiempo transcurrido.</td>
+            </tr>
+            <tr>
+              <td>Signo que ayuda</td>
+              <td>Dolor y rigidez que no ceden con nada; el paciente suele llegar tarde por vergüenza.</td>
+              <td><strong>Signo de <em>piesis</em></strong>: la compresión perineal produce detumescencia (Hatzichristou). Doppler color con flujo turbulento focal —la fístula arterio-lacunar.</td>
+              <td>El reloj: <strong>menos de 4 horas</strong> desde la inyección y sin acidosis.</td>
+            </tr>
+            <tr>
+              <td>Qué se hace</td>
+              <td><strong>Aspiración + irrigación + fenilefrina intracavernosa ahora</strong>, y urología avisada.</td>
+              <td><strong>No es emergencia y no se punciona para tratar.</strong> Observación, hielo, compresión perineal, y embolización superselectiva si no resuelve o el paciente lo pide. Urología y radiología intervencional deciden.</td>
+              <td>Protocolo <strong>distinto</strong> del priapismo verdadero (la AUA lo separa explícitamente): medidas conservadoras y, si no cede, fenilefrina —a menudo <em>sin</em> necesidad de aspirar.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">⛔</span>
+        <span><strong>Desvío que evita un daño: no se punciona ni se inyecta fenilefrina al priapismo arterial.</strong>
+        No hay nada que descomprimir —el problema es una fístula entre la arteria cavernosa lacerada y las lagunas, con
+        exceso de entrada, no falta de salida— y el simpaticomimético no resuelve el mecanismo. En la serie de
+        Hatzichristou la compresión perineal bastó en un niño y otro resolvió espontáneamente; en la de Hakim los
+        pacientes en manejo expectante <strong>se mantuvieron potentes hasta 31 años</strong>. Pinchar en este escenario
+        agrega hematoma, infección y fibrosis sin beneficio. <em>Si el pene no duele, no está rígido del todo y hubo
+        trauma perineal, el gesto correcto es la ecografía Doppler y el teléfono, no la aguja.</em> La excepción es
+        diagnóstica: una gasometría cavernosa tomada con aguja fina sí es razonable cuando la duda persiste —ese
+        pinchazo es para saber, no para tratar.</span>
+      </div>
+
+      <div class="subhead">Cuándo sí, ahora</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">⏱️</span><span><strong>Erección rígida y dolorosa de más de 4 horas, con cuerpos cavernosos duros.</strong> No hace falta la gasometría para empezar: el cuadro clínico es suficiente para preparar el material y la fenilefrina mientras se toma la muestra.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Priapismo tras inyección intracavernosa que ya pasó las 4 horas</strong>, sobre todo el de uso recreativo: en la serie de Borrell la duración mediana del priapismo por uso recreativo fue de <strong>30 horas</strong> (frente a 3 horas en el puesto en consulta) y <strong>65 %</strong> de esos pacientes, previamente sanos, quedó con disfunción eréctil nueva.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Paciente con enfermedad de células falciformes y priapismo mayor.</strong> La hidratación, la analgesia y el oxígeno van <em>en paralelo</em>, no antes: la guía de 2022 dice que el manejo inicial se enfoca en el alivio urológico de la erección y que la evaluación hematológica estándar se considera <strong>de forma concurrente</strong>. <em>No se pierde la tarde esperando que el suero resuelva el pene.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🕛</span><span><strong>Aunque ya hayan pasado muchas horas.</strong> El tiempo cambia el pronóstico y cambia el plan —arriba de 36 horas la vía quirúrgica empieza a ganar—, pero <em>no convierte el caso en «nada que hacer»</em>: cambia a quién se llama y con qué expectativa se conversa con el paciente.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧒</span><span><strong>Adolescente o niño con priapismo isquémico</strong>: el procedimiento es el mismo en concepto, pero <em>el material, las dosis de anestésico y de fenilefrina y el umbral para llamar a urología pediátrica son distintos — verificar con protocolo institucional.</em> Esta página está escrita para adultos.</span></div>
+      </div>
+
+      <div class="subhead">Cuándo no, o no todavía</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🚫</span><span><strong>Priapismo arterial confirmado o muy probable.</strong> Ver el desvío de arriba. La conducta es observación y derivación, no punción terapéutica.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⏳</span><span><strong>Erección prolongada de menos de 4 horas tras una inyección intracavernosa en consulta.</strong> Primero lo conservador —caminar, ejercicio de grandes grupos musculares, hielo local, analgesia, vaciar la vejiga— y recién después la fenilefrina. <em>El esquema exacto de medidas conservadoras y el tiempo que se les da depende del protocolo institucional.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🧐</span><span><strong>Cuando lo que hay no es priapismo.</strong> Edema peneano, parafimosis estrangulante, anillo o cuerpo extraño constrictivo en la base, fractura de pene con hematoma, celulitis o cavernositis, y la induración dolorosa de la enfermedad de Peyronie en fase activa. <em>Palpa los cuerpos cavernosos y revisa la base del pene antes de pinchar: un anillo olvidado se trata con una cizalla, no con fenilefrina.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🫀</span><span><strong>No «no todavía», pero sí con más cuidado: el paciente en quien la fenilefrina es riesgosa.</strong> Hipertensión no controlada o urgencia hipertensiva al ingreso, hemorragia intracerebral reciente, cardiopatía isquémica inestable, arritmia grave, uso de inhibidores de la monoaminooxidasa. No es una contraindicación absoluta al procedimiento —la aspiración y la irrigación se pueden hacer igual—, pero cambia la dosis, el intervalo y la intensidad de la monitorización, y amerita hablar con urología y con quien maneja la hemodinamia. <em>Umbrales y conducta exacta: verificar con protocolo institucional.</em></span></div>
+      </div>
+
+      <div class="subhead">Confirmación antes de preparar la mesa</div>
+      <div class="checklist" id="list-s1">
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Hora de inicio preguntada y anotada</strong>, no «desde anoche». La duración es el dato que más cambia la conducta y el pronóstico, y es el primero que se pierde si no se escribe.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Subtipo definido en voz alta</strong>: «priapismo isquémico de X horas» o «sospecha de priapismo arterial postraumático». <em>Las dos frases llevan a mesas distintas.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Causa buscada en tres preguntas</strong>: ¿qué fármacos o drogas usó —incluida cualquier inyección en el pene—?, ¿tiene enfermedad de células falciformes o rasgo falciforme?, ¿hubo trauma perineal? La respuesta cambia el estudio y la prevención, no el procedimiento de ahora.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Base del pene y prepucio revisados</strong>: sin anillo, cuerda, preservativo apretado ni cuerpo extraño constrictivo, sin parafimosis. Lo que se saca con la mano no se trata con una aguja.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Urología avisada al inicio, no al fracasar.</strong> La guía de la AUA pide involucrar precozmente al urólogo cuando el paciente llega a urgencia. Avisar temprano no delega el procedimiento: asegura que el siguiente escalón esté disponible si hace falta.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Consentimiento conversado en términos reales</strong>: qué se va a hacer, que duele, que puede necesitar repetirse, que puede no funcionar y requerir pabellón, y que <em>el riesgo de disfunción eréctil posterior depende sobre todo de las horas transcurridas, no de la destreza del operador</em>. Registrar la conversación.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Privacidad asegurada</strong>: box cerrado, cortina, mínimo de personas, sábana. Es parte del procedimiento, no una cortesía: la vergüenza es la razón más frecuente por la que estos pacientes llegan tarde.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · EL RELOJ -->
+  <div class="section s2" id="s2" style="animation-delay:0.10s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">El reloj: qué está pasando dentro del cuerpo cavernoso</div>
+        <div class="section-subtitle">Por qué las horas importan, y por qué «ya pasaron muchas» no es motivo para no hacer nada</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">🔬</span>
+        <span><strong>Lo que se destruye es el músculo liso trabecular.</strong> En el estudio ultraestructural de
+        Spycher y Hauri sobre tejido eréctil de pacientes con priapismo, la primera respuesta del tejido es el
+        <strong>edema intersticial trabecular</strong>; después las células musculares lisas se transforman en células
+        de aspecto fibroblástico; el <strong>daño celular severo y la necrosis extensa aparecen cuando el episodio
+        pasa de las 24 horas</strong>; y la <strong>formación de coágulo dentro de las lagunas con destrucción del
+        endotelio, pasadas las 48 horas</strong>, momento en que la inflamación trabecular se hace evidente y la mayor
+        parte del músculo liso está transformada o necrótica. Los autores atribuyen a esa pérdida de elementos
+        contráctiles la falla eréctil irreversible del priapismo de bajo flujo de más de 24 horas. En el mismo trabajo,
+        el priapismo de alto flujo <strong>no alcanzó ese estadio</strong> —la razón ultraestructural de por qué el
+        arterial es otra enfermedad.</span>
+      </div>
+
+      <div class="subhead">Qué dicen los datos clínicos por franja de tiempo</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Duración</th><th>Qué muestran las series</th><th>Qué implica para la conducta</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>&lt; 4 h</td>
+              <td>Todavía no es priapismo por definición. En el escenario postinyección, es el momento de lo conservador.</td>
+              <td>Medidas conservadoras; <strong>protocolo distinto</strong> del priapismo verdadero.</td>
+            </tr>
+            <tr>
+              <td>4–24 h</td>
+              <td><strong>La franja donde el manejo de box funciona.</strong> En la serie de Scarberry, los que resolvieron con fenilefrina llevaban <strong>8,8 ± 5,6 horas</strong>, contra <strong>57,3 ± 37,1 horas</strong> en los que no resolvieron (p &lt; 0,001). En la de Sidhu, con mediana de presentación de 5,4 horas, <strong>53 de 58 (91 %)</strong> lograron detumescencia en el box.</td>
+              <td>Aspiración, irrigación y fenilefrina. <em>Es aquí donde el procedimiento salva función eréctil.</em></td>
+            </tr>
+            <tr>
+              <td>24–36 h</td>
+              <td>Ya hay necrosis de músculo liso según Spycher. En Zacharakis, el rescate quirúrgico resolvió <strong>todos</strong> los casos de menos de 24 horas, pero el <strong>IIEF-5 cayó de 24 a 7,7</strong> en promedio y <strong>la mitad de los de menos de 24 horas quedó con disfunción eréctil</strong>.</td>
+              <td>Se hace igual, con urología ya en el box y con la conversación sobre pronóstico hecha de verdad.</td>
+            </tr>
+            <tr>
+              <td>&gt; 36 h</td>
+              <td>En la comparación de El-Achkar sobre 76 pacientes con priapismo de ≥ 36 horas, el manejo <strong>no quirúrgico</strong> tuvo <strong>66,7 % de reingreso y reintervención contra 10,4 %</strong> del quirúrgico (p &lt; 0,01), y más fibrosis deformante (18,5 % contra 7,9 %, sin significación).</td>
+              <td><strong>La balanza se inclina a la cirugía precoz.</strong> La fenilefrina sigue siendo razonable como primer intento, pero <em>no se insiste indefinidamente</em>: el plan se arma con urología desde el principio.</td>
+            </tr>
+            <tr>
+              <td>&gt; 48 h</td>
+              <td>En Zacharakis, el shunt en T con tunelización resolvió solo el <strong>30 %</strong>; <strong>todos</strong> los pacientes de más de 48 horas tenían músculo liso cavernoso necrótico en la biopsia y terminaron con disfunción eréctil severa que requirió prótesis.</td>
+              <td>Conversación distinta: el objetivo pasa de «salvar la erección» a <strong>resolver el dolor, evitar la necrosis y planificar la rehabilitación</strong>, incluida la prótesis precoz.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="go-banner" style="margin-top:14px;">
+        <span class="warning-icon">🧩</span>
+        <span><strong>El dato que cambia la derivación tardía: la prótesis precoz.</strong> En el estudio multicéntrico
+        de Barham sobre 62 hombres con priapismo isquémico previo a quienes se instaló una prótesis inflable, los
+        operados <strong>dentro de los 6 meses tuvieron 0 % de complicaciones</strong>, contra <strong>40,5 % en los
+        operados después</strong> —la mayoría complicaciones del cilindro, en un pene ya fibrótico. La mediana de
+        duración del priapismo en esa cohorte fue de 37 horas. <em>Conclusión práctica para urgencia: al paciente con
+        priapismo prolongado no se le dice «vuelva en un año si no funciona»; se le deriva a prótesis precozmente.</em>
+        </span>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚖️</span>
+        <span><strong>Las dos lecturas equivocadas del reloj.</strong> La primera es tratar el priapismo como una
+        consulta que puede esperar la lista de espera de la mañana: las horas que se pierden en el pasillo son músculo
+        liso. La segunda es la contraria —«ya lleva tres días, no tiene sentido» — y también es falsa: el procedimiento
+        sigue teniendo indicación para <strong>aliviar el dolor, descomprimir y definir el camino</strong>, y los datos
+        de más de 36 horas no dicen «no hagan nada», dicen <strong>«no se queden solo en el box: operen antes»</strong>.
+        Lo que cambia con las horas es el <em>objetivo</em> y <em>quién lo ejecuta</em>, no la decisión de actuar.</span>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./checklist-cantotomia-cantolisis.html">Otro compartimento de órgano: cantotomía →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · CRONÓMETRO, HITOS Y ROLES -->
+  <div class="section s3" id="s3" style="animation-delay:0.14s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Cronómetro, hitos y roles</div>
+        <div class="section-subtitle">El reloj parte cuando el paciente queda en el box, no cuando se toma la aguja</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="stopwatch">
+        <div class="sw-display" id="swDisplay">00:00</div>
+        <div class="sw-caption" id="swCaption">Detenido · parte el reloj cuando el paciente queda en el box</div>
+        <div class="sw-controls">
+          <button type="button" class="sw-btn primary" id="swToggle" onclick="swToggle()">▶ Iniciar</button>
+          <button type="button" class="sw-btn" onclick="swReset()">↺ Reiniciar</button>
+        </div>
+        <div class="milestones" id="milestones">
+          <button type="button" class="ms" data-goal="120" data-prefix="meta ~" onclick="markMs(this)"><span>Subtipo definido en voz alta, hora de inicio anotada, monitor de presión y frecuencia puesto, urología avisada (2 min)</span><span class="ms-goal">meta ~120 s</span></button>
+          <button type="button" class="ms" data-goal="300" data-prefix="meta ~" onclick="markMs(this)"><span>Consentimiento conversado · mesa armada · <strong>fenilefrina diluida y rotulada con la concentración</strong> (5 min)</span><span class="ms-goal">meta ~300 s</span></button>
+          <button type="button" class="ms" data-goal="480" data-prefix="meta ~" onclick="markMs(this)"><span>Anestesia local puesta y con tiempo de latencia cumplido (8 min)</span><span class="ms-goal">meta ~480 s</span></button>
+          <button type="button" class="ms" data-goal="660" data-prefix="meta ~" onclick="markMs(this)"><span><strong>Punción lograda y primera aspiración</strong> · muestra para gasometría cavernosa tomada y enviada (11 min)</span><span class="ms-goal">meta ~660 s</span></button>
+          <button type="button" class="ms" data-goal="900" data-prefix="meta ~" onclick="markMs(this)"><span>Aspiración hasta <strong>sangre roja</strong> e irrigación hechas · <strong>primera dosis de fenilefrina</strong> administrada (15 min)</span><span class="ms-goal">meta ~900 s</span></button>
+          <button type="button" class="ms" data-goal="1800" data-prefix="meta ~" onclick="markMs(this)"><span>Reevaluación formal: ¿detumescencia?, presión y frecuencia registradas en cada dosis · decisión de repetir o escalar (30 min)</span><span class="ms-goal">meta ~1800 s</span></button>
+          <button type="button" class="ms" data-goal="3600" data-prefix="meta ~" onclick="markMs(this)"><span><strong>Techo de la fase farmacológica</strong>: si no cedió, urología en el box y pabellón avisado (60 min)</span><span class="ms-goal">meta ~3600 s</span></button>
+          <button type="button" class="ms" data-goal="5400" data-prefix="meta ~" onclick="markMs(this)"><span>Destino definido y registro completo: hora de inicio, duración, gasometría, dosis total de fenilefrina, respuesta, destino (90 min)</span><span class="ms-goal">meta ~5400 s</span></button>
+        </div>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Ninguna de estas metas es un estándar validado.</strong> No existe una referencia publicada de
+        tiempos para la aspiración e irrigación intracavernosa: el reparto de arriba es una distribución razonable
+        propuesta para esta página y <strong>debe ajustarse al protocolo institucional</strong>. Las dos únicas
+        referencias temporales con respaldo son las de la enfermedad, no del procedimiento: el límite de
+        <strong>4 horas</strong> que define el priapismo y las franjas de <strong>24, 36 y 48 horas</strong> de la
+        sección anterior. El «techo de 60 minutos» para la fase farmacológica es una convención operativa para forzar
+        la decisión de escalar, no un umbral demostrado: <em>el plazo real antes de pasar al shunt depende del tiempo
+        total de isquemia, de la respuesta parcial y del criterio de urología — verificar con protocolo
+        institucional.</em></span>
+      </div>
+
+      <div class="subhead">Roles mínimos</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>Operador:</strong> hace el bloqueo, punciona, aspira, irriga e inyecta. No se mueve del pene y no es el que calcula diluciones.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>Preparador de fármacos:</strong> diluye la fenilefrina, <em>rotula la jeringa con la concentración en µg/mL</em>, prepara el anestésico sin epinefrina y lleva la <strong>cuenta acumulada de microgramos administrados</strong>. Es el rol que previene el error más peligroso de esta página.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>Monitorización:</strong> presión arterial y frecuencia cardíaca <strong>antes de la primera dosis y después de cada dosis</strong>, y canta los números en voz alta. La guía de la AUA pide expresamente monitorizar presión y frecuencia en todo paciente que recibe fenilefrina intracavernosa.</span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span><strong>Circulante:</strong> abre el material, tiene el segundo set de agujas y el tubo de gasometría listos, y mantiene la privacidad del box.</span></div>
+        <div class="plain-item"><span class="bullet-icon">5</span><span><strong>Tiempo y registro:</strong> lleva el cronómetro y hace las tres preguntas que se olvidan: <em>«¿cuántos microgramos van?»</em>, <em>«¿cuánto lleva de priapismo en total?»</em> y <em>«¿ya hablamos con urología?»</em>.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · MESA, MATERIAL Y FENILEFRINA LISTA -->
+  <div class="section s4" id="s4" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Mesa, material y fenilefrina lista antes de pinchar</div>
+        <div class="section-subtitle">Anatomía del sitio de punción, calibres y la dilución que no se improvisa</div>
+      </div>
+      <span class="section-check-count" id="count-s4">0/9</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="figure">
+        <svg viewBox="0 0 800 350" role="img" aria-label="Esquema de corte transversal del pene visto como un reloj. En el centro se representa la seccion del cuerpo del pene rodeada por la piel y la fascia. Arriba, en posicion de las doce, esta el paquete neurovascular dorsal, marcado en rojo como zona prohibida. Abajo, en posicion de las seis, esta el cuerpo esponjoso con la uretra en su interior, tambien marcado en rojo como zona prohibida. En el centro y arriba estan los dos cuerpos cavernosos separados por el septo, marcados en azul como el objetivo de la puncion. A la derecha, en posicion de las tres, una aguja entra perpendicular a la cara lateral del pene hasta el cuerpo cavernoso. En el lado izquierdo, en posicion de las nueve, se marca con una linea discontinua el sitio alternativo o segundo acceso. A la derecha una leyenda enumera el objetivo, las dos zonas prohibidas, el hecho de que los cuerpos cavernosos se comunican entre si y la advertencia de no puncionar el glande.">
+          <g font-family="DM Mono, monospace" font-size="10.5" fill="#94a3b8">
+            <rect x="12" y="12" width="776" height="326" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="28" y="36" fill="#fcd34d" font-size="12">Corte transversal del pene · el sitio de punción leído como un reloj</text>
+
+            <!-- piel y fascia -->
+            <circle cx="196" cy="200" r="96" fill="rgba(255,255,255,0.03)" stroke="#475569" stroke-width="1.5"/>
+            <circle cx="196" cy="200" r="86" fill="none" stroke="#475569" stroke-width="1" stroke-dasharray="3 3"/>
+
+            <!-- zona prohibida dorsal -->
+            <path d="M196,200 L124,136 A96,96 0 0,1 268,136 Z" fill="rgba(239,68,68,0.07)"/>
+            <ellipse cx="196" cy="128" rx="30" ry="11" fill="rgba(239,68,68,0.18)" stroke="#fca5a5" stroke-width="1.4"/>
+            <circle cx="196" cy="128" r="4.5" fill="#1a2235" stroke="#fca5a5" stroke-width="1.2"/>
+            <circle cx="179" cy="129" r="2.8" fill="#fca5a5"/>
+            <circle cx="213" cy="129" r="2.8" fill="#fca5a5"/>
+
+            <!-- cuerpos cavernosos -->
+            <circle cx="160" cy="188" r="48" fill="rgba(99,102,241,0.14)" stroke="#a5b4fc" stroke-width="1.8"/>
+            <circle cx="232" cy="188" r="48" fill="rgba(99,102,241,0.14)" stroke="#a5b4fc" stroke-width="1.8"/>
+            <line x1="196" y1="146" x2="196" y2="230" stroke="#a5b4fc" stroke-width="1.2" stroke-dasharray="4 3"/>
+            <circle cx="160" cy="188" r="4" fill="#a5b4fc"/>
+            <circle cx="232" cy="188" r="4" fill="#a5b4fc"/>
+
+            <!-- zona prohibida ventral: cuerpo esponjoso y uretra -->
+            <path d="M196,200 L124,264 A96,96 0 0,0 268,264 Z" fill="rgba(239,68,68,0.07)"/>
+            <circle cx="196" cy="256" r="31" fill="rgba(239,68,68,0.14)" stroke="#fca5a5" stroke-width="1.5"/>
+            <circle cx="196" cy="256" r="9" fill="#0a0e1a" stroke="#fca5a5" stroke-width="1.4"/>
+
+            <!-- marcas del reloj -->
+            <text x="196" y="92" text-anchor="middle" fill="#fca5a5" font-size="11">12</text>
+            <text x="310" y="204" fill="#6ee7b7" font-size="11">3</text>
+            <text x="72" y="204" fill="#6ee7b7" font-size="11">9</text>
+            <text x="196" y="322" text-anchor="middle" fill="#fca5a5" font-size="11">6</text>
+
+            <!-- aguja a las 3 -->
+            <line x1="398" y1="178" x2="250" y2="186" stroke="#6ee7b7" stroke-width="2.6"/>
+            <path d="M250,186 L262,181 L262,191 Z" fill="#6ee7b7"/>
+            <rect x="398" y="170" width="34" height="16" rx="3" fill="rgba(16,185,129,0.18)" stroke="#6ee7b7" stroke-width="1.2"/>
+            <text x="300" y="228" fill="#6ee7b7" font-size="9">perpendicular</text>
+            <text x="300" y="240" fill="#6ee7b7" font-size="9">a la cara lateral</text>
+
+            <!-- sitio alternativo a las 9 -->
+            <line x1="100" y1="186" x2="142" y2="188" stroke="#5eead4" stroke-width="2" stroke-dasharray="5 3"/>
+            <text x="46" y="170" fill="#5eead4" font-size="9">segundo</text>
+            <text x="46" y="182" fill="#5eead4" font-size="9">acceso</text>
+
+            <!-- leyenda -->
+            <line x1="446" y1="60" x2="446" y2="310" stroke="#334155" stroke-width="1"/>
+            <text x="470" y="78" fill="#a5b4fc" font-size="11">OBJETIVO</text>
+            <text x="470" y="96">Cuerpo cavernoso, cara lateral del cuerpo del</text>
+            <text x="470" y="110">pene (3 o 9 en punto), tercio medio o proximal.</text>
+            <text x="470" y="124">Los dos cuerpos se comunican: <tspan fill="#6ee7b7">un solo acceso</tspan></text>
+            <text x="470" y="138"><tspan fill="#6ee7b7">suele bastar</tspan>; el segundo se usa si no aspira.</text>
+
+            <text x="470" y="170" fill="#fca5a5" font-size="11">ZONAS PROHIBIDAS</text>
+            <text x="470" y="188">12 en punto · paquete neurovascular dorsal:</text>
+            <text x="470" y="202">vena dorsal profunda, arterias y nervios.</text>
+            <text x="470" y="220">6 en punto · cuerpo esponjoso y uretra.</text>
+            <text x="470" y="234">Puncionarla es una fístula o una estrechez.</text>
+
+            <text x="470" y="266" fill="#fcd34d" font-size="11">ADEMÁS</text>
+            <text x="470" y="284">El glande es cuerpo esponjoso: <tspan fill="#fcd34d">no es el sitio</tspan></text>
+            <text x="470" y="298">de aspiración (sí lo es de algunos shunts, en</text>
+            <text x="470" y="312">pabellón y por manos entrenadas).</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Dibujo orientativo, no una ilustración anatómica a escala.</strong> La referencia
+        de «3 y 9 en punto» es la más difundida para el acceso intracavernoso; algunas descripciones usan «2 y 10 en
+        punto», que es la misma idea —<strong>cara lateral, lejos del dorso y lejos de la uretra</strong>—. Lo que no
+        varía es lo que se evita: el paquete neurovascular dorsal arriba y el cuerpo esponjoso con la uretra abajo.</div>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">🧪</span>
+        <span><strong>El error más fácil y más peligroso de esta página es la dilución.</strong> La ampolla de
+        fenilefrina del carro de anestesia viene <strong>mucho más concentrada</strong> que lo que se inyecta en el
+        cuerpo cavernoso: una presentación habitual es de <strong>10 mg/mL</strong>, y lo que se inyecta son
+        <strong>microgramos</strong>. Inyectar sin diluir es administrar mil veces la dosis. Por eso: <strong>lee la
+        concentración de la ampolla disponible antes de calcular</strong>, hazlo con una segunda persona, y
+        <strong>rotula la jeringa con la concentración final en µg/mL</strong>. Existe literatura dedicada
+        precisamente a esto —la tabla de preparación de diluciones de agonistas alfa para uso intracavernoso de Lee
+        (1995)—, y existe porque el error es frecuente. <em>La presentación y concentración realmente disponibles en el
+        servicio deben verificarse con farmacia y con el protocolo institucional.</em></span>
+      </div>
+
+      <div class="subhead">Cómo llegar a las concentraciones de trabajo</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Concentración final</th><th>Cómo se prepara (partiendo de 10 mg/mL)</th><th>Cuánto hay en cada mL</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>100 µg/mL</td>
+              <td><span class="dose-main">1 mL de fenilefrina 10 mg/mL + 99 mL de suero fisiológico</span><span class="dose-note"> (10 mg en 100 mL)</span></td>
+              <td><strong>100 µg</strong> por mL. Una alícuota de 1 mL = 100 µg.</td>
+            </tr>
+            <tr>
+              <td>200 µg/mL</td>
+              <td><span class="dose-main">1 mL de fenilefrina 10 mg/mL + 49 mL de suero fisiológico</span><span class="dose-note"> (10 mg en 50 mL)</span></td>
+              <td><strong>200 µg</strong> por mL. Una alícuota de 1 mL = 200 µg.</td>
+            </tr>
+            <tr>
+              <td>500 µg/mL</td>
+              <td><span class="dose-main">1 mL de fenilefrina 10 mg/mL + 19 mL de suero fisiológico</span><span class="dose-note"> (10 mg en 20 mL)</span></td>
+              <td><strong>500 µg</strong> por mL. Media alícuota (0,5 mL) = 250 µg.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fig-caption" style="margin-top:10px;">El rango de concentración de trabajo que describe la guía de la
+      AUA y la SMSNA para la fenilefrina intracavernosa es de <strong>100 a 500 µg/mL</strong>, con alícuotas de
+      0,5–1 mL. Trabajar a <strong>100 µg/mL</strong> es lo más seguro cuando el operador no hace esto seguido: los
+      números salen redondos y un error de medio mililitro pesa poco. <em>La concentración y el volumen por alícuota
+      que use el servicio deben verificarse con el protocolo institucional.</em></div>
+
+      <div class="subhead">Material mínimo sobre la mesa</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Qué</th><th>Detalle</th><th>Para qué</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Anestésico local</td>
+              <td><strong>Lidocaína 1 % sin epinefrina</strong>, jeringa de 10 mL con aguja fina (25–27 G). <em>La dosis máxima según peso y la concentración disponible se verifican con el protocolo institucional.</em></td>
+              <td>Bloqueo del nervio dorsal del pene o bloqueo en anillo de la base, más infiltración del punto de entrada.</td>
+            </tr>
+            <tr>
+              <td>Aguja de punción</td>
+              <td><strong>Mariposa 19–21 G</strong> o <strong>catéter endovenoso 18–20 G</strong>. Algunos operadores prefieren un calibre mayor (16–18 G) cuando la sangre es muy espesa. <em>El calibre disponible y el preferido localmente: verificar.</em></td>
+              <td>Aspirar e inyectar por el mismo acceso. La mariposa deja una vía estable con menos movimiento sobre el pene.</td>
+            </tr>
+            <tr>
+              <td>Jeringas</td>
+              <td>Dos o tres de <strong>20–30 mL</strong> para aspirar; una de <strong>10 mL</strong> para irrigar; una de <strong>1–5 mL</strong> rotulada para la fenilefrina; llave de tres pasos si está disponible.</td>
+              <td>Aspirar en alícuotas sin desconectar la aguja del pene. La llave de tres pasos reduce los recambios.</td>
+            </tr>
+            <tr>
+              <td>Suero fisiológico</td>
+              <td>Ampollas o matraz de <strong>cloruro de sodio 0,9 %</strong> a temperatura ambiente, y suero para la dilución de la fenilefrina.</td>
+              <td>Irrigación y dilución. <em>No hay evidencia que sostenga irrigar con suero helado; el beneficio del hielo es sobre el dolor y la tumescencia, no sobre la isquemia.</em></td>
+            </tr>
+            <tr>
+              <td>Tubo de gasometría</td>
+              <td>Jeringa heparinizada de gases arteriales, rotulada como <strong>«sangre cavernosa»</strong> para que el laboratorio no la interprete como arterial.</td>
+              <td>Confirmar el subtipo. <strong>Se toma, no se espera.</strong></td>
+            </tr>
+            <tr>
+              <td>Monitorización</td>
+              <td>Manguito de presión, monitor con frecuencia cardíaca, saturometría. Acceso venoso.</td>
+              <td>Requisito de la guía para administrar fenilefrina: presión y frecuencia antes y después de cada dosis.</td>
+            </tr>
+            <tr>
+              <td>Antisepsia y apósitos</td>
+              <td>Clorhexidina o povidona, guantes estériles, gasas, <strong>vendaje elástico suave</strong> para compresión posterior.</td>
+              <td>El pene es un campo pequeño y muy vascularizado: el hematoma se previene con compresión, no con prisa.</td>
+            </tr>
+            <tr>
+              <td>Analgesia sistémica</td>
+              <td>Analgesia endovenosa pautada según protocolo del servicio; considerar antiemético.</td>
+              <td>Es un procedimiento doloroso sobre un órgano que ya duele. <em>El esquema concreto se rige por el protocolo institucional.</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Antes de tocar al paciente</div>
+      <div class="checklist" id="list-s4">
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Concentración de la ampolla de fenilefrina leída en voz alta</strong> y confirmada por una segunda persona. <em>No se calcula de memoria.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Fenilefrina diluida y la jeringa rotulada con la concentración final en µg/mL</strong>, no con el nombre del fármaco solo. Dejar escrito en la pizarra o en la hoja: «1 mL = X µg».</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Anestésico local <em>sin epinefrina</em> verificado en la ampolla.</strong> La costumbre en bloqueos del pene es evitar el vasoconstrictor del anestésico; aquí el vasoconstrictor va donde corresponde, dentro del cuerpo cavernoso y medido. <em>Si el protocolo local permite otra cosa, se rige por él.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Presión arterial y frecuencia cardíaca basales registradas</strong>, y el paciente monitorizado. Si llegó en urgencia hipertensiva, eso se sabe <em>antes</em> de la primera dosis, no después.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Jeringa de gasometría rotulada «sangre cavernosa» y lista</strong>, para tomar la muestra en la primera aspiración y no pinchar dos veces.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Sitio de punción elegido y mostrado</strong>: cara lateral del cuerpo del pene, 3 o 9 en punto, tercio medio o proximal. Dorso y cara ventral señalados como zonas que no se tocan.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Analgesia sistémica ya administrada</strong> y con tiempo para actuar. El bloqueo local no cubre el dolor isquémico de fondo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Coagulopatía y anticoagulación revisadas.</strong> No contraindican el procedimiento en el priapismo isquémico, pero cambian la compresión posterior y el umbral de vigilancia del hematoma. <em>La conducta frente a anticoagulación plena o plaquetopenia se verifica con el protocolo institucional.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Plan B dicho antes de empezar</strong>: quién es el urólogo de turno, cómo se le llama, y cuál es el camino al pabellón si a los 60 minutos no cedió.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · ANESTESIA Y PUNCIÓN -->
+  <div class="section s5" id="s5" style="animation-delay:0.22s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Anestesia y punción</div>
+        <div class="section-subtitle">Los cuatro gestos, en orden, y por qué el primero no se salta</div>
+      </div>
+      <span class="section-check-count" id="count-s5">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="figure">
+        <svg viewBox="0 0 680 440" role="img" aria-label="Esquema de cuatro paneles con la secuencia del procedimiento. Panel uno: anestesia, con el pene visto de perfil y una aguja fina que infiltra la base en forma de anillo, mas el punto de entrada lateral infiltrado. Panel dos: puncion, con la aguja entrando perpendicular a la cara lateral del cuerpo del pene en el tercio medio, hasta notar la perdida de resistencia al atravesar la tunica albuginea. Panel tres: aspiracion, con dos jeringas comparadas, la primera con sangre oscura y espesa y la segunda con sangre roja brillante, que es el objetivo. Panel cuatro: inyeccion de fenilefrina diluida por la misma aguja y compresion manual del pene durante unos minutos.">
+          <g font-family="DM Mono, monospace" font-size="10" fill="#94a3b8">
+            <rect x="12" y="12" width="656" height="416" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="28" y="36" fill="#fcd34d" font-size="12">Los cuatro gestos · esquema de secuencia</text>
+
+            <!-- PANEL 1 -->
+            <rect x="30" y="52" width="298" height="168" rx="10" fill="rgba(99,102,241,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="52" cy="74" r="11" fill="rgba(99,102,241,0.2)" stroke="#a5b4fc" stroke-width="1.2"/>
+            <text x="52" y="78" text-anchor="middle" fill="#a5b4fc" font-size="11">1</text>
+            <text x="72" y="78" fill="#a5b4fc" font-size="11">ANESTESIA</text>
+            <!-- pene de perfil -->
+            <path d="M78,150 L240,150 Q266,150 266,164 Q266,178 240,178 L78,178 Z" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.4"/>
+            <ellipse cx="262" cy="164" rx="16" ry="14" fill="rgba(255,255,255,0.05)" stroke="#475569" stroke-width="1.2"/>
+            <text x="252" y="200" fill="#64748b" font-size="9">glande</text>
+            <!-- anillo en la base -->
+            <ellipse cx="90" cy="164" rx="12" ry="22" fill="none" stroke="#6ee7b7" stroke-width="1.8" stroke-dasharray="5 3"/>
+            <text x="64" y="120" fill="#6ee7b7" font-size="9">anillo en la base</text>
+            <line x1="100" y1="106" x2="92" y2="142" stroke="#6ee7b7" stroke-width="1.6"/>
+            <path d="M92,142 L98,134 L102,140 Z" fill="#6ee7b7"/>
+            <!-- punto de entrada infiltrado -->
+            <circle cx="170" cy="152" r="7" fill="rgba(16,185,129,0.25)" stroke="#6ee7b7" stroke-width="1.2"/>
+            <text x="150" y="214" fill="#6ee7b7" font-size="9">+ punto de entrada</text>
+
+            <!-- PANEL 2 -->
+            <rect x="350" y="52" width="298" height="168" rx="10" fill="rgba(20,184,166,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="372" cy="74" r="11" fill="rgba(20,184,166,0.2)" stroke="#5eead4" stroke-width="1.2"/>
+            <text x="372" y="78" text-anchor="middle" fill="#5eead4" font-size="11">2</text>
+            <text x="392" y="78" fill="#5eead4" font-size="11">PUNCIÓN</text>
+            <!-- corte lateral con tunica -->
+            <path d="M392,146 L600,146 L600,190 L392,190 Z" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.4"/>
+            <path d="M400,154 L592,154 L592,182 L400,182 Z" fill="rgba(99,102,241,0.14)" stroke="#a5b4fc" stroke-width="1.6"/>
+            <text x="516" y="136" fill="#a5b4fc" font-size="9">túnica albugínea</text>
+            <line x1="560" y1="140" x2="560" y2="152" stroke="#a5b4fc" stroke-width="1"/>
+            <!-- aguja perpendicular -->
+            <line x1="470" y1="96" x2="470" y2="168" stroke="#5eead4" stroke-width="2.6"/>
+            <path d="M470,168 L465,156 L475,156 Z" fill="#5eead4"/>
+            <rect x="460" y="86" width="20" height="14" rx="3" fill="rgba(20,184,166,0.2)" stroke="#5eead4" stroke-width="1.2"/>
+            <text x="488" y="110" fill="#5eead4" font-size="9">90° a la cara lateral,</text>
+            <text x="488" y="122" fill="#5eead4" font-size="9">tercio medio o proximal</text>
+            <text x="392" y="212" fill="#fcd34d" font-size="9">pérdida de resistencia = estás dentro</text>
+
+            <!-- PANEL 3 -->
+            <rect x="30" y="240" width="298" height="168" rx="10" fill="rgba(239,68,68,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="52" cy="262" r="11" fill="rgba(239,68,68,0.2)" stroke="#fca5a5" stroke-width="1.2"/>
+            <text x="52" y="266" text-anchor="middle" fill="#fca5a5" font-size="11">3</text>
+            <text x="72" y="266" fill="#fca5a5" font-size="11">ASPIRACIÓN</text>
+            <!-- jeringa oscura -->
+            <rect x="56" y="300" width="88" height="30" rx="4" fill="#3f1d1d" stroke="#fca5a5" stroke-width="1.4"/>
+            <rect x="144" y="308" width="22" height="14" rx="2" fill="rgba(255,255,255,0.08)" stroke="#64748b" stroke-width="1"/>
+            <line x1="166" y1="315" x2="196" y2="315" stroke="#64748b" stroke-width="2"/>
+            <text x="56" y="350" fill="#fca5a5" font-size="9">oscura, espesa</text>
+            <text x="56" y="362" fill="#64748b" font-size="9">= isquémica</text>
+            <!-- flecha -->
+            <line x1="204" y1="315" x2="228" y2="315" stroke="#6ee7b7" stroke-width="2"/>
+            <path d="M228,315 L220,310 L220,320 Z" fill="#6ee7b7"/>
+            <!-- jeringa roja -->
+            <rect x="236" y="300" width="68" height="30" rx="4" fill="#7f1d1d" stroke="#6ee7b7" stroke-width="1.6"/>
+            <rect x="236" y="300" width="68" height="30" rx="4" fill="rgba(239,68,68,0.45)"/>
+            <text x="236" y="350" fill="#6ee7b7" font-size="9">roja brillante</text>
+            <text x="236" y="362" fill="#6ee7b7" font-size="9">= objetivo</text>
+            <text x="56" y="388" fill="#fcd34d" font-size="9">alícuotas de 20–30 mL · no forzar el vacío</text>
+
+            <!-- PANEL 4 -->
+            <rect x="350" y="240" width="298" height="168" rx="10" fill="rgba(16,185,129,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="372" cy="262" r="11" fill="rgba(16,185,129,0.2)" stroke="#6ee7b7" stroke-width="1.2"/>
+            <text x="372" y="266" text-anchor="middle" fill="#6ee7b7" font-size="11">4</text>
+            <text x="392" y="266" fill="#6ee7b7" font-size="11">FENILEFRINA + COMPRESIÓN</text>
+            <path d="M392,308 L560,308 Q584,308 584,320 Q584,332 560,332 L392,332 Z" fill="rgba(255,255,255,0.04)" stroke="#475569" stroke-width="1.4"/>
+            <!-- jeringa pequeña rotulada -->
+            <rect x="430" y="276" width="44" height="14" rx="3" fill="rgba(16,185,129,0.18)" stroke="#6ee7b7" stroke-width="1.2"/>
+            <text x="432" y="286" fill="#6ee7b7" font-size="8">µg/mL</text>
+            <line x1="452" y1="290" x2="452" y2="312" stroke="#6ee7b7" stroke-width="2.2"/>
+            <path d="M452,312 L447,302 L457,302 Z" fill="#6ee7b7"/>
+            <!-- compresion -->
+            <path d="M500,292 L500,304" stroke="#fcd34d" stroke-width="2.4"/>
+            <path d="M500,304 L495,296 L505,296 Z" fill="#fcd34d"/>
+            <path d="M500,348 L500,336" stroke="#fcd34d" stroke-width="2.4"/>
+            <path d="M500,336 L495,344 L505,344 Z" fill="#fcd34d"/>
+            <text x="392" y="372" fill="#fcd34d" font-size="9">compresión suave del cuerpo del pene</text>
+            <text x="392" y="384" fill="#94a3b8" font-size="9">presión y frecuencia cardíaca tras cada dosis</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Dibujos orientativos, no ilustraciones anatómicas a escala.</strong> El orden
+        importa: la anestesia primero (el procedimiento es doloroso y un paciente que se mueve es un pene mal
+        puncionado), luego el acceso único por la cara lateral, luego la aspiración hasta sangre roja, y recién
+        entonces el simpaticomimético por la misma aguja.</div>
+      </div>
+
+      <div class="info-banner">
+        <span class="warning-icon">💊</span>
+        <span><strong>Dos formas razonables de anestesiar, y una tercera que acompaña.</strong> El <strong>bloqueo del
+        nervio dorsal del pene</strong> deposita anestésico a ambos lados de la línea media bajo la sínfisis del pubis,
+        donde corren los nervios dorsales; el <strong>bloqueo en anillo</strong> infiltra circunferencialmente la base
+        del cuerpo del pene y es más fácil de hacer bien con poca práctica. Cualquiera de los dos se complementa con
+        <strong>infiltración del punto de entrada</strong> y con <strong>analgesia sistémica</strong>, que es la que
+        cubre el dolor isquémico de fondo. Se usa <strong>lidocaína sin epinefrina</strong>. <em>La elección de la
+        técnica, la concentración y el volumen del anestésico, y su dosis máxima según peso, se verifican con el
+        protocolo institucional.</em></span>
+      </div>
+
+      <div class="subhead">La punción, paso a paso</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🧭</span><span><strong>Elige el lado y el nivel.</strong> Cara lateral del cuerpo del pene, <strong>3 o 9 en punto</strong>, en el <strong>tercio medio o proximal</strong>. Lejos del glande (que es cuerpo esponjoso) y lejos del surco balanoprepucial. Un solo acceso basta en la mayoría de los casos porque <strong>los cuerpos cavernosos se comunican</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📐</span><span><strong>Entra perpendicular a la superficie lateral</strong>, no en diagonal hacia el dorso ni hacia la uretra. La <strong>pérdida de resistencia</strong> al atravesar la túnica albugínea es la señal de que estás dentro del cuerpo cavernoso. En el pene en erección la túnica está tensa y se siente con claridad.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Confirma con lo que sale.</strong> Al aspirar debe salir sangre <strong>oscura y espesa</strong> con facilidad. Si no sale nada, la aguja está corta, fuera, o tapada por coágulo (ver la sección 08). Si sale sangre <strong>roja brillante desde el primer momento</strong>, detente y repiensa el subtipo: puede ser priapismo arterial.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧷</span><span><strong>Estabiliza la aguja.</strong> La mariposa con sus alas fijada con la mano no dominante, o el catéter endovenoso con el fiador retirado, permiten aspirar, irrigar e inyectar <em>sin volver a pinchar</em>. Cada punción nueva es un hematoma nuevo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Toma la gasometría en la primera aspiración</strong> y rotúlala como sangre cavernosa. No se espera el resultado: se usa para confirmar el subtipo y para la ficha.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⛔</span><span><strong>Lo que no se hace:</strong> puncionar el dorso (12 en punto), puncionar la cara ventral o el glande buscando el cuerpo cavernoso, usar un torniquete en la base para «ayudar», ni abrir con bisturí. <em>El shunt —cualquiera de ellos— es un procedimiento de pabellón.</em></span></div>
+      </div>
+
+      <div class="subhead">Durante la punción</div>
+      <div class="checklist" id="list-s5">
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Antisepsia del cuerpo del pene y del área circundante</strong>, campo limpio, guantes estériles. <em>Es una cavidad cerrada que vamos a abrir: la cavernositis es rara y devastadora.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Bloqueo puesto y con latencia cumplida</strong> antes de la punción gruesa. Esperar los minutos del anestésico es más rápido que pelear con un paciente que no tolera el procedimiento.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Entrada perpendicular a la cara lateral, en 3 o 9 en punto, tercio medio o proximal</strong>, con pérdida de resistencia reconocida.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Hallazgo cantado en voz alta</strong>: «sangre oscura, aspira bien» o «no aspira» o «sangre roja». Las tres frases cambian el paso siguiente.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Muestra de gasometría cavernosa tomada y rotulada</strong> en la primera aspiración.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Aguja estabilizada y conectada</strong> de modo que se pueda aspirar, irrigar e inyectar sin retirarla.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Nada de torniquete, bisturí ni punción del glande.</strong> Si el caso pide un shunt, el camino es el teléfono y el pabellón.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Si salió sangre roja brillante de entrada, el procedimiento se detiene y se revisa el diagnóstico.</strong> Ecografía Doppler, antecedente de trauma perineal, signo de <em>piesis</em>. <em>El priapismo arterial no se trata con esta página.</em></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · ASPIRACIÓN E IRRIGACIÓN -->
+  <div class="section s6" id="s6" style="animation-delay:0.26s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Aspiración e irrigación</div>
+        <div class="section-subtitle">Hasta sangre roja, en alícuotas, sin forzar</div>
+      </div>
+      <span class="section-check-count" id="count-s6">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="go-banner">
+        <span class="warning-icon">🎯</span>
+        <span><strong>El objetivo visible es el cambio de color.</strong> Se aspira la sangre estancada en
+        <strong>alícuotas de 20–30 mL</strong> hasta que lo que sale es <strong>sangre roja brillante</strong>: eso
+        significa que el cuerpo cavernoso volvió a perfundirse. Entre alícuotas se puede <strong>irrigar con suero
+        fisiológico a temperatura ambiente</strong> en volúmenes pequeños, lo que ayuda a movilizar coágulos y a juzgar
+        el color. El volumen total aspirado no tiene una cifra objetivo publicada: <em>el número que importa es el
+        color, no los mililitros.</em> <em>El volumen por alícuota y el de irrigación dependen del material y del
+        protocolo institucional.</em></span>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">🧷</span>
+        <span><strong>La aspiración no es el paso que resuelve: es el que prepara.</strong> La guía de la AUA y la
+        SMSNA recomienda <strong>fenilefrina intracavernosa junto con aspiración, con o sin irrigación</strong>, como
+        primera línea —no la aspiración sola—. Y hay evidencia de que el simpaticomimético hace el trabajo pesado: en
+        la serie prospectiva de Muruve y Hosking, <strong>8 de 9 pacientes</strong> lograron detumescencia con
+        fenilefrina <em>sin aspirar ni irrigar</em>, con 1 a 6 inyecciones y sin cambios de presión ni frecuencia. La
+        lectura práctica no es «no aspiren»: es que <strong>si la aspiración se complica, no vale retrasar la
+        fenilefrina por insistir en vaciar</strong>. Aspirar sirve para descomprimir, para la muestra y para que el
+        fármaco llegue a un tejido menos acidótico; la decisión de cuánto insistir es clínica.</span>
+      </div>
+
+      <div class="subhead">Qué hacer y qué no</div>
+      <div class="plain-list">
+        <div class="plain-item good"><span class="bullet-icon">✅</span><span><strong>Aspirar con la jeringa grande, en alícuotas, con vacío suave.</strong> La sangre isquémica es espesa y sale lento; el vacío brusco colapsa la pared contra la aguja y la tapa.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">✅</span><span><strong>Comprimir y «ordeñar» el cuerpo del pene</strong> suavemente desde la base hacia el extremo mientras se aspira, para movilizar el contenido hacia la aguja.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">✅</span><span><strong>Irrigar en volúmenes pequeños y volver a aspirar</strong>, no inyectar grandes volúmenes de suero en un compartimento ya a presión.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">✅</span><span><strong>Mirar el pene y no solo la jeringa</strong>: la detumescencia parcial, el reblandecimiento de los cuerpos y la caída del dolor son los signos que cuentan.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⛔</span><span><strong>No usar suero helado</strong> esperando efecto sobre la isquemia: no hay evidencia que lo sostenga y enfría a un paciente que ya lo está pasando mal. El hielo externo, si se usa, es por dolor y tumescencia.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⛔</span><span><strong>No perseguir un volumen total.</strong> No existe una cifra validada de mililitros a aspirar; aspirar «hasta que no salga más» en un pene que ya se reblandeció solo agrega trauma.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⛔</span><span><strong>No repetir punciones nuevas para «mejorar» la aspiración</strong> antes de haber revisado el algoritmo de la sección 08. Cada pinchazo adicional es riesgo de hematoma y de fibrosis.</span></div>
+      </div>
+
+      <div class="subhead">Durante la aspiración</div>
+      <div class="checklist" id="list-s6">
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Primera alícuota aspirada y su aspecto registrado</strong> (oscura y espesa, en el priapismo isquémico).</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Aspiración repetida en alícuotas hasta sangre roja brillante</strong> o hasta que el pene se reblandezca y el dolor baje.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Irrigación con suero fisiológico a temperatura ambiente</strong> intercalada, en volúmenes pequeños, con reaspiración.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Volumen aspirado anotado</strong> —aunque no sea una meta— junto con el aspecto inicial y final. Es el dato que el urólogo va a preguntar.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Fenilefrina administrada sin esperar a «terminar» de aspirar</strong> si la aspiración se hace difícil. La aspiración prepara; el fármaco resuelve.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Estado del pene reevaluado y dicho en voz alta</strong>: rigidez, dolor, tamaño. Sin esa frase no se sabe si la siguiente dosis hace falta.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Punto de punción comprimido con gasa</strong> cada vez que se retira o recoloca algo, y revisado al final.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · FENILEFRINA -->
+  <div class="section s7" id="s7" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Fenilefrina: dosis, intervalos y monitorización</div>
+        <div class="section-subtitle">El fármaco que resuelve el priapismo, y el único que puede dañar al resto del paciente</div>
+      </div>
+      <span class="section-check-count" id="count-s7">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">💉</span>
+        <span><strong>Por qué fenilefrina y no otra cosa.</strong> Es un agonista <strong>alfa-1 selectivo</strong>: contrae
+        el músculo liso trabecular y las arteriolas cavernosas <em>sin</em> estímulo beta, de modo que no aporta
+        taquicardia ni arritmia por efecto directo. Es la elección de la guía de la AUA y la SMSNA y de la EAU, y la
+        revisión de farmacoterapia de urgencia de Graham concluye que es superior a las alternativas por eficacia
+        demostrada y efectos sistémicos limitados. La comparación directa con la vía sistémica favorece claramente lo
+        local: en la serie de Martin y Cocchio, la detumescencia se logró en <strong>74 % con fenilefrina
+        intracavernosa contra 25 % con terbutalina oral o subcutánea</strong>. <em>La terbutalina oral o subcutánea no
+        es el tratamiento del priapismo isquémico establecido.</em></span>
+      </div>
+
+      <div class="subhead">Esquema de administración</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Variable</th><th>Esquema de referencia</th><th>Observaciones</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Concentración</td>
+              <td><span class="dose-main">100–500 µg/mL</span><span class="dose-note"> diluida en suero fisiológico</span></td>
+              <td>Rango que describe la guía de la AUA y la SMSNA. A <strong>100 µg/mL</strong> los cálculos son más seguros.</td>
+            </tr>
+            <tr>
+              <td>Dosis por alícuota</td>
+              <td><span class="dose-main">100–200 µg</span><span class="dose-note"> (0,5–1 mL de la dilución)</span></td>
+              <td>Se inyecta <strong>por la misma aguja</strong> ya colocada en el cuerpo cavernoso.</td>
+            </tr>
+            <tr>
+              <td>Intervalo</td>
+              <td><span class="dose-main">cada 3–5 minutos</span><span class="dose-note"> según respuesta</span></td>
+              <td>Se reevalúa el pene y <strong>se mide presión y frecuencia antes de la dosis siguiente</strong>.</td>
+            </tr>
+            <tr>
+              <td>Techo por hora</td>
+              <td><span class="dose-main">≈ 1000 µg en una hora</span><span class="dose-note"> (techo horario habitualmente citado)</span></td>
+              <td>Es el límite por hora que se cita a partir de la guía de la EAU. Varias series publicadas usan más —mediana de <strong>1000 µg</strong> y hasta <strong>5000 µg</strong> en Sidhu, sin efecto sobre presión ni frecuencia—. <em>El valor vigente debe verificarse en la versión en línea de la guía y en el protocolo institucional; pasar de ese techo es una decisión que se toma con urología y con monitorización estrecha, no por inercia.</em></td>
+            </tr>
+            <tr>
+              <td>Duración de la fase</td>
+              <td><span class="dose-main">hasta ~60 minutos</span><span class="dose-note"> de intentos</span></td>
+              <td>Convención operativa de esta página para forzar la decisión de escalar. <em>No es un umbral validado: verificar con protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Monitorización</td>
+              <td><span class="dose-main">presión arterial y frecuencia cardíaca</span><span class="dose-note"> basales y tras cada dosis</span></td>
+              <td><strong>Requisito explícito de la guía.</strong> No es opcional ni «si alcanza».</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚖️</span>
+        <span><strong>Dos lecturas honestas del mismo fármaco, y cómo convivir con ellas.</strong> Por un lado, la
+        seguridad observada es buena: en Sidhu, 58 pacientes con mediana de 1000 µg y <strong>sin asociación entre
+        dosis y cambios de presión o frecuencia</strong>, con 91 % de detumescencia y ningún evento adverso. Por otro,
+        esa tranquilidad no es universal: en la serie de Scarberry, <strong>21 de 123 pacientes (17,1 %) tenían perfil
+        de riesgo</strong> y <strong>4 (4,1 %) requirieron suspender la fenilefrina por cambios hemodinámicos</strong>,
+        con incidencia mucho mayor entre los de riesgo; y los autores concluyen que <em>los cambios hemodinámicos
+        probablemente están subreportados</em> y piden evaluación de riesgo y monitorización estandarizadas. Además, en
+        el mismo grupo la resolución <strong>no fue dosis-dependiente</strong>: subir la dosis no compró más éxito.
+        <em>La síntesis práctica: dosis dentro del rango, intervalos respetados, monitor puesto, y en el paciente de
+        riesgo —hipertensión no controlada, hemorragia intracerebral reciente, cardiopatía inestable, inhibidores de la
+        monoaminooxidasa, edad pediátrica— dosis más baja, intervalo más largo y una conversación antes.</em></span>
+      </div>
+
+      <div class="subhead">Si no hay fenilefrina en el servicio</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔄</span><span><strong>La EAU contempla otros simpaticomiméticos intracavernosos</strong> —entre ellos la <strong>etilefrina</strong> y la <strong>adrenalina diluida</strong>— cuando no se dispone de fenilefrina. Son alternativas de segunda elección precisamente porque añaden efecto beta y más riesgo sistémico. <em>La disponibilidad real en Chile, la presentación, la dilución y la dosis de cualquiera de estas alternativas deben verificarse con farmacia y con el protocolo institucional antes de usarlas: no se improvisa una dilución de adrenalina intracavernosa en el box.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⛔</span><span><strong>No sustituir por terbutalina oral o subcutánea</strong> en el priapismo isquémico establecido (74 % contra 25 % en Martin y Cocchio). Tiene su lugar, si alguno, en la erección prolongada postinyección de pocas horas.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⛔</span><span><strong>No usar azul de metileno intracavernoso como alternativa de rutina.</strong> Aparece en reportes antiguos, no en las recomendaciones actuales de primera línea. <em>Si el protocolo local lo contempla, se rige por él.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🧊</span><span><strong>Lo conservador no reemplaza nada, pero acompaña</strong>: analgesia, vaciamiento vesical, hielo local, movilización. En la erección prolongada postinyección de menos de 4 horas puede bastar; en el priapismo isquémico de horas, no.</span></div>
+      </div>
+
+      <div class="subhead">Con cada dosis</div>
+      <div class="checklist" id="list-s7">
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Concentración de la jeringa reconfirmada en voz alta</strong> antes de la primera dosis: «1 mL igual a X microgramos».</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Presión arterial y frecuencia cardíaca medidas antes de cada dosis</strong> y anotadas junto al microgramaje. Es la exigencia textual de la guía.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Dosis administrada por la aguja ya colocada</strong>, sin punción nueva, y seguida de compresión suave del cuerpo del pene.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Intervalo de 3 a 5 minutos respetado</strong> y reevaluación del pene entre dosis. Inyectar más rápido no acelera la detumescencia: acelera la dosis acumulada.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Dosis acumulada en microgramos cantada después de cada aplicación.</strong> Alguien tiene que ser dueño de ese número; si nadie lo es, nadie lo sabe.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Al llegar a ≈ 1000 µg en la hora, decisión explícita</strong>: seguir con monitorización estrecha y acuerdo con urología, o pasar al escalón siguiente. <em>No se cruza el techo sin decirlo.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Ante alza significativa de presión, bradicardia marcada, cefalea intensa o dolor torácico: se suspende la fenilefrina</strong> y se trata al paciente, no al pene. <em>Los umbrales exactos de suspensión y la conducta posterior se rigen por el protocolo institucional.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Detumescencia confirmada por palpación de los cuerpos cavernosos, no solo por el aspecto.</strong> Un pene que parece blando con cuerpos aún duros no está resuelto.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · CUANDO NO CEDE -->
+  <div class="section s8" id="s8" style="animation-delay:0.34s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Cuando no cede</div>
+        <div class="section-subtitle">El algoritmo de afuera hacia adentro, y la escalada quirúrgica</div>
+      </div>
+      <span class="section-check-count" id="count-s8">0/6</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">🔍</span>
+        <span><strong>Antes de concluir que el fármaco falló, descarta que el problema sea de afuera hacia
+        adentro.</strong> La causa más frecuente de «fenilefrina que no funciona» no es la fenilefrina.</span>
+      </div>
+
+      <div class="subhead">Las cinco preguntas, en orden</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>¿Es realmente isquémico?</strong> Si la sangre es roja desde el inicio, si no hay dolor y hubo trauma perineal, si la gasometría volvió con pO₂ alta y pH normal: es <strong>priapismo arterial</strong> y nunca iba a responder. <em>Se detiene el escalamiento farmacológico y se llama a urología y a radiología intervencional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>¿La aguja está dentro del cuerpo cavernoso?</strong> Señales de que no: no aspira nada, el suero entra con resistencia, aparece una ampolla o edema subcutáneo local, el paciente refiere dolor superficial nuevo. <strong>Conducta: retirar, comprimir, repuncionar en el lado contrario.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>¿Hay coágulo tapando la aguja?</strong> Aspiró bien al principio y dejó de hacerlo. <strong>Conducta: irrigar pequeño volumen para desobstruir; si no se recupera, aguja de mayor calibre o segundo acceso contralateral.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span><strong>¿La dosis y el intervalo fueron los del esquema?</strong> Dilución mal calculada hacia abajo, alícuotas de menos, intervalos de quince minutos «para no pasarse». Revisar el rótulo de la jeringa y la cuenta acumulada. <em>Pero recordar que subir la dosis no compró éxito en la serie de Scarberry: si el esquema se cumplió, el problema no es la dosis.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">5</span><span><strong>¿Cuántas horas lleva en total?</strong> La respuesta explica más que todo lo anterior: en Scarberry, los que no resolvieron llevaban <strong>57,3 ± 37,1 horas</strong> contra 8,8 de los que sí. <em>Un priapismo de dos días que no cede con fenilefrina no es un fracaso técnico: es la enfermedad.</em></span></div>
+      </div>
+
+      <div class="figure" style="margin-top:16px;">
+        <svg viewBox="0 0 680 310" role="img" aria-label="Esquema de escalera de escalamiento del tratamiento del priapismo isquemico. De arriba hacia abajo se representan cinco escalones, cada uno desplazado un poco a la derecha del anterior. El primero es aspiracion, irrigacion y fenilefrina en el box de urgencia. El segundo es shunt distal en pabellon. El tercero es shunt distal mas tunelizacion intracavernosa. El cuarto es shunt proximal o venoso, o descompresion penoescrotal. El quinto es protesis de pene precoz. Al pie, una barra de tiempo indica que bajo las veinticuatro horas el manejo de box funciona, que entre veinticuatro y treinta y seis horas se decide con urologia, y que pasadas las treinta y seis horas la balanza se inclina hacia la cirugia precoz.">
+          <g font-family="DM Mono, monospace" font-size="10" fill="#94a3b8">
+            <rect x="12" y="12" width="656" height="286" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="28" y="34" fill="#fcd34d" font-size="12">Escalada · del box al pabellón</text>
+
+            <rect x="34" y="50" width="404" height="32" rx="7" fill="rgba(16,185,129,0.14)" stroke="#6ee7b7" stroke-width="1.4"/>
+            <text x="46" y="70" fill="#6ee7b7">1 · Aspiración + irrigación + fenilefrina — BOX</text>
+            <line x1="52" y1="82" x2="52" y2="92" stroke="#475569" stroke-width="1.4"/>
+            <path d="M52,92 L48,85 L56,85 Z" fill="#475569"/>
+
+            <rect x="60" y="92" width="404" height="32" rx="7" fill="rgba(20,184,166,0.12)" stroke="#5eead4" stroke-width="1.4"/>
+            <text x="72" y="112" fill="#5eead4">2 · Shunt distal — pabellón</text>
+            <line x1="78" y1="124" x2="78" y2="134" stroke="#475569" stroke-width="1.4"/>
+            <path d="M78,134 L74,127 L82,127 Z" fill="#475569"/>
+
+            <rect x="86" y="134" width="404" height="32" rx="7" fill="rgba(99,102,241,0.12)" stroke="#a5b4fc" stroke-width="1.4"/>
+            <text x="98" y="154" fill="#a5b4fc">3 · Shunt distal + tunelización intracavernosa</text>
+            <line x1="104" y1="166" x2="104" y2="176" stroke="#475569" stroke-width="1.4"/>
+            <path d="M104,176 L100,169 L108,169 Z" fill="#475569"/>
+
+            <rect x="112" y="176" width="404" height="32" rx="7" fill="rgba(245,158,11,0.12)" stroke="#fcd34d" stroke-width="1.4"/>
+            <text x="124" y="196" fill="#fcd34d">4 · Shunt proximal o venoso · descompresión penoescrotal</text>
+            <line x1="130" y1="208" x2="130" y2="218" stroke="#475569" stroke-width="1.4"/>
+            <path d="M130,218 L126,211 L134,211 Z" fill="#475569"/>
+
+            <rect x="138" y="218" width="404" height="32" rx="7" fill="rgba(239,68,68,0.12)" stroke="#fca5a5" stroke-width="1.4"/>
+            <text x="150" y="238" fill="#fca5a5">5 · Prótesis de pene precoz</text>
+
+            <line x1="34" y1="266" x2="646" y2="266" stroke="#334155" stroke-width="1.4"/>
+            <text x="34" y="284" fill="#6ee7b7" font-size="9.5">&lt; 24 h · el box funciona</text>
+            <text x="258" y="284" fill="#fcd34d" font-size="9.5">24–36 h · se decide con urología</text>
+            <text x="488" y="284" fill="#fca5a5" font-size="9.5">&gt; 36 h · cirugía precoz</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Esquema conceptual de orden, no un protocolo quirúrgico.</strong> La secuencia
+        «distal primero, proximal después» y la posición de la tunelización y de la prótesis precoz corresponden a los
+        algoritmos publicados; <em>qué técnica se usa, en qué momento y con qué umbral es decisión de urología y del
+        protocolo institucional.</em> Ninguno de estos escalones se hace en el box de urgencia.</div>
+      </div>
+
+      <div class="subhead">Qué viene después del box</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Escalón</th><th>Qué es</th><th>Qué se sabe</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Shunt distal</td>
+              <td>Comunicación entre el cuerpo cavernoso y el glande (cuerpo esponjoso) a través de la túnica distal. Variantes percutáneas con aguja o bisturí y variantes abiertas.</td>
+              <td>Es el <strong>primer escalón quirúrgico recomendado</strong> en los algoritmos publicados: se intentan los distales antes que los proximales.</td>
+            </tr>
+            <tr>
+              <td>Tunelización intracavernosa</td>
+              <td>Paso de un dilatador o pinza por el interior del cuerpo cavernoso para abrir un canal hacia el shunt distal (maniobra «de la serpiente»).</td>
+              <td>En la serie de Zacharakis, con shunt en T más tunelización: resolución del <strong>100 % bajo 24 horas y 30 % sobre 48 horas</strong>; IIEF-5 de 24 a 7,7; todos los de más de 48 horas con necrosis en la biopsia.</td>
+            </tr>
+            <tr>
+              <td>Shunt proximal o venoso</td>
+              <td>Comunicación del cuerpo cavernoso con el cuerpo esponjoso proximal o con una vena.</td>
+              <td>Se reservan para el fracaso del distal. Mayor morbilidad.</td>
+            </tr>
+            <tr>
+              <td>Descompresión penoescrotal</td>
+              <td>Alternativa o rescate del shunt corporoglandular, por vía penoescrotal.</td>
+              <td>En la serie multicéntrica de Baumgarten (25 pacientes, duración media <strong>71 horas</strong>, todos con fracaso de irrigación e inyección y 48 % con fracaso de shunt previo): sin recurrencia en los 15 con descompresión bilateral primaria, y <strong>9 de 15 (60 %)</strong> con función eréctil espontánea suficiente en el seguimiento.</td>
+            </tr>
+            <tr>
+              <td>Prótesis de pene precoz</td>
+              <td>Implante en el mismo episodio o en las semanas siguientes, en lugar de esperar que la fibrosis se establezca.</td>
+              <td>En Barham, <strong>0 % de complicaciones con implante dentro de los 6 meses contra 40,5 % después</strong>. Es el argumento para derivar precozmente, no para esperar.</td>
+            </tr>
+            <tr>
+              <td>Antitrombóticos periprocedimiento</td>
+              <td>Anticoagulación o antiagregación junto al procedimiento, para prevenir la recurrencia.</td>
+              <td><em>Certeza baja.</em> En la serie de Ramstein, los 9 pacientes que recibieron antitrombóticos junto al shunt recurrieron menos que los 13 que no (<strong>11 % contra 69 %</strong>, p = 0,012), sin diferencias en disfunción eréctil ni fibrosis a largo plazo. Es un hallazgo preliminar de un solo centro con terapias heterogéneas: <em>no es una conducta establecida y se decide con urología.</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Antes de dar el caso por refractario</div>
+      <div class="checklist" id="list-s8">
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Subtipo revisado con la gasometría en la mano.</strong> Si es arterial, el camino cambia por completo y el escalamiento farmacológico se detiene.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Posición de la aguja verificada y, si hay duda, segundo acceso contralateral hecho.</strong></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Rótulo de la jeringa y dosis acumulada releídos.</strong> El error de dilución hacia abajo es tan posible como el de arriba, y es silencioso.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Urología en el box o al teléfono con los datos completos</strong>: horas de priapismo, gasometría, volumen aspirado, microgramos totales, respuesta parcial o nula, comorbilidad.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Pabellón y anestesia avisados antes de necesitarlos</strong>, no cuando ya se decidió. En el priapismo prolongado el tiempo hasta la cirugía es parte del tiempo de isquemia.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Conversación con el paciente actualizada</strong>: qué se intentó, qué viene, y qué significa el tiempo transcurrido para su función eréctil. <em>Se dice ahora, no en el pasillo del pabellón.</em></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · DESPUÉS -->
+  <div class="section s9" id="s9" style="animation-delay:0.38s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Después: observación, causa y la próxima vez</div>
+        <div class="section-subtitle">Lo que se hace cuando ya cedió, y lo que decide si vuelve</div>
+      </div>
+      <span class="section-check-count" id="count-s9">0/9</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="go-banner">
+        <span class="warning-icon">🩹</span>
+        <span><strong>Lo inmediato.</strong> Compresión manual firme pero suave del cuerpo del pene y del punto de
+        punción por unos minutos, <strong>vendaje elástico ligero</strong>, hielo local intermitente, analgesia, y
+        <strong>observación con reexamen antes del alta</strong> —la recurrencia temprana en el box es frecuente y es
+        mejor encontrarla ahí que en la casa del paciente—. <em>El tiempo de compresión, el tipo de vendaje, el período
+        mínimo de observación y la política de control ecográfico posprocedimiento dependen del protocolo
+        institucional.</em></span>
+      </div>
+
+      <div class="subhead">Buscar la causa: el estudio que sí cambia algo</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Grupo de causas</th><th>Qué buscar</th><th>Qué pedir o hacer</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Fármacos y drogas</td>
+              <td>El grupo más grande en las series de urgencia: en la de Sidhu, <strong>62 % de los casos fue priapismo inducido por fármacos</strong>. Los agentes que se repiten son la <strong>trazodona</strong>, los <strong>antipsicóticos</strong>, los alfabloqueadores, la cocaína y los estimulantes, además de los vasoactivos intracavernosos.</td>
+              <td><strong>Lista completa de fármacos y drogas, incluyendo lo no prescrito.</strong> Suspender o cambiar el agente responsable en coordinación con quien lo indicó —no se suspende un antipsicótico desde urgencia sin hablar con psiquiatría—.</td>
+            </tr>
+            <tr>
+              <td>Inyección intracavernosa</td>
+              <td>Alprostadil, papaverina, fentolamina: en consulta, autoinyección prescrita o uso recreativo. En Borrell, <strong>54,8 % de 186 casos de priapismo fueron relacionados con inyección intracavernosa</strong>, y el uso recreativo fue el de mayor duración y peor desenlace.</td>
+              <td>Educación concreta: dosis, qué hacer si la erección pasa de 4 horas, y a dónde ir. <strong>57 % de los pacientes abandonó el tratamiento inyectable después del episodio</strong>: conviene que esa conversación la tenga quien lo prescribió.</td>
+            </tr>
+            <tr>
+              <td>Enfermedad de células falciformes y rasgo</td>
+              <td>Causa clásica y frecuente: en la cohorte de Idris en Kano, la prevalencia de priapismo fue de <strong>32,6 % en hombres con la enfermedad contra 2 % sin ella</strong>, y el <strong>73,6 % de los episodios fue «tartamudeante»</strong> —repetido y breve—. La propia guía de la EAU señala que el priapismo es más frecuente en estos pacientes.</td>
+              <td>Hemograma con reticulocitos, y estudio de hemoglobinopatía si no está documentado. Hidratación, oxígeno y analgesia <strong>en paralelo</strong> al tratamiento local. Derivación a hematología.</td>
+            </tr>
+            <tr>
+              <td>Neoplasias e infiltración</td>
+              <td>Leucemias —sobre todo mieloide crónica con hiperleucocitosis—, mieloma, y metástasis peneanas de tumores pelvianos. Sospechar ante priapismo sin causa, masa palpable o síntomas constitucionales.</td>
+              <td>Hemograma con fórmula. <em>El estudio dirigido lo define el equipo tratante; desde urgencia basta no dar el alta sin dejarlo pedido o derivado.</em></td>
+            </tr>
+            <tr>
+              <td>Otras</td>
+              <td>Lesión medular, nutrición parenteral con lípidos, diálisis, amiloidosis, vasculitis, y el idiopático, que es un porcentaje real y no un fracaso del estudio.</td>
+              <td>Anamnesis dirigida. <em>El panel exacto de exámenes se verifica con el protocolo institucional.</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">🩸</span>
+        <span><strong>Enfermedad de células falciformes: dos cosas que no se hacen.</strong> La primera es
+        <strong>postergar el tratamiento urológico</strong> mientras se hidrata y se transfunde: la guía de 2022 es
+        explícita en que el manejo inicial se enfoca en el alivio urológico de la erección, con la evaluación
+        hematológica estándar <em>concurrente</em>. La segunda es <strong>usar la transfusión de intercambio como
+        tratamiento del priapismo</strong>: existe un cuadro descrito —el <strong>síndrome ASPEN</strong> de Siegel,
+        acrónimo de la asociación de enfermedad falciforme, priapismo, transfusión de intercambio y eventos
+        neurológicos— en que pacientes transfundidos para tratar el priapismo desarrollaron desde cefalea intensa y
+        convulsiones hasta compromiso de conciencia con necesidad de ventilación, atribuido al alza brusca de
+        hemoglobina total con caída de la fracción S. Fue reversible con reconocimiento precoz y manejo agresivo, pero
+        es razón suficiente para que la transfusión no sea el primer movimiento. <em>La indicación, el tipo y el momento
+        de cualquier transfusión los define hematología según el protocolo institucional.</em></span>
+      </div>
+
+      <div class="subhead">Priapismo recurrente o «tartamudeante»: prevenir la próxima</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔁</span><span><strong>Es su propia entidad y tiene su propia guía</strong> (la de la AUA y la SMSNA de 2022): el objetivo del manejo es <strong>prevenir episodios futuros</strong>, además de tratar el agudo cuando ocurre. No se resuelve con una indicación de alta genérica.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>La profilaxis con inhibidores de la fosfodiesterasa 5 se considera una herramienta útil pero no validada</strong> en la revisión de algoritmos de Moussa. También se describen esquemas hormonales y otros agentes. <em>Es una decisión de urología o hematología, no de urgencia, y el esquema concreto se verifica con el protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🗣️</span><span><strong>La barrera más grande es que no consultan.</strong> En la cohorte de Idris, <strong>casi la mitad</strong> de los hombres con priapismo asociado a enfermedad falciforme <strong>nunca había buscado atención médica</strong> por este motivo, y la mayoría usaba el ejercicio como estrategia propia. El episodio en urgencia es la oportunidad de decir, con nombre y apellido, <em>a las 4 horas se viene</em>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧠</span><span><strong>El impacto no es solo eréctil.</strong> En la misma cohorte de Idris, el priapismo afectó la autoimagen de los hombres con enfermedad falciforme —<strong>tristeza, vergüenza y miedo</strong>— y la prevalencia de disfunción eréctil fue <strong>más del doble</strong> que en los hombres sin la enfermedad. Preguntar por eso es parte del seguimiento, no una cortesía.</span></div>
+      </div>
+
+      <div class="subhead">Antes del alta o del traslado</div>
+      <div class="checklist" id="list-s9">
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Detumescencia confirmada por palpación y mantenida en el tiempo de observación</strong>, con reexamen antes del alta.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Punto de punción revisado</strong>: sin sangrado activo, sin hematoma en expansión, sin signos de infección. Vendaje elástico puesto sin comprimir en exceso.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Presión arterial y frecuencia estables después de la última dosis</strong>, y registradas.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Causa identificada o explícitamente consignada como no identificada</strong>, con el fármaco responsable suspendido o derivado para cambio.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Instrucción de retorno dicha y escrita, con el número 4 en ella</strong>: «si vuelve y dura más de 4 horas, vuelve de inmediato; no espere a la mañana». Es la indicación que más cambia el pronóstico del próximo episodio.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Control con urología agendado</strong>, y con hematología si hay hemoglobinopatía. En el priapismo prolongado, la derivación incluye explícitamente la evaluación por prótesis precoz.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Conversación sobre función eréctil hecha y registrada</strong>, con el dato real: el riesgo depende sobre todo de las horas transcurridas, y puede haber disfunción incluso cuando el procedimiento resultó.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Analgesia de alta indicada</strong> y advertencia de evitar estímulo sexual los primeros días. <em>El esquema y la duración se rigen por el protocolo institucional.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Registro completo en la ficha</strong>: hora de inicio del priapismo, hora de llegada, duración total, gasometría cavernosa, volumen aspirado, concentración y dosis total de fenilefrina en microgramos, respuesta, complicaciones, destino y a quién se avisó.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · COMPLICACIONES Y CERTEZA -->
+  <div class="section s10" id="s10" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Complicaciones y grado de certeza</div>
+        <div class="section-subtitle">Lo que puede salir mal y cuánto sostiene cada afirmación de esta página</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Complicaciones</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Complicación</th><th>Cómo aparece</th><th>Cómo se previene o se trata</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Error de dilución de la fenilefrina</td>
+              <td>Alza brusca de presión arterial, bradicardia refleja, cefalea intensa. En el extremo, se ha reportado hemorragia intracerebral asociada a inyección inadvertidamente intravascular.</td>
+              <td><strong>Leer la ampolla, diluir con doble chequeo, rotular la jeringa en µg/mL</strong> y llevar la cuenta acumulada. Si ocurre: suspender, monitorizar y tratar la crisis hipertensiva según protocolo.</td>
+            </tr>
+            <tr>
+              <td>Efectos sistémicos sin error de dosis</td>
+              <td>Hipertensión, bradicardia refleja, cefalea. En Scarberry, <strong>4 de 123 pacientes (4,1 %)</strong> requirieron suspender el fármaco; la incidencia fue mucho mayor entre los de perfil de riesgo.</td>
+              <td><strong>Monitorización de presión y frecuencia en cada dosis</strong> —exigencia de la guía—, dosis e intervalos del esquema, y precaución explícita en hipertensión no controlada, hemorragia intracerebral reciente, cardiopatía inestable, inhibidores de la monoaminooxidasa y edad pediátrica.</td>
+            </tr>
+            <tr>
+              <td>Hematoma peneano</td>
+              <td>Aumento de volumen y equimosis en el sitio de punción, a veces extensa. Más probable con múltiples punciones, calibre grueso o coagulopatía.</td>
+              <td>Acceso <strong>único</strong> y estable, compresión al terminar, vendaje elástico, revisión antes del alta. Manejo conservador en la mayoría; control si se expande.</td>
+            </tr>
+            <tr>
+              <td>Lesión uretral</td>
+              <td>Uretrorragia, dolor al orinar, posteriormente estrechez o fístula. Por punción a las 6 en punto o en el glande.</td>
+              <td><strong>Respetar la cara lateral.</strong> Si ocurre: urología, evaluación de la vía urinaria y <em>conducta según protocolo institucional</em>.</td>
+            </tr>
+            <tr>
+              <td>Lesión del paquete dorsal</td>
+              <td>Sangrado dorsal, hipoestesia o parestesia del dorso del pene y del glande. Por punción a las 12 en punto.</td>
+              <td><strong>Respetar la cara lateral.</strong> Compresión y evaluación por urología.</td>
+            </tr>
+            <tr>
+              <td>Infección: celulitis, abscesos, cavernositis</td>
+              <td>Dolor creciente, fiebre, eritema, induración. Rara, pero de consecuencias graves sobre el tejido eréctil.</td>
+              <td>Antisepsia, campo limpio, menor número de punciones. <em>Esquema antibiótico, si se indica, según protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Recurrencia temprana</td>
+              <td>Vuelve la rigidez y el dolor en el box o en las horas siguientes al alta.</td>
+              <td><strong>Observación con reexamen antes del alta</strong>, instrucción de retorno con el umbral de 4 horas, y evaluación de la causa. Los antitrombóticos periprocedimiento son una estrategia de <em>certeza baja</em> y se deciden con urología.</td>
+            </tr>
+            <tr>
+              <td>Fracaso del procedimiento</td>
+              <td>No hay detumescencia pese a esquema correcto. Fuertemente asociado a la duración: <strong>57,3 ± 37,1 horas</strong> en los que no resolvieron, contra 8,8 en los que sí (Scarberry).</td>
+              <td>Algoritmo de la sección 08 y escalada con urología. En &gt; 36 horas, la cirugía precoz tiene mejores desenlaces que insistir en el box (El-Achkar).</td>
+            </tr>
+            <tr>
+              <td>Disfunción eréctil y fibrosis</td>
+              <td>El desenlace que define la enfermedad, no el procedimiento. En Zacharakis el IIEF-5 cayó de 24 a 7,7, con <strong>disfunción en la mitad</strong> incluso bajo 24 horas y en todos sobre 48 horas.</td>
+              <td>Lo único que la previene es <strong>resolver temprano</strong>. Cuando ya está: derivación precoz —la prótesis instalada dentro de 6 meses tuvo 0 % de complicaciones contra 40,5 % después (Barham)—.</td>
+            </tr>
+            <tr>
+              <td>Tratar como isquémico un priapismo arterial</td>
+              <td>No responde a la fenilefrina, y se suman hematoma, dolor y riesgo de fibrosis sin beneficio.</td>
+              <td><strong>Reconocerlo antes de pinchar</strong>: indoloro, parcialmente rígido, trauma perineal, signo de <em>piesis</em>, sangre roja al aspirar, Doppler con flujo turbulento focal. Observación y embolización superselectiva, no punción terapéutica.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Grado de certeza de lo que dice esta página</div>
+      <div class="plain-list">
+        <div class="plain-item good"><span class="bullet-icon">🟢</span><span><strong>Sostenido por guía de sociedad con revisión sistemática:</strong> que el priapismo isquémico es una emergencia y se evalúa de inmediato; que la primera línea es <strong>fenilefrina intracavernosa con aspiración, con o sin irrigación, antes de la cirugía</strong>; que se <strong>monitoriza presión arterial y frecuencia cardíaca</strong>; que el urólogo se involucra precozmente; que el priapismo <strong>no isquémico no es emergencia</strong>; y que la erección prolongada postinyección tiene protocolo distinto. Todo esto proviene de la guía de la AUA y la SMSNA de 2021 y 2022.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">🟢</span><span><strong>Sostenido por estudio original con datos:</strong> la progresión histológica por horas (Spycher y Hauri); la dependencia del éxito respecto de la duración (Zacharakis, Scarberry); el peor desenlace del manejo no quirúrgico sobre 36 horas (El-Achkar); la ventaja de la prótesis precoz (Barham); la superioridad de la fenilefrina sobre la terbutalina (Martin y Cocchio); el perfil de la causa farmacológica (Sidhu, Borrell); la epidemiología en enfermedad falciforme (Idris); el síndrome ASPEN (Siegel).</span></div>
+        <div class="plain-item"><span class="bullet-icon">🟡</span><span><strong>Series pequeñas o retrospectivas, con las limitaciones que eso implica:</strong> que altas dosis de fenilefrina sean hemodinámicamente inocuas (Sidhu, 58 pacientes de un centro — y matizado por los 4,1 % de suspensión de Scarberry); que la fenilefrina sola sin aspirar funcione (Muruve y Hosking, 9 pacientes); la descompresión penoescrotal (Baumgarten, 25 pacientes); los antitrombóticos periprocedimiento (Ramstein, 9 contra 13 pacientes); el manejo expectante del priapismo arterial (Hatzichristou y Hakim, 7 y 10 pacientes).</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🔴</span><span><strong>Convencional, sin estudio de desenlace que lo respalde individualmente:</strong> todas las metas de tiempo del cronómetro; el «techo de 60 minutos» de la fase farmacológica; el calibre de aguja y el volumen por alícuota de aspiración e irrigación; la elección entre bloqueo dorsal y bloqueo en anillo y la dosis del anestésico; el tiempo de compresión y el tipo de vendaje; el período mínimo de observación antes del alta; la política de imagen posprocedimiento; el panel exacto de exámenes de causa; y la conducta frente a coagulopatía o anticoagulación plena. Provienen de textos, revisiones narrativas y consenso de expertos, y <strong>deben contrastarse con el protocolo institucional vigente y con el material realmente disponible</strong>.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🔴</span><span><strong>Lo que esta página no cubre y requiere su propia fuente:</strong> la técnica de cualquiera de los shunts; el priapismo en pediatría; la indicación, el tipo y el momento de la transfusión en enfermedad falciforme; los esquemas de profilaxis del priapismo recurrente; y la técnica y los agentes de la embolización en el priapismo arterial. Todos son decisiones de especialidad.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROGRESO -->
+  <div class="progress-bottom">
+    <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBar"></div></div>
+    <div class="progress-label"><span id="progress-pct">0%</span> del checklist</div>
+    <button type="button" class="reset-btn" onclick="resetAll()">↺ Reiniciar</button>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    presencial en el procedimiento. La <strong>aspiración e irrigación intracavernosa con inyección de un
+    simpaticomimético es un procedimiento invasivo sobre un órgano pequeño y muy vascularizado</strong>, con
+    complicaciones posibles —hematoma, lesión uretral, lesión del paquete neurovascular dorsal, infección y
+    cavernositis, fibrosis, y efectos sistémicos de la fenilefrina que incluyen crisis hipertensiva y bradicardia
+    refleja—: leer este checklist no sustituye la práctica supervisada. <strong>La concentración de la ampolla
+    disponible, la dilución y el volumen por alícuota de la fenilefrina, su dosis máxima acumulada, el calibre y el
+    tipo de aguja, la técnica y la dosis del anestésico local, el volumen de aspiración y de irrigación, el tiempo de
+    compresión y el tipo de vendaje, el período mínimo de observación antes del alta, la política de imagen
+    posprocedimiento, el panel de exámenes para buscar la causa, el esquema de analgesia y de antibióticos si se
+    indican, la conducta frente a coagulopatía o anticoagulación plena, el umbral y la conducta ante cambios
+    hemodinámicos, y la indicación, el tipo y el momento de la transfusión en la enfermedad de células falciformes
+    dependen del material disponible y deben verificarse con el protocolo institucional</strong> antes de aplicarse.
+    <strong>Verifica siempre la concentración de la ampolla antes de diluir y rotula la jeringa en µg/mL</strong>: la
+    fenilefrina se presenta en miligramos por mililitro y se inyecta en microgramos. Las <strong>metas de tiempo del
+    cronómetro son referenciales y no constituyen un estándar validado</strong>: no existe una referencia publicada de
+    tiempos para este procedimiento, y el reparto propuesto aquí —incluido el «techo de 60 minutos» de la fase
+    farmacológica— es una distribución razonable, no una norma; las únicas referencias temporales con respaldo son el
+    umbral de 4 horas que define el priapismo, la ventana de 4 a 6 horas para intervenir de la guía de la EAU y las
+    franjas de 24, 36 y 48 horas descritas en la sección 02. Los <strong>esquemas son dibujos orientativos, no
+    ilustraciones anatómicas a escala.</strong> El contenido es para <strong>pacientes adultos</strong>; el priapismo
+    en niños y adolescentes requiere material, dosis y umbrales propios y se rige por el protocolo del servicio.
+    Conviene además tener presente que <strong>el priapismo no isquémico (arterial) no es una emergencia y no se trata
+    con punción terapéutica</strong>, y que <strong>la técnica de los shunts, la embolización y la instalación de
+    prótesis son procedimientos de especialidad</strong> que no se ejecutan en el box de urgencia. El cronómetro y el
+    checklist <strong>no guardan ningún dato</strong>: el registro del procedimiento se hace en la ficha clínica.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Referencias localizadas y verificadas mediante <strong>PubMed</strong>.</div>
+      <div class="ref-item">Bivalacqua TJ, Allen BK, Brock G, et al. <em>Acute Ischemic Priapism: An AUA/SMSNA Guideline.</em> J Urol. 2021;206(5):1114–1121. <a href="https://doi.org/10.1097/JU.0000000000002236" target="_blank" rel="noopener">DOI: 10.1097/JU.0000000000002236</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/34495686/" target="_blank" rel="noopener">PMID 34495686</a> — <strong>Fuente principal de esta página.</strong> Búsqueda de 1960 a mayo de 2020, 137 artículos incluidos. Define el priapismo isquémico agudo por el flujo cavernoso ausente o mínimo y la gasometría anormal (hipóxica, hipercápnica, acidótica); recomienda <strong>fenilefrina intracavernosa con aspiración, con o sin irrigación, como primera línea y antes de las intervenciones quirúrgicas</strong>; exige <strong>monitorizar presión arterial y frecuencia cardíaca</strong> en quien recibe fenilefrina; aborda el involucramiento precoz del urólogo, la consejería sobre riesgo de disfunción eréctil, la tunelización y la <strong>prótesis de pene precoz</strong>.</div>
+      <div class="ref-item">Bivalacqua TJ, Allen BK, Brock GB, et al. <em>The Diagnosis and Management of Recurrent Ischemic Priapism, Priapism in Sickle Cell Patients, and Non-Ischemic Priapism: An AUA/SMSNA Guideline.</em> J Urol. 2022;208(1):43–52. <a href="https://doi.org/10.1097/JU.0000000000002767" target="_blank" rel="noopener">DOI: 10.1097/JU.0000000000002767</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/35536142/" target="_blank" rel="noopener">PMID 35536142</a> — <strong>Fuente de los tres desvíos de la sección 01.</strong> El priapismo no isquémico <strong>no es una emergencia</strong>; el paciente con enfermedad de células falciformes se maneja inicialmente <strong>con foco en el alivio urológico de la erección</strong>, con la evaluación hematológica estándar <em>concurrente</em>; y los protocolos para la <strong>erección prolongada iatrogénica tras medicación vasoactiva intracavernosa deben diferenciarse</strong> de los del priapismo verdadero. En el priapismo recurrente, el objetivo es la prevención de episodios futuros.</div>
+      <div class="ref-item">Salonia A, Eardley I, Giuliano F, et al. <em>European Association of Urology guidelines on priapism.</em> Eur Urol. 2014;65(2):480–489. <a href="https://doi.org/10.1016/j.eururo.2013.11.008" target="_blank" rel="noopener">DOI: 10.1016/j.eururo.2013.11.008</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/24314827/" target="_blank" rel="noopener">PMID 24314827</a> — <strong>Fuente de la clasificación y de la ventana de intervención.</strong> Clasifica el priapismo en <strong>isquémico (bajo flujo), arterial (alto flujo) y «tartamudeante»</strong>; sitúa el inicio de la intervención del isquémico <strong>dentro de las primeras 4 a 6 horas</strong>, con descompresión por aspiración e inyección intracavernosa de simpaticomiméticos como la fenilefrina; recomienda cirugía ante el fracaso del manejo conservador señalando que <em>cuál es el mejor procedimiento no está claro</em>; plantea considerar la <strong>prótesis de inmediato en el priapismo de larga duración</strong>; y confirma que el arterial no es emergencia y se trata con embolización selectiva. <em>Es la versión publicada en revista; la versión extendida y vigente se mantiene en línea y es la que debe consultarse para dosis exactas.</em></div>
+      <div class="ref-item">Spycher MA, Hauri D. <em>The ultrastructure of the erectile tissue in priapism.</em> J Urol. 1986;135(1):142–147. <a href="https://doi.org/10.1016/s0022-5347(17)45549-2" target="_blank" rel="noopener">DOI: 10.1016/s0022-5347(17)45549-2</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/3941454/" target="_blank" rel="noopener">PMID 3941454</a> — <strong>Origen del argumento del reloj.</strong> Microscopía electrónica de tejido eréctil humano: el <strong>edema intersticial trabecular</strong> es la primera reacción; las células musculares lisas se transforman en células de aspecto fibroblástico; el <strong>daño celular severo y la necrosis extensa aparecen sobre las 24 horas</strong> y el <strong>coágulo intracavernoso con destrucción del endotelio sobre las 48</strong>. En el priapismo de alto flujo ese estadio <strong>no se alcanzó</strong>, lo que sostiene su mejor pronóstico.</div>
+      <div class="ref-item">Zacharakis E, Raheem AA, Freeman A, et al. <em>The efficacy of the T-shunt procedure and intracavernous tunneling (snake maneuver) for refractory ischemic priapism.</em> J Urol. 2014;191(1):164–168. <a href="https://doi.org/10.1016/j.juro.2013.07.034" target="_blank" rel="noopener">DOI: 10.1016/j.juro.2013.07.034</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/23892191/" target="_blank" rel="noopener">PMID 23892191</a> — <strong>Fuente de las cifras por franja de duración.</strong> Cuarenta y cinco pacientes con fracaso del tratamiento primario: resolución en <strong>todos los de menos de 24 horas y solo en el 30 % de los de más de 48</strong>; <strong>IIEF-5 de 24 a 7,7</strong> a los 6 meses, en relación con la duración (p &lt; 0,0005); <strong>disfunción eréctil en la mitad</strong> de los de menos de 24 horas; y <strong>todos</strong> los de más de 48 horas con músculo liso cavernoso necrótico en la biopsia y necesidad de prótesis.</div>
+      <div class="ref-item">Scarberry K, Deebel NA, Dutta R, et al. <em>Safety and Efficacy of Phenylephrine Administration for the Treatment of Ischemic Priapism: An Opportunity for Quality Improvement in Periprocedural Safety Assessment.</em> Urology. 2022;169:115–119. <a href="https://doi.org/10.1016/j.urology.2022.08.011" target="_blank" rel="noopener">DOI: 10.1016/j.urology.2022.08.011</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/36007685/" target="_blank" rel="noopener">PMID 36007685</a> — <strong>Fuente del contrapeso de seguridad y del dato de duración.</strong> Ciento veintitrés pacientes, mediana de 11 horas desde el inicio: detumescencia no operatoria en <strong>62 de 97 (63,9 %)</strong> de los que recibieron fenilefrina; los que resolvieron llevaban <strong>8,8 ± 5,6 horas</strong> contra <strong>57,3 ± 37,1</strong> de los que no (p &lt; 0,001); la resolución <strong>no fue dosis-dependiente</strong>; <strong>21 pacientes (17,1 %) con perfil de riesgo</strong> y <strong>4 (4,1 %) con suspensión del fármaco por cambios hemodinámicos</strong>. Los autores concluyen que esos cambios <em>probablemente están subreportados</em>.</div>
+      <div class="ref-item">Sidhu AS, Wayne GF, Kim BJ, et al. <em>The Hemodynamic Effects of Intracavernosal Phenylephrine for the Treatment of Ischemic Priapism.</em> J Sex Med. 2018;15(7):990–996. <a href="https://doi.org/10.1016/j.jsxm.2018.05.012" target="_blank" rel="noopener">DOI: 10.1016/j.jsxm.2018.05.012</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/29960632/" target="_blank" rel="noopener">PMID 29960632</a> — Setenta y cuatro episodios, mediana de presentación <strong>5,4 horas</strong>, <strong>62 % inducido por fármacos</strong>; 58 recibieron fenilefrina con <strong>mediana de 1000 µg (RIQ 500–2000)</strong> y <strong>53 de 58 (91 %) lograron detumescencia</strong>; sin asociación entre dosis y cambios de frecuencia o presión, y sin eventos adversos. <em>Serie retrospectiva de un centro: sostiene la seguridad observada, no la inocuidad universal.</em></div>
+      <div class="ref-item">Muruve N, Hosking DH. <em>Intracorporeal phenylephrine in the treatment of priapism.</em> J Urol. 1996;155(1):141–143. · <a href="https://pubmed.ncbi.nlm.nih.gov/7490814/" target="_blank" rel="noopener">PMID 7490814</a> — <strong>Fuente del matiz sobre la aspiración.</strong> Nueve pacientes consecutivos tratados con <strong>0,5 mg de fenilefrina diluida en 2 mL de suero fisiológico</strong>, repetida cada 15 minutos si no había respuesta, <strong>sin aspiración ni irrigación</strong>: <strong>8 de 9</strong> con detumescencia, 1 a 6 inyecciones, sin cambios de presión ni frecuencia. Los autores concluyen que la aspiración o irrigación de rutina previa no parece necesaria. <em>Serie muy pequeña; no desplaza la recomendación de la guía, pero justifica no retrasar el fármaco cuando la aspiración se complica.</em></div>
+      <div class="ref-item">Martin C, Cocchio C. <em>Effect of phenylephrine and terbutaline on ischemic priapism: a retrospective review.</em> Am J Emerg Med. 2016;34(2):222–224. <a href="https://doi.org/10.1016/j.ajem.2015.10.029" target="_blank" rel="noopener">DOI: 10.1016/j.ajem.2015.10.029</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/26597497/" target="_blank" rel="noopener">PMID 26597497</a> — <strong>Fuente de la comparación con la terbutalina.</strong> Treinta y un casos: detumescencia en el <strong>25 % con terbutalina oral o subcutánea contra 74 % con fenilefrina intracavernosa</strong>, sin eventos adversos atribuibles al fármaco. <em>Serie retrospectiva pequeña.</em></div>
+      <div class="ref-item">Lee M, Cannon B, Sharifi R. <em>Chart for preparation of dilutions of alpha-adrenergic agonists for intracavernous use in treatment of priapism.</em> J Urol. 1995;153(4):1182–1183. · <a href="https://pubmed.ncbi.nlm.nih.gov/7869493/" target="_blank" rel="noopener">PMID 7869493</a> — <strong>Razón de ser de la advertencia sobre la dilución.</strong> Los autores publican una tabla de preparación extemporánea de diluciones de agonistas alfa para uso intracavernoso precisamente porque no existía una fuente de referencia disponible, y explican por qué la fenilefrina es el agente preferido: estimulación alfa-1 potente y selectiva, sin efecto beta-1 que pueda provocar arritmia o angina.</div>
+      <div class="ref-item">Graham BA, Almajed W, Conlon J, et al. <em>An overview of emergency pharmacotherapy for priapism.</em> Expert Opin Pharmacother. 2022;23(12):1371–1380. <a href="https://doi.org/10.1080/14656566.2022.2099271" target="_blank" rel="noopener">DOI: 10.1080/14656566.2022.2099271</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/35815373/" target="_blank" rel="noopener">PMID 35815373</a> — Revisión de la farmacoterapia de urgencia del priapismo que presenta la entidad como un <strong>síndrome compartimental</strong> y concluye que la <strong>fenilefrina intracavernosa es superior a los otros agentes</strong> por eficacia demostrada y efectos sistémicos limitados. <em>Revisión narrativa.</em></div>
+      <div class="ref-item">Moussa M, Abou Chakra M, Papatsoris A, et al. <em>An update on the management algorithms of priapism during the last decade.</em> Arch Ital Urol Androl. 2022;94(2):237–247. <a href="https://doi.org/10.4081/aiua.2022.2.237" target="_blank" rel="noopener">DOI: 10.4081/aiua.2022.2.237</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/35775354/" target="_blank" rel="noopener">PMID 35775354</a> — <strong>Fuente del esquema de escalada.</strong> Aspiración más fenilefrina bajo las 24 horas; <strong>shunt distal primero</strong> ante el fracaso del simpaticomimético o entre 24 y 48 horas; shunt proximal, venoso o en T con tunelización entre 48 y 72 horas; y <strong>prótesis si esas terapias fallan</strong>. En el priapismo tartamudeante señala que los inhibidores de la fosfodiesterasa 5 se consideran una herramienta eficaz de prevención pero <strong>aún no validada</strong>. <em>Revisión narrativa de algoritmos.</em></div>
+      <div class="ref-item">El-Achkar A, Arbuiso A, Marquardt Filho N, et al. <em>Non-surgical vs surgical management for major ischemic priapism of 36 hours duration.</em> J Sex Med. 2026;23(1). <a href="https://doi.org/10.1093/jsxmed/qdaf362" target="_blank" rel="noopener">DOI: 10.1093/jsxmed/qdaf362</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/41439680/" target="_blank" rel="noopener">PMID 41439680</a> — <strong>Fuente del cambio de balanza sobre las 36 horas.</strong> Setenta y seis pacientes con priapismo isquémico de ≥ 36 horas, 38 manejados sin cirugía y 38 con cirugía: <strong>reingreso y reintervención en 66,7 % contra 10,4 %</strong> (p &lt; 0,01) y fibrosis deformante en 18,5 % contra 7,9 % (p = 0,309). <em>Serie retrospectiva unicéntrica, muestra pequeña y seguimiento limitado.</em></div>
+      <div class="ref-item">Barham DW, Chang C, Hammad M, et al. <em>Delayed placement of an inflatable penile prosthesis is associated with a high complication rate in men with a history of ischemic priapism.</em> J Sex Med. 2023;20(7):1052–1056. <a href="https://doi.org/10.1093/jsxmed/qdad075" target="_blank" rel="noopener">DOI: 10.1093/jsxmed/qdad075</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/37279440/" target="_blank" rel="noopener">PMID 37279440</a> — <strong>Fuente del argumento de la derivación precoz.</strong> Estudio multicéntrico con 62 hombres con priapismo isquémico previo (duración mediana <strong>37 horas</strong>) y 62 controles emparejados: complicaciones en el <strong>40,5 % del grupo con implante diferido más de 6 meses contra 0 % en el grupo precoz y en los controles</strong>; 8 de 14 complicaciones no infecciosas fueron del cilindro.</div>
+      <div class="ref-item">Baumgarten AS, VanDyke ME, Yi YA, et al. <em>Favourable multi-institutional experience with penoscrotal decompression for prolonged ischaemic priapism.</em> BJU Int. 2020;126(4):441–446. <a href="https://doi.org/10.1111/bju.15127" target="_blank" rel="noopener">DOI: 10.1111/bju.15127</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/32501654/" target="_blank" rel="noopener">PMID 32501654</a> — Veinticinco pacientes con priapismo isquémico prolongado (duración media <strong>71 horas</strong>), todos con fracaso de irrigación e inyección y <strong>48 % con fracaso de shunt corporoglandular previo</strong>: sin recurrencia en los 15 con descompresión penoescrotal bilateral primaria, recurrencia en 2 de 10 unilaterales, y <strong>9 de 15 (60 %)</strong> con erección espontánea suficiente para la penetración en el seguimiento. <em>Serie retrospectiva.</em></div>
+      <div class="ref-item">Ramstein JJ, Lee A, Cohen AJ, et al. <em>Clinical Outcomes of Periprocedural Antithrombotic Therapy in Ischemic Priapism Management.</em> J Sex Med. 2020;17(11):2260–2266. <a href="https://doi.org/10.1016/j.jsxm.2020.07.013" target="_blank" rel="noopener">DOI: 10.1016/j.jsxm.2020.07.013</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/32800740/" target="_blank" rel="noopener">PMID 32800740</a> — Setenta pacientes: de los 55 que no recibieron antitrombóticos de inmediato, <strong>22 (40 %) necesitaron al menos un shunt</strong>; entre los que fueron a shunt, los 9 que recibieron antitrombóticos concurrentes recurrieron menos que los 13 que no (<strong>11 % contra 69 %</strong>, p = 0,012), sin diferencias a largo plazo en disfunción eréctil, fibrosis, dolor ni síntomas urinarios. <em>Primer estudio del tema, unicéntrico y con terapias heterogéneas: hallazgo preliminar, no conducta establecida.</em></div>
+      <div class="ref-item">Hatzichristou D, Salpiggidis G, Hatzimouratidis K, et al. <em>Management strategy for arterial priapism: therapeutic dilemmas.</em> J Urol. 2002;168(5):2074–2077. <a href="https://doi.org/10.1016/S0022-5347(05)64299-1" target="_blank" rel="noopener">DOI: 10.1016/S0022-5347(05)64299-1</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/12394712/" target="_blank" rel="noopener">PMID 12394712</a> — <strong>Origen del signo de <em>piesis</em>.</strong> Siete casos de priapismo arterial postraumático: la <strong>compresión perineal produjo detumescencia</strong>, signo que los autores proponen como indicativo del diagnóstico y complemento del examen físico. Resolución espontánea en uno, embolización exitosa en dos, y un paciente en manejo expectante a los 42 meses. Proponen introducir un <strong>período de observación</strong> en el algoritmo del alto flujo. <em>Serie de 7 pacientes.</em></div>
+      <div class="ref-item">Bastuba MD, Saenz de Tejada I, Dinlenc CZ, et al. <em>Arterial priapism: diagnosis, treatment and long-term followup.</em> J Urol. 1994;151(5):1231–1237. <a href="https://doi.org/10.1016/s0022-5347(17)35219-9" target="_blank" rel="noopener">DOI: 10.1016/s0022-5347(17)35219-9</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/8158765/" target="_blank" rel="noopener">PMID 8158765</a> — Siete pacientes con fístula arterio-lacunar demostrada por arteriografía tras trauma perineal o peneano: erecciones <strong>sin dolor, incompletamente rígidas pero constantes</strong>, y <strong>aspirado cavernoso rojo brillante en todos los casos</strong>. La embolización transcatéter superselectiva resolvió el cuadro en todos, con restitución de la función eréctil plena en 6 de 7. <em>Serie pequeña con seguimiento largo.</em></div>
+      <div class="ref-item">Hakim LS, Kulaksizoglu H, Mulligan R, et al. <em>Evolving concepts in the diagnosis and treatment of arterial high flow priapism.</em> J Urol. 1996;155(2):541–548. · <a href="https://pubmed.ncbi.nlm.nih.gov/8558656/" target="_blank" rel="noopener">PMID 8558656</a> — Diez pacientes: la ecografía Doppler dúplex perineal tuvo <strong>100 % de sensibilidad y 73 % de especificidad</strong> frente a la arteriografía pudenda selectiva, y los pacientes en <strong>manejo expectante se mantuvieron potentes hasta 31 años</strong>. Base de la conducta conservadora en el priapismo arterial. <em>Serie pequeña.</em></div>
+      <div class="ref-item">Borrell JA, Bettencourt A, Furtado TP, et al. <em>Exploring the Clinical Landscape of Priapism Related to Intracavernosal Injection Therapy: Patient Characteristics, Management Patterns, and Erectile Dysfunction Outcomes.</em> Urology. 2025;204:275–282. <a href="https://doi.org/10.1016/j.urology.2025.04.042" target="_blank" rel="noopener">DOI: 10.1016/j.urology.2025.04.042</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/40287023/" target="_blank" rel="noopener">PMID 40287023</a> — <strong>Fuente del dato sobre inyección intracavernosa.</strong> De 186 casos de priapismo, <strong>102 (54,8 %) relacionados con inyección intracavernosa</strong>; duración mediana de <strong>3 horas en el puesto en consulta, 7 horas en el prescrito y 30 horas en el uso recreativo</strong> (p &lt; 0,001); <strong>57 % abandonó el tratamiento inyectable</strong> después del episodio y <strong>65 % de los usuarios recreativos previamente sanos desarrolló disfunción eréctil nueva</strong>. <em>Serie retrospectiva unicéntrica.</em></div>
+      <div class="ref-item">Idris IM, Abba A, Galadanci JA, et al. <em>Men with sickle cell disease experience greater sexual dysfunction when compared with men without sickle cell disease.</em> Blood Adv. 2020;4(14):3277–3283. <a href="https://doi.org/10.1182/bloodadvances.2020002062" target="_blank" rel="noopener">DOI: 10.1182/bloodadvances.2020002062</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/32702096/" target="_blank" rel="noopener">PMID 32702096</a> — <strong>Fuente de la epidemiología y de la barrera de consulta.</strong> Encuesta comparativa en Kano, Nigeria, con 500 hombres con enfermedad de células falciformes y 250 sin ella: prevalencia de priapismo <strong>32,6 % contra 2 %</strong> (p &lt; 0,001); el <strong>73,6 % de los episodios fue tartamudeante</strong>; <strong>cerca del 50 % nunca había buscado atención médica</strong> por este motivo; la mayoría usaba el ejercicio como estrategia propia; y la disfunción eréctil fue <strong>más del doble</strong> de frecuente (p = 0,01), con impacto en la autoimagen —tristeza, vergüenza y miedo—.</div>
+      <div class="ref-item">Siegel JF, Rich MA, Brock WA. <em>Association of sickle cell disease, priapism, exchange transfusion and neurological events: ASPEN syndrome.</em> J Urol. 1993;150(5 Pt 1):1480–1482. <a href="https://doi.org/10.1016/s0022-5347(17)35817-2" target="_blank" rel="noopener">DOI: 10.1016/s0022-5347(17)35817-2</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/8411432/" target="_blank" rel="noopener">PMID 8411432</a> — <strong>Origen de la advertencia sobre la transfusión de intercambio.</strong> Descripción del síndrome ASPEN: eventos neurológicos significativos tras transfusión de intercambio parcial para tratar el priapismo en pacientes con enfermedad falciforme, desde <strong>cefalea intensa como síntoma inicial</strong> hasta convulsiones y compromiso de conciencia con necesidad de ventilación, atribuidos a isquemia cerebral por el alza aguda de hemoglobina total y la caída de la fracción S. <strong>Reversible con reconocimiento precoz y manejo agresivo.</strong> <em>Reporte de casos con revisión de la literatura.</em></div>
+      <div class="ref-item">Aspectos <strong>convencionales</strong> descritos aquí y <strong>no respaldados individualmente por estudios de desenlace</strong>: todas las metas de tiempo del cronómetro y el «techo de 60 minutos» de la fase farmacológica; el calibre y el tipo de aguja; la elección entre bloqueo del nervio dorsal y bloqueo en anillo, la concentración, el volumen y la dosis máxima del anestésico local; el volumen por alícuota de aspiración y de irrigación y el uso de suero a temperatura ambiente; el tiempo de compresión y el tipo de vendaje; el período mínimo de observación antes del alta; la política de imagen posprocedimiento; el panel exacto de exámenes para buscar la causa; los esquemas de analgesia y de antibióticos; la conducta ante coagulopatía o anticoagulación plena; los umbrales de suspensión de la fenilefrina por cambios hemodinámicos; y la disponibilidad, presentación y dilución de alternativas como la etilefrina o la adrenalina intracavernosa. Provienen de textos, revisiones narrativas, insertos de fabricantes y consenso de expertos, y deben contrastarse con el <strong>material realmente disponible y con el protocolo institucional vigente</strong>.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Checklist con progreso ────────────────────────────────────────
+  const SECTIONS = ['s1', 's4', 's5', 's6', 's7', 's8', 's9'];
+  const totals = {};
+  SECTIONS.forEach(s => {
+    const list = document.getElementById('list-' + s);
+    totals[s] = list ? list.querySelectorAll('.check-item').length : 0;
+  });
+  const TOTAL_CHECKS = SECTIONS.reduce((acc, s) => acc + totals[s], 0);
+
+  function countChecked(section) {
+    return document.querySelectorAll('#list-' + section + ' .check-item.checked').length;
+  }
+
+  function toggle(el, section) {
+    el.classList.toggle('checked');
+    updateCount(section);
+    updateProgress();
+  }
+
+  function updateCount(section) {
+    const el = document.getElementById('count-' + section);
+    if (!el) return;
+    const n = countChecked(section);
+    const t = totals[section];
+    el.textContent = n + '/' + t;
+    if (t > 0 && n === t) {
+      el.style.background = 'rgba(16,185,129,0.15)';
+      el.style.borderColor = 'rgba(16,185,129,0.3)';
+      el.style.color = '#6ee7b7';
+    } else {
+      el.style.background = '';
+      el.style.borderColor = '';
+      el.style.color = '';
+    }
+  }
+
+  function updateProgress() {
+    const done = SECTIONS.reduce((acc, s) => acc + countChecked(s), 0);
+    const pct = TOTAL_CHECKS ? Math.round((done / TOTAL_CHECKS) * 100) : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.check-item.checked').forEach(el => el.classList.remove('checked'));
+    SECTIONS.forEach(updateCount);
+    updateProgress();
+  }
+
+  SECTIONS.forEach(updateCount);
+  updateProgress();
+
+  // ── Cronómetro (sin persistencia) ─────────────────────────────────
+  let swStart = null;
+  let swAccum = 0;
+  let swTick = null;
+
+  function swElapsed() {
+    return swAccum + (swStart !== null ? Date.now() - swStart : 0);
+  }
+
+  function fmt(ms) {
+    const total = Math.floor(ms / 1000);
+    const m = String(Math.floor(total / 60)).padStart(2, '0');
+    const s = String(total % 60).padStart(2, '0');
+    return m + ':' + s;
+  }
+
+  function swRender() {
+    const ms = swElapsed();
+    const disp = document.getElementById('swDisplay');
+    disp.textContent = fmt(ms);
+    disp.classList.toggle('warn', ms >= 1800000 && ms < 3600000);
+    disp.classList.toggle('late', ms >= 3600000);
+  }
+
+  function swToggle() {
+    const btn = document.getElementById('swToggle');
+    const cap = document.getElementById('swCaption');
+    if (swStart === null) {
+      swStart = Date.now();
+      swTick = setInterval(swRender, 200);
+      btn.textContent = '⏸ Detener';
+      cap.textContent = 'Corriendo desde el ingreso al box';
+    } else {
+      swAccum += Date.now() - swStart;
+      swStart = null;
+      clearInterval(swTick);
+      swTick = null;
+      btn.textContent = '▶ Continuar';
+      cap.textContent = 'En pausa';
+      swRender();
+    }
+  }
+
+  function msLabel(el) {
+    return el.dataset.prefix + el.dataset.goal + ' s';
+  }
+
+  function swReset() {
+    if (swTick) clearInterval(swTick);
+    swTick = null;
+    swStart = null;
+    swAccum = 0;
+    document.getElementById('swToggle').textContent = '▶ Iniciar';
+    document.getElementById('swCaption').textContent = 'Detenido · parte el reloj cuando el paciente queda en el box';
+    document.querySelectorAll('.ms').forEach(ms => {
+      ms.classList.remove('done', 'over');
+      ms.querySelector('.ms-goal').textContent = msLabel(ms);
+    });
+    swRender();
+  }
+
+  function markMs(el) {
+    if (el.classList.contains('done')) {
+      el.classList.remove('done', 'over');
+      el.querySelector('.ms-goal').textContent = msLabel(el);
+      return;
+    }
+    if (swStart === null && swAccum === 0) swToggle();
+    const secs = Math.round(swElapsed() / 1000);
+    const goal = parseInt(el.dataset.goal, 10);
+    el.classList.add('done');
+    el.classList.toggle('over', secs > goal);
+    el.querySelector('.ms-goal').textContent = secs + ' s · meta ' + goal + ' s';
+  }
+
+  swRender();
+</script>
+</body>
+</html>

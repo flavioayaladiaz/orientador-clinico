@@ -246,7 +246,40 @@ terminado sin su tarjeta correspondiente en el index.
       posprocedimiento; el uso de autotransfusión y de ácido tranexámico; la técnica de fijación y
       de cierre; la frecuencia con que se revisa una toracostomía abierta y el plazo máximo para
       convertirla en tubo; los criterios y la técnica de retiro; y el material pediátrico.
-- [ ] Aspiración e irrigación intracavernosa para priapismo isquémico
+- [x] Aspiración e irrigación intracavernosa para priapismo isquémico —
+      `checklist-priapismo-aspiracion-intracavernosa.html` (checklist con cronómetro e hitos). Se presenta
+      como lo que es: el **síndrome compartimental de un órgano**, y como un procedimiento de box que hace el
+      médico de urgencia, no una derivación —la guía AUA/SMSNA 2021 recomienda **fenilefrina intracavernosa con
+      aspiración, con o sin irrigación, antes de cualquier intervención quirúrgica**—. Tres desvíos la organizan:
+      **el reloj no es retórico** (Spycher y Hauri 1986: necrosis extensa del músculo liso sobre las 24 h y coágulo
+      con destrucción del endotelio sobre las 48; Zacharakis 2013: resolución del 100 % bajo 24 h contra 30 % sobre
+      48 h, IIEF-5 de 24 a 7,7 y disfunción eréctil en la mitad incluso bajo 24 h; Scarberry 2022: 8,8 ± 5,6 h en
+      los que resolvieron contra 57,3 ± 37,1 h en los que no); **no todo priapismo se punciona** —el arterial no es
+      emergencia, se reconoce por el dolor ausente, el trauma perineal, el signo de *piesis* de Hatzichristou 2002,
+      el aspirado rojo brillante de Bastuba 1994 y el Doppler, y en manejo expectante los pacientes de Hakim 1996 se
+      mantuvieron potentes hasta 31 años—; y **la fenilefrina se monitoriza**, con la tensión honesta entre Sidhu
+      2018 (mediana de 1000 µg, 91 % de detumescencia, sin cambios hemodinámicos) y Scarberry 2022 (4,1 % con
+      suspensión del fármaco, mucho más entre los de riesgo, y los autores advirtiendo que esos cambios están
+      subreportados). Incluye la tabla de dilución desde la ampolla de 10 mg/mL con la advertencia de que el error
+      de dilución es el más fácil y más peligroso de la página (Lee 1995), los esquemas vectoriales del corte
+      transversal leído como un reloj —objetivo lateral en 3 o 9 en punto, paquete dorsal y uretra como zonas
+      prohibidas— y de los cuatro gestos, el algoritmo de «no cede» de afuera hacia adentro, la escalera de
+      escalada hasta la prótesis precoz (El-Achkar 2026: 66,7 % contra 10,4 % de reintervención sobre 36 h;
+      Barham 2023: 0 % contra 40,5 % de complicaciones según el momento del implante; Baumgarten 2020), el estudio
+      de la causa (Sidhu: 62 % inducido por fármacos; Borrell 2025: 54,8 % por inyección intracavernosa y 30 h de
+      mediana en el uso recreativo; Idris 2020: 32,6 % de prevalencia en enfermedad falciforme y casi la mitad que
+      nunca consultó) y la advertencia del síndrome ASPEN de Siegel 1993 sobre la transfusión de intercambio.
+      Esquemas vectoriales, sin imágenes de terceros. Pendiente de validación: todas las metas de tiempo del
+      cronómetro y el «techo de 60 minutos» de la fase farmacológica (no hay referencia publicada de tiempos para
+      este procedimiento); la concentración de la ampolla realmente disponible, la dilución, el volumen por alícuota
+      y la dosis máxima acumulada de fenilefrina, además del valor vigente del techo horario de la EAU; la
+      disponibilidad, presentación y dilución de etilefrina o adrenalina intracavernosa en Chile; el calibre y tipo
+      de aguja; la técnica, concentración, volumen y dosis máxima del anestésico local; los volúmenes de aspiración
+      e irrigación; el tiempo de compresión y el tipo de vendaje; el período mínimo de observación antes del alta;
+      la política de imagen posprocedimiento; el panel de exámenes de causa; los esquemas de analgesia y de
+      antibióticos; la conducta ante coagulopatía o anticoagulación plena; los umbrales de suspensión por cambios
+      hemodinámicos; y la indicación, el tipo y el momento de la transfusión en enfermedad falciforme. El contenido
+      es para adultos.
 - [ ] Artrocentesis diagnóstica de grandes articulaciones en sospecha de
       artritis séptica (guiada por ecografía)
 - [ ] Cistostomía por punción suprapúbica de urgencia (usando CistoFix)
