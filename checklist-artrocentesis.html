@@ -1,0 +1,2217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Checklist · Artrocentesis diagnóstica ecoguiada (sospecha de artritis séptica)</title>
+<meta name="description" content="Checklist con cronómetro para la artrocentesis diagnóstica guiada por ecografía en la sospecha de artritis séptica de grandes articulaciones: por qué ningún examen de sangre descarta la infección, cuándo se punciona y cuándo no, material y tubos, cómo encontrar y marcar el derrame con el transductor, abordajes de rodilla, tobillo, hombro, codo y cadera, qué se manda y en qué orden, lectura del recuento con razones de verosimilitud, el algoritmo de la punción seca y el drenaje definitivo.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99,102,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(20,184,166,0.07) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 36px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.28);
+    color: #fca5a5;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  .header-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--red);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--red);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #6366f1, #14b8a6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .header-sub strong { color: #fff; font-weight: 500; }
+  .header-sub em { color: #fcd34d; font-style: normal; }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .section-check-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .s1 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s1 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s2 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s3 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s3 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s4 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s4 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s5 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s5 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s6 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s6 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s7 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s7 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s8 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s8 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s9 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s9 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s10 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s10 { --accent: var(--red); --accent-glow: var(--red-glow); }
+
+  /* CRONÓMETRO */
+  .stopwatch {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+  .sw-display {
+    font-family: var(--mono);
+    font-size: clamp(40px, 11vw, 60px);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #fff;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .sw-display.warn { color: #fcd34d; }
+  .sw-display.late { color: #fca5a5; }
+  .sw-caption {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+  .sw-controls { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+  .sw-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .sw-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .sw-btn:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+  .sw-btn.primary {
+    background: rgba(16,185,129,0.14);
+    border-color: rgba(16,185,129,0.45);
+    color: #6ee7b7;
+  }
+  .sw-btn.primary:hover { background: rgba(16,185,129,0.22); color: #a7f3d0; }
+
+  .milestones { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .ms {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .ms:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .ms:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .ms.done { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); color: #6ee7b7; }
+  .ms-goal {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .ms.done .ms-goal { color: #6ee7b7; border-color: rgba(16,185,129,0.4); }
+  .ms.done.over .ms-goal { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+  }
+  .check-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .check-item:hover::before { opacity: 1; }
+  .check-item:hover { border-color: rgba(255,255,255,0.12); }
+  .check-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .check-item.checked { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+  .check-item.checked::before { opacity: 0.5; }
+
+  .checkbox {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+    background: transparent;
+  }
+  .check-item.checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .checkmark {
+    opacity: 0;
+    transform: scale(0) rotate(-10deg);
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .check-item.checked .checkmark { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  .check-label {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-dim);
+    transition: color 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+  .check-item.checked .check-label {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(100,116,139,0.5);
+  }
+  .check-label strong { color: #fff; font-weight: 500; }
+  .check-label em { color: #fcd34d; font-style: normal; }
+  .check-step {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+
+  /* PROGRESO */
+  .progress-bottom {
+    margin-top: 6px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .progress-bar-track {
+    flex: 1;
+    min-width: 120px;
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #14b8a6);
+    border-radius: 100px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px rgba(16,185,129,0.5);
+  }
+  .progress-label { font-family: var(--mono); font-size: 12px; color: var(--text-dim); white-space: nowrap; }
+  #progress-pct { color: var(--emerald); font-weight: 500; }
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+  /* BANNERS */
+  .warning-banner, .info-banner, .go-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #fca5a5; }
+  .info-banner { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.18); color: #bfdbfe; }
+  .go-banner { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); color: #6ee7b7; }
+  .warning-banner strong, .info-banner strong, .go-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em, .go-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+  .plain-item.good { background: rgba(16,185,129,0.05); border-color: rgba(16,185,129,0.16); }
+  .plain-item.good strong { color: #6ee7b7; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ESQUEMAS */
+  .figure {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 16px 14px;
+    margin-bottom: 14px;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .fig-caption {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .fig-caption strong { color: var(--text-dim); font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(16,185,129,0.3);
+    background: rgba(16,185,129,0.08);
+    color: #6ee7b7;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(16,185,129,0.16); transform: translateX(2px); }
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--emerald); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .ms { align-items: flex-start; flex-wrap: wrap; }
+    .ms-goal { margin-left: 0; }
+    .sw-btn { flex: 1; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <div class="header-badge">Procedimiento HALO · Checklist</div>
+    <h1>Artrocentesis <span>diagnóstica</span> ecoguiada</h1>
+    <p class="header-sub">
+      Una articulación grande, caliente, dolorosa y de instalación aguda es <strong>una pregunta que solo responde el
+      líquido sinovial</strong>. En la revisión sistemática de Carpenter, uno de cada cuatro adultos que llega a
+      urgencia con una articulación aguda dolorosa tiene artritis séptica no gonocócica —prevalencia del
+      <strong>27 %</strong>—, y la mortalidad de los que se diagnostican tarde no es trivial: <strong>11,5 %</strong>
+      en la serie de Nottingham de Weston y <strong>11 %</strong> en la cohorte prospectiva de Gupta, con secuela
+      funcional en otro <strong>31,6 %</strong>. Tres ideas organizan la página. <em>Ningún examen de sangre descarta
+      la infección</em>: el recuento de leucocitos séricos, la VHS y la proteína C reactiva no mueven la probabilidad
+      lo suficiente, y <strong>ni el propio recuento del líquido la descarta</strong> —el punto de corte clásico de
+      50.000 leucocitos/µL tiene sensibilidad de solo <strong>56 a 61 %</strong>—. <em>La punción va antes del
+      antibiótico, pero el antibiótico no espera a la punción en el paciente séptico</em>: el orden ideal no justifica
+      perder la primera hora. Y <em>la ecografía no está para pinchar más fácil la rodilla con derrame obvio</em>, sino
+      para las articulaciones donde pinchar a ciegas fracasa: en el estudio de Balint la aspiración convencional logró
+      líquido en <strong>10 de 32</strong> articulaciones y la guiada por ecografía en <strong>31 de 32</strong>.
+      Aquí están el triaje, lo que la sangre no puede decir, el reparto de roles y tiempos, la mesa y los tubos, cómo
+      encontrar y marcar el derrame, los abordajes articulación por articulación, qué se manda y en qué orden, cómo se
+      lee el resultado, qué hacer cuando no sale líquido y quién decide el drenaje definitivo.
+    </p>
+  </div>
+
+  <!-- 01 · ¿ES ESTA LA ARTICULACIÓN QUE SE PUNCIONA? -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">¿Es esta la articulación que se punciona?</div>
+        <div class="section-subtitle">Monoartritis aguda, articulación nativa, adulto: el escenario de esta página — y los tres que no lo son</div>
+      </div>
+      <span class="section-check-count" id="count-s1">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>La indicación es amplia a propósito.</strong> Con una prevalencia pretest cercana al
+        <strong>27 %</strong> (IC 95 % 17–38 %) en el adulto que consulta por una articulación aguda dolorosa, y con el
+        procedimiento de riesgo bajo, Carpenter calculó un <strong>umbral de prueba del 5 %</strong>: por debajo de esa
+        probabilidad no vale la pena puncionar, y por encima sí. En términos de box, eso significa que
+        <em>la duda razonable ya es indicación</em>. La guía británica del «hot swollen joint» va en la misma dirección:
+        ante la sospecha de artritis séptica, el líquido se obtiene y se manda a microscopía y cultivo urgentes
+        <strong>antes de iniciar el antibiótico</strong>, salvo que la punción no sea posible. Y en la serie de Weston,
+        el cultivo del aspirado articular o de la sangre fue positivo en el <strong>82 %</strong> de los casos: el
+        rendimiento se cae cuando se toma la muestra después de la primera dosis.</span>
+      </div>
+
+      <div class="subhead">Cuándo sí, ahora</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔥</span><span><strong>Monoartritis aguda de una articulación grande</strong> —rodilla, hombro, tobillo, codo, cadera— con dolor, calor, derrame y limitación del rango. La rodilla es la más frecuente: <strong>56 %</strong> de los 75 casos de Gupta.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧬</span><span><strong>Sospecha con factores de riesgo</strong>: edad ≥ 65 años, diabetes, artritis reumatoide u otra artropatía previa, cirugía articular reciente, infección cutánea o úlcera, inmunosupresión, uso de drogas inyectables, infección por VIH. En la encuesta comunitaria de Kaandorp, <strong>84 %</strong> de los adultos tenía una enfermedad de base y <strong>59 %</strong> una artropatía; el <strong>67 %</strong> de las infecciones hematógenas provino de un <em>defecto de la piel</em>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩺</span><span><strong>Aunque no haya fiebre.</strong> La fiebre aparece en el <strong>57 %</strong> de los casos en el metaanálisis de Margaretten y en el <strong>64 %</strong> de la serie de Gupta; los calofríos, en el <strong>19 %</strong>. <em>«No tiene fiebre» no es un criterio para no puncionar.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Aunque el paciente tenga gota o condrocalcinosis conocidas.</strong> En la serie de Shah, <strong>4 de 265</strong> aspirados con cristales (1,5 %) tenían cultivo positivo; en la de Papanicolas, <strong>5 %</strong> de las monoartritis por cristales tenía infección concomitante. <em>El antecedente de gota es el error de atribución más frecuente de esta consulta.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Aunque el paciente esté anticoagulado en rango.</strong> Ahmed y Gertner revisaron <strong>640 procedimientos</strong> en 514 pacientes anticoagulados —456 con INR ≥ 2,0— con <strong>un solo sangrado significativo precoz (0,2 %)</strong> y sin diferencia frente a los de INR &lt; 2,0; Yui revisó <strong>1050 procedimientos consecutivos</strong> en pacientes con anticoagulantes orales directos <strong>sin ninguna complicación hemorrágica</strong>. <em>No se suspende ni se revierte la anticoagulación para puncionar una articulación.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Aunque la radiografía sea normal.</strong> La radiografía no descarta nada en las primeras horas y sirve sobre todo para buscar fractura, cuerpo extraño, condrocalcinosis u osteomielitis establecida. En la serie de casos de Boniface, la <strong>ecografía en el punto de atención encontró derrame de cadera en 5 de 5 adultos con radiografía no diagnóstica</strong>, dos de ellos sépticos.</span></div>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">⛔</span>
+        <span><strong>Desvío que evita un daño: no se atraviesa piel infectada.</strong> La celulitis, el absceso, la
+        úlcera o la lesión cutánea <em>sobre el sitio de punción</em> es la contraindicación que todos los textos
+        reconocen, porque la aguja arrastra bacterias desde el tejido blando hacia una articulación que podía estar
+        estéril. Si la piel está comprometida en el acceso habitual, hay tres salidas: <strong>elegir otro abordaje con
+        piel sana</strong> —la ecografía sirve justamente para eso—, <strong>pedir punción guiada por imagen</strong>
+        en radiología, o <strong>pasar el problema a pabellón</strong>. Lo que no corresponde es pinchar igual «porque
+        hay que descartar». <em>El límite exacto de distancia a la piel infectada y la conducta local son convención:
+        verificar con protocolo institucional.</em></span>
+      </div>
+
+      <div class="subhead">Los tres escenarios que esta página no cubre</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Escenario</th><th>Por qué es distinto</th><th>Qué hacer en el box</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Articulación con prótesis u osteosíntesis</td>
+              <td>Es <strong>otra enfermedad</strong>: otros gérmenes (incluidos los de baja virulencia y las biopelículas), otro rendimiento de los cultivos y <strong>puntos de corte del recuento mucho más bajos</strong> que en la articulación nativa. La guía de la IDSA la trata como entidad propia, con reglas específicas sobre la aspiración y sobre la suspensión previa de antimicrobianos en los casos crónicos.</td>
+              <td><strong>No se punciona en el box de urgencia.</strong> Se avisa a traumatología y la muestra la toma quien va a manejar la prótesis, con técnica y circuito de laboratorio definidos. <em>Umbrales de recuento y circuito local: verificar con protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Artritis gonocócica / infección gonocócica diseminada</td>
+              <td>Presentación distinta —<strong>poliartralgia migratoria, tenosinovitis y lesiones cutáneas</strong> en adulto joven sexualmente activo— con recuentos sinoviales <strong>más bajos</strong> y cultivos sinoviales que fallan con frecuencia. <em>Todas las razones de verosimilitud de la sección 02 provienen de estudios de artritis <strong>no gonocócica</strong> y no se aplican aquí.</em></td>
+              <td>Se punciona igual, pero el diagnóstico se persigue además con <strong>pruebas de amplificación de ácidos nucleicos en los sitios de exposición</strong> y el tratamiento empírico es otro. <em>Esquema antimicrobiano y sitios de muestreo: según norma nacional y protocolo local.</em></td>
+            </tr>
+            <tr>
+              <td>Niños y adolescentes</td>
+              <td>Otra epidemiología, otras reglas de decisión (los criterios de Kocher y sus derivados), otro material, otras dosis y un umbral de pabellón distinto —sobre todo en la cadera—.</td>
+              <td><strong>Esta página es para adultos.</strong> El manejo pediátrico se rige por el protocolo propio del servicio y por traumatología infantil.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Cuándo no, o no todavía</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🚫</span><span><strong>Infección de la piel o del tejido blando en el sitio de punción.</strong> Ver el desvío de arriba: otro abordaje, imagen o pabellón.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🩸</span><span><strong>Coagulopatía grave no tratada</strong> —hemofilia sin reposición de factor, trombocitopenia profunda, coagulación intravascular diseminada—. No es lo mismo que estar anticoagulado en rango: aquí la conducta es <em>corregir primero o puncionar con el respaldo de hematología</em>. <em>Umbral de plaquetas, de INR y esquema de reposición: verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🦴</span><span><strong>Cuando lo que hay no es artritis.</strong> Bursitis prepatelar u olecraneana (la colección es <em>superficial a la articulación</em> y se punciona distinto o no se punciona), celulitis periarticular, tenosinovitis, artropatía por cristales ya conocida con cuadro idéntico a episodios previos y sin factores de riesgo, fractura periarticular, hemartrosis traumática, trombosis venosa profunda, piomiositis, absceso del psoas simulando cadera. <em>La ecografía separa casi todos estos cuadros del derrame articular en menos de un minuto: úsala antes de decidir el abordaje, no después.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🫀</span><span><strong>Paciente inestable: no es «no puncionar», es «no puncionar primero».</strong> En shock séptico la prioridad es la reanimación, los hemocultivos y el antibiótico en la primera hora; la artrocentesis se hace en paralelo o inmediatamente después, idealmente <em>antes</em> de la primera dosis si eso no cuesta minutos. <em>Nunca se retrasa el antibiótico esperando una punción difícil.</em></span></div>
+      </div>
+
+      <a class="cross-link" href="./checklist-sepsis_4.html">Si hay criterios de sepsis o shock séptico, abre el Código Sepsis →</a>
+
+      <div class="subhead">Confirmación antes de armar la mesa</div>
+      <div class="checklist" id="list-s1">
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Articulación identificada y dicha en voz alta</strong>: «monoartritis aguda de rodilla derecha, nativa, sospecha de artritis séptica». Si son dos o más articulaciones, decirlo también: la sepsis poliarticular fue <em>predictor independiente de muerte</em> en la serie de Weston.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Prótesis u osteosíntesis descartada</strong> por historia, cicatrices y radiografía. Si hay material, <em>la punción no es de urgencia: es de traumatología</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Piel del sitio de punción revisada y limpia</strong>, sin celulitis, úlcera, psoriasis infectada ni lesión abierta. Si la hay, abordaje alternativo elegido con ecografía o derivación a punción guiada por imagen.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Puerta de entrada buscada en todo el cuerpo</strong>: úlceras de pierna, pie diabético, forúnculos, catéteres, sitios de inyección, dientes. En la serie de Gupta las úlceras de pierna estaban en el 11 % de todos los pacientes pero en el <strong>38 % de los que murieron</strong> (p &lt; 0,006).</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Dos hemocultivos tomados antes del antibiótico.</strong> Positivos con germen coincidente en el <strong>42,5 %</strong> de la serie de Papanicolas —y en el <strong>90 %</strong> de las artritis sépticas de hombro—. Son la segunda oportunidad de tener un germen cuando el líquido no alcanza o el cultivo sinovial falla.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Traumatología o reumatología avisada al inicio, no al resultado.</strong> Avisar temprano no delega la punción: asegura que el drenaje definitivo y el pabellón estén disponibles si el líquido sale purulento.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Consentimiento conversado en términos reales</strong>: para qué se punciona, que duele, que se usa anestesia local, que puede no salir líquido, y que los riesgos son infección iatrogénica, sangrado y dolor. Registrar la conversación.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · LO QUE LA SANGRE NO DESCARTA -->
+  <div class="section s2" id="s2" style="animation-delay:0.10s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Lo que la sangre no descarta — y lo que el líquido tampoco</div>
+        <div class="section-subtitle">Por qué se punciona igual, y por qué un recuento bajo no cierra el caso</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Primer desvío: no existe el examen de sangre que permita no puncionar.</strong> En la revisión
+        sistemática de Carpenter, <em>ni la historia, ni el examen físico, ni los exámenes séricos modifican de manera
+        significativa la probabilidad posprueba</em>, con dos excepciones que la <strong>suben</strong>: cirugía
+        articular reciente (LR+ 6,9) y celulitis sobre una articulación protésica (LR+ 15,0). Los marcadores
+        inflamatorios séricos —leucocitos, VHS, proteína C reactiva— «no son útiles de manera aguda». En el
+        metaanálisis de Margaretten, el recuento de leucocitos séricos tuvo razones de verosimilitud cercanas a 1.
+        <em>Un hemograma normal, una PCR baja o una VHS normal no autorizan a mandar al paciente a casa con una
+        articulación caliente sin puncionar.</em></span>
+      </div>
+
+      <div class="info-banner">
+        <span class="warning-icon">🔎</span>
+        <span><strong>El matiz de la VHS y la PCR: sensibles solo con umbrales muy bajos.</strong> Hariharan y Kabrhel
+        revisaron 143 pacientes con artritis séptica en urgencia y encontraron sensibilidad de la VHS del
+        <strong>98 %</strong> con corte ≥ 10 mm/h y del <strong>94 %</strong> con corte ≥ 15 mm/h, y de la PCR del
+        <strong>92 %</strong> con corte ≥ 20 mg/L. Es decir: una VHS y una PCR <em>rigurosamente normales</em> son poco
+        compatibles con artritis séptica, pero los cortes habituales de laboratorio son muy superiores a esos umbrales
+        y el 24 % de la muestra tenía prótesis. Los propios autores concluyen que <strong>falta estudio para definir
+        su utilidad clínica</strong>. En la cohorte de Gupta, el recuento de leucocitos fue <strong>normal en el 38 %</strong>
+        de los pacientes con artritis séptica confirmada, mientras la PCR estaba elevada en el 98 %. <em>Sirven para
+        seguir, no para descartar.</em></span>
+      </div>
+
+      <div class="subhead">Razones de verosimilitud del recuento sinovial (artritis séptica no gonocócica)</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Leucocitos en el líquido</th><th>LR (Margaretten, JAMA 2007)</th><th>LR por intervalo (Carpenter, 2011)</th><th>Qué significa en el box</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>&lt; 25.000 /µL</td>
+              <td><span class="dose-main">0,32</span> <span class="dose-note">(0,23–0,43)</span></td>
+              <td><span class="dose-main">0,33</span></td>
+              <td>Baja la probabilidad, <strong>no la anula</strong>. Con un pretest del 27 %, un LR de 0,33 todavía deja cerca del 11 %.</td>
+            </tr>
+            <tr>
+              <td>25.000–50.000 /µL</td>
+              <td><span class="dose-main">2,9</span> <span class="dose-note">(2,5–3,4) para ≥ 25.000</span></td>
+              <td><span class="dose-main">1,06</span></td>
+              <td><strong>Zona ciega.</strong> No discrimina: aquí mandan la clínica, el Gram, el cultivo y el teléfono.</td>
+            </tr>
+            <tr>
+              <td>&gt; 50.000 /µL</td>
+              <td><span class="dose-main">7,7</span> <span class="dose-note">(5,7–11,0)</span></td>
+              <td><span class="dose-main">3,59</span> <span class="dose-note">(50–100 ×10⁹/L)</span></td>
+              <td>Sube fuerte. Sensibilidad <strong>56 %</strong> y especificidad <strong>90 %</strong> en Carpenter.</td>
+            </tr>
+            <tr>
+              <td>&gt; 100.000 /µL</td>
+              <td><span class="dose-main">28,0</span> <span class="dose-note">(12,0–66,0)</span></td>
+              <td><span class="dose-main">infinito</span> <span class="dose-note">en la serie incluida</span></td>
+              <td>Trátalo como artritis séptica mientras no se demuestre lo contrario.</td>
+            </tr>
+            <tr>
+              <td>Polimorfonucleares ≥ 90 %</td>
+              <td><span class="dose-main">3,4</span> <span class="dose-note">(2,8–4,2)</span></td>
+              <td>—</td>
+              <td>Se interpreta <em>junto</em> al recuento, en la misma muestra.</td>
+            </tr>
+            <tr>
+              <td>Polimorfonucleares &lt; 90 %</td>
+              <td><span class="dose-main">0,34</span> <span class="dose-note">(0,25–0,47)</span></td>
+              <td>—</td>
+              <td>Baja la probabilidad; tampoco descarta.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⛔</span>
+        <span><strong>Segundo desvío: el corte de 50.000 no sirve para descartar.</strong> McGillicuddy revisó 49
+        aspirados con cultivo positivo y encontró que <strong>19 de 49 (39 %)</strong> tenían menos de 50.000
+        leucocitos/µL: la sensibilidad del corte fue de <strong>61 %</strong> (IC 95 % 48–75 %). En el mismo trabajo,
+        <strong>27 de 49 (55 %)</strong> tenían <em>Gram negativo</em>, y de esos, <strong>15 de 27 (56 %)</strong>
+        tenían además recuento bajo. Los autores concluyen literalmente que el corte <em>«carece de la sensibilidad
+        necesaria para ser clínicamente útil en descartar»</em>. Traducido al box: <strong>el recuento que vuelve bajo
+        en un paciente que parece infectado no cierra el caso</strong> —se espera el cultivo, se mantiene el antibiótico
+        si ya se inició y se conversa con traumatología—. Carpenter situó el <strong>umbral de tratamiento en el
+        39 %</strong> de probabilidad: por encima de eso se trata sin esperar más pruebas.</span>
+      </div>
+
+      <div class="subhead">Los otros exámenes del líquido, con su peso real</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔬</span><span><strong>Gram: específico, poco sensible.</strong> Mostró el germen en el <strong>50 %</strong> de los casos de Weston y fue negativo en el <strong>55 %</strong> de los de McGillicuddy. <em>Un Gram positivo decide; un Gram negativo no cambia nada.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🧫</span><span><strong>Cultivo: el que define, pero llega tarde.</strong> Positivo en el líquido o la sangre en el <strong>82 %</strong> de la serie de Weston. El rendimiento mejora con el medio: Hughes comparó 805 muestras sinoviales y el <strong>frasco de hemocultivo pediátrico detectó 62 patógenos contra 51 del cultivo en placa</strong> (p = 0,001), con <strong>menos contaminantes</strong> (1 contra 11, p = 0,006). <em>Pregunta a tu laboratorio si acepta líquido sinovial en frasco de hemocultivo: suele ser la mejor jugada cuando el volumen es escaso.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">💎</span><span><strong>Cristales: no descartan infección.</strong> Shah encontró <strong>4 cultivos positivos entre 265 aspirados con cristales (1,5 %)</strong>, todos con comorbilidades significativas y con recuentos &gt; 50.000 (media 113.000). Papanicolas encontró coexistencia en el <strong>5 %</strong> y describió la única combinación realmente tranquilizadora: <strong>Gram negativo + PCR &lt; 100 mg/L + recuento sinovial &lt; 10.000/µL</strong>, con valores predictivos negativos del 98,5–98,7 %. <em>Fuera de esa combinación, encontrar cristales no permite suspender la sospecha.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Lactato y IL-6 sinoviales: promesa, no estándar.</strong> En la serie de Lenski y Scherer (62 artritis sépticas contra 57 artritis asépticas), el <strong>lactato sinovial fue el mejor parámetro</strong> (área bajo la curva 0,864; sensibilidad 74,5 %, especificidad 87,2 %), con <strong>lactato &gt; 10 mmol/L prácticamente confirmatorio</strong> (LR por intervalo 20,4) e <strong>IL-6 &lt; 7000 pg/mL prácticamente excluyente</strong> (LR 0,12). Carpenter también los señala como prometedores. <em>Disponibilidad local, tubo y punto de corte: verificar con el laboratorio y con protocolo institucional; hoy no reemplazan al recuento, al Gram ni al cultivo.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🍬</span><span><strong>Glucosa, proteínas y viscosidad del líquido: no se piden para esto.</strong> Aportan poco sobre el recuento, el Gram y el cultivo, y consumen volumen que vale más en el frasco de cultivo.</span></div>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">🧭</span>
+        <span><strong>Quién es el germen, para que el empírico tenga sentido.</strong> <em>Staphylococcus aureus</em> y
+        los estreptococos explicaron el <strong>74 %</strong> de los casos de Weston y más del <strong>90 %</strong> de
+        los de Gupta; <em>S. aureus</em> solo fue el <strong>44 %</strong> de los cultivos positivos de Kaandorp. Los
+        bacilos gramnegativos aparecen sobre todo en inmunosuprimidos, usuarios de drogas inyectables y adultos
+        mayores. <em>El esquema empírico, la cobertura de</em> S. aureus <em>resistente a meticilina y la duración se
+        definen por el protocolo local de antimicrobianos (PROA) y por la epidemiología del servicio: verificar con
+        protocolo institucional antes de aplicar cualquier esquema.</em></span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · CRONÓMETRO, HITOS Y ROLES -->
+  <div class="section s3" id="s3" style="animation-delay:0.14s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Cronómetro, hitos y roles</div>
+        <div class="section-subtitle">El reloj parte cuando se decide puncionar, no cuando se encuentra el ecógrafo</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="stopwatch">
+        <div class="sw-display" id="swDisplay">00:00</div>
+        <div class="sw-caption" id="swCaption">Detenido · parte el reloj cuando se decide puncionar</div>
+        <div class="sw-controls">
+          <button type="button" class="sw-btn primary" id="swToggle" onclick="swToggle()">▶ Iniciar</button>
+          <button type="button" class="sw-btn" onclick="swReset()">↺ Reiniciar</button>
+        </div>
+        <div class="milestones" id="milestones">
+          <button type="button" class="ms" data-goal="180" data-prefix="meta ~" onclick="markMs(this)"><span>Articulación declarada en voz alta · prótesis descartada · piel revisada · <strong>hemocultivos tomados</strong> (3 min)</span><span class="ms-goal">meta ~180 s</span></button>
+          <button type="button" class="ms" data-goal="360" data-prefix="meta ~" onclick="markMs(this)"><span><strong>Derrame confirmado y marcado con ecografía</strong> · abordaje elegido · vasos mapeados con Doppler color (6 min)</span><span class="ms-goal">meta ~360 s</span></button>
+          <button type="button" class="ms" data-goal="600" data-prefix="meta ~" onclick="markMs(this)"><span>Consentimiento conversado · mesa armada · <strong>tubos rotulados antes de pinchar</strong> · analgesia dada (10 min)</span><span class="ms-goal">meta ~600 s</span></button>
+          <button type="button" class="ms" data-goal="780" data-prefix="meta ~" onclick="markMs(this)"><span>Antisepsia y anestesia local puestas, con tiempo de latencia cumplido (13 min)</span><span class="ms-goal">meta ~780 s</span></button>
+          <button type="button" class="ms" data-goal="960" data-prefix="meta ~" onclick="markMs(this)"><span><strong>Líquido en la jeringa</strong> · aspecto descrito en voz alta · volumen anotado (16 min)</span><span class="ms-goal">meta ~960 s</span></button>
+          <button type="button" class="ms" data-goal="1200" data-prefix="meta ~" onclick="markMs(this)"><span><strong>Muestras repartidas y en camino</strong>: cultivo, Gram, recuento con diferencial, cristales (20 min)</span><span class="ms-goal">meta ~1200 s</span></button>
+          <button type="button" class="ms" data-goal="1800" data-prefix="meta ~" onclick="markMs(this)"><span><strong>Antibiótico empírico administrado</strong> si la sospecha se mantiene — y <em>antes</em>, sin esperar nada, si hay sepsis (30 min)</span><span class="ms-goal">meta ~1800 s</span></button>
+          <button type="button" class="ms" data-goal="3600" data-prefix="meta ~" onclick="markMs(this)"><span>Gram y recuento informados · caso conversado con traumatología · <strong>destino definido</strong> (60 min)</span><span class="ms-goal">meta ~3600 s</span></button>
+        </div>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Ninguna de estas metas es un estándar validado.</strong> No existe una referencia publicada de
+        tiempos para la artrocentesis diagnóstica: el reparto de arriba es una distribución razonable propuesta para
+        esta página y <strong>debe ajustarse al protocolo institucional</strong>. El único dato temporal con respaldo
+        es de otro estudio y de otra pregunta: en el ensayo aleatorizado de Wiler la artrocentesis de rodilla tomó
+        <strong>10,6 minutos con ecografía contra 13,4 sin ella</strong> (p = 0,05), tiempo total de procedimiento. Y
+        hay un plazo que sí es externo y no se negocia: <strong>si el paciente cumple criterios de sepsis, el
+        antibiótico va en la primera hora</strong> y la punción se acomoda a eso, no al revés.</span>
+      </div>
+
+      <div class="subhead">Roles mínimos</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>Operador:</strong> hace la ecografía, marca, infiltra, punciona y aspira. No suelta la jeringa ni la sonda y no es quien rotula los tubos.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>Asistente estéril o circulante:</strong> abre el material, pasa las jeringas de repuesto, sostiene la extremidad en la posición elegida y <em>mantiene la posición</em> —la mayoría de las punciones fallidas se mueven, no se pierden—.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>Responsable de muestras:</strong> rotula <strong>antes</strong> de la punción, reparte el líquido en el orden de prioridad de la sección 07, anota el volumen y el aspecto, y lleva las muestras al laboratorio en persona. Es el rol que previene el error más caro de esta página: obtener el líquido y perderlo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span><strong>Tiempo y registro:</strong> lleva el cronómetro y hace las cuatro preguntas que se olvidan: <em>«¿ya tomamos hemocultivos?»</em>, <em>«¿están rotulados los tubos?»</em>, <em>«¿el antibiótico ya está pedido?»</em> y <em>«¿ya hablamos con traumatología?»</em>.</span></div>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">👤</span>
+        <span><strong>En la práctica son dos personas.</strong> A diferencia de los otros procedimientos de esta
+        sección, la artrocentesis no necesita un equipo: necesita un operador, alguien que sostenga y rotule, y que
+        <em>nadie se vaya con el líquido en la mano sin un plan</em>. Lo que sí es de todos es el aviso precoz al
+        equipo que va a drenar la articulación.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · MESA, MATERIAL Y TUBOS ANTES DE PUNCIONAR -->
+  <div class="section s4" id="s4" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Mesa, material y tubos antes de puncionar</div>
+        <div class="section-subtitle">El procedimiento se pierde más seguido en el laboratorio que en la articulación</div>
+      </div>
+      <span class="section-check-count" id="count-s4">0/9</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>Todo el material de esta página es convencional.</strong> No hay estudios que comparen calibres,
+        largos ni volúmenes de jeringa para la artrocentesis diagnóstica: los rangos de abajo son los de uso habitual
+        y <strong>deben ajustarse a la bandeja real del servicio</strong>. Dos principios sí son transversales: el
+        <em>pus articular es espeso</em> —una aguja fina se tapa y hace fracasar una punción que estaba bien
+        colocada— y la <em>jeringa grande genera demasiada presión negativa</em> y colapsa la sinovial sobre la punta;
+        por eso conviene tener a mano una jeringa pequeña para «ganar» el líquido y una grande para evacuar.</span>
+      </div>
+
+      <div class="subhead">Material por articulación (orientativo · verificar con la bandeja del servicio)</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Articulación</th><th>Aguja</th><th>Jeringa</th><th>Transductor y abordaje</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Rodilla</td>
+              <td><span class="dose-main">18–20 G</span> <span class="dose-note">38 mm</span></td>
+              <td><span class="dose-main">20–60 mL</span></td>
+              <td>Lineal de alta frecuencia · receso suprapatelar lateral o abordaje medio-patelar lateral</td>
+            </tr>
+            <tr>
+              <td>Hombro</td>
+              <td><span class="dose-main">20–21 G</span> <span class="dose-note">38–50 mm; aguja espinal 22 G en paciente de contextura grande</span></td>
+              <td><span class="dose-main">10–20 mL</span></td>
+              <td>Lineal, o convexo si el receso es profundo · <strong>abordaje posterior</strong></td>
+            </tr>
+            <tr>
+              <td>Tobillo</td>
+              <td><span class="dose-main">20–22 G</span> <span class="dose-note">25–38 mm</span></td>
+              <td><span class="dose-main">5–10 mL</span></td>
+              <td>Lineal de alta frecuencia · receso tibioastragalino anterior, <strong>medial al tendón del tibial anterior</strong></td>
+            </tr>
+            <tr>
+              <td>Codo</td>
+              <td><span class="dose-main">21–22 G</span> <span class="dose-note">25–38 mm</span></td>
+              <td><span class="dose-main">5–10 mL</span></td>
+              <td>Lineal de alta frecuencia · receso posterolateral sobre la fosita radiocapitelar («triángulo blando»)</td>
+            </tr>
+            <tr>
+              <td>Muñeca</td>
+              <td><span class="dose-main">22–25 G</span> <span class="dose-note">25 mm</span></td>
+              <td><span class="dose-main">3–5 mL</span></td>
+              <td>Lineal de alta frecuencia · receso dorsal radiocarpiano, distal al tubérculo de Lister</td>
+            </tr>
+            <tr>
+              <td>Cadera</td>
+              <td><span class="dose-main">18–20 G</span> <span class="dose-note">aguja espinal de 90 mm o más</span></td>
+              <td><span class="dose-main">10–20 mL</span></td>
+              <td>Convexo · eje largo del cuello femoral. <em>No es una punción a ciegas y habitualmente no se hace en el box: ver sección 06.</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">El resto de la mesa</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🧴</span><span><strong>Antiséptico de piel</strong> —clorhexidina alcohólica al 2 % o povidona yodada—, con el tiempo de secado respetado. Gasas, paño o campo estéril, guantes estériles. <em>Antiséptico y tiempo de contacto: según el protocolo de prevención de infecciones del servicio.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Anestésico local sin epinefrina:</strong> lidocaína al 1 % (o al 2 %), jeringa de 5–10 mL con aguja fina (25–27 G) para la piel y una algo más larga para el trayecto. La <strong>dosis máxima habitualmente citada para lidocaína sin epinefrina es de 4,5 mg/kg, hasta 300 mg en el adulto</strong>, pero <em>la concentración disponible, el volumen y la dosis máxima deben verificarse con protocolo institucional</em>. También sirve el cloruro de etilo o el frío tópico cuando la punción es muy superficial.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧊</span><span><strong>Ecógrafo en el box, encendido y con gel, antes de lavarse las manos.</strong> Gel estéril o sobre estéril para la sonda si la aguja se va a introducir bajo visión directa. <em>Buscar el ecógrafo con los guantes puestos es la causa más frecuente de reiniciar el procedimiento.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Los tubos, rotulados y ordenados en la mesa antes de pinchar:</strong> uno con EDTA para recuento y diferencial, uno estéril seco para Gram y cultivo —o directamente un <strong>frasco de hemocultivo</strong> si el laboratorio lo acepta, por el rendimiento que mostró Hughes—, y uno sin aditivo para cristales. <em>El EDTA y el oxalato pueden generar cristales artefactuales: el tubo correcto para la búsqueda de cristales lo define el laboratorio local.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⛔</span><span><strong>Lo que no va en la mesa:</strong> formalina (<em>mata el cultivo y arruina la muestra</em>), corticoide intraarticular —no se infiltra una articulación que podría estar infectada—, y agujas de calibre fino como única opción cuando se espera pus.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩹</span><span><strong>Para el final:</strong> gasas, apósito, vendaje elástico suave y, si la articulación es de carga, plan de reposo relativo. Analgesia sistémica pensada <em>antes</em> del procedimiento, no después.</span></div>
+      </div>
+
+      <div class="subhead">Antes de tocar al paciente</div>
+      <div class="checklist" id="list-s4">
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Ecógrafo en el box, encendido, con el transductor correcto y el preajuste musculoesquelético</strong>. No se empieza sin imagen si la articulación no es una rodilla con derrame evidente.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Tubos rotulados con nombre, ficha, articulación y hora</strong>, puestos en la mesa en el orden en que se van a llenar. Rotular después es cómo se pierden las muestras.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Laboratorio y microbiología avisados de que viene líquido sinovial urgente</strong>, con el horario de recepción confirmado. Si el laboratorio acepta frasco de hemocultivo para líquido sinovial, tenerlo en la mesa.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Dos agujas y dos jeringas de repuesto</strong> abiertas y al alcance: una fina para ganar el líquido y una de mayor calibre para el pus espeso. Cambiar de aguja sin romper el campo tiene que ser posible.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Analgesia sistémica administrada y con tiempo de efecto</strong>, además de la anestesia local. Una articulación séptica duele antes de que se la toque.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Posición definida y cómoda para las dos personas</strong>: camilla a la altura correcta, extremidad apoyada, pantalla del ecógrafo en la línea de visión del operador. La posición se arregla antes de la asepsia, no después.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Hemocultivos ya tomados</strong> y, si la sospecha es alta, <strong>antibiótico empírico pedido a farmacia</strong> para que esté disponible en el minuto en que se termine de aspirar. El antibiótico se prepara en paralelo, no después.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Plan B dicho en voz alta antes de empezar</strong>: qué se hace si no sale líquido —reposicionar, cambiar de receso, cambiar de calibre, llamar a imagen o a traumatología— y quién lo decide. Ver la sección 08.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Nada de corticoide intraarticular en la mesa.</strong> Si el motivo de la punción es descartar infección, no se infiltra en el mismo acto, por mucho que el cuadro «parezca gota».</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · LA ECOGRAFÍA -->
+  <div class="section s5" id="s5" style="animation-delay:0.22s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">La ecografía: encontrar el derrame, marcarlo y no confundirse</div>
+        <div class="section-subtitle">Para qué sirve de verdad, y en qué articulaciones no cambia nada</div>
+      </div>
+      <span class="section-check-count" id="count-s5">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Tercer desvío: la ecografía no sirve para lo que se suele decir.</strong> En el ensayo
+        aleatorizado de Wiler, con 66 pacientes que necesitaban artrocentesis de rodilla, el éxito fue
+        <strong>37/39 con ecografía y 25/27 con referencias anatómicas</strong> (p = 1,0): <em>no mejoró el éxito</em>.
+        Lo que sí mejoró fue el resto —<strong>menos dolor</strong> (3,71 contra 5,19 cm en escala visual, p = 0,02),
+        procedimiento percibido como más fácil (p = 0,02), <strong>menos tiempo total</strong> (10,6 contra 13,4 min,
+        p = 0,05) y más líquido obtenido por los operadores novatos—. En el modelo cadavérico de Berona, con 18
+        residentes puncionando cadera, tobillo y muñeca, tampoco hubo diferencia estadística de éxito (96 % contra
+        89 %, p = 0,257), aunque la mediana de intentos fue <strong>1 con ecografía y 2 sin ella</strong>. Donde la
+        diferencia es brutal es en el escenario de Balint: articulaciones y bursas derivadas para aspiración en
+        reumatología, muchas de ellas pequeñas o sin derrame palpable, con éxito de <strong>10 de 32 (32 %) a ciegas
+        contra 31 de 32 (97 %) con ecografía</strong>. <em>Conclusión operativa: en la rodilla con derrame evidente la
+        ecografía te ahorra dolor y minutos; en la articulación profunda, pequeña, obesa o con derrame dudoso, es la
+        diferencia entre tener diagnóstico y no tenerlo.</em></span>
+      </div>
+
+      <div class="subhead">Las cuatro preguntas que se le hacen al ecógrafo</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>¿Hay derrame, y es intraarticular?</strong> Distinguir el derrame de una bursitis prepatelar u olecraneana superficial, de una celulitis y de un absceso del tejido blando cambia completamente la conducta. En el modelo de Berona, residentes con un video breve de entrenamiento detectaron derrames con <strong>sensibilidad del 86 % y especificidad del 90 %</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>¿Dónde está más profundo y más accesible?</strong> Se mide la distancia piel-derrame en la pantalla y se elige la aguja por ese número, no por costumbre.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>¿Qué hay en el camino?</strong> <strong>Doppler color antes de puncionar, siempre</strong>, sobre todo en tobillo (arteria tibial anterior y pedia), hombro (abordaje anterior) y cadera (paquete femoral). El vaso que no se buscó es el que se pincha.</span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span><strong>¿Es líquido aspirable o es sinovial engrosada?</strong> Es la pregunta que previene la punción seca: la sinovitis proliferativa se ve hipoecoica igual que el líquido, pero <strong>no se desplaza con la compresión y tiene flujo Doppler</strong>. De ahí no sale nada, por bien puesta que esté la aguja.</span></div>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 680 440" role="img" aria-label="Esquema de cuatro paneles con lo que se busca en la pantalla del ecografo. Panel uno: derrame, una coleccion anecoica entre la piel y la corteza osea, que se desplaza con la compresion y no tiene flujo Doppler. Panel dos: sinovitis proliferativa, material hipoecoico que no se desplaza y muestra senales de flujo Doppler, del cual no se obtiene liquido. Panel tres: falsos positivos, la almohadilla grasa y el cartilago hialino que tambien se ven oscuros y se confunden con derrame. Panel cuatro: aguja en plano, introducida desde lateral paralela al haz, con la punta visible dentro de la coleccion.">
+          <g font-family="DM Mono, monospace" font-size="10" fill="#94a3b8">
+            <rect x="12" y="12" width="656" height="416" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="28" y="36" fill="#fcd34d" font-size="12">Lo que se busca en la pantalla · esquema interpretativo</text>
+
+            <!-- PANEL 1 · DERRAME -->
+            <rect x="30" y="52" width="298" height="168" rx="10" fill="rgba(16,185,129,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="52" cy="74" r="11" fill="rgba(16,185,129,0.2)" stroke="#6ee7b7" stroke-width="1.2"/>
+            <text x="52" y="78" text-anchor="middle" fill="#6ee7b7" font-size="11">1</text>
+            <text x="72" y="78" fill="#6ee7b7" font-size="11">DERRAME · SÍ SE ASPIRA</text>
+            <rect x="48" y="94" width="200" height="92" rx="4" fill="#0b1120" stroke="#475569" stroke-width="1"/>
+            <line x1="48" y1="104" x2="248" y2="104" stroke="#e2e8f0" stroke-width="2.4"/>
+            <text x="254" y="108" fill="#64748b" font-size="8">piel</text>
+            <path d="M68,118 Q148,110 228,118 L228,146 Q148,158 68,146 Z" fill="#05080f" stroke="#6ee7b7" stroke-width="1.6"/>
+            <text x="148" y="136" text-anchor="middle" fill="#6ee7b7" font-size="9">anecoico</text>
+            <path d="M56,172 Q148,164 240,172" fill="none" stroke="#e2e8f0" stroke-width="3"/>
+            <text x="254" y="176" fill="#64748b" font-size="8">corteza ósea</text>
+            <text x="48" y="202" fill="#6ee7b7" font-size="9">se desplaza al comprimir · sin flujo Doppler</text>
+            <text x="48" y="214" fill="#64748b" font-size="9">puede tener ecos internos si hay pus o sangre</text>
+
+            <!-- PANEL 2 · SINOVITIS -->
+            <rect x="350" y="52" width="298" height="168" rx="10" fill="rgba(239,68,68,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="372" cy="74" r="11" fill="rgba(239,68,68,0.2)" stroke="#fca5a5" stroke-width="1.2"/>
+            <text x="372" y="78" text-anchor="middle" fill="#fca5a5" font-size="11">2</text>
+            <text x="392" y="78" fill="#fca5a5" font-size="11">SINOVITIS · PUNCIÓN SECA</text>
+            <rect x="368" y="94" width="200" height="92" rx="4" fill="#0b1120" stroke="#475569" stroke-width="1"/>
+            <line x1="368" y1="104" x2="568" y2="104" stroke="#e2e8f0" stroke-width="2.4"/>
+            <path d="M388,116 Q468,108 548,116 L548,150 Q468,160 388,150 Z" fill="#1e293b" stroke="#fca5a5" stroke-width="1.6"/>
+            <circle cx="406" cy="128" r="3" fill="#ef4444"/>
+            <circle cx="434" cy="124" r="3" fill="#3b82f6"/>
+            <circle cx="502" cy="124" r="3" fill="#ef4444"/>
+            <circle cx="530" cy="128" r="3" fill="#3b82f6"/>
+            <text x="468" y="146" text-anchor="middle" fill="#fca5a5" font-size="9">hipoecoico, no anecoico</text>
+            <path d="M378,172 Q468,164 560,172" fill="none" stroke="#e2e8f0" stroke-width="3"/>
+            <text x="574" y="130" fill="#60a5fa" font-size="8">Doppler</text>
+            <text x="368" y="202" fill="#fca5a5" font-size="9">no se desplaza · con flujo Doppler</text>
+            <text x="368" y="214" fill="#64748b" font-size="9">aquí la aguja está bien puesta y no sale nada</text>
+
+            <!-- PANEL 3 · FALSOS POSITIVOS -->
+            <rect x="30" y="240" width="298" height="168" rx="10" fill="rgba(245,158,11,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="52" cy="262" r="11" fill="rgba(245,158,11,0.2)" stroke="#fcd34d" stroke-width="1.2"/>
+            <text x="52" y="266" text-anchor="middle" fill="#fcd34d" font-size="11">3</text>
+            <text x="72" y="266" fill="#fcd34d" font-size="11">LO QUE PARECE DERRAME</text>
+            <rect x="48" y="282" width="200" height="86" rx="4" fill="#0b1120" stroke="#475569" stroke-width="1"/>
+            <line x1="48" y1="292" x2="248" y2="292" stroke="#e2e8f0" stroke-width="2.4"/>
+            <ellipse cx="104" cy="322" rx="42" ry="16" fill="#111827" stroke="#fcd34d" stroke-width="1.4"/>
+            <text x="104" y="325" text-anchor="middle" fill="#fcd34d" font-size="8">grasa</text>
+            <path d="M174,348 Q206,334 238,348" fill="none" stroke="#fcd34d" stroke-width="7" opacity="0.35"/>
+            <text x="206" y="322" text-anchor="middle" fill="#fcd34d" font-size="8">cartílago hialino</text>
+            <path d="M56,358 Q148,352 240,358" fill="none" stroke="#e2e8f0" stroke-width="3"/>
+            <text x="48" y="388" fill="#fcd34d" font-size="9">la grasa y el cartílago también se ven oscuros</text>
+            <text x="48" y="400" fill="#64748b" font-size="9">compara con el lado sano antes de pinchar</text>
+
+            <!-- PANEL 4 · AGUJA EN PLANO -->
+            <rect x="350" y="240" width="298" height="168" rx="10" fill="rgba(20,184,166,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="372" cy="262" r="11" fill="rgba(20,184,166,0.2)" stroke="#5eead4" stroke-width="1.2"/>
+            <text x="372" y="266" text-anchor="middle" fill="#5eead4" font-size="11">4</text>
+            <text x="392" y="266" fill="#5eead4" font-size="11">AGUJA EN PLANO</text>
+            <rect x="368" y="282" width="200" height="86" rx="4" fill="#0b1120" stroke="#475569" stroke-width="1"/>
+            <line x1="368" y1="292" x2="568" y2="292" stroke="#e2e8f0" stroke-width="2.4"/>
+            <path d="M388,308 Q468,300 548,308 L548,336 Q468,346 388,336 Z" fill="#05080f" stroke="#5eead4" stroke-width="1.4"/>
+            <line x1="370" y1="286" x2="474" y2="322" stroke="#5eead4" stroke-width="2.6"/>
+            <path d="M474,322 L463,315 L465,326 Z" fill="#5eead4"/>
+            <text x="486" y="320" fill="#5eead4" font-size="8">punta visible</text>
+            <path d="M378,356 Q468,350 560,356" fill="none" stroke="#e2e8f0" stroke-width="3"/>
+            <text x="368" y="388" fill="#5eead4" font-size="9">entra por el borde corto de la sonda, paralela al haz</text>
+            <text x="368" y="400" fill="#64748b" font-size="9">si pierdes la punta, detente y vuelve a encontrarla</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Esquema orientativo, no una imagen ecográfica real ni a escala.</strong> La
+        diferencia práctica entre los paneles 1 y 2 se hace con dos maniobras de un segundo: <strong>compresión
+        dinámica</strong> con la sonda (el líquido se desplaza y vuelve, la sinovial engrosada no) y <strong>Doppler
+        color</strong> (el líquido no tiene flujo). El panel 3 es el error del operador novato: la almohadilla grasa y
+        el cartílago hialino son hipoecoicos y se confunden con derrame; comparar con la articulación contralateral
+        resuelve la duda en segundos.</div>
+      </div>
+
+      <div class="subhead">Marcar y puncionar</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">✍️</span><span><strong>Dos técnicas, las dos válidas.</strong> <em>Marcar y puncionar</em>: se localiza el derrame, se marca la piel con lápiz dermográfico o con la huella de la tapa de una aguja, se guarda la sonda y se punciona a ciegas sobre la marca —es lo que hizo la mayor parte del grupo ecoguiado de Balint—. <em>Punción bajo visión directa</em>: la sonda queda en el campo con funda o gel estéril y la aguja entra <strong>en plano</strong>, por el borde corto del transductor, con la punta visible todo el trayecto. La segunda es obligatoria cuando hay un vaso o un tendón en el camino y en la cadera.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📐</span><span><strong>En plano antes que fuera de plano.</strong> Fuera de plano la aguja cruza el haz y solo se ve un punto brillante, que puede ser la punta o el cuerpo de la aguja: en un espacio articular de pocos milímetros, creer que se ve la punta cuando se ve el cuerpo es como pinchar a ciegas con falsa confianza.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🎯</span><span><strong>Si el derrame es grande, apunta al centro; si es pequeño, apunta al punto más profundo del receso</strong> y aprovecha la gravedad poniendo la articulación en la posición que acumula líquido (ver sección 06). Un derrame de pocos milímetros se colapsa en cuanto se aspira: se gana con jeringa pequeña y presión suave.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⛔</span><span><strong>No se usa la ecografía para «confirmar» que no hay derrame y con eso descartar artritis séptica.</strong> La ausencia de derrame aspirable baja la probabilidad, pero la infección articular precoz y la de articulaciones profundas pueden cursar con poco líquido. Si la sospecha clínica es alta y no hay derrame, el caso <em>escala</em> —imagen avanzada, traumatología— en lugar de cerrarse.</span></div>
+      </div>
+
+      <div class="subhead">Antes de infiltrar</div>
+      <div class="checklist" id="list-s5">
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Derrame identificado en dos planos perpendiculares</strong>, no en uno. Un artefacto desaparece al girar la sonda 90°; un derrame sigue ahí.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Compresión dinámica hecha</strong>: la colección se desplaza y vuelve. Si no se mueve, probablemente es sinovial engrosada y <em>la punción va a ser seca</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Doppler color pasado por el trayecto previsto</strong> y vasos identificados. Si hay un vaso en el camino, se cambia el trayecto o se punciona bajo visión directa, no «con cuidado».</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Distancia piel-derrame medida en pantalla</strong> y aguja elegida con ese número. Es el dato que evita la aguja corta en el hombro y en la cadera.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Lado sano comparado</strong> cuando hay duda entre derrame, grasa y cartílago. Treinta segundos de comparación evitan una punción inútil.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Punto de entrada marcado en la piel</strong> con la extremidad ya en la posición definitiva, y la posición mantenida por el asistente desde ese momento. Si el paciente se mueve, se vuelve a marcar.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Patología alternativa descartada con la misma imagen</strong>: bursitis superficial, absceso de tejido blando, tenosinovitis, hemartrosis, cuerpo extraño. Cambia el procedimiento o lo cancela.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Decidido si la punción será sobre marca o bajo visión directa</strong>, y preparado lo que esa decisión exige (funda o gel estéril para la sonda). Decidirlo con la aguja en la mano cuesta el campo estéril.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · TÉCNICA, ARTICULACIÓN POR ARTICULACIÓN -->
+  <div class="section s6" id="s6" style="animation-delay:0.26s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Técnica, articulación por articulación</div>
+        <div class="section-subtitle">Posición, punto de entrada, dirección y la estructura que no se toca</div>
+      </div>
+      <span class="section-check-count" id="count-s6">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="go-banner">
+        <span class="warning-icon">✅</span>
+        <span><strong>Los cuatro gestos son siempre los mismos.</strong> Posicionar y marcar con la ecografía ·
+        antisepsia y anestesia de la piel y del trayecto · <strong>avanzar con aspiración suave continua hasta que el
+        líquido aparezca</strong> · repartir la muestra, retirar, comprimir y vendar. Lo que cambia entre
+        articulaciones es la posición, el punto de entrada y qué estructura hay al lado.</span>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 680 280" role="img" aria-label="Esquema de los cuatro gestos de la artrocentesis en cuatro vinetas. Uno: posicionar la articulacion y marcar el punto de entrada con el transductor. Dos: antisepsia y anestesia de la piel y del trayecto con aguja fina. Tres: avanzar la aguja con aspiracion suave continua hasta que aparece liquido en la jeringa. Cuatro: repartir la muestra en los tubos rotulados, retirar la aguja, comprimir y vendar.">
+          <g font-family="DM Mono, monospace" font-size="10" fill="#94a3b8">
+            <rect x="12" y="12" width="656" height="256" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="28" y="36" fill="#fcd34d" font-size="12">Los cuatro gestos · esquema de secuencia</text>
+
+            <!-- 1 -->
+            <rect x="26" y="52" width="150" height="200" rx="10" fill="rgba(16,185,129,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="48" cy="74" r="11" fill="rgba(16,185,129,0.2)" stroke="#6ee7b7" stroke-width="1.2"/>
+            <text x="48" y="78" text-anchor="middle" fill="#6ee7b7" font-size="11">1</text>
+            <text x="66" y="78" fill="#6ee7b7" font-size="10">POSICIÓN</text>
+            <rect x="52" y="140" width="98" height="20" rx="4" fill="rgba(16,185,129,0.18)" stroke="#6ee7b7" stroke-width="1.4"/>
+            <text x="101" y="134" text-anchor="middle" fill="#6ee7b7" font-size="8">transductor</text>
+            <line x1="46" y1="176" x2="156" y2="176" stroke="#e2e8f0" stroke-width="2.4"/>
+            <circle cx="60" cy="176" r="4" fill="#fcd34d"/>
+            <text x="46" y="200" fill="#fcd34d" font-size="8">marca en la piel</text>
+            <text x="46" y="224" fill="#64748b" font-size="8">derrame en 2 planos,</text>
+            <text x="46" y="236" fill="#64748b" font-size="8">Doppler pasado</text>
+
+            <!-- 2 -->
+            <rect x="188" y="52" width="150" height="200" rx="10" fill="rgba(99,102,241,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="210" cy="74" r="11" fill="rgba(99,102,241,0.2)" stroke="#a5b4fc" stroke-width="1.2"/>
+            <text x="210" y="78" text-anchor="middle" fill="#a5b4fc" font-size="11">2</text>
+            <text x="228" y="78" fill="#a5b4fc" font-size="10">ANESTESIA</text>
+            <circle cx="263" cy="150" r="30" fill="none" stroke="#a5b4fc" stroke-width="1.4" stroke-dasharray="5 3"/>
+            <line x1="208" y1="176" x2="318" y2="176" stroke="#e2e8f0" stroke-width="2.4"/>
+            <line x1="238" y1="112" x2="260" y2="168" stroke="#a5b4fc" stroke-width="2.2"/>
+            <path d="M260,168 L252,160 L257,158 Z" fill="#a5b4fc"/>
+            <text x="208" y="200" fill="#a5b4fc" font-size="8">piel y trayecto</text>
+            <text x="208" y="224" fill="#64748b" font-size="8">sin epinefrina ·</text>
+            <text x="208" y="236" fill="#64748b" font-size="8">esperar la latencia</text>
+
+            <!-- 3 -->
+            <rect x="350" y="52" width="150" height="200" rx="10" fill="rgba(20,184,166,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="372" cy="74" r="11" fill="rgba(20,184,166,0.2)" stroke="#5eead4" stroke-width="1.2"/>
+            <text x="372" y="78" text-anchor="middle" fill="#5eead4" font-size="11">3</text>
+            <text x="390" y="78" fill="#5eead4" font-size="10">PUNCIÓN</text>
+            <line x1="370" y1="176" x2="480" y2="176" stroke="#e2e8f0" stroke-width="2.4"/>
+            <path d="M386,196 Q425,186 464,196 L464,214 Q425,224 386,214 Z" fill="#05080f" stroke="#5eead4" stroke-width="1.4"/>
+            <line x1="378" y1="110" x2="424" y2="202" stroke="#5eead4" stroke-width="2.6"/>
+            <path d="M424,202 L415,194 L420,191 Z" fill="#5eead4"/>
+            <rect x="362" y="96" width="24" height="16" rx="3" fill="rgba(20,184,166,0.2)" stroke="#5eead4" stroke-width="1.2"/>
+            <text x="428" y="126" fill="#5eead4" font-size="8">aspiración</text>
+            <text x="428" y="138" fill="#5eead4" font-size="8">suave y continua</text>
+            <text x="370" y="240" fill="#fcd34d" font-size="8">sale líquido = llegaste</text>
+
+            <!-- 4 -->
+            <rect x="512" y="52" width="150" height="200" rx="10" fill="rgba(245,158,11,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="534" cy="74" r="11" fill="rgba(245,158,11,0.2)" stroke="#fcd34d" stroke-width="1.2"/>
+            <text x="534" y="78" text-anchor="middle" fill="#fcd34d" font-size="11">4</text>
+            <text x="552" y="78" fill="#fcd34d" font-size="10">REPARTO</text>
+            <rect x="538" y="112" width="22" height="50" rx="3" fill="rgba(239,68,68,0.25)" stroke="#fca5a5" stroke-width="1.2"/>
+            <rect x="572" y="112" width="22" height="50" rx="3" fill="rgba(99,102,241,0.25)" stroke="#a5b4fc" stroke-width="1.2"/>
+            <rect x="606" y="112" width="22" height="50" rx="3" fill="rgba(16,185,129,0.25)" stroke="#6ee7b7" stroke-width="1.2"/>
+            <text x="549" y="143" text-anchor="middle" fill="#fca5a5" font-size="10">1</text>
+            <text x="583" y="143" text-anchor="middle" fill="#a5b4fc" font-size="10">2</text>
+            <text x="617" y="143" text-anchor="middle" fill="#6ee7b7" font-size="10">3</text>
+            <text x="530" y="182" fill="#fca5a5" font-size="8">1 · cultivo</text>
+            <text x="530" y="196" fill="#a5b4fc" font-size="8">2 · recuento</text>
+            <text x="530" y="210" fill="#6ee7b7" font-size="8">3 · cristales</text>
+            <text x="530" y="230" fill="#fcd34d" font-size="8">rotulados antes</text>
+            <text x="530" y="244" fill="#64748b" font-size="8">comprimir y vendar</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Esquemas orientativos, no ilustraciones anatómicas a escala.</strong> El gesto
+        que más rinde del cuarto panel es el orden: <em>cultivo primero</em>, porque es el examen que define el
+        diagnóstico y el que no se puede repetir sin volver a pinchar.</div>
+      </div>
+
+      <div class="subhead">Posición, entrada y peligro, por articulación</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Articulación</th><th>Posición</th><th>Punto de entrada y dirección</th><th>Lo que no se toca</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Rodilla</td>
+              <td>Supino, rodilla en extensión o en <strong>flexión de 20–30°</strong> con apoyo debajo: relaja el cuádriceps y abre el receso suprapatelar.</td>
+              <td><strong>Suprapatelar lateral:</strong> 1–2 cm proximal y lateral al borde superolateral de la patela, aguja dirigida medial y algo caudal, por debajo de la patela. <strong>Medio-patelar lateral:</strong> en el punto medio del borde lateral de la patela, aguja paralela a la camilla hacia el espacio femoropatelar. Comprimir el compartimento medial con la mano libre empuja el líquido hacia la aguja.</td>
+              <td>Cartílago patelar y troclear: <em>no se raspa el hueso</em>. No se entra a través del tendón patelar ni de una bursa prepatelar inflamada.</td>
+            </tr>
+            <tr>
+              <td>Hombro</td>
+              <td>Sentado, brazo colgando con <strong>rotación interna leve</strong>, mano en el regazo; esto abre el receso glenohumeral posterior.</td>
+              <td><strong>Abordaje posterior:</strong> unos 2–3 cm inferior y 1–2 cm medial al ángulo posterolateral del acromion, entre el deltoides y el infraespinoso, aguja dirigida <strong>anterior y ligeramente medial, apuntando a la coracoides</strong>. Con ecografía: sonda transversal bajo el acromion posterior, se identifican cabeza humeral, glena e infraespinoso, y la aguja entra en plano de lateral a medial.</td>
+              <td>No profundizar medial al borde de la glena: por ahí van el nervio supraescapular y los vasos. El <strong>abordaje anterior se evita</strong> por la proximidad de vasos y plexo.</td>
+            </tr>
+            <tr>
+              <td>Tobillo</td>
+              <td>Supino, pie en <strong>flexión plantar leve</strong>, que abre el receso tibioastragalino anterior.</td>
+              <td><strong>Anteromedial:</strong> en el ángulo entre el borde <em>medial</em> del tendón del tibial anterior y el borde anterior del maléolo medial, a la altura de la línea articular; aguja dirigida posterolateral hacia el espacio tibioastragalino.</td>
+              <td><strong>La arteria tibial anterior/pedia y el nervio peroneo profundo corren laterales al tendón del tibial anterior</strong>: por eso se entra medial a ese tendón. La vena safena magna pasa por delante del maléolo medial. <em>Doppler obligatorio.</em></td>
+            </tr>
+            <tr>
+              <td>Codo</td>
+              <td>Codo en <strong>flexión de 90°</strong>, antebrazo en pronación, apoyado en una mesa o sobre el abdomen.</td>
+              <td><strong>Lateral, por el «triángulo blando»:</strong> el centro del triángulo que forman el epicóndilo lateral, la punta del olécranon y la cabeza radial; aguja perpendicular a la piel, dirigida al centro de la articulación. Con ecografía se usa el receso posterolateral radiocapitelar o el receso posterior de la fosa olecraneana.</td>
+              <td>El <strong>nervio radial y su rama interósea posterior pasan por delante del cuello radial</strong>: la aguja no se dirige anterior. No se punciona sobre la cabeza radial en movimiento de pronosupinación.</td>
+            </tr>
+            <tr>
+              <td>Muñeca</td>
+              <td>Antebrazo pronado, muñeca en <strong>flexión palmar de 20–30°</strong> sobre un rollo de gasa.</td>
+              <td><strong>Dorsal radiocarpiano:</strong> justo distal al tubérculo de Lister, en el surco entre el extensor largo del pulgar y el extensor común de los dedos; aguja perpendicular, 1–1,5 cm.</td>
+              <td>Tendones extensores y rama dorsal del nervio radial. <em>Es una articulación pequeña: aquí la ecografía cambia el resultado, como en la serie de Balint.</em></td>
+            </tr>
+            <tr>
+              <td>Cadera</td>
+              <td>Supino, cadera en extensión y <strong>rotación neutra o rotación interna leve</strong>.</td>
+              <td><strong>Anterior ecoguiado, en eje largo del cuello femoral:</strong> sonda convexa oblicua paralela al cuello, se identifica la unión cabeza-cuello —donde el receso capsular anterior se distiende— y la aguja espinal entra <strong>de lateral-distal a medial-proximal, en plano</strong>, hasta el receso.</td>
+              <td><strong>El paquete femoral —arteria, vena y nervio— está medial</strong> y la rama ascendente de la circunfleja femoral lateral cruza la cápsula anterior. <em>Doppler obligatorio.</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="figure" style="margin-top:16px;">
+        <svg viewBox="0 0 680 480" role="img" aria-label="Esquema de cuatro paneles con los puntos de entrada. Rodilla: abordaje suprapatelar lateral y medio patelar lateral respecto de la patela y el femur. Tobillo: entrada anteromedial, medial al tendon del tibial anterior, con la arteria tibial anterior y el nervio peroneo profundo laterales a ese tendon. Hombro: abordaje posterior, dos a tres centimetros inferior y uno a dos centimetros medial al angulo posterolateral del acromion, dirigido hacia la coracoides. Codo: triangulo blando entre epicondilo lateral, punta del olecranon y cabeza radial, con el nervio radial por delante del cuello radial.">
+          <g font-family="DM Mono, monospace" font-size="10" fill="#94a3b8">
+            <rect x="12" y="12" width="656" height="456" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="28" y="36" fill="#fcd34d" font-size="12">Puntos de entrada · esquema orientativo</text>
+
+            <!-- RODILLA -->
+            <rect x="30" y="52" width="298" height="188" rx="10" fill="rgba(16,185,129,0.05)" stroke="#334155" stroke-width="1"/>
+            <text x="48" y="76" fill="#6ee7b7" font-size="11">RODILLA · lateral</text>
+            <path d="M120,96 L236,96 L236,120 L120,120 Z" fill="rgba(255,255,255,0.05)" stroke="#475569" stroke-width="1.3"/>
+            <text x="178" y="112" text-anchor="middle" fill="#64748b" font-size="8">fémur</text>
+            <path d="M150,132 Q178,124 206,132 Q212,156 178,170 Q144,156 150,132 Z" fill="rgba(255,255,255,0.07)" stroke="#e2e8f0" stroke-width="1.4"/>
+            <text x="178" y="154" text-anchor="middle" fill="#cbd5e1" font-size="8">patela</text>
+            <path d="M140,182 L216,182 L216,206 L140,206 Z" fill="rgba(255,255,255,0.05)" stroke="#475569" stroke-width="1.3"/>
+            <text x="178" y="198" text-anchor="middle" fill="#64748b" font-size="8">tibia</text>
+            <circle cx="222" cy="126" r="5" fill="#6ee7b7"/>
+            <line x1="276" y1="108" x2="228" y2="124" stroke="#6ee7b7" stroke-width="1.6"/>
+            <path d="M228,124 L236,118 L238,126 Z" fill="#6ee7b7"/>
+            <text x="244" y="100" fill="#6ee7b7" font-size="8">suprapatelar</text>
+            <text x="244" y="112" fill="#6ee7b7" font-size="8">lateral</text>
+            <circle cx="214" cy="150" r="5" fill="#5eead4"/>
+            <line x1="284" y1="150" x2="222" y2="150" stroke="#5eead4" stroke-width="1.6"/>
+            <path d="M222,150 L230,146 L230,154 Z" fill="#5eead4"/>
+            <text x="238" y="168" fill="#5eead4" font-size="8">medio-patelar lateral</text>
+            <text x="48" y="226" fill="#64748b" font-size="8">flexión 20–30° · comprimir el lado medial</text>
+
+            <!-- TOBILLO -->
+            <rect x="350" y="52" width="298" height="188" rx="10" fill="rgba(239,68,68,0.05)" stroke="#334155" stroke-width="1"/>
+            <text x="368" y="76" fill="#fca5a5" font-size="11">TOBILLO · anterior</text>
+            <path d="M448,92 L516,92 L516,146 L448,146 Z" fill="rgba(255,255,255,0.05)" stroke="#475569" stroke-width="1.3"/>
+            <text x="482" y="122" text-anchor="middle" fill="#64748b" font-size="8">tibia</text>
+            <path d="M440,160 Q482,148 524,160 Q530,190 482,196 Q434,190 440,160 Z" fill="rgba(255,255,255,0.05)" stroke="#475569" stroke-width="1.3"/>
+            <text x="482" y="178" text-anchor="middle" fill="#64748b" font-size="8">astrágalo</text>
+            <line x1="500" y1="88" x2="500" y2="200" stroke="#cbd5e1" stroke-width="5" opacity="0.5"/>
+            <text x="508" y="86" fill="#cbd5e1" font-size="8">tibial ant.</text>
+            <circle cx="524" cy="120" r="4" fill="#ef4444"/>
+            <text x="532" y="118" fill="#fca5a5" font-size="8">arteria + n. peroneo</text>
+            <text x="532" y="130" fill="#fca5a5" font-size="8">profundo (LATERAL)</text>
+            <circle cx="478" cy="152" r="5" fill="#6ee7b7"/>
+            <line x1="404" y1="130" x2="470" y2="148" stroke="#6ee7b7" stroke-width="1.6"/>
+            <path d="M470,148 L461,145 L463,153 Z" fill="#6ee7b7"/>
+            <text x="368" y="122" fill="#6ee7b7" font-size="8">entrada</text>
+            <text x="368" y="134" fill="#6ee7b7" font-size="8">anteromedial</text>
+            <text x="368" y="226" fill="#64748b" font-size="8">flexión plantar leve · medial al tendón</text>
+
+            <!-- HOMBRO -->
+            <rect x="30" y="252" width="298" height="188" rx="10" fill="rgba(99,102,241,0.05)" stroke="#334155" stroke-width="1"/>
+            <text x="48" y="276" fill="#a5b4fc" font-size="11">HOMBRO · posterior</text>
+            <path d="M96,300 Q150,288 204,300 L204,314 Q150,306 96,314 Z" fill="rgba(255,255,255,0.06)" stroke="#cbd5e1" stroke-width="1.3"/>
+            <text x="150" y="294" text-anchor="middle" fill="#cbd5e1" font-size="8">acromion (post.)</text>
+            <circle cx="166" cy="366" r="40" fill="rgba(255,255,255,0.05)" stroke="#475569" stroke-width="1.4"/>
+            <text x="166" y="370" text-anchor="middle" fill="#64748b" font-size="8">cabeza humeral</text>
+            <path d="M212,326 L212,410" stroke="#475569" stroke-width="2.4"/>
+            <text x="218" y="408" fill="#64748b" font-size="8">glena</text>
+            <circle cx="186" cy="330" r="5" fill="#a5b4fc"/>
+            <line x1="252" y1="300" x2="192" y2="324" stroke="#a5b4fc" stroke-width="1.6"/>
+            <path d="M192,324 L201,321 L199,329 Z" fill="#a5b4fc"/>
+            <text x="238" y="286" fill="#a5b4fc" font-size="8">2–3 cm inferior,</text>
+            <text x="238" y="298" fill="#a5b4fc" font-size="8">1–2 cm medial</text>
+            <text x="238" y="342" fill="#fcd34d" font-size="8">dirección: coracoides</text>
+            <text x="48" y="426" fill="#64748b" font-size="8">rotación interna leve · no pasar medial a la glena</text>
+
+            <!-- CODO -->
+            <rect x="350" y="252" width="298" height="188" rx="10" fill="rgba(245,158,11,0.05)" stroke="#334155" stroke-width="1"/>
+            <text x="368" y="276" fill="#fcd34d" font-size="11">CODO · triángulo blando</text>
+            <circle cx="424" cy="322" r="16" fill="rgba(255,255,255,0.05)" stroke="#cbd5e1" stroke-width="1.3"/>
+            <text x="418" y="300" text-anchor="middle" fill="#cbd5e1" font-size="7">epicóndilo lat.</text>
+            <path d="M486,296 L516,296 L512,326 L486,322 Z" fill="rgba(255,255,255,0.05)" stroke="#cbd5e1" stroke-width="1.3"/>
+            <text x="524" y="300" fill="#cbd5e1" font-size="7">olécranon</text>
+            <circle cx="458" cy="370" r="18" fill="rgba(255,255,255,0.05)" stroke="#cbd5e1" stroke-width="1.3"/>
+            <text x="482" y="374" fill="#cbd5e1" font-size="7">cabeza radial</text>
+            <path d="M424,322 L498,312 L458,370 Z" fill="rgba(245,158,11,0.14)" stroke="#fcd34d" stroke-width="1.4" stroke-dasharray="4 3"/>
+            <circle cx="459" cy="334" r="5" fill="#fcd34d"/>
+            <line x1="392" y1="382" x2="452" y2="342" stroke="#fcd34d" stroke-width="1.6"/>
+            <path d="M452,342 L444,345 L448,351 Z" fill="#fcd34d"/>
+            <text x="368" y="406" fill="#fcd34d" font-size="8">entrada perpendicular al centro del triángulo</text>
+            <text x="368" y="420" fill="#fca5a5" font-size="8">n. radial: por DELANTE del cuello radial</text>
+            <text x="368" y="434" fill="#64748b" font-size="8">flexión 90°, antebrazo pronado</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Esquemas orientativos, no ilustraciones anatómicas a escala.</strong> Están
+        dibujados para fijar <em>la relación</em> —qué está medial, qué está lateral, hacia dónde apunta la aguja— y no
+        para medir distancias. La relación que más errores evita es la del tobillo: <strong>la arteria y el nervio van
+        laterales al tendón del tibial anterior, de modo que la entrada es medial a ese tendón</strong>. La página
+        recomienda, además, fotografiar la bandeja real del servicio y revisar la anatomía con el ecógrafo sobre una
+        articulación sana antes de necesitarla.</div>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">⛔</span>
+        <span><strong>La cadera no es una punción de box.</strong> Es profunda, el receso es estrecho, el paquete
+        femoral está a centímetros y la aguja de longitud habitual no llega: la punción se coordina con
+        <strong>radiología intervencional o traumatología</strong>, bajo ecografía o fluoroscopía. Lo que sí es del
+        urgenciólogo es <em>encontrar el derrame</em>: en la serie de casos de Boniface la ecografía en el punto de
+        atención detectó derrame de cadera en los 5 adultos con radiografía no diagnóstica —dos sépticos— y fue «la
+        acción crítica» que ordenó el resto del estudio. <em>Quién punciona la cadera en tu servicio, con qué apoyo de
+        imagen y en qué horario: verificar con protocolo institucional.</em></span>
+      </div>
+
+      <div class="subhead">Durante la punción</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🫸</span><span><strong>Aspiración suave y continua mientras se avanza.</strong> El líquido es la señal de que se llegó; avanzar sin aspirar hace pasar de largo recesos de pocos milímetros. Si se toca hueso, <em>retirar 2–3 mm y reorientar</em>, no empujar.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔄</span><span><strong>Si no sale nada con la punta donde debía estar:</strong> rotar la aguja 90° (la sinovial puede estar ocluyendo el bisel), retirar o avanzar 2 mm, cambiar a jeringa más pequeña para bajar la presión negativa, y recién después cambiar de calibre pensando en pus espeso. Ver el algoritmo de la sección 08.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📏</span><span><strong>Lo que se necesita es poco.</strong> Para Gram y cultivo bastan unas gotas; Hughes trabajó con muestras de <strong>0,5 a 3,0 mL</strong>. <em>Una jeringa con «poco líquido» no se descarta: se reparte con prioridad.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Si sale sangre franca:</strong> puede ser hemartrosis real (trauma, coagulopatía, fractura intraarticular, hemofilia) o punción vascular. Se detiene, se revisa con ecografía, y se manda igual la muestra —el recuento y el cultivo siguen siendo informativos—. <em>Una hemartrosis no excluye infección concomitante.</em></span></div>
+        <div class="plain-item good"><span class="bullet-icon">💧</span><span><strong>Si sale pus:</strong> el diagnóstico está hecho a los ojos. Se completa el reparto de muestras, se administra el antibiótico empírico <em>de inmediato</em> y se llama a traumatología para el drenaje: la aspiración del box es diagnóstica y, a lo más, un alivio inicial.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧯</span><span><strong>Cuánto evacuar.</strong> Para el diagnóstico basta la muestra; vaciar un derrame grande alivia el dolor y la presión intraarticular. <em>No hay volumen máximo establecido ni evidencia de que evacuar más mejore el desenlace: el criterio es local y se conversa con quien va a drenar.</em></span></div>
+      </div>
+
+      <div class="subhead">Durante y al terminar</div>
+      <div class="checklist" id="list-s6">
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Antisepsia con el tiempo de secado respetado</strong> y campo preparado. La infección iatrogénica de una articulación es una complicación que dura años: el minuto de secado es parte del procedimiento.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Anestesia de piel y trayecto puesta, con latencia cumplida</strong>, y sin infiltrar anestésico dentro de la articulación en el mismo gesto —no se mezcla con la muestra—.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Aguja avanzada con aspiración continua</strong>, deteniéndose en cuanto aparece líquido. Sin barrido lateral en profundidad: el barrido es lo que lesiona cartílago y vasos.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Aspecto del líquido descrito en voz alta y anotado</strong>: claro, amarillo turbio, purulento, hemorrágico, con grumos. Es el primer resultado del examen y llega antes que el laboratorio.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Volumen obtenido anotado</strong> y muestra repartida antes de retirar el campo. No se guarda la jeringa «para después».</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Compresión, apósito y vendaje elástico suave</strong>, con revisión del sitio antes de que el paciente deje el box. Si está anticoagulado, un par de minutos extra de compresión.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Procedimiento registrado en la ficha</strong>: articulación, abordaje, uso de ecografía, calibre, anestésico y dosis, volumen, aspecto, exámenes enviados, complicaciones y quién fue informado.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Paciente informado de los signos de alarma</strong> del sitio de punción: dolor creciente, fiebre nueva, enrojecimiento que se extiende, imposibilidad de mover la articulación. Con indicación explícita de volver.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · EL LÍQUIDO -->
+  <div class="section s7" id="s7" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">El líquido: qué se manda, en qué tubo y en qué orden</div>
+        <div class="section-subtitle">La parte del procedimiento que más seguido se arruina después de haber salido bien</div>
+      </div>
+      <span class="section-check-count" id="count-s7">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="go-banner">
+        <span class="warning-icon">🥇</span>
+        <span><strong>El orden de prioridad, cuando el volumen es escaso:</strong> <strong>1) cultivo</strong> —es el
+        examen que define el diagnóstico y el único que no se puede repetir sin volver a pinchar—,
+        <strong>2) Gram</strong>, <strong>3) recuento con diferencial</strong>, <strong>4) cristales</strong>. Con
+        unas gotas en el frasco de hemocultivo todavía puede haber diagnóstico; con unas gotas repartidas en cuatro
+        tubos a medio llenar, puede no haber ninguno.</span>
+      </div>
+
+      <div class="subhead">El reparto</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Examen</th><th>Tubo</th><th>Volumen mínimo útil</th><th>Nota</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cultivo (aerobio y anaerobio)</td>
+              <td>Tubo estéril seco, o <strong>frasco de hemocultivo</strong> si el laboratorio lo acepta</td>
+              <td><span class="dose-main">unas gotas</span> <span class="dose-note">ideal 1–3 mL</span></td>
+              <td>Hughes: el frasco de hemocultivo pediátrico detectó <strong>62 patógenos contra 51</strong> del cultivo en placa (p = 0,001) y <strong>menos contaminantes</strong> (1 contra 11). <em>Confirmar con el laboratorio local qué medio acepta y si hay que avisar.</em></td>
+            </tr>
+            <tr>
+              <td>Gram</td>
+              <td>Del mismo tubo estéril</td>
+              <td><span class="dose-main">1 gota</span></td>
+              <td>Negativo en el <strong>50–55 %</strong> de las artritis sépticas confirmadas (Weston, McGillicuddy). Positivo decide; negativo no descarta.</td>
+            </tr>
+            <tr>
+              <td>Recuento de leucocitos con diferencial</td>
+              <td>Tubo con <strong>EDTA</strong></td>
+              <td><span class="dose-main">0,5–1 mL</span></td>
+              <td>Es el examen con el que se calculan las razones de verosimilitud de la sección 02. Si hay coágulos, el recuento puede quedar falsamente bajo: mezclar bien al llenar.</td>
+            </tr>
+            <tr>
+              <td>Cristales (luz polarizada)</td>
+              <td>Tubo <strong>sin aditivo</strong>, o el que indique el laboratorio</td>
+              <td><span class="dose-main">0,5–1 mL</span></td>
+              <td><em>El EDTA y el oxalato pueden generar cristales artefactuales; algunos anticoagulantes son birrefringentes.</em> El tubo correcto lo define el laboratorio local — verificar.</td>
+            </tr>
+            <tr>
+              <td>Lactato o IL-6 sinoviales</td>
+              <td>Según laboratorio</td>
+              <td>—</td>
+              <td>Solo si están disponibles y el laboratorio tiene punto de corte propio (Lenski: lactato &gt; 10 mmol/L con LR 20,4). <em>No desplazan a los cuatro anteriores.</em></td>
+            </tr>
+            <tr>
+              <td>Hemocultivos (dos sets, de sangre)</td>
+              <td>Frascos habituales</td>
+              <td>—</td>
+              <td>Se toman <strong>antes del antibiótico</strong>. Positivos con germen coincidente en el <strong>42,5 %</strong> de la serie de Papanicolas, y en el <strong>90 %</strong> de las artritis sépticas de hombro.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⛔</span>
+        <span><strong>Lo que arruina la muestra.</strong> <strong>Formalina</strong>: mata el cultivo —nunca va líquido
+        sinovial a un frasco de histología—. <strong>Demora</strong>: el líquido envejece, las células se degradan y
+        los cristales pueden disolverse o precipitar; se lleva al laboratorio de inmediato, en mano, no en el carro de
+        las 18:00. <strong>Tubos a medio rotular</strong>: sin articulación y sin hora, el informe no se puede
+        interpretar. Y el error silencioso: <strong>pedir solo cultivo</strong> y quedarse sin recuento, o
+        <strong>pedir solo recuento</strong> y quedarse sin germen.</span>
+      </div>
+
+      <div class="subhead">Lo que el aspecto ya dice, antes del laboratorio</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Aspecto</th><th>Sugiere</th><th>Conducta inmediata</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Claro, amarillo pálido, viscoso</td>
+              <td>Líquido no inflamatorio: artrosis, derrame mecánico, trauma</td>
+              <td>Se manda igual todo el panel. El aspecto no reemplaza el recuento.</td>
+            </tr>
+            <tr>
+              <td>Amarillo turbio, poco viscoso</td>
+              <td>Inflamatorio: cristales, artritis reumatoide, reactiva — <em>o séptico</em></td>
+              <td><strong>Es el aspecto ambiguo</strong>, y el más frecuente. Decide el recuento, el Gram y el cultivo.</td>
+            </tr>
+            <tr>
+              <td>Purulento, espeso, con grumos</td>
+              <td>Artritis séptica muy probable</td>
+              <td><strong>Antibiótico empírico ahora</strong>, traumatología avisada, cama resuelta. No se espera el recuento.</td>
+            </tr>
+            <tr>
+              <td>Hemorrágico</td>
+              <td>Hemartrosis traumática, coagulopatía, fractura intraarticular, condrocalcinosis, tumor — o punción vascular</td>
+              <td>Se manda recuento y cultivo igual. <em>Revisar coagulación y mecanismo; una hemartrosis no excluye infección.</em></td>
+            </tr>
+            <tr>
+              <td>Con material cálcico o «lechoso»</td>
+              <td>Depósito de cristales (pirofosfato, hidroxiapatita)</td>
+              <td>Igual se cultiva: la coexistencia con infección ocurre en el 1,5–5 % (Shah, Papanicolas).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Antes de dejar el box</div>
+      <div class="checklist" id="list-s7">
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Cultivo enviado primero</strong>, en el medio que el laboratorio acepta, y la solicitud dice <em>«líquido sinovial, sospecha de artritis séptica, urgente»</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Gram pedido como urgente</strong> y con teléfono de contacto en la solicitud, para que el resultado llegue a alguien y no a una bandeja.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Recuento con diferencial pedido explícitamente.</strong> «Citológico» a secas puede volver sin el porcentaje de polimorfonucleares, que es la mitad del valor diagnóstico.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Cristales pedidos en el tubo correcto</strong>, con luz polarizada. Y entendiendo de antemano que <em>encontrarlos no cierra el caso</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Muestras llevadas al laboratorio en mano</strong>, con hora de toma anotada, y recepción confirmada con alguien que las tenga en la mesa.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Hemocultivos verificados como tomados y enviados</strong>, antes del antibiótico. Si el antibiótico ya se dio por sepsis, queda registrado que se tomaron después y por qué.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Ningún tubo de histología ni de formalina en la bandeja de salida.</strong> Revisión final de los rótulos: nombre, ficha, articulación, hora.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · LEER EL RESULTADO Y DECIDIR -->
+  <div class="section s8" id="s8" style="animation-delay:0.34s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Leer el resultado y decidir</div>
+        <div class="section-subtitle">Incluye los dos escenarios incómodos: no salió líquido, o el recuento no calza con el paciente</div>
+      </div>
+      <span class="section-check-count" id="count-s8">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Las categorías clásicas del líquido sinovial</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Categoría</th><th>Leucocitos /µL</th><th>Polimorfonucleares</th><th>Ejemplos</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Normal</td><td><span class="dose-main">&lt; 200</span></td><td>&lt; 25 %</td><td>Articulación sana; líquido claro y viscoso</td></tr>
+            <tr><td>No inflamatorio</td><td><span class="dose-main">200 – 2.000</span></td><td>&lt; 25 %</td><td>Artrosis, trauma, derrame mecánico</td></tr>
+            <tr><td>Inflamatorio</td><td><span class="dose-main">2.000 – 50.000</span></td><td>≥ 50 %</td><td>Gota, condrocalcinosis, artritis reumatoide, reactiva, espondiloartritis — <em>y hasta el 39 % de las sépticas confirmadas</em></td></tr>
+            <tr><td>Séptico (patrón típico)</td><td><span class="dose-main">&gt; 50.000</span> <span class="dose-note">con frecuencia &gt; 100.000</span></td><td>≥ 90 %</td><td>Artritis bacteriana no gonocócica</td></tr>
+            <tr><td>Hemorrágico</td><td>Variable, con hematíes</td><td>Variable</td><td>Hemartrosis traumática, coagulopatía, fractura intraarticular, tumor</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Estas franjas son descriptivas, no reglas de decisión.</strong> El propio corte de 50.000
+        sirve para <em>subir</em> la probabilidad y no para bajarla: <strong>39 % de los cultivos positivos de
+        McGillicuddy estaba por debajo</strong>. Y las franjas se solapan: la gota puede pasar de 50.000 y la artritis
+        séptica puede quedarse en 20.000. <em>El número se interpreta sobre la probabilidad clínica previa, nunca
+        solo.</em> Carpenter situó el <strong>umbral de tratamiento en el 39 %</strong>: cuando la probabilidad
+        posprueba lo supera, se trata como artritis séptica sin esperar más exámenes.</span>
+      </div>
+
+      <div class="subhead">Escenario incómodo 1 · No salió líquido (punción seca)</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>¿La punta estaba donde debía?</strong> Vuelve a la ecografía con la aguja puesta y busca la punta. Si está fuera del receso, reposiciona. <em>La causa más frecuente de punción seca es una punta que no llegó, no una articulación sin líquido.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>¿Es sinovial engrosada y no líquido?</strong> Compresión dinámica y Doppler: si no se desplaza y tiene flujo, no va a salir nada. <em>Deja de insistir y cambia de estrategia.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>¿El bisel está ocluido o la presión es excesiva?</strong> Rota la aguja 90°, retira 2 mm, pasa a una jeringa más pequeña. Si sospechas pus espeso, sube de calibre.</span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span><strong>¿Hay otro receso?</strong> Rodilla: cambiar de suprapatelar a medio-patelar, o comprimir el compartimento contrario. Codo: pasar de posterolateral a la fosa olecraneana. Hombro: revisar el receso axilar.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">5</span><span><strong>Y si sigue seca: la punción seca NO descarta artritis séptica.</strong> Se escala, no se cierra: <strong>punción guiada por imagen en radiología</strong>, <strong>traumatología para punción en pabellón o artroscopia diagnóstica</strong>, imagen avanzada —resonancia— según disponibilidad, y <strong>tratamiento empírico mientras se resuelve</strong> si la probabilidad clínica es alta. <em>Un «no salió nada» escrito en la ficha sin plan de continuidad es el final de muchos casos que terminaron mal.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">💧</span><span><strong>Sobre el lavado para «recuperar algo»</strong>: inyectar unos mililitros de suero fisiológico y reaspirarlo está descrito como recurso para obtener material de cultivo, pero <em>diluye el recuento y lo hace no interpretable</em>. Si se hace, debe quedar explícito en la solicitud. <em>Conducta local: verificar con protocolo institucional y con el laboratorio.</em></span></div>
+      </div>
+
+      <div class="subhead">Escenario incómodo 2 · El recuento no calza con el paciente</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Lo que vuelve</th><th>Cómo se lee</th><th>Qué se hace</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Recuento bajo, paciente que impresiona infectado</td>
+              <td>LR de 0,32–0,33 sobre un pretest alto todavía deja probabilidad relevante; y el 39 % de las sépticas confirmadas tenía &lt; 50.000 (McGillicuddy)</td>
+              <td><strong>No se suspende el antibiótico empírico si ya se inició</strong>; se espera el cultivo, se vuelve a examinar la articulación y se conversa el caso. Repetir la punción a las 12–24 h es una opción razonable. <em>Umbral y plazo: criterio local.</em></td>
+            </tr>
+            <tr>
+              <td>Recuento alto con cristales presentes</td>
+              <td>Coexistencia en 1,5–5 % (Shah, Papanicolas); los 4 casos de Shah tenían recuentos &gt; 50.000 y comorbilidades</td>
+              <td><strong>Se trata como séptico hasta que el cultivo diga lo contrario</strong>, sobre todo si hay PCR &gt; 100 mg/L. La única combinación tranquilizadora de Papanicolas es Gram negativo + PCR &lt; 100 + recuento &lt; 10.000.</td>
+            </tr>
+            <tr>
+              <td>Gram negativo, recuento intermedio (25.000–50.000)</td>
+              <td>Zona ciega: LR por intervalo de 1,06 — <em>el examen no aporta</em></td>
+              <td>Manda la clínica: factores de riesgo, curso, estado general, PCR. Decisión compartida con traumatología; en general se cubre y se observa hospitalizado.</td>
+            </tr>
+            <tr>
+              <td>Gram positivo</td>
+              <td>Específico: decide</td>
+              <td><strong>Artritis séptica.</strong> Antibiótico dirigido al germen visto, traumatología para drenaje, hospitalización.</td>
+            </tr>
+            <tr>
+              <td>Cultivo negativo a las 48 h con cuadro compatible</td>
+              <td>El cultivo falla: en Weston fue positivo en el 82 % <em>contando sangre y líquido</em> — es decir, hasta uno de cada cinco casos no tiene germen</td>
+              <td>No se retira el diagnóstico solo por el cultivo. Se revisa si hubo antibiótico previo, se considera gonococo, micobacterias, hongos y Lyme según contexto, y <strong>el manejo lo decide el equipo tratante, no el informe</strong>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Antibiótico empírico — orientación, no receta</div>
+      <div class="warning-banner">
+        <span class="warning-icon">💊</span>
+        <span><strong>El esquema empírico de este servicio no lo define esta página.</strong> Lo define el
+        <strong>protocolo local de uso de antimicrobianos (PROA)</strong> según la epidemiología y la resistencia
+        local. La tabla de abajo es una orientación de los agentes habitualmente considerados en el adulto, con dosis
+        de uso corriente, y <strong>todas las dosis, intervalos, ajustes por función renal y duraciones deben
+        verificarse con protocolo institucional</strong> antes de administrarse. Lo que sí es transversal:
+        <strong>cubrir</strong> <em>Staphylococcus aureus</em> <strong>y estreptococos</strong> —el 74 % de los casos de
+        Weston y más del 90 % de los de Gupta—, orientar la cobertura por lo que muestre el Gram si lo hay, y
+        <strong>no retrasar la primera dosis en el paciente séptico</strong>.</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Escenario</th><th>Agente habitualmente considerado</th><th>Dosis de uso corriente en el adulto</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Adulto sin factores de riesgo de <em>S. aureus</em> resistente a meticilina</td><td>Cloxacilina, o cefazolina</td><td><span class="dose-main">Cloxacilina 2 g IV c/4–6 h</span> · <span class="dose-main">cefazolina 2 g IV c/8 h</span> <span class="dose-note">verificar con PROA local</span></td></tr>
+            <tr><td>Riesgo de <em>S. aureus</em> resistente a meticilina, sepsis grave o Gram con cocáceas grampositivas en racimos</td><td>Vancomicina</td><td><span class="dose-main">15–20 mg/kg IV c/8–12 h</span>, con dosis de carga en el paciente grave y <strong>monitorización de niveles</strong> <span class="dose-note">ajuste por función renal · verificar con PROA local</span></td></tr>
+            <tr><td>Gram con bacilos gramnegativos, inmunosupresión, adulto mayor, instrumentación urinaria o digestiva</td><td>Cefalosporina de tercera generación añadida a la cobertura antiestafilocócica</td><td><span class="dose-main">Ceftriaxona 2 g IV c/24 h</span> o <span class="dose-main">cefotaxima 2 g IV c/8 h</span> <span class="dose-note">verificar con PROA local</span></td></tr>
+            <tr><td>Riesgo de <em>Pseudomonas</em> (uso de drogas inyectables, neutropenia, hospitalización prolongada)</td><td>Betalactámico con actividad antipseudomónica</td><td><span class="dose-main">Piperacilina-tazobactam 4,5 g IV c/6–8 h</span> u otro según PROA <span class="dose-note">verificar con PROA local</span></td></tr>
+            <tr><td>Sospecha de infección gonocócica diseminada</td><td>Esquema propio, distinto del anterior</td><td><em>Según norma nacional vigente y protocolo local — no se improvisa en el box.</em></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">⏳</span>
+        <span><strong>Duración: la decide el equipo tratante, no urgencia.</strong> Como referencia de lo que se hace
+        en la práctica, en la cohorte prospectiva de Gupta la mediana fue de <strong>15 días de tratamiento
+        endovenoso seguidos de 21 días orales</strong>. <em>La duración real depende del germen, de la articulación, de
+        la respuesta y del drenaje, y se define con infectología y traumatología — verificar con protocolo
+        institucional.</em></span>
+      </div>
+
+      <div class="subhead">Decisión y destino</div>
+      <div class="checklist" id="list-s8">
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Probabilidad posprueba dicha en voz alta</strong>, no solo el número del laboratorio: «con este cuadro y este recuento, esto es artritis séptica hasta que el cultivo diga otra cosa», o lo contrario, con sus razones.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Antibiótico empírico administrado si la sospecha se mantiene</strong>, con los cultivos ya tomados, y la hora de la primera dosis registrada.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Traumatología con el resultado en la mano</strong>, no con la sospecha: aspecto, volumen, recuento, Gram y probabilidad clínica. El drenaje definitivo es su decisión.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Si se descarta la infección, el diagnóstico alternativo queda escrito con su fundamento</strong>: cristales vistos, cuadro idéntico a episodios previos, recuento y PCR. «Probable gota» sin líquido analizado no es un diagnóstico de alta.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Si el paciente se va de alta, el cultivo tiene dueño</strong>: alguien nominado para revisarlo, un teléfono de contacto y un control presencial en 24–48 h. Un cultivo positivo que nadie mira es la peor forma de terminar este procedimiento.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Si no salió líquido, el plan de continuidad está escrito y agendado</strong>: quién, dónde y cuándo se vuelve a intentar, y qué cubre al paciente mientras tanto.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Las banderas de mal pronóstico de Weston buscadas y registradas</strong>: confusión al ingreso, edad ≥ 65 años, compromiso poliarticular, compromiso del codo, diabetes. Fueron predictores independientes de muerte o de secuela y cambian la intensidad de la vigilancia.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · DESPUÉS: DRENAJE DEFINITIVO -->
+  <div class="section s9" id="s9" style="animation-delay:0.38s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Después: el drenaje definitivo no es la artrocentesis</div>
+        <div class="section-subtitle">Lo que sigue, quién lo decide y qué dice (y no dice) la evidencia</div>
+      </div>
+      <span class="section-check-count" id="count-s9">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>La artrocentesis de urgencia es diagnóstica.</strong> El tratamiento de la artritis séptica son
+        <strong>antibióticos más drenaje de la articulación</strong>, y el drenaje puede ser por aspiraciones cerradas
+        repetidas, por artroscopia o por artrotomía. La revisión de Mathews en <em>The Lancet</em> insiste en la
+        «intervención médica y quirúrgica oportuna», empezando por la aspiración diagnóstica de la articulación
+        relevante. Lo que no existe es una respuesta aleatorizada sobre <em>cuál</em> drenaje.</span>
+      </div>
+
+      <div class="subhead">Las tres rutas, con la evidencia que hay</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Ruta</th><th>Lo que se ha publicado</th><th>Limitación honesta</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Aspiraciones cerradas repetidas</td>
+              <td>Harada comparó 20 pacientes manejados con <strong>aspiración cerrada</strong> contra 41 operados: <strong>sin diferencia significativa a los 12 meses</strong>, y los manejados médicamente tuvieron <strong>más recuperación completa a los 3 meses</strong> y <strong>menos necesidad de rehabilitación</strong>. En Weston, el <strong>drenaje quirúrgico abierto fue predictor de morbilidad</strong> en el análisis multivariado.</td>
+              <td>Ambos son <strong>retrospectivos</strong> y con sesgo de selección evidente: a los más graves se los opera. Los propios autores de Weston piden interpretar su hallazgo «con cautela».</td>
+            </tr>
+            <tr>
+              <td>Artroscopia</td>
+              <td>Permite lavado, desbridamiento y toma de biopsias con menor agresión que la artrotomía. En la cohorte de Gupta, <strong>37 %</strong> de los pacientes requirió intervención quirúrgica.</td>
+              <td>En el metaanálisis de Abdelmalek sobre <strong>hombro nativo</strong> (9 cohortes retrospectivas, 5.643 pacientes), la artroscopia tuvo <strong>más reoperación por reinfección que la artrotomía</strong> (OR 2,61; IC 95 % 1,04–6,56). <em>Evidencia de baja calidad y muy heterogénea (I² = 78,8 %).</em></td>
+            </tr>
+            <tr>
+              <td>Artrotomía (lavado abierto)</td>
+              <td>Es la referencia tradicional y la ruta de rescate cuando falla lo anterior. Revisiones recientes de práctica ortopédica sostienen que <strong>el manejo quirúrgico es el pilar</strong> en la rodilla nativa y protésica, y que <em>la aspiración debe usarse solo con fines diagnósticos</em>.</td>
+              <td>Esa postura es <strong>opinión de revisión narrativa</strong>, no resultado de un ensayo. Weston encontró lo contrario en su análisis retrospectivo. <em>La decisión es local y de traumatología.</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Lo que no se puede afirmar:</strong> que una ruta de drenaje sea superior a otra. No hay ensayos
+        aleatorizados que lo decidan, las series apuntan en direcciones distintas y están confundidas por la gravedad
+        basal. En el box, la consecuencia es simple y liberadora: <em>la discusión sobre artroscopia contra artrotomía
+        no es tuya, y no debe retrasar ni el antibiótico ni la llamada</em>. Lo que sí es tuyo es que el líquido esté
+        tomado, que el germen tenga posibilidad de crecer y que el teléfono haya sonado temprano.</span>
+      </div>
+
+      <div class="subhead">Cierre del episodio</div>
+      <div class="checklist" id="list-s9">
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Cama y servicio definidos</strong> según gravedad: sala con traumatología, o unidad de paciente crítico si hay sepsis o shock. La artritis séptica confirmada <em>no es un alta</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Pabellón conversado explícitamente</strong>, con una respuesta registrada: se opera, se aspira de nuevo, o se observa — y en qué plazo se reevalúa.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Articulación en reposo relativo y en posición funcional</strong>, con analgesia pautada y no «según necesidad» en las primeras horas. <em>Inmovilización, carga y plazo de inicio de movilización: según traumatología y protocolo institucional.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Foco de origen buscado y documentado</strong>: piel, catéteres, dentadura, vía urinaria, endocarditis si hay bacteriemia por <em>S. aureus</em>. En Kaandorp el defecto cutáneo fue el origen del 67 % de las infecciones hematógenas.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Otras articulaciones examinadas</strong> antes de cerrar: el compromiso poliarticular estaba en el 15 % de la serie de Gupta y fue predictor de muerte en la de Weston. Se busca, no se espera que el paciente lo mencione.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Entrega de turno con los pendientes nominados</strong>: cultivo sinovial, hemocultivos, resultado del Gram si falta, llamada de traumatología, y quién revisa cada uno.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Marcadores basales tomados para seguimiento</strong> —PCR, hemograma, función renal si va vancomicina—. Sirven para seguir la respuesta, que es para lo que la PCR es realmente buena.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Conversación con el paciente y su familia sobre el pronóstico real</strong>: la artritis séptica dejó secuela funcional en el <strong>31,6 %</strong> de la serie de Weston y tuvo mortalidad del 11 %. Decirlo temprano es parte del tratamiento.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · COMPLICACIONES Y GRADO DE CERTEZA -->
+  <div class="section s10" id="s10" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Complicaciones y grado de certeza</div>
+        <div class="section-subtitle">Lo que puede salir mal y cuánto sostiene cada afirmación de esta página</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Complicaciones</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Complicación</th><th>Cómo aparece</th><th>Cómo se previene o se trata</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Artritis séptica iatrogénica</td>
+              <td>Dolor creciente, fiebre y derrame que reaparece <strong>días después</strong> de una punción en una articulación que no estaba infectada. Es la complicación que justifica toda la técnica aséptica.</td>
+              <td><strong>No atravesar piel infectada</strong>, antiséptico con tiempo de secado, campo y guantes estériles, no infiltrar corticoide en la misma sesión. Instruir al paciente sobre los signos de alarma y dejar vía de retorno.</td>
+            </tr>
+            <tr>
+              <td>Punción seca</td>
+              <td>No sale líquido: la complicación <em>más frecuente</em> del procedimiento y la que deja al paciente sin diagnóstico.</td>
+              <td>Ecografía antes y durante, compresión dinámica para distinguir sinovitis, cambio de receso, de calibre y de jeringa. Y sobre todo: <strong>plan de escalada escrito</strong> (sección 08).</td>
+            </tr>
+            <tr>
+              <td>Sangrado o hematoma</td>
+              <td>Sangre en la jeringa, equimosis o aumento de volumen local horas después.</td>
+              <td>Doppler color antes de puncionar, compresión al retirar. En el anticoagulado en rango el riesgo es bajo —<strong>0,2 %</strong> de sangrado significativo en los 640 procedimientos de Ahmed y <strong>cero</strong> en los 1050 de Yui—, pero la compresión se hace igual.</td>
+            </tr>
+            <tr>
+              <td>Lesión neurovascular</td>
+              <td>Parestesia, dolor eléctrico irradiado, sangrado pulsátil.</td>
+              <td>Es la razón del mapa de la sección 06: <strong>arteria tibial anterior y nervio peroneo profundo laterales al tibial anterior</strong>, <strong>nervio radial por delante del cuello radial</strong>, <strong>paquete femoral medial en la cadera</strong>, estructuras mediales a la glena en el hombro. Doppler y punción en plano cuando hay algo cerca.</td>
+            </tr>
+            <tr>
+              <td>Lesión del cartílago</td>
+              <td>Dolor desproporcionado y prolongado tras una punción con mucho barrido o raspado del hueso.</td>
+              <td>Avanzar con aspiración y detenerse al llegar; si se toca hueso, retirar y reorientar en lugar de empujar o barrer en profundidad.</td>
+            </tr>
+            <tr>
+              <td>Muestra perdida o no interpretable</td>
+              <td>Tubo equivocado, formalina, volumen insuficiente repartido en demasiados tubos, demora en el transporte, recuento diluido por lavado.</td>
+              <td>Rotular antes, repartir en el orden de prioridad de la sección 07, llevar en mano, y preferir el frasco de hemocultivo cuando el volumen es escaso (Hughes).</td>
+            </tr>
+            <tr>
+              <td>Dolor del procedimiento</td>
+              <td>Mal tolerado, sobre todo sin anestesia adecuada o en articulación muy distendida.</td>
+              <td>Analgesia sistémica previa, anestesia local de piel y trayecto, y ecografía: en el ensayo de Wiler el abordaje ecoguiado <strong>dolió menos</strong> (3,71 contra 5,19 cm, p = 0,02).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Grado de certeza de lo que dice esta página</div>
+      <div class="plain-list">
+        <div class="plain-item good"><span class="bullet-icon">🟢</span><span><strong>Sostenido por revisión sistemática o metaanálisis:</strong> que la prevalencia de artritis séptica en el adulto con una articulación aguda dolorosa ronda el <strong>27 %</strong>; que la historia, el examen físico y los exámenes séricos <strong>no modifican significativamente la probabilidad</strong>, salvo la cirugía articular reciente y la celulitis sobre prótesis; que las razones de verosimilitud del <strong>recuento sinovial y del porcentaje de polimorfonucleares</strong> son las de la tabla de la sección 02; y que el corte de 50.000 tiene sensibilidad del <strong>56 %</strong> con especificidad del 90 %. Proviene de Margaretten (JAMA 2007) y Carpenter (Acad Emerg Med 2011).</span></div>
+        <div class="plain-item good"><span class="bullet-icon">🟢</span><span><strong>Sostenido por estudio original con datos:</strong> la insensibilidad del corte de 50.000 y la frecuencia del Gram negativo (McGillicuddy); la coexistencia de cristales con infección (Shah, Papanicolas); la sensibilidad de VHS y PCR solo con umbrales bajos (Hariharan); el rendimiento del frasco de hemocultivo para líquido sinovial (Hughes); la mortalidad, morbilidad y predictores de mal desenlace (Weston, Gupta); la epidemiología y el origen cutáneo (Kaandorp); la seguridad de puncionar al paciente anticoagulado (Ahmed, Yui); y el aumento de rendimiento de la aspiración guiada por ecografía en articulaciones difíciles (Balint).</span></div>
+        <div class="plain-item"><span class="bullet-icon">🟡</span><span><strong>Estudios pequeños, retrospectivos o en modelo, con las limitaciones que eso implica:</strong> que la ecografía reduce dolor y tiempo sin cambiar el éxito en la rodilla (Wiler, 66 pacientes); que no hay diferencia de éxito en articulaciones difíciles entre ecografía y referencias (Berona, <em>modelo cadavérico</em> con 18 residentes); el valor del lactato y la IL-6 sinoviales (Lenski, 119 pacientes de un centro); la equivalencia entre aspiración cerrada y cirugía (Harada, 61 pacientes, retrospectivo); y la mayor reoperación tras artroscopia de hombro (Abdelmalek, metaanálisis de cohortes retrospectivas con I² = 78,8 %).</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🔴</span><span><strong>Convencional, sin estudio de desenlace que lo respalde individualmente:</strong> todas las metas de tiempo del cronómetro; los calibres de aguja, largos y volúmenes de jeringa por articulación; los puntos de entrada, las posiciones y las direcciones de la sección 06 —que provienen de textos de procedimientos y de la anatomía, no de estudios comparativos—; la contraindicación de atravesar piel infectada; el orden de prioridad de las muestras; el tubo correcto para cristales; la elección entre marcar-y-puncionar y punción bajo visión directa; el volumen a evacuar; la conducta del lavado para recuperar material; el régimen de inmovilización y de reposo; y el plazo para repetir la punción. <strong>Todo esto debe contrastarse con el protocolo institucional vigente y con el material realmente disponible.</strong></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🔴</span><span><strong>Lo que esta página no cubre y requiere su propia fuente:</strong> el esquema antimicrobiano empírico y dirigido y su duración —que los define el PROA local—; la artritis séptica en articulación protésica o con osteosíntesis; la infección gonocócica diseminada; la artritis por micobacterias, hongos, Brucella o Borrelia; la artritis séptica en niños y adolescentes; la técnica del lavado artroscópico y de la artrotomía; y el manejo de la coagulopatía grave. Todos son decisiones de especialidad o de otro protocolo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🟡</span><span><strong>Nota de certeza sobre la ecografía.</strong> Que la ecografía ayude en la artrocentesis es verdad <em>con matices</em>: los dos estudios que la compararon directamente en urgencia —Wiler en rodilla y Berona en cadera, tobillo y muñeca en cadáver— <strong>no mostraron diferencia estadísticamente significativa en el éxito</strong>. Su valor demostrado está en el dolor, el tiempo, el número de intentos, la confianza del operador novato y, sobre todo, en el escenario de Balint: articulaciones sin derrame palpable, donde pasó de <strong>32 % a 97 %</strong> de aspiraciones exitosas. <em>Esta página la recomienda por eso, no por un efecto demostrado sobre desenlaces clínicos.</em></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROGRESO -->
+  <div class="progress-bottom">
+    <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBar"></div></div>
+    <div class="progress-label"><span id="progress-pct">0%</span> del checklist</div>
+    <button type="button" class="reset-btn" onclick="resetAll()">↺ Reiniciar</button>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    presencial en el procedimiento ni en ecografía musculoesquelética. La <strong>artrocentesis es un procedimiento
+    invasivo que abre una vía a un espacio cerrado y avascular</strong>, con complicaciones posibles —artritis séptica
+    iatrogénica, sangrado, hematoma, lesión neurovascular, lesión del cartílago y dolor—: leer este checklist no
+    sustituye la práctica supervisada. <strong>El calibre, el largo y el tipo de aguja, el tamaño de la jeringa, los
+    puntos de entrada y las posiciones de cada articulación, el antiséptico y su tiempo de contacto, la concentración,
+    el volumen y la dosis máxima del anestésico local, el volumen a evacuar, el tubo correcto para cada examen, el
+    circuito y los horarios del laboratorio, el esquema antimicrobiano empírico y su duración, el manejo de la
+    coagulopatía grave, el régimen de inmovilización y de reposo, el plazo para repetir la punción y quién punciona la
+    cadera en este servicio dependen del material disponible y deben verificarse con el protocolo institucional</strong>
+    antes de aplicarse. El esquema antimicrobiano de la sección 08 es <strong>orientativo y no una indicación</strong>:
+    el esquema, las dosis, los ajustes por función renal y la duración los define el <strong>programa local de uso de
+    antimicrobianos (PROA)</strong> y la epidemiología del servicio. Las <strong>metas de tiempo del cronómetro son
+    referenciales y no constituyen un estándar validado</strong>: no existe una referencia publicada de tiempos para
+    este procedimiento, y el único plazo externo que no se negocia es el del antibiótico en la primera hora cuando hay
+    sepsis. Dos ideas deben quedar por delante de cualquier número de esta página: <strong>ningún examen de sangre
+    descarta la artritis séptica</strong>, y <strong>un recuento sinovial bajo tampoco la descarta</strong> —el 39 % de
+    los cultivos positivos de McGillicuddy tenía menos de 50.000 leucocitos/µL—. Los <strong>esquemas son dibujos
+    orientativos, no ilustraciones anatómicas a escala</strong>, y no reemplazan la revisión de la anatomía con el
+    ecógrafo sobre una articulación sana. El contenido es para <strong>pacientes adultos con articulación nativa</strong>;
+    la artritis séptica en niños y adolescentes, y la infección de articulación protésica o con osteosíntesis, son
+    entidades distintas con reglas, umbrales y circuitos propios. El cronómetro y el checklist <strong>no guardan
+    ningún dato</strong>: el registro del procedimiento se hace en la ficha clínica.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Referencias localizadas y verificadas mediante <strong>PubMed</strong>.</div>
+      <div class="ref-item">Margaretten ME, Kohlwes J, Moore D, Bent S. <em>Does this adult patient have septic arthritis?</em> JAMA. 2007;297(13):1478–1488. <a href="https://doi.org/10.1001/jama.297.13.1478" target="_blank" rel="noopener">DOI: 10.1001/jama.297.13.1478</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/17405973/" target="_blank" rel="noopener">PMID 17405973</a> — <strong>Fuente principal de las razones de verosimilitud.</strong> Revisión sistemática de 14 estudios con 6.242 pacientes, 653 con artritis séptica. Los únicos hallazgos presentes en más de la mitad de los pacientes fueron dolor articular (sensibilidad 85 %), historia de aumento de volumen (78 %) y fiebre (57 %); sudoración 27 % y calofríos 19 %. Los dos datos más potentes fueron el <strong>recuento de leucocitos del líquido sinovial</strong> (LR 0,32 bajo 25.000; 2,9 sobre 25.000; <strong>7,7 sobre 50.000; 28,0 sobre 100.000</strong>) y el <strong>porcentaje de polimorfonucleares</strong> (LR 3,4 con ≥ 90 %; 0,34 con &lt; 90 %). Concluye que el recuento y el diferencial del líquido son <em>necesarios</em> para estimar la probabilidad antes de conocer el Gram y el cultivo.</div>
+      <div class="ref-item">Carpenter CR, Schuur JD, Everett WW, Pines JM. <em>Evidence-based diagnostics: adult septic arthritis.</em> Acad Emerg Med. 2011;18(8):781–796. <a href="https://doi.org/10.1111/j.1553-2712.2011.01121.x" target="_blank" rel="noopener">DOI: 10.1111/j.1553-2712.2011.01121.x</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/21843213/" target="_blank" rel="noopener">PMID 21843213</a> — <strong>Fuente de la prevalencia y de los umbrales de decisión.</strong> Revisión sistemática con metaanálisis en población de urgencia: prevalencia de artritis séptica no gonocócica del <strong>27 %</strong> (IC 95 % 17–38 %); <strong>ni la historia, ni el examen físico, ni los exámenes séricos modifican significativamente la probabilidad posprueba</strong>, salvo cirugía articular reciente (LR+ 6,9) y celulitis sobre articulación protésica (LR+ 15,0); los leucocitos séricos, la VHS y la PCR <strong>no son útiles de manera aguda</strong>; razones de verosimilitud por intervalo del recuento sinovial de 0,33 / 1,06 / 3,59 / infinito; <strong>sensibilidad 56 % y especificidad 90 %</strong> para el corte de 50.000; <strong>umbral de prueba 5 % y umbral de tratamiento 39 %</strong>; y señala el lactato sinovial como marcador prometedor.</div>
+      <div class="ref-item">McGillicuddy DC, Shah KH, Friedberg RP, Nathanson LA, Edlow JA. <em>How sensitive is the synovial fluid white blood cell count in diagnosing septic arthritis?</em> Am J Emerg Med. 2007;25(7):749–752. <a href="https://doi.org/10.1016/j.ajem.2006.12.001" target="_blank" rel="noopener">DOI: 10.1016/j.ajem.2006.12.001</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/17870475/" target="_blank" rel="noopener">PMID 17870475</a> — <strong>Origen del desvío sobre el corte de 50.000.</strong> Cuarenta y nueve aspirados con cultivo positivo: <strong>19 de 49 (39 %) tenían menos de 50.000 leucocitos/µL</strong>, con sensibilidad del corte de <strong>61 %</strong> (IC 95 % 48–75 %); <strong>27 de 49 (55 %) tenían Gram negativo</strong> y, de ellos, <strong>15 de 27 (56 %) también tenían recuento bajo</strong>. Los autores concluyen que el corte «carece de la sensibilidad necesaria para ser clínicamente útil» para descartar. <em>Serie retrospectiva de un centro.</em></div>
+      <div class="ref-item">Shah K, Spear J, Nathanson LA, McCauley J, Edlow JA. <em>Does the presence of crystal arthritis rule out septic arthritis?</em> J Emerg Med. 2007;32(1):23–26. <a href="https://doi.org/10.1016/j.jemermed.2006.07.019" target="_blank" rel="noopener">DOI: 10.1016/j.jemermed.2006.07.019</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/17239729/" target="_blank" rel="noopener">PMID 17239729</a> — <strong>Fuente del dato de coexistencia con cristales.</strong> De 265 aspirados con cristales (69 % gota, 30,6 % pirofosfato), <strong>4 (1,5 %) tuvieron cultivo positivo</strong>, con recuento medio de <strong>113.000</strong> frente a 23.200 del resto (p &lt; 0,01); los cuatro tenían comorbilidades significativas y recuentos &gt; 50.000. Concluye que <strong>la presencia de cristales no excluye artritis séptica</strong>. <em>Estudio retrospectivo de 7 años en un centro terciario.</em></div>
+      <div class="ref-item">Papanicolas LE, Hakendorf P, Gordon DL. <em>Concomitant septic arthritis in crystal monoarthritis.</em> J Rheumatol. 2012;39(1):157–160. <a href="https://doi.org/10.3899/jrheum.110368" target="_blank" rel="noopener">DOI: 10.3899/jrheum.110368</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/22133623/" target="_blank" rel="noopener">PMID 22133623</a> — <strong>Fuente de la única combinación tranquilizadora y del rendimiento del hemocultivo.</strong> De 1.612 aspirados, 104 artritis sépticas y 295 artritis por cristales aisladas: <strong>5 % de las articulaciones con cristales tenía infección concomitante</strong>; recuento alto y PCR &gt; 100 mg/L predijeron coexistencia con sensibilidad del 86,4 % y valores predictivos negativos del 98,5–98,7 %; <strong>hemocultivo positivo con germen coincidente en 42,5 %</strong>, y <strong>90 % de bacteriemia en la artritis séptica de hombro</strong>. La excepción que permite tranquilizarse es <strong>Gram negativo + PCR &lt; 100 mg/L + recuento &lt; 10.000/µL</strong>. <em>Retrospectivo.</em></div>
+      <div class="ref-item">Hariharan P, Kabrhel C. <em>Sensitivity of erythrocyte sedimentation rate and C-reactive protein for the exclusion of septic arthritis in emergency department patients.</em> J Emerg Med. 2011;40(4):428–431. <a href="https://doi.org/10.1016/j.jemermed.2010.05.029" target="_blank" rel="noopener">DOI: 10.1016/j.jemermed.2010.05.029</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/20655163/" target="_blank" rel="noopener">PMID 20655163</a> — <strong>Fuente del matiz sobre VHS y PCR.</strong> Ciento cuarenta y tres pacientes de urgencia con artritis séptica: sensibilidad de la VHS del <strong>98 %</strong> con corte ≥ 10 mm/h y <strong>94 %</strong> con ≥ 15 mm/h; de la PCR, <strong>92 %</strong> con corte ≥ 20 mg/L. El 24 % de la muestra tenía prótesis. Los autores concluyen que son sensibles <em>solo con umbrales bajos</em> y que <strong>falta estudio para definir su utilidad clínica</strong>. <em>Retrospectivo.</em></div>
+      <div class="ref-item">Coakley G, Mathews C, Field M, et al. <em>BSR &amp; BHPR, BOA, RCGP and BSAC guidelines for management of the hot swollen joint in adults.</em> Rheumatology (Oxford). 2006;45(8):1039–1041. <a href="https://doi.org/10.1093/rheumatology/kel163a" target="_blank" rel="noopener">DOI: 10.1093/rheumatology/kel163a</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/16829534/" target="_blank" rel="noopener">PMID 16829534</a> — <strong>Guía multisociedad británica de la articulación caliente e inflamada en el adulto</strong>, con algoritmo de manejo para urgencia y atención primaria. Es la referencia histórica de la conducta que organiza esta página: ante la sospecha, <strong>obtener líquido sinovial y enviarlo a microscopía y cultivo urgentes antes de iniciar el antibiótico</strong>, salvo que la punción no sea posible.</div>
+      <div class="ref-item">Mathews CJ, Weston VC, Jones A, Field M, Coakley G. <em>Bacterial septic arthritis in adults.</em> Lancet. 2010;375(9717):846–855. <a href="https://doi.org/10.1016/S0140-6736(09)61595-6" target="_blank" rel="noopener">DOI: 10.1016/S0140-6736(09)61595-6</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/20206778/" target="_blank" rel="noopener">PMID 20206778</a> — Revisión de referencia sobre la artritis séptica bacteriana del adulto en articulación nativa: epidemiología cambiante, resistencia antibiótica creciente, factores de riesgo, y el énfasis en que el diagnóstico es <strong>mayormente clínico</strong> y en la necesidad de <strong>intervención médica y quirúrgica oportuna, empezando por la aspiración diagnóstica de la articulación relevante</strong>. <em>Revisión narrativa.</em></div>
+      <div class="ref-item">Weston VC, Jones AC, Bradbury N, Fawthrop F, Doherty M. <em>Clinical features and outcome of septic arthritis in a single UK Health District 1982–1991.</em> Ann Rheum Dis. 1999;58(4):214–219. <a href="https://doi.org/10.1136/ard.58.4.214" target="_blank" rel="noopener">DOI: 10.1136/ard.58.4.214</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/10364899/" target="_blank" rel="noopener">PMID 10364899</a> — <strong>Fuente del pronóstico y del rendimiento del Gram y el cultivo.</strong> Serie de un distrito inglés completo: <em>S. aureus</em> y estreptococos en el <strong>74 %</strong>; cultivo del aspirado articular o de la sangre positivo en el <strong>82 %</strong>; <strong>Gram mostró el germen en el 50 %</strong>; enfermedad articular previa en 35 %; <strong>mortalidad 11,5 %</strong> y morbilidad adicional <strong>31,6 %</strong>. Predictores de muerte: <strong>confusión al ingreso, edad ≥ 65 años, sepsis poliarticular o compromiso del codo</strong>; de morbilidad: edad ≥ 65, diabetes, <strong>drenaje quirúrgico abierto</strong> e infecciones grampositivas distintas de <em>S. aureus</em>. Los autores subrayan la importancia de <strong>obtener líquido y sangre para cultivo antes del antibiótico</strong>, y piden cautela al interpretar el hallazgo sobre la cirugía por el diseño retrospectivo.</div>
+      <div class="ref-item">Gupta MN, Sturrock RD, Field M. <em>A prospective 2-year study of 75 patients with adult-onset septic arthritis.</em> Rheumatology (Oxford). 2001;40(1):24–30. <a href="https://doi.org/10.1093/rheumatology/40.1.24" target="_blank" rel="noopener">DOI: 10.1093/rheumatology/40.1.24</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/11157138/" target="_blank" rel="noopener">PMID 11157138</a> — <strong>Fuente de la frecuencia por articulación y del dato del hemograma normal.</strong> Cohorte prospectiva con cultivo sinovial positivo: <strong>rodilla en 56 %</strong>, dos o más articulaciones en <strong>15 %</strong>, estafilococos y estreptococos en más del <strong>90 %</strong>; fiebre en <strong>64 %</strong>; <strong>recuento de leucocitos normal en 38 %</strong> y PCR elevada en <strong>98 %</strong>; úlceras de pierna en 11 % de todos pero en <strong>38 % de los que murieron</strong> (p &lt; 0,006); mediana de <strong>15 días de antibiótico endovenoso y 21 orales</strong>; <strong>37 % requirió cirugía</strong>; <strong>mortalidad 11 %</strong>.</div>
+      <div class="ref-item">Kaandorp CJ, Dinant HJ, van de Laar MA, et al. <em>Incidence and sources of native and prosthetic joint infection: a community based prospective survey.</em> Ann Rheum Dis. 1997;56(8):470–475. <a href="https://doi.org/10.1136/ard.56.8.470" target="_blank" rel="noopener">DOI: 10.1136/ard.56.8.470</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/9306869/" target="_blank" rel="noopener">PMID 9306869</a> — <strong>Fuente de la epidemiología y de la puerta de entrada.</strong> Encuesta prospectiva comunitaria en el distrito de Ámsterdam, 188 episodios: incidencia de <strong>5,7 por 100.000 habitantes por año</strong>; <strong>84 % de los adultos con enfermedad de base y 59 % con una artropatía</strong>; la cirugía articular fue el <strong>33 %</strong> de las infecciones directas y los <strong>defectos de la piel el 67 %</strong> de las hematógenas; <em>S. aureus</em> en el <strong>44 %</strong> de los cultivos positivos.</div>
+      <div class="ref-item">Hughes JG, Vetter EA, Patel R, et al. <em>Culture with BACTEC Peds Plus/F bottle compared with conventional methods for detection of bacteria in synovial fluid.</em> J Clin Microbiol. 2001;39(12):4468–4471. <a href="https://doi.org/10.1128/JCM.39.12.4468-4471.2001" target="_blank" rel="noopener">DOI: 10.1128/JCM.39.12.4468-4471.2001</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/11724863/" target="_blank" rel="noopener">PMID 11724863</a> — <strong>Fuente de la recomendación sobre el frasco de hemocultivo.</strong> Ochocientos cinco líquidos sinoviales —habitualmente de <strong>0,5 a 3,0 mL</strong>— cultivados en paralelo: el frasco de hemocultivo pediátrico detectó <strong>62 patógenos contra 51</strong> del cultivo en placa (p = 0,001) y <strong>un contaminante contra once</strong> (p = 0,006). <em>Estudio de evaluación de un método en un laboratorio; confirmar qué medio acepta el laboratorio local.</em></div>
+      <div class="ref-item">Balint PV, Kane D, Hunter J, McInnes IB, Field M, Sturrock RD. <em>Ultrasound guided versus conventional joint and soft tissue fluid aspiration in rheumatology practice: a pilot study.</em> J Rheumatol. 2002;29(10):2209–2213. · <a href="https://pubmed.ncbi.nlm.nih.gov/12375335/" target="_blank" rel="noopener">PMID 12375335</a> — <strong>El argumento más fuerte a favor de la ecografía.</strong> En el grupo convencional, un reumatólogo experimentado logró aspiración exitosa en <strong>10 de 32 articulaciones (32 %)</strong>; en el grupo guiado por ecografía, en <strong>31 de 32 (97 %)</strong>, con volúmenes similares. Los autores concluyen que localizar el líquido con ecografía <strong>mejora notablemente la tasa de aspiración diagnóstica, en particular en articulaciones pequeñas</strong>. <em>Estudio piloto, no aleatorizado y con operadores distintos en cada grupo.</em></div>
+      <div class="ref-item">Wiler JL, Costantino TG, Filippone L, Satz W. <em>Comparison of ultrasound-guided and standard landmark techniques for knee arthrocentesis.</em> J Emerg Med. 2010;39(1):76–82. <a href="https://doi.org/10.1016/j.jemermed.2008.05.012" target="_blank" rel="noopener">DOI: 10.1016/j.jemermed.2008.05.012</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/19062223/" target="_blank" rel="noopener">PMID 19062223</a> — <strong>El contrapeso honesto.</strong> Ensayo aleatorizado multicéntrico con 66 pacientes que requerían artrocentesis de rodilla: <strong>sin diferencia en el éxito</strong> (37/39 con ecografía contra 25/27 con referencias anatómicas, p = 1,0); con ecografía hubo <strong>menos dolor</strong> (3,71 contra 5,19 cm, p = 0,02), procedimiento percibido como más fácil (p = 0,02), <strong>menor tiempo total</strong> (10,58 contra 13,37 min, p = 0,05) y más líquido aspirado por los operadores novatos. Los autores concluyen que la ecografía <em>no mejora el éxito global</em> en la rodilla.</div>
+      <div class="ref-item">Berona K, Abdi A, Menchine M, et al. <em>Success of ultrasound-guided versus landmark-guided arthrocentesis of hip, ankle, and wrist in a cadaver model.</em> Am J Emerg Med. 2017;35(2):240–244. <a href="https://doi.org/10.1016/j.ajem.2016.10.056" target="_blank" rel="noopener">DOI: 10.1016/j.ajem.2016.10.056</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/27810253/" target="_blank" rel="noopener">PMID 27810253</a> — <strong>Fuente del rendimiento de la ecografía para detectar derrame.</strong> Dieciocho residentes de urgencia, tras un video breve, en modelo cadavérico con derrames artificiales de cadera, tobillo y muñeca: <strong>sensibilidad 86 % y especificidad 90 %</strong> para detectar el derrame; éxito de aspiración <strong>96 % con ecografía contra 89 % con referencias</strong> (p = 0,257); mediana de <strong>1 intento contra 2</strong> (p = 0,12) y 38 contra 51 segundos (p = 0,23); mayor confianza posterior con ecografía. <em>Modelo cadavérico, muestra pequeña y sin poder para detectar diferencias de éxito.</em></div>
+      <div class="ref-item">Ahmed I, Gertner E. <em>Safety of arthrocentesis and joint injection in patients receiving anticoagulation at therapeutic levels.</em> Am J Med. 2012;125(3):265–269. <a href="https://doi.org/10.1016/j.amjmed.2011.08.022" target="_blank" rel="noopener">DOI: 10.1016/j.amjmed.2011.08.022</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/22340924/" target="_blank" rel="noopener">PMID 22340924</a> — <strong>Fuente de la conducta frente al paciente anticoagulado.</strong> Revisión de <strong>640 procedimientos</strong> en 514 pacientes anticoagulados, 456 de ellos con <strong>INR ≥ 2,0</strong>: <strong>un solo procedimiento (0,2 %) con sangrado clínicamente significativo precoz</strong> en el grupo plenamente anticoagulado, y sin diferencia significativa frente a los de INR &lt; 2,0. Los autores concluyen que <strong>no parece necesario reducir la anticoagulación antes del procedimiento</strong>. <em>Retrospectivo.</em></div>
+      <div class="ref-item">Yui JC, Preskill C, Greenlund LS. <em>Arthrocentesis and Joint Injection in Patients Receiving Direct Oral Anticoagulants.</em> Mayo Clin Proc. 2017;92(8):1223–1226. <a href="https://doi.org/10.1016/j.mayocp.2017.04.007" target="_blank" rel="noopener">DOI: 10.1016/j.mayocp.2017.04.007</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/28778256/" target="_blank" rel="noopener">PMID 28778256</a> — Extiende el hallazgo anterior a los anticoagulantes orales directos: <strong>1.050 procedimientos consecutivos sin ninguna complicación hemorrágica</strong>, con la conclusión de que <strong>no hay necesidad de suspender el anticoagulante</strong> antes de la punción. <em>Retrospectivo, unicéntrico.</em></div>
+      <div class="ref-item">Lenski M, Scherer MA. <em>The significance of interleukin-6 and lactate in the synovial fluid for diagnosing native septic arthritis.</em> Acta Orthop Belg. 2014;80(1):18–25. · <a href="https://pubmed.ncbi.nlm.nih.gov/24873080/" target="_blank" rel="noopener">PMID 24873080</a> — <strong>Fuente del lactato y la IL-6 sinoviales.</strong> Sesenta y dos artritis sépticas confirmadas por cultivo contra 57 artritis asépticas agudas: el <strong>lactato sinovial fue el mejor parámetro</strong> (área bajo la curva 0,864; sensibilidad 74,5 %, especificidad 87,2 %), seguido de la <strong>IL-6</strong> (0,803; sensibilidad 92,5 %, especificidad 64,1 %) y del recuento (0,782). <strong>Lactato &gt; 10 mmol/L</strong> prácticamente confirma (LR por intervalo 20,4) e <strong>IL-6 &lt; 7.000 pg/mL</strong> prácticamente excluye (0,12). <em>Retrospectivo, unicéntrico; disponibilidad y puntos de corte locales deben verificarse.</em></div>
+      <div class="ref-item">Harada K, McConnell I, DeRycke EC, Holleck JL, Gupta S. <em>Native Joint Septic Arthritis: Comparison of Outcomes with Medical and Surgical Management.</em> South Med J. 2019;112(4):238–243. <a href="https://doi.org/10.14423/SMJ.0000000000000958" target="_blank" rel="noopener">DOI: 10.14423/SMJ.0000000000000958</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/30943544/" target="_blank" rel="noopener">PMID 30943544</a> — <strong>Fuente de la comparación entre aspiración y cirugía.</strong> De 61 artritis sépticas de articulación nativa, <strong>41 (67 %) operadas y 20 (33 %) manejadas con aspiración cerrada</strong>: <strong>sin diferencia significativa en desenlaces a 12 meses</strong>, con los manejados médicamente <strong>más propensos a recuperación completa a los 3 meses</strong> y menos necesitados de rehabilitación. Los autores concluyen que la aspiración cerrada <em>puede ser un abordaje adecuado</em>. <em>Retrospectivo, unicéntrico, con sesgo de selección: los más graves van a cirugía.</em></div>
+      <div class="ref-item">Abdelmalek A, Haines S, Tadros BJ, Evans JT, Judge A. <em>Re-operation rates of arthroscopic management versus arthrotomy in treatment of septic arthritis of native shoulder joint in adults. A systematic review and meta-analysis.</em> Eur J Orthop Surg Traumatol. 2023;33(7):2717–2727. <a href="https://doi.org/10.1007/s00590-023-03495-0" target="_blank" rel="noopener">DOI: 10.1007/s00590-023-03495-0</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/36869912/" target="_blank" rel="noopener">PMID 36869912</a> — <strong>Fuente del matiz sobre la ruta quirúrgica.</strong> Nueve cohortes retrospectivas con 5.643 pacientes: la artroscopia tuvo <strong>mayor tasa de reoperación por reinfección que la artrotomía</strong> (OR 2,61; IC 95 % 1,04–6,56). Los propios autores califican la evidencia incluida de <strong>baja calidad</strong> y señalan <strong>heterogeneidad marcada (I² = 78,8 %)</strong>, pidiendo estudios de mejor calidad.</div>
+      <div class="ref-item">Sharoff L, Bowditch M, Morgan-Jones R. <em>Management of septic arthritis and prosthetic joint infection.</em> Br J Hosp Med (Lond). 2024;85(1):1–9. <a href="https://doi.org/10.12968/hmed.2023.0219" target="_blank" rel="noopener">DOI: 10.12968/hmed.2023.0219</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/38300684/" target="_blank" rel="noopener">PMID 38300684</a> — Revisión ortopédica que sostiene la posición contraria a la de Harada y Weston: <strong>el manejo quirúrgico es el pilar del tratamiento</strong> de la infección de rodilla nativa o protésica y <strong>la aspiración debe usarse solo con fines diagnósticos</strong>, con énfasis en el trabajo multidisciplinario y las redes de derivación. <em>Revisión narrativa: opinión de autores, no resultado de un ensayo. Se cita precisamente para mostrar que la pregunta del drenaje definitivo sigue abierta.</em></div>
+      <div class="ref-item">Estipona B, Collins GL, Sivapalan S, Montgomery S, Riaz T. <em>Native Joint Septic Arthritis.</em> Infect Dis Clin North Am. 2025;39(3):449–463. <a href="https://doi.org/10.1016/j.idc.2025.05.001" target="_blank" rel="noopener">DOI: 10.1016/j.idc.2025.05.001</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/40592634/" target="_blank" rel="noopener">PMID 40592634</a> — Revisión reciente de patogenia, epidemiología, presentación, diagnóstico y tratamiento de la artritis séptica de articulación nativa, con el mismo eje de esta página: <strong>el diagnóstico y el manejo oportunos previenen el daño articular irreversible</strong>. <em>Revisión narrativa.</em></div>
+      <div class="ref-item">Osmon DR, Berbari EF, Berendt AR, et al. <em>Diagnosis and management of prosthetic joint infection: clinical practice guidelines by the Infectious Diseases Society of America.</em> Clin Infect Dis. 2013;56(1):e1–e25. <a href="https://doi.org/10.1093/cid/cis803" target="_blank" rel="noopener">DOI: 10.1093/cid/cis803</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/23223583/" target="_blank" rel="noopener">PMID 23223583</a> — Guía de referencia de la <strong>infección de articulación protésica</strong>, citada aquí para marcar el límite de esta página: la prótesis es una entidad distinta, con reglas propias sobre la aspiración, el momento de suspender antimicrobianos antes de tomar la muestra y los <strong>puntos de corte del recuento, mucho más bajos que en la articulación nativa</strong>. <em>Los umbrales y el circuito local deben verificarse con el protocolo del servicio y con traumatología.</em></div>
+      <div class="ref-item">Boniface K, Pyle M, Jaleesah N, Shokoohi H. <em>Point-of-Care Ultrasound for the Detection of Hip Effusion and Septic Arthritis in Adult Patients With Hip Pain and Negative Initial Imaging.</em> J Emerg Med. 2020;58(4):627–631. <a href="https://doi.org/10.1016/j.jemermed.2019.11.036" target="_blank" rel="noopener">DOI: 10.1016/j.jemermed.2019.11.036</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/31982198/" target="_blank" rel="noopener">PMID 31982198</a> — <strong>Fuente del papel de la ecografía en la cadera del adulto.</strong> Cinco adultos con dolor de cadera y <strong>radiografía no diagnóstica</strong>: la ecografía en el punto de atención detectó derrame en <strong>los 5</strong>, confirmado después por tomografía o resonancia, y <strong>2 de 5 eran sépticos</strong>. Los autores la describen como «la acción crítica» que orientó la punción, la imagen y la cirugía. <em>Serie de 5 casos.</em></div>
+      <div class="ref-item">Aspectos <strong>convencionales</strong> descritos aquí y <strong>no respaldados individualmente por estudios de desenlace</strong>: todas las metas de tiempo del cronómetro; los calibres, largos y tipos de aguja y los tamaños de jeringa por articulación; los puntos de entrada, las posiciones y las direcciones de la sección 06; la contraindicación de atravesar piel infectada y la distancia mínima a ella; el antiséptico y su tiempo de contacto; la concentración, el volumen y la dosis máxima del anestésico local; el orden de prioridad de las muestras y el tubo correcto para la búsqueda de cristales; la elección entre marcar-y-puncionar y punción bajo visión directa; el volumen a evacuar; el lavado con suero para recuperar material de cultivo; el plazo para repetir una punción seca; el régimen de inmovilización, reposo y carga; el período de observación y la política de imagen posprocedimiento; y los esquemas antimicrobianos empíricos, sus dosis y su duración. Provienen de textos de procedimientos, revisiones narrativas, descripciones anatómicas y consenso de expertos, y deben contrastarse con el <strong>material realmente disponible, el programa local de antimicrobianos y el protocolo institucional vigente</strong>.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Checklist con progreso ────────────────────────────────────────
+  const SECTIONS = ['s1', 's4', 's5', 's6', 's7', 's8', 's9'];
+  const totals = {};
+  SECTIONS.forEach(s => {
+    const list = document.getElementById('list-' + s);
+    totals[s] = list ? list.querySelectorAll('.check-item').length : 0;
+  });
+  const TOTAL_CHECKS = SECTIONS.reduce((acc, s) => acc + totals[s], 0);
+
+  function countChecked(section) {
+    return document.querySelectorAll('#list-' + section + ' .check-item.checked').length;
+  }
+
+  function toggle(el, section) {
+    el.classList.toggle('checked');
+    updateCount(section);
+    updateProgress();
+  }
+
+  function updateCount(section) {
+    const el = document.getElementById('count-' + section);
+    if (!el) return;
+    const n = countChecked(section);
+    const t = totals[section];
+    el.textContent = n + '/' + t;
+    if (t > 0 && n === t) {
+      el.style.background = 'rgba(16,185,129,0.15)';
+      el.style.borderColor = 'rgba(16,185,129,0.3)';
+      el.style.color = '#6ee7b7';
+    } else {
+      el.style.background = '';
+      el.style.borderColor = '';
+      el.style.color = '';
+    }
+  }
+
+  function updateProgress() {
+    const done = SECTIONS.reduce((acc, s) => acc + countChecked(s), 0);
+    const pct = TOTAL_CHECKS ? Math.round((done / TOTAL_CHECKS) * 100) : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.check-item.checked').forEach(el => el.classList.remove('checked'));
+    SECTIONS.forEach(updateCount);
+    updateProgress();
+  }
+
+  SECTIONS.forEach(updateCount);
+  updateProgress();
+
+  // ── Cronómetro (sin persistencia) ─────────────────────────────────
+  let swStart = null;
+  let swAccum = 0;
+  let swTick = null;
+
+  function swElapsed() {
+    return swAccum + (swStart !== null ? Date.now() - swStart : 0);
+  }
+
+  function fmt(ms) {
+    const total = Math.floor(ms / 1000);
+    const m = String(Math.floor(total / 60)).padStart(2, '0');
+    const s = String(total % 60).padStart(2, '0');
+    return m + ':' + s;
+  }
+
+  function swRender() {
+    const ms = swElapsed();
+    const disp = document.getElementById('swDisplay');
+    disp.textContent = fmt(ms);
+    disp.classList.toggle('warn', ms >= 1800000 && ms < 3600000);
+    disp.classList.toggle('late', ms >= 3600000);
+  }
+
+  function swToggle() {
+    const btn = document.getElementById('swToggle');
+    const cap = document.getElementById('swCaption');
+    if (swStart === null) {
+      swStart = Date.now();
+      swTick = setInterval(swRender, 200);
+      btn.textContent = '⏸ Detener';
+      cap.textContent = 'Corriendo desde la decisión de puncionar';
+    } else {
+      swAccum += Date.now() - swStart;
+      swStart = null;
+      clearInterval(swTick);
+      swTick = null;
+      btn.textContent = '▶ Continuar';
+      cap.textContent = 'En pausa';
+      swRender();
+    }
+  }
+
+  function msLabel(el) {
+    return el.dataset.prefix + el.dataset.goal + ' s';
+  }
+
+  function swReset() {
+    if (swTick) clearInterval(swTick);
+    swTick = null;
+    swStart = null;
+    swAccum = 0;
+    document.getElementById('swToggle').textContent = '▶ Iniciar';
+    document.getElementById('swCaption').textContent = 'Detenido · parte el reloj cuando se decide puncionar';
+    document.querySelectorAll('.ms').forEach(ms => {
+      ms.classList.remove('done', 'over');
+      ms.querySelector('.ms-goal').textContent = msLabel(ms);
+    });
+    swRender();
+  }
+
+  function markMs(el) {
+    if (el.classList.contains('done')) {
+      el.classList.remove('done', 'over');
+      el.querySelector('.ms-goal').textContent = msLabel(el);
+      return;
+    }
+    if (swStart === null && swAccum === 0) swToggle();
+    const secs = Math.round(swElapsed() / 1000);
+    const goal = parseInt(el.dataset.goal, 10);
+    el.classList.add('done');
+    el.classList.toggle('over', secs > goal);
+    el.querySelector('.ms-goal').textContent = secs + ' s · meta ' + goal + ' s';
+  }
+
+  swRender();
+</script>
+</body>
+</html>

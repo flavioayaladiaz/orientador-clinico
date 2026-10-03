@@ -280,8 +280,44 @@ terminado sin su tarjeta correspondiente en el index.
       antibióticos; la conducta ante coagulopatía o anticoagulación plena; los umbrales de suspensión por cambios
       hemodinámicos; y la indicación, el tipo y el momento de la transfusión en enfermedad falciforme. El contenido
       es para adultos.
-- [ ] Artrocentesis diagnóstica de grandes articulaciones en sospecha de
-      artritis séptica (guiada por ecografía)
+- [x] Artrocentesis diagnóstica de grandes articulaciones en sospecha de
+      artritis séptica (guiada por ecografía) — `checklist-artrocentesis.html`
+      (checklist con cronómetro e hitos). Se presenta como lo que es: **la pregunta que solo responde el
+      líquido sinovial**, con una prevalencia del 27 % (IC 17–38 %) en el adulto que consulta por una
+      articulación aguda dolorosa y un **umbral de prueba del 5 %** calculado por Carpenter, de modo que
+      *la duda razonable ya es indicación*. Tres desvíos la organizan: **ningún examen de sangre descarta
+      la artritis séptica** —ni la historia, ni el examen, ni los leucocitos, la VHS o la PCR mueven la
+      probabilidad posprueba en la revisión de Carpenter, salvo la cirugía articular reciente (LR+ 6,9) y la
+      celulitis sobre prótesis (LR+ 15,0), y la VHS y la PCR solo son sensibles con umbrales muy bajos
+      (Hariharan: 98 % con VHS ≥ 10 mm/h)—; **el recuento sinovial tampoco la descarta** —el corte clásico de
+      50.000 tiene sensibilidad de 56 % (Carpenter) a 61 % (McGillicuddy: 19 de 49 cultivos positivos por
+      debajo, y 55 % con Gram negativo), con la tabla completa de razones de verosimilitud de Margaretten
+      (0,32 / 2,9 / 7,7 / 28,0 y 3,4 para PMN ≥ 90 %) y el **umbral de tratamiento del 39 %**—; y **la
+      ecografía no sirve para lo que se suele decir** —en el ensayo de Wiler no mejoró el éxito en la rodilla
+      (37/39 contra 25/27) pero bajó el dolor y el tiempo, y en el modelo cadavérico de Berona tampoco hubo
+      diferencia significativa; su valor demostrado está en el escenario de Balint, donde la aspiración pasó
+      de **10 de 32 (32 %) a 31 de 32 (97 %)**—. Incluye además que **anticoagular en rango no contraindica
+      la punción** (Ahmed: 1 sangrado significativo en 640 procedimientos, 456 con INR ≥ 2,0; Yui: 0 en 1050
+      con anticoagulantes orales directos), que **los cristales no descartan infección** (Shah 1,5 %,
+      Papanicolas 5 %, con la única combinación tranquilizadora de Gram negativo + PCR < 100 + recuento
+      < 10.000), el rendimiento del **frasco de hemocultivo** para líquido sinovial (Hughes: 62 patógenos
+      contra 51, y 1 contaminante contra 11), el orden de prioridad de las muestras cuando el volumen es
+      escaso, el mapa de abordajes de rodilla, tobillo, hombro, codo, muñeca y cadera con la estructura que no
+      se toca en cada uno, el algoritmo de la **punción seca** de afuera hacia adentro —que termina en escalar,
+      no en cerrar el caso—, y la discusión honesta del drenaje definitivo (Harada sin diferencia a 12 meses,
+      Weston con el drenaje abierto como predictor de morbilidad, Abdelmalek con más reoperación tras
+      artroscopia de hombro y Sharoff sosteniendo lo contrario: **no hay evidencia aleatorizada que decida la
+      ruta**). Esquemas vectoriales, sin imágenes de terceros. Pendiente de validación: todas las metas de
+      tiempo del cronómetro (no hay referencia publicada de tiempos para este procedimiento); los calibres,
+      largos y tipos de aguja y los tamaños de jeringa por articulación; el antiséptico y su tiempo de
+      contacto; la concentración, el volumen y la dosis máxima del anestésico local; el volumen a evacuar; el
+      tubo correcto para la búsqueda de cristales y el circuito y los horarios del laboratorio; la conducta del
+      lavado con suero para recuperar material de cultivo; el plazo para repetir una punción seca; **el esquema
+      antimicrobiano empírico, sus dosis y su duración, que los define el PROA local** (la tabla de la sección
+      08 es explícitamente orientativa); el manejo de la coagulopatía grave; el régimen de inmovilización,
+      reposo y carga; la política de imagen y el período de observación posprocedimiento; los umbrales de
+      recuento y el circuito de la articulación protésica; y **quién punciona la cadera en el servicio, con qué
+      apoyo de imagen y en qué horario**. El contenido es para adultos con articulación nativa.
 - [ ] Cistostomía por punción suprapúbica de urgencia (usando CistoFix)
 
 ## 4. Síntomas cardinales
