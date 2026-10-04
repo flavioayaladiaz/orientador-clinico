@@ -1,0 +1,2198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Checklist · Cistostomía suprapúbica de urgencia (punción con Cystofix)</title>
+<meta name="description" content="Checklist con cronómetro para la cistostomía suprapúbica de urgencia por punción con kit tipo Cystofix en la retención urinaria con cateterismo uretral fallido: cuándo se punciona y cuándo el caso es de urología o de radiología, por qué la punción a ciegas lesiona intestino y qué cambia la ecografía, material del kit, ventana ecográfica y marca, la punción paso a paso con trocar y con técnica de Seldinger, confirmación de que el catéter está dentro de la vejiga, diuresis postobstructiva y hematuria posdescompresión, el algoritmo de «no sale orina» y el reconocimiento de la lesión intestinal.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99,102,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(20,184,166,0.07) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 36px; animation: fadeUp 0.6s ease both; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.28);
+    color: #fca5a5;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  .header-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--red);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--red);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #6366f1, #14b8a6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .header-sub strong { color: #fff; font-weight: 500; }
+  .header-sub em { color: #fcd34d; font-style: normal; }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .section-check-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .s1 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s1 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s2 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s3 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s3 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s4 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s4 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s5 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s5 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s6 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s6 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s7 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s7 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s8 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s8 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s9 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s9 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s10 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s10 { --accent: var(--red); --accent-glow: var(--red-glow); }
+
+  /* CRONÓMETRO */
+  .stopwatch {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+  .sw-display {
+    font-family: var(--mono);
+    font-size: clamp(40px, 11vw, 60px);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #fff;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .sw-display.warn { color: #fcd34d; }
+  .sw-display.late { color: #fca5a5; }
+  .sw-caption {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+  .sw-controls { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+  .sw-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .sw-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .sw-btn:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+  .sw-btn.primary {
+    background: rgba(16,185,129,0.14);
+    border-color: rgba(16,185,129,0.45);
+    color: #6ee7b7;
+  }
+  .sw-btn.primary:hover { background: rgba(16,185,129,0.22); color: #a7f3d0; }
+
+  .milestones { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .ms {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .ms:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .ms:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .ms.done { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); color: #6ee7b7; }
+  .ms-goal {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .ms.done .ms-goal { color: #6ee7b7; border-color: rgba(16,185,129,0.4); }
+  .ms.done.over .ms-goal { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+  }
+  .check-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .check-item:hover::before { opacity: 1; }
+  .check-item:hover { border-color: rgba(255,255,255,0.12); }
+  .check-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .check-item.checked { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+  .check-item.checked::before { opacity: 0.5; }
+
+  .checkbox {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+    background: transparent;
+  }
+  .check-item.checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .checkmark {
+    opacity: 0;
+    transform: scale(0) rotate(-10deg);
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .check-item.checked .checkmark { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  .check-label {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-dim);
+    transition: color 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+  .check-item.checked .check-label {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(100,116,139,0.5);
+  }
+  .check-label strong { color: #fff; font-weight: 500; }
+  .check-label em { color: #fcd34d; font-style: normal; }
+  .check-step {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+
+  /* PROGRESO */
+  .progress-bottom {
+    margin-top: 6px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .progress-bar-track {
+    flex: 1;
+    min-width: 120px;
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #14b8a6);
+    border-radius: 100px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px rgba(16,185,129,0.5);
+  }
+  .progress-label { font-family: var(--mono); font-size: 12px; color: var(--text-dim); white-space: nowrap; }
+  #progress-pct { color: var(--emerald); font-weight: 500; }
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+  /* BANNERS */
+  .warning-banner, .info-banner, .go-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #fca5a5; }
+  .info-banner { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.18); color: #bfdbfe; }
+  .go-banner { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); color: #6ee7b7; }
+  .warning-banner strong, .info-banner strong, .go-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em, .go-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+  .plain-item.good { background: rgba(16,185,129,0.05); border-color: rgba(16,185,129,0.16); }
+  .plain-item.good strong { color: #6ee7b7; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ESQUEMAS */
+  .figure {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 16px 14px;
+    margin-bottom: 14px;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .fig-caption {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .fig-caption strong { color: var(--text-dim); font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(16,185,129,0.3);
+    background: rgba(16,185,129,0.08);
+    color: #6ee7b7;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(16,185,129,0.16); transform: translateX(2px); }
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--emerald); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .ms { align-items: flex-start; flex-wrap: wrap; }
+    .ms-goal { margin-left: 0; }
+    .sw-btn { flex: 1; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <a class="back-link" href="./index.html">← Volver</a>
+    <div class="header-badge">Procedimiento HALO · Checklist</div>
+    <h1>Cistostomía <span>suprapúbica</span> de urgencia</h1>
+    <p class="header-sub">
+      Hay una sola situación que justifica atravesar la pared abdominal con un trocar en el box: <strong>la vejiga está
+      llena y la uretra no se puede pasar</strong>. El procedimiento es breve, resuelve el problema en segundos y tiene
+      una sola complicación que mata —<strong>la punción del intestino</strong>—, que casi siempre ocurre por la misma
+      razón: se punciona una vejiga que no se vio. Tres ideas organizan la página. <em>La indicación la pone la vejiga,
+      no la uretra</em>: sin globo vesical confirmado no hay procedimiento, por mucho que el paciente no haya orinado.
+      <em>La ecografía no es un lujo, es la diferencia entre dos procedimientos distintos</em>: la guía de la
+      <strong>BAUS</strong> recomienda usar ultrasonido <strong>siempre que sea posible</strong> justamente para ver si
+      hay asas interpuestas, y la revisión de Jacob cita un riesgo de lesión intestinal de <strong>hasta 2,4 %</strong>
+      con una <strong>mortalidad del 1,8 %</strong> en la literatura antigua de punción a ciegas. <em>Y el riesgo real,
+      bien seleccionado, es mucho más bajo de lo que se repite</em>: la auditoría nacional británica de Hall revisó
+      <strong>11.473 inserciones</strong> y su metaanálisis encontró lesión intestinal en <strong>11 de 1.490
+      (0,7 %)</strong>, con la recomendación de informar al paciente de bajo riesgo una cifra <strong>menor al
+      0,25 %</strong>; en las 1.000 inserciones electivas de Hobbs <strong>no hubo ninguna lesión intestinal</strong>.
+      La diferencia entre esas dos cifras es la selección del paciente y la imagen. Aquí están la indicación, la
+      estratificación de riesgo que decide si esto se hace en el box o no se hace, los roles y tiempos, el kit, la
+      ventana ecográfica, la punción paso a paso con trocar y con Seldinger, cómo confirmar que el catéter quedó donde
+      debía, qué vigilar después y cómo se reconoce a tiempo la lesión que no se puede pasar por alto.
+    </p>
+  </div>
+
+  <!-- 01 · ¿ES ESTA LA VEJIGA QUE SE PUNCIONA? -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">¿Es esta la vejiga que se punciona?</div>
+        <div class="section-subtitle">Retención con globo vesical confirmado y uretra impasable: la única indicación de urgencia — y lo que no es</div>
+      </div>
+      <span class="section-check-count" id="count-s1">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>La indicación es estrecha, a diferencia de casi todo lo demás en este sitio.</strong> La
+        cistostomía de urgencia por punción existe para <strong>drenar una vejiga distendida cuando el acceso uretral
+        falló o está contraindicado</strong>. No es un procedimiento para la anuria, ni para el dolor hipogástrico, ni
+        para la insuficiencia renal: en todos esos casos, si la vejiga está vacía, <em>puncionarla no drena nada y sí
+        puede perforar un asa</em>. La guía de la <strong>BAUS</strong> —publicada en 2010 y revisada en 2020— es la
+        referencia que organiza esta página: reconoce que el procedimiento es <strong>generalmente seguro</strong> pero
+        insiste en que <em>el riesgo de morbilidad grave y de muerte debe considerarse siempre y explicarse al
+        paciente</em>.</span>
+      </div>
+
+      <div class="subhead">Cuándo sí, ahora</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🚽</span><span><strong>Retención urinaria con globo vesical y cateterismo uretral fallido</strong>, después de un intento razonable y bien hecho por alguien con experiencia: sonda de calibre adecuado, lubricación generosa, anestesia tópica, técnica correcta. <em>Que la sonda no entre en el primer intento de un operador novato no es indicación de puncionar: es indicación de que lo intente alguien más.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🧱</span><span><strong>Obstrucción del acceso uretral que no se va a resolver en el box</strong>: estrechez uretral conocida, falsa vía ya creada por intentos previos, hiperplasia prostática con cuello alto que rechaza la sonda, cirugía prostática o uretral reciente con estenosis de la anastomosis, fimosis cerrada o parafimosis que no permite el acceso.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Sospecha de lesión uretral en el trauma</strong> —sangre en el meato, hematoma perineal o escrotal en mariposa, fractura de pelvis, próstata no palpable— <strong>cuando el cateterismo uretral falló o se decidió no intentarlo</strong>. La guía <strong>AUA Urotrauma</strong> aborda explícitamente la colocación de tubo suprapúbico percutáneo o abierto tras la lesión uretral por fractura de pelvis (enunciado añadido en la enmienda de 2020). <em>En el politraumatizado la decisión es del equipo con urología y traumatología, no del operador solo: si hay fractura de pelvis que va a ir a osteosíntesis, el sitio de punción puede comprometer el campo quirúrgico. Verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">⏱️</span><span><strong>Cuando la demora tiene costo.</strong> La retención prolongada no es solo dolor: es daño del detrusor, hidronefrosis y falla renal obstructiva. Si la vejiga está confirmada y la uretra no se pasa, <em>el procedimiento no se agenda para mañana</em>.</span></div>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">⛔</span>
+        <span><strong>La contraindicación que define el procedimiento: vejiga que no se ve.</strong> Toda la seguridad de
+        esta punción depende de que la vejiga distendida <strong>empuje el peritoneo y las asas hacia arriba</strong> y
+        deje un corredor extraperitoneal entre la piel y la pared vesical anterior. Si la vejiga no está distendida,
+        ese corredor no existe y lo que hay en el trayecto es intestino. <strong>No se punciona una vejiga que no se
+        palpa y no se ve en la ecografía</strong>, y la ecografía manda sobre la palpación: en el paciente obeso la
+        vejiga llena no se palpa, y en el paciente delgado con asas distendidas se puede «palpar» algo que no es
+        vejiga. Si no hay globo vesical: revisar el diagnóstico —¿es anuria?, ¿es obstrucción alta?, ¿es un paciente que
+        ya se vació?— y <em>no puncionar</em>.</span>
+      </div>
+
+      <div class="subhead">Los tres escenarios que esta página no cubre</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Escenario</th><th>Por qué es distinto</th><th>Qué hacer en el box</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Niños y adolescentes</td>
+              <td>Otra anatomía, otras causas de retención (válvulas de uretra posterior, vejiga neurogénica, fimosis), otro material y otro umbral. En lactantes la punción suprapúbica se usa sobre todo para <strong>obtener muestra de orina</strong>, que es un procedimiento distinto de dejar un catéter.</td>
+              <td><strong>Esta página es para adultos.</strong> El manejo pediátrico se rige por el protocolo propio del servicio, con urología infantil.</td>
+            </tr>
+            <tr>
+              <td>Cistostomía abierta o guiada por cistoscopia en pabellón</td>
+              <td>Es la ruta <em>más segura</em> cuando hay anatomía hostil. En las 1.000 inserciones electivas de Hobbs, el <strong>98 %</strong> se hizo con punción guiada por cistoscopia o con incisión directa sobre un explorador uretral, y <strong>no hubo lesiones intestinales</strong>: complicaciones Clavien-Dindo ≥ IIIb en <strong>0,6 %</strong> y retorno a pabellón en <strong>0,4 %</strong>.</td>
+              <td><strong>Es el destino del paciente de alto riesgo</strong> de la sección 02, no un fracaso del box. Avisar a urología y trasladar es una decisión correcta, no una derrota.</td>
+            </tr>
+            <tr>
+              <td>Recambio de una cistostomía ya existente</td>
+              <td>Parece trivial y no lo es: el trayecto puede haberse perdido, puede haber migrado, y hay <strong>lesión intestinal descrita en el recambio</strong>, no solo en la instalación (caso de Foran). Si el catéter se salió hace horas, el trayecto se cierra y el recambio ciego deja de ser seguro.</td>
+              <td>Recambio programado según el protocolo del servicio. Si el trayecto se perdió o el catéter no entra sin resistencia, <strong>no forzar</strong>: es una nueva instalación y vuelve a necesitar imagen. <em>Plazos de recambio y conducta local: verificar con protocolo institucional.</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Cuándo no, o no todavía</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🚫</span><span><strong>Vejiga no distendida</strong> por palpación <em>y</em> ecografía. Es la contraindicación absoluta: ver el recuadro de arriba.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🧬</span><span><strong>Cáncer de vejiga conocido o sospechado</strong> —hematuria macroscópica en estudio, masa vesical, antecedente de tumor vesical—. El trayecto de la punción puede sembrar tumor en la pared abdominal, y es una contraindicación reconocida de forma habitual para la cistostomía percutánea. <em>Aquí el camino es urología, no el box; verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🔪</span><span><strong>Cirugía abdominal baja o pelviana previa, y radioterapia pelviana.</strong> No prohíbe el procedimiento, pero <strong>cambia la probabilidad de que haya intestino adherido delante de la vejiga</strong>. En el caso de Verma, una paciente irradiada 30 años antes recibió punciones suprapúbicas repetidas sin guía: el catéter terminó dentro del íleon terminal y la paciente murió de sepsis. Si hay cicatriz infraumbilical o radioterapia, <em>la imagen deja de ser opcional</em> y el umbral para derivar baja mucho.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🩸</span><span><strong>Coagulopatía grave no corregida</strong> o anticoagulación plena en un paciente en el que la punción se puede diferir. No es lo mismo que la retención dolorosa de un paciente anticoagulado que no se puede sondear: ahí se corrige lo que se pueda y se decide con urología y hematología. <em>Umbrales de INR y de plaquetas y esquema de reversión: verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🧫</span><span><strong>Infección de la piel o de la pared abdominal en el sitio de punción</strong>: celulitis, absceso, lesión abierta, intertrigo infectado del pliegue suprapúbico en el paciente obeso.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🟥</span><span><strong>Retención por coágulos (hematuria macroscópica con coágulos).</strong> Un catéter suprapúbico fino se obstruye con el primer coágulo y además <em>es la vía equivocada</em>: lo que ese paciente necesita es un catéter uretral de buen calibre de tres vías con lavado, y urología. <em>Si además no se puede sondear la uretra, el caso es de urología de inmediato.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🫃</span><span><strong>Embarazo.</strong> El útero grávido cambia la anatomía del espacio suprapúbico. <em>No se punciona en el box sin obstetricia y urología.</em></span></div>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./checklist-sepsis_4.html">Si hay criterios de sepsis —pielonefritis obstruida, shock— abre el Código Sepsis →</a>
+        <a class="cross-link" href="./sintoma-disuria.html">Si el cuadro es disuria y no retención, parte por la página de síntoma →</a>
+      </div>
+
+      <div class="subhead">Confirmación antes de armar la mesa</div>
+      <div class="checklist" id="list-s1">
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Globo vesical confirmado con ecografía</strong>, no solo palpado, y dicho en voz alta con el volumen estimado: «vejiga distendida, sobre la sínfisis, aproximadamente tanto mililitros». <em>Sin este punto no se sigue adelante.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Intento uretral agotado y documentado</strong>: quién lo intentó, con qué calibre, cuántas veces y dónde se detuvo la sonda. Si nadie con experiencia lo intentó todavía, <em>ese es el siguiente paso, no la punción</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Abdomen interrogado y mirado</strong>: cicatrices infraumbilicales, laparotomías, cesáreas, hernias, radioterapia pelviana, antecedente de tumor vesical. Es la anamnesis que decide si este procedimiento se hace aquí.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Piel del sitio de punción revisada</strong>, limpia, sin celulitis ni lesión abierta, y el pliegue suprapúbico levantado y secado en el paciente obeso.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Coagulación y anticoagulantes preguntados</strong>, con la última dosis anotada, y función renal pedida junto al resto del laboratorio inicial —sirve además para anticipar la diuresis postobstructiva de la sección 08—.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Urología avisada antes de puncionar, no después.</strong> Avisar temprano no delega el procedimiento: define quién sigue al paciente, quién recambia el catéter y a quién se llama si algo sale mal.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Consentimiento conversado en términos reales</strong>: para qué se punciona, que se usa anestesia local, y que el riesgo que importa es la <strong>lesión del intestino</strong> —baja, pero existente y potencialmente grave— además de sangrado, infección y falla del procedimiento. La guía BAUS pide explícitamente que ese riesgo se explique. Registrar la conversación.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · LO QUE DECIDE EL RIESGO -->
+  <div class="section s2" id="s2" style="animation-delay:0.10s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Lo que decide el riesgo</div>
+        <div class="section-subtitle">Por qué la punción a ciegas lesiona intestino, qué cambia la ecografía y qué paciente no se punciona en el box</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">🧠</span>
+        <span><strong>El mecanismo entero del accidente cabe en una frase.</strong> La técnica clásica «a ciegas»
+        <em>no es realmente ciega</em>: se apoya en un supuesto anatómico —que la vejiga llena desplaza el peritoneo y
+        las asas hacia arriba y deja un corredor extraperitoneal—. Como lo resume la revisión de Jacob, el problema es
+        que <strong>en un pequeño porcentaje de pacientes ese desplazamiento no ocurre</strong>, y en ellos el trocar
+        atraviesa intestino. La ecografía no agrega un paso: <strong>convierte un supuesto en un hallazgo</strong>.</span>
+      </div>
+
+      <div class="subhead">Las cifras que conviene tener en la cabeza</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Fuente</th><th>Qué midió</th><th>Resultado</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Jacob 2012 — revisión</td>
+              <td>Riesgo de lesión intestinal citado en la literatura previa, con técnica de palpación o percusión</td>
+              <td><strong>Hasta 2,4 %</strong> de lesión intestinal, con <strong>mortalidad del 1,8 %</strong>. Es la cifra que justificó la recomendación de usar ecografía <em>siempre que sea posible</em>.</td>
+            </tr>
+            <tr>
+              <td>Hall 2019 — auditoría nacional del Reino Unido + metaanálisis</td>
+              <td><strong>11.473 inserciones</strong> en 18 meses, con búsqueda de laparotomía o cirugía intestinal a 30 días</td>
+              <td>141 laparotomías a 30 días; de las 114 respondidas, <strong>una sola lesión intestinal atribuible</strong>. El metaanálisis de la literatura dio <strong>11/1.490 (0,7 %)</strong>. Los autores recomiendan informar al paciente <strong>de bajo riesgo</strong> una cifra <strong>menor al 0,25 %</strong>.</td>
+            </tr>
+            <tr>
+              <td>Hobbs 2022 — 1.000 inserciones electivas</td>
+              <td>Serie consecutiva de un centro de lesionados medulares, 98 % con punción guiada por cistoscopia o incisión sobre explorador</td>
+              <td>Complicaciones Clavien-Dindo <strong>≥ IIIb en 0,6 %</strong>; retorno a pabellón <strong>0,4 %</strong>; tres laparotomías por sangrado o malposición; <strong>ninguna lesión intestinal</strong>; una muerte a 30 días por tromboembolismo pulmonar. Complicaciones menores a largo plazo en <strong>59 %</strong>, bien toleradas.</td>
+            </tr>
+            <tr>
+              <td>Kidd 2015 — revisión Cochrane</td>
+              <td>42 ensayos de rutas de cateterización a corto plazo (≤ 14 días) en adultos hospitalizados</td>
+              <td>La vía suprapúbica tuvo <strong>menos bacteriuria asintomática</strong> (RR 2,25; IC 95 % 1,63–3,10 a favor), <strong>menos dolor</strong> (RR 5,62; IC 95 % 3,31–9,55 a favor) y menos recateterizaciones; la evidencia sobre <strong>infección urinaria sintomática fue inconcluyente</strong> y de calidad muy baja. Los autores recuerdan en la misma revisión que la vía suprapúbica <em>puede causar perforación intestinal y muerte</em>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note" style="margin-top:14px;">
+        <strong>Cómo leer esas cuatro filas juntas.</strong> No se contradicen: miden poblaciones distintas. El 2,4 %
+        viene de series antiguas de punción sin imagen y con selección pobre; el 0,7 % de la literatura agregada; el
+        &lt; 0,25 % de un paciente <em>de bajo riesgo</em> en un sistema que audita; y el 0 % de Hobbs, de un
+        procedimiento <strong>electivo, guiado y hecho por urólogos</strong>. La urgencia del box está en algún punto
+        intermedio y <em>el operador elige dónde</em>: con vejiga vista, abdomen virgen y ecografía, cerca del extremo
+        bajo; con abdomen operado, sin imagen y por palpación, cerca del alto.
+      </div>
+
+      <div class="subhead">La anatomía que hace segura —o no— la punción</div>
+      <div class="figure">
+        <svg viewBox="0 0 680 440" role="img" aria-label="Esquema sagital de dos paneles, con el lado cefalico hacia arriba y la pared abdominal anterior a la izquierda. Panel izquierdo: vejiga distendida. La vejiga llena forma una cupula que se extiende por encima del borde superior de la sinfisis del pubis, empuja el peritoneo y las asas intestinales hacia cefalico y deja un corredor extraperitoneal entre la pared abdominal y la pared vesical anterior, por donde entra la aguja unos dos centimetros por encima de la sinfisis. Panel derecho: vejiga vacia. La cupula no sube sobre la sinfisis, el peritoneo queda bajo y las asas intestinales se apoyan detras de la pared abdominal justo en el trayecto, de modo que la aguja atraviesa un asa antes de llegar a la vejiga.">
+          <g font-family="DM Mono, monospace" font-size="10" fill="#94a3b8">
+            <rect x="12" y="12" width="656" height="416" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="28" y="36" fill="#fcd34d" font-size="12">Corte sagital · por qué la vejiga llena protege el intestino</text>
+
+            <!-- PANEL 1 · VEJIGA DISTENDIDA -->
+            <rect x="30" y="52" width="298" height="356" rx="10" fill="rgba(16,185,129,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="52" cy="74" r="11" fill="rgba(16,185,129,0.2)" stroke="#6ee7b7" stroke-width="1.2"/>
+            <text x="52" y="78" text-anchor="middle" fill="#6ee7b7" font-size="11">1</text>
+            <text x="72" y="78" fill="#6ee7b7" font-size="11">DISTENDIDA · SE PUNCIONA</text>
+
+            <line x1="100" y1="100" x2="100" y2="372" stroke="#e2e8f0" stroke-width="2.6"/>
+            <rect x="100" y="100" width="13" height="272" fill="rgba(226,232,240,0.10)"/>
+            <text x="46" y="120" fill="#64748b" font-size="8">piel</text>
+            <text x="40" y="132" fill="#64748b" font-size="8">y pared</text>
+
+            <circle cx="152" cy="124" r="17" fill="rgba(245,158,11,0.12)" stroke="#fcd34d" stroke-width="1.2"/>
+            <circle cx="196" cy="110" r="15" fill="rgba(245,158,11,0.12)" stroke="#fcd34d" stroke-width="1.2"/>
+            <circle cx="240" cy="126" r="16" fill="rgba(245,158,11,0.12)" stroke="#fcd34d" stroke-width="1.2"/>
+            <text x="264" y="100" fill="#fcd34d" font-size="8">asas arriba</text>
+
+            <path d="M113,150 Q160,176 196,184 Q250,190 300,164" fill="none" stroke="#fcd34d" stroke-width="1.6" stroke-dasharray="6 4"/>
+            <text x="262" y="158" fill="#fcd34d" font-size="8">peritoneo</text>
+
+            <line x1="92" y1="320" x2="300" y2="320" stroke="#64748b" stroke-width="0.8" stroke-dasharray="3 3"/>
+            <path d="M100,320 L142,320 Q152,340 142,358 L100,358 Z" fill="#334155" stroke="#94a3b8" stroke-width="1.2"/>
+            <text x="121" y="344" text-anchor="middle" fill="#cbd5e1" font-size="8">sínfisis</text>
+            <text x="300" y="370" text-anchor="end" fill="#64748b" font-size="8">borde superior de la sínfisis</text>
+
+            <rect x="113" y="274" width="37" height="46" fill="rgba(16,185,129,0.22)"/>
+            <path d="M150,310 Q150,192 212,186 Q274,192 274,282 Q274,352 212,356 Q158,354 150,310 Z" fill="rgba(59,130,246,0.18)" stroke="#60a5fa" stroke-width="1.8"/>
+            <text x="212" y="272" text-anchor="middle" fill="#93c5fd" font-size="11">vejiga</text>
+            <text x="212" y="288" text-anchor="middle" fill="#60a5fa" font-size="9">llena</text>
+
+            <line x1="64" y1="300" x2="186" y2="300" stroke="#6ee7b7" stroke-width="2.6"/>
+            <path d="M186,300 l-9,-4 l0,8 Z" fill="#6ee7b7"/>
+            <line x1="88" y1="300" x2="88" y2="320" stroke="#6ee7b7" stroke-width="1.2"/>
+            <line x1="82" y1="300" x2="94" y2="300" stroke="#6ee7b7" stroke-width="1.2"/>
+            <line x1="82" y1="320" x2="94" y2="320" stroke="#6ee7b7" stroke-width="1.2"/>
+            <text x="44" y="314" fill="#6ee7b7" font-size="8">≈2 cm</text>
+
+            <text x="46" y="388" fill="#6ee7b7" font-size="9">cúpula sobre la sínfisis → corredor libre</text>
+            <text x="46" y="400" fill="#64748b" font-size="9">y ninguna asa en el trayecto de la aguja</text>
+
+            <!-- PANEL 2 · VEJIGA VACIA -->
+            <rect x="350" y="52" width="298" height="356" rx="10" fill="rgba(239,68,68,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="372" cy="74" r="11" fill="rgba(239,68,68,0.2)" stroke="#fca5a5" stroke-width="1.2"/>
+            <text x="372" y="78" text-anchor="middle" fill="#fca5a5" font-size="11">2</text>
+            <text x="392" y="78" fill="#fca5a5" font-size="11">VACÍA · NO SE PUNCIONA</text>
+
+            <line x1="420" y1="100" x2="420" y2="372" stroke="#e2e8f0" stroke-width="2.6"/>
+            <rect x="420" y="100" width="13" height="272" fill="rgba(226,232,240,0.10)"/>
+
+            <circle cx="468" cy="262" r="20" fill="rgba(239,68,68,0.16)" stroke="#fca5a5" stroke-width="1.4"/>
+            <circle cx="514" cy="232" r="18" fill="rgba(239,68,68,0.12)" stroke="#fca5a5" stroke-width="1.2"/>
+            <circle cx="468" cy="198" r="17" fill="rgba(239,68,68,0.12)" stroke="#fca5a5" stroke-width="1.2"/>
+            <text x="548" y="196" fill="#fca5a5" font-size="8">asas contra</text>
+            <text x="548" y="208" fill="#fca5a5" font-size="8">la pared</text>
+
+            <path d="M433,292 Q480,288 530,280 Q580,272 620,284" fill="none" stroke="#fcd34d" stroke-width="1.6" stroke-dasharray="6 4"/>
+            <text x="436" y="308" fill="#fcd34d" font-size="8">peritoneo bajo</text>
+
+            <line x1="412" y1="320" x2="620" y2="320" stroke="#64748b" stroke-width="0.8" stroke-dasharray="3 3"/>
+            <path d="M420,320 L462,320 Q472,340 462,358 L420,358 Z" fill="#334155" stroke="#94a3b8" stroke-width="1.2"/>
+            <text x="441" y="344" text-anchor="middle" fill="#cbd5e1" font-size="8">sínfisis</text>
+
+            <path d="M470,316 Q470,300 512,298 Q556,302 556,326 Q556,350 512,352 Q476,350 470,316 Z" fill="rgba(59,130,246,0.14)" stroke="#60a5fa" stroke-width="1.6"/>
+            <text x="513" y="330" text-anchor="middle" fill="#93c5fd" font-size="9">vejiga vacía</text>
+
+            <line x1="372" y1="262" x2="500" y2="262" stroke="#fca5a5" stroke-width="2.6"/>
+            <path d="M500,262 l-9,-4 l0,8 Z" fill="#fca5a5"/>
+            <text x="372" y="242" fill="#fca5a5" font-size="8">mismo punto</text>
+            <text x="372" y="252" fill="#fca5a5" font-size="8">de entrada</text>
+            <text x="508" y="266" fill="#ef4444" font-size="10">⚠ asa atravesada</text>
+
+            <text x="368" y="388" fill="#fca5a5" font-size="9">sin cúpula sobre la sínfisis no hay corredor:</text>
+            <text x="368" y="400" fill="#64748b" font-size="9">el trocar entra en intestino, no en vejiga</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Esquema interpretativo, no anatómico a escala.</strong> La seguridad del
+        procedimiento es la distancia vertical entre el borde superior de la sínfisis y la cúpula vesical: cuanto más
+        sube la vejiga, más largo es el corredor extraperitoneal y menos posible es que haya asa en el trayecto. La
+        ecografía mide exactamente eso. <strong>El punto de entrada de ≈ 2 cm sobre la sínfisis en la línea media es
+        convención</strong> —la regla clásica de «dos traveses de dedo» da un punto algo más alto—: en la práctica el
+        punto lo elige la ventana ecográfica, y <em>la distancia exacta y la angulación recomendada del set disponible
+        deben verificarse con el protocolo institucional y las instrucciones del kit</em>.</div>
+      </div>
+
+      <div class="subhead">Estratificación antes de decidir dónde se hace</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Perfil</th><th>Qué lo define</th><th>Dónde se hace</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Bajo riesgo</td>
+              <td>Vejiga claramente distendida sobre la sínfisis, abdomen sin cirugía baja ni radioterapia, sin obesidad extrema, coagulación aceptable, ventana ecográfica limpia <strong>sin asas interpuestas</strong>.</td>
+              <td><strong>Box de urgencia</strong>, con ecografía, por operador entrenado. Es el paciente en el que se puede hablar de un riesgo de lesión intestinal &lt; 0,25 %.</td>
+            </tr>
+            <tr>
+              <td>Riesgo intermedio</td>
+              <td>Cicatriz infraumbilical o cesárea previa, obesidad, vejiga distendida pero con cúpula apenas sobre la sínfisis, anticoagulación en rango, vejiga neurogénica de baja capacidad.</td>
+              <td><strong>Se conversa antes de puncionar.</strong> Con buena ventana ecográfica y operador experimentado puede hacerse en el box; con cualquier duda sobre el trayecto, el caso es de urología o de punción guiada por imagen.</td>
+            </tr>
+            <tr>
+              <td>Alto riesgo — no en el box</td>
+              <td><strong>Asa visible en el trayecto</strong>, laparotomía previa o radioterapia pelviana, cáncer vesical conocido o sospechado, retención por coágulos, coagulopatía grave, embarazo, vejiga que no se identifica con seguridad.</td>
+              <td><strong>Urología o radiología intervencional</strong>: cistostomía guiada por cistoscopia, punción guiada por imagen o cistostomía abierta. Mientras se coordina: analgesia, y <em>nuevo intento uretral por manos expertas</em> si eso es razonable.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>La ecografía baja el riesgo, no lo anula.</strong> Ninguna de las referencias de esta página
+        demuestra que la guía ecográfica elimine la lesión intestinal: la guía BAUS la recomienda «siempre que sea
+        posible» <em>sin evidencia de desenlace que lo cuantifique</em>, y la propia revisión de Jacob se presenta como
+        descripción de técnica y revisión de la literatura disponible, no como ensayo. Lo que sí está claro es el otro
+        lado: hay muertes publicadas por punción sin imagen en pacientes de riesgo —el caso de Verma en una paciente
+        irradiada, el de Islam con perforación de intestino delgado en una punción ciega por estrechez uretral—.
+        <em>Ver la vejiga y no ver asas es un requisito, no una garantía.</em></span>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">💧</span>
+        <span><strong>Una salida descrita cuando hay asa en el camino: la hidrodisección.</strong> Chan y Speirs
+        describen inyectar bajo visión ecográfica unos <strong>30 mL</strong> de suero con lidocaína en el espacio entre
+        la sínfisis y el asa para <em>desplazar el intestino</em> y abrir un corredor, y luego insertar el catéter por
+        técnica de Seldinger. Funcionó y sin complicaciones. <strong>Es un reporte de un solo caso</strong>, pensado para
+        el paciente que no tolera anestesia general: no es una técnica de rescate para el box de urgencia y no está
+        validada. Se menciona porque explica <em>por qué el caso con asa interpuesta tiene salida en manos de quien sabe
+        hacerla</em>, y esas manos no están necesariamente en la urgencia.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · CRONÓMETRO, HITOS Y ROLES -->
+  <div class="section s3" id="s3" style="animation-delay:0.14s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Cronómetro, hitos y roles</div>
+        <div class="section-subtitle">El reloj parte cuando se decide puncionar, no cuando aparece el kit</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="stopwatch">
+        <div class="sw-display" id="swDisplay">00:00</div>
+        <div class="sw-caption" id="swCaption">Detenido · parte el reloj cuando se decide puncionar</div>
+        <div class="sw-controls">
+          <button type="button" class="sw-btn primary" id="swToggle" onclick="swToggle()">▶ Iniciar</button>
+          <button type="button" class="sw-btn" onclick="swReset()">↺ Reiniciar</button>
+        </div>
+        <div class="milestones" id="milestones">
+          <button type="button" class="ms" data-goal="120" data-prefix="meta ~" onclick="markMs(this)"><span><strong>Globo vesical confirmado con ecografía</strong> · intento uretral agotado · riesgo estratificado · consentimiento conversado (2 min)</span><span class="ms-goal">meta ~120 s</span></button>
+          <button type="button" class="ms" data-goal="300" data-prefix="meta ~" onclick="markMs(this)"><span>Mesa armada · <strong>kit abierto y revisado en seco</strong> · monitorización puesta · frasco de muestra y bolsa listos (5 min)</span><span class="ms-goal">meta ~300 s</span></button>
+          <button type="button" class="ms" data-goal="420" data-prefix="meta ~" onclick="markMs(this)"><span><strong>Ventana ecográfica hecha y punto marcado</strong> · profundidad piel-vejiga medida · trayecto revisado sin asas (7 min)</span><span class="ms-goal">meta ~420 s</span></button>
+          <button type="button" class="ms" data-goal="600" data-prefix="meta ~" onclick="markMs(this)"><span>Antisepsia y campo puestos · anestesia local infiltrada hasta la vejiga · <strong>aguja buscadora aspiró orina</strong> (10 min)</span><span class="ms-goal">meta ~600 s</span></button>
+          <button type="button" class="ms" data-goal="780" data-prefix="meta ~" onclick="markMs(this)"><span><strong>Catéter dentro de la vejiga y orina fluyendo</strong> · trocar o camisa retirados (13 min)</span><span class="ms-goal">meta ~780 s</span></button>
+          <button type="button" class="ms" data-goal="900" data-prefix="meta ~" onclick="markMs(this)"><span><strong>Posición confirmada con ecografía</strong> · catéter fijado · sistema cerrado conectado · apósito puesto (15 min)</span><span class="ms-goal">meta ~900 s</span></button>
+          <button type="button" class="ms" data-goal="1200" data-prefix="meta ~" onclick="markMs(this)"><span>Volumen drenado anotado · aspecto de la orina descrito · <strong>muestra enviada</strong> · diuresis horaria iniciada (20 min)</span><span class="ms-goal">meta ~1200 s</span></button>
+          <button type="button" class="ms" data-goal="3600" data-prefix="meta ~" onclick="markMs(this)"><span><strong>Primera hora cerrada</strong>: balance y diuresis vigilados, laboratorio informado, urología al día, <strong>destino definido</strong> (60 min)</span><span class="ms-goal">meta ~3600 s</span></button>
+        </div>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Ninguna de estas metas es un estándar validado.</strong> No existe referencia publicada de tiempos
+        para la cistostomía suprapúbica de urgencia: el reparto de arriba es una distribución razonable propuesta para
+        esta página y <strong>debe ajustarse al protocolo institucional</strong>. Y tiene un sentido distinto al de los
+        otros checklists de esta sección: aquí <em>el cronómetro no está para apurar la punción, está para que las
+        etapas que se saltan no se salten</em>. El procedimiento no compite contra un reloj biológico de minutos —la
+        vejiga llena duele y daña, pero no mata en diez minutos—. <strong>Si el reloj corre y la ventana ecográfica no
+        es buena, la respuesta correcta es detenerse, no acelerar.</strong></span>
+      </div>
+
+      <div class="subhead">Roles mínimos</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>Operador:</strong> hace la ecografía, marca el punto, infiltra, punciona, instala el catéter y lo fija. No suelta el catéter hasta que esté fijo: <em>un catéter recién puesto y no asegurado se sale con el primer movimiento del paciente y el trayecto se pierde</em>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>Asistente:</strong> abre el kit, pasa el material, sostiene el transductor cuando el operador necesita las dos manos, y recibe la orina en un recipiente graduado. Es también quien <strong>mide el volumen drenado</strong>, dato que después define la vigilancia de la sección 08.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>Tiempo y registro:</strong> lleva el cronómetro y hace las cuatro preguntas que se olvidan: <em>«¿vimos la vejiga?»</em>, <em>«¿hay asa en el trayecto?»</em>, <em>«¿la muestra de orina ya salió?»</em> y <em>«¿quién vigila la diuresis horaria?»</em>.</span></div>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">👤</span>
+        <span><strong>En la práctica son dos personas.</strong> Este no es un procedimiento de equipo: es un operador y
+        alguien que asista. Lo que sí necesita ser de todos es la decisión previa —puncionar o derivar— y la vigilancia
+        posterior, que dura horas y la hace enfermería.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · MESA, KIT Y MATERIAL -->
+  <div class="section s4" id="s4" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Mesa, kit y material</div>
+        <div class="section-subtitle">Abrir el set y entenderlo en seco antes de pinchar — y saber si el catéter que trae tiene balón o no</div>
+      </div>
+      <span class="section-check-count" id="count-s4">0/9</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">📦</span>
+        <span><strong>El error de kit más caro: suponer que el catéter tiene balón.</strong> Los sets de punción
+        suprapúbica se dividen en dos familias y <em>se fijan de manera distinta</em>. Los sets tipo <strong>Cystofix</strong>
+        traen un catéter que <strong>no tiene balón</strong> y se sostiene <strong>fijándolo a la piel</strong> —sutura,
+        alas o placa de fijación según el modelo—; otros sets traen una sonda Foley o un catéter con balón, que se ancla
+        inflándolo dentro de la vejiga. Si el operador cree que infló un balón que no existe, el catéter queda sin
+        anclaje y se sale. <em>Los calibres disponibles, el largo del catéter, el sistema de fijación exacto, el volumen
+        del balón si lo hay y la angulación de inserción recomendada son propios de cada set: deben leerse en el kit del
+        servicio y verificarse con el protocolo institucional.</em> Esta página describe el procedimiento, no reemplaza
+        las instrucciones del fabricante.</span>
+      </div>
+
+      <div class="subhead">Las dos técnicas que puede traer el set</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Familia</th><th>Cómo funciona</th><th>Qué cuidar</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Trocar con camisa divisible <span class="dose-note">(tipo Cystofix)</span></td>
+              <td>Una aguja-trocar rodeada de una camisa que se parte a lo largo. El trocar entra en la vejiga, se retira el mandril, se pasa el catéter por la camisa y luego <strong>la camisa se divide y se retira</strong> dejando el catéter dentro.</td>
+              <td>Es <strong>un solo paso de punción, con instrumento grueso y punta cortante</strong>: toda la seguridad está en la profundidad controlada y en haber visto la vejiga. Sujetar el trocar <em>cerca de la punta</em> limita cuánto puede entrar si se cede la resistencia de golpe.</td>
+            </tr>
+            <tr>
+              <td>Técnica de Seldinger <span class="dose-note">(aguja, guía, dilatador)</span></td>
+              <td>Se punciona con una <strong>aguja fina</strong>, se confirma la orina, se pasa una guía metálica, se dilata el trayecto y se avanza el catéter sobre la guía —el mismo principio de un acceso venoso central—.</td>
+              <td><strong>Más pasos y más lento, pero el primer paso es una aguja fina en vez de un trocar grueso</strong>: el error se detecta antes de hacer un agujero grande. Es la técnica usada por Chan y Speirs tras la hidrodisección. Pide más material y guía ecográfica sostenida.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note" style="margin-top:14px;">
+        <strong>¿Cuál es mejor?</strong> No hay evidencia aleatorizada que decida entre trocar y Seldinger para la
+        urgencia. En la serie de Hobbs tampoco hubo diferencias de resultado entre los dos métodos comparados allí
+        —punción guiada por cistoscopia y incisión sobre explorador—. La respuesta práctica es menos elegante y más
+        útil: <strong>la mejor técnica es la del set que hay en el servicio y con la que el operador está entrenado.</strong>
+        Lo que no es negociable es la imagen previa.
+      </div>
+
+      <div class="subhead">Mesa</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📡</span><span><strong>Ecógrafo encendido y a mano, con transductor convexo</strong> de baja frecuencia para ver la vejiga y medir profundidad. <em>El transductor se queda en la mesa durante el procedimiento, no se devuelve después de marcar</em>: hace falta otra vez para confirmar.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧰</span><span><strong>El set de cistostomía, abierto y revisado en seco:</strong> identificar el trocar o la aguja, la camisa divisible o la guía y el dilatador, el catéter, el conector y el sistema de fijación. Contar las piezas antes, no durante.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Antiséptico</strong> y gasas, campo estéril fenestrado, guantes estériles, bata según el protocolo del servicio. <em>Antiséptico, concentración y tiempo de contacto: verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Anestesia local</strong>: lidocaína sin vasoconstrictor, jeringa de 10 mL y una aguja larga que alcance la vejiga a la profundidad medida en la ecografía —esa misma aguja es la <strong>aguja buscadora</strong>—. La dosis máxima habitualmente citada para lidocaína sin vasoconstrictor es de <strong>≈ 4,5 mg/kg (hasta unos 300 mg en el adulto)</strong>, pero <em>la concentración, el volumen y la dosis máxima que se usan en este servicio deben verificarse con el protocolo institucional</em>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔪</span><span><strong>Bisturí</strong> para la incisión puntiforme de la piel, porta y sutura no reabsorbible para fijar el catéter si el set no trae placa, tijera, apósito.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧴</span><span><strong>Recipiente graduado</strong> para medir la orina drenada, <strong>frasco de muestra rotulado antes de pinchar</strong> para urocultivo, y <strong>bolsa de drenaje cerrada</strong> con su soporte. Jeringa de 10–20 mL con suero fisiológico para la confirmación de la sección 07.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩺</span><span><strong>Monitorización y analgesia</strong>: presión arterial y frecuencia cardíaca antes y después —la descompresión puede bajar la presión—, y analgesia sistémica si el paciente llega con dolor por el globo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Profilaxis antibiótica según el protocolo del servicio.</strong> Es práctica habitual antes de instalar una cistostomía, pero <em>el esquema, la dosis, la vía y si corresponde en este paciente los define el programa local de uso de antimicrobianos (PROA): verificar con protocolo institucional.</em> Si hay sospecha de infección urinaria o sepsis, el tratamiento empírico es otra conversación y no espera.</span></div>
+      </div>
+
+      <div class="subhead">Preparación antes de la antisepsia</div>
+      <div class="checklist" id="list-s4">
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Set identificado y revisado en seco</strong>, con el camino mental completo: «esto entra, esto se retira, esto queda». Si el operador no reconoce una pieza del kit, <em>ese es el momento de preguntar</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Dicho en voz alta si el catéter tiene balón o no</strong>, y cómo se va a fijar. Si no tiene balón, la sutura o la placa de fijación están en la mesa <em>antes</em> de puncionar.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Ecógrafo a mano y encendido</strong>, con transductor convexo y gel, y el equipo de acuerdo en que <em>no se punciona sin verlo</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Frasco de urocultivo rotulado y recipiente graduado listos</strong>, con el nombre y la hora puestos antes de la punción. La primera orina es la muestra: si se pierde en el campo, no vuelve.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Bolsa de drenaje cerrada, con su soporte y por debajo del nivel de la vejiga</strong>, lista para conectar de inmediato. Nadie debe estar buscando la bolsa con el catéter chorreando.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Anestesia local cargada</strong>, con aguja lo bastante larga para la profundidad medida, y la dosis máxima del paciente calculada por peso.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Monitorización puesta y presión arterial basal registrada</strong>, con analgesia dada si hace falta.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Profilaxis antibiótica resuelta</strong> según el protocolo del servicio —dada, o decidido que no corresponde— y anotada.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Plan B dicho en voz alta antes de empezar</strong>: qué se hace si no sale orina, a quién se llama y en cuánto tiempo se abandona el intento. El plan B no se improvisa con el trocar en la mano.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · POSICIÓN, VENTANA ECOGRÁFICA Y MARCA -->
+  <div class="section s5" id="s5" style="animation-delay:0.22s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Posición, ventana ecográfica y marca</div>
+        <div class="section-subtitle">Los tres minutos que deciden si esto es un procedimiento seguro: ver la vejiga, medir la profundidad y barrer el trayecto</div>
+      </div>
+      <span class="section-check-count" id="count-s5">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Posición</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🛏️</span><span><strong>Decúbito supino, piernas extendidas, abdomen descubierto desde el ombligo</strong>. En el paciente obeso, el pliegue suprapúbico se levanta, se seca y se mantiene retraído por el asistente: puncionar dentro de un pliegue húmedo es una infección de sitio anunciada.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📐</span><span><strong>Trendelenburg ligero si el paciente lo tolera.</strong> La idea es que las asas floten hacia cefálico y la vejiga quede más expuesta. <em>Es convención, sin evidencia de desenlace que la respalde</em>; no se usa si compromete la ventilación o la hemodinamia.</span></div>
+        <div class="plain-item"><span class="bullet-icon">✂️</span><span><strong>Vello recortado con máquina, no rasurado</strong>, si estorba. Es la práctica general de preparación de piel para procedimientos invasivos. <em>Verificar con protocolo institucional.</em></span></div>
+      </div>
+
+      <div class="subhead">Lo que hay que ver y medir antes de tocar el bisturí</div>
+      <div class="figure">
+        <svg viewBox="0 0 680 480" role="img" aria-label="Esquema de cuatro paneles con lo que se busca en la pantalla del ecografo antes de puncionar. Panel uno: corte transversal suprapubico, la vejiga llena se ve como una coleccion anecoica redondeada en la linea media, con pared fina y la prostata o el utero por detras. Panel dos: corte sagital con las tres medidas, uno la profundidad desde la piel hasta la pared vesical anterior que dice cuanto hay que entrar, dos la profundidad hasta la pared posterior que marca el limite que no se debe pasar, y tres la altura de la cupula vesical sobre la sinfisis del pubis. Panel tres: el hallazgo que detiene el procedimiento, un asa intestinal con gas entre la pared abdominal y la vejiga. Panel cuatro: los impostores, un quiste ovarico, ascitis y un asa muy distendida que se pueden confundir con la vejiga.">
+          <g font-family="DM Mono, monospace" font-size="10" fill="#94a3b8">
+            <rect x="12" y="12" width="656" height="456" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="28" y="36" fill="#fcd34d" font-size="12">La pantalla antes de puncionar · esquema interpretativo</text>
+
+            <!-- PANEL 1 · TRANSVERSAL -->
+            <rect x="30" y="52" width="298" height="190" rx="10" fill="rgba(59,130,246,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="52" cy="74" r="11" fill="rgba(59,130,246,0.2)" stroke="#93c5fd" stroke-width="1.2"/>
+            <text x="52" y="78" text-anchor="middle" fill="#93c5fd" font-size="11">1</text>
+            <text x="72" y="78" fill="#93c5fd" font-size="11">TRANSVERSAL · ¿ES LA VEJIGA?</text>
+            <rect x="48" y="94" width="200" height="94" rx="4" fill="#0b1120" stroke="#475569" stroke-width="1"/>
+            <line x1="48" y1="104" x2="248" y2="104" stroke="#e2e8f0" stroke-width="2.4"/>
+            <text x="256" y="108" fill="#64748b" font-size="8">pared</text>
+            <path d="M92,118 Q148,112 204,118 L208,152 Q148,166 88,152 Z" fill="#05080f" stroke="#60a5fa" stroke-width="1.8"/>
+            <text x="148" y="140" text-anchor="middle" fill="#60a5fa" font-size="9">anecoica</text>
+            <line x1="88" y1="176" x2="208" y2="176" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3"/>
+            <text x="256" y="180" fill="#94a3b8" font-size="8">próstata</text>
+            <text x="48" y="206" fill="#60a5fa" font-size="9">línea media · redondeada · pared fina</text>
+            <text x="48" y="220" fill="#64748b" font-size="9">simétrica a los dos lados del transductor</text>
+            <text x="48" y="234" fill="#64748b" font-size="9">y con próstata o útero por detrás</text>
+
+            <!-- PANEL 2 · SAGITAL Y MEDIDAS -->
+            <rect x="350" y="52" width="298" height="190" rx="10" fill="rgba(16,185,129,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="372" cy="74" r="11" fill="rgba(16,185,129,0.2)" stroke="#6ee7b7" stroke-width="1.2"/>
+            <text x="372" y="78" text-anchor="middle" fill="#6ee7b7" font-size="11">2</text>
+            <text x="392" y="78" fill="#6ee7b7" font-size="11">SAGITAL · LAS TRES MEDIDAS</text>
+            <rect x="368" y="94" width="200" height="94" rx="4" fill="#0b1120" stroke="#475569" stroke-width="1"/>
+            <line x1="368" y1="104" x2="568" y2="104" stroke="#e2e8f0" stroke-width="2.4"/>
+            <path d="M390,132 Q442,122 500,130 L512,162 Q442,182 386,166 Z" fill="#05080f" stroke="#6ee7b7" stroke-width="1.8"/>
+            <path d="M516,158 L538,158 Q546,168 538,180 L516,180 Z" fill="#334155" stroke="#94a3b8" stroke-width="1"/>
+            <text x="576" y="174" fill="#cbd5e1" font-size="8">sínfisis</text>
+            <line x1="412" y1="104" x2="412" y2="128" stroke="#fcd34d" stroke-width="1.8"/>
+            <text x="400" y="122" fill="#fcd34d" font-size="9">1</text>
+            <line x1="444" y1="104" x2="444" y2="178" stroke="#fca5a5" stroke-width="1.2" stroke-dasharray="2 2"/>
+            <circle cx="444" cy="178" r="2.6" fill="#fca5a5"/>
+            <text x="430" y="182" fill="#fca5a5" font-size="9">2</text>
+            <line x1="506" y1="130" x2="506" y2="158" stroke="#6ee7b7" stroke-width="1.6"/>
+            <text x="494" y="148" fill="#6ee7b7" font-size="9">3</text>
+            <text x="368" y="204" fill="#fcd34d" font-size="8.5">① piel → pared anterior: cuánto hay que entrar</text>
+            <text x="368" y="218" fill="#fca5a5" font-size="8.5">② piel → pared posterior: dónde hay que parar</text>
+            <text x="368" y="232" fill="#6ee7b7" font-size="8.5">③ altura de la cúpula sobre la sínfisis</text>
+
+            <!-- PANEL 3 · LO QUE DETIENE EL PROCEDIMIENTO -->
+            <rect x="30" y="254" width="298" height="190" rx="10" fill="rgba(239,68,68,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="52" cy="276" r="11" fill="rgba(239,68,68,0.2)" stroke="#fca5a5" stroke-width="1.2"/>
+            <text x="52" y="280" text-anchor="middle" fill="#fca5a5" font-size="11">3</text>
+            <text x="72" y="280" fill="#fca5a5" font-size="11">ASA EN EL TRAYECTO · SE DETIENE</text>
+            <rect x="48" y="296" width="200" height="94" rx="4" fill="#0b1120" stroke="#475569" stroke-width="1"/>
+            <line x1="48" y1="304" x2="248" y2="304" stroke="#e2e8f0" stroke-width="2.4"/>
+            <ellipse cx="124" cy="330" rx="34" ry="17" fill="#1e293b" stroke="#fca5a5" stroke-width="1.6"/>
+            <path d="M98,324 Q124,316 150,324" fill="none" stroke="#fcd34d" stroke-width="3"/>
+            <path d="M102,348 L102,386 M116,350 L116,386 M132,348 L132,386 M146,346 L146,386" stroke="#64748b" stroke-width="1.4" opacity="0.6"/>
+            <text x="124" y="334" text-anchor="middle" fill="#fcd34d" font-size="8">gas</text>
+            <path d="M172,344 Q208,334 240,344 L240,376 Q206,386 170,374 Z" fill="#05080f" stroke="#60a5fa" stroke-width="1.4"/>
+            <text x="206" y="364" text-anchor="middle" fill="#60a5fa" font-size="8">vejiga</text>
+            <text x="48" y="408" fill="#fca5a5" font-size="9">gas con sombra sucia · peristalsis · haustras</text>
+            <text x="48" y="422" fill="#64748b" font-size="9">buscar otra ventana, y si no hay, no puncionar</text>
+
+            <!-- PANEL 4 · IMPOSTORES -->
+            <rect x="350" y="254" width="298" height="190" rx="10" fill="rgba(245,158,11,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="372" cy="276" r="11" fill="rgba(245,158,11,0.2)" stroke="#fcd34d" stroke-width="1.2"/>
+            <text x="372" y="280" text-anchor="middle" fill="#fcd34d" font-size="11">4</text>
+            <text x="392" y="280" fill="#fcd34d" font-size="11">LO QUE PARECE VEJIGA</text>
+            <rect x="368" y="296" width="200" height="94" rx="4" fill="#0b1120" stroke="#475569" stroke-width="1"/>
+            <circle cx="416" cy="340" r="26" fill="#05080f" stroke="#fcd34d" stroke-width="1.4"/>
+            <text x="416" y="343" text-anchor="middle" fill="#fcd34d" font-size="7">quiste</text>
+            <path d="M458,314 Q490,308 518,316 L522,362 Q486,370 456,360 Z" fill="#05080f" stroke="#fcd34d" stroke-width="1.2"/>
+            <text x="489" y="340" text-anchor="middle" fill="#fcd34d" font-size="7">ascitis</text>
+            <ellipse cx="546" cy="344" rx="15" ry="22" fill="#05080f" stroke="#fcd34d" stroke-width="1.2"/>
+            <text x="546" y="347" text-anchor="middle" fill="#fcd34d" font-size="7">asa</text>
+            <text x="368" y="408" fill="#fcd34d" font-size="9">¿está en la línea media? ¿se ve el cuello vesical?</text>
+            <text x="368" y="422" fill="#64748b" font-size="9">¿se vació cuando drenó? eso es lo que lo confirma</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Esquema interpretativo, no imágenes reales.</strong> Las tres medidas del panel
+        2 son el centro del procedimiento: ① dice <em>cuánto hay que entrar</em>, ② dice <em>dónde hay que parar</em> y ③
+        dice <em>si hay corredor</em>. El panel 3 es el único hallazgo que por sí solo cancela la punción en el box. El
+        panel 4 recuerda que la colección anecoica más grande del hipogastrio no siempre es la vejiga: <strong>la prueba
+        definitiva de que era vejiga es que se vació al drenarla</strong>. <em>El rendimiento diagnóstico de la ecografía
+        en el punto de atención para descartar asa interpuesta antes de esta punción no está cuantificado en la
+        literatura citada.</em></div>
+      </div>
+
+      <div class="subhead">El barrido, paso a paso</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>Transversal sobre la sínfisis y subir.</strong> Identificar la colección anecoica de la línea media, con pared fina, y detrás de ella la próstata o el útero. Confirmar que es simétrica respecto de la línea media.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>Girar a sagital y medir las tres distancias</strong> del esquema: profundidad piel–pared anterior, profundidad piel–pared posterior y altura de la cúpula sobre el borde superior de la sínfisis. Decirlas en voz alta y anotarlas: la primera se traduce en cuánto avanza el trocar, la segunda en el límite que no se cruza.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>Barrer todo el trayecto previsto buscando intestino</strong>, no solo el punto de entrada: gas con sombra sucia, haustras, contenido que se mueve, peristalsis. <em>Un asa entre la pared y la vejiga cancela ese punto de entrada</em>; si no hay ningún punto limpio, cancela el procedimiento en el box.</span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span><strong>Quedarse en la línea media.</strong> Los <strong>vasos epigástricos inferiores</strong> corren por detrás del músculo recto, cerca de su borde lateral: salirse de la línea media los acerca al trayecto. La línea alba es además el camino menos vascularizado y menos muscular.</span></div>
+        <div class="plain-item"><span class="bullet-icon">5</span><span><strong>Estimar el volumen</strong> si el equipo no lo calcula solo: el producto de los tres diámetros por un coeficiente cercano a <strong>0,7</strong> es la fórmula más usada. En el trabajo de Bih fue la más exacta de diez fórmulas comparadas, con un <strong>error medio de 17,4 % ± 11,6 %</strong>, que bajó a <strong>12,7 % ± 10,1 %</strong> al corregir por la forma de la vejiga (coeficientes 0,89 cuboide, 0,81 elipsoide y 0,66 prisma triangular). <em>Es un orden de magnitud, no una cifra: sirve para anticipar el volumen a drenar, no para decidir la indicación.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">6</span><span><strong>Marcar el punto con el transductor, no a ojo</strong>, y marcarlo de modo que sobreviva a la antisepsia —o volver a identificarlo con el transductor ya sobre el campo estéril—. El error clásico es marcar, limpiar la marca con el antiséptico y puncionar «más o menos ahí».</span></div>
+      </div>
+
+      <div class="note" style="margin-top:14px;">
+        <strong>No hay un volumen mínimo validado para puncionar.</strong> Lo que autoriza la punción no es un número de
+        mililitros: es la <strong>ventana</strong> —cúpula sobre la sínfisis y trayecto sin asas—. Un paciente delgado con
+        400 mL puede tener una ventana excelente y un paciente obeso con 700 mL una ventana mala. <em>Si el servicio usa
+        un umbral local de volumen, verificar con protocolo institucional.</em>
+      </div>
+
+      <div class="subhead">Antes de pinchar</div>
+      <div class="checklist" id="list-s5">
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Vejiga identificada en dos planos</strong>, transversal y sagital, y reconocida como vejiga y no como quiste, ascitis o asa distendida.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Cúpula confirmada por encima del borde superior de la sínfisis</strong>, con el corredor extraperitoneal visible.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Trayecto barrido y declarado libre de asas</strong> en voz alta: «no veo intestino entre la piel y la vejiga en este punto».</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Las tres medidas dichas y anotadas</strong>: profundidad a la pared anterior, profundidad a la pared posterior y altura de la cúpula.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Punto marcado en la línea media</strong>, aproximadamente 2 cm sobre la sínfisis o donde la ventana lo indique, y la marca verificada después de la antisepsia.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Antisepsia hecha con el tiempo de contacto respetado</strong> y campo estéril puesto, con el operador con guantes estériles.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Anestesia local infiltrada en todo el trayecto</strong> —piel, subcutáneo, fascia y espacio prevesical—, aspirando mientras se avanza. La fascia y el peritoneo son lo que duele: la piel es lo de menos.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Aguja buscadora dentro de la vejiga con orina aspirada</strong>, con la profundidad y el ángulo exactos ya conocidos. <em>Este es el punto que convierte la punción siguiente en una repetición de un trayecto ya probado, en vez de una apuesta.</em> Si la aguja buscadora no da orina a la profundidad esperada, <strong>no se avanza el trocar</strong>: se vuelve a la ecografía.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · LA PUNCIÓN, PASO A PASO -->
+  <div class="section s6" id="s6" style="animation-delay:0.26s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">La punción, paso a paso</div>
+        <div class="section-subtitle">Trocar con camisa divisible y la variante de Seldinger: profundidad controlada, un solo paso decisivo</div>
+      </div>
+      <span class="section-check-count" id="count-s6">0/9</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">🖐️</span>
+        <span><strong>El gesto que define la seguridad de la punción es cuánto puede entrar el trocar si la resistencia
+        cede de golpe.</strong> La pared abdominal y la pared vesical ofrecen resistencia y luego la pierden bruscamente;
+        si la mano empuja con todo el brazo y nada la frena, el trocar atraviesa la vejiga y llega a la pared posterior
+        —o más allá—. Por eso se sujeta el instrumento <strong>cerca de la punta</strong>, con el dedo o la mano no
+        dominante apoyada en la piel como tope a la profundidad medida en la ecografía, y se empuja con la muñeca, no con
+        el hombro. <em>La profundidad a la pared posterior, medida en la sección 05, es el número que no se cruza.</em></span>
+      </div>
+
+      <div class="subhead">Secuencia con trocar y camisa divisible</div>
+      <div class="figure">
+        <svg viewBox="0 0 680 440" role="img" aria-label="Esquema de cuatro paneles con la secuencia de la puncion. Panel uno: incision puntiforme en la piel y entrada del trocar perpendicular, con la mano no dominante apoyada en la piel como tope de profundidad. Panel dos: aparece orina en el trocar, se detiene el avance y se retira el mandril. Panel tres: se avanza el cateter por dentro de la camisa hasta el interior de la vejiga. Panel cuatro: la camisa se divide a lo largo y se retira sujetando el cateter, que queda dentro de la vejiga conectado a la bolsa.">
+          <g font-family="DM Mono, monospace" font-size="10" fill="#94a3b8">
+            <rect x="12" y="12" width="656" height="416" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+            <text x="28" y="36" fill="#fcd34d" font-size="12">Trocar con camisa divisible · cuatro gestos</text>
+
+            <!-- PANEL 1 -->
+            <rect x="30" y="52" width="298" height="168" rx="10" fill="rgba(99,102,241,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="52" cy="74" r="11" fill="rgba(99,102,241,0.2)" stroke="#a5b4fc" stroke-width="1.2"/>
+            <text x="52" y="78" text-anchor="middle" fill="#a5b4fc" font-size="11">1</text>
+            <text x="72" y="78" fill="#a5b4fc" font-size="11">INCISIÓN Y ENTRADA CONTROLADA</text>
+            <line x1="52" y1="120" x2="306" y2="120" stroke="#e2e8f0" stroke-width="2.6"/>
+            <rect x="52" y="120" width="254" height="11" fill="rgba(226,232,240,0.10)"/>
+            <path d="M74,160 Q160,140 252,158 L258,200 Q162,214 70,198 Z" fill="rgba(59,130,246,0.16)" stroke="#60a5fa" stroke-width="1.6"/>
+            <text x="164" y="186" text-anchor="middle" fill="#60a5fa" font-size="9">vejiga</text>
+            <line x1="164" y1="88" x2="164" y2="150" stroke="#a5b4fc" stroke-width="3.4"/>
+            <path d="M164,152 l-5,-8 l10,0 Z" fill="#a5b4fc"/>
+            <rect x="150" y="128" width="28" height="6" rx="3" fill="#fcd34d"/>
+            <text x="186" y="134" fill="#fcd34d" font-size="8">tope de profundidad</text>
+            <text x="186" y="146" fill="#64748b" font-size="8">mano apoyada en la piel</text>
+            <text x="52" y="110" fill="#6ee7b7" font-size="8">incisión ≈ 5 mm</text>
+
+            <!-- PANEL 2 -->
+            <rect x="350" y="52" width="298" height="168" rx="10" fill="rgba(16,185,129,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="372" cy="74" r="11" fill="rgba(16,185,129,0.2)" stroke="#6ee7b7" stroke-width="1.2"/>
+            <text x="372" y="78" text-anchor="middle" fill="#6ee7b7" font-size="11">2</text>
+            <text x="392" y="78" fill="#6ee7b7" font-size="11">ORINA · SE DETIENE EL AVANCE</text>
+            <line x1="372" y1="120" x2="626" y2="120" stroke="#e2e8f0" stroke-width="2.6"/>
+            <rect x="372" y="120" width="254" height="11" fill="rgba(226,232,240,0.10)"/>
+            <path d="M394,160 Q480,140 572,158 L578,200 Q482,214 390,198 Z" fill="rgba(59,130,246,0.16)" stroke="#60a5fa" stroke-width="1.6"/>
+            <line x1="484" y1="88" x2="484" y2="168" stroke="#6ee7b7" stroke-width="3.4"/>
+            <circle cx="484" cy="96" r="6" fill="#fcd34d"/>
+            <text x="496" y="94" fill="#fcd34d" font-size="8">orina en el cono</text>
+            <text x="496" y="106" fill="#64748b" font-size="8">retirar el mandril</text>
+            <text x="484" y="186" text-anchor="middle" fill="#6ee7b7" font-size="8">+ 1 cm y no más</text>
+            <text x="372" y="214" fill="#fca5a5" font-size="9">nunca llegar a la pared posterior medida</text>
+
+            <!-- PANEL 3 -->
+            <rect x="30" y="240" width="298" height="168" rx="10" fill="rgba(20,184,166,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="52" cy="262" r="11" fill="rgba(20,184,166,0.2)" stroke="#5eead4" stroke-width="1.2"/>
+            <text x="52" y="266" text-anchor="middle" fill="#5eead4" font-size="11">3</text>
+            <text x="72" y="266" fill="#5eead4" font-size="11">CATÉTER POR DENTRO DE LA CAMISA</text>
+            <line x1="52" y1="308" x2="306" y2="308" stroke="#e2e8f0" stroke-width="2.6"/>
+            <rect x="52" y="308" width="254" height="11" fill="rgba(226,232,240,0.10)"/>
+            <path d="M74,348 Q160,328 252,346 L258,388 Q162,402 70,386 Z" fill="rgba(59,130,246,0.16)" stroke="#60a5fa" stroke-width="1.6"/>
+            <rect x="158" y="276" width="13" height="80" rx="3" fill="rgba(148,163,184,0.25)" stroke="#94a3b8" stroke-width="1"/>
+            <path d="M164,282 L164,372 Q164,380 174,380" fill="none" stroke="#5eead4" stroke-width="2.8"/>
+            <circle cx="176" cy="380" r="3" fill="#5eead4"/>
+            <text x="186" y="290" fill="#94a3b8" font-size="8">camisa</text>
+            <text x="186" y="372" fill="#5eead4" font-size="8">punta bien dentro</text>
+
+            <!-- PANEL 4 -->
+            <rect x="350" y="240" width="298" height="168" rx="10" fill="rgba(245,158,11,0.05)" stroke="#334155" stroke-width="1"/>
+            <circle cx="372" cy="262" r="11" fill="rgba(245,158,11,0.2)" stroke="#fcd34d" stroke-width="1.2"/>
+            <text x="372" y="266" text-anchor="middle" fill="#fcd34d" font-size="11">4</text>
+            <text x="392" y="266" fill="#fcd34d" font-size="11">CAMISA DIVIDIDA Y RETIRADA</text>
+            <line x1="372" y1="308" x2="626" y2="308" stroke="#e2e8f0" stroke-width="2.6"/>
+            <rect x="372" y="308" width="254" height="11" fill="rgba(226,232,240,0.10)"/>
+            <path d="M394,348 Q480,328 572,346 L578,388 Q482,402 390,386 Z" fill="rgba(59,130,246,0.16)" stroke="#60a5fa" stroke-width="1.6"/>
+            <path d="M484,282 L484,372 Q484,380 494,380" fill="none" stroke="#5eead4" stroke-width="2.8"/>
+            <circle cx="496" cy="380" r="3" fill="#5eead4"/>
+            <path d="M470,290 L452,272 M498,290 L516,272" stroke="#94a3b8" stroke-width="1.6"/>
+            <text x="420" y="266" fill="#94a3b8" font-size="8"> </text>
+            <rect x="470" y="300" width="28" height="7" rx="3" fill="rgba(245,158,11,0.3)" stroke="#fcd34d" stroke-width="1"/>
+            <text x="508" y="306" fill="#fcd34d" font-size="8">fijación a la piel</text>
+            <text x="372" y="402" fill="#fcd34d" font-size="9">sujetar el catéter mientras se retira la camisa</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Esquema interpretativo de la secuencia, no instrucciones de un set
+        específico.</strong> La angulación de entrada —perpendicular a la piel o ligeramente inclinada hacia caudal—, la
+        profundidad de avance tras la aparición de orina, el largo de catéter a introducir y el sistema de fijación
+        <strong>varían entre sets y deben leerse en las instrucciones del kit disponible y verificarse con el protocolo
+        institucional</strong>. En los sets sin balón el catéter se sostiene <em>solo</em> por su fijación a la piel.</div>
+      </div>
+
+      <div class="subhead">Los pasos, en orden</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>Incisión puntiforme</strong> de unos 5 mm en la marca, con el bisturí perpendicular a la piel. Facilita el paso del trocar y evita que la piel se invagine: <em>una incisión demasiado pequeña obliga a empujar más fuerte, que es exactamente lo que no se quiere.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>Montar el conjunto según el kit</strong> y comprobar que el catéter desliza dentro de la camisa antes de puncionar. Comprobarlo con el trocar ya dentro del paciente es tarde.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>Entrar por el mismo trayecto que probó la aguja buscadora</strong>, con el mismo ángulo, sujetando cerca de la punta y con la mano no dominante como tope a la profundidad medida. Presión firme, continua y controlada: no un golpe.</span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span><strong>Detenerse en cuanto aparezca orina</strong> o se sienta la pérdida de resistencia, y avanzar solo lo mínimo —del orden de un centímetro, o lo que indique el kit— para que la punta de la camisa quede intravesical. <em>Aquí es donde se produce la lesión de pared posterior.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">5</span><span><strong>Retirar el mandril o la aguja</strong> sosteniendo firme la camisa, sin cambiar su profundidad ni su ángulo. Debe salir orina libremente.</span></div>
+        <div class="plain-item"><span class="bullet-icon">6</span><span><strong>Avanzar el catéter por la camisa</strong> hasta que la punta quede bien dentro de la vejiga, no apenas pasada la pared y no apoyada en la pared posterior ni enroscada en el cuello.</span></div>
+        <div class="plain-item"><span class="bullet-icon">7</span><span><strong>Dividir y retirar la camisa</strong> sujetando el catéter con la otra mano para que no salga con ella. Es el paso en que más catéteres se pierden.</span></div>
+        <div class="plain-item"><span class="bullet-icon">8</span><span><strong>Conectar la bolsa de inmediato</strong>, recibir la primera orina en el recipiente graduado, tomar la muestra de urocultivo y describir el aspecto: clara, turbia, hematúrica, con restos. <em>Si lo que sale es líquido entérico, con gas o con olor fecaloideo, saltar a la sección 09 sin retirar nada.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">9</span><span><strong>Fijar el catéter antes de soltarlo</strong>: inflar el balón si el set lo tiene, o suturar y poner la placa de fijación si no. Apósito, y marca de la profundidad a la que quedó el catéter para poder detectar después si se movió.</span></div>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">🚱</span>
+        <span><strong>No vaciar la vejiga antes de tiempo.</strong> La aguja buscadora se usa para confirmar trayecto y
+        profundidad, no para drenar: si se aspiran 200 mL con la jeringa, la cúpula baja, el corredor se acorta y
+        <em>la ventana que se acababa de verificar deja de existir</em>. Aspirar lo mínimo para ver orina y pasar al
+        trocar.</span>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">🧵</span>
+        <span><strong>Si el set es de Seldinger, cambian los pasos 3 a 7, no el resto.</strong> Se punciona con la aguja
+        fina, se confirma la orina, se pasa la guía —idealmente viéndola entrar en la vejiga con el transductor—, se
+        retira la aguja, se dilata el trayecto sobre la guía y se avanza el catéter. Es más lento y pide más manos, y su
+        ventaja es que <strong>el primer paso lo da una aguja fina y no un trocar</strong>: si el trayecto está
+        equivocado, el daño es de una aguja. Reglas que no cambian: <em>nunca soltar la guía, nunca avanzar el dilatador
+        más allá de la profundidad medida, y nunca forzar nada que no entre liso.</em></span>
+      </div>
+
+      <div class="subhead">Durante la punción</div>
+      <div class="checklist" id="list-s6">
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Incisión hecha en la marca verificada</strong>, en la línea media, con la ecografía ya repetida sobre el campo si la marca se perdió.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Conjunto montado y probado en seco</strong>: el catéter desliza por la camisa y el mandril se retira sin arrastrarla.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Tope de profundidad puesto con la mano no dominante</strong> y la profundidad de la pared posterior dicha en voz alta como límite.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Avance detenido en cuanto apareció orina</strong>, y solo el mínimo adicional para dejar la camisa intravesical.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Mandril retirado y orina libre confirmada</strong>, con la camisa sostenida sin moverse.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Catéter avanzado y camisa retirada sin arrastrarlo</strong>, con el catéter sujeto durante todo el gesto.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Aspecto del líquido descrito en voz alta</strong> antes de seguir. Es la primera oportunidad de detectar una malposición: <em>orina es orina; nada más lo es</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Catéter fijado según el sistema del set</strong> —balón inflado con el volumen del fabricante, o sutura y placa— <em>antes</em> de soltarlo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Sistema cerrado conectado y bolsa por debajo del nivel de la vejiga</strong>, con el circuito sin acodaduras y el catéter sin tracción.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · CONFIRMAR QUE QUEDÓ EN LA VEJIGA -->
+  <div class="section s7" id="s7" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Confirmar que quedó en la vejiga</div>
+        <div class="section-subtitle">Que salga líquido no es confirmación — la confirmación es ver el catéter dentro y ver la vejiga vaciarse</div>
+      </div>
+      <span class="section-check-count" id="count-s7">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">✅</span>
+        <span><strong>Tres confirmaciones, de la más débil a la más fuerte.</strong> ① <strong>Sale orina
+        espontáneamente y en volumen</strong> acorde al estimado por ecografía: es buena evidencia, y es la que casi
+        siempre se usa. ② <strong>La vejiga se vacía en la pantalla</strong> mientras drena —la colección anecoica se
+        colapsa y la cúpula baja—: esto es casi definitivo, porque ningún otro espacio se comporta así. ③ <strong>Se
+        inyectan 10–20 mL de suero por el catéter y se ve el flujo dentro de la vejiga</strong> con el transductor,
+        volviendo a llenarse: es la confirmación directa de que la punta está en el lumen vesical. <em>No hay estudio
+        que compare el rendimiento de estas tres maniobras para esta indicación; el esquema es un orden de solidez
+        razonado, no una escala validada.</em></span>
+      </div>
+
+      <div class="subhead">Las señales de que algo no está donde debería</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Señal</th><th>Qué puede significar</th><th>Conducta inmediata</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>No sale nada</td>
+              <td>Catéter fuera de la vejiga, en el espacio prevesical, acodado, obstruido por un coágulo, o la vejiga se vació antes por otra vía.</td>
+              <td>No retirar y volver a pinchar a ciegas: <strong>volver a la ecografía</strong>. Ver sección 09.</td>
+            </tr>
+            <tr>
+              <td>Sale líquido entérico, con gas, con restos o con olor fecaloideo</td>
+              <td><strong>Catéter en intestino.</strong> Es la complicación que mata y se reconoce aquí o no se reconoce a tiempo.</td>
+              <td><strong>No retirar el catéter.</strong> Avisar a cirugía y urología de inmediato, régimen cero, antibióticos e imagen. Ver sección 09.</td>
+            </tr>
+            <tr>
+              <td>Sale solo sangre</td>
+              <td>Lesión vascular de la pared abdominal o vesical, punción de un vaso, o lesión de la pared posterior.</td>
+              <td>No retirar, avisar a urología, reevaluar con imagen y monitorizar hemodinamia. <em>Umbral de transfusión y conducta: según protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Dolor desproporcionado o que aumenta después de drenar</td>
+              <td>Catéter apoyado en la pared posterior, en el trígono o en el cuello; extravasación; irritación peritoneal.</td>
+              <td>Revisar posición con ecografía y profundidad del catéter; no «empujar un poco más» a ciegas.</td>
+            </tr>
+            <tr>
+              <td>El catéter no se irriga liso, o el suero entra pero no vuelve</td>
+              <td>Punta en una falsa vía, en el espacio perivesical o contra la pared.</td>
+              <td>Reevaluar con ecografía antes de seguir usando ese catéter.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Cierre del procedimiento</div>
+      <div class="checklist" id="list-s7">
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Posición confirmada con ecografía</strong>: catéter o su punta visible en el lumen, y la vejiga vista vaciarse mientras drena.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Volumen drenado medido y anotado</strong>, comparado con el estimado por ecografía. Una diferencia grande merece explicación, no un encogimiento de hombros.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Muestra de orina enviada</strong> para urocultivo, con la hora, y antes del inicio del antibiótico si no se había iniciado ya.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Fijación verificada tirando suavemente</strong> del catéter, y la profundidad a la que quedó anotada en la ficha para poder detectar un desplazamiento posterior.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Presión arterial y frecuencia cardíaca repetidas</strong> después de la descompresión, y comparadas con las basales.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Indicación de diuresis horaria escrita</strong>, con el umbral que obliga a avisar: ver la sección 08. Sin esta indicación, la diuresis postobstructiva se descubre cuando el paciente ya está hipotenso.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Nota de procedimiento escrita</strong>: indicación, intento uretral previo, hallazgos ecográficos, técnica y set usado, calibre, volumen drenado, aspecto, complicaciones, y <strong>quién sigue al paciente y cuándo se recambia el catéter</strong>. Si el catéter se sale en las primeras semanas, el trayecto se cierra: dejarlo explícito en las indicaciones es parte del procedimiento.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · DESPUÉS DE DRENAR -->
+  <div class="section s8" id="s8" style="animation-delay:0.34s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Después de drenar</div>
+        <div class="section-subtitle">Diuresis postobstructiva, hematuria posdescompresión y la pregunta de si hay que vaciar de golpe o despacio</div>
+      </div>
+      <span class="section-check-count" id="count-s8">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">🌊</span>
+        <span><strong>El procedimiento no termina cuando sale la orina.</strong> El paciente que acaba de drenar dos
+        litros tiene por delante horas de riesgo que no vienen de la punción, sino de la descompresión: <strong>diuresis
+        postobstructiva, hipotensión, hiponatremia y hematuria</strong>. En la revisión de Rigonalli, con nueve estudios
+        y 665 pacientes, la hiperdiuresis posobstrucción ocurrió en el <strong>15 a 78 %</strong> de los casos, con una
+        duración media de <strong>2 a 5 días</strong>, hematuria en <strong>11 a 55 %</strong>, hiponatremia en
+        <strong>22 a 28 %</strong> e hipotensión en <strong>9 %</strong>. <em>La mayoría se resuelve sola</em> —ese es
+        el otro mensaje de la misma revisión—, pero solo si alguien está mirando.</span>
+      </div>
+
+      <div class="subhead">Diuresis postobstructiva: definición y riesgo</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📏</span><span><strong>Definición de trabajo:</strong> diuresis de al menos <strong>200 mL/h durante dos horas consecutivas</strong>, o más de <strong>3 L en 24 horas</strong>, tras resolver la retención u obstrucción. Es la definición que usa el caso de Finger y Moses.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🕑</span><span><strong>Fisiológica contra patológica:</strong> la fisiológica dura unas <strong>24 horas</strong>; la patológica se prolonga <strong>más de 48 horas</strong> y es la que lleva a déficits electrolíticos masivos, hipotensión y shock. El mecanismo combina <em>lavado del gradiente medular</em>, daño tubular, menor expresión de los transportadores de sodio en el asa ascendente gruesa, caída de la filtración glomerular y <em>mala respuesta a la hormona antidiurética</em>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧮</span><span><strong>Quién tiene más riesgo</strong>, según el metaanálisis de Rigonalli: <strong>creatinina sérica &gt; 105 µmol/L</strong> (≈ 1,2 mg/dL) con <strong>OR 4,83</strong> (IC 95 % 1,14–20,44; p = 0,032) y <strong>mayor volumen vesical</strong>, con <strong>OR 1,21 por cada 100 mL</strong> (IC 95 % 1,06–1,40; p = 0,006). Es decir: <em>el paciente con retención crónica, vejiga enorme y creatinina alta es el que hay que vigilar, y es exactamente el paciente al que se le pone una cistostomía.</em></span></div>
+        <div class="plain-item good"><span class="bullet-icon">🩹</span><span><strong>Qué se hace:</strong> diuresis horaria, balance, presión arterial, peso si es posible, y controles de electrolitos y función renal. La reposición se guía por las pérdidas, con el cuidado de <em>no reponer el 100 % indefinidamente, porque eso perpetúa la diuresis</em>. <strong>El esquema concreto de reposición, la fracción de las pérdidas a reponer, el tipo de solución y la frecuencia de los controles de laboratorio deben verificarse con el protocolo institucional</strong>: las propias revisiones citadas señalan que <em>no hay protocolos estandarizados</em> y piden estudios prospectivos.</span></div>
+      </div>
+
+      <div class="subhead">¿Vaciar de golpe o despacio? La pregunta sigue abierta</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Fuente</th><th>Qué dice</th><th>Peso</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Nyman 1997 — revisión</td>
+              <td>Tras el vaciamiento rápido y completo: hematuria en <strong>2 a 16 %</strong>, rara vez significativa; la presión arterial baja pero suele normalizarse; diuresis postobstructiva en <strong>0,5 a 52 %</strong>, fácil de manejar. <strong>No encontró ningún estudio que apoye el vaciamiento gradual</strong> y recomienda el vaciamiento rápido y completo como método óptimo.</td>
+              <td>Revisión narrativa de la literatura, sin ensayos que compararan directamente las dos estrategias en ese momento.</td>
+            </tr>
+            <tr>
+              <td>Odeyemi 2024 — ensayo aleatorizado</td>
+              <td>Sesenta pacientes con <strong>retención crónica</strong>, aleatorizados a descompresión rápida o gradual por sonda uretral: hematuria macroscópica en <strong>15/30 (50 %) con la rápida contra 7/30 (23,3 %) con la gradual</strong> (p = 0,032). Las transfusiones fueron 4 contra 1, <strong>sin diferencia significativa</strong> (p = 0,920). Los autores recomiendan la descompresión gradual.</td>
+              <td>Ensayo pequeño, unicéntrico, en <em>retención crónica</em> y por vía uretral. El desenlace favorable es hematuria, no un desenlace duro.</td>
+            </tr>
+            <tr>
+              <td>Rigonalli 2025 — minirrevisión</td>
+              <td>Resume que <strong>un ensayo aleatorizado no mostró diferencia significativa en complicaciones entre descompresión rápida y gradual</strong>, y subraya la <strong>ausencia de protocolos estandarizados</strong>.</td>
+              <td>Revisión breve de nueve estudios; expone el desacuerdo más que resolverlo.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note" style="margin-top:14px;">
+        <strong>Qué hacer con un desacuerdo así, en el box.</strong> Tres cosas se pueden afirmar sin forzar los datos.
+        Primero: <strong>la hematuria posdescompresión existe, es frecuente y casi siempre es autolimitada</strong> —de
+        ahí los rangos de 2–16 % y 11–55 % según la serie—. Segundo: <strong>nadie ha demostrado que retrasar el drenaje
+        mejore un desenlace que importe</strong>; lo único que mostró el ensayo de Odeyemi fue menos hematuria visible,
+        sin diferencia en transfusión. Tercero: <em>el paciente con una cistostomía recién puesta y un catéter fino es
+        justamente el que menos conviene dejar con sangre y coágulos dentro</em>, porque el catéter se obstruye. La
+        conducta razonable es <strong>drenar y vigilar</strong>, no <strong>drenar y olvidar</strong> ni <strong>dejar
+        la vejiga llena por miedo</strong>. <em>Si el servicio tiene una política de drenaje escalonado, verificar con
+        protocolo institucional: no hay evidencia que obligue en ninguna de las dos direcciones.</em>
+      </div>
+
+      <div class="subhead">Vigilancia de las primeras horas</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Qué se vigila</th><th>Cada cuánto</th><th>Qué obliga a avisar</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Diuresis horaria</td>
+              <td>Horaria las primeras horas</td>
+              <td><strong>≥ 200 mL/h por dos horas seguidas</strong> o &gt; 3 L en 24 h: diuresis postobstructiva en curso</td>
+            </tr>
+            <tr>
+              <td>Presión arterial y frecuencia cardíaca</td>
+              <td>Antes, inmediatamente después y luego seriadas</td>
+              <td>Caída sostenida de presión, taquicardia, ortostatismo</td>
+            </tr>
+            <tr>
+              <td>Aspecto de la orina y permeabilidad del catéter</td>
+              <td>Continuo</td>
+              <td>Hematuria que no clarea, coágulos, <strong>catéter que deja de drenar</strong></td>
+            </tr>
+            <tr>
+              <td>Electrolitos, creatinina y estado ácido-base</td>
+              <td>Según el protocolo local</td>
+              <td>Hiponatremia, hipokalemia, caída o alza de creatinina</td>
+            </tr>
+            <tr>
+              <td>Dolor abdominal, distensión, fiebre, peritonismo</td>
+              <td>Clínico, seriado</td>
+              <td><strong>Cualquiera de ellos obliga a pensar en lesión intestinal o extravasación</strong>, incluso horas después</td>
+            </tr>
+            <tr>
+              <td>Sitio de punción</td>
+              <td>Clínico, seriado</td>
+              <td>Sangrado, hematoma que crece, salida de orina alrededor, celulitis</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Indicaciones escritas antes de dejar el box</div>
+      <div class="checklist" id="list-s8">
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Diuresis horaria indicada por escrito</strong>, con el umbral explícito que obliga a avisar al médico: <em>≥ 200 mL/h durante dos horas consecutivas</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Volumen inicial drenado consignado</strong>, que es a la vez el principal predictor de diuresis postobstructiva (OR 1,21 por cada 100 mL).</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Función renal y electrolitos pedidos</strong>, con la creatinina basal como marcador de riesgo (OR 4,83 sobre 105 µmol/L) y el plan de controles seriados definido.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Plan de reposición escrito según el protocolo del servicio</strong>, con la advertencia de no reponer indefinidamente el total de las pérdidas.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Signos vitales seriados indicados</strong>, con la hipotensión posdescompresión nombrada como complicación esperada (9 % en la revisión de Rigonalli) y no como sorpresa.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Instrucción explícita sobre el catéter</strong>: no traccionarlo, no retirarlo, avisar si deja de drenar o si se sale. <em>Un catéter que se sale en las primeras semanas no se vuelve a meter a ciegas: el trayecto no está maduro.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Signos de alarma escritos para el equipo de turno</strong>: dolor abdominal creciente, distensión, fiebre, peritonismo, líquido o gas por el catéter, hematuria con coágulos. <em>La lesión intestinal puede manifestarse horas después, cuando el operador ya no está.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Seguimiento definido:</strong> quién controla al paciente, cuándo y quién recambia el catéter, y qué se va a hacer con la causa de la retención —porque el catéter resolvió el síntoma, no el problema—.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · CUANDO NO SALE ORINA O ALGO SALIÓ MAL -->
+  <div class="section s9" id="s9" style="animation-delay:0.38s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Cuando no sale orina o algo salió mal</div>
+        <div class="section-subtitle">El algoritmo de afuera hacia adentro, y cómo se reconoce a tiempo la lesión intestinal</div>
+      </div>
+      <span class="section-check-count" id="count-s9">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">🧭</span>
+        <span><strong>Regla general:</strong> cuando no sale orina, <em>no se repite la punción</em> hasta haber revisado
+        de afuera hacia adentro. Cada punción adicional multiplica el riesgo que ya se asumió una vez, y el caso de Verma
+        es exactamente eso: <strong>punciones suprapúbicas repetidas sin guía</strong> en una paciente irradiada, con el
+        catéter terminando en el íleon terminal y un desenlace fatal.</span>
+      </div>
+
+      <div class="subhead">No sale orina: de afuera hacia adentro</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span><strong>El circuito, primero.</strong> ¿La bolsa está conectada? ¿Hay una acodadura, una pinza olvidada, el catéter atrapado bajo el paciente, el apósito apretando? Es la causa más frecuente y la más tonta.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span><strong>Lavar suavemente con 10–20 mL de suero.</strong> Si entra liso y vuelve, el catéter es permeable y está dentro: el problema es que la vejiga está vacía. Si entra y no vuelve, o no entra, la punta no está en el lumen.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span><strong>Ecografía otra vez.</strong> ¿Hay vejiga? ¿Dónde está la punta? ¿Hay líquido perivesical —extravasación— o una colección nueva? Esta pregunta reemplaza a cualquier conjetura.</span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span><strong>¿Se vació la vejiga por otra vía?</strong> La aguja buscadora que aspiró demasiado, una micción espontánea, o una sonda uretral que finalmente pasó. Es la explicación benigna y hay que buscarla antes que las otras.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">5</span><span><strong>Si la punta no está en la vejiga: no se reposiciona empujando.</strong> Avanzar un catéter cuya trayectoria se desconoce es cómo se convierte un problema en una laparotomía. Se detiene, se avisa a urología, y la siguiente punción —si corresponde— se hace con imagen y por quien tenga más experiencia.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">6</span><span><strong>Límite de intentos.</strong> Dos punciones fallidas con buena ventana ecográfica, o una sola con ventana dudosa, son razón suficiente para parar y derivar. <em>No hay un número validado: es una convención prudente, y el protocolo institucional puede fijar otra.</em></span></div>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">🚨</span>
+        <span><strong>Sospecha de lesión intestinal: lo que NO se hace.</strong> <strong>No se retira el catéter.</strong>
+        Aunque parezca contraintuitivo, el catéter mal puesto es a la vez el mapa del trayecto y, a veces, lo que
+        contiene el problema; retirarlo a ciegas puede liberar contenido entérico en la cavidad y hace perder la
+        información. Lo que sí se hace, en paralelo: <strong>régimen cero, avisar de inmediato a cirugía y a urología,
+        antibióticos de amplio espectro, reanimación, y tomografía —habitualmente con contraste administrado por el
+        propio catéter— para demostrar dónde está la punta</strong>. En el caso de Verma el diagnóstico se hizo con
+        ecografía y tomografía antes de operar; el tratamiento fue resección del íleon distal con ileostomía y reparación
+        de la vejiga. <em>La decisión final, la secuencia exacta de imagen y el momento de retirar el catéter son
+        quirúrgicas y deben verificarse con el protocolo institucional: esta página no reemplaza esa consulta.</em></span>
+      </div>
+
+      <div class="subhead">Las cuatro formas en que se presenta la lesión intestinal</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Presentación</th><th>Cuándo</th><th>Qué la delata</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Evidente en el acto</td>
+              <td>Durante la punción</td>
+              <td>Sale <strong>contenido entérico, gas o líquido con olor fecaloideo</strong> por el trocar o el catéter. Es la forma afortunada: se reconoce de inmediato.</td>
+            </tr>
+            <tr>
+              <td>Catéter que no drena</td>
+              <td>Minutos a horas</td>
+              <td>El catéter <strong>no da orina</strong> y la vejiga sigue llena en la ecografía, o drena un volumen que no corresponde. El error es atribuirlo a obstrucción y seguir lavando.</td>
+            </tr>
+            <tr>
+              <td>Peritonitis y sepsis diferidas</td>
+              <td>Horas a días</td>
+              <td><strong>Dolor abdominal creciente, distensión, fiebre, peritonismo, deterioro.</strong> En el caso de Verma, la paciente llegó derivada <em>por no mejorar</em>, con necrosis de la pared ileal y una colección fecopurulenta, y murió de sepsis a pesar de la cirugía.</td>
+            </tr>
+            <tr>
+              <td>Fístula establecida</td>
+              <td>Días a semanas</td>
+              <td>Orina con contenido intestinal, neumaturia, fecaluria, diarrea al drenar, infecciones urinarias polimicrobianas de repetición. Aparece sobre todo cuando la lesión pasó inadvertida.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Las otras cosas que se complican</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Hematuria y coágulos.</strong> Esperable tras la descompresión y casi siempre autolimitada, pero en un catéter fino los coágulos obstruyen. Si no clarea, si el catéter se obstruye repetidamente o si hay repercusión hemodinámica, es urología: puede necesitar un catéter uretral de tres vías con lavado continuo, que la cistostomía no reemplaza.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧵</span><span><strong>Pérdida del trayecto.</strong> El trayecto tarda semanas en madurar. Si el catéter se sale antes, la ventana se cierra en horas y lo que queda es una nueva instalación, no un recambio. En la serie de Hobbs las pérdidas de trayecto durante los recambios en la comunidad fueron uno de los problemas identificados como educables. <em>El plazo exacto de maduración y el primer recambio: verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🦠</span><span><strong>Infección.</strong> Del sitio de punción, de la orina o sistémica. La revisión Cochrane de Kidd mostró <em>menos bacteriuria asintomática</em> con la vía suprapúbica que con la uretral a corto plazo, pero la evidencia sobre infección sintomática fue inconcluyente: <strong>la cistostomía no es una vía «limpia», es una vía distinta.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">🫧</span><span><strong>Extravasación perivesical.</strong> Catéter mal posicionado o vejiga perforada en la cara posterior: dolor, líquido libre, orina que no drena bien. Se sospecha con ecografía y se confirma con imagen con contraste.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔁</span><span><strong>Lesión en el recambio, no solo en la instalación.</strong> El caso de Foran documenta perforación intestinal <em>durante un recambio</em> de cistostomía. Un recambio que no entra liso no se fuerza.</span></div>
+      </div>
+
+      <div class="subhead">Si algo salió mal</div>
+      <div class="checklist" id="list-s9">
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Circuito revisado antes de cualquier conclusión</strong>: conexión, acodaduras, pinzas, posición del paciente, apósito.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Lavado suave intentado y su resultado anotado</strong>: entra y vuelve, entra y no vuelve, o no entra.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Ecografía repetida</strong>: hay vejiga o no, dónde está la punta, hay líquido perivesical o libre.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Aspecto del líquido reevaluado con la pregunta correcta</strong>: ¿esto es orina? Ante cualquier duda —gas, restos, olor—, se trata como lesión intestinal hasta demostrar lo contrario.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Catéter sospechoso NO retirado</strong>, y la decisión dejada explícitamente en manos de cirugía y urología.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Cirugía y urología avisadas, régimen cero y antibióticos</strong> si hay sospecha de lesión intestinal, sin esperar la imagen para activar al equipo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Intento abandonado a tiempo</strong> si la punción falló con ventana dudosa, y el paciente derivado para cistostomía guiada o abierta, con analgesia mientras se coordina.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Evento registrado y comunicado</strong>: lo que pasó, lo que se hizo y lo que el turno siguiente debe vigilar. La auditoría de Hall existe porque alguien registró; es así como estas cifras mejoran.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · COMPLICACIONES Y GRADO DE CERTEZA -->
+  <div class="section s10" id="s10" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Complicaciones y grado de certeza</div>
+        <div class="section-subtitle">Lo que puede salir mal y cuánto sostiene cada afirmación de esta página</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Complicaciones</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Complicación</th><th>Cómo aparece</th><th>Cómo se previene o se trata</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lesión intestinal</td>
+              <td>La complicación que define el procedimiento. Desde contenido entérico por el trocar hasta sepsis diferida y muerte. Frecuencia según la fuente: <strong>hasta 2,4 % con mortalidad del 1,8 %</strong> en la literatura antigua de punción ciega (Jacob), <strong>0,7 %</strong> en el metaanálisis de Hall, <strong>&lt; 0,25 %</strong> recomendado para el paciente de bajo riesgo, y <strong>0 en 1.000</strong> inserciones electivas guiadas (Hobbs).</td>
+              <td><strong>Selección del paciente y ecografía antes de puncionar</strong>: vejiga vista sobre la sínfisis, trayecto barrido sin asas, profundidad medida, línea media, tope de profundidad con la mano. El paciente con laparotomía previa o radioterapia no se punciona a ciegas en el box.</td>
+            </tr>
+            <tr>
+              <td>Malposición y extravasación perivesical</td>
+              <td>Catéter en el espacio prevesical o en una falsa vía: no drena, lava y no vuelve, dolor, líquido perivesical en la ecografía.</td>
+              <td>Aguja buscadora antes del trocar, confirmación ecográfica después, y <strong>no reposicionar empujando</strong> un catéter cuya trayectoria se desconoce.</td>
+            </tr>
+            <tr>
+              <td>Lesión de la pared vesical posterior</td>
+              <td>Dolor intenso, hematuria importante, extravasación. Ocurre cuando la resistencia cede de golpe y nada frena el trocar.</td>
+              <td>La medida de profundidad a la pared posterior de la sección 05, el tope con la mano no dominante y detenerse en cuanto aparece orina.</td>
+            </tr>
+            <tr>
+              <td>Hemorragia y hematoma de pared</td>
+              <td>Sangrado del sitio, hematoma que crece, sangre por el catéter. En la serie de Hobbs, el sangrado y la malposición fueron las causas de las tres laparotomías de 1.000 casos.</td>
+              <td><strong>Quedarse en la línea media</strong> —los vasos epigástricos inferiores corren junto al borde lateral del recto—, corregir la coagulopatía corregible y compresión. <em>Umbrales y conducta: protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Hematuria posdescompresión</td>
+              <td><strong>2 a 16 %</strong> en la revisión de Nyman; <strong>11 a 55 %</strong> en las series revisadas por Rigonalli; <strong>50 % contra 23,3 %</strong> según estrategia de vaciamiento en el ensayo de Odeyemi. Rara vez clínicamente significativa.</td>
+              <td>Vigilancia y permeabilidad del catéter. Si no clarea o se obstruye, es urología: puede necesitar catéter uretral de tres vías con lavado.</td>
+            </tr>
+            <tr>
+              <td>Diuresis postobstructiva, hipotensión e hiponatremia</td>
+              <td><strong>15 a 78 %</strong> de hiperdiuresis, <strong>22 a 28 %</strong> de hiponatremia y <strong>9 %</strong> de hipotensión en la revisión de Rigonalli; duración media de 2 a 5 días; la mayoría autolimitada. Patológica si pasa de 48 horas.</td>
+              <td>Diuresis horaria con umbral escrito, balance, electrolitos y función renal seriados, reposición juiciosa. Riesgo mayor con creatinina &gt; 105 µmol/L y vejiga de gran volumen.</td>
+            </tr>
+            <tr>
+              <td>Infección</td>
+              <td>Del sitio de punción, urinaria o sistémica. Menos bacteriuria asintomática que la vía uretral a corto plazo (Cochrane), con evidencia <em>inconcluyente</em> para infección sintomática.</td>
+              <td>Técnica aséptica, sistema cerrado, profilaxis según el PROA local, y no puncionar a través de piel infectada.</td>
+            </tr>
+            <tr>
+              <td>Pérdida del trayecto</td>
+              <td>El catéter se sale antes de que el trayecto madure y la ventana se cierra en horas. Fue uno de los problemas identificados en el seguimiento a largo plazo de Hobbs.</td>
+              <td>Fijación verificada antes de soltar el catéter, instrucción explícita al paciente y al equipo, y <strong>no forzar un recambio que no entra liso</strong>.</td>
+            </tr>
+            <tr>
+              <td>Siembra tumoral en el trayecto</td>
+              <td>Complicación tardía descrita en el cáncer vesical, y la razón de que el tumor vesical conocido o sospechado se considere contraindicación para la punción percutánea.</td>
+              <td>Preguntar por hematuria en estudio y antecedente de tumor vesical <em>antes</em> de puncionar. Si existe, el caso es de urología. <em>Conducta local: verificar con protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Molestias a largo plazo</td>
+              <td>En la serie de Hobbs, <strong>59 %</strong> de los pacientes tuvo complicaciones a largo plazo, en su mayoría menores —obstrucción del catéter, infecciones, molestias locales— y <strong>generalmente bien toleradas</strong>.</td>
+              <td>Es información para el consentimiento: la cistostomía resuelve la retención y trae su propio mantenimiento. Seguimiento urológico definido desde el primer día.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Grado de certeza de lo que dice esta página</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Afirmación</th><th>Qué la sostiene</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Hay riesgo de lesión intestinal y de muerte, y debe explicarse al paciente</td>
+              <td><strong>Guía de sociedad con revisión sistemática</strong>: BAUS 2010 y su revisión de 2020, más series y casos publicados. Es la afirmación mejor sostenida de la página.</td>
+            </tr>
+            <tr>
+              <td>Las cifras de frecuencia de lesión intestinal</td>
+              <td><strong>Datos observacionales</strong>: auditoría nacional y metaanálisis de Hall (0,7 %; recomendación de &lt; 0,25 % para bajo riesgo), serie de 1.000 casos de Hobbs (ninguna), cifra histórica de hasta 2,4 % citada por Jacob. <em>Ningún ensayo aleatorizado.</em></td>
+            </tr>
+            <tr>
+              <td>Usar ecografía siempre que sea posible</td>
+              <td><strong>Recomendación de guía basada en consenso</strong> (BAUS) y descripción de técnica (Jacob). <em>No hay evidencia de desenlace que cuantifique cuánto baja el riesgo.</em></td>
+            </tr>
+            <tr>
+              <td>La vejiga distendida desplaza el peritoneo y crea un corredor extraperitoneal</td>
+              <td><strong>Razonamiento anatómico aceptado</strong>, explícito en la revisión de Jacob como el supuesto en que se apoya la técnica clásica. Es la base del procedimiento, no un resultado medido.</td>
+            </tr>
+            <tr>
+              <td>Diuresis postobstructiva: definición, frecuencia y factores de riesgo</td>
+              <td><strong>Revisiones y datos agregados</strong>: Rigonalli (nueve estudios, 665 pacientes) y Finger para la definición. Las razones de odds vienen de estudios observacionales con intervalos de confianza amplios (4,83; IC 1,14–20,44).</td>
+            </tr>
+            <tr>
+              <td>Vaciar rápido o despacio</td>
+              <td><strong>Discrepante.</strong> Nyman no encontró estudios que apoyen el vaciamiento gradual y recomienda el rápido; Odeyemi, en un ensayo de 60 pacientes con retención crónica, encontró menos hematuria con el gradual sin diferencia en transfusión; Rigonalli resume que un ensayo no mostró diferencia. <em>La pregunta sigue abierta.</em></td>
+            </tr>
+            <tr>
+              <td>Suprapúbico contra uretral</td>
+              <td><strong>Revisión Cochrane de 42 ensayos</strong>, con evidencia de calidad baja a muy baja: menos bacteriuria asintomática y menos dolor con la vía suprapúbica, evidencia inconcluyente para infección sintomática.</td>
+            </tr>
+            <tr>
+              <td>La fórmula de volumen vesical por ecografía</td>
+              <td><strong>Estudio de validación en 79 sujetos</strong> (Bih), con error medio del 17,4 % que baja al 12,7 % corrigiendo por forma. Sirve como orden de magnitud.</td>
+            </tr>
+            <tr>
+              <td>Punto de entrada, angulación, profundidad de avance, calibres, fijación y plazos de recambio</td>
+              <td><strong>Convención y especificación del fabricante.</strong> No hay evidencia comparativa; varían entre sets y entre servicios. <em>Todo esto debe verificarse con el kit disponible y con el protocolo institucional.</em></td>
+            </tr>
+            <tr>
+              <td>Las metas de tiempo del cronómetro</td>
+              <td><strong>Propuesta de esta página, sin respaldo publicado.</strong> No existe referencia de tiempos para este procedimiento.</td>
+            </tr>
+            <tr>
+              <td>Hidrodisección para desplazar el asa</td>
+              <td><strong>Un reporte de un caso</strong> (Chan y Speirs). No es una técnica de rescate validada para la urgencia.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="go-banner" style="margin-top:14px;">
+        <span class="warning-icon">🎯</span>
+        <span><strong>Si de esta página hay que recordar tres cosas:</strong> ① <strong>sin vejiga vista, no hay
+        procedimiento</strong>; ② <strong>el trayecto se barre buscando intestino, y un asa en el camino manda el caso a
+        urología</strong>; y ③ <strong>la punción termina cuando está escrita la diuresis horaria</strong>, no cuando sale
+        la orina.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROGRESO -->
+  <div class="progress-bottom">
+    <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBar"></div></div>
+    <div class="progress-label"><span id="progress-pct">0%</span> del checklist</div>
+    <button type="button" class="reset-btn" onclick="resetAll()">↺ Reiniciar</button>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    presencial en el procedimiento ni en ecografía en el punto de atención. La <strong>cistostomía suprapúbica por
+    punción es un procedimiento invasivo que atraviesa la pared abdominal a ciegas o guiado por imagen, con riesgo
+    reconocido de lesión intestinal, de hemorragia y de muerte</strong>: la propia guía de la BAUS pide que ese riesgo se
+    considere siempre y se explique al paciente, y leer este checklist no sustituye la práctica supervisada.
+    <strong>El punto exacto de entrada y su distancia a la sínfisis, la angulación de inserción, la profundidad de
+    avance tras la aparición de orina, el calibre y el largo del catéter, el sistema de fijación y el volumen del balón
+    si el set lo tiene, el antiséptico y su tiempo de contacto, la concentración, el volumen y la dosis máxima del
+    anestésico local, el esquema de profilaxis antibiótica, la política de vaciamiento rápido o escalonado, el esquema
+    de reposición de la diuresis postobstructiva y la frecuencia de sus controles de laboratorio, el manejo de la
+    coagulopatía, los umbrales de transfusión, el número de intentos aceptable, el plazo de maduración del trayecto y de
+    recambio del catéter, y quién instala una cistostomía en este servicio y en qué horario dependen del material
+    disponible y deben verificarse con el protocolo institucional</strong> antes de aplicarse. Las instrucciones del
+    fabricante del set utilizado <strong>prevalecen sobre la descripción de técnica de esta página</strong>. Las
+    indicaciones y esquemas antimicrobianos mencionados son <strong>orientativos y no una indicación</strong>: los define
+    el <strong>programa local de uso de antimicrobianos (PROA)</strong>. Las <strong>metas de tiempo del cronómetro no
+    están validadas</strong> y se proponen solo para ordenar las etapas. El contenido es <strong>para adultos</strong>: el
+    manejo pediátrico, el de la paciente embarazada y el del paciente con cáncer vesical conocido se rigen por sus
+    propios protocolos y por la especialidad correspondiente. Verificar siempre dosis, contraindicaciones y
+    disponibilidad local antes de actuar.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Referencias localizadas y verificadas mediante <strong>PubMed</strong>.</div>
+      <div class="ref-item">Harrison SCW, Lawrence WT, Morley R, Pearce I, Taylor J. <em>British Association of Urological Surgeons' suprapubic catheter practice guidelines.</em> BJU Int. 2011;107(1):77–85. <a href="https://doi.org/10.1111/j.1464-410X.2010.09762.x" target="_blank" rel="noopener">DOI: 10.1111/j.1464-410X.2010.09762.x</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/21054755/" target="_blank" rel="noopener">PMID 21054755</a> — <strong>Guía de referencia de esta página.</strong> Primera guía de sociedad sobre indicaciones, inserción segura y cuidado posterior de la cistostomía suprapúbica, elaborada por un grupo de desarrollo tras revisión de la literatura y, donde faltaba evidencia, por <strong>consenso de expertos</strong>. Reconoce el procedimiento como ampliamente usado y generalmente seguro, pero con <strong>riesgo pequeño de complicaciones graves</strong>, y recomienda el uso de ecografía <em>siempre que sea posible</em> para identificar asas intestinales. <em>Los propios autores señalan que la base de evidencia es escasa.</em></div>
+      <div class="ref-item">Hall SJ, Harrison S, Harding C, Reid S, Parkinson R. <em>British Association of Urological Surgeons suprapubic catheter practice guidelines — revised.</em> BJU Int. 2020;126(4):416–422. <a href="https://doi.org/10.1111/bju.15123" target="_blank" rel="noopener">DOI: 10.1111/bju.15123</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/32463982/" target="_blank" rel="noopener">PMID 32463982</a> — <strong>Revisión 2020 de la guía anterior</strong>, con revisión sistemática de los datos publicados desde 2010. Mantiene el eje: el procedimiento es generalmente seguro, pero <strong>«el riesgo de morbilidad grave y de muerte debe considerarse siempre y explicarse al paciente»</strong>. Es la frase que organiza el consentimiento de la sección 01.</div>
+      <div class="ref-item">Jacob P, Rai BP, Todd AW. <em>Suprapubic catheter insertion using an ultrasound-guided technique and literature review.</em> BJU Int. 2012;110(6):779–784. <a href="https://doi.org/10.1111/j.1464-410X.2011.10882.x" target="_blank" rel="noopener">DOI: 10.1111/j.1464-410X.2011.10882.x</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/22257272/" target="_blank" rel="noopener">PMID 22257272</a> — <strong>Fuente del mecanismo del accidente y de la cifra histórica.</strong> Explica que la técnica «ciega» descansa en el supuesto de que la vejiga llena desplaza el intestino, y que <strong>en un pequeño porcentaje de pacientes eso no ocurre</strong>, con riesgo de lesión intestinal <strong>estimado en hasta 2,4 % y mortalidad del 1,8 %</strong>. Describe la técnica de punción guiada por ecografía y discute entrenamiento, equipamiento y logística. <em>Revisión y descripción de técnica, no ensayo.</em></div>
+      <div class="ref-item">Hall S, Ahmed S, Reid S, et al. <em>A national UK audit of suprapubic catheter insertion practice and rate of bowel injury with comparison to a systematic review and meta-analysis of available research.</em> Neurourol Urodyn. 2019;38(8):2194–2199. <a href="https://doi.org/10.1002/nau.24114" target="_blank" rel="noopener">DOI: 10.1002/nau.24114</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/31532853/" target="_blank" rel="noopener">PMID 31532853</a> — <strong>El dato más sólido sobre frecuencia de lesión intestinal.</strong> Auditoría de los datos nacionales británicos: <strong>11.473 inserciones</strong> en 18 meses, 141 laparotomías a 30 días y, de las 114 respuestas obtenidas, <strong>una sola lesión intestinal atribuible</strong>; el metaanálisis de la literatura dio <strong>11/1.490 (0,7 %)</strong>. Recomiendan usar un riesgo <strong>&lt; 0,25 %</strong> al informar al paciente de bajo riesgo. <em>Datos administrativos, con subregistro posible y respuesta incompleta de los centros.</em></div>
+      <div class="ref-item">Hobbs C, Howles S, Derry F, Reynard J. <em>Suprapubic catheterisation: a study of 1000 elective procedures.</em> BJU Int. 2022;129(6):760–767. <a href="https://doi.org/10.1111/bju.15727" target="_blank" rel="noopener">DOI: 10.1111/bju.15727</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/35279939/" target="_blank" rel="noopener">PMID 35279939</a> — <strong>Fuente del extremo favorable del riesgo y del seguimiento a largo plazo.</strong> Mil inserciones consecutivas en un centro de lesionados medulares, <strong>98 % guiadas por cistoscopia o por incisión sobre explorador uretral</strong>: complicaciones Clavien-Dindo <strong>≥ IIIb en 0,6 %</strong>, retorno a pabellón <strong>0,4 %</strong>, tres laparotomías por sangrado o malposición, <strong>ninguna lesión intestinal</strong>, una muerte a 30 días por tromboembolismo pulmonar; <strong>59 %</strong> con complicaciones a largo plazo, en general menores y bien toleradas. Sin diferencias entre los dos métodos de inserción. <em>Retrospectivo, electivo, población con lesión medular: no es la urgencia del box.</em></div>
+      <div class="ref-item">Kidd EA, Stewart F, Kassis NC, Hom E, Omar MI. <em>Urethral (indwelling or intermittent) or suprapubic routes for short-term catheterisation in hospitalised adults.</em> Cochrane Database Syst Rev. 2015;(12):CD004203. <a href="https://doi.org/10.1002/14651858.CD004203.pub3" target="_blank" rel="noopener">DOI: 10.1002/14651858.CD004203.pub3</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/26661940/" target="_blank" rel="noopener">PMID 26661940</a> — <strong>Fuente de la comparación entre vías.</strong> Cuarenta y dos ensayos; 25 compararon sonda uretral permanente con vía suprapúbica: <strong>más bacteriuria asintomática con la uretral</strong> (RR 2,25; IC 95 % 1,63–3,10) y <strong>más dolor</strong> (RR 5,62; IC 95 % 3,31–9,55), con evidencia <strong>inconcluyente y de calidad muy baja para infección urinaria sintomática</strong>. Los autores recuerdan explícitamente que la vía suprapúbica <em>puede causar perforación intestinal y muerte</em>.</div>
+      <div class="ref-item">Verma S, Vaka SK, Jain A, Reddy A, Nelamangala Ramakrishnaiah VP. <em>Inadvertent Bowel Injury Following Repeated Suprapubic Catheterisation in a Patient of Post-Pelvic Radiotherapy.</em> Cureus. 2020;12(9):e10189. <a href="https://doi.org/10.7759/cureus.10189" target="_blank" rel="noopener">DOI: 10.7759/cureus.10189</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/33029468/" target="_blank" rel="noopener">PMID 33029468</a> — <strong>El caso que sostiene la advertencia sobre radioterapia pelviana y punciones repetidas.</strong> Mujer de 54 años irradiada 30 años antes por cáncer de cuello uterino, con anuria y cateterismo uretral fallido, sometida a <strong>punciones suprapúbicas repetidas sin guía</strong>: el catéter quedó dentro del íleon terminal, con necrosis de la pared ileal y colección fecopurulenta. Se resecó el íleon distal con ileostomía y se reparó la vejiga; <strong>la paciente murió de sepsis</strong>. Los autores piden seguir la guía BAUS y usar ecografía en los casos de riesgo. <em>Reporte de un caso.</em></div>
+      <div class="ref-item">Islam MS, Islam MS, Biswas N, et al. <em>Small Bowel Perforation during Suprapubic Trocar Cystotomy: A Case Report.</em> Mymensingh Med J. 2016;25(2):359–362. · <a href="https://pubmed.ncbi.nlm.nih.gov/27277372/" target="_blank" rel="noopener">PMID 27277372</a> — Perforación de intestino delgado durante una <strong>cistostomía con trocar a ciegas bajo anestesia local</strong> en un hombre de 35 años con estrechez uretral, vejiga palpable y distendida, tras cateterismo uretral fallido. Se cita porque documenta el accidente <em>en el escenario «de libro»</em>: paciente joven, vejiga palpable y ninguna señal de alarma previa. <em>Reporte de un caso.</em></div>
+      <div class="ref-item">Foran AT, Nason GJ, Rohan P, et al. <em>Iatrogenic Bowel Injury at Exchange of Supra-Pubic Catheter.</em> Ir Med J. 2018;111(4):737. · <a href="https://pubmed.ncbi.nlm.nih.gov/30488682/" target="_blank" rel="noopener">PMID 30488682</a> — <strong>Fuente de la advertencia sobre el recambio.</strong> Perforación intestinal <em>durante el recambio</em> de una cistostomía, complicación poco reportada frente a la de la instalación. <em>Reporte de un caso.</em></div>
+      <div class="ref-item">Chan KKC, Speirs A. <em>Novel Use of Hydrodissection for the Insertion of Suprapubic Catheter Under Ultrasound Guidance.</em> Urology. 2020;136:263–265. <a href="https://doi.org/10.1016/j.urology.2019.09.041" target="_blank" rel="noopener">DOI: 10.1016/j.urology.2019.09.041</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/31704457/" target="_blank" rel="noopener">PMID 31704457</a> — <strong>Fuente de la hidrodisección.</strong> En un paciente con asa sobre la pared vesical anterior y sin condiciones para anestesia general, se inyectaron bajo ecografía <strong>30 mL</strong> de solución (10 mL de lidocaína al 1 % con 20 mL de agua estéril) entre la sínfisis y el intestino para desplazarlo, y luego se instaló el catéter <strong>por técnica de Seldinger</strong>, sin complicaciones a 6 meses. <em>Reporte de un caso: no es una técnica validada ni una maniobra de rescate para la urgencia.</em></div>
+      <div class="ref-item">Nyman MA, Schwenk NM, Silverstein MD. <em>Management of urinary retention: rapid versus gradual decompression and risk of complications.</em> Mayo Clin Proc. 1997;72(10):951–956. <a href="https://doi.org/10.1016/S0025-6196(11)63368-5" target="_blank" rel="noopener">DOI: 10.1016/S0025-6196(11)63368-5</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/9379700/" target="_blank" rel="noopener">PMID 9379700</a> — <strong>El argumento clásico a favor de vaciar de golpe.</strong> Tras el vaciamiento rápido y completo: hematuria en <strong>2 a 16 %</strong>, rara vez significativa; descenso de presión arterial que suele normalizarse sin hipotensión clínica; <strong>diuresis postobstructiva en 0,5 a 52 %</strong>, fácil de manejar. <strong>No identificó ningún estudio aleatorizado que comparara ambas estrategias ni ninguno que apoyara el vaciamiento gradual</strong>, y recomienda el rápido y completo. <em>Revisión narrativa de literatura previa a 1997.</em></div>
+      <div class="ref-item">Odeyemi PO, Idowu NA. <em>Comparison of post-decompressive haematuria in rapid versus gradual bladder decompression in patients with chronic urinary retention.</em> J West Afr Coll Surg. 2024;14(3):249–254. <a href="https://doi.org/10.4103/jwas.jwas_5_24" target="_blank" rel="noopener">DOI: 10.4103/jwas.jwas_5_24</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/38988429/" target="_blank" rel="noopener">PMID 38988429</a> — <strong>El contrapeso.</strong> Ensayo prospectivo aleatorizado en <strong>60 pacientes con retención crónica</strong> drenados por sonda uretral: hematuria macroscópica en <strong>15/30 (50 %) con descompresión rápida contra 7/30 (23,3 %) con gradual</strong> (p = 0,032); transfusión en 4 contra 1 pacientes, <strong>sin diferencia significativa</strong> (p = 0,920). Los autores recomiendan la descompresión gradual pese a ser más engorrosa. <em>Muestra pequeña, un solo centro, retención crónica y vía uretral: no es el escenario exacto de esta página.</em></div>
+      <div class="ref-item">Rigonalli U, Sigg S, von Moos S, et al. <em>Prevalence and Clinical Implications of Post-obstruction Hyperdiuresis Among Patients with Urinary Retention: A Mini Review.</em> Eur Urol Open Sci. 2025;73:68–70. <a href="https://doi.org/10.1016/j.euros.2025.01.017" target="_blank" rel="noopener">DOI: 10.1016/j.euros.2025.01.017</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/40041096/" target="_blank" rel="noopener">PMID 40041096</a> — <strong>Fuente de las frecuencias y de los factores de riesgo de la sección 08.</strong> Nueve estudios, 665 pacientes: hiperdiuresis posobstrucción en <strong>15–78 %</strong>, duración media de <strong>2–5 días</strong>; factores de riesgo <strong>creatinina &gt; 105 µmol/L (OR 4,83; IC 95 % 1,14–20,44; p = 0,032)</strong> y <strong>volumen vesical (OR 1,21 por cada 100 mL; IC 95 % 1,06–1,40; p = 0,006)</strong>; hematuria <strong>11–55 %</strong>, hiponatremia <strong>22–28 %</strong>, hipotensión <strong>9 %</strong>, en su mayoría autolimitadas. Señala que <strong>un ensayo aleatorizado no mostró diferencia entre descompresión rápida y gradual</strong> y que <strong>faltan protocolos estandarizados</strong>.</div>
+      <div class="ref-item">Finger E, Moses A. <em>As The River Flows: A Case Report of Post Obstructive Diuresis.</em> BMC Nephrol. 2025;26(1):341. <a href="https://doi.org/10.1186/s12882-025-04215-y" target="_blank" rel="noopener">DOI: 10.1186/s12882-025-04215-y</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/40604480/" target="_blank" rel="noopener">PMID 40604480</a> — <strong>Fuente de la definición y de la fisiopatología.</strong> Define la diuresis postobstructiva como <strong>≥ 200 mL/h durante dos horas consecutivas o &gt; 3 L en 24 horas</strong> tras resolver la obstrucción, distingue la forma <strong>fisiológica (≈ 24 h) de la patológica (&gt; 48 h)</strong> —que puede llevar a déficits electrolíticos masivos, hipotensión y shock— y describe el mecanismo: lavado del gradiente medular, daño tubular, menor expresión de transportadores de sodio en el asa ascendente gruesa, caída de la filtración glomerular y mala respuesta a la hormona antidiurética. <em>Reporte de un caso con revisión del mecanismo.</em></div>
+      <div class="ref-item">Bih LI, Ho CC, Tsai SJ, Lai YC, Chow W. <em>Bladder shape impact on the accuracy of ultrasonic estimation of bladder volume.</em> Arch Phys Med Rehabil. 1998;79(12):1553–1556. <a href="https://doi.org/10.1016/s0003-9993(98)90419-1" target="_blank" rel="noopener">DOI: 10.1016/s0003-9993(98)90419-1</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/9862299/" target="_blank" rel="noopener">PMID 9862299</a> — <strong>Fuente de la estimación de volumen por ecografía.</strong> Veinticuatro voluntarios y 55 pacientes con lesión medular; de diez fórmulas comparadas, la más exacta fue el <strong>producto de los tres diámetros por 0,7</strong>, con <strong>error medio de 17,4 % ± 11,6 %</strong>; el coeficiente óptimo fue 0,72 global y <strong>0,89 / 0,81 / 0,66</strong> para vejigas cuboides, elipsoides y en prisma triangular, con el error bajando a <strong>12,7 % ± 10,1 %</strong> al corregir por forma. <em>Muestra pequeña y población específica: la estimación es un orden de magnitud.</em></div>
+      <div class="ref-item">Morey AF, Broghammer JA, Hollowell CMP, McKibben MJ, Souter L. <em>Urotrauma Guideline 2020: AUA Guideline.</em> J Urol. 2021;205(1):30–35. <a href="https://doi.org/10.1097/JU.0000000000001408" target="_blank" rel="noopener">DOI: 10.1097/JU.0000000000001408</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/33053308/" target="_blank" rel="noopener">PMID 33053308</a> — <strong>Fuente del escenario de trauma.</strong> Enmienda 2020 de la guía de urotrauma, que <strong>añade un enunciado específico sobre la colocación de tubo suprapúbico percutáneo o abierto tras la lesión uretral por fractura de pelvis</strong>. La versión original (Morey 2014, J Urol 192(2):327–335, <a href="https://doi.org/10.1016/j.juro.2014.05.004" target="_blank" rel="noopener">DOI: 10.1016/j.juro.2014.05.004</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/24857651/" target="_blank" rel="noopener">PMID 24857651</a>) contiene el marco completo de evaluación y manejo de la lesión uretral. <em>La conducta concreta en el politraumatizado con fractura de pelvis la define el equipo quirúrgico y el protocolo local.</em></div>
+      <div class="ref-item">Aspectos <strong>convencionales</strong> descritos aquí y <strong>no respaldados individualmente por estudios de desenlace</strong>: todas las metas de tiempo del cronómetro; el punto de entrada en la línea media y su distancia de ≈ 2 cm sobre la sínfisis; la angulación de inserción y la profundidad de avance tras la aparición de orina; el uso de la aguja buscadora como ensayo del trayecto; el tope manual de profundidad; el Trendelenburg ligero; el recorte del vello; el antiséptico y su tiempo de contacto; la concentración, el volumen y la dosis máxima del anestésico local; los calibres, el largo del catéter y el sistema de fijación; la secuencia de confirmación ecográfica y la prueba de inyección de suero; el número aceptable de intentos; la conducta de no retirar un catéter sospechoso de estar en intestino; el esquema de profilaxis antibiótica; la fracción de las pérdidas a reponer en la diuresis postobstructiva y la frecuencia de sus controles; y los plazos de maduración del trayecto y de recambio del catéter. Provienen de guías basadas en consenso, descripciones de técnica, textos de procedimientos e instrucciones de fabricante, y deben contrastarse con el <strong>set realmente disponible, el programa local de antimicrobianos y el protocolo institucional vigente</strong>.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Checklist con progreso ────────────────────────────────────────
+  const SECTIONS = ['s1', 's4', 's5', 's6', 's7', 's8', 's9'];
+  const totals = {};
+  SECTIONS.forEach(s => {
+    const list = document.getElementById('list-' + s);
+    totals[s] = list ? list.querySelectorAll('.check-item').length : 0;
+  });
+  const TOTAL_CHECKS = SECTIONS.reduce((acc, s) => acc + totals[s], 0);
+
+  function countChecked(section) {
+    return document.querySelectorAll('#list-' + section + ' .check-item.checked').length;
+  }
+
+  function toggle(el, section) {
+    el.classList.toggle('checked');
+    updateCount(section);
+    updateProgress();
+  }
+
+  function updateCount(section) {
+    const el = document.getElementById('count-' + section);
+    if (!el) return;
+    const n = countChecked(section);
+    const t = totals[section];
+    el.textContent = n + '/' + t;
+    if (t > 0 && n === t) {
+      el.style.background = 'rgba(16,185,129,0.15)';
+      el.style.borderColor = 'rgba(16,185,129,0.3)';
+      el.style.color = '#6ee7b7';
+    } else {
+      el.style.background = '';
+      el.style.borderColor = '';
+      el.style.color = '';
+    }
+  }
+
+  function updateProgress() {
+    const done = SECTIONS.reduce((acc, s) => acc + countChecked(s), 0);
+    const pct = TOTAL_CHECKS ? Math.round((done / TOTAL_CHECKS) * 100) : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.check-item.checked').forEach(el => el.classList.remove('checked'));
+    SECTIONS.forEach(updateCount);
+    updateProgress();
+  }
+
+  SECTIONS.forEach(updateCount);
+  updateProgress();
+
+  // ── Cronómetro (sin persistencia) ─────────────────────────────────
+  let swStart = null;
+  let swAccum = 0;
+  let swTick = null;
+
+  function swElapsed() {
+    return swAccum + (swStart !== null ? Date.now() - swStart : 0);
+  }
+
+  function fmt(ms) {
+    const total = Math.floor(ms / 1000);
+    const m = String(Math.floor(total / 60)).padStart(2, '0');
+    const s = String(total % 60).padStart(2, '0');
+    return m + ':' + s;
+  }
+
+  function swRender() {
+    const ms = swElapsed();
+    const disp = document.getElementById('swDisplay');
+    disp.textContent = fmt(ms);
+    disp.classList.toggle('warn', ms >= 900000 && ms < 1800000);
+    disp.classList.toggle('late', ms >= 1800000);
+  }
+
+  function swToggle() {
+    const btn = document.getElementById('swToggle');
+    const cap = document.getElementById('swCaption');
+    if (swStart === null) {
+      swStart = Date.now();
+      swTick = setInterval(swRender, 200);
+      btn.textContent = '⏸ Detener';
+      cap.textContent = 'Corriendo desde la decisión de puncionar';
+    } else {
+      swAccum += Date.now() - swStart;
+      swStart = null;
+      clearInterval(swTick);
+      swTick = null;
+      btn.textContent = '▶ Continuar';
+      cap.textContent = 'En pausa';
+      swRender();
+    }
+  }
+
+  function msLabel(el) {
+    return el.dataset.prefix + el.dataset.goal + ' s';
+  }
+
+  function swReset() {
+    if (swTick) clearInterval(swTick);
+    swTick = null;
+    swStart = null;
+    swAccum = 0;
+    document.getElementById('swToggle').textContent = '▶ Iniciar';
+    document.getElementById('swCaption').textContent = 'Detenido · parte el reloj cuando se decide puncionar';
+    document.querySelectorAll('.ms').forEach(ms => {
+      ms.classList.remove('done', 'over');
+      ms.querySelector('.ms-goal').textContent = msLabel(ms);
+    });
+    swRender();
+  }
+
+  function markMs(el) {
+    if (el.classList.contains('done')) {
+      el.classList.remove('done', 'over');
+      el.querySelector('.ms-goal').textContent = msLabel(el);
+      return;
+    }
+    if (swStart === null && swAccum === 0) swToggle();
+    const secs = Math.round(swElapsed() / 1000);
+    const goal = parseInt(el.dataset.goal, 10);
+    el.classList.add('done');
+    el.classList.toggle('over', secs > goal);
+    el.querySelector('.ms-goal').textContent = secs + ' s · meta ' + goal + ' s';
+  }
+
+  swRender();
+</script>
+</body>
+</html>

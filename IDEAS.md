@@ -318,7 +318,46 @@ terminado sin su tarjeta correspondiente en el index.
       reposo y carga; la política de imagen y el período de observación posprocedimiento; los umbrales de
       recuento y el circuito de la articulación protésica; y **quién punciona la cadera en el servicio, con qué
       apoyo de imagen y en qué horario**. El contenido es para adultos con articulación nativa.
-- [ ] Cistostomía por punción suprapúbica de urgencia (usando CistoFix)
+- [x] Cistostomía por punción suprapúbica de urgencia (usando CistoFix) —
+      `checklist-cistostomia-suprapubica.html` (checklist con cronómetro e hitos).
+      La página se organiza alrededor de la única complicación que mata, la **lesión
+      intestinal**, y del supuesto anatómico del que depende toda la técnica: que la
+      vejiga distendida desplaza el peritoneo y deja un corredor extraperitoneal
+      —explícito en la revisión de Jacob, que cita el riesgo histórico de **hasta
+      2,4 % con mortalidad del 1,8 %** en la punción a ciegas—. Las cifras se
+      presentan juntas y sin aplanarlas: **0,7 %** en el metaanálisis de la auditoría
+      nacional británica de Hall sobre **11.473 inserciones**, con la recomendación
+      de informar **< 0,25 %** al paciente de bajo riesgo, y **ninguna lesión
+      intestinal** en las 1.000 inserciones electivas guiadas de Hobbs; la diferencia
+      entre esos extremos es la selección y la imagen. Sigue la guía **BAUS** (2010 y
+      su revisión de 2020), con su recomendación de usar ecografía *siempre que sea
+      posible* y su exigencia de explicar el riesgo de muerte en el consentimiento.
+      Incluye la contraindicación que define el procedimiento (**vejiga que no se
+      ve**), la estratificación que decide box contra urología o radiología —con
+      laparotomía previa, radioterapia pelviana (caso fatal de Verma), cáncer vesical
+      por siembra del trayecto, retención por coágulos y embarazo fuera del box—, las
+      **tres medidas ecográficas** antes de pinchar (piel→pared anterior, piel→pared
+      posterior y altura de la cúpula sobre la sínfisis), la advertencia de kit sobre
+      los sets **sin balón**, la secuencia con trocar y camisa divisible y la variante
+      de Seldinger, la confirmación en tres niveles, la **diuresis postobstructiva**
+      con su definición (≥ 200 mL/h por 2 h o > 3 L/24 h) y sus factores de riesgo
+      (creatinina > 105 µmol/L, OR 4,83; volumen vesical, OR 1,21 por 100 mL), el
+      desacuerdo honesto entre Nyman y el ensayo de Odeyemi sobre vaciar rápido o
+      despacio, y el reconocimiento de la lesión intestinal en sus cuatro formas con
+      la regla de **no retirar el catéter sospechoso**. Esquemas vectoriales, sin
+      imágenes de terceros. Pendiente de validación: todas las metas de tiempo del
+      cronómetro (no hay referencia publicada de tiempos para este procedimiento); el
+      punto de entrada y su distancia a la sínfisis, la angulación y la profundidad de
+      avance; los calibres, el largo del catéter y el sistema de fijación, que son del
+      set y cuyas instrucciones de fabricante prevalecen sobre la página; el
+      antiséptico y su tiempo de contacto; la concentración, el volumen y la dosis
+      máxima del anestésico local; el esquema de profilaxis antibiótica, que lo define
+      el PROA local; la política de vaciamiento rápido o escalonado; el esquema de
+      reposición de la diuresis postobstructiva y la frecuencia de sus controles; el
+      número aceptable de intentos; los umbrales de coagulación y de transfusión; y
+      los plazos de maduración del trayecto y de recambio del catéter. El contenido es
+      para adultos; la paciente embarazada, la pediatría y el cáncer vesical conocido
+      quedan explícitamente fuera.
 
 ## 4. Síntomas cardinales
 
