@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Síntoma cardinal · Diarrea y vómitos</title>
+<meta name="description" content="Diarrea y vómitos en el adulto: bifurcación en los primeros minutos, criterios para no pedir exámenes ni coprocultivo, estimador de reposición, bundle simultáneo para el paciente complicado y el shock, e indicaciones al alta listas para copiar.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --surface2: #eef1f5;
+    --border: rgba(15,23,42,0.10);
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --text-dim: #475569;
+  }
+  :root[data-theme="light"] body::before {
+    background-image:
+      linear-gradient(rgba(15,23,42,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(245,158,11,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(16,185,129,0.06) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 32px; animation: fadeUp 0.6s ease both; }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 0;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .theme-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+    font-size: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .theme-btn:hover { color: var(--text); border-color: var(--text-muted); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245,158,11,0.1);
+    border: 1px solid rgba(245,158,11,0.25);
+    color: #fcd34d;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #f59e0b, #10b981);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .header-sub strong { color: var(--text); font-weight: 500; }
+
+  /* SECCIONES */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+  .section-title { font-family: var(--display); font-size: 15px; font-weight: 700; color: #fff; }
+  .section-subtitle { font-size: 12px; color: var(--text-muted); font-family: var(--mono); margin-top: 2px; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+  .section-body { padding: 20px 24px 24px; }
+
+  .s1 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s3 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+
+  /* TRIAGE */
+  .q-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .q-label .arrow { color: var(--text-dim); letter-spacing: 0.04em; text-transform: none; }
+  .q-block { margin-bottom: 18px; }
+
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+    line-height: 1.4;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+  .opt.on { background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.45); color: #6ee7b7; }
+  .grp-C .opt.on  { background: rgba(239,68,68,0.14);  border-color: rgba(239,68,68,0.5);  color: #fca5a5; }
+  .grp-B2 .opt.on { background: rgba(99,102,241,0.14); border-color: rgba(99,102,241,0.5); color: #c7d2fe; }
+  .grp-B1 .opt.on { background: rgba(245,158,11,0.13); border-color: rgba(245,158,11,0.5); color: #fcd34d; }
+  .grp-D .opt.on  { background: rgba(59,130,246,0.14); border-color: rgba(59,130,246,0.5); color: #93c5fd; }
+  .opt .sub { display: block; font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+  .opt.on .sub { color: inherit; opacity: 0.8; }
+
+  .no-flags {
+    width: 100%;
+    font-family: var(--display);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px dashed rgba(16,185,129,0.4);
+    background: rgba(16,185,129,0.05);
+    color: #6ee7b7;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.18s;
+  }
+  .no-flags .sub { display: block; font-family: var(--sans); font-weight: 400; font-size: 12.5px; color: var(--text-dim); margin-top: 4px; line-height: 1.5; }
+  .no-flags.on { border-style: solid; background: rgba(16,185,129,0.14); border-color: rgba(16,185,129,0.6); }
+  .no-flags:disabled { opacity: 0.35; cursor: not-allowed; }
+  .no-flags:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+
+  .verdict {
+    margin-top: 18px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    padding: 16px 18px;
+    border-left: 4px solid var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .verdict.placeholder { font-family: var(--mono); font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
+  .verdict-main { flex: 1; min-width: 220px; }
+  .verdict-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+  .verdict-title { font-family: var(--display); font-size: 18px; font-weight: 700; color: #fff; line-height: 1.25; }
+  .verdict-why { font-size: 12.5px; color: var(--text-dim); margin-top: 6px; line-height: 1.5; }
+  .verdict.p-A  { border-left-color: var(--emerald); }
+  .verdict.p-B1 { border-left-color: var(--amber); }
+  .verdict.p-B2 { border-left-color: var(--indigo); }
+  .verdict.p-C  { border-left-color: var(--red); }
+  .verdict.p-D  { border-left-color: var(--blue); }
+
+  .go-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    padding: 11px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .go-btn:hover { background: rgba(255,255,255,0.1); }
+
+  .link-btn {
+    background: none;
+    border: none;
+    color: #93c5fd;
+    font-family: var(--mono);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* CAMINOS */
+  .path-tabs {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .path-tab {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px 12px 11px;
+    cursor: pointer;
+    text-align: left;
+    color: var(--text-dim);
+    transition: all 0.18s;
+    border-top: 3px solid var(--tab-accent);
+  }
+  .path-tab:hover { color: var(--text); background: var(--surface2); }
+  .path-tab:focus-visible { outline: 2px solid var(--tab-accent); outline-offset: 2px; }
+  .path-tab .code { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--tab-accent); }
+  .path-tab .name { display: block; font-family: var(--display); font-size: 13.5px; font-weight: 700; margin-top: 3px; line-height: 1.2; }
+  .path-tab.active { background: var(--surface2); color: #fff; box-shadow: 0 0 0 1px var(--tab-accent) inset; }
+  .t-A  { --tab-accent: var(--emerald); }
+  .t-B1 { --tab-accent: var(--amber); }
+  .t-B2 { --tab-accent: var(--indigo); }
+  .t-C  { --tab-accent: var(--red); }
+  .t-D  { --tab-accent: var(--blue); }
+
+  .path-panel {
+    display: none;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 22px 24px 24px;
+    margin-bottom: 20px;
+    border-top: 3px solid var(--tab-accent);
+  }
+  .path-panel.active { display: block; animation: fadeUp 0.35s ease both; }
+
+  .panel-head { margin-bottom: 14px; }
+  .panel-code { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tab-accent); }
+  .panel-title { font-family: var(--display); font-size: 22px; font-weight: 800; color: #fff; line-height: 1.2; margin-top: 4px; }
+  .panel-crit { font-size: 13px; color: var(--text-dim); margin-top: 6px; line-height: 1.55; }
+
+  .targets { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 6px; }
+  .target {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    padding: 7px 11px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .target b { color: var(--tab-accent); font-weight: 500; }
+
+  .block-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 22px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .block-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .stop {
+    border-radius: 14px;
+    border: 1px solid rgba(239,68,68,0.35);
+    background: rgba(239,68,68,0.07);
+    padding: 14px 16px;
+  }
+  .stop-title { font-family: var(--display); font-weight: 800; font-size: 15px; color: #fca5a5; margin-bottom: 8px; letter-spacing: 0.01em; }
+  .stop ul, .order ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .stop li { font-size: 13.5px; color: #fecaca; line-height: 1.5; padding-left: 22px; position: relative; }
+  .stop li::before { content: '✕'; position: absolute; left: 2px; color: var(--red); font-weight: 700; }
+  .stop .why { margin-top: 10px; font-size: 12.5px; color: var(--text-dim); line-height: 1.55; }
+  .stop .why strong { color: #fff; font-weight: 500; }
+
+  .order {
+    border-radius: 14px;
+    border: 1px solid rgba(16,185,129,0.3);
+    background: rgba(16,185,129,0.06);
+    padding: 14px 16px;
+  }
+  .order-title { font-family: var(--display); font-weight: 800; font-size: 15px; color: #6ee7b7; margin-bottom: 8px; }
+  .order li { font-size: 13.5px; color: var(--text); line-height: 1.5; padding-left: 22px; position: relative; }
+  .order li::before { content: '✓'; position: absolute; left: 2px; color: var(--emerald); font-weight: 700; }
+  .order li .cond { color: var(--text-muted); font-family: var(--mono); font-size: 11.5px; }
+  .order-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; }
+  .order-grid .order-title { font-size: 13px; font-family: var(--mono); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+
+  .inst-rule {
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: #fde68a;
+    background: rgba(245,158,11,0.07);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 10px;
+    padding: 10px 12px;
+    line-height: 1.5;
+  }
+  .inst-rule b { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); font-weight: 500; margin-right: 6px; }
+
+  /* FÁRMACOS */
+  .med-list { display: flex; flex-direction: column; gap: 8px; }
+  .med {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    width: 100%;
+    text-align: left;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    cursor: pointer;
+    color: var(--text-dim);
+    font-family: var(--sans);
+    transition: all 0.18s;
+  }
+  .med:hover { border-color: rgba(255,255,255,0.18); }
+  .med:focus-visible { outline: 2px solid var(--tab-accent); outline-offset: 2px; }
+  .med .radio {
+    width: 16px; height: 16px; border-radius: 50%;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .med.multi .radio { border-radius: 5px; }
+  .med.on { border-color: var(--tab-accent); background: rgba(255,255,255,0.04); }
+  .med.on .radio { border-color: var(--tab-accent); background: var(--tab-accent); box-shadow: inset 0 0 0 3px var(--surface2); }
+  .med-name { font-size: 14px; color: #fff; font-weight: 500; }
+  .med-dose { font-family: var(--mono); font-size: 12.5px; color: var(--text); margin-top: 2px; }
+  .med-note { font-size: 12px; color: var(--text-muted); margin-top: 3px; line-height: 1.45; }
+
+  .avoid {
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+  }
+  .avoid strong { color: #fca5a5; font-weight: 500; }
+
+  /* ESTIMADOR DE REPOSICIÓN */
+  .calc-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; }
+  .calc-field { display: flex; flex-direction: column; gap: 6px; }
+  .calc-field label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .calc-field input, .calc-field select {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 14px;
+    padding: 10px 12px;
+    min-width: 150px;
+  }
+  .calc-field input:focus-visible, .calc-field select:focus-visible { outline: 2px solid var(--amber); outline-offset: 1px; }
+  .calc-out { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; margin-top: 14px; }
+  .calc-cell {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+  .calc-cell .k { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+  .calc-cell .v { font-family: var(--mono); font-size: 19px; color: #fff; margin-top: 5px; }
+  .calc-cell .u { font-size: 12px; color: var(--text-dim); margin-top: 4px; line-height: 1.45; }
+  .calc-empty { font-family: var(--mono); font-size: 12.5px; color: var(--text-muted); margin-top: 14px; line-height: 1.6; }
+
+  /* TABLA COMPACTA */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 11px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td { padding: 11px 14px; border-bottom: 1px solid var(--border); color: var(--text-dim); vertical-align: top; line-height: 1.5; }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; font-family: var(--mono); font-size: 12.5px; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 6px; }
+  .check {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    cursor: pointer;
+    line-height: 1.45;
+  }
+  .check input { accent-color: var(--emerald); width: 17px; height: 17px; margin-top: 1px; flex-shrink: 0; cursor: pointer; }
+  .check:has(input:checked) { color: var(--text); border-color: rgba(16,185,129,0.35); }
+  .check-status { font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); margin-top: 8px; }
+  .check-status.ok { color: #6ee7b7; }
+
+  /* COPIADO */
+  .copy-box {
+    border-radius: 14px;
+    border: 1px solid rgba(59,130,246,0.3);
+    background: rgba(59,130,246,0.05);
+    overflow: hidden;
+  }
+  .copy-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 10px 12px 10px 16px;
+    border-bottom: 1px solid rgba(59,130,246,0.2);
+  }
+  .copy-bar span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #93c5fd; }
+  .copy-btn {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    background: var(--blue);
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.12s, background 0.2s;
+    white-space: nowrap;
+  }
+  .copy-btn:hover { background: #2563eb; }
+  .copy-btn:active { transform: scale(0.97); }
+  .copy-btn.done { background: var(--emerald); }
+  .copy-pre {
+    margin: 0;
+    padding: 14px 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 340px;
+    overflow-y: auto;
+  }
+  .copy-hint { font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.5; }
+
+  /* LISTAS Y BANNERS */
+  .plain-list { display: flex; flex-direction: column; gap: 8px; }
+  .plain-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 11px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  .warning-banner {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.55;
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.22);
+    color: #fca5a5;
+    margin-top: 12px;
+  }
+  .warning-banner strong { color: #fff; font-weight: 500; }
+
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+
+  .deep-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 16px 20px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    text-decoration: none;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .deep-link:hover { border-color: rgba(20,184,166,0.4); transform: translateX(2px); }
+  .deep-link strong { display: block; font-family: var(--display); font-size: 15px; color: #fff; margin-bottom: 3px; }
+  .deep-link span { font-size: 12.5px; line-height: 1.5; }
+  .deep-link .arr { font-family: var(--mono); color: var(--teal); font-size: 18px; flex-shrink: 0; }
+
+  /* DISCLAIMER Y PIE */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--emerald); }
+
+  .thanks {
+    margin-top: 20px;
+    border: 1px solid rgba(16,185,129,0.2);
+    background: rgba(16,185,129,0.05);
+    border-radius: 14px;
+    padding: 16px 20px;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .thanks strong { color: #6ee7b7; font-weight: 500; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body, .path-panel { padding: 16px; }
+    .section-header { padding: 16px; }
+    .path-tabs { grid-template-columns: repeat(2, 1fr); }
+    .opt { width: 100%; }
+    th, td { padding: 10px 12px; }
+    .copy-bar { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <a class="back-link" href="./index.html">← Volver</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Cambiar tema claro u oscuro">◐</button>
+    </div>
+    <div class="header-badge">Síntoma cardinal · Adulto</div>
+    <h1><span>Diarrea y vómitos</span></h1>
+    <p class="header-sub">
+      Decide el camino en los <strong>primeros 3 minutos</strong>. La gastroenteritis del adulto sano se trata
+      <strong>sin ningún examen</strong>: el trabajo real es comprobar la tolerancia oral y entregar sales de
+      rehidratación con una cantidad concreta. En el paciente complicado, todas las órdenes se piden
+      <strong>juntas al ingreso</strong>. Y antes de rotular el cuadro, descarta lo que
+      <strong>no es una gastroenteritis</strong>.
+    </p>
+  </div>
+
+  <!-- 01 · BIFURCACIÓN -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">MIN 0–3</span>
+      <div>
+        <div class="section-title">¿Tiene banderas rojas?</div>
+        <div class="section-subtitle">Marca lo presente. Manda el grupo más grave</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="q-block grp-C">
+        <div class="q-label">Hipoperfusión <span class="arrow">→ camino C</span></div>
+        <div class="opts" data-group="C">
+          <button type="button" class="opt" data-v="pas">PAS ≤ 90 mmHg<span class="sub">o caída &gt; 40 mmHg respecto de su presión habitual</span></button>
+          <button type="button" class="opt" data-v="taqui">FC ≥ 120 con pulso débil</button>
+          <button type="button" class="opt" data-v="conciencia">Compromiso de conciencia o letargia</button>
+          <button type="button" class="opt" data-v="perfusion">Mala perfusión<span class="sub">llene capilar &gt; 3 s · extremidades frías · piel moteada</span></button>
+          <button type="button" class="opt" data-v="anuria">Anuria o sin orinar &gt; 12 h</button>
+          <button type="button" class="opt" data-v="lactato">Lactato ≥ 4 mmol/L</button>
+        </div>
+      </div>
+
+      <div class="q-block grp-D">
+        <div class="q-label">Replantea el diagnóstico <span class="arrow">→ camino D</span></div>
+        <div class="opts" data-group="D">
+          <button type="button" class="opt" data-v="sinDiarrea">Vómitos sin diarrea<span class="sub">no se sostiene el diagnóstico de gastroenteritis</span></button>
+          <button type="button" class="opt" data-v="despro">Dolor desproporcionado al examen<span class="sub">adulto mayor · fibrilación auricular · vasculopatía</span></button>
+          <button type="button" class="opt" data-v="peritoneal">Dolor localizado, defensa o signos peritoneales</button>
+          <button type="button" class="opt" data-v="obstruccion">Distensión con ausencia de gases<span class="sub">o cirugía abdominal previa · fecaloma</span></button>
+          <button type="button" class="opt" data-v="neuro">Síntomas neurológicos<span class="sub">diplopía · disfagia · debilidad descendente · parestesias o inversión térmica</span></button>
+          <button type="button" class="opt" data-v="metab">Hiperglicemia, polidipsia o Kussmaul<span class="sub">o hipotensión que no responde a volumen</span></button>
+        </div>
+      </div>
+
+      <div class="q-block grp-B2">
+        <div class="q-label">Requiere hospitalización <span class="arrow">→ camino B2</span></div>
+        <div class="opts" data-group="B2">
+          <button type="button" class="opt" data-v="deshGrave">Deshidratación grave sin hipotensión<span class="sub">turgor muy disminuido · letargia leve · oliguria marcada</span></button>
+          <button type="button" class="opt" data-v="intolerancia">Intolerancia oral pese al antiemético</button>
+          <button type="button" class="opt" data-v="renal">Injuria renal aguda, hipokalemia o acidosis marcada</button>
+          <button type="button" class="opt" data-v="inmuno">Inmunosupresión, trasplante, neutropenia o VIH avanzado</button>
+          <button type="button" class="opt" data-v="gestaFiebre">Embarazada con fiebre<span class="sub">sospecha de listeriosis</span></button>
+          <button type="button" class="opt" data-v="shu">Sospecha de síndrome hemolítico urémico<span class="sub">palidez · oliguria · trombocitopenia tras diarrea con sangre</span></button>
+          <button type="button" class="opt" data-v="cdiffGrave">C. difficile grave<span class="sub">íleo · distensión · leucocitosis marcada · creatinina en alza</span></button>
+          <button type="button" class="opt" data-v="social">No puede asegurar hidratación ni control<span class="sub">adulto mayor frágil sin red de apoyo</span></button>
+        </div>
+      </div>
+
+      <div class="q-block grp-B1">
+        <div class="q-label">Necesita estudio o hidratación en el box <span class="arrow">→ camino B1</span></div>
+        <div class="opts" data-group="B1">
+          <button type="button" class="opt" data-v="deshMod">Deshidratación moderada<span class="sub">mucosas secas · ortostatismo · oliguria</span></button>
+          <button type="button" class="opt" data-v="vomitos">Vómitos que impiden beber</button>
+          <button type="button" class="opt" data-v="sangre">Sangre o mucus en las deposiciones</button>
+          <button type="button" class="opt" data-v="fiebre">Fiebre ≥ 38,5 °C</button>
+          <button type="button" class="opt" data-v="atb">Antibiótico u hospitalización en los últimos 3 meses</button>
+          <button type="button" class="opt" data-v="riesgo">≥ 65 años o comorbilidad relevante<span class="sub">diabetes · ERC · insuficiencia cardíaca · cirrosis</span></button>
+          <button type="button" class="opt" data-v="persistente">Diarrea de ≥ 14 días</button>
+          <button type="button" class="opt" data-v="viaje">Viaje reciente, brote o alimento compartido</button>
+          <button type="button" class="opt" data-v="gesta">Embarazada sin fiebre</button>
+          <button type="button" class="opt" data-v="farmacos">Diurético, IECA, ARA II, AINE, metformina o iSGLT2</button>
+          <button type="button" class="opt" data-v="laboral">Manipuladora de alimentos, personal de salud o sala cuna</button>
+        </div>
+      </div>
+
+      <button type="button" class="no-flags" id="noFlags">
+        Ninguna → camino A
+        <span class="sub">Adulto previamente sano, con diarrea acuosa o vómitos de pocos días, hidratado y tolerando líquidos en el box, sin fiebre alta, sin sangre en las deposiciones y sin dolor abdominal localizado.</span>
+      </button>
+
+      <div class="verdict placeholder" id="verdict">
+        Marca las banderas rojas presentes, o confirma que no hay ninguna.
+        <br>¿Vómitos sin diarrea, dolor localizado o dolor desproporcionado al examen?
+        <button type="button" class="link-btn" onclick="openDiff()">Puede que no sea una gastroenteritis →</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PESTAÑAS DE CAMINO -->
+  <div class="path-tabs" id="pathTabs" role="tablist">
+    <button type="button" class="path-tab t-A"  data-path="A"  role="tab"><span class="code">A</span><span class="name">Sana · alta rápida</span></button>
+    <button type="button" class="path-tab t-B1" data-path="B1" role="tab"><span class="code">B1</span><span class="name">Dirigido · alta</span></button>
+    <button type="button" class="path-tab t-B2" data-path="B2" role="tab"><span class="code">B2</span><span class="name">Hospitalizar</span></button>
+    <button type="button" class="path-tab t-C"  data-path="C"  role="tab"><span class="code">C</span><span class="name">Shock</span></button>
+    <button type="button" class="path-tab t-D"  data-path="D"  role="tab"><span class="code">D</span><span class="name">No es gastroenteritis</span></button>
+  </div>
+
+  <!-- ═══ CAMINO A ═══ -->
+  <div class="path-panel t-A" id="panel-A" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Camino A · Fast-track</div>
+      <div class="panel-title">Gastroenteritis aguda no complicada</div>
+      <div class="panel-crit">Adulto previamente sano · diarrea acuosa o vómitos de pocos días · hidratado y tolerando la vía oral · sin fiebre alta, sin sangre en las deposiciones y sin dolor localizado.</div>
+    </div>
+    <div class="targets">
+      <span class="target">⏱ Alta en <b>&lt; 45 min</b></span>
+      <span class="target">🧪 Exámenes: <b>ninguno</b></span>
+      <span class="target">🥤 Prueba de tolerancia oral: <b>15–30 min</b></span>
+    </div>
+
+    <div class="block-label">Stop workup</div>
+    <div class="stop">
+      <div class="stop-title">NO pedir</div>
+      <ul>
+        <li>Coprocultivo ni panel molecular gastrointestinal</li>
+        <li>Estudio de <em>C. difficile</em> (sin antibiótico ni hospitalización recientes)</li>
+        <li>Hemograma, PCR, electrolitos ni función renal</li>
+        <li>Leucocitos fecales ni lactoferrina fecal</li>
+        <li>Radiografía de abdomen, ecografía ni tomografía</li>
+      </ul>
+      <div class="why">
+        <strong>El cuadro es autolimitado y el agente no cambia la conducta.</strong> En el adulto sano con diarrea
+        acuosa de pocos días, identificar el germen no modifica el tratamiento, que es la hidratación; un panel
+        molecular positivo tampoco distingue infección activa de colonización o excreción residual.
+        <strong>Lo que sí cambia el desenlace</strong> es comprobar la tolerancia oral en el box y entregar las
+        sales de rehidratación con una cantidad concreta, no «tomar harto líquido».
+        Si aparece sangre, fiebre alta o antibiótico reciente, pasa a <button type="button" class="link-btn" onclick="showPath('B1', true)">B1</button>;
+        si hay vómitos sin diarrea o dolor localizado, a <button type="button" class="link-btn" onclick="showPath('D', true)">D</button>.
+      </div>
+    </div>
+
+    <div class="block-label">Hidratación · base del tratamiento</div>
+    <div class="order">
+      <div class="order-title">Sales de rehidratación oral (SRO)</div>
+      <ul>
+        <li>SRO de baja osmolaridad, fórmula OMS <span class="cond">Na 75 · glucosa 75 · K 20 · Cl 65 · citrato 10 mmol/L · 245 mOsm/L</span></li>
+        <li>Volúmenes pequeños y frecuentes: <strong>5–10 mL cada 2–5 min</strong> al inicio, para vencer los vómitos</li>
+        <li>Reponer las pérdidas que se mantengan: <strong>10 mL/kg por cada deposición líquida</strong> y <strong>2 mL/kg por cada vómito</strong></li>
+        <li>Realimentación precoz con la dieta habitual en cuanto se tolere <span class="cond">sin dietas restrictivas prolongadas</span></li>
+        <li>Entregar la cantidad en litros por día, por escrito <button type="button" class="link-btn" onclick="openCalc()">estimador de reposición →</button></li>
+      </ul>
+    </div>
+    <div class="avoid">
+      <strong>Las bebidas isotónicas deportivas, las bebidas gaseosas y los jugos no reemplazan la SRO:</strong>
+      aportan poco sodio y demasiada azúcar, y pueden empeorar la diarrea osmótica.
+    </div>
+
+    <div class="block-label">Síntomas · opcional</div>
+    <div class="med-list" data-analg="A"></div>
+    <div class="avoid">
+      <strong>Loperamida contraindicada</strong> si hay diarrea con sangre, fiebre alta, sospecha de
+      <em>E. coli</em> productora de toxina Shiga (STEC), sospecha de <em>C. difficile</em> o de megacolon tóxico.
+      En esos casos no es solo inútil: empeora el cuadro. <strong>El antibiótico no está indicado</strong> en la
+      diarrea acuosa del adulto sano: no acorta el cuadro viral y selecciona resistencia.
+    </div>
+
+    <div class="block-label">Checklist de alta</div>
+    <div class="checklist" data-check="A">
+      <label class="check"><input type="checkbox"> Tolerancia oral comprobada en el box</label>
+      <label class="check"><input type="checkbox"> Sin sangre en las deposiciones, sin fiebre ≥ 38,5 °C y sin dolor localizado</label>
+      <label class="check"><input type="checkbox"> SRO indicada con cantidad concreta (litros al día) y por escrito</label>
+      <label class="check"><input type="checkbox"> Embarazo descartado si corresponde (FUR; test en el box si hay duda)</label>
+      <label class="check"><input type="checkbox"> Medidas de contagio explicadas y entiende los signos de alarma</label>
+    </div>
+    <div class="check-status" data-status="A"></div>
+
+    <div class="block-label">Indicaciones al paciente</div>
+    <div class="copy-box">
+      <div class="copy-bar"><span>Texto para la ficha / entrega</span><button type="button" class="copy-btn" data-copy="A">Copiar indicaciones</button></div>
+      <pre class="copy-pre" id="copy-A"></pre>
+    </div>
+    <div class="copy-hint">El texto se arma con lo que selecciones arriba. No se guarda ningún dato.</div>
+  </div>
+
+  <!-- ═══ CAMINO B1 ═══ -->
+  <div class="path-panel t-B1" id="panel-B1" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Camino B1 · Estudio dirigido, alta</div>
+      <div class="panel-title">Diarrea o vómitos que necesitan algo más, pero se van de alta</div>
+      <div class="panel-crit">Estable, sin criterios de B2 ni de C. Se hidrata en el box, se piden solo los exámenes que cambian la conducta y se va de alta <strong>sin esperar el coprocultivo</strong>.</div>
+    </div>
+
+    <div class="block-label">Escenario</div>
+    <div class="opts" id="b1Scen"></div>
+
+    <div class="targets">
+      <span class="target">💧 Hidratación iniciada en <b>&lt; 20 min</b></span>
+      <span class="target">🧪 Muestras antes del antibiótico, si corresponde</span>
+      <span class="target">🚪 Reevaluar tolerancia oral a las <b>2 h</b></span>
+      <span class="target">🔬 Control en <b>48–72 h</b></span>
+    </div>
+
+    <div class="block-label">Pedir · todo junto al ingreso</div>
+    <div class="order">
+      <div class="order-title">Órdenes</div>
+      <ul id="b1Orders"></ul>
+    </div>
+    <div class="inst-rule"><b>Regla práctica</b> El coprocultivo o el panel molecular se piden cuando el resultado puede cambiar la conducta, el aislamiento o la notificación: diarrea con sangre, fiebre ≥ 38,5 °C, cuadro grave, inmunosupresión, diarrea persistente, sospecha de brote y trabajadores de riesgo. El estudio de <em>C. difficile</em> solo se procesa en <strong>deposición líquida</strong>, nunca en deposición formada.</div>
+
+    <div class="block-label">Stop workup</div>
+    <div class="stop">
+      <div class="stop-title">NO pedir</div>
+      <ul>
+        <li>Leucocitos fecales ni lactoferrina fecal: rendimiento limitado, no cambian la conducta</li>
+        <li>Parasitológico en la diarrea aguda de pocos días sin factores de riesgo</li>
+        <li>Radiografía de abdomen para «confirmar» una gastroenteritis: solo sirve para obstrucción, perforación o dilatación colónica</li>
+        <li>Tomografía sin sospecha de abdomen agudo, isquemia mesentérica o colitis grave: si la sospechas, el paciente va a <button type="button" class="link-btn" onclick="showPath('D', true)">D</button></li>
+        <li>No esperar el coprocultivo para dar el alta: se revisa en el control</li>
+      </ul>
+      <div class="why"><strong>Función renal y electrolitos</strong> solo si hay deshidratación moderada o grave, edad ≥ 65 años, comorbilidad, vómitos prolongados o fármacos de riesgo (diurético, IECA, ARA II, AINE, metformina, iSGLT2): definen el destino y qué fármacos se suspenden.</div>
+    </div>
+
+    <div class="block-label">Hidratación</div>
+    <div class="order">
+      <div class="order-title">Vía oral primero</div>
+      <ul>
+        <li>En deshidratación leve a moderada la <strong>SRO es tan eficaz como la vía intravenosa</strong> y tiene menos complicaciones</li>
+        <li>Antiemético primero y <strong>SRO en volúmenes pequeños y frecuentes</strong> (5–10 mL cada 2–5 min): así se rescata la vía oral en el paciente que vomita</li>
+        <li>Déficit estimado y volumen de reposición <button type="button" class="link-btn" onclick="openCalc()">estimador →</button></li>
+        <li>Cristaloide isotónico (suero fisiológico o Ringer lactato) <span class="cond">solo si fracasa la vía oral, hay íleo o vómitos incoercibles</span></li>
+        <li>Comprobar la tolerancia oral en el box <strong>antes</strong> de dar el alta, aunque se haya hidratado por vena</li>
+      </ul>
+    </div>
+
+    <div class="block-label">Tratamiento específico · elige uno</div>
+    <div class="med-list" data-meds="B1"></div>
+    <div class="avoid" id="b1Avoid"></div>
+
+    <div class="block-label">Síntomas · opcional</div>
+    <div class="med-list" data-analg="B1"></div>
+
+    <div class="block-label">Checklist de alta</div>
+    <div class="checklist" data-check="B1">
+      <label class="check"><input type="checkbox"> Muestras tomadas antes del antibiótico, si corresponde</label>
+      <label class="check"><input type="checkbox"> Tolerancia oral comprobada en el box tras la hidratación</label>
+      <label class="check"><input type="checkbox"> Sin hipotensión, oliguria ni compromiso de conciencia en la reevaluación</label>
+      <label class="check"><input type="checkbox"> Fármacos de riesgo revisados: por escrito cuáles se suspenden y cuándo se reinician</label>
+      <label class="check"><input type="checkbox"> Control a las 48–72 h agendado y responsable de revisar el coprocultivo definido</label>
+      <label class="check"><input type="checkbox"> Entiende el tratamiento, los signos de alarma y las medidas de contagio</label>
+    </div>
+    <div class="check-status" data-status="B1"></div>
+
+    <div class="block-label">Indicaciones al paciente</div>
+    <div class="copy-box">
+      <div class="copy-bar"><span>Texto para la ficha / entrega</span><button type="button" class="copy-btn" data-copy="B1">Copiar indicaciones</button></div>
+      <pre class="copy-pre" id="copy-B1"></pre>
+    </div>
+    <div class="copy-hint">El texto se arma con el escenario y los fármacos elegidos. No se guarda ningún dato.</div>
+  </div>
+
+  <!-- ═══ CAMINO B2 ═══ -->
+  <div class="path-panel t-B2" id="panel-B2" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Camino B2 · Estudio dirigido, hospitalización</div>
+      <div class="panel-title">No puede irse a casa</div>
+      <div class="panel-crit">Deshidratación grave sin hipotensión, intolerancia oral pese al antiemético, injuria renal aguda o trastorno electrolítico significativo,
+        inmunosupresión, embarazada con fiebre, sospecha de síndrome hemolítico urémico, <em>C. difficile</em> grave, o paciente que no puede asegurar hidratación ni control.</div>
+    </div>
+    <div class="targets">
+      <span class="target">💧 Hidratación EV en <b>&lt; 20 min</b></span>
+      <span class="target">🧪 Muestras y laboratorio en <b>&lt; 60 min</b></span>
+      <span class="target">🖥 Imagen en <b>&lt; 2 h</b> si hay sospecha de colitis grave u obstrucción</span>
+      <span class="target">🏥 Destino decidido en <b>&lt; 3 h</b></span>
+    </div>
+
+    <div class="block-label">Bundle de entrada · pedir todo en una sola orden</div>
+    <div class="order-grid">
+      <div class="order">
+        <div class="order-title">Muestras</div>
+        <ul>
+          <li>Coprocultivo o panel molecular gastrointestinal</li>
+          <li>Estudio de <em>C. difficile</em> en deposición líquida <span class="cond">antibiótico u hospitalización recientes</span></li>
+          <li>Hemocultivos ×2 <span class="cond">fiebre con calofríos · inmunosupresión · sospecha de bacteriemia</span></li>
+          <li>Parasitológico seriado o antígeno de <em>Giardia</em> y <em>Cryptosporidium</em> <span class="cond">diarrea persistente · inmunosupresión · agua no tratada</span></li>
+          <li>Test de embarazo <span class="cond">mujer en edad fértil</span></li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">Laboratorio</div>
+        <ul>
+          <li>Función renal, electrolitos (incluido potasio), gases venosos</li>
+          <li>Hemograma con recuento de plaquetas, PCR</li>
+          <li>Frotis con búsqueda de esquistocitos y LDH <span class="cond">sospecha de síndrome hemolítico urémico</span></li>
+          <li>Glicemia y cetonemia <span class="cond">si hay diabetes</span></li>
+          <li>Lactato <span class="cond">fiebre alta, sospecha de sepsis o de isquemia</span></li>
+          <li>Perfil hepático y lipasa <span class="cond">dolor epigástrico o en hipocondrio derecho</span></li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">Imagen y monitorización</div>
+        <ul>
+          <li>TAC de abdomen y pelvis <span class="cond">colitis grave, megacolon, sospecha de isquemia u obstrucción. Protocolo con o sin contraste según la sospecha y la función renal: verificar con protocolo institucional</span></li>
+          <li>Radiografía de abdomen simple <span class="cond">solo para obstrucción, perforación o dilatación colónica</span></li>
+          <li>Electrocardiograma <span class="cond">hipokalemia, comorbilidad cardiovascular o fármacos que prolongan el QT</span></li>
+          <li>Balance hídrico y diuresis horaria</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="block-label">Hidratación y electrolitos</div>
+    <div class="order">
+      <div class="order-title">Esquema</div>
+      <ul>
+        <li>Cristaloide isotónico: <strong>suero fisiológico o Ringer lactato</strong>. Ringer lactato es preferible si hay acidosis metabólica hiperclorémica</li>
+        <li>Deshidratación grave sin hipotensión: reponer el déficit estimado (<strong>≥ 10 % del peso</strong>) más las pérdidas mantenidas <button type="button" class="link-btn" onclick="openCalc()">estimador →</button></li>
+        <li>Esquema OMS de rehidratación rápida como referencia (plan C): <strong>100 mL/kg de Ringer lactato</strong>, con 30 mL/kg en los primeros 30 min y 70 mL/kg en las 2,5 h siguientes <span class="cond">el esquema exacto y su adaptación al adulto con comorbilidad cardíaca o renal deben verificarse con el protocolo institucional</span></li>
+        <li><strong>Hipokalemia:</strong> corregirla junto con el volumen, sobre todo si hay debilidad, íleo o alteraciones del electrocardiograma <span class="cond">velocidad, vía y concentración máxima según protocolo institucional</span></li>
+        <li><strong>Acidosis metabólica hiperclorémica:</strong> se corrige con la reposición de volumen; el bicarbonato exógeno rara vez es necesario</li>
+        <li><strong>Suspender transitoriamente</strong> diurético, IECA, ARA II, AINE, metformina e iSGLT2, y dejar por escrito cuándo se reinician</li>
+        <li>Reiniciar la vía oral y la dieta habitual en cuanto se tolere; no mantener al paciente en régimen cero «para dejar el intestino en reposo»</li>
+      </ul>
+    </div>
+
+    <div class="block-label">Tratamiento específico según la sospecha</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Situación</th><th>Esquema</th></tr></thead>
+        <tbody>
+          <tr><td>Diarrea acuosa sin foco, paciente estable</td><td><span class="dose-main">Sin antibiótico</span><br><span class="dose-note">Hidratación, corrección electrolítica y observación. El antibiótico empírico no mejora el desenlace y selecciona resistencia.</span></td></tr>
+          <tr><td>Disentería febril grave o que no tolera la vía oral<br><span class="dose-note">sospecha de <em>Shigella</em> o <em>Campylobacter</em></span></td><td><span class="dose-main">Ceftriaxona 1–2 g EV c/24 h</span><br><span class="dose-note">Alternativa oral si tolera: azitromicina 500 mg/día × 3 días. Ajustar al mapa de resistencia local y al resultado del coprocultivo.</span></td></tr>
+          <tr><td>Sospecha de STEC (<em>E. coli</em> O157:H7)<br><span class="dose-note">diarrea con sangre, dolor intenso, poca o ninguna fiebre</span></td><td><span class="dose-main">Sin antibiótico y sin antimotílicos</span><br><span class="dose-note">Se asocian a mayor riesgo de síndrome hemolítico urémico. Soporte, y vigilancia de hemograma, plaquetas y función renal.</span></td></tr>
+          <tr><td><em>C. difficile</em> · episodio inicial</td><td><span class="dose-main">Fidaxomicina 200 mg VO c/12 h × 10 días</span><br><span class="dose-note">Preferida si está disponible. Alternativa: vancomicina 125 mg VO c/6 h × 10 días. Metronidazol 500 mg VO c/8 h × 10 días solo si las anteriores no están disponibles y el cuadro no es grave.</span></td></tr>
+          <tr><td><em>C. difficile</em> fulminante<br><span class="dose-note">hipotensión, shock, íleo o megacolon</span></td><td><span class="dose-main">Vancomicina 500 mg VO o por sonda c/6 h + metronidazol 500 mg EV c/8 h</span><br><span class="dose-note">Si hay íleo, agregar vancomicina rectal (500 mg en 100 mL de suero fisiológico c/6 h). Evaluación quirúrgica precoz.</span></td></tr>
+          <tr><td>Embarazada con fiebre · sospecha de listeriosis</td><td><span class="dose-main">Ampicilina en dosis altas EV</span><br><span class="dose-note">Es el esquema de referencia; <strong>verificar dosis y duración con protocolo institucional</strong>. Hemocultivos antes de la primera dosis. Coordinación con obstetricia e infectología: no es un cuadro para observar.</span></td></tr>
+          <tr><td>Sospecha de sepsis de origen digestivo</td><td><span class="dose-main">Antibiótico de amplio espectro precoz</span><br><span class="dose-note">Junto con la reanimación, según el protocolo de sepsis del servicio. Pasa a <button type="button" class="link-btn" onclick="showPath('C', true)">camino C</button>.</span></td></tr>
+          <tr><td>Diarrea persistente con parásito identificado</td><td><span class="dose-main"><em>Giardia</em>: tinidazol 2 g VO por una vez, o metronidazol 250 mg VO c/8 h × 5–7 días<br><em>E. histolytica</em>: metronidazol 500–750 mg VO c/8 h × 7–10 días</span><br><span class="dose-note">En la amebiasis, seguir con un agente luminal (por ejemplo paromomicina) para erradicar los quistes. En <em>Cryptosporidium</em> con inmunosupresión, el pilar es restaurar la inmunidad; coordinar con infectología (la disponibilidad de nitazoxanida en Chile es limitada: verificar).</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="avoid">
+      <strong>Antimotílicos contraindicados</strong> con diarrea sanguinolenta, fiebre alta, sospecha de STEC o de
+      <em>C. difficile</em>, y ante sospecha de megacolon tóxico. En <em>C. difficile</em>: suspende el antibiótico
+      desencadenante si es posible, aislamiento de contacto e <strong>higiene de manos con agua y jabón</strong>
+      —el alcohol gel no elimina las esporas.
+    </div>
+
+    <div class="block-label">Destino</div>
+    <div class="plain-list">
+      <div class="plain-item"><span class="bullet-icon">🏥</span><span><strong>Hospitalización en sala básica</strong> con balance hídrico, control de electrolitos y función renal, y reevaluación de la tolerancia oral. <strong>Alta</strong> cuando tolera la vía oral, la diuresis se recupera y los electrolitos y la creatinina se corrigen.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🔪</span><span><strong>Cirugía:</strong> colitis grave o fulminante, megacolon tóxico, perforación, sospecha de isquemia mesentérica u obstrucción. La evaluación quirúrgica en el <em>C. difficile</em> fulminante es precoz, no de rescate.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🦠</span><span><strong>Infectología:</strong> inmunosupresión, sospecha de listeriosis, <em>C. difficile</em> grave o recurrente, agente multirresistente, diarrea persistente en inmunosuprimido.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🫘</span><span><strong>Nefrología:</strong> sospecha de síndrome hemolítico urémico (anemia con esquistocitos, trombocitopenia y alza de creatinina tras diarrea con sangre, típicamente 5–10 días después) o injuria renal aguda que no responde a la reposición.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🤰</span><span><strong>Obstetricia:</strong> toda embarazada con fiebre y cuadro gastrointestinal, por el riesgo de listeriosis y de pérdida fetal.</span></div>
+      <div class="plain-item"><span class="bullet-icon">📣</span><span><strong>Epidemiología:</strong> ante sospecha de brote, conserva la muestra y avisa. El cólera, la fiebre tifoidea y paratifoidea, el botulismo, la hepatitis A y los brotes de enfermedad transmitida por alimentos son de notificación obligatoria en Chile; <strong>verificar el listado, los plazos y el formulario vigentes</strong>.</span></div>
+      <div class="plain-item"><span class="bullet-icon">⚠️</span><span><strong>Si aparece hipotensión, confusión o mala perfusión,</strong> pasa a <button type="button" class="link-btn" onclick="showPath('C', true)">camino C</button>.</span></div>
+    </div>
+  </div>
+
+  <!-- ═══ CAMINO C ═══ -->
+  <div class="path-panel t-C" id="panel-C" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Camino C · Crítico</div>
+      <div class="panel-title">Diarrea o vómitos con hipoperfusión</div>
+      <div class="panel-crit">Shock hipovolémico por pérdidas digestivas, shock séptico de origen digestivo, o ambos. <strong>Reanima primero y clasifica después:</strong> no asumas que todo se explica por la diarrea hasta haber descartado sepsis de otro foco y abdomen agudo.</div>
+    </div>
+    <div class="targets">
+      <span class="target">💧 Cristaloide <b>en los primeros minutos</b></span>
+      <span class="target">🎯 PAM <b>≥ 65 mmHg</b></span>
+      <span class="target">🧪 Lactato inicial y de control a las <b>2–4 h</b></span>
+      <span class="target">💉 Antibiótico en <b>&lt; 1 h</b> si hay sospecha de sepsis</span>
+    </div>
+
+    <div class="block-label">Reanimación</div>
+    <div class="order">
+      <div class="order-title">Primeros minutos</div>
+      <ul>
+        <li>Monitorización, oxígeno si lo necesita, <strong>dos vías periféricas de buen calibre</strong></li>
+        <li><strong>Cristaloide isotónico en bolo de 20 mL/kg</strong> y reevaluación clínica tras cada bolo <span class="cond">presión, perfusión, conciencia, diuresis</span></li>
+        <li>Si cumple criterios de sepsis o el lactato es ≥ 4 mmol/L: <strong>30 mL/kg en las primeras 3 h</strong>, según el protocolo de sepsis del servicio</li>
+        <li>Ringer lactato preferible si hay acidosis metabólica hiperclorémica</li>
+        <li>Sonda vesical con <strong>diuresis horaria</strong> y balance hídrico</li>
+        <li>Vasopresor si no alcanza PAM ≥ 65 tras la reposición inicial <span class="cond">noradrenalina; vía central cuando sea posible, sin retrasar el inicio</span></li>
+        <li>Reevaluar la respuesta a volumen con ecografía en el box y examen clínico, sobre todo en el cardiópata y en el paciente con ERC</li>
+      </ul>
+    </div>
+
+    <div class="block-label">Bundle de entrada · simultáneo</div>
+    <div class="order-grid">
+      <div class="order">
+        <div class="order-title">Antes del antibiótico (sin retrasarlo)</div>
+        <ul>
+          <li>Hemocultivos ×2</li>
+          <li>Coprocultivo o panel molecular</li>
+          <li>Estudio de <em>C. difficile</em> <span class="cond">antibiótico u hospitalización recientes</span></li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">Laboratorio</div>
+        <ul>
+          <li>Lactato, gases venosos</li>
+          <li>Electrolitos (potasio), función renal</li>
+          <li>Hemograma con plaquetas, PCR</li>
+          <li>Glicemia y cetonemia</li>
+          <li>Perfil hepático, pruebas de coagulación</li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">Imagen y electrocardiograma</div>
+        <ul>
+          <li>Electrocardiograma <span class="cond">hipokalemia · infarto de pared inferior como simulador</span></li>
+          <li>TAC de abdomen y pelvis <span class="cond">buscar colitis grave, isquemia mesentérica, perforación o megacolon. Protocolo según sospecha y función renal: verificar con protocolo institucional</span></li>
+          <li>Ecografía en el box <span class="cond">si no se puede trasladar al paciente</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="block-label">Antibiótico</div>
+    <div class="avoid">
+      <strong style="color:#fff">No es automático.</strong> En el shock puramente hipovolémico por pérdidas digestivas,
+      el tratamiento es volumen. El antibiótico de amplio espectro precoz se indica si hay <strong>sospecha de
+      sepsis de origen digestivo</strong> o de <strong>disentería grave</strong>, y se elige según el protocolo de
+      sepsis del servicio y el mapa de resistencia local. En sospecha de STEC, <strong>no dar antibiótico ni
+      antimotílicos</strong>. En <em>C. difficile</em> fulminante: vancomicina 500 mg VO o por sonda c/6 h +
+      metronidazol 500 mg EV c/8 h, con vancomicina rectal si hay íleo y evaluación quirúrgica precoz.
+    </div>
+
+    <div class="block-label">Lo que se corrige en paralelo</div>
+    <div class="plain-list">
+      <div class="plain-item"><span class="bullet-icon">⚡</span><span><strong>Hipokalemia:</strong> esperable por la pérdida digestiva. Corrígela junto con el volumen; velocidad, vía y concentración máxima según protocolo institucional. Electrocardiograma si es marcada.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Acidosis metabólica hiperclorémica:</strong> se corrige con la reposición. El bicarbonato exógeno rara vez es necesario.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🫘</span><span><strong>Injuria renal aguda prerrenal:</strong> suspende diurético, IECA, ARA II, AINE, metformina e iSGLT2.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🍬</span><span><strong>Diabetes:</strong> la deshidratación puede precipitar cetoacidosis o estado hiperosmolar, y a la inversa, la cetoacidosis puede debutar con vómitos y dolor abdominal. <a class="link-btn" href="./algoritmo-cad-ehh.html" style="text-decoration:none">Ver algoritmo de CAD / EHH →</a></span></div>
+    </div>
+
+    <div class="block-label">Destino</div>
+    <div class="plain-list">
+      <div class="plain-item"><span class="bullet-icon">🚨</span><span><strong>Unidad de paciente crítico</strong> según la respuesta a la reanimación. Cirugía desde el inicio si hay sospecha de isquemia mesentérica, perforación, colitis fulminante o megacolon tóxico; infectología si hay shock séptico de origen digestivo.</span></div>
+    </div>
+    <a class="cross-link" href="./checklist-sepsis_4.html">→ Abrir checklist de sepsis y shock séptico</a>
+  </div>
+
+  <!-- ═══ CAMINO D ═══ -->
+  <div class="path-panel t-D" id="panel-D" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Camino D · Desvío</div>
+      <div class="panel-title">Probablemente no es una gastroenteritis</div>
+      <div class="panel-crit"><strong>«Gastroenteritis» es un diagnóstico de exclusión en urgencia.</strong> Sin diarrea no se sostiene, y con dolor localizado, defensa o dolor desproporcionado al examen hay que descartar abdomen agudo, isquemia mesentérica y obstrucción <strong>antes</strong> de rotular el cuadro.</div>
+    </div>
+    <div class="targets">
+      <span class="target">⛔ Rótulo de gastroenteritis: <b>en suspenso</b></span>
+      <span class="target">🫀 Electrocardiograma en <b>&lt; 10 min</b> si hay vómitos con diaforesis</span>
+      <span class="target">🖥 Imagen dirigida, no «de descarte»</span>
+    </div>
+
+    <div class="block-label">Primero, en el box</div>
+    <div class="order">
+      <div class="order-title">Antes de pedir imagen</div>
+      <ul>
+        <li><strong>Electrocardiograma</strong> si hay vómitos con diaforesis o malestar epigástrico, sin diarrea <span class="cond">infarto de pared inferior</span></li>
+        <li><strong>Glicemia capilar y cetonemia</strong> en todo paciente con vómitos, dolor abdominal y diabetes conocida o sospechada</li>
+        <li><strong>Test de embarazo</strong> en toda mujer en edad fértil con dolor pélvico y síntomas digestivos, antes de rotular el cuadro</li>
+        <li><strong>Lactato y gases</strong> si el dolor es desproporcionado al examen</li>
+        <li>Función renal, electrolitos, hemograma, PCR, perfil hepático y lipasa</li>
+        <li>Tacto rectal y revisión de fármacos <span class="cond">impactación fecal con «diarrea» paradójica en el adulto mayor</span></li>
+      </ul>
+    </div>
+
+    <div class="block-label">Lo que se disfraza de gastroenteritis</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Sospecha</th><th>Pistas que la delatan</th><th>Conducta</th></tr></thead>
+        <tbody>
+          <tr><td>Isquemia mesentérica</td><td>Adulto mayor, fibrilación auricular o vasculopatía, dolor desproporcionado al examen, acidosis láctica, diarrea a veces sanguinolenta</td><td>Angio-TAC urgente y cirugía desde la sospecha. <strong>El retraso diagnóstico es la regla y es letal</strong></td></tr>
+          <tr><td>Apendicitis</td><td>Dolor que migra a fosa ilíaca derecha, anorexia, dolor que precede al vómito. La apendicitis pélvica o retrocecal puede cursar con diarrea</td><td>Evaluación quirúrgica e imagen según disponibilidad</td></tr>
+          <tr><td>Obstrucción intestinal</td><td>Distensión, vómitos, ausencia de gases, cirugías previas. En el adulto mayor, impactación fecal con «diarrea» por rebosamiento</td><td>Radiografía o TAC, sonda nasogástrica y cirugía. Nada por boca</td></tr>
+          <tr><td>Colitis isquémica</td><td>Dolor abdominal izquierdo súbito seguido de rectorragia, en paciente con factores de riesgo vascular o tras un episodio de hipotensión</td><td>TAC con contraste; manejo de soporte y evaluación por cirugía</td></tr>
+          <tr><td>Cetoacidosis diabética o estado hiperosmolar</td><td>Vómitos, dolor abdominal, respiración de Kussmaul, poliuria y polidipsia previas</td><td>Glicemia y cetonemia inmediatas. <strong><a href="./algoritmo-cad-ehh.html" style="color:#93c5fd">Algoritmo de CAD / EHH →</a></strong></td></tr>
+          <tr><td>Infarto de pared inferior</td><td>Náuseas y vómitos con diaforesis y malestar epigástrico, <strong>sin diarrea</strong></td><td>Electrocardiograma ante cualquier duda. <strong><a href="./guia-dolor-toracico.html" style="color:#93c5fd">Guía de dolor torácico →</a></strong></td></tr>
+          <tr><td>Insuficiencia suprarrenal aguda</td><td>Vómitos, dolor abdominal, hipotensión que no responde a volumen, hiponatremia con hiperkalemia, hipoglicemia</td><td>Cortisol antes de tratar si no retrasa la conducta, e hidrocortisona EV. Verificar esquema con protocolo institucional</td></tr>
+          <tr><td>Tormenta tiroidea</td><td>Diarrea con baja de peso, taquicardia, temblor, intolerancia al calor, agitación</td><td><strong><a href="./algoritmo-tormenta-tiroidea.html" style="color:#93c5fd">Algoritmo de tormenta tiroidea →</a></strong></td></tr>
+          <tr><td>Pancreatitis, colecistitis o cólico biliar</td><td>Dolor epigástrico o en hipocondrio derecho irradiado, con vómitos y sin diarrea significativa</td><td>Lipasa, perfil hepático y ecografía abdominal</td></tr>
+          <tr><td>Enfermedad inflamatoria intestinal (debut o crisis)</td><td>Diarrea con sangre de semanas, baja de peso, síntomas nocturnos, manifestaciones extraintestinales, coprocultivos negativos</td><td>Estudio dirigido y derivación a gastroenterología; descartar infección sobreagregada</td></tr>
+          <tr><td>Embarazo ectópico o enfermedad inflamatoria pélvica</td><td>Mujer en edad fértil con dolor pélvico y síntomas digestivos</td><td>Test de embarazo y evaluación ginecológica</td></tr>
+          <tr><td>Botulismo</td><td>Visión borrosa, diplopía, disfagia, debilidad descendente simétrica, sin fiebre</td><td>Emergencia neurológica: vigilancia de la vía aérea y de la ventilación, antitoxina y notificación. No es una gastroenteritis</td></tr>
+          <tr><td>Ciguatera o escombroidosis</td><td>Minutos a 1 h tras pescado: rubor, cefalea y palpitaciones (histamina), o parestesias e inversión de la sensación térmica</td><td>Manejo sintomático; no es infección y no requiere antibiótico</td></tr>
+          <tr><td>Hipertensión endocraneal</td><td>Vómitos sin diarrea, cefalea que despierta, focalidad o papiledema</td><td>Imagen de cerebro. <strong><a href="./guia-cefalea.html" style="color:#93c5fd">Guía de cefalea →</a></strong></td></tr>
+          <tr><td>Fármacos y tóxicos</td><td>Metformina, colchicina, laxantes, quimioterapia, inhibidores de puntos de control inmunitario (colitis inmunomediada), abstinencia de opioides</td><td>Revisar la lista completa de fármacos; suspender el responsable y coordinar con el equipo tratante</td></tr>
+          <tr><td>Sepsis de otro foco</td><td>Los vómitos y la diarrea pueden ser el pródromo de una neumonía, una infección urinaria o una meningitis, sobre todo en el adulto mayor</td><td>Busca el foco. <strong><a href="./checklist-sepsis_4.html" style="color:#93c5fd">Checklist de sepsis →</a></strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="avoid">
+      <strong>Mientras el diagnóstico esté en suspenso:</strong> no indiques antimotílicos, no inicies régimen oral
+      si hay sospecha de obstrucción o de abdomen agudo quirúrgico, y no des el alta con el rótulo de
+      «gastroenteritis» a un paciente con vómitos sin diarrea.
+    </div>
+    <a class="cross-link" href="./guia-dolor-abdominal.html">→ Abrir guía de dolor abdominal</a>
+  </div>
+
+  <!-- ESTIMADOR DE REPOSICIÓN -->
+  <div class="section s2 collapsed" id="s-calc">
+    <div class="section-header" onclick="toggleSection('s-calc')">
+      <span class="section-num">CÁLCULO</span>
+      <div>
+        <div class="section-title">Estimador de reposición</div>
+        <div class="section-subtitle">Déficit y volumen, para indicar cantidades concretas</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="calc-row">
+        <div class="calc-field">
+          <label for="calcPeso">Peso (kg)</label>
+          <input type="number" id="calcPeso" min="30" max="200" step="1" inputmode="numeric" placeholder="70">
+        </div>
+        <div class="calc-field">
+          <label for="calcGrado">Grado de deshidratación</label>
+          <select id="calcGrado">
+            <option value="3">Leve · &lt; 5 % (≈ 3 %)</option>
+            <option value="7" selected>Moderada · 5–9 % (≈ 7 %)</option>
+            <option value="10">Grave · ≥ 10 %</option>
+          </select>
+        </div>
+        <div class="calc-field">
+          <label for="calcDep">Deposiciones líquidas / día</label>
+          <input type="number" id="calcDep" min="0" max="40" step="1" inputmode="numeric" placeholder="6">
+        </div>
+        <div class="calc-field">
+          <label for="calcVom">Vómitos / día</label>
+          <input type="number" id="calcVom" min="0" max="40" step="1" inputmode="numeric" placeholder="3">
+        </div>
+      </div>
+      <div id="calcOut"><div class="calc-empty">Ingresa el peso para estimar el déficit y el volumen de reposición. No se guarda ningún dato.</div></div>
+
+      <div class="block-label" style="margin-top:20px;">Cómo se usa</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🥤</span><span><strong>Vía oral siempre que sea posible.</strong> En deshidratación leve a moderada, la SRO es tan eficaz como la vía intravenosa y tiene menos complicaciones. Dar en volúmenes pequeños y frecuentes: 5–10 mL cada 2–5 min al inicio.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💧</span><span><strong>Déficit:</strong> porcentaje estimado × peso. El <strong>esquema OMS plan B</strong> para la deshidratación moderada aporta <strong>75 mL/kg de SRO en 4 h</strong>; otros protocolos usan ≈ 50 mL/kg en 4 h. <strong>Verificar con el protocolo institucional</strong> cuál se usa en tu servicio.</span></div>
+        <div class="plain-item"><span class="bullet-icon">♻️</span><span><strong>Pérdidas mantenidas:</strong> ≈ 10 mL/kg por cada deposición líquida y ≈ 2 mL/kg por cada vómito, además del aporte basal.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Vía intravenosa</strong> si hay shock, compromiso de conciencia, íleo, vómitos incoercibles o fracaso de la vía oral: cristaloide isotónico. En hipoperfusión, bolo de 20 mL/kg y reevaluación clínica tras cada bolo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⚠️</span><span><strong>Cardiópata, ERC o adulto mayor frágil:</strong> el volumen calculado es una referencia, no una orden. Fracciona, reevalúa y ajusta según la respuesta clínica.</span></div>
+      </div>
+      <div class="copy-hint">El cálculo es una estimación de apoyo: el volumen final se ajusta a la respuesta clínica, a la comorbilidad y al protocolo del servicio.</div>
+    </div>
+  </div>
+
+  <!-- INCUBACIÓN Y AGENTE -->
+  <div class="section s3 collapsed" id="s-agente" style="animation-delay:0.12s;">
+    <div class="section-header" onclick="toggleSection('s-agente')">
+      <span class="section-num">AGENTE</span>
+      <div>
+        <div class="section-title">Incubación y agente probable</div>
+        <div class="section-subtitle">Cuándo el germen sí cambia la conducta</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Incubación</th><th>Sospecha</th><th>Pista</th></tr></thead>
+          <tbody>
+            <tr><td>1–6 h</td><td><em>S. aureus</em>, <em>B. cereus</em> emético</td><td>Vómitos intensos que dominan el cuadro; alimentos con crema, arroz recalentado. Sin fiebre, resolución en 12–24 h</td></tr>
+            <tr><td>8–16 h</td><td><em>C. perfringens</em>, <em>B. cereus</em> diarreico</td><td>Carnes o guisos mantenidos tibios; diarrea con cólicos y pocos vómitos</td></tr>
+            <tr><td>12–48 h</td><td>Norovirus</td><td>Brotes familiares o institucionales; vómitos y diarrea, muy contagioso</td></tr>
+            <tr><td>1–3 días</td><td><em>Salmonella</em>, <em>Shigella</em>, ETEC, <em>Vibrio parahaemolyticus</em></td><td>Huevo o pollo mal cocido, agua contaminada, mariscos crudos</td></tr>
+            <tr><td>2–5 días</td><td><em>Campylobacter</em></td><td>Pollo mal cocido, leche no pasteurizada; puede simular una apendicitis. Asociado a Guillain-Barré posterior</td></tr>
+            <tr><td>3–4 días (1–8)</td><td>STEC / <em>E. coli</em> O157:H7</td><td>Diarrea sanguinolenta con dolor intenso y <strong>poca o ninguna fiebre</strong>. Sin antibiótico ni antimotílicos: riesgo de síndrome hemolítico urémico</td></tr>
+            <tr><td>1–2 semanas</td><td><em>Giardia</em>, <em>Cyclospora</em>, <em>Cryptosporidium</em></td><td>Diarrea prolongada, distensión, flatulencia, baja de peso; agua no tratada</td></tr>
+            <tr><td>Variable</td><td><em>C. difficile</em></td><td>Antibiótico u hospitalización en los últimos 3 meses. Estudio solo en deposición líquida</td></tr>
+            <tr><td>Minutos–1 h</td><td>Escombroidosis, ciguatera</td><td><strong>No es infección:</strong> rubor, cefalea y palpitaciones (histamina), o parestesias e inversión térmica tras pescado</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="plain-list" style="margin-top:12px;">
+        <div class="plain-item"><span class="bullet-icon">🧭</span><span><strong>El objetivo no es acertar el germen:</strong> es separar lo autolimitado de lo que exige estudio, aislamiento o notificación. En un adulto sano con diarrea acuosa de 24 h, el agente específico casi nunca cambia la conducta.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏳</span><span><strong>Por duración:</strong> aguda &lt; 14 días (habitualmente infecciosa y autolimitada); persistente 14–29 días (sube la probabilidad de parásitos y de causa post-infecciosa); crónica ≥ 30 días (rara vez es una gastroenteritis: estudiar EII, celiaquía, malabsorción, causa endocrina o neoplásica).</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧫</span><span><strong>Un panel molecular positivo no distingue</strong> infección activa de colonización o excreción residual: interprétalo junto al cuadro clínico.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFUNDIZAR -->
+  <a class="deep-link" href="./guia-gastroenteritis.html">
+    <div>
+      <strong>Profundizar · Guía de gastroenteritis aguda</strong>
+      <span>Clasificación completa por duración y mecanismo, interpretación del estudio de deposiciones, diferencial ampliado, esquemas antimicrobianos y antiparasitarios en detalle, y errores frecuentes.</span>
+    </div>
+    <span class="arr">→</span>
+  </a>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda de orientación para la atención de urgencia del
+    <strong>adulto</strong>: no reemplaza el juicio clínico ni los protocolos vigentes del servicio.
+    Las metas de tiempo son referenciales. Los volúmenes de reposición son estimaciones de apoyo y deben
+    ajustarse a la respuesta clínica, a la comorbilidad cardíaca y renal y al
+    <strong>protocolo institucional</strong>. Los esquemas antimicrobianos dependen del patrón de resistencia
+    local y de la disponibilidad de fármacos en el servicio. Verifica dosis, ajuste por función renal,
+    alergias y contraindicaciones antes de indicar cualquier fármaco. El manejo pediátrico y el de la
+    embarazada se rigen por el protocolo institucional correspondiente.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Shane AL, et al. <em>2017 Infectious Diseases Society of America Clinical Practice Guidelines for the Diagnosis and Management of Infectious Diarrhea.</em> Clin Infect Dis. 2017;65(12):e45–e80.</div>
+      <div class="ref-item">Riddle MS, DuPont HL, Connor BA. <em>ACG Clinical Guideline: Diagnosis, Treatment, and Prevention of Acute Diarrheal Infections in Adults.</em> Am J Gastroenterol. 2016;111(5):602–622.</div>
+      <div class="ref-item">Johnson SW, et al. <em>Clinical Practice Guideline by IDSA and SHEA: 2021 Focused Update Guidelines on Management of Clostridioides difficile Infection in Adults.</em> Clin Infect Dis. 2021;73(5):e1029–e1044.</div>
+      <div class="ref-item">World Health Organization. <em>The Treatment of Diarrhoea: A Manual for Physicians and Other Senior Health Workers.</em> who.int</div>
+      <div class="ref-item">Riddle MS, et al. <em>Guidelines for the Prevention and Treatment of Travelers' Diarrhea.</em> J Travel Med. 2017;24(suppl_1):S57–S74.</div>
+      <div class="ref-item">Evans L, et al. <em>Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2021.</em> Crit Care Med. 2021;49(11):e1063–e1143.</div>
+      <div class="ref-item">Ministerio de Salud de Chile. <em>Decreto N.º 7/2019: Reglamento sobre notificación de enfermedades transmisibles de declaración obligatoria y su vigilancia.</em> Verificar el listado y los plazos vigentes.</div>
+      <div class="ref-item">Los volúmenes de rehidratación, la corrección de potasio, los esquemas empíricos y las conductas de notificación deben contrastarse con el protocolo institucional y la normativa sanitaria vigentes.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+  function openCalc() {
+    const s = document.getElementById('s-calc');
+    s.classList.remove('collapsed');
+    s.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  function openDiff() {
+    showPath('D', true);
+  }
+
+  // ── Datos: tratamiento específico (dosis para ficha + texto para el paciente) ──
+  const MEDS = {
+    sinAtb:   { name: 'Sin antibiótico', dose: 'Hidratación y sintomáticos', note: 'La diarrea acuosa del adulto no requiere antibiótico: no acorta el cuadro y selecciona resistencia.' },
+    azi3:     { name: 'Azitromicina', dose: '500 mg/día VO × 3 días', note: 'Opción empírica razonable en la disentería febril (cubre Shigella y Campylobacter). Ajustar al coprocultivo y al mapa de resistencia local.',
+                pt: 'Azitromicina 500 mg: 1 comprimido al día por 3 días.' },
+    ceftri:   { name: 'Ceftriaxona · alta asistida', dose: '1–2 g EV c/24 h', note: 'Si está grave o no tolera la vía oral. Revisar a diario y ajustar con el coprocultivo. Si necesita más de una dosis o no puede volver, corresponde hospitalizar (B2).',
+                pt: 'Ceftriaxona inyectable: debe volver a este servicio una vez al día para recibir el antibiótico por vena, hasta que se le indique lo contrario.', box: 'Hoy recibió la primera dosis en este servicio.' },
+    sinAtbSangre: { name: 'Sin antibiótico (sospecha de STEC)', dose: 'Soporte y vigilancia', note: 'Diarrea con sangre, dolor intenso y poca o ninguna fiebre: el antibiótico y los antimotílicos aumentan el riesgo de síndrome hemolítico urémico. Vigilar hemograma, plaquetas y creatinina.' },
+    aziU:     { name: 'Azitromicina · dosis única', dose: '1 g VO por una vez', note: 'Diarrea del viajero moderada o grave.',
+                pt: 'Azitromicina 1 g: tomar la dosis completa UNA sola vez, con un vaso de agua.' },
+    cipro:    { name: 'Ciprofloxacino', dose: '500 mg c/12 h VO × 1–3 días', note: 'Alternativa en la diarrea del viajero. Alta resistencia de Campylobacter a quinolonas, sobre todo en el sudeste asiático: ahí preferir azitromicina. No usar si hay fiebre alta o sangre sin cobertura adecuada.',
+                pt: 'Ciprofloxacino 500 mg: 1 comprimido cada 12 horas por 3 días.' },
+    fidaxo:   { name: 'Fidaxomicina', dose: '200 mg VO c/12 h × 10 días', note: 'Preferida en el episodio inicial de C. difficile si está disponible en el servicio.',
+                pt: 'Fidaxomicina 200 mg: 1 comprimido cada 12 horas por 10 días. Complete los 10 días aunque se sienta bien antes.' },
+    vanco:    { name: 'Vancomicina oral', dose: '125 mg VO c/6 h × 10 días', note: 'Alternativa de primera línea en el episodio inicial. No usar la presentación endovenosa por vía oral sin confirmar con farmacia.',
+                pt: 'Vancomicina 125 mg en cápsulas: 1 cápsula cada 6 horas por 10 días. Complete los 10 días aunque se sienta bien antes.' },
+    metroCd:  { name: 'Metronidazol', dose: '500 mg VO c/8 h × 10 días', note: 'Solo si fidaxomicina y vancomicina no están disponibles y el cuadro no es grave.',
+                pt: 'Metronidazol 500 mg: 1 comprimido cada 8 horas por 10 días. No beba alcohol durante el tratamiento ni los 3 días siguientes.' },
+    tinidazol:{ name: 'Tinidazol', dose: '2 g VO por una vez', note: 'Giardia confirmada o con alta sospecha. Alternativa: metronidazol 250 mg VO c/8 h × 5–7 días.',
+                pt: 'Tinidazol 2 g: tomar la dosis completa UNA sola vez, con comida. No beba alcohol durante el tratamiento ni los 3 días siguientes.' },
+    esperar:  { name: 'Sin antibiótico empírico', dose: 'Dirigir según el estudio', note: 'En la diarrea persistente el tratamiento se dirige al agente identificado: tratar a ciegas retrasa el diagnóstico.' }
+  };
+
+  const SINT = {
+    onda: { name: 'Ondansetrón', dose: '4–8 mg VO o EV', note: 'Primero el antiemético, después la SRO: así se rescata la vía oral. Vigilar prolongación del QT si hay otros fármacos que lo prolongan o alteraciones electrolíticas.',
+            pt: 'Ondansetrón 4 mg: 1 comprimido cada 8 horas solo si tiene náuseas o vómitos.' },
+    meto: { name: 'Metoclopramida', dose: '10 mg VO o EV c/8 h', note: 'Alternativa antiemética. Riesgo de reacciones extrapiramidales, mayor en jóvenes. Evitar si se sospecha obstrucción intestinal.',
+            pt: 'Metoclopramida 10 mg: 1 comprimido cada 8 horas solo si tiene náuseas, por un máximo de 5 días. Si aparecen movimientos raros del cuello o la cara, suspenda y consulte.' },
+    lope: { name: 'Loperamida', dose: '4 mg VO inicial, luego 2 mg tras cada deposición líquida · máx. 16 mg/día', note: 'Solo en diarrea acuosa sin fiebre alta ni sangre. Contraindicada con sospecha de STEC, de C. difficile o de megacolon tóxico.',
+            pt: 'Loperamida 2 mg: tome 2 cápsulas al inicio y luego 1 cápsula después de cada deposición líquida, sin pasar de 8 cápsulas al día. SUSPÉNDALA si aparece fiebre alta, sangre en las deposiciones o dolor abdominal que aumenta.' },
+    race: { name: 'Racecadotrilo', dose: '100 mg VO c/8 h', note: 'Antisecretor: reduce el volumen de las deposiciones sin enlentecer el tránsito. Según disponibilidad local. No sustituye la hidratación.',
+            pt: 'Racecadotrilo 100 mg: 1 cápsula cada 8 horas antes de las comidas mientras persista la diarrea, por un máximo de 7 días.' },
+    para: { name: 'Paracetamol', dose: '1 g c/8 h VO si hay dolor o fiebre', note: 'Antipirético y analgésico de elección: en el paciente deshidratado se evitan los AINE por el riesgo renal.',
+            pt: 'Paracetamol 1 g: cada 8 horas solo si tiene dolor o fiebre (máximo 3 g al día).' }
+  };
+
+  // ── Escenarios del camino B1 ──────────────────────────────────────
+  const B1 = {
+    hidratacion: {
+      label: 'Deshidratación o vómitos',
+      meds: ['sinAtb'], sint: ['onda', 'meto', 'race', 'lope', 'para'],
+      orders: [
+        'Función renal y electrolitos <span class="cond">si hay deshidratación moderada, edad ≥ 65 años, comorbilidad, vómitos prolongados o fármacos de riesgo</span>',
+        'Glicemia capilar <span class="cond">si hay diabetes</span>',
+        'Test de embarazo <span class="cond">mujer en edad fértil</span>',
+        'Sin coprocultivo: no hay sangre, fiebre alta ni factor de riesgo que lo justifique'
+      ],
+      avoid: '<strong>No indicar antibiótico</strong> en la diarrea acuosa: no acorta el cuadro y selecciona resistencia. <strong>Evitar AINE</strong> en el paciente deshidratado (riesgo renal); el antipirético de elección es el paracetamol.',
+      dx: 'Gastroenteritis aguda con deshidratación',
+      extraAlarm: [],
+      extraRec: [],
+      control: 'Control en su CESFAM en 48 a 72 horas si la diarrea o los vómitos continúan, o antes si aparece cualquiera de los signos de alarma.'
+    },
+    disenteria: {
+      label: 'Sangre en deposiciones o fiebre ≥ 38,5 °C',
+      meds: ['azi3', 'sinAtbSangre', 'ceftri'], sint: ['onda', 'para'],
+      orders: [
+        'Coprocultivo o panel molecular gastrointestinal <span class="cond">tomar antes de la primera dosis de antibiótico</span>',
+        'Hemograma con recuento de plaquetas, PCR, función renal y electrolitos',
+        'Estudio de <em>C. difficile</em> en deposición líquida <span class="cond">si hubo antibiótico u hospitalización en los últimos 3 meses</span>',
+        'Hemocultivos ×2 <span class="cond">fiebre con calofríos o inmunosupresión</span>',
+        'Avisar a epidemiología y conservar la muestra <span class="cond">si hay sospecha de brote</span>'
+      ],
+      avoid: '<strong>Sin antimotílicos:</strong> loperamida contraindicada. Si el cuadro sugiere <strong>STEC</strong> (sangre abundante, dolor intenso y poca o ninguna fiebre), <strong>no dar antibiótico</strong>: aumenta el riesgo de síndrome hemolítico urémico. En <em>Salmonella</em> no tifoidea leve del paciente sano tampoco se trata, porque prolonga la excreción.',
+      dx: 'Diarrea inflamatoria (disentérica)',
+      extraAlarm: ['Orina escasa y de color oscuro, palidez, moretones fáciles o hinchazón de párpados y piernas en los días siguientes.'],
+      extraRec: ['Es importante que acuda al control para revisar el resultado del cultivo de deposiciones: puede cambiar el tratamiento.'],
+      control: 'Control en 48 a 72 horas, con revisión del coprocultivo. Si recibió la primera dosis endovenosa en el servicio, vuelva según la indicación escrita.'
+    },
+    cdiff: {
+      label: 'Antibiótico reciente: sospecha de C. difficile',
+      meds: ['fidaxo', 'vanco', 'metroCd'], sint: ['para'],
+      orders: [
+        'Estudio de <em>C. difficile</em> <strong>en deposición líquida</strong> <span class="cond">glutamato deshidrogenasa y toxina, con amplificación de ácidos nucleicos como resolución de discordancia. Verificar el algoritmo de tu laboratorio</span>',
+        'Hemograma, PCR, función renal y electrolitos, lactato',
+        'Radiografía o TAC de abdomen <span class="cond">solo si hay distensión, íleo o sospecha de megacolon → el paciente pasa a B2</span>'
+      ],
+      avoid: '<strong>Sin antimotílicos.</strong> Suspende el antibiótico desencadenante si es posible. <strong>Aislamiento de contacto e higiene de manos con agua y jabón:</strong> el alcohol gel no elimina las esporas. Con hipotensión, íleo, megacolon o leucocitosis marcada el cuadro es grave y corresponde <button type="button" class="link-btn" onclick="showPath(\'B2\', true)">B2</button>.',
+      dx: 'Diarrea asociada a antibiótico (sospecha de C. difficile)',
+      extraAlarm: ['Distensión del abdomen con dolor y sin expulsión de gases.'],
+      extraRec: [
+        'Lávese las manos con agua y jabón: el alcohol gel no elimina este germen.',
+        'Use un baño separado del resto de la familia mientras dure la diarrea, si es posible, y limpie las superficies con cloro diluido.'
+      ],
+      control: 'Control en 48 a 72 horas para revisar el resultado del estudio de deposiciones. Complete los 10 días de tratamiento, y avise si la diarrea reaparece después de terminarlo.'
+    },
+    viajero: {
+      label: 'Diarrea del viajero',
+      meds: ['aziU', 'cipro', 'sinAtb'], sint: ['onda', 'lope', 'race', 'para'],
+      orders: [
+        'Coprocultivo o panel molecular <span class="cond">si hay sangre, fiebre alta, cuadro grave o sospecha de brote</span>',
+        'Parasitológico seriado o antígeno de <em>Giardia</em> y <em>Cryptosporidium</em> <span class="cond">si lleva más de 7 a 14 días o bebió agua no tratada</span>',
+        'Función renal y electrolitos <span class="cond">si hay deshidratación o comorbilidad</span>'
+      ],
+      avoid: 'El antibiótico se reserva para el cuadro <strong>moderado o grave</strong> (deposiciones que impiden la actividad habitual): la diarrea leve se maneja con hidratación y sintomáticos. La <strong>rifaximina solo sirve en diarrea acuosa no invasora</strong>: no usarla con fiebre ni con sangre. Loperamida solo si no hay fiebre alta ni sangre, y puede asociarse al antibiótico.',
+      dx: 'Diarrea del viajero',
+      extraAlarm: [],
+      extraRec: ['Beba solo agua embotellada o hervida y evite hielo, verduras crudas y alimentos de venta callejera durante el resto del viaje.'],
+      control: 'Control en 48 a 72 horas si no mejora. Si la diarrea dura más de 14 días, debe volver: hay que estudiar parásitos.'
+    },
+    persistente: {
+      label: 'Diarrea de ≥ 14 días',
+      meds: ['esperar', 'tinidazol'], sint: ['race', 'para'],
+      orders: [
+        'Parasitológico seriado (3 muestras) o antígeno de <em>Giardia</em> y <em>Cryptosporidium</em>',
+        'Coprocultivo o panel molecular gastrointestinal',
+        'Hemograma, PCR, función renal, electrolitos, albúmina y pruebas tiroideas',
+        'Serología de celiaquía y derivación a gastroenterología <span class="cond">si el estudio infeccioso resulta negativo</span>',
+        'Estudio de <em>C. difficile</em> <span class="cond">antibiótico u hospitalización en los últimos 3 meses</span>'
+      ],
+      avoid: 'A partir de <strong>30 días</strong> el cuadro rara vez es una gastroenteritis: hay que estudiar enfermedad inflamatoria intestinal, celiaquía, malabsorción y causa endocrina o neoplásica. Con <strong>baja de peso, diarrea nocturna o sangre</strong>, la derivación no espera el resultado del coprocultivo.',
+      dx: 'Diarrea persistente',
+      extraAlarm: ['Baja de peso, diarrea que lo despierta de noche o sangre en las deposiciones.'],
+      extraRec: ['Traiga al control los resultados de los exámenes de deposiciones: el tratamiento depende de lo que se encuentre.'],
+      control: 'Control en 48 a 72 horas con los resultados, y derivación a gastroenterología si el estudio infeccioso es negativo.'
+    },
+    riesgo: {
+      label: '≥ 65 años o comorbilidad',
+      meds: ['sinAtb'], sint: ['onda', 'race', 'para'],
+      orders: [
+        'Función renal, electrolitos (potasio) y gases venosos',
+        'Hemograma, PCR, glicemia',
+        'Electrocardiograma <span class="cond">si hay hipokalemia o comorbilidad cardiovascular</span>',
+        'Coprocultivo <span class="cond">solo si hay sangre, fiebre ≥ 38,5 °C, cuadro grave o sospecha de brote</span>'
+      ],
+      avoid: '<strong>Suspende transitoriamente</strong> diurético, IECA, ARA II, AINE, metformina e iSGLT2, y deja <strong>por escrito</strong> cuáles se suspenden y cuándo se reinician: es el error más frecuente en el adulto mayor deshidratado. Si la creatinina está en alza o hay hipokalemia significativa, corresponde <button type="button" class="link-btn" onclick="showPath(\'B2\', true)">B2</button>.',
+      dx: 'Gastroenteritis aguda en paciente de riesgo',
+      extraAlarm: ['Hinchazón, falta de aire o aumento del decaimiento después de empezar a beber las sales.'],
+      extraRec: ['Suspenda los medicamentos que se le indicaron por escrito y reinícielos solo cuando su médico lo indique.'],
+      control: 'Control en 48 a 72 horas con examen de función renal y electrolitos, para decidir cuándo reiniciar sus medicamentos habituales.'
+    },
+    gesta: {
+      label: 'Embarazada sin fiebre',
+      meds: ['sinAtb'], sint: ['onda', 'meto', 'para'],
+      orders: [
+        'Función renal, electrolitos y cetonemia <span class="cond">los vómitos del embarazo pueden llevar a cetosis</span>',
+        'Orina completa <span class="cond">descartar infección urinaria como causa de los vómitos</span>',
+        'Evaluación obstétrica <span class="cond">según edad gestacional y síntomas</span>',
+        'Coprocultivo <span class="cond">solo si hay sangre, fiebre o sospecha de brote</span>'
+      ],
+      avoid: 'Si aparece <strong>fiebre</strong>, considera <strong>listeriosis</strong> (fiambres, quesos blandos, lácteos no pasteurizados): requiere hemocultivos y tratamiento específico, no observación → <button type="button" class="link-btn" onclick="showPath(\'B2\', true)">B2</button>. <strong>Evitar loperamida, AINE y quinolonas.</strong> Considera también hiperémesis gravídica y preeclampsia con compromiso hepático.',
+      dx: 'Gastroenteritis aguda durante el embarazo',
+      extraAlarm: [
+        'Fiebre de 38 °C o más.',
+        'Contracciones, sangrado vaginal o pérdida de líquido por la vagina.',
+        'Disminución de los movimientos del bebé.',
+        'Dolor de cabeza intenso, visión borrosa o dolor en la parte alta del abdomen.'
+      ],
+      extraRec: ['Evite fiambres, quesos blandos, patés y lácteos no pasteurizados durante el embarazo.'],
+      control: 'Control en 24 a 48 horas, y consulta con su matrona o médico tratante. Si vuelve la fiebre, debe acudir de inmediato a urgencia.'
+    }
+  };
+
+  // ── Estado (en memoria, no se guarda) ─────────────────────────────
+  const state = {
+    flags: { C: new Set(), D: new Set(), B2: new Set(), B1: new Set() },
+    noFlags: false,
+    path: null,
+    scen: 'hidratacion',
+    med: { B1: null },
+    sint: { A: new Set(), B1: new Set() }
+  };
+
+  const A_SINT = ['onda', 'lope', 'race', 'para'];
+
+  // ── Triage ────────────────────────────────────────────────────────
+  const PATH_NAMES = {
+    A:  'Camino A · Gastroenteritis no complicada, alta rápida',
+    B1: 'Camino B1 · Estudio dirigido e hidratación, alta',
+    B2: 'Camino B2 · Hospitalizar',
+    C:  'Camino C · Hipoperfusión, reanimación',
+    D:  'Camino D · Probablemente no es una gastroenteritis'
+  };
+
+  function flagLabels(group) {
+    return [...state.flags[group]].map(v => {
+      const b = document.querySelector(`[data-group="${group}"] [data-v="${v}"]`);
+      return b.childNodes[0].textContent.trim();
+    });
+  }
+
+  function computePath() {
+    const f = state.flags;
+    if (f.C.size) return { p: 'C', why: flagLabels('C') };
+    if (f.D.size) return { p: 'D', why: flagLabels('D') };
+    if (f.B1.has('gesta') && f.B1.has('fiebre'))
+      return { p: 'B2', why: ['Embarazada con fiebre (sospecha de listeriosis)', ...flagLabels('B2')] };
+    if (f.B2.size) return { p: 'B2', why: flagLabels('B2') };
+    if (f.B1.size) return { p: 'B1', why: flagLabels('B1') };
+    if (state.noFlags) return { p: 'A', why: ['Sin banderas rojas'] };
+    return null;
+  }
+
+  function suggestScenario() {
+    const f = state.flags.B1;
+    if (f.has('sangre') || f.has('fiebre')) return 'disenteria';
+    if (f.has('atb')) return 'cdiff';
+    if (f.has('gesta')) return 'gesta';
+    if (f.has('persistente')) return 'persistente';
+    if (f.has('viaje')) return 'viajero';
+    if (f.has('riesgo') || f.has('farmacos')) return 'riesgo';
+    if (f.has('deshMod') || f.has('vomitos')) return 'hidratacion';
+    return state.scen;
+  }
+
+  function renderVerdict() {
+    const v = document.getElementById('verdict');
+    const anyFlag = Object.values(state.flags).some(s => s.size);
+    const nf = document.getElementById('noFlags');
+    nf.disabled = anyFlag;
+    if (anyFlag) { state.noFlags = false; nf.classList.remove('on'); }
+
+    const r = computePath();
+    if (!r) {
+      v.className = 'verdict placeholder';
+      v.innerHTML = 'Marca las banderas rojas presentes, o confirma que no hay ninguna.<br>¿Vómitos sin diarrea, dolor localizado o dolor desproporcionado al examen? <button type="button" class="link-btn" onclick="openDiff()">Puede que no sea una gastroenteritis →</button>';
+      return;
+    }
+    if (r.p === 'B1') setScenario(suggestScenario());
+    v.className = 'verdict p-' + r.p;
+    v.innerHTML = `
+      <div class="verdict-main">
+        <div class="verdict-tag">Camino sugerido</div>
+        <div class="verdict-title">${PATH_NAMES[r.p]}</div>
+        <div class="verdict-why">${r.why.join(' · ')}</div>
+      </div>
+      <button type="button" class="go-btn" onclick="showPath('${r.p}', true)">Ir al camino ↓</button>`;
+    showPath(r.p, false);
+  }
+
+  document.querySelectorAll('[data-group]').forEach(group => {
+    const g = group.dataset.group;
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (state.flags[g].has(v)) { state.flags[g].delete(v); btn.classList.remove('on'); }
+        else { state.flags[g].add(v); btn.classList.add('on'); }
+        renderVerdict();
+      });
+    });
+  });
+
+  document.getElementById('noFlags').addEventListener('click', e => {
+    state.noFlags = !state.noFlags;
+    e.currentTarget.classList.toggle('on', state.noFlags);
+    renderVerdict();
+  });
+
+  // ── Pestañas de camino ────────────────────────────────────────────
+  function showPath(p, scroll) {
+    state.path = p;
+    document.querySelectorAll('.path-tab').forEach(t => {
+      const on = t.dataset.path === p;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on);
+    });
+    document.querySelectorAll('.path-panel').forEach(pn => pn.classList.toggle('active', pn.id === 'panel-' + p));
+    if (scroll) document.getElementById('pathTabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  document.querySelectorAll('.path-tab').forEach(t => t.addEventListener('click', () => showPath(t.dataset.path, false)));
+
+  // ── Listas de fármacos ────────────────────────────────────────────
+  function medButton(m, id, multi, on) {
+    return `<button type="button" class="med${multi ? ' multi' : ''}${on ? ' on' : ''}" data-id="${id}">
+      <span class="radio"></span>
+      <span><span class="med-name">${m.name}</span><span class="med-dose" style="display:block">${m.dose}</span>${m.note ? `<span class="med-note" style="display:block">${m.note}</span>` : ''}</span>
+    </button>`;
+  }
+
+  function renderMeds(path) {
+    if (path === 'B1') {
+      const ids = B1[state.scen].meds;
+      if (!ids.includes(state.med.B1)) state.med.B1 = ids[0];
+      const box = document.querySelector('[data-meds="B1"]');
+      box.innerHTML = ids.map(id => medButton(MEDS[id], id, false, state.med.B1 === id)).join('');
+      box.querySelectorAll('.med').forEach(b => b.addEventListener('click', () => {
+        state.med.B1 = b.dataset.id;
+        renderMeds('B1');
+      }));
+    }
+
+    const sIds = path === 'A' ? A_SINT : B1[state.scen].sint;
+    [...state.sint[path]].forEach(s => { if (!sIds.includes(s)) state.sint[path].delete(s); });
+    const sbox = document.querySelector(`[data-analg="${path}"]`);
+    sbox.innerHTML = sIds.map(id => medButton(SINT[id], id, true, state.sint[path].has(id))).join('');
+    sbox.querySelectorAll('.med').forEach(b => b.addEventListener('click', () => {
+      const id = b.dataset.id;
+      state.sint[path].has(id) ? state.sint[path].delete(id) : state.sint[path].add(id);
+      renderMeds(path);
+    }));
+
+    renderCopy(path);
+  }
+
+  // ── Escenario B1 ──────────────────────────────────────────────────
+  function setScenario(s) {
+    state.scen = s;
+    document.querySelectorAll('#b1Scen .opt').forEach(b => b.classList.toggle('on', b.dataset.v === s));
+    document.getElementById('b1Orders').innerHTML = B1[s].orders.map(o => `<li>${o}</li>`).join('');
+    document.getElementById('b1Avoid').innerHTML = B1[s].avoid;
+    renderMeds('B1');
+  }
+  document.getElementById('b1Scen').innerHTML = Object.entries(B1)
+    .map(([k, v]) => `<button type="button" class="opt" data-v="${k}">${v.label}</button>`).join('');
+  document.querySelectorAll('#b1Scen .opt').forEach(b => b.addEventListener('click', () => setScenario(b.dataset.v)));
+
+  // ── Texto de indicaciones ─────────────────────────────────────────
+  const HIDRATACION_PT = [
+    'Sales de rehidratación oral (SRO): disuelva el sobre en la cantidad de agua que indica el envase y tómelo a sorbos pequeños y frecuentes durante todo el día. Si vomita, espere 10 minutos y siga con sorbos más pequeños (una cucharada cada 2 o 3 minutos).',
+    'Después de cada deposición líquida tome 2 a 3 vasos adicionales (unos 500 a 700 mL); después de cada vómito, medio vaso.',
+    'Las bebidas deportivas, las bebidas gaseosas y los jugos NO reemplazan las sales de rehidratación: tienen mucha azúcar y poco sodio, y pueden empeorar la diarrea.'
+  ];
+
+  const REC_BASE = [
+    'Reinicie su alimentación habitual en cuanto la tolere, en porciones pequeñas y repartidas. No necesita ayuno ni dietas restrictivas prolongadas.',
+    'Lávese las manos con agua y jabón después de ir al baño y antes de preparar o servir alimentos.',
+    'No prepare alimentos para otras personas ni use piscinas mientras dure la diarrea.'
+  ];
+
+  const ALARM_BASE = [
+    'Sangre en las deposiciones.',
+    'Fiebre de 38,5 °C o más, o calofríos.',
+    'Vómitos que le impidan beber líquidos.',
+    'Dolor abdominal que aumenta, se localiza en un punto o le impide moverse.',
+    'No orinar por más de 8 horas, orina muy escasa y oscura, mareo al ponerse de pie o desmayo.',
+    'Decaimiento importante, somnolencia o confusión.'
+  ];
+
+  function buildText(path) {
+    const isA = path === 'A';
+    const sc = B1[state.scen];
+    const med = isA ? null : MEDS[state.med.B1];
+    const dx = isA ? 'Gastroenteritis aguda no complicada' : sc.dx;
+    const L = [];
+    L.push('INDICACIONES AL ALTA — ' + dx.toUpperCase(), '');
+
+    L.push('Hidratación (es el tratamiento principal):');
+    HIDRATACION_PT.forEach(h => L.push('• ' + h));
+
+    const tto = [];
+    if (med && med.box) tto.push(med.box);
+    if (med && med.pt) tto.push(med.pt);
+    [...state.sint[path]].forEach(s => tto.push(SINT[s].pt));
+    if (tto.length) {
+      L.push('', 'Medicamentos:');
+      tto.forEach(t => L.push('• ' + t));
+    } else {
+      L.push('', 'Medicamentos:');
+      L.push('• No necesita antibiótico: este cuadro se cura con hidratación. El antibiótico no lo acortaría y puede causar efectos adversos.');
+    }
+
+    L.push('', 'Recomendaciones:');
+    REC_BASE.forEach(r => L.push('• ' + r));
+    if (!isA) sc.extraRec.forEach(r => L.push('• ' + r));
+    if (state.flags.B1.has('laboral')) {
+      L.push('• Si trabaja manipulando alimentos, en salud o en sala cuna, no se reincorpore sin la indicación específica del servicio.');
+    }
+    L.push('• Los síntomas deberían ir mejorando en 48 a 72 horas.');
+
+    L.push('', 'CONSULTE DE INMEDIATO EN URGENCIA si presenta:');
+    const alarm = isA ? ALARM_BASE : [...ALARM_BASE, ...sc.extraAlarm];
+    alarm.forEach(a => L.push('• ' + a));
+
+    L.push('', 'Control:');
+    L.push('• ' + (isA
+      ? 'Si la diarrea o los vómitos continúan después de 72 horas, o reaparecen, controle en su CESFAM.'
+      : sc.control));
+
+    L.push('', 'Se explicaron el diagnóstico, el tratamiento y los signos de alarma. El paciente refiere comprender las indicaciones.');
+    return L.join('\n');
+  }
+
+  function renderCopy(path) {
+    document.getElementById('copy-' + path).textContent = buildText(path);
+  }
+
+  async function copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (e) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch (_) {}
+      ta.remove();
+      return ok;
+    }
+  }
+
+  document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
+    const ok = await copyText(buildText(btn.dataset.copy));
+    btn.textContent = ok ? 'Copiado ✓' : 'Selecciona y copia';
+    btn.classList.toggle('done', ok);
+    setTimeout(() => { btn.textContent = 'Copiar indicaciones'; btn.classList.remove('done'); }, 1800);
+  }));
+
+  // ── Checklists de alta ────────────────────────────────────────────
+  document.querySelectorAll('[data-check]').forEach(list => {
+    const p = list.dataset.check;
+    const status = document.querySelector(`[data-status="${p}"]`);
+    const boxes = list.querySelectorAll('input');
+    const upd = () => {
+      const n = [...boxes].filter(b => b.checked).length;
+      const done = n === boxes.length;
+      status.textContent = done ? '✓ Listo para el alta' : `${n} / ${boxes.length} verificados`;
+      status.classList.toggle('ok', done);
+    };
+    boxes.forEach(b => b.addEventListener('change', upd));
+    upd();
+  });
+
+  // ── Estimador de reposición ───────────────────────────────────────
+  const r50 = (x) => Math.round(x / 50) * 50;
+  const fmt = (ml) => ml >= 1000 ? `${(ml / 1000).toFixed(1).replace('.', ',')} L` : `${ml} mL`;
+
+  function cell(k, v, u) {
+    return `<div class="calc-cell"><div class="k">${k}</div><div class="v">${v}</div><div class="u">${u}</div></div>`;
+  }
+
+  function renderCalc() {
+    const out = document.getElementById('calcOut');
+    const peso = parseFloat(document.getElementById('calcPeso').value);
+    const pct = parseFloat(document.getElementById('calcGrado').value);
+    if (!peso || peso < 30 || peso > 200) {
+      out.innerHTML = '<div class="calc-empty">Ingresa el peso (30–200 kg) para estimar el déficit y el volumen de reposición. No se guarda ningún dato.</div>';
+      return;
+    }
+    const dep = Math.max(0, parseFloat(document.getElementById('calcDep').value) || 0);
+    const vom = Math.max(0, parseFloat(document.getElementById('calcVom').value) || 0);
+
+    const deficit = r50(peso * pct * 10);
+    const perdidas = r50(dep * 10 * peso + vom * 2 * peso);
+    const basal = r50(peso * 30);
+    const cells = [];
+
+    cells.push(cell('Déficit estimado', fmt(deficit), `${pct} % del peso · ${peso} kg`));
+
+    if (pct <= 3) {
+      cells.push(cell('SRO en las primeras 4 h', fmt(deficit), 'Reponer el déficit estimado. En la deshidratación leve el esquema OMS es a libre demanda (plan A): SRO tras cada pérdida, sin volumen fijo'));
+    } else if (pct < 10) {
+      const planB = r50(peso * 75);
+      cells.push(cell('SRO en las primeras 4 h', fmt(planB), 'Esquema OMS plan B: 75 mL/kg. Otros protocolos reponen el déficit estimado o usan ≈ 50 mL/kg en 4 h: verificar con protocolo institucional'));
+    } else {
+      const planC = r50(peso * 100);
+      cells.push(cell('Plan C (referencia)', fmt(planC), `Ringer lactato 100 mL/kg EV: ${fmt(r50(peso * 30))} en los primeros 30 min y ${fmt(r50(peso * 70))} en las 2,5 h siguientes. Verificar con protocolo institucional`));
+      cells.push(cell('Bolo inicial', fmt(r50(peso * 20)), '20 mL/kg de cristaloide isotónico, con reevaluación clínica tras cada bolo'));
+    }
+
+    cells.push(cell('Pérdidas mantenidas (24 h)', perdidas ? fmt(perdidas) : '—',
+      perdidas ? `${dep} deposición(es) × 10 mL/kg + ${vom} vómito(s) × 2 mL/kg` : 'Ingresa el número de deposiciones y vómitos del día'));
+    cells.push(cell('Aporte basal (24 h)', fmt(basal), '≈ 30 mL/kg/día, además del déficit y de las pérdidas'));
+
+    out.innerHTML = `<div class="calc-out">${cells.join('')}</div>`;
+  }
+  ['calcPeso', 'calcGrado', 'calcDep', 'calcVom'].forEach(id =>
+    document.getElementById(id).addEventListener('input', renderCalc));
+  document.getElementById('calcGrado').addEventListener('change', renderCalc);
+
+  // ── Inicio ────────────────────────────────────────────────────────
+  renderMeds('A');
+  setScenario('hidratacion');
+  renderCalc();
+</script>
+<script>
+(function() {
+  var root = document.documentElement, KEY = 'oc-theme';
+  try { var t = localStorage.getItem(KEY); if (t) root.setAttribute('data-theme', t); } catch (e) {}
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function() {
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>

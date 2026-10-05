@@ -404,7 +404,14 @@ Reglas de contenido:
       Esquemas antimicrobianos y epidemiología según el Protocolo clínico del
       manejo empírico de ITU del HUAP (PROA, 12/2024). Pendiente de validación:
       solo las metas de tiempo propuestas.
-- [ ] Diarrea / vómitos — base: `guia-gastroenteritis.html`
+- [x] Diarrea / vómitos — `sintoma-diarrea-vomitos.html` (reemplaza en el index a
+      `guia-gastroenteritis.html`, que queda accesible desde «Profundizar →»).
+      Caminos A / B1 / B2 / C más un camino D de desvío («probablemente no es una
+      gastroenteritis»), que manda sobre B2 y B1. Incluye estimador de reposición
+      (déficit, plan B y plan C de la OMS, pérdidas mantenidas) y tabla de incubación.
+      Pendiente de validación: las metas de tiempo propuestas y el esquema de
+      reposición que usa el servicio (plan B de la OMS, 75 mL/kg en 4 h, frente a los
+      ≈ 50 mL/kg en 4 h que recoge la guía previa).
 - [ ] Dolor torácico — base: `guia-dolor-toracico.html`
 - [ ] Dolor lumbar — base: `guia-lumbago-agudo.html`
 - [ ] Dolor abdominal — base: `guia-dolor-abdominal.html`
