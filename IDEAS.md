@@ -412,7 +412,28 @@ Reglas de contenido:
       Pendiente de validación: las metas de tiempo propuestas y el esquema de
       reposición que usa el servicio (plan B de la OMS, 75 mL/kg en 4 h, frente a los
       ≈ 50 mL/kg en 4 h que recoge la guía previa).
-- [ ] Dolor torácico — base: `guia-dolor-toracico.html`
+- [x] Dolor torácico — `sintoma-dolor-toracico.html` (reemplaza en el index a
+      `guia-dolor-toracico.html`, que queda accesible desde «Profundizar →»).
+      Caminos A / B1 / B2 / C más un camino D de desvío («puede que no sea ninguna de
+      las seis»). El camino A es el único *fast-track* del repo que **sí** exige un
+      examen: el electrocardiograma en menos de 10 minutos es innegociable, y el recuadro
+      «NO pedir» apunta a la troponina, al dímero D sin regla de decisión previa y a la
+      prueba de esfuerzo desde el box. El camino B2 agrupa las causas letales no
+      coronarias con su regla de decisión (ADD-RS, Wells/PERC/YEARS, dímero D ajustado por
+      edad) y con los dos desvíos que matan: **no antiagregar ni anticoagular una
+      disección** y **no esperar troponinas en una rotura esofágica**. Incluye la
+      calculadora del puntaje HEART, que empuja la banda al camino B1, y el camino B1 entra
+      **por defecto en riesgo intermedio**: solo baja a bajo riesgo con HEART ≤ 3,
+      troponina seriada negativa, electrocardiograma no isquémico y paciente sin dolor
+      (el texto de alta no se arma en las otras bandas). Pendiente de validación: todas las
+      metas de tiempo propuestas; los umbrales y deltas de troponina del ensayo del
+      laboratorio y el umbral local de alta con HEART; los esquemas de inhibidor P2Y12,
+      anticoagulación y reperfusión de la red local y los plazos garantizados por el GES;
+      la titulación de esmolol o labetalol en el síndrome aórtico; el esquema de
+      anticoagulación y de fibrinólisis en el tromboembolismo; el antibiótico y el
+      antifúngico de la rotura esofágica; la conducta local en el neumotórax espontáneo
+      estable y en la pericarditis de manejo ambulatorio; y la disponibilidad de
+      diclofenaco gel en el servicio.
 - [ ] Dolor lumbar — base: `guia-lumbago-agudo.html`
 - [ ] Dolor abdominal — base: `guia-dolor-abdominal.html`
 - [ ] Cefalea — base: `guia-cefalea.html`
