@@ -434,7 +434,36 @@ Reglas de contenido:
       antifúngico de la rotura esofágica; la conducta local en el neumotórax espontáneo
       estable y en la pericarditis de manejo ambulatorio; y la disponibilidad de
       diclofenaco gel en el servicio.
-- [ ] Dolor lumbar — base: `guia-lumbago-agudo.html`
+- [x] Dolor lumbar — `sintoma-dolor-lumbar.html` (reemplaza en el index a
+      `guia-lumbago-agudo.html`, que queda accesible desde «Profundizar →»).
+      Caminos A / B1 / B2 / C más un camino D de desvío («puede que no venga de la
+      columna»). La bifurcación la mandan **las cuatro preguntas de la cauda equina**
+      —micción y defecación, sensibilidad perineal, debilidad de las piernas y las
+      banderas rojas sistémicas—, que se preguntan dirigidamente porque casi ninguna
+      aparece sola en el relato espontáneo. El camino A es el primer *fast-track* del
+      repo **sin ningún examen**: el recuadro «NO pedir» apunta a la radiografía de
+      rutina, a la resonancia, al laboratorio, al reposo en cama y a la pregabalina, y
+      explica por qué la imagen precoz empeora el pronóstico percibido (hallazgos
+      degenerativos casi universales, Brinjikji 2015). El camino B1 trata la ciática
+      como lo que es —curso natural favorable, resonancia **diferida** a las 4–6
+      semanas— con el mapa radicular L3–S1, la advertencia sobre el valor real del
+      Lasègue y el recordatorio de que un compromiso de S2–S4 no es radiculopatía sino
+      camino C. El camino B2 agrupa las cinco banderas rojas que sí se estudian hoy
+      (infección espinal, malignidad, fractura, hematoma del anticoagulado y causa
+      visceral o vascular) con su bundle simultáneo, y el camino C reúne las cuatro
+      emergencias en que manda la sospecha y no la confirmación: cauda equina,
+      compresión medular, absceso epidural y aneurisma aórtico roto. Incluye la
+      calculadora de los **criterios ASAS** de dolor lumbar inflamatorio (Sieper 2009),
+      acotada de forma explícita al dolor de más de tres meses y a la decisión de
+      derivar, no a la del alta de hoy. Pendiente de validación: todas las metas de
+      tiempo propuestas; el umbral local de residuo postmiccional (la literatura usa
+      100 a 200 mL); los plazos quirúrgicos y de resonancia y las vías de derivación a
+      columna; el esquema de corticoides de la compresión medular; el antibiótico
+      empírico de la infección espinal según el PROA local; los agentes de reversión de
+      la anticoagulación; el esquema escalonado de analgesia parenteral del servicio y
+      su disponibilidad (ketoprofeno, ketorolaco, metamizol, opioides); la
+      disponibilidad de ciclobenzaprina y sus alternativas; y la cobertura garantizada
+      que corresponda al caso.
 - [ ] Dolor abdominal — base: `guia-dolor-abdominal.html`
 - [ ] Cefalea — base: `guia-cefalea.html`
 - [ ] Contusión / trauma menor — base: `guia-policontusiones.html`
