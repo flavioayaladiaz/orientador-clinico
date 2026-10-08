@@ -464,7 +464,38 @@ Reglas de contenido:
       su disponibilidad (ketoprofeno, ketorolaco, metamizol, opioides); la
       disponibilidad de ciclobenzaprina y sus alternativas; y la cobertura garantizada
       que corresponda al caso.
-- [ ] Dolor abdominal — base: `guia-dolor-abdominal.html`
+- [x] Dolor abdominal — `sintoma-dolor-abdominal.html` (reemplaza en el index a
+      `guia-dolor-abdominal.html`, que queda accesible desde «Profundizar →»).
+      Caminos A / B1 / B2 / C más un camino D de desvío («puede que no venga del abdomen»).
+      La bifurcación la ordena una sola regla —**dolor abdominal más hipotensión es hemorragia,
+      isquemia o sepsis abdominal hasta demostrar lo contrario**— y, antes de marcar cualquier
+      bandera, **los tres gestos que se olvidan**: electrocardiograma en la epigastralgia del
+      paciente de riesgo, prueba de embarazo en toda mujer en edad fértil y examen de genitales y
+      de los cuatro orificios herniarios. El camino A es un *fast-track* que **no persigue una
+      etiqueta**: «dolor abdominal inespecífico» es un diagnóstico legítimo, y el recuadro «NO
+      pedir» apunta a la tomografía del paciente joven y estable, a la radiografía simple de
+      abdomen, a la ecografía sin pregunta concreta, al antibiótico sin foco y al inhibidor de la
+      bomba de protones usado como prueba diagnóstica; lo que hace segura el alta es el examen
+      escrito con hora, la reevaluación y el control en 12 a 24 h. El camino B1 reúne las cuatro
+      sospechas de estudio acotado (cólico biliar, cólico renoureteral, diverticulitis no
+      complicada y dolor pélvico con prueba de embarazo negativa) con lo que las saca del camino:
+      patrón colestásico, fiebre con obstrucción de la vía y prueba de embarazo positiva. El
+      camino B2 agrupa los seis escenarios que se estudian hoy —abdomen inflamatorio focal,
+      obstrucción, vía biliar y colangitis sin shock, pancreatitis, pelvis en la mujer en edad
+      fértil y paciente de alto riesgo— con bundle simultáneo, y el camino C las siete emergencias
+      en que manda la sospecha: aneurisma roto, isquemia mesentérica, perforación, colangitis con
+      péntada de Reynolds, ectópico roto, estrangulación y hemorragia retroperitoneal. Incluye la
+      calculadora del **puntaje de Alvarado**, que empuja la banda intermedia y alta al camino B2.
+      Pendiente de validación: todas las metas de tiempo propuestas; los esquemas antimicrobianos
+      del PROA local (diverticulitis, colangitis, peritonitis bacteriana espontánea, perforación);
+      el puntaje de apendicitis que usa el servicio y sus cortes de imagen y de derivación
+      quirúrgica (Alvarado frente a AIR o AAS); la conducta local sobre la diverticulitis no
+      complicada sin antibiótico; el esquema de reposición de la pancreatitis y la dosis de
+      albúmina de la peritonitis bacteriana espontánea; los plazos de drenaje biliar y de
+      colecistectomía; la disponibilidad de colangiorresonancia y de tomografía de baja dosis en
+      urgencia; los agentes de reversión de la anticoagulación; el esquema escalonado de analgesia
+      parenteral y su disponibilidad (morfina, fentanilo, ketoprofeno, ketorolaco, metamizol,
+      butilescopolamina); y las vías de derivación a cirugía, urología y ginecología.
 - [ ] Cefalea — base: `guia-cefalea.html`
 - [ ] Contusión / trauma menor — base: `guia-policontusiones.html`
 - [ ] Disnea (nueva)

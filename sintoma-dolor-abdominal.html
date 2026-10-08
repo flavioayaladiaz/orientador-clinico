@@ -1,0 +1,2602 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Síntoma cardinal · Dolor abdominal</title>
+<meta name="description" content="Dolor abdominal en el adulto: bifurcación en los primeros minutos, los tres gestos que se olvidan (electrocardiograma, prueba de embarazo y examen de genitales y hernias), criterios para no pedir tomografía, bundle del abdomen que se estudia hoy, puntaje de Alvarado e indicaciones al alta listas para copiar.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --surface2: #eef1f5;
+    --border: rgba(15,23,42,0.10);
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --text-dim: #475569;
+  }
+  :root[data-theme="light"] body::before {
+    background-image:
+      linear-gradient(rgba(15,23,42,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(20,184,166,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(245,158,11,0.06) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 32px; animation: fadeUp 0.6s ease both; }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 0;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .theme-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+    font-size: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .theme-btn:hover { color: var(--text); border-color: var(--text-muted); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(20,184,166,0.1);
+    border: 1px solid rgba(20,184,166,0.25);
+    color: #5eead4;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #2dd4bf, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .header-sub strong { color: var(--text); font-weight: 500; }
+
+  /* SECCIONES */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+  .section-title { font-family: var(--display); font-size: 15px; font-weight: 700; color: #fff; }
+  .section-subtitle { font-size: 12px; color: var(--text-muted); font-family: var(--mono); margin-top: 2px; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+  .section-body { padding: 20px 24px 24px; }
+
+  .s1 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s3 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+
+  /* TRIAGE */
+  .q-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .q-label .arrow { color: var(--text-dim); letter-spacing: 0.04em; text-transform: none; }
+  .q-block { margin-bottom: 18px; }
+
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+    line-height: 1.4;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+  .opt.on { background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.45); color: #6ee7b7; }
+  .grp-C .opt.on  { background: rgba(239,68,68,0.14);  border-color: rgba(239,68,68,0.5);  color: #fca5a5; }
+  .grp-B2 .opt.on { background: rgba(99,102,241,0.14); border-color: rgba(99,102,241,0.5); color: #c7d2fe; }
+  .grp-B1 .opt.on { background: rgba(245,158,11,0.13); border-color: rgba(245,158,11,0.5); color: #fcd34d; }
+  .grp-D .opt.on  { background: rgba(59,130,246,0.14); border-color: rgba(59,130,246,0.5); color: #93c5fd; }
+  .opt .sub { display: block; font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+  .opt.on .sub { color: inherit; opacity: 0.8; }
+
+  .no-flags {
+    width: 100%;
+    font-family: var(--display);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px dashed rgba(16,185,129,0.4);
+    background: rgba(16,185,129,0.05);
+    color: #6ee7b7;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.18s;
+  }
+  .no-flags .sub { display: block; font-family: var(--sans); font-weight: 400; font-size: 12.5px; color: var(--text-dim); margin-top: 4px; line-height: 1.5; }
+  .no-flags.on { border-style: solid; background: rgba(16,185,129,0.14); border-color: rgba(16,185,129,0.6); }
+  .no-flags:disabled { opacity: 0.35; cursor: not-allowed; }
+  .no-flags:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+
+  .verdict {
+    margin-top: 18px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    padding: 16px 18px;
+    border-left: 4px solid var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .verdict.placeholder { font-family: var(--mono); font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
+  .verdict-main { flex: 1; min-width: 220px; }
+  .verdict-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+  .verdict-title { font-family: var(--display); font-size: 18px; font-weight: 700; color: #fff; line-height: 1.25; }
+  .verdict-why { font-size: 12.5px; color: var(--text-dim); margin-top: 6px; line-height: 1.5; }
+  .verdict.p-A  { border-left-color: var(--emerald); }
+  .verdict.p-B1 { border-left-color: var(--amber); }
+  .verdict.p-B2 { border-left-color: var(--indigo); }
+  .verdict.p-C  { border-left-color: var(--red); }
+  .verdict.p-D  { border-left-color: var(--blue); }
+
+  .go-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    padding: 11px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .go-btn:hover { background: rgba(255,255,255,0.1); }
+
+  .link-btn {
+    background: none;
+    border: none;
+    color: #93c5fd;
+    font-family: var(--mono);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* CAMINOS */
+  .path-tabs {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .path-tab {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px 12px 11px;
+    cursor: pointer;
+    text-align: left;
+    color: var(--text-dim);
+    transition: all 0.18s;
+    border-top: 3px solid var(--tab-accent);
+  }
+  .path-tab:hover { color: var(--text); background: var(--surface2); }
+  .path-tab:focus-visible { outline: 2px solid var(--tab-accent); outline-offset: 2px; }
+  .path-tab .code { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--tab-accent); }
+  .path-tab .name { display: block; font-family: var(--display); font-size: 13.5px; font-weight: 700; margin-top: 3px; line-height: 1.2; }
+  .path-tab.active { background: var(--surface2); color: #fff; box-shadow: 0 0 0 1px var(--tab-accent) inset; }
+  .t-A  { --tab-accent: var(--emerald); }
+  .t-B1 { --tab-accent: var(--amber); }
+  .t-B2 { --tab-accent: var(--indigo); }
+  .t-C  { --tab-accent: var(--red); }
+  .t-D  { --tab-accent: var(--blue); }
+
+  .path-panel {
+    display: none;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 22px 24px 24px;
+    margin-bottom: 20px;
+    border-top: 3px solid var(--tab-accent);
+  }
+  .path-panel.active { display: block; animation: fadeUp 0.35s ease both; }
+
+  .panel-head { margin-bottom: 14px; }
+  .panel-code { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tab-accent); }
+  .panel-title { font-family: var(--display); font-size: 22px; font-weight: 800; color: #fff; line-height: 1.2; margin-top: 4px; }
+  .panel-crit { font-size: 13px; color: var(--text-dim); margin-top: 6px; line-height: 1.55; }
+
+  .targets { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 6px; }
+  .target {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    padding: 7px 11px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .target b { color: var(--tab-accent); font-weight: 500; }
+
+  .block-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 22px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .block-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .stop {
+    border-radius: 14px;
+    border: 1px solid rgba(239,68,68,0.35);
+    background: rgba(239,68,68,0.07);
+    padding: 14px 16px;
+  }
+  .stop-title { font-family: var(--display); font-weight: 800; font-size: 15px; color: #fca5a5; margin-bottom: 8px; letter-spacing: 0.01em; }
+  .stop ul, .order ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .stop li { font-size: 13.5px; color: #fecaca; line-height: 1.5; padding-left: 22px; position: relative; }
+  .stop li::before { content: '✕'; position: absolute; left: 2px; color: var(--red); font-weight: 700; }
+  .stop li .cond { color: var(--text-muted); font-family: var(--mono); font-size: 11.5px; }
+  .stop .why { margin-top: 10px; font-size: 12.5px; color: var(--text-dim); line-height: 1.55; }
+  .stop .why strong { color: #fff; font-weight: 500; }
+
+  .order {
+    border-radius: 14px;
+    border: 1px solid rgba(16,185,129,0.3);
+    background: rgba(16,185,129,0.06);
+    padding: 14px 16px;
+  }
+  .order-title { font-family: var(--display); font-weight: 800; font-size: 15px; color: #6ee7b7; margin-bottom: 8px; }
+  .order li { font-size: 13.5px; color: var(--text); line-height: 1.5; padding-left: 22px; position: relative; }
+  .order li::before { content: '✓'; position: absolute; left: 2px; color: var(--emerald); font-weight: 700; }
+  .order li .cond { color: var(--text-muted); font-family: var(--mono); font-size: 11.5px; }
+  .order-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; }
+  .order-grid .order-title { font-size: 13px; font-family: var(--mono); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+
+  .inst-rule {
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: #fde68a;
+    background: rgba(245,158,11,0.07);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 10px;
+    padding: 10px 12px;
+    line-height: 1.5;
+  }
+  .inst-rule b { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); font-weight: 500; margin-right: 6px; }
+
+  /* FÁRMACOS */
+  .med-list { display: flex; flex-direction: column; gap: 8px; }
+  .med {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    width: 100%;
+    text-align: left;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    cursor: pointer;
+    color: var(--text-dim);
+    font-family: var(--sans);
+    transition: all 0.18s;
+  }
+  .med:hover { border-color: rgba(255,255,255,0.18); }
+  .med:focus-visible { outline: 2px solid var(--tab-accent); outline-offset: 2px; }
+  .med .radio {
+    width: 16px; height: 16px; border-radius: 50%;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .med.multi .radio { border-radius: 5px; }
+  .med.on { border-color: var(--tab-accent); background: rgba(255,255,255,0.04); }
+  .med.on .radio { border-color: var(--tab-accent); background: var(--tab-accent); box-shadow: inset 0 0 0 3px var(--surface2); }
+  .med-name { font-size: 14px; color: #fff; font-weight: 500; }
+  .med-dose { font-family: var(--mono); font-size: 12.5px; color: var(--text); margin-top: 2px; }
+  .med-note { font-size: 12px; color: var(--text-muted); margin-top: 3px; line-height: 1.45; }
+
+  .avoid {
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+  }
+  .avoid strong { color: #fca5a5; font-weight: 500; }
+
+  /* TABLA COMPACTA */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 11px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td { padding: 11px 14px; border-bottom: 1px solid var(--border); color: var(--text-dim); vertical-align: top; line-height: 1.5; }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; font-family: var(--mono); font-size: 12.5px; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 6px; }
+  .check {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    cursor: pointer;
+    line-height: 1.45;
+  }
+  .check input { accent-color: var(--emerald); width: 17px; height: 17px; margin-top: 1px; flex-shrink: 0; cursor: pointer; }
+  .check:has(input:checked) { color: var(--text); border-color: rgba(16,185,129,0.35); }
+  .check-status { font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); margin-top: 8px; }
+  .check-status.ok { color: #6ee7b7; }
+
+  /* COPIADO */
+  .copy-box {
+    border-radius: 14px;
+    border: 1px solid rgba(59,130,246,0.3);
+    background: rgba(59,130,246,0.05);
+    overflow: hidden;
+  }
+  .copy-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 10px 12px 10px 16px;
+    border-bottom: 1px solid rgba(59,130,246,0.2);
+  }
+  .copy-bar span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #93c5fd; }
+  .copy-btn {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    background: var(--blue);
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.12s, background 0.2s;
+    white-space: nowrap;
+  }
+  .copy-btn:hover { background: #2563eb; }
+  .copy-btn:active { transform: scale(0.97); }
+  .copy-btn.done { background: var(--emerald); }
+  .copy-pre {
+    margin: 0;
+    padding: 14px 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 340px;
+    overflow-y: auto;
+  }
+  .copy-hint { font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.5; }
+
+  /* LISTAS Y BANNERS */
+  .plain-list { display: flex; flex-direction: column; gap: 8px; }
+  .plain-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 11px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  .warning-banner {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.55;
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.22);
+    color: #fca5a5;
+    margin-top: 12px;
+  }
+  .warning-banner strong { color: #fff; font-weight: 500; }
+
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+
+  .deep-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 16px 20px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    text-decoration: none;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .deep-link:hover { border-color: rgba(20,184,166,0.4); transform: translateX(2px); }
+  .deep-link strong { display: block; font-family: var(--display); font-size: 15px; color: #fff; margin-bottom: 3px; }
+  .deep-link span { font-size: 12.5px; line-height: 1.5; }
+  .deep-link .arr { font-family: var(--mono); color: var(--teal); font-size: 18px; flex-shrink: 0; }
+
+  /* DISCLAIMER Y PIE */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--emerald); }
+
+  .thanks {
+    margin-top: 20px;
+    border: 1px solid rgba(16,185,129,0.2);
+    background: rgba(16,185,129,0.05);
+    border-radius: 14px;
+    padding: 16px 20px;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .thanks strong { color: #6ee7b7; font-weight: 500; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+
+  /* CALCULADORA (criterios ASAS) */
+  .calc {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-top: 6px;
+  }
+  .calc-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; }
+  .calc-field { display: flex; flex-direction: column; gap: 6px; }
+  .calc-field label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .calc-field select {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 9px 11px;
+    min-width: 150px;
+  }
+  .calc-field select:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
+  .calc-out {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .calc-out strong { color: #fff; font-weight: 500; }
+  .calc-out em { color: #fcd34d; font-style: normal; }
+  .calc-out .big {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: #93c5fd;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .calc-out .big.risk-low { color: #6ee7b7; }
+  .calc-out .big.risk-mid { color: #fcd34d; }
+  .calc-out .big.risk-high { color: #fca5a5; }
+  .calc-reset {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 8px 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .calc-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+  .s4 .section-num { background: rgba(59,130,246,0.12); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s5 .section-num { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+
+  .info-banner {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.55;
+    background: rgba(59,130,246,0.07);
+    border: 1px solid rgba(59,130,246,0.22);
+    color: var(--text-dim);
+    margin-top: 12px;
+  }
+  .info-banner strong { color: #fff; font-weight: 500; }
+
+  .amber-banner {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.55;
+    background: rgba(245,158,11,0.07);
+    border: 1px solid rgba(245,158,11,0.25);
+    color: #fde68a;
+    margin-top: 12px;
+  }
+  .amber-banner strong { color: #fff; font-weight: 500; }
+
+  .links-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .links-row .cross-link { margin-top: 0; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body, .path-panel { padding: 16px; }
+    .section-header { padding: 16px; }
+    .path-tabs { grid-template-columns: repeat(2, 1fr); }
+    .calc-field, .calc-field select { width: 100%; }
+    .opt { width: 100%; }
+    th, td { padding: 10px 12px; }
+    .copy-bar { flex-wrap: wrap; }
+  }
+</style>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <a class="back-link" href="./index.html">← Volver</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Cambiar tema claro u oscuro">◐</button>
+    </div>
+    <div class="header-badge">Síntoma cardinal · Adulto</div>
+    <h1><span>Dolor abdominal</span></h1>
+    <p class="header-sub">
+      Dos decisiones, en este orden: <strong>¿hay un abdomen que se opera, se drena o se reanima hoy?</strong> y
+      <strong>a quién se puede dar de alta sin diagnóstico</strong>. Las dos se equivocan por lo mismo: cerrar el
+      razonamiento antes de hacer <strong>los tres gestos que se olvidan</strong> —electrocardiograma, prueba de embarazo
+      y examen de genitales y orificios herniarios—. Irse de alta sin etiqueta es aceptable; irse sin plazo, sin
+      instrucciones y sin examen escrito, no.
+    </p>
+  </div>
+
+  <!-- 01 · BIFURCACIÓN -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">MIN 0–3</span>
+      <div>
+        <div class="section-title">¿Tiene banderas rojas?</div>
+        <div class="section-subtitle">Marca lo presente. Manda el grupo más grave</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner" style="margin-top:0;margin-bottom:16px;">
+        <span>⚠️</span>
+        <span><strong>Antes de marcar nada: toma los signos vitales completos, pide electrocardiograma si el dolor es
+        epigástrico o del hemiabdomen superior en un paciente de riesgo, pide prueba de embarazo en toda mujer en edad
+        fértil y examina genitales y los cuatro orificios herniarios.</strong> Una torsión testicular, una hernia
+        incarcerada, un infarto de cara inferior y un embarazo ectópico se presentan como dolor abdominal y se pierden
+        por no mirar.
+        <button type="button" class="link-btn" onclick="openSiempre()">Ver qué se hace siempre en paralelo →</button></span>
+      </div>
+
+      <div class="q-block grp-C">
+        <div class="q-label">Emergencia tiempo-dependiente <span class="arrow">→ camino C</span></div>
+        <div class="opts" data-group="C">
+          <button type="button" class="opt" data-v="shock">Hipotensión, taquicardia persistente, mala perfusión o compromiso de conciencia<span class="sub">dolor abdominal con hipotensión es hemorragia, isquemia o sepsis abdominal hasta demostrar lo contrario</span></button>
+          <button type="button" class="opt" data-v="aorta">Mayor de 60 años con dolor abdominal o lumbar de inicio brusco, síncope, masa pulsátil o asimetría de pulsos femorales<span class="sub">aneurisma aórtico abdominal roto · se confunde con cólico renal</span></button>
+          <button type="button" class="opt" data-v="tabla">Abdomen en tabla, defensa involuntaria generalizada, paciente inmóvil<span class="sub">perforación de víscera hueca · peritonitis difusa</span></button>
+          <button type="button" class="opt" data-v="isquemia">Dolor intenso y persistente desproporcionado a un examen abdominal poco llamativo<span class="sub">isquemia mesentérica · fibrilación auricular, vasculopatía o edad avanzada</span></button>
+          <button type="button" class="opt" data-v="reynolds">Fiebre e ictericia con dolor en hipocondrio derecho, más hipotensión o compromiso de conciencia<span class="sub">péntada de Reynolds · colangitis que necesita drenaje ahora</span></button>
+          <button type="button" class="opt" data-v="ectopico">Mujer en edad fértil con dolor pélvico y lipotimia, palidez o hipotensión<span class="sub">embarazo ectópico roto · con o sin amenorrea reconocida</span></button>
+          <button type="button" class="opt" data-v="estrangulacion">Dolor cólico que se hizo constante, con hernia irreductible, fiebre, taquicardia o acidosis<span class="sub">obstrucción con estrangulación o vólvulo</span></button>
+          <button type="button" class="opt" data-v="sangrado">Anticoagulado o traumatizado reciente con dolor de inicio brusco y anemización<span class="sub">hemorragia retroperitoneal, de la vaina del recto o rotura esplénica diferida</span></button>
+        </div>
+      </div>
+
+      <div class="q-block grp-B2">
+        <div class="q-label">Bandera roja que obliga a estudiar hoy <span class="arrow">→ camino B2</span></div>
+        <div class="opts" data-group="B2">
+          <button type="button" class="opt" data-v="peritoneal">Signos de irritación peritoneal localizados, sin compromiso hemodinámico<span class="sub">defensa involuntaria o dolor a la percusión, no el rebote provocado</span></button>
+          <button type="button" class="opt" data-v="fiebreAbd">Fiebre o calofríos con foco abdominal, sin inestabilidad</button>
+          <button type="button" class="opt" data-v="ictericia">Ictericia, coluria o patrón colestásico con dolor en el hemiabdomen superior</button>
+          <button type="button" class="opt" data-v="obstruccion">Vómitos, distensión y ausencia de gases o deposiciones, con cirugía abdominal previa o hernia</button>
+          <button type="button" class="opt" data-v="pelvis">Mujer en edad fértil con dolor pélvico o hipogástrico, y prueba de embarazo pendiente o positiva<span class="sub">ectópico y torsión anexial se descartan hoy, no en el control</span></button>
+          <button type="button" class="opt" data-v="mayor">65 años o más con dolor abdominal sin diagnóstico claro<span class="sub">menos dolor, menos fiebre, menos leucocitosis y más mortalidad</span></button>
+          <button type="button" class="opt" data-v="inmuno">Inmunosupresión, neutropenia, quimioterapia o corticoides sistémicos</button>
+          <button type="button" class="opt" data-v="cirrosis">Cirrosis con ascitis, o diálisis peritoneal<span class="sub">paracentesis diagnóstica precoz, aunque el abdomen esté blando</span></button>
+          <button type="button" class="opt" data-v="postop">Cirugía abdominal, endoscopia intervencional o procedimiento reciente</button>
+          <button type="button" class="opt" data-v="digestivo">Hematemesis, melena, rectorragia o anemización</button>
+          <button type="button" class="opt" data-v="refractario">Dolor que no cede con analgesia adecuada, vómitos que impiden la vía oral, o reconsulta por el mismo cuadro<span class="sub">la reconsulta es, en sí misma, una bandera roja</span></button>
+        </div>
+      </div>
+
+      <div class="q-block grp-B1">
+        <div class="q-label">Sospecha definida, de estudio dirigido <span class="arrow">→ camino B1</span></div>
+        <div class="opts" data-group="B1">
+          <button type="button" class="opt" data-v="biliar">Dolor sostenido en hipocondrio derecho o epigastrio irradiado a dorso o escápula, tras comida grasa, que cede<span class="sub">cólico biliar · afebril, sin ictericia y sin Murphy mantenido</span></button>
+          <button type="button" class="opt" data-v="renal">Dolor en flanco o lumbar, cólico, irradiado al genital, con inquietud motora y sin fiebre<span class="sub">cólico renoureteral no complicado</span></button>
+          <button type="button" class="opt" data-v="divertic">Dolor sostenido en fosa iliaca izquierda con cambio del hábito intestinal, sin signos peritoneales<span class="sub">diverticulitis probablemente no complicada</span></button>
+          <button type="button" class="opt" data-v="pelvicoNeg">Dolor pélvico en mujer con prueba de embarazo negativa, estable y sin signos peritoneales<span class="sub">enfermedad inflamatoria pélvica, quiste, dolor ovulatorio</span></button>
+        </div>
+      </div>
+
+      <button type="button" class="no-flags" id="noFlags">
+        Ninguna → camino A
+        <span class="sub">Dolor abdominal leve o ya controlado, abdomen depresible y sin signos peritoneales, signos
+        vitales normales y afebril, tolera la vía oral y deambula, prueba de embarazo negativa si corresponde,
+        electrocardiograma sin isquemia si el dolor era epigástrico en un paciente de riesgo, y genitales y orificios
+        herniarios examinados. Si queda duda, no es camino A.</span>
+      </button>
+
+      <div class="verdict placeholder" id="verdict">
+        Marca las banderas rojas presentes, o confirma que no hay ninguna.
+        <br>¿El dolor no se explica por el abdomen (corazón, pulmón, metabólico, pared, testículo)?
+        <button type="button" class="link-btn" onclick="showPath('D', true)">Ver el desvío →</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PESTAÑAS DE CAMINO -->
+  <div class="path-tabs" id="pathTabs" role="tablist">
+    <button type="button" class="path-tab t-A"  data-path="A"  role="tab"><span class="code">A</span><span class="name">Bajo riesgo · alta</span></button>
+    <button type="button" class="path-tab t-B1" data-path="B1" role="tab"><span class="code">B1</span><span class="name">Sospecha definida</span></button>
+    <button type="button" class="path-tab t-B2" data-path="B2" role="tab"><span class="code">B2</span><span class="name">Se estudia hoy</span></button>
+    <button type="button" class="path-tab t-C"  data-path="C"  role="tab"><span class="code">C</span><span class="name">Crítico</span></button>
+    <button type="button" class="path-tab t-D"  data-path="D"  role="tab"><span class="code">D</span><span class="name">No es del abdomen</span></button>
+  </div>
+
+  <!-- ═══ CAMINO A ═══ -->
+  <div class="path-panel t-A" id="panel-A" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Camino A · Fast-track</div>
+      <div class="panel-title">Dolor abdominal de bajo riesgo, con red de seguridad</div>
+      <div class="panel-crit">Abdomen depresible sin signos peritoneales, signos vitales normales, afebril, dolor
+        controlado, tolera la vía oral y deambula, con los tres gestos ya hechos.
+        <strong>«Dolor abdominal inespecífico» es un diagnóstico legítimo cuando se descartaron las causas letales;
+        lo que lo vuelve peligroso es el alta sin plazo, sin instrucciones y sin examen escrito.</strong></div>
+    </div>
+    <div class="targets">
+      <span class="target">⏱ Analgesia en <b>&lt; 15 min</b></span>
+      <span class="target">💓 Electrocardiograma en <b>&lt; 10 min</b> si corresponde</span>
+      <span class="target">🤰 Prueba de embarazo en <b>&lt; 20 min</b></span>
+      <span class="target">🚪 Alta en <b>&lt; 90 min</b></span>
+      <span class="target">🖥 Tomografía: <b>ninguna</b></span>
+    </div>
+
+    <div class="block-label">Stop workup</div>
+    <div class="stop">
+      <div class="stop-title">NO pedir</div>
+      <ul>
+        <li>Tomografía de abdomen y pelvis en el paciente joven, estable y con dolor leve ya controlado <span class="cond">sí, si hay bandera roja, duda diagnóstica o dolor que no cede</span></li>
+        <li>Radiografía simple de abdomen <span class="cond">bajo rendimiento: no descarta perforación ni obstrucción. Se reserva para cuerpo extraño o control de dispositivos</span></li>
+        <li>Ecografía abdominal «por si acaso», sin una pregunta concreta que responder</li>
+        <li>Antibiótico empírico sin foco identificado</li>
+        <li>Inhibidores de la bomba de protones o antiespasmódicos endovenosos como prueba diagnóstica <span class="cond">el alivio con un fármaco no identifica el origen del dolor</span></li>
+        <li>Proteína C reactiva en un dolor de pocas horas, para «descartar» <span class="cond">sube con horas de latencia</span></li>
+        <li>Tacto rectal de rutina <span class="cond">sí, ante sospecha concreta: hemorragia digestiva, fecaloma o absceso pelviano</span></li>
+      </ul>
+      <div class="why">
+        <strong>Lo que este paciente necesita no es un examen más: es un examen abdominal escrito, un plazo y
+        criterios de retorno.</strong> El laboratorio normal no descarta nada —hay apendicitis, isquemia mesentérica
+        precoz y perforación contenida con hemograma, proteína C reactiva y lactato normales—, de modo que pedirlo «para
+        quedarse tranquilo» no cambia la conducta y sí retrasa el alta. Lo que de verdad cambia el desenlace es
+        <strong>el examen seriado</strong> y un control precoz con fecha.
+        <button type="button" class="link-btn" onclick="openImagen()">Ver qué examen responde qué pregunta →</button>
+      </div>
+    </div>
+
+    <div class="block-label">Escenario</div>
+    <div class="opts" id="aScen"></div>
+    <div class="panel-crit" id="aCrit" style="margin-top:12px;"></div>
+
+    <div class="block-label">Tratamiento · elige uno</div>
+    <div class="med-list" data-meds="A"></div>
+    <div class="avoid" id="aAvoid"></div>
+
+    <div class="block-label">Coadyuvantes · opcional</div>
+    <div class="med-list" data-analg="A"></div>
+
+    <div class="block-label">Lo que cambia el resultado y no se receta</div>
+    <div class="order">
+      <div class="order-title">La red de seguridad es el tratamiento</div>
+      <ul>
+        <li><strong>Reevaluación en el box antes del alta</strong>, con la hora consignada: el examen seriado a las 2 a 4 horas cambia la conducta en una proporción relevante de abdómenes indiferenciados <span class="cond">reevaluar no es demorar</span></li>
+        <li><strong>Deja escrito el examen abdominal</strong> y qué causas graves se consideraron y por qué se descartaron. Es lo único que permite comparar en la próxima consulta</li>
+        <li><strong>Control clínico en 12 a 24 h si el dolor persiste</strong>, con un lugar concreto donde acudir. El dolor abdominal indiferenciado se reevalúa, no se cierra</li>
+        <li><strong>Explica que el alivio no es curación</strong> y que volver no es fracasar: la reconsulta precoz es parte del plan, no un error del paciente</li>
+      </ul>
+    </div>
+
+    <div class="block-label">Checklist de alta</div>
+    <div class="checklist" data-check="A">
+      <label class="check"><input type="checkbox"> Signos vitales normales y repetidos antes del alta, afebril</label>
+      <label class="check"><input type="checkbox"> Prueba de embarazo realizada y negativa, si es mujer en edad fértil</label>
+      <label class="check"><input type="checkbox"> Electrocardiograma hecho e interpretado si el dolor era epigástrico o supraumbilical en mayor de 50 años, diabético o con factores de riesgo</label>
+      <label class="check"><input type="checkbox"> Genitales y los cuatro orificios herniarios examinados y consignados</label>
+      <label class="check"><input type="checkbox"> Examen abdominal documentado, y reexaminado con la hora escrita antes del alta</label>
+      <label class="check"><input type="checkbox"> Dolor controlado, tolera líquidos por boca y deambula sin ayuda</label>
+      <label class="check"><input type="checkbox"> Control con fecha y lugar, y criterios de retorno inmediato explicados</label>
+    </div>
+    <div class="check-status" data-status="A"></div>
+
+    <div class="block-label">Indicaciones al paciente</div>
+    <div class="copy-box">
+      <div class="copy-bar"><span>Texto para la ficha / entrega</span><button type="button" class="copy-btn" data-copy="A">Copiar indicaciones</button></div>
+      <pre class="copy-pre" id="copy-A"></pre>
+    </div>
+    <div class="copy-hint">El texto se arma con lo que selecciones arriba. No se guarda ningún dato del paciente.</div>
+  </div>
+
+  <!-- ═══ CAMINO B1 ═══ -->
+  <div class="path-panel t-B1" id="panel-B1" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Camino B1 · Sospecha definida</div>
+      <div class="panel-title">Cólico biliar, cólico renoureteral, diverticulitis no complicada y dolor pélvico</div>
+      <div class="panel-crit">Hay una hipótesis concreta y un estudio <strong>acotado</strong> que la sostiene: no es el
+        bundle completo del abdomen agudo, pero tampoco el alta sin exámenes del camino A. La trampa aquí es
+        <strong>quedarse con el diagnóstico cómodo</strong>: la fiebre con obstrucción de la vía urinaria o biliar, el
+        dolor que no cede y la mujer en edad fértil cambian el camino.</div>
+    </div>
+    <div class="targets">
+      <span class="target">⏱ Analgesia en <b>&lt; 15 min</b></span>
+      <span class="target">🧪 Laboratorio dirigido en <b>&lt; 45 min</b></span>
+      <span class="target">🔊 Ecografía cuando corresponda en <b>&lt; 2 h</b></span>
+      <span class="target">🏥 Destino decidido en <b>&lt; 3 h</b></span>
+    </div>
+
+    <div class="block-label">Bundle dirigido · pide junto lo que vas a necesitar</div>
+    <div class="order-grid">
+      <div class="order">
+        <div class="order-title">Muestras</div>
+        <ul>
+          <li><strong>Prueba de embarazo</strong> en toda mujer en edad fértil <span class="cond">define el diferencial, la imagen y el destino</span></li>
+          <li>Hemograma y proteína C reactiva <span class="cond">la ausencia de leucocitosis no descarta</span></li>
+          <li>Función renal y electrolitos <span class="cond">antes del antiinflamatorio y antes del contraste</span></li>
+          <li>Pruebas hepáticas y bilirrubina <span class="cond">dolor del hemiabdomen superior: el patrón colestásico cambia el camino a B2</span></li>
+          <li>Orina completa <span class="cond">con cuidado: la piuria acompaña también a la apendicitis pélvica</span></li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">Examen y monitorización</div>
+        <ul>
+          <li>Signos vitales completos y temperatura, repetidos antes del alta</li>
+          <li>Examen abdominal <strong>con hora consignada</strong>, repetido después de la analgesia</li>
+          <li>Genitales y orificios herniarios; evaluación ginecológica si el dolor es pélvico</li>
+          <li>Ecografía a pie de cama si está disponible: vía biliar, hidronefrosis, globo vesical, líquido libre y diámetro aórtico</li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">Tratamiento desde el ingreso</div>
+        <ul>
+          <li><strong>Analgesia precoz y titulada, sin esperar el diagnóstico</strong> <span class="cond">no aumenta el error diagnóstico ni retrasa la cirugía necesaria</span></li>
+          <li>Antiemético si hay vómitos, e hidratación endovenosa si no tolera la vía oral</li>
+          <li>Reevaluar el examen después de la analgesia: la respuesta es información, no un alta</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="block-label">Situación</div>
+    <div class="opts" id="b1Scen"></div>
+    <div class="panel-crit" id="b1Crit" style="margin-top:12px;"></div>
+
+    <div class="block-label">Estudio y destino</div>
+    <div class="plain-list" id="b1Destino"></div>
+
+    <div class="amber-banner" id="b1Warn"></div>
+
+    <div class="block-label">Tratamiento y seguimiento · elige uno</div>
+    <div class="med-list" data-meds="B1"></div>
+
+    <div class="block-label">Analgesia al alta · opcional</div>
+    <div class="med-list" data-analg="B1"></div>
+
+    <div class="block-label">Checklist de alta</div>
+    <div class="checklist" data-check="B1">
+      <label class="check"><input type="checkbox"> Prueba de embarazo hecha, si es mujer en edad fértil</label>
+      <label class="check"><input type="checkbox"> Afebril, signos vitales normales y repetidos antes del alta</label>
+      <label class="check"><input type="checkbox"> Dolor controlado con analgesia oral, tolera líquidos y deambula</label>
+      <label class="check"><input type="checkbox"> Examen abdominal reexaminado después de la analgesia y consignado con hora</label>
+      <label class="check"><input type="checkbox"> Resultados revisados: función renal, pruebas hepáticas y orina, según lo pedido</label>
+      <label class="check"><input type="checkbox"> Control y derivación con fecha, lugar y responsable</label>
+      <label class="check"><input type="checkbox"> Criterios de retorno inmediato explicados, incluida la fiebre</label>
+    </div>
+    <div class="check-status" data-status="B1"></div>
+
+    <div class="block-label">Indicaciones al paciente</div>
+    <div class="copy-box">
+      <div class="copy-bar"><span>Texto para la ficha / entrega</span><button type="button" class="copy-btn" data-copy="B1">Copiar indicaciones</button></div>
+      <pre class="copy-pre" id="copy-B1"></pre>
+    </div>
+    <div class="copy-hint">Solo se arma texto de alta cuando la situación seleccionada lo permite. No se guarda ningún dato del paciente.</div>
+  </div>
+
+  <!-- ═══ CAMINO B2 ═══ -->
+  <div class="path-panel t-B2" id="panel-B2" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Camino B2 · Se estudia hoy</div>
+      <div class="panel-title">Abdomen inflamatorio, obstrucción, vía biliar, pancreatitis, pelvis y paciente de riesgo</div>
+      <div class="panel-crit">Bandera roja sin criterios de C: este paciente <strong>sí se estudia, y se estudia hoy</strong>.
+        Las órdenes salen <strong>juntas desde el ingreso</strong>, no escalonadas: el laboratorio, la imagen y el
+        tratamiento se piden en la misma vuelta. La trampa es la inversa del camino A: mandar a casa con un
+        antiespasmódico a quien tenía una apendicitis, una colangitis o una isquemia, porque «el examen no impresionaba».</div>
+    </div>
+    <div class="targets">
+      <span class="target">⏱ Bundle pedido en <b>&lt; 30 min</b></span>
+      <span class="target">🖥 Imagen definitoria en <b>&lt; 2–4 h</b></span>
+      <span class="target">📞 Cirugía avisada <b>desde la sospecha</b></span>
+      <span class="target">🏥 Destino decidido en <b>&lt; 4 h</b></span>
+    </div>
+
+    <div class="block-label">Bundle común de entrada · una sola orden</div>
+    <div class="order-grid">
+      <div class="order">
+        <div class="order-title">Muestras</div>
+        <ul>
+          <li><strong>Prueba de embarazo</strong> en toda mujer en edad fértil <span class="cond">no negociable, con independencia de la historia menstrual o del método referido</span></li>
+          <li>Hemograma, proteína C reactiva, función renal y electrolitos</li>
+          <li><strong>Lipasa</strong> si el dolor es epigástrico o en banda <span class="cond">más específica que la amilasa; la magnitud no mide la gravedad</span></li>
+          <li>Pruebas hepáticas, bilirrubina y fosfatasas alcalinas <span class="cond">dolor del hemiabdomen superior o ictericia</span></li>
+          <li><strong>Lactato y gases</strong> si hay sospecha de isquemia, sepsis o hipoperfusión <span class="cond">normal no descarta isquemia precoz</span></li>
+          <li>Pruebas de coagulación e INR, y <strong>grupo, Rh y pruebas cruzadas</strong> <span class="cond">se piden temprano, no cuando ya se necesita la sangre</span></li>
+          <li>Orina completa; hemocultivos antes del antibiótico si hay fiebre</li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">Examen y monitorización</div>
+        <ul>
+          <li>Dos vías venosas periféricas; monitor si hay taquicardia, fiebre alta o vómitos profusos</li>
+          <li><strong>Electrocardiograma</strong> si el dolor es epigástrico o supraumbilical en mayor de 50 años, diabético o con factores de riesgo</li>
+          <li>Examen abdominal <strong>seriado y con hora consignada</strong>, por el mismo médico cuando sea posible</li>
+          <li>Genitales, los cuatro orificios herniarios y evaluación ginecológica cuando el dolor es pélvico</li>
+          <li>Régimen cero mientras la cirugía sea una posibilidad; sonda nasogástrica si hay vómitos por obstrucción</li>
+          <li>Analgesia precoz y antiemético: el dolor no controlado es, por sí mismo, criterio de hospitalización</li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">Imagen inicial</div>
+        <ul>
+          <li>La imagen la define el escenario de abajo: <strong>no hay una imagen única para «abdomen agudo»</strong></li>
+          <li>Ecografía a pie de cama primero <span class="cond">aorta, líquido libre, vía biliar, hidronefrosis, globo vesical</span></li>
+          <li><strong>Pide la imagen diciendo qué sospechas</strong>: la angiotomografía de isquemia necesita fase arterial, y no sale de una orden que dice «tomografía de abdomen»</li>
+          <li>Una tomografía precoz normal <strong>no cierra el caso</strong> si la clínica progresa: reevalúa y considera repetirla</li>
+        </ul>
+      </div>
+    </div>
+    <div class="warning-banner"><span>🧪</span><span><strong>Ningún examen descarta un abdomen quirúrgico.</strong> Un
+      hemograma sin leucocitosis, una proteína C reactiva normal y un lactato normal conviven con apendicitis, isquemia
+      mesentérica precoz y perforación contenida. El laboratorio mueve la probabilidad; el que decide es el cuadro
+      clínico y su evolución.</span></div>
+
+    <div class="block-label">Escenario</div>
+    <div class="opts" id="b2Scen"></div>
+    <div class="panel-crit" id="b2Crit" style="margin-top:12px;"></div>
+
+    <div class="block-label">Cómo se delata</div>
+    <div class="inst-rule" id="b2Rule"></div>
+
+    <div class="block-label">Pedir</div>
+    <div class="order">
+      <div class="order-title">Órdenes del escenario</div>
+      <ul id="b2Orders"></ul>
+    </div>
+
+    <div class="block-label">Manejo mientras se confirma</div>
+    <div class="plain-list" id="b2Manejo"></div>
+    <div class="avoid" id="b2Avoid"></div>
+
+    <div class="block-label">Destino</div>
+    <div class="plain-list" id="b2Destino"></div>
+    <div class="links-row" id="b2Links"></div>
+  </div>
+
+  <!-- ═══ CAMINO C ═══ -->
+  <div class="path-panel t-C" id="panel-C" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Camino C · Crítico</div>
+      <div class="panel-title">Lo que no tolera esperar el resultado</div>
+      <div class="panel-crit">Aquí manda la <strong>sospecha, no la confirmación</strong>. Regla única que ordena todo
+        este camino: <strong>dolor abdominal más hipotensión es hemorragia, isquemia o sepsis abdominal hasta demostrar
+        lo contrario</strong>, y ese paciente no sale del box a una sala de espera ni a un escáner sin monitorización.
+        <strong>Al paciente que no responde a la reanimación no se lo traslada a tomografía: se estabiliza o se lleva a
+        pabellón.</strong></div>
+    </div>
+    <div class="targets">
+      <span class="target">🩸 Dos vías, grupo y cruce: <b>inmediato</b></span>
+      <span class="target">🔊 Ecografía a pie de cama en <b>&lt; 5 min</b></span>
+      <span class="target">📞 Cirugía y pabellón: <b>desde la sospecha</b></span>
+      <span class="target">💊 Antibiótico en sepsis abdominal: <b>&lt; 1 h</b></span>
+    </div>
+
+    <div class="block-label">0 · Lo que se hace en todos, en paralelo</div>
+    <div class="order">
+      <div class="order-title">Sin esperar el diagnóstico</div>
+      <ul>
+        <li><strong>Box con monitor</strong>, oxígeno si está hipoxémico, dos vías periféricas de buen calibre y exámenes con <strong>grupo, Rh y pruebas cruzadas</strong> en la primera punción</li>
+        <li>Reanimación con cristaloides <strong>guiada por la respuesta</strong>, no por un volumen fijo; activa protocolo de transfusión masiva si el sangrado es evidente</li>
+        <li><strong>Ecografía a pie de cama</strong>: diámetro aórtico, líquido libre, vía biliar, globo vesical, latido fetal en la gestante. Toma menos de un minuto y no requiere contraste</li>
+        <li><strong>Avisa a cirugía y al pabellón desde la sospecha</strong>, antes de tener imagen. La llamada y el estudio van en paralelo, no en serie</li>
+        <li>Analgesia endovenosa titulada, antiemético, régimen cero, sonda vesical si corresponde y exámenes preoperatorios</li>
+        <li>Revierte la anticoagulación según el protocolo local si hay hemorragia o cirugía inminente <span class="cond">agentes y esquema: verificar con protocolo institucional</span></li>
+        <li>Si hay criterios de sepsis: <strong>hemocultivos y antibiótico de amplio espectro dentro de la primera hora</strong>, y el control del foco es el tratamiento definitivo <button type="button" class="link-btn" onclick="window.location.href='./checklist-sepsis_4.html'">abrir el checklist de sepsis →</button></li>
+      </ul>
+    </div>
+
+    <div class="block-label">1 · Aneurisma aórtico abdominal roto</div>
+    <div class="order">
+      <div class="order-title">En este orden, sin pausas</div>
+      <ul>
+        <li><strong>Ecografía a pie de cama ahora</strong>: un diámetro aórtico aumentado en un paciente con dolor e hipotensión es suficiente para activar pabellón</li>
+        <li><strong>Cirugía vascular desde la sospecha</strong>, y coordinación con el centro de referencia si no hay vascular en el servicio</li>
+        <li>Hipotensión mantenida: <strong>el destino es el pabellón, no el escáner</strong>. Si está estable, angiotomografía para definir la reparación abierta o endovascular</li>
+        <li>Transfusión según respuesta y evitar la sobrerreanimación; objetivos de presión y estrategia transfusional: <strong>verificar con protocolo institucional</strong></li>
+      </ul>
+      <div class="why"><strong>Se confunde con cólico renal.</strong> La tríada de dolor en flanco, hematuria y agitación
+      aparece en los dos. En todo mayor de 60 años con dolor abdominal o lumbar de inicio brusco, mirar la aorta es parte
+      del examen físico.</div>
+    </div>
+
+    <div class="block-label">2 · Isquemia mesentérica aguda</div>
+    <div class="order">
+      <div class="order-title">El diagnóstico se pierde por esperar</div>
+      <ul>
+        <li><strong>Angiotomografía en fase arterial, sin retraso</strong>, en cuanto se sospecha. Pídela por su nombre: una «tomografía de abdomen con contraste» de protocolo habitual puede no responder la pregunta</li>
+        <li><strong>Un lactato normal no descarta:</strong> se eleva tarde, cuando ya hay necrosis. Tampoco descartan un examen abdominal blando ni la ausencia de leucocitosis</li>
+        <li>Cirugía y radiología intervencionista <strong>desde la sospecha</strong>; reanimación, corrección de la acidosis y antibiótico de amplio espectro</li>
+        <li>Busca la causa: fibrilación auricular o cardiopatía embolígena (embolia), vasculopatía difusa (trombosis), bajo débito o drogas vasoactivas (isquemia no oclusiva), hipercoagulabilidad (trombosis venosa mesentérica)</li>
+      </ul>
+      <div class="why"><strong>Dolor desproporcionado al examen</strong> en un adulto mayor con fibrilación auricular,
+      vómitos y diarrea precoces, que «parece una gastroenteritis». El abdomen se pone peritoneal tarde: cuando lo hace,
+      la ventana ya se cerró.</div>
+    </div>
+
+    <div class="block-label">3 · Perforación de víscera hueca y peritonitis difusa</div>
+    <div class="order">
+      <div class="order-title">Reanimación, antibiótico y pabellón</div>
+      <ul>
+        <li>Reanimación, régimen cero, sonda nasogástrica si hay vómitos o distensión y <strong>antibiótico de amplio espectro precoz</strong> <span class="cond">esquema según el PROA local</span></li>
+        <li>Tomografía de abdomen y pelvis con contraste para confirmar y localizar, <strong>si el paciente lo tolera</strong>; evaluación quirúrgica en paralelo</li>
+        <li><strong>Una radiografía sin neumoperitoneo no descarta la perforación.</strong> El abdomen en tabla con compromiso hemodinámico es indicación quirúrgica, con o sin aire libre en la placa</li>
+      </ul>
+    </div>
+
+    <div class="block-label">4 · Colangitis aguda con criterios de gravedad</div>
+    <div class="order">
+      <div class="order-title">El antibiótico no reemplaza el drenaje</div>
+      <ul>
+        <li><strong>Hemocultivos y antibiótico de amplio espectro de inmediato</strong>, con cobertura de enterobacterias y anaerobios según el PROA local</li>
+        <li><strong>Drenaje biliar urgente</strong> —colangiopancreatografía retrógrada endoscópica, o drenaje percutáneo si no está disponible—, coordinado desde el box</li>
+        <li>Fiebre, ictericia y dolor en hipocondrio derecho es la tríada de Charcot; si se agregan hipotensión y compromiso de conciencia (<strong>péntada de Reynolds</strong>), la mortalidad sin drenaje es muy alta</li>
+        <li>Gradúa la gravedad con los criterios de las Guías de Tokio 2018 y deja consignado el grado: define la urgencia del drenaje</li>
+      </ul>
+    </div>
+
+    <div class="block-label">5 · Embarazo ectópico roto</div>
+    <div class="order">
+      <div class="order-title">La prueba de embarazo es el examen que define</div>
+      <ul>
+        <li><strong>Prueba de embarazo en toda mujer en edad fértil con dolor abdominal o pélvico</strong>, con o sin amenorrea reconocida, y con independencia del método anticonceptivo referido</li>
+        <li>Ecografía —transvaginal o a pie de cama buscando líquido libre— y <strong>ginecología desde la sospecha</strong></li>
+        <li><strong>Con inestabilidad, pabellón sin esperar la confirmación por imagen.</strong> Dos vías, cruce de sangre y traslado directo</li>
+        <li>Prueba de embarazo positiva con dolor y sin saco intrauterino visible es un ectópico hasta demostrar lo contrario</li>
+      </ul>
+    </div>
+
+    <div class="block-label">6 · Obstrucción con estrangulación y vólvulo</div>
+    <div class="order">
+      <div class="order-title">El dolor cólico que se hizo constante</div>
+      <ul>
+        <li>Sonda nasogástrica, reposición hidroelectrolítica y corrección de electrolitos; <strong>régimen cero</strong></li>
+        <li><strong>Tomografía con contraste y evaluación quirúrgica urgente.</strong> Fiebre, taquicardia, acidosis o dolor constante sobre un cólico previo sugieren compromiso vascular</li>
+        <li>Hernia irreductible dolorosa: <strong>no se insiste en reducirla</strong> si hay signos de estrangulación; es quirúrgica</li>
+        <li>Vólvulo de sigmoides: descompresión endoscópica o cirugía según el centro y el estado del colon. El retraso lleva a isquemia y perforación</li>
+      </ul>
+    </div>
+
+    <div class="block-label">7 · Hemorragia retroperitoneal, de pared o rotura esplénica diferida</div>
+    <div class="order">
+      <div class="order-title">Anticoagulado o traumatizado que se anemiza</div>
+      <ul>
+        <li>Tomografía con contraste cuando el paciente lo tolere; si está inestable, ecografía a pie de cama y pabellón o embolización</li>
+        <li><strong>Suspende y revierte la anticoagulación</strong> según el protocolo local, y consigna el fármaco, la última dosis y su hora</li>
+        <li>Evaluación quirúrgica y de radiología intervencionista en paralelo; transfusión según respuesta</li>
+        <li>Si el mecanismo traumático es relevante, el manejo pasa a ser el del paciente traumatizado <button type="button" class="link-btn" onclick="window.location.href='./checklist-politrauma_2.html'">abrir el checklist de politrauma →</button></li>
+      </ul>
+    </div>
+
+    <div class="warning-banner"><span>⏱️</span><span><strong>Mientras se gestiona la imagen, el examen abdominal se
+      repite y se consigna con hora.</strong> Un abdomen que cambia entre dos exámenes, o una taquicardia que no se
+      explica, valen más que cualquier valor de laboratorio y son el dato que el cirujano va a pedir por teléfono.</span></div>
+  </div>
+
+  <!-- ═══ CAMINO D ═══ -->
+  <div class="path-panel t-D" id="panel-D" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Camino D · Desvío</div>
+      <div class="panel-title">Puede que no venga del abdomen</div>
+      <div class="panel-crit">El abdomen es un <strong>lugar</strong>, no un diagnóstico. Estas causas se pierden cuando
+        el relato («me duele la guata») cierra el caso antes de auscultar el tórax, mirar la piel, examinar los testículos
+        y pedir un electrocardiograma.</div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Causa</th><th>Claves y manejo</th></tr></thead>
+        <tbody>
+          <tr><td>Infarto de cara inferior</td><td>Epigastralgia con náuseas y sudoración, en adulto mayor, diabético o mujer. <strong>Electrocardiograma en los primeros 10 minutos</strong> y troponina. Es el diagnóstico que más se pierde en la epigastralgia de urgencia <button type="button" class="link-btn" onclick="window.location.href='./sintoma-dolor-toracico.html'">ir a dolor torácico →</button></td></tr>
+          <tr><td>Tromboembolismo pulmonar</td><td>Dolor en hipocondrio o hemiabdomen superior con disnea, taquicardia o hipoxemia inexplicadas. Aplica una regla de decisión antes de pedir dímero D</td></tr>
+          <tr><td>Neumonía de lóbulo inferior o derrame</td><td>Dolor abdominal alto con tos, fiebre y polipnea. <strong>Ausculta el tórax siempre</strong>: la imagen que falta es la de tórax, no la del abdomen</td></tr>
+          <tr><td>Cetoacidosis diabética</td><td>Dolor con vómitos, polipnea y deshidratación; puede simular un abdomen quirúrgico y <strong>remite al corregir la acidosis</strong>. Glicemia capilar, cetonemia o cetonuria, gases y electrolitos <strong>antes</strong> de indicar cirugía <button type="button" class="link-btn" onclick="window.location.href='./algoritmo-cad-ehh.html'">abrir el algoritmo →</button></td></tr>
+          <tr><td>Insuficiencia suprarrenal aguda</td><td>Dolor abdominal con hipotensión, hiponatremia, hiperkalemia e hipoglicemia; corticoides suspendidos o paciente en tratamiento crónico con un cuadro intercurrente</td></tr>
+          <tr><td>Hipercalcemia</td><td>Dolor, constipación, poliuria y compromiso de conciencia, en cáncer conocido o hiperparatiroidismo. Pide calcemia cuando el cuadro no calza</td></tr>
+          <tr><td>Disección aórtica con extensión abdominal</td><td>Dolor desgarrador que migra, asimetría de pulsos o de presiones, déficit neurológico. <strong>No antiagregar ni anticoagular</strong> ante esta sospecha <button type="button" class="link-btn" onclick="window.location.href='./algoritmo-diseccion-aortica.html'">abrir el algoritmo →</button></td></tr>
+          <tr><td>Herpes zóster</td><td>Dolor en banda, unilateral, con hiperestesia que <strong>precede en días al exantema</strong>. Inspecciona la piel del flanco y del dorso antes de rotular el dolor como visceral. Antiviral dentro de las primeras 72 h del exantema</td></tr>
+          <tr><td>Dolor de la pared abdominal</td><td>Dolor localizado y superficial con <strong>signo de Carnett positivo</strong>: el dolor aumenta al palpar mientras el paciente contrae la musculatura. Atrapamiento nervioso, hematoma de la vaina del recto en el anticoagulado, hernia de la pared</td></tr>
+          <tr><td>Torsión testicular</td><td>Dolor abdominal bajo en el varón joven, con náuseas. <strong>Examina siempre los genitales</strong>: el retraso cuesta el testículo, y la ecografía no debe retrasar la exploración quirúrgica cuando la sospecha es alta</td></tr>
+          <tr><td>Hernia incarcerada</td><td>Masa dolorosa e irreductible en un orificio herniario, con o sin vómitos. <strong>Palpa los cuatro orificios en todo dolor abdominal</strong>, incluido el paciente obeso y el que «solo tiene vómitos»</td></tr>
+          <tr><td>Retención urinaria aguda</td><td>Dolor hipogástrico con globo vesical y deseo miccional imperioso. Se resuelve con la sonda y se diagnostica palpando y con la ecografía a pie de cama</td></tr>
+          <tr><td>Crisis vaso-oclusiva falciforme</td><td>Dolor abdominal recurrente en paciente con anemia de células falciformes, con el patrón ya conocido por él. Analgesia precoz y adecuada; descarta además las causas habituales</td></tr>
+          <tr><td>Porfiria aguda e intoxicación por plomo</td><td>Dolor intenso recurrente con <strong>examen abdominal normal</strong>, síntomas neurológicos o psiquiátricos. Poco frecuentes: se consideran después de descartar lo habitual</td></tr>
+          <tr><td>Gastroenteritis aguda</td><td>Diarrea y vómitos con dolor cólico difuso que alivia al defecar. Es un diagnóstico de curso benigno <strong>que se usa de más</strong>: en el adulto mayor con dolor intenso y examen poco llamativo, piensa primero en isquemia mesentérica <button type="button" class="link-btn" onclick="window.location.href='./sintoma-diarrea-vomitos.html'">ir a diarrea y vómitos →</button></td></tr>
+          <tr><td>Causa urinaria baja</td><td>Disuria, poliaquiuria y dolor suprapúbico sin fiebre ni dolor lumbar. Cuidado con el cierre precoz: la piuria acompaña también a la apendicitis pélvica <button type="button" class="link-btn" onclick="window.location.href='./sintoma-disuria.html'">ir a disuria →</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block-label">Presentaciones que se pasan por alto</div>
+    <div class="plain-list">
+      <div class="plain-item"><span class="bullet-icon">👁️</span><span><strong>El adulto mayor con «gastroenteritis»:</strong>
+        dolor intenso, vómitos, diarrea precoz y un abdomen que no impresiona, con fibrilación auricular o vasculopatía.
+        Esa combinación es isquemia mesentérica hasta demostrar lo contrario.</span></div>
+      <div class="plain-item"><span class="bullet-icon">👁️</span><span><strong>El «cólico renal» del mayor de 60
+        años:</strong> si es el primer episodio de su vida y el inicio fue brusco, mira la aorta antes de aceptar el
+        diagnóstico.</span></div>
+      <div class="plain-item"><span class="bullet-icon">👁️</span><span><strong>La epigastralgia que mejora con el
+        antiácido:</strong> un infarto de cara inferior también mejora transitoriamente. La respuesta a un fármaco no es
+        una prueba diagnóstica.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🤰</span><span><strong>La gestante con dolor abdominal:</strong>
+        primero la causa obstétrica —ectópico, desprendimiento, preeclampsia con compromiso hepático— en coordinación con
+        obstetricia. Y recuerda que la apendicitis es la urgencia quirúrgica no obstétrica más frecuente del embarazo:
+        <strong>lo que daña al feto es el retraso, no la imagen</strong>.</span></div>
+      <div class="plain-item"><span class="bullet-icon">✖️</span><span><strong>La mejoría del dolor en el box no descarta
+        nada.</strong> El paciente que se siente mejor después de la analgesia sigue teniendo las mismas banderas rojas
+        que tenía al ingreso, y el abdomen hay que volver a examinarlo.</span></div>
+    </div>
+  </div>
+
+  <!-- SIEMPRE, EN PARALELO -->
+  <div class="section s2 collapsed" id="s-siempre">
+    <div class="section-header" onclick="toggleSection('s-siempre')">
+      <span class="section-num">MIN 0–20</span>
+      <div>
+        <div class="section-title">Siempre, en paralelo</div>
+        <div class="section-subtitle">Lo que se hace mientras se decide el camino</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="warning-banner" style="margin-top:0;"><span>⚠️</span><span><strong>Los tres gestos que cambian el
+        desenlace y se olvidan:</strong> electrocardiograma en el dolor epigástrico o supraumbilical del paciente de
+        riesgo, prueba de embarazo en toda mujer en edad fértil, y examen de genitales y de los cuatro orificios
+        herniarios. Ninguno depende de un resultado de laboratorio ni de la disponibilidad de imagen.</span></div>
+
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">0–3′</span><span><strong>Signos vitales completos</strong>,
+          con temperatura, saturación y escala de dolor. Taquicardia persistente, hipotensión o polipnea en un dolor
+          abdominal <strong>obligan a llevar al paciente a un box con monitor antes de seguir la anamnesis</strong>.
+          Glicemia capilar si hay compromiso de conciencia, vómitos o diabetes conocida.</span></div>
+        <div class="plain-item"><span class="bullet-icon">≤10′</span><span><strong>Electrocardiograma</strong> si el
+          dolor es epigástrico o del hemiabdomen superior en mayores de 50 años, diabéticos o con factores de riesgo
+          cardiovascular. El infarto de cara inferior se presenta con epigastralgia, náuseas y sudoración, y el
+          diagnóstico se pierde cuando nadie pide el trazado.</span></div>
+        <div class="plain-item"><span class="bullet-icon">≤20′</span><span><strong>Prueba de embarazo</strong> en toda
+          mujer en edad fértil, <strong>con independencia de la historia menstrual o del método anticonceptivo
+          referido</strong>. Define el diferencial, la elección de imagen y el destino.</span></div>
+        <div class="plain-item"><span class="bullet-icon">Accesos</span><span><strong>Dos vías venosas periféricas,
+          exámenes y cruce de sangre</strong> si hay inestabilidad, sospecha de hemorragia o abdomen quirúrgico.
+          Reanimación con cristaloides guiada por la respuesta, no por un volumen fijo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">≤15′</span><span><strong>Analgesia precoz y titulada, sin
+          esperar el diagnóstico.</strong> La evidencia acumulada muestra que los opioides <strong>no aumentan el error
+          diagnóstico ni retrasan la cirugía necesaria</strong>: el paciente con dolor controlado se deja examinar
+          mejor. Reevalúa el examen después de la dosis.</span></div>
+        <div class="plain-item"><span class="bullet-icon">Examen</span><span><strong>Abdomen completo, con el paciente
+          descubierto:</strong> inspección (cicatrices, distensión, equimosis, vesículas), auscultación, percusión y
+          palpación desde la zona menos dolorosa. Busca <strong>defensa involuntaria y dolor a la percusión</strong>
+          —más útiles que el rebote provocado—, masa pulsátil, globo vesical y <strong>todos los orificios
+          herniarios</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">Examen</span><span><strong>Genitales en el hombre</strong>
+          (torsión testicular, hernia inguinoescrotal) y <strong>evaluación ginecológica</strong> cuando el dolor es
+          pélvico. El tacto rectal no es de rutina: se reserva para sospechas concretas, como hemorragia digestiva,
+          fecaloma o absceso pelviano.</span></div>
+        <div class="plain-item"><span class="bullet-icon">POCUS</span><span><strong>Ecografía a pie de cama</strong>
+          cuando esté disponible: diámetro aórtico, líquido libre, vía biliar, hidronefrosis, globo vesical y latido
+          cardíaco fetal en la gestante. En el adulto mayor con dolor abdominal o lumbar de inicio brusco, mirar la
+          aorta toma menos de un minuto y no requiere contraste.</span></div>
+        <div class="plain-item"><span class="bullet-icon">Reevalúa</span><span><strong>El examen seriado es una
+          herramienta diagnóstica, no una demora.</strong> Repite el examen a las 2 a 4 horas, por el mismo médico
+          cuando sea posible, y <strong>deja la hora y el hallazgo escritos en cada revisión</strong>. Es lo que cambia
+          la conducta en el abdomen indiferenciado.</span></div>
+      </div>
+
+      <div class="block-label">Analgesia y antieméticos en el box · adulto, vía parenteral</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Fármaco</th><th>Dosis habitual en el adulto</th><th>Precauciones</th></tr></thead>
+          <tbody>
+            <tr><td>Morfina</td><td><span class="dose-main">2–4 mg IV tituladas, repetibles</span><br><span class="dose-note">reevaluar a los 5–10 min y volver a titular</span></td><td>Estándar habitual del dolor abdominal intenso. No enmascara el abdomen quirúrgico. Vigila sedación, hipotensión y náuseas; precaución en el adulto mayor y en la enfermedad renal avanzada. Esquema de titulación: verificar con protocolo institucional</td></tr>
+            <tr><td>Fentanilo</td><td><span class="dose-main">25–50 µg IV, repetibles</span></td><td>Alternativa de inicio rápido, útil en el inestable por su menor efecto hipotensor. Vigila depresión respiratoria y rigidez con dosis altas</td></tr>
+            <tr><td>Ketoprofeno</td><td><span class="dose-main">100 mg IV o IM, c/8–12 h</span><br><span class="dose-note">diluido y lento</span></td><td>Primera línea del <strong>cólico renoureteral y del cólico biliar</strong>. Evitar en ERC, úlcera o sangrado digestivo previo, insuficiencia cardíaca, deshidratación, cirrosis y adulto mayor frágil</td></tr>
+            <tr><td>Ketorolaco</td><td><span class="dose-main">10–30 mg IV, c/6–8 h</span><br><span class="dose-note">curso breve</span></td><td>Mismas precauciones del grupo, con mayor riesgo digestivo y renal. Dosis máxima diaria y duración: verificar con protocolo institucional</td></tr>
+            <tr><td>Metamizol (dipirona)</td><td><span class="dose-main">1–2 g IV diluido y lento, c/8 h</span></td><td>Alternativa cuando el antiinflamatorio está contraindicado o es insuficiente. <strong>Hipotensión si se pasa rápido</strong>; agranulocitosis, infrecuente pero grave</td></tr>
+            <tr><td>Paracetamol</td><td><span class="dose-main">1 g IV o VO, c/8 h</span></td><td>Coadyuvante. Máximo 3–4 g al día, menos en hepatopatía, desnutrición o consumo de alcohol</td></tr>
+            <tr><td>Butilescopolamina</td><td><span class="dose-main">20 mg IV o IM, c/8 h</span></td><td>Antiespasmódico de uso habitual en el dolor cólico, con beneficio modesto y por sí solo insuficiente en el cólico renal. Anticolinérgico: evitar en glaucoma de ángulo estrecho, uropatía obstructiva, taquiarritmia y megacolon</td></tr>
+            <tr><td>Ondansetrón</td><td><span class="dose-main">4–8 mg IV lento</span></td><td>Antiemético de elección cuando el vómito impide la vía oral. Prolonga el QT: precaución con otros fármacos que lo prolongan y con la hipokalemia</td></tr>
+            <tr><td>Metoclopramida</td><td><span class="dose-main">10 mg IV lento, c/8 h</span></td><td>Alternativa. Riesgo de distonía aguda y acatisia, mayor en jóvenes. Evitar si se sospecha obstrucción mecánica completa</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="inst-rule"><b>Verificar</b> La disponibilidad, las diluciones y el esquema escalonado de analgesia
+        parenteral son del servicio: <strong>verificar con protocolo institucional</strong>. Revisa alergias, función
+        renal y hepática, interacciones y embarazo antes de indicar.</div>
+
+      <div class="warning-banner"><span>✖️</span><span><strong>Trampas de los primeros minutos:</strong> diferir la
+        analgesia «para no enmascarar el abdomen»; aceptar «es mi gastritis de siempre» sin examinar; no pedir prueba de
+        embarazo apoyándose en la historia menstrual; no mirar los testículos ni los orificios herniarios; y dejar al
+        paciente taquicárdico esperando en un pasillo mientras «salen los exámenes».</span></div>
+    </div>
+  </div>
+
+  <!-- IMAGEN Y LABORATORIO -->
+  <div class="section s3 collapsed" id="s-imagen">
+    <div class="section-header" onclick="toggleSection('s-imagen')">
+      <span class="section-num">EXÁMENES</span>
+      <div>
+        <div class="section-title">Imagen y laboratorio: qué responde qué</div>
+        <div class="section-subtitle">Ningún examen descarta un abdomen quirúrgico</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="warning-banner" style="margin-top:0;"><span>⚠️</span><span>Un hemograma sin leucocitosis, una proteína
+        C reactiva normal y un lactato normal <strong>conviven con apendicitis, isquemia mesentérica precoz y
+        perforación contenida</strong>. El laboratorio apoya o cambia la probabilidad; el que decide es el cuadro
+        clínico y su evolución. <strong>Y cuando el paciente está inestable, la imagen que sirve es la que se hace junto
+        a la camilla.</strong></span></div>
+
+      <div class="block-label">Qué imagen responde qué pregunta</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Pregunta clínica</th><th>Examen</th><th>Comentario</th></tr></thead>
+          <tbody>
+            <tr><td>¿Está sangrando o tiene la aorta dilatada?</td><td><span class="dose-main">Ecografía a pie de cama</span><br><span class="dose-note">angiotomografía solo si está estable</span></td><td>Primero, en todos los inestables y en todo adulto mayor con dolor de inicio brusco. Sin radiación y sin traslado</td></tr>
+            <tr><td>¿Es la vía biliar?</td><td><span class="dose-main">Ecografía abdominal</span><br><span class="dose-note">colangiorresonancia si la sospecha de coledocolitiasis persiste</span></td><td>Primera línea para litiasis, pared vesicular y dilatación de la vía biliar. Operador dependiente; una ecografía normal no descarta la coledocolitiasis</td></tr>
+            <tr><td>¿Es isquemia mesentérica?</td><td><span class="dose-main">Angiotomografía en fase arterial</span></td><td><strong>Pídela diciendo qué sospechas</strong>: no sale de una orden que dice «tomografía de abdomen». No esperes el lactato para pedirla</td></tr>
+            <tr><td>Abdomen agudo indiferenciado del adulto</td><td><span class="dose-main">Tomografía de abdomen y pelvis con contraste endovenoso</span></td><td>El estudio de mayor rendimiento global: perforación, obstrucción, diverticulitis, absceso, apendicitis. <strong>Un resultado precoz normal no cierra el caso</strong> si la clínica progresa</td></tr>
+            <tr><td>¿Es el riñón o la vía urinaria?</td><td><span class="dose-main">Ecografía renal y vesical</span><br><span class="dose-note">tomografía sin contraste de baja dosis según disponibilidad</span></td><td>Hidronefrosis, litiasis, globo vesical. <strong>Fiebre con obstrucción es una urgencia urológica</strong>: necesita derivación de la vía</td></tr>
+            <tr><td>¿Es ginecológico o es un embarazo?</td><td><span class="dose-main">Ecografía, con la prueba de embarazo ya hecha</span><br><span class="dose-note">transvaginal cuando corresponda</span></td><td>Torsión anexial, quiste complicado, absceso tuboovárico, embarazo ectópico. La torsión es un diagnóstico clínico y ecográfico: un Doppler normal no la descarta</td></tr>
+            <tr><td>Gestante con sospecha quirúrgica</td><td><span class="dose-main">Ecografía primero</span><br><span class="dose-note">resonancia sin contraste si no es concluyente y está disponible</span></td><td><strong>No se retrasa un diagnóstico quirúrgico por miedo a la radiación</strong>: si hace falta la tomografía, se hace con el protocolo correspondiente y en coordinación con obstetricia</td></tr>
+            <tr><td>¿Hay neumoperitoneo?</td><td><span class="dose-main">Radiografía de tórax de pie</span><br><span class="dose-note">tomografía si la sospecha persiste</span></td><td>Baja sensibilidad: <strong>una placa normal no descarta la perforación</strong></td></tr>
+            <tr><td>Dolor abdominal leve, estable, ya controlado</td><td><span class="dose-main">Ninguna imagen</span></td><td>Examen escrito, reevaluación con hora y control precoz. Es el camino A</td></tr>
+            <tr><td>Radiografía simple de abdomen</td><td><span class="dose-main">Uso muy limitado</span></td><td>Cuerpo extraño o control de dispositivos. No descarta perforación ni obstrucción: no la pidas «para ganar tiempo»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="block-label">Laboratorio: cómo interpretarlo de verdad</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Examen</th><th>Cuándo</th><th>Cómo interpretarlo</th></tr></thead>
+          <tbody>
+            <tr><td>Prueba de embarazo</td><td>Toda mujer en edad fértil</td><td><strong>No negociable.</strong> Define el diferencial, la imagen y el destino</td></tr>
+            <tr><td>Hemograma</td><td>Casi todo dolor abdominal que se estudia</td><td>La leucocitosis apoya la inflamación, pero <strong>su ausencia no descarta</strong>; la anemia aguda orienta a sangrado</td></tr>
+            <tr><td>Proteína C reactiva</td><td>Sospecha inflamatoria o infecciosa</td><td>Sube con horas de latencia: en un cuadro de pocas horas puede ser normal</td></tr>
+            <tr><td>Lipasa</td><td>Dolor epigástrico o en banda</td><td>Más específica que la amilasa. El diagnóstico de pancreatitis usa un valor <strong>mayor a tres veces el límite superior normal</strong> junto al cuadro clínico; <strong>la magnitud no mide la gravedad</strong></td></tr>
+            <tr><td>Pruebas hepáticas y bilirrubina</td><td>Dolor del hemiabdomen superior, ictericia</td><td>El patrón colestásico orienta a obstrucción de la vía biliar y, con fiebre, a colangitis</td></tr>
+            <tr><td>Función renal y electrolitos</td><td>Vómitos, deshidratación, adulto mayor, uso de contraste</td><td>Define la reposición y la seguridad de fármacos y del contraste</td></tr>
+            <tr><td>Lactato y gases</td><td>Sospecha de isquemia, sepsis o hipoperfusión</td><td>Elevado es signo de gravedad; <strong>normal no descarta la isquemia mesentérica precoz</strong></td></tr>
+            <tr><td>Orina completa</td><td>Dolor en flanco, hipogastrio o síntomas urinarios</td><td>Cuidado con el cierre precoz: la piuria acompaña también a la apendicitis pélvica y a procesos vecinos a la vía urinaria</td></tr>
+            <tr><td>Grupo, Rh y pruebas cruzadas</td><td>Sospecha de hemorragia o cirugía probable</td><td>Se piden temprano, <strong>no cuando ya se necesita la sangre</strong></td></tr>
+            <tr><td>Electrocardiograma y troponina</td><td>Epigastralgia en mayor de 50 años, diabético o con factores de riesgo</td><td>Descartan la presentación abdominal del síndrome coronario agudo</td></tr>
+            <tr><td>Recuento celular del líquido ascítico</td><td>Cirrótico con ascitis y dolor, fiebre o deterioro</td><td><strong>≥ 250 polimorfonucleares/mm³ definen la peritonitis bacteriana espontánea.</strong> La alteración de la coagulación no contraindica la punción de rutina</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="amber-banner"><span>🩻</span><span><strong>El traslado a tomografía de un paciente que no responde a
+        la reanimación es una decisión de riesgo.</strong> Primero se estabiliza o se lleva a pabellón, con la ecografía
+        a pie de cama como única imagen necesaria para decidir.</span></div>
+    </div>
+  </div>
+
+  <!-- ALVARADO -->
+  <div class="section s4 collapsed" id="s-alvarado">
+    <div class="section-header" onclick="toggleSection('s-alvarado')">
+      <span class="section-num">ALVARADO</span>
+      <div>
+        <div class="section-title">¿Es apendicitis? · puntaje de Alvarado</div>
+        <div class="section-subtitle">Calculadora interactiva</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="info-banner" style="margin-top:0;"><span>ℹ️</span><span>El puntaje <strong>ordena la conducta: no
+        diagnostica ni descarta por sí solo</strong>. Rinde mejor para identificar al paciente de baja probabilidad
+        —sobre todo en hombres— y peor en mujeres en edad fértil, adultos mayores y niños.
+        <strong>No se aplica al paciente con peritonitis evidente</strong>: ese ya está clasificado por la clínica y va
+        por los caminos B2 o C.</span></div>
+
+      <div class="calc">
+        <div class="calc-row">
+          <div class="calc-field">
+            <label for="al-migra">Migración del dolor a la fosa iliaca derecha (1)</label>
+            <select id="al-migra">
+              <option value="">— Selecciona —</option>
+              <option value="1">Sí</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="al-anorexia">Anorexia (1)</label>
+            <select id="al-anorexia">
+              <option value="">— Selecciona —</option>
+              <option value="1">Sí</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="al-nausea">Náuseas o vómitos (1)</label>
+            <select id="al-nausea">
+              <option value="">— Selecciona —</option>
+              <option value="1">Sí</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="al-dolorfid">Dolor a la palpación en fosa iliaca derecha (2)</label>
+            <select id="al-dolorfid">
+              <option value="">— Selecciona —</option>
+              <option value="2">Sí</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="al-rebote">Dolor de rebote en fosa iliaca derecha (1)</label>
+            <select id="al-rebote">
+              <option value="">— Selecciona —</option>
+              <option value="1">Sí</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="al-temp">Temperatura de 37,3 °C o más (1)</label>
+            <select id="al-temp">
+              <option value="">— Selecciona —</option>
+              <option value="1">Sí</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="al-leuco">Leucocitos sobre 10.000/mm³ (2)</label>
+            <select id="al-leuco">
+              <option value="">— Selecciona —</option>
+              <option value="2">Sí</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="al-desv">Neutrófilos sobre 75 % (1)</label>
+            <select id="al-desv">
+              <option value="">— Selecciona —</option>
+              <option value="1">Sí</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-out" id="alv-out">
+          Completa los ocho elementos para ver el puntaje y la banda.
+        </div>
+        <button type="button" class="calc-reset" id="alv-reset">Reiniciar</button>
+      </div>
+
+      <div class="block-label">Bandas e interpretación habitual</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Puntaje</th><th>Probabilidad</th><th>Conducta habitual</th></tr></thead>
+          <tbody>
+            <tr><td>0 – 3</td><td>Baja</td><td>Apendicitis poco probable. Busca activamente otra causa; observación y reevaluación si el cuadro no calza con un diagnóstico alternativo</td></tr>
+            <tr><td>4 – 6</td><td>Intermedia</td><td>Zona de mayor incertidumbre: imagen —ecografía o tomografía según paciente y disponibilidad— y observación con examen seriado. <strong>No es un alta directa</strong></td></tr>
+            <tr><td>7 – 10</td><td>Alta</td><td>Evaluación quirúrgica. La necesidad de imagen previa depende del paciente y del protocolo local</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="block-label">Lo que hay que tener presente</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🧭</span><span><strong>La posición del apéndice cambia la
+          presentación:</strong> el retrocecal da dolor lumbar y poco dolor a la palpación anterior; el pélvico, síntomas
+          urinarios o diarrea. Un Alvarado bajo en esas posiciones engaña.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🤰</span><span><strong>En la gestante</strong> el apéndice se
+          desplaza hacia arriba con el útero y la leucocitosis fisiológica confunde. La apendicitis es la urgencia
+          quirúrgica no obstétrica más frecuente del embarazo, y <strong>lo que daña al feto es el retraso</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">👵</span><span><strong>En el adulto mayor</strong> la
+          presentación es larvada, la perforación es más frecuente al momento del diagnóstico, y la fiebre y la
+          leucocitosis pueden faltar.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span>El <strong>tratamiento antibiótico exclusivo</strong>
+          de la apendicitis no complicada es una alternativa en pacientes seleccionados, con mayor tasa de recurrencia y
+          de apendicectomía posterior. Es una decisión compartida con cirugía, no del box.
+          <em>Verificar con protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">📊</span><span>Existen otros puntajes de uso extendido, como el
+          <strong>AIR</strong> y el <strong>AAS</strong>, con mejor rendimiento en algunas poblaciones. El puntaje que
+          usa el servicio y sus umbrales de imagen y de derivación quirúrgica:
+          <em>verificar con protocolo institucional.</em></span></div>
+      </div>
+
+      <div class="amber-banner"><span>⚠️</span><span><strong>Ningún puntaje reemplaza la reevaluación.</strong> El
+        paciente con puntaje bajo y dolor que persiste se vuelve a examinar y se le deja un control con fecha: no se da
+        de alta por el número.</span></div>
+    </div>
+  </div>
+
+  <!-- POBLACIONES -->
+  <div class="section s3 collapsed" id="s-poblaciones">
+    <div class="section-header" onclick="toggleSection('s-poblaciones')">
+      <span class="section-num">RIESGO</span>
+      <div>
+        <div class="section-title">Donde el examen clásico falla</div>
+        <div class="section-subtitle">Poblaciones que exigen bajar el umbral</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">👵</span><span><strong>Adulto mayor.</strong> Menos dolor,
+          menos fiebre, menos leucocitosis y <strong>más mortalidad</strong>. Una proporción alta termina requiriendo
+          cirugía y el diagnóstico llega tarde con frecuencia. Umbral bajo para tomografía y para observación, con la
+          aorta, la isquemia mesentérica, la obstrucción, la colecistitis y el síndrome coronario siempre en la
+          lista.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🤰</span><span><strong>Gestante.</strong> Descarta primero la
+          causa obstétrica —ectópico, desprendimiento, preeclampsia con compromiso hepático— en coordinación con
+          obstetricia. La ecografía es la primera línea; si no es concluyente, <strong>no se retrasa el diagnóstico por
+          miedo a la radiación</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🛡️</span><span><strong>Inmunosuprimido, neutropénico o en
+          corticoides.</strong> Los signos peritoneales se atenúan o desaparecen. Considera enterocolitis neutropénica,
+          colitis por <em>Clostridioides difficile</em>, perforación con examen engañosamente benigno e infecciones
+          oportunistas. <strong>La tomografía se pide antes, no después.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">🫃</span><span><strong>Cirrótico con ascitis.</strong>
+          Paracentesis diagnóstica precoz ante dolor, fiebre, encefalopatía o deterioro: <strong>≥ 250
+          polimorfonucleares/mm³ definen la peritonitis bacteriana espontánea</strong>. Siembra el líquido en frascos de
+          hemocultivo junto a la cama. La alteración de la coagulación no contraindica la punción de rutina.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💧</span><span><strong>Diálisis peritoneal.</strong> Líquido
+          turbio con dolor abdominal es <strong>peritonitis asociada al catéter hasta demostrar lo contrario</strong>:
+          recuento celular, tinción y cultivo del efluente, y tratamiento según el protocolo de la unidad.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔪</span><span><strong>Postoperatorio reciente.</strong>
+          Sospecha filtración anastomótica, absceso o isquemia. <strong>Taquicardia persistente sin explicación tras
+          cirugía abdominal es un signo de alarma</strong>, aunque el examen impresione aceptable. Habla con el equipo
+          que operó.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Anticoagulado o con
+          coagulopatía.</strong> Hematoma de la vaina del recto y hemorragia retroperitoneal se presentan como dolor
+          abdominal agudo con anemización. El signo de Carnett positivo orienta a la pared.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚑</span><span><strong>Trauma reciente, aunque parezca
+          menor.</strong> La rotura esplénica puede ser diferida. Si el mecanismo es relevante, el manejo pasa a ser el
+          del paciente traumatizado.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧠</span><span><strong>Paciente con demencia, afasia o
+          delirium.</strong> No puede localizar ni graduar el dolor: la taquicardia, la agitación nueva, el rechazo
+          alimentario y la palpación con mueca son todo lo que hay. El umbral de imagen es el más bajo de
+          todos.</span></div>
+      </div>
+
+      <div class="links-row">
+        <a class="cross-link" href="./checklist-sepsis_4.html">→ Checklist de sepsis y shock séptico</a>
+        <a class="cross-link" href="./checklist-politrauma_2.html">→ Checklist de politrauma</a>
+        <a class="cross-link" href="./algoritmo-hda-variceal.html">→ Algoritmo de hemorragia digestiva variceal</a>
+        <a class="cross-link" href="./algoritmo-cad-ehh.html">→ Algoritmo de cetoacidosis y estado hiperosmolar</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ERRORES -->
+  <div class="section s5 collapsed" id="s-errores">
+    <div class="section-header" onclick="toggleSection('s-errores')">
+      <span class="section-num">ALTA</span>
+      <div>
+        <div class="section-title">Antes de firmar el alta</div>
+        <div class="section-subtitle">Documentación y errores frecuentes</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="info-banner" style="margin-top:0;"><span>ℹ️</span><span>Una parte importante de los pacientes se va
+        <strong>sin diagnóstico específico</strong>, y «dolor abdominal inespecífico» es un diagnóstico legítimo cuando
+        se descartaron las causas letales, el dolor está controlado, tolera la vía oral, deambula y tiene control
+        asegurado. <strong>Lo que lo vuelve peligroso no es la falta de etiqueta: es el alta sin plazo, sin
+        instrucciones y sin registro.</strong></span></div>
+
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📄</span><span><strong>Deja escrito el examen abdominal y su
+          evolución</strong>, con la hora de cada reevaluación, y qué causas graves se consideraron y por qué se
+          descartaron. Es lo que permite comparar en la siguiente consulta.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🗓️</span><span><strong>Control clínico en 12 a 24 horas si el
+          dolor persiste</strong>, con un lugar concreto donde acudir. El dolor abdominal indiferenciado se reevalúa, no
+          se cierra.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📞</span><span><strong>Instrucciones de retorno inmediato</strong>
+          entregadas por escrito: dolor que aumenta o se localiza, fiebre, vómitos persistentes, distensión, ausencia de
+          gases o deposiciones, sangre en deposiciones o en el vómito, desmayo, ictericia o dolor que despierta de
+          noche.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Analgesia indicada por escrito</strong>
+          y advertencia explícita de que <strong>el alivio no equivale a curación</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚶</span><span><strong>Comprueba que el paciente puede
+          funcionar:</strong> caminar, tomar líquidos, tener a alguien que lo acompañe. Los vómitos que impiden la vía
+          oral y el dolor que no se controla son criterio de observación, por benigno que sea el diagnóstico.</span></div>
+      </div>
+
+      <div class="block-label">Errores frecuentes</div>
+      <div class="stop">
+        <div class="stop-title">Lo que más se repite</div>
+        <ul>
+          <li>No pedir electrocardiograma en la epigastralgia del adulto mayor o del diabético</li>
+          <li>No pedir prueba de embarazo apoyándose en la historia menstrual o en el método anticonceptivo referido</li>
+          <li>No examinar genitales ni orificios herniarios: torsión testicular y hernia incarcerada se presentan como dolor abdominal</li>
+          <li>Confundir isquemia mesentérica con gastroenteritis en el adulto mayor con fibrilación auricular, dolor intenso y examen poco llamativo</li>
+          <li>Descartar por laboratorio: leucocitos, proteína C reactiva o lactato normales no excluyen apendicitis, isquemia ni perforación</li>
+          <li>Tomar una tomografía precoz normal como cierre definitivo cuando la clínica progresa</li>
+          <li>Diferir la analgesia «para no enmascarar el abdomen»: la evidencia no respalda esa práctica</li>
+          <li>No mirar la aorta en el adulto mayor con dolor de inicio brusco, y etiquetarlo como cólico renal</li>
+          <li>No puncionar la ascitis del cirrótico con dolor o deterioro, esperando corregir antes la coagulación</li>
+          <li>Atribuir el cuadro a «gastritis», «colon irritable» o «constipación» sin haber descartado lo grave</li>
+          <li>No reevaluar de verdad al paciente que reconsulta por tercera vez: <strong>la reconsulta es, en sí misma, una bandera roja</strong></li>
+          <li>Trasladar a tomografía a un paciente inestable que aún no responde a la reanimación</li>
+          <li>Dar de alta sin dejar escrito el examen abdominal, la hora de la reevaluación y un control con fecha</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFUNDIZAR -->
+  <a class="deep-link" href="./guia-dolor-abdominal.html">
+    <div>
+      <strong>Profundizar · Guía de dolor abdominal</strong>
+      <span>Orientador por patrón, estado y contexto; las causas que matan con lo que las delata; orientación por
+      localización y patrón temporal; rendimiento real de los signos con nombre; estudio inicial con sus límites; y
+      alta segura del abdomen indiferenciado.</span>
+    </div>
+    <span class="arr">→</span>
+  </a>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda de orientación para la atención de urgencia:
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes del servicio</strong>. Las metas de tiempo son
+    referenciales y <strong>están propuestas, no validadas</strong>. Los esquemas antimicrobianos, los umbrales de
+    imagen, los puntajes de apendicitis que usa el servicio y sus cortes, los criterios quirúrgicos, los plazos de
+    drenaje biliar, el esquema escalonado de analgesia parenteral, los agentes de reversión de la anticoagulación y las
+    vías de derivación a cirugía, ginecología, urología y gastroenterología dependen de cada centro:
+    <strong>verificar con protocolo institucional</strong>. Si existe un protocolo local del servicio para el dolor
+    abdominal o un esquema del programa de uso racional de antimicrobianos, sus indicaciones prevalecen sobre esta
+    página. Verifica dosis, ajuste por función renal y hepática, alergias, interacciones, embarazo y
+    contraindicaciones antes de indicar cualquier fármaco. Los criterios y puntajes complementan, no sustituyen, la
+    evaluación clínica. Contenido para <strong>pacientes adultos</strong>: el dolor abdominal pediátrico tiene un
+    diferencial y un enfoque distintos y se rige por el protocolo institucional correspondiente.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Alvarado A. <em>A Practical Score for the Early Diagnosis of Acute Appendicitis.</em> Ann Emerg Med. 1986;15(5):557–564.</div>
+      <div class="ref-item">Ohle R, et al. <em>The Alvarado Score for Predicting Acute Appendicitis: A Systematic Review.</em> BMC Med. 2011;9:139.</div>
+      <div class="ref-item">Di Saverio S, et al. <em>Diagnosis and Treatment of Acute Appendicitis: 2020 Update of the WSES Jerusalem Guidelines.</em> World J Emerg Surg. 2020;15:27.</div>
+      <div class="ref-item">Manterola C, et al. <em>Analgesia in Patients with Acute Abdominal Pain.</em> Cochrane Database Syst Rev. 2011;(1):CD005660.</div>
+      <div class="ref-item">Bhangu A, et al. <em>Acute Appendicitis: Modern Understanding of Pathogenesis, Diagnosis, and Management.</em> Lancet. 2015;386(10000):1278–1287.</div>
+      <div class="ref-item">Bala M, et al. <em>Acute Mesenteric Ischemia: Updated Guidelines of the World Society of Emergency Surgery.</em> World J Emerg Surg. 2022;17:54.</div>
+      <div class="ref-item">Kiriyama S, Takada T, et al. <em>Tokyo Guidelines 2018: Diagnostic Criteria and Severity Grading of Acute Cholangitis.</em> J Hepatobiliary Pancreat Sci. 2018;25(1):17–30.</div>
+      <div class="ref-item">Yokoe M, et al. <em>Tokyo Guidelines 2018: Diagnostic Criteria and Severity Grading of Acute Cholecystitis.</em> J Hepatobiliary Pancreat Sci. 2018;25(1):41–54.</div>
+      <div class="ref-item">Banks PA, et al. <em>Classification of Acute Pancreatitis — 2012: Revision of the Atlanta Classification and Definitions.</em> Gut. 2013;62(1):102–111.</div>
+      <div class="ref-item">de-Madaria E, et al. <em>Aggressive or Moderate Fluid Resuscitation in Acute Pancreatitis (WATERFALL).</em> N Engl J Med. 2022;387(11):989–1000.</div>
+      <div class="ref-item">Biffl WL, et al. <em>Management of Colonic Diverticulitis: WSES Guidelines.</em> World J Emerg Surg. 2020;15:32.</div>
+      <div class="ref-item">Daniels L, et al. <em>Randomized Clinical Trial of Observational versus Antibiotic Treatment for a First Episode of CT-Proven Uncomplicated Acute Diverticulitis (DIABOLO).</em> Br J Surg. 2017;104(1):52–61.</div>
+      <div class="ref-item">European Association for the Study of the Liver. <em>EASL Clinical Practice Guidelines for the Management of Patients with Decompensated Cirrhosis.</em> J Hepatol. 2018;69(2):406–460.</div>
+      <div class="ref-item">Workowski KA, et al. <em>Sexually Transmitted Infections Treatment Guidelines, 2021.</em> MMWR Recomm Rep. 2021;70(4):1–187. — Esquemas de enfermedad inflamatoria pélvica.</div>
+      <div class="ref-item">Pickard R, et al. <em>Medical Expulsive Therapy in Adults with Ureteric Colic (SUSPEND): A Multicentre, Randomised, Placebo-Controlled Trial.</em> Lancet. 2015;386(9991):341–349.</div>
+      <div class="ref-item">Magidson PD, Martinez JP. <em>Abdominal Pain in the Geriatric Patient.</em> Emerg Med Clin North Am. 2016;34(3):559–574.</div>
+      <div class="ref-item">American College of Radiology. <em>ACR Appropriateness Criteria: Acute Nonlocalized Abdominal Pain; Right Lower Quadrant Pain.</em> Edición vigente. acsearch.acr.org</div>
+      <div class="ref-item">Los esquemas antimicrobianos, los umbrales de imagen, los criterios quirúrgicos y las vías de derivación deben contrastarse con el protocolo institucional vigente.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+  function openSection(id) {
+    const s = document.getElementById(id);
+    s.classList.remove('collapsed');
+    s.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  function openSiempre()     { openSection('s-siempre'); }
+  function openImagen()      { openSection('s-imagen'); }
+  function openAlvarado()    { openSection('s-alvarado'); }
+  function openPoblaciones() { openSection('s-poblaciones'); }
+
+  // ── Fármacos y seguimiento (dosis para la ficha + texto para el paciente) ──
+  const MEDS = {
+    para1g:   { name: 'Paracetamol', dose: '1 g c/8 h VO × 3–5 días', note: 'Primera opción cuando se quiere evitar el antiinflamatorio. Máximo 3 g al día; menos en hepatopatía, desnutrición o consumo de alcohol.',
+                pt: 'Paracetamol 1 g: 1 comprimido cada 8 horas por 3 a 5 días (no más de 3 gramos al día).' },
+    ibu:      { name: 'Ibuprofeno', dose: '400–600 mg c/8 h VO con comida × 3–5 días', note: 'Dosis menor eficaz, por el menor tiempo posible. Evitar en ERC, úlcera o sangrado digestivo previo, insuficiencia cardíaca, cirrosis, anticoagulación, deshidratación y adulto mayor frágil. No usar si hay sospecha de úlcera o de sangrado digestivo.',
+                pt: 'Ibuprofeno 400 a 600 mg: 1 comprimido cada 8 horas con comida, por 3 a 5 días. No lo tome con el estómago vacío.' },
+    metamiVO: { name: 'Metamizol (dipirona)', dose: '500 mg c/8 h VO si hay dolor', note: 'Alternativa cuando el antiinflamatorio está contraindicado. Agranulocitosis, infrecuente pero grave: advertir que consulte si aparece fiebre con dolor de garganta o aftas.',
+                pt: 'Metamizol 500 mg: 1 comprimido cada 8 horas solo si tiene dolor. Si le aparece fiebre con dolor de garganta o llagas en la boca, suspéndalo y consulte.' },
+    diclogel: { name: 'Diclofenaco gel', dose: '1–2 g sobre la zona dolorosa c/8 h × 5–7 días', note: 'Útil en el dolor localizado de la pared abdominal, con mucha menor exposición sistémica que el oral. Disponibilidad en el servicio: verificar con protocolo institucional.',
+                pt: 'Diclofenaco gel: aplique una capa fina sobre la zona que le duele, 3 veces al día, por 5 a 7 días. No lo aplique sobre heridas ni se cubra con vendajes oclusivos.' },
+    omepra4s: { name: 'Omeprazol', dose: '20 mg c/24 h VO en ayunas × 4 semanas', note: 'Tratamiento de la dispepsia no investigada en el paciente sin signos de alarma. Reevaluar la necesidad a las 4 semanas; el uso prolongado sin indicación no es inocuo.',
+                pt: 'Omeprazol 20 mg: 1 cápsula al día en ayunas, media hora antes del desayuno, por 4 semanas.' },
+    peg:      { name: 'Polietilenglicol', dose: '17 g en 240 mL de agua, 1 vez al día', note: 'Laxante osmótico de primera línea, mejor tolerado que la lactulosa. Puede usarse varios días; se ajusta según la respuesta.',
+                pt: 'Polietilenglicol: 1 sobre (17 g) disuelto en un vaso grande de agua, 1 vez al día. Si en 2 o 3 días no hace deposiciones, consulte.' },
+    lactul:   { name: 'Lactulosa', dose: '15–30 mL c/12–24 h VO', note: 'Alternativa al polietilenglicol. Produce más distensión y flatulencia, lo que puede confundirse con empeoramiento del dolor.',
+                pt: 'Lactulosa 15 a 30 mL: 1 o 2 veces al día. Puede producir gases e hinchazón los primeros días.' },
+
+    aineBiliar:    { name: 'Antiinflamatorio oral al alta, dieta y derivación a cirugía', dose: 'Ibuprofeno 400–600 mg c/8 h VO con comida, por 3–5 días, + derivación a cirugía para colecistectomía electiva', note: 'El antiinflamatorio es la primera línea del cólico biliar. La colecistectomía electiva es el tratamiento definitivo y se solicita desde el box: el cólico biliar recurre y la próxima vez puede ser una colecistitis o una colangitis. Plazos y vía de derivación: verificar con protocolo institucional.',
+                     pt: 'Ibuprofeno 400 a 600 mg: 1 comprimido cada 8 horas con comida, solo si tiene dolor, por 3 a 5 días.|Se solicitó su evaluación por cirugía para operar la vesícula de forma programada. Lleve este documento a esa consulta.' },
+    sinAineBiliar: { name: 'Analgesia sin antiinflamatorio, dieta y derivación a cirugía', dose: 'Paracetamol 1 g c/8 h VO (o metamizol 500 mg c/8 h) + derivación a cirugía para colecistectomía electiva', note: 'Para el paciente con ERC, úlcera o sangrado digestivo previo, insuficiencia cardíaca, cirrosis, anticoagulación o adulto mayor frágil. Si el dolor no se controla con esto, no es un alta.',
+                     pt: 'Paracetamol 1 g: 1 comprimido cada 8 horas si tiene dolor (no más de 3 gramos al día).|Se solicitó su evaluación por cirugía para operar la vesícula de forma programada. Lleve este documento a esa consulta.' },
+    aineRenal:     { name: 'Antiinflamatorio oral al alta y control urológico', dose: 'Ibuprofeno 400–600 mg c/8 h VO con comida, o diclofenaco 50 mg c/8 h, por 3–5 días, + control con la imagen', note: 'El antiinflamatorio es la primera línea analgésica del cólico renoureteral, superior al opioide en varios desenlaces. Revisa la función renal antes de indicarlo y evítalo en el riñón único o en la obstrucción con deterioro de la función.',
+                     pt: 'Ibuprofeno 400 a 600 mg: 1 comprimido cada 8 horas con comida, mientras tenga dolor, por 3 a 5 días.|Tome abundante agua, salvo que se le haya indicado restringir líquidos.|Filtre la orina con una gasa o un colador: si elimina el cálculo, guárdelo y llévelo a su control.' },
+    sinAineRenal:  { name: 'Analgesia sin antiinflamatorio y control urológico', dose: 'Paracetamol 1 g c/8 h VO, o metamizol 500 mg c/8 h, + control con la imagen', note: 'Para el paciente con ERC, riñón único, úlcera previa, insuficiencia cardíaca o anticoagulación. Si el dolor requiere opioide para controlarse, la conducta es observación en el box y reevaluación, no un alta precoz.',
+                     pt: 'Paracetamol 1 g: 1 comprimido cada 8 horas mientras tenga dolor (no más de 3 gramos al día).|Tome abundante agua, salvo que se le haya indicado restringir líquidos.|Filtre la orina con una gasa o un colador: si elimina el cálculo, guárdelo y llévelo a su control.' },
+    abxDivertic:   { name: 'Antibiótico oral ambulatorio', dose: 'Amoxicilina/ácido clavulánico 875/125 mg c/12 h VO × 7 días, o ciprofloxacino 500 mg c/12 h + metronidazol 500 mg c/8 h VO × 7 días', note: 'Esquema para el paciente seleccionado: diverticulitis no complicada confirmada o altamente probable, sin inmunosupresión, que tolera la vía oral y con control asegurado. El antibiótico, su duración y las alternativas en alergia dependen del PROA local: verificar con protocolo institucional.',
+                     pt: 'Antibiótico indicado en la receta: tómelo en el horario señalado y complete todos los días, aunque se sienta mejor antes.' },
+    sinAbxDivertic:{ name: 'Manejo sin antibiótico, con control estrecho', dose: 'Analgesia, dieta liviana y control clínico en 48–72 h, sin antibiótico', note: 'En la diverticulitis no complicada confirmada por tomografía, el manejo sin antibiótico fue no inferior en pacientes seleccionados (AVOD, DIABOLO): inmunocompetentes, sin sepsis, sin absceso ni perforación, que toleran la vía oral. Exige control estrecho y una conversación explícita con el paciente. Conducta local: verificar con protocolo institucional.',
+                     pt: 'En su caso no se indicó antibiótico: la evidencia muestra que en este tipo de diverticulitis la evolución es igual de buena sin él, con control cercano.' },
+    abxEpi:        { name: 'Tratamiento de enfermedad inflamatoria pélvica, ambulatorio', dose: 'Ceftriaxona 500 mg IM en dosis única + doxiciclina 100 mg c/12 h VO × 14 días + metronidazol 500 mg c/12 h VO × 14 días', note: 'Esquema ambulatorio de las guías CDC 2021. Se trata ante la sospecha, sin esperar la confirmación microbiológica: el costo de no tratar es la infertilidad. Doxiciclina contraindicada en el embarazo. Estudio de otras infecciones de transmisión sexual, tratamiento de la pareja y notificación según la normativa local: verificar con protocolo institucional.',
+                     pt: 'Antibióticos: complete los 14 días completos, aunque se sienta mejor antes.|Evite las relaciones sexuales hasta terminar el tratamiento y hasta que su pareja haya sido evaluada y tratada.|Su pareja o parejas sexuales deben ser evaluadas y tratadas, aunque no tengan síntomas.' },
+    ctrlGineco:    { name: 'Analgesia y control ginecológico, sin antibiótico', dose: 'Antiinflamatorio o paracetamol según tolerancia + control ginecológico en 48–72 h con la ecografía', note: 'Para el dolor pélvico sin criterios de enfermedad inflamatoria pélvica ni sospecha de torsión: quiste no complicado, dolor ovulatorio, dismenorrea. Si el dolor es brusco, intenso y con vómitos, la torsión anexial se descarta hoy con ecografía y evaluación ginecológica, no en el control.',
+                     pt: 'Analgesia según lo indicado, mientras tenga dolor.|Control con ginecología en 48 a 72 horas, llevando el resultado de la ecografía.' }
+  };
+
+  const ANALG = {
+    para:   { name: 'Paracetamol', dose: '1 g c/8 h VO si hay dolor', note: 'Coadyuvante. Máximo 3 g al día; menos si hay hepatopatía, desnutrición o consumo de alcohol.',
+              pt: 'Paracetamol 1 g: cada 8 horas solo si tiene dolor (máximo 3 gramos al día).' },
+    escopo: { name: 'Butilescopolamina', dose: '10–20 mg c/8 h VO si hay dolor cólico', note: 'Antiespasmódico de beneficio modesto en el dolor cólico; por sí solo es insuficiente en el cólico renal. Anticolinérgico: evitar en glaucoma de ángulo estrecho, uropatía obstructiva, taquiarritmia y megacolon.',
+              pt: 'Butilescopolamina 10 a 20 mg: cada 8 horas solo si tiene dolor tipo retortijón. Puede dar sequedad de boca y visión borrosa.' },
+    omepra: { name: 'Omeprazol', dose: '20 mg c/24 h VO en ayunas mientras use el antiinflamatorio', note: 'Gastroprotección si hay edad avanzada, úlcera previa, corticoides, antiagregante o anticoagulante.',
+              pt: 'Omeprazol 20 mg: 1 cápsula al día en ayunas, media hora antes del desayuno, mientras tome el antiinflamatorio.' },
+    tamsu:  { name: 'Tamsulosina', dose: '0,4 mg c/24 h VO × 2 semanas', note: 'Terapia expulsiva de beneficio discutido: el ensayo SUSPEND no mostró diferencia global, y el beneficio, si existe, se concentra en los cálculos distales de 5 mm o más. Hipotensión ortostática y eyaculación retrógrada. Conducta local: verificar con protocolo institucional.',
+              pt: 'Tamsulosina 0,4 mg: 1 cápsula al día, después de una comida, por 2 semanas. Puede bajar la presión al ponerse de pie: levántese despacio.' },
+    pegAdj: { name: 'Polietilenglicol', dose: '17 g en 240 mL de agua, 1 vez al día', note: 'Útil cuando el dolor se acompaña de constipación, en especial si está usando opioides.',
+              pt: 'Polietilenglicol: 1 sobre (17 g) en un vaso grande de agua, 1 vez al día, mientras esté constipado.' }
+  };
+
+  // ── Camino A · escenarios ─────────────────────────────────────────
+  const A = {
+    inespecifico: {
+      label: 'Dolor abdominal inespecífico de bajo riesgo',
+      crit: 'Dolor leve o ya controlado, difuso o mal definido, abdomen depresible sin signos peritoneales, signos vitales normales, afebril, tolera la vía oral y deambula. No hay diagnóstico específico y <strong>no hace falta inventarlo</strong>: lo que hace segura esta decisión es el examen escrito, la reevaluación con hora y el control precoz.',
+      meds: ['para1g', 'ibu', 'metamiVO'], analg: ['escopo', 'omepra', 'pegAdj'],
+      avoid: '<strong>No rotules como «gastritis», «colon irritable» o «constipación» lo que no estudiaste:</strong> la etiqueta falsa es lo que hace que la próxima consulta no reevalúe nada. Escribe «dolor abdominal inespecífico», con el examen y el plazo. <strong>Evita el antiinflamatorio</strong> en ERC, úlcera o sangrado digestivo previo, insuficiencia cardíaca, cirrosis, anticoagulación y adulto mayor frágil.',
+      dx: 'Dolor abdominal inespecífico',
+      rec: ['Dieta liviana y fraccionada los primeros días, con buena hidratación.',
+            'Es esperable que el dolor vaya cediendo en 24 a 48 horas. Si en ese plazo no mejora, debe ser reexaminado: no es que el remedio «no haya hecho efecto», es que el cuadro necesita una segunda mirada.',
+            'Volver a consultar no es un fracaso ni una molestia: es parte del plan. El dolor abdominal cambia de cara con las horas, y la segunda evaluación muestra cosas que la primera no podía mostrar.',
+            'El alivio del dolor con los medicamentos no significa que el problema esté resuelto.'],
+      extraAlarm: [],
+      control: 'Control médico en 12 a 24 horas si el dolor persiste, y antes si aparece cualquiera de los signos de alarma.'
+    },
+    pared: {
+      label: 'Dolor de la pared abdominal (Carnett positivo)',
+      crit: 'Dolor localizado y superficial, reproducible en un punto, que <strong>aumenta al palpar mientras el paciente contrae la musculatura abdominal</strong> (signo de Carnett positivo), sin compromiso del estado general. Orienta a atrapamiento nervioso, dolor miofascial o hernia pequeña de la pared.',
+      meds: ['diclogel', 'ibu', 'para1g'], analg: ['para', 'omepra'],
+      avoid: '<strong>Carnett positivo hace menos probable la causa visceral, pero no la descarta.</strong> En el paciente anticoagulado, el mismo signo orienta a un <strong>hematoma de la vaina del recto</strong>, que es una hemorragia y no un dolor muscular: ahí la conducta es imagen, no gel. Y si palpas una masa dolorosa en un orificio herniario, el camino es quirúrgico.',
+      dx: 'Dolor de la pared abdominal',
+      rec: ['El dolor viene de la pared del abdomen —músculo, nervio o aponeurosis—, no de un órgano interno. Suele mejorar en días a algunas semanas.',
+            'Aplique calor local seco sobre la zona, 15 a 20 minutos, 2 o 3 veces al día.',
+            'Evite por unos días los esfuerzos que reproducen el dolor: levantar peso, abdominales, toser forzadamente.',
+            'Si aparece un bulto que no se reduce en la zona que le duele, consulte.'],
+      extraAlarm: ['Si aparece un bulto duro, doloroso y que no se puede reducir en la zona del dolor.',
+                   'Si usted toma anticoagulantes y el dolor aumenta, se pone duro o se acompaña de palidez, mareo o debilidad.'],
+      control: 'Control en su centro de salud en 7 a 10 días si el dolor persiste, para reevaluar y definir kinesiología.'
+    },
+    dispepsia: {
+      label: 'Dispepsia o epigastralgia sin signos de alarma',
+      crit: 'Molestia o dolor epigástrico, con o sin saciedad precoz, en paciente <strong>sin signos de alarma</strong>: sin baja de peso, sin vómitos persistentes, sin anemia, sin disfagia, sin masa palpable, sin hemorragia digestiva y sin antecedente familiar de cáncer gástrico. <strong>Con electrocardiograma ya hecho si tiene más de 50 años, es diabético o tiene factores de riesgo.</strong>',
+      meds: ['omepra4s', 'para1g'], analg: ['para'],
+      avoid: '<strong>El error que mata en la epigastralgia no es el gástrico: es el infarto de cara inferior.</strong> El electrocardiograma va antes que el inhibidor de la bomba de protones, y la mejoría con el antiácido no descarta nada. <strong>Evita el antiinflamatorio</strong> en este escenario: empeora la causa más probable. Si hay signos de alarma, el camino no es este.',
+      dx: 'Dispepsia no investigada, sin signos de alarma',
+      rec: ['Comidas más pequeñas y frecuentes; evite el alcohol, el tabaco, el exceso de café y las comidas muy grasas o condimentadas mientras tenga síntomas.',
+            'No tome antiinflamatorios como ibuprofeno, diclofenaco, ketoprofeno ni aspirina para este dolor: empeoran la causa más probable.',
+            'Si no mejora en 4 semanas de tratamiento, debe ser reevaluado: puede necesitar estudio de la bacteria Helicobacter pylori o una endoscopia.',
+            'No prolongue el omeprazol por su cuenta más allá de lo indicado sin ser reevaluado.'],
+      extraAlarm: ['Dificultad para tragar, vómitos repetidos, baja de peso sin explicación o decaimiento marcado.'],
+      control: 'Control en su centro de salud en 4 semanas, o antes si no mejora o aparecen signos de alarma.'
+    },
+    constipacion: {
+      label: 'Dolor cólico por constipación, con tránsito conservado',
+      crit: 'Dolor cólico difuso o en el marco colónico, con deposiciones escasas y duras, <strong>que elimina gases</strong>, abdomen blando y distendido pero sin signos peritoneales, sin vómitos y sin cirugía abdominal previa que haga sospechar obstrucción.',
+      meds: ['peg', 'lactul'], analg: ['para', 'escopo'],
+      avoid: '<strong>«Constipación» no explica un abdomen que no elimina gases.</strong> Vómitos, distensión importante, ausencia de gases o deposiciones y cirugía previa o hernia son obstrucción intestinal, no constipación: ese paciente va al <button type="button" class="link-btn" onclick="showPath(\'B2\', true)">camino B2</button>. En el adulto mayor, descarta además el fecaloma por tacto rectal y considera el vólvulo de sigmoides ante distensión marcada.',
+      dx: 'Dolor abdominal por constipación',
+      rec: ['Aumente de forma gradual la fibra de la dieta y la cantidad de agua que toma durante el día.',
+            'Camine y manténgase activo: el movimiento ayuda al tránsito intestinal.',
+            'No use enemas ni laxantes estimulantes de forma repetida por su cuenta.',
+            'Revise con su médico si alguno de sus medicamentos habituales está produciendo la constipación, en especial los analgésicos opioides, el hierro y algunos antidepresivos.'],
+      extraAlarm: ['Que pase más de un día sin eliminar gases ni deposiciones, con el abdomen hinchado.',
+                   'Vómitos repetidos, en especial si son de aspecto intestinal o huelen mal.',
+                   'Sangre en las deposiciones, o un cambio del hábito intestinal que se mantiene por semanas.'],
+      control: 'Control en su centro de salud en 7 a 14 días; antes si el dolor aumenta o deja de eliminar gases.'
+    }
+  };
+
+  // ── Camino B1 · situaciones ───────────────────────────────────────
+  const B1 = {
+    biliar: {
+      label: 'Cólico biliar simple',
+      crit: 'Dolor sostenido en hipocondrio derecho o epigastrio, irradiado a dorso o escápula, de horas de duración, que <strong>cede</strong>. Afebril, sin ictericia, sin Murphy mantenido, con pruebas hepáticas y bilirrubina normales. <strong>Pese al nombre, el cólico biliar no es cólico:</strong> es un dolor sostenido que sube y se mantiene.',
+      discharge: true,
+      meds: ['aineBiliar', 'sinAineBiliar'], analg: ['para', 'omepra'],
+      destino: [
+        ['🔊', '<strong>Ecografía abdominal</strong>: litiasis, grosor de la pared vesicular y diámetro de la vía biliar. Si está disponible en urgencia, se pide hoy; si no, se solicita al alta con control.'],
+        ['🧪', '<strong>Pruebas hepáticas, bilirrubina, fosfatasas alcalinas y lipasa.</strong> Un patrón colestásico o una lipasa elevada cambian el camino: ya no es un cólico biliar simple.'],
+        ['🚪', '<strong>Alta cuando el dolor cedió</strong>, está afebril, tolera la vía oral y los exámenes son normales, con derivación a cirugía para colecistectomía electiva.'],
+        ['🗓️', 'Deja el control y la derivación con fecha, lugar y responsable. Plazos y vía de derivación: <strong>verificar con protocolo institucional</strong>.']
+      ],
+      warn: 'Cambia de camino si aparece <strong>fiebre, Murphy mantenido, ictericia, patrón colestásico o lipasa elevada</strong>: eso es colecistitis, coledocolitiasis, colangitis o pancreatitis, y se estudia hoy en <button type="button" class="link-btn" onclick="showPath(\'B2\', true)">B2</button>. Con fiebre, ictericia e hipotensión o compromiso de conciencia, es <button type="button" class="link-btn" onclick="showPath(\'C\', true)">camino C</button>.'
+    },
+    renal: {
+      label: 'Cólico renoureteral no complicado',
+      crit: 'Dolor lumbar o en flanco, cólico, irradiado a la fosa iliaca y al genital, con inquietud motora y <strong>sin posición que alivie</strong>. Afebril, con buena función renal, sin riñón único y sin signos de obstrucción con repercusión. <strong>Antes de aceptar este diagnóstico en un mayor de 60 años con primer episodio, mira la aorta.</strong>',
+      discharge: true,
+      meds: ['aineRenal', 'sinAineRenal'], analg: ['para', 'tamsu', 'escopo'],
+      destino: [
+        ['💉', '<strong>Antiinflamatorio parenteral de primera línea</strong> (ketoprofeno 100 mg IV o IM, o ketorolaco), con reevaluación del dolor; opioide titulado solo si no cede.'],
+        ['🧪', '<strong>Orina completa, función renal y hemograma.</strong> Fiebre, piuria con compromiso sistémico o deterioro de la función renal cambian el camino.'],
+        ['🔊', '<strong>Imagen</strong>: ecografía renal y vesical, o tomografía sin contraste de baja dosis según disponibilidad. Busca hidronefrosis, el tamaño y la ubicación del cálculo.'],
+        ['🚪', '<strong>Alta con analgesia oral y control urológico</strong> cuando el dolor cedió, tolera la vía oral, orina y no tiene fiebre. Cálculos grandes, obstrucción o riñón único: evaluación urológica hoy.']
+      ],
+      warn: '<strong>Fiebre con obstrucción de la vía urinaria es una urgencia urológica</strong>: necesita derivación de la vía (catéter doble J o nefrostomía) y antibiótico, no analgesia y alta. Ese paciente va a <button type="button" class="link-btn" onclick="showPath(\'B2\', true)">B2</button>, o a <button type="button" class="link-btn" onclick="showPath(\'C\', true)">C</button> si está séptico. Y en el adulto mayor con primer cólico de su vida, el aneurisma aórtico roto se disfraza exactamente así.'
+    },
+    divertic: {
+      label: 'Diverticulitis probablemente no complicada',
+      crit: 'Dolor sostenido en fosa iliaca izquierda con cambio del hábito intestinal, con fiebre baja o sin fiebre, <strong>sin signos peritoneales, sin masa palpable y sin compromiso del estado general</strong>, en paciente inmunocompetente que tolera la vía oral. El manejo ambulatorio exige <strong>paciente seleccionado y control asegurado</strong>.',
+      discharge: true,
+      meds: ['abxDivertic', 'sinAbxDivertic'], analg: ['para', 'escopo'],
+      destino: [
+        ['🧪', '<strong>Hemograma, proteína C reactiva, función renal y orina completa.</strong> Una proteína C reactiva muy elevada o leucocitosis marcada apoyan la forma complicada.'],
+        ['🖥', '<strong>Tomografía de abdomen y pelvis con contraste</strong> para confirmar y, sobre todo, para descartar absceso, perforación y obstrucción. Es lo que separa la no complicada de la complicada, y la decisión ambulatoria se apoya en ella.'],
+        ['🚪', '<strong>Alta en el paciente seleccionado</strong>: dolor controlado con analgesia oral, afebril o con fiebre baja, tolerando la vía oral, sin inmunosupresión y con control en 48 a 72 h.'],
+        ['🏥', '<strong>Hospitalización</strong> si hay absceso, perforación, obstrucción, inmunosupresión, intolerancia oral, dolor no controlado, comorbilidad relevante o falta de red de apoyo.']
+      ],
+      warn: 'El manejo <strong>sin antibiótico</strong> de la diverticulitis no complicada confirmada por tomografía fue no inferior en pacientes seleccionados (AVOD, DIABOLO), pero <strong>no se aplica</strong> al inmunosuprimido, al que tiene absceso o perforación, al séptico ni al que no puede controlarse en 48 a 72 h. La conducta del servicio y el esquema antibiótico: <strong>verificar con protocolo institucional</strong>.'
+    },
+    pelvicoNeg: {
+      label: 'Dolor pélvico con prueba de embarazo negativa',
+      crit: 'Mujer estable, afebril o con fiebre baja, con dolor pélvico o hipogástrico y <strong>prueba de embarazo negativa</strong>, sin signos peritoneales y sin compromiso del estado general. Diferencial: enfermedad inflamatoria pélvica, quiste no complicado, dolor ovulatorio, dismenorrea, causa urinaria.',
+      discharge: true,
+      meds: ['abxEpi', 'ctrlGineco'], analg: ['para', 'escopo'],
+      destino: [
+        ['🤰', '<strong>La prueba de embarazo negativa es lo que permite estar en este camino.</strong> Si es positiva o está pendiente, el camino es <button type="button" class="link-btn" onclick="showPath(\'B2\', true)">B2</button>.'],
+        ['🩺', '<strong>Evaluación ginecológica con examen bimanual</strong>: dolor a la movilización del cuello uterino, dolor anexial o flujo cervical purulento definen la enfermedad inflamatoria pélvica, que se trata ante la sospecha.'],
+        ['🔊', '<strong>Ecografía</strong> (transvaginal cuando corresponda) si hay masa palpable, dolor intenso o sospecha de absceso tuboovárico o de torsión.'],
+        ['🚪', '<strong>Alta con tratamiento y control ginecológico en 48 a 72 h</strong>, con estudio de otras infecciones de transmisión sexual y tratamiento de la pareja cuando corresponda.']
+      ],
+      warn: '<strong>La torsión anexial no espera el control:</strong> dolor pélvico de inicio brusco, intenso, con vómitos, es una urgencia quirúrgica y <strong>un Doppler normal no la descarta</strong>. Con absceso tuboovárico, fiebre alta, vómitos, inmunosupresión, embarazo o falla del tratamiento oral, el manejo es hospitalizado: va a <button type="button" class="link-btn" onclick="showPath(\'B2\', true)">B2</button>.'
+    }
+  };
+
+  // ── Camino B2 · escenarios ────────────────────────────────────────
+  const B2 = {
+    inflamatorio: {
+      label: 'Abdomen inflamatorio focal (apendicitis, colecistitis, diverticulitis complicada)',
+      crit: 'Dolor progresivo en horas, localizado, con defensa involuntaria o dolor a la percusión, con o sin fiebre, sin compromiso hemodinámico. <strong>La migración del dolor y la anorexia valen más que el punto que el paciente señala al llegar.</strong>',
+      rule: '<b>Cómo se delata</b> El dolor visceral inicial es sordo y mal localizado; cuando el proceso irrita el peritoneo parietal <strong>se localiza, se hace constante y empeora con el movimiento</strong>. La <strong>defensa involuntaria</strong> y el dolor a la percusión rinden más que el rebote provocado. El <strong>Murphy ecográfico</strong> rinde más que el Murphy clínico. Las maniobras de psoas, obturador y Rovsing son poco sensibles de forma aislada: <strong>su negatividad no descarta</strong>.',
+      orders: [
+        '<strong>Tomografía de abdomen y pelvis con contraste endovenoso</strong> <span class="cond">mayor rendimiento global; en el joven delgado y en la gestante, ecografía primero</span>',
+        '<strong>Ecografía abdominal</strong> si la sospecha es biliar: litiasis, pared vesicular y vía biliar <span class="cond">primera línea de la colecistitis</span>',
+        'Hemograma, proteína C reactiva, función renal y electrolitos; pruebas hepáticas si el dolor es del hemiabdomen superior',
+        '<strong>Prueba de embarazo</strong> en toda mujer en edad fértil, antes de elegir la imagen',
+        'Hemocultivos antes del antibiótico si hay fiebre; grupo, Rh y pruebas cruzadas si la cirugía es probable',
+        'Aplica el <button type="button" class="link-btn" onclick="openAlvarado()">puntaje de Alvarado</button> cuando la sospecha es apendicitis: ordena la conducta, no la decide'
+      ],
+      manejo: [
+        ['💧', '<strong>Régimen cero</strong> e hidratación endovenosa mientras la cirugía sea una posibilidad.'],
+        ['💉', '<strong>Analgesia precoz y titulada</strong>, con reevaluación del examen después de la dosis. No enmascara el abdomen quirúrgico.'],
+        ['💊', '<strong>Antibiótico según el foco y el PROA local</strong>, no «de amplio espectro por si acaso». En la apendicitis no complicada, el antibiótico preoperatorio lo define cirugía.'],
+        ['📞', '<strong>Avisa a cirugía desde la sospecha</strong>, en paralelo con la imagen: el cirujano quiere el examen seriado, no solo el informe.'],
+        ['🕐', '<strong>Reexamina con hora escrita.</strong> Un abdomen que se localiza o se endurece entre dos exámenes cambia la conducta más que cualquier laboratorio.']
+      ],
+      avoid: '<strong>No des de alta por un laboratorio normal.</strong> Hay apendicitis con hemograma y proteína C reactiva normales, y en el adulto mayor pueden faltar la fiebre y la leucocitosis. <strong>Una tomografía precoz normal no cierra el caso</strong> si la clínica progresa: reevalúa y considera repetirla.',
+      destino: [
+        ['🔪', '<strong>Pabellón</strong> si hay indicación quirúrgica confirmada o alta sospecha con compromiso general.'],
+        ['🏥', '<strong>Hospitalización u observación prolongada</strong> con examen seriado en el cuadro indiferenciado, el dolor no controlado o la intolerancia oral.'],
+        ['🚪', 'El alta solo cabe si el diagnóstico quedó aclarado y es de manejo ambulatorio, con control en 24 h y criterios de retorno por escrito.']
+      ],
+      links: [['./guia-dolor-abdominal.html', '→ Guía de dolor abdominal'], ['./checklist-sepsis_4.html', '→ Checklist de sepsis']]
+    },
+    obstruccion: {
+      label: 'Obstrucción intestinal',
+      crit: 'Dolor cólico con vómitos, distensión y <strong>ausencia de gases o deposiciones</strong>, en paciente con cirugía abdominal previa, hernia conocida o antecedente de cáncer. Sin fiebre, sin taquicardia y sin acidosis: con cualquiera de ellas, o con dolor que se hizo constante, pasa a <strong>camino C</strong>.',
+      rule: '<b>Cómo se delata</b> Las bridas y las hernias son las causas más frecuentes en el adulto operado; el cáncer y el vólvulo, en el que no lo está. <strong>Los ruidos hidroaéreos no deciden nada</strong>: ni su ausencia ni su aumento confirman o descartan. <strong>El dato que cambia todo es el dolor cólico que se vuelve constante</strong>, con fiebre, taquicardia o acidosis: eso es estrangulación. Y <strong>palpa los cuatro orificios herniarios</strong>: una hernia incarcerada es una obstrucción con causa en la pared.',
+      orders: [
+        '<strong>Tomografía de abdomen y pelvis con contraste endovenoso</strong> <span class="cond">define nivel, causa y signos de sufrimiento de asa; la radiografía simple no descarta</span>',
+        'Hemograma, función renal, electrolitos, <strong>lactato y gases</strong> <span class="cond">la acidosis metabólica orienta a compromiso vascular</span>',
+        'Grupo, Rh y pruebas cruzadas; pruebas de coagulación',
+        '<strong>Sonda nasogástrica</strong> si hay vómitos o distensión importante, con registro del débito',
+        'Sonda vesical y balance hídrico si hay deshidratación o inestabilidad'
+      ],
+      manejo: [
+        ['💧', '<strong>Régimen cero, reposición hidroelectrolítica y corrección de electrolitos.</strong> Estos pacientes llegan con depleción importante de volumen y de potasio.'],
+        ['🧵', '<strong>Sonda nasogástrica</strong> para descomprimir y reducir el riesgo de aspiración; consigna el débito en la ficha.'],
+        ['🤲', '<strong>Hernia irreductible dolorosa: no insistas en reducirla</strong> si hay signos de estrangulación. Es quirúrgica.'],
+        ['💉', 'Analgesia y antiemético; evita la metoclopramida si la obstrucción mecánica completa es probable.'],
+        ['📞', '<strong>Evaluación quirúrgica urgente</strong>: la decisión entre manejo conservador y cirugía es del equipo quirúrgico, no del box.']
+      ],
+      avoid: '<strong>No confundas obstrucción con constipación.</strong> El paciente que no elimina gases, con distensión y vómitos, no se manda a casa con un laxante. Y <strong>no esperes el lactato para llamar</strong>: un lactato normal no descarta el sufrimiento de asa.',
+      destino: [
+        ['🏥', '<strong>Hospitalización</strong> en todos: incluso la obstrucción que se maneja de forma conservadora necesita observación, sonda y reevaluación seriada.'],
+        ['🔪', '<strong>Pabellón</strong> ante signos de estrangulación, hernia incarcerada, vólvulo o falla del manejo conservador.'],
+        ['🔎', 'Si no hay cirugía previa ni hernia, busca la causa: el cáncer de colon y el vólvulo son los diagnósticos a descartar.']
+      ],
+      links: [['./guia-dolor-abdominal.html', '→ Guía de dolor abdominal']]
+    },
+    biliarObstr: {
+      label: 'Obstrucción de la vía biliar y colangitis sin shock',
+      crit: 'Dolor en hipocondrio derecho o epigastrio con <strong>ictericia, coluria o patrón colestásico</strong>, con o sin fiebre, sin hipotensión ni compromiso de conciencia. La tríada de <strong>fiebre, ictericia y dolor es la tríada de Charcot</strong>; con hipotensión o compromiso de conciencia es la péntada de Reynolds y pasa a <strong>camino C</strong>.',
+      rule: '<b>Cómo se delata</b> El patrón <strong>colestásico</strong> —bilirrubina, fosfatasas alcalinas y gamma-glutamil-transferasa elevadas— con dilatación de la vía biliar orienta a coledocolitiasis; si se agrega fiebre, es colangitis. <strong>Una ecografía sin cálculo en el colédoco no descarta la coledocolitiasis</strong>: la sensibilidad para el cálculo distal es limitada, y es la colangiorresonancia la que responde cuando la sospecha persiste. <strong>Gradúa la gravedad con los criterios de Tokio 2018</strong> y déjalo consignado: define la urgencia del drenaje.',
+      orders: [
+        '<strong>Ecografía abdominal</strong> de entrada: litiasis, pared vesicular y <strong>diámetro de la vía biliar</strong>',
+        'Pruebas hepáticas completas, <strong>bilirrubina total y directa, fosfatasas alcalinas, gamma-glutamil-transferasa</strong> y lipasa',
+        'Hemograma, proteína C reactiva, función renal, electrolitos y pruebas de coagulación',
+        '<strong>Dos sets de hemocultivos antes del antibiótico</strong> si hay fiebre',
+        '<strong>Colangiorresonancia</strong> si la sospecha de coledocolitiasis persiste con ecografía no concluyente <span class="cond">disponibilidad: verificar con protocolo institucional</span>'
+      ],
+      manejo: [
+        ['💊', '<strong>Antibiótico precoz</strong> con cobertura de enterobacterias y anaerobios si hay colangitis <span class="cond">esquema y duración según el PROA local</span>.'],
+        ['📞', '<strong>Coordina el drenaje biliar desde el box</strong>: colangiopancreatografía retrógrada endoscópica, o drenaje percutáneo si no está disponible. <strong>El antibiótico no reemplaza el drenaje.</strong>'],
+        ['💧', 'Régimen cero, hidratación endovenosa y corrección de la coagulación antes del procedimiento.'],
+        ['🩺', 'Reevalúa la gravedad de forma seriada: la colangitis se descompensa en horas, y el paso de Charcot a Reynolds cambia el destino a pabellón o a unidad crítica.']
+      ],
+      avoid: '<strong>No des de alta una ictericia con dolor</strong> «para estudio ambulatorio». Y no atribuyas a cólico biliar simple el dolor del paciente ictérico o con pruebas hepáticas alteradas: ese ya no es el camino B1.',
+      destino: [
+        ['🏥', '<strong>Hospitalización</strong> en todos los casos con colestasis más dolor, y en toda colangitis.'],
+        ['🔧', '<strong>Drenaje biliar urgente</strong> en la colangitis; su plazo lo define el grado de gravedad.'],
+        ['🔪', 'Colecistitis aguda confirmada: evaluación quirúrgica para colecistectomía, con los plazos del centro. <em>Verificar con protocolo institucional.</em>']
+      ],
+      links: [['./guia-dolor-abdominal.html', '→ Guía de dolor abdominal'], ['./checklist-sepsis_4.html', '→ Checklist de sepsis']]
+    },
+    pancreatitis: {
+      label: 'Pancreatitis aguda',
+      crit: 'Dolor epigástrico intenso, en banda, irradiado a dorso, con náuseas y vómitos, que <strong>mejora al inclinarse hacia adelante</strong>, con lipasa mayor a tres veces el límite superior normal. <strong>La gravedad la marcan la falla orgánica persistente y la respuesta sistémica, no el valor de la lipasa.</strong>',
+      rule: '<b>Cómo se delata</b> El diagnóstico necesita <strong>dos de tres</strong>: dolor compatible, lipasa o amilasa mayor a tres veces el límite superior normal, e imagen característica (criterios de Atlanta revisados, 2012). <strong>La imagen no es necesaria para diagnosticar</strong> cuando los dos primeros están presentes, y la tomografía precoz subestima la necrosis: rinde más a las 72 h o antes si el paciente se deteriora. <strong>Busca siempre la etiología</strong>: biliar (ecografía y pruebas hepáticas), alcohol, triglicéridos y calcemia.',
+      orders: [
+        '<strong>Lipasa</strong>, hemograma, proteína C reactiva, función renal, electrolitos, calcemia y <strong>triglicéridos</strong>',
+        '<strong>Pruebas hepáticas y bilirrubina</strong> <span class="cond">la elevación de la alanina-aminotransferasa apoya el origen biliar</span>',
+        '<strong>Ecografía abdominal en las primeras horas</strong>: busca litiasis y dilatación de la vía biliar <span class="cond">define si es biliar, y eso cambia el manejo</span>',
+        'Gases y lactato si hay compromiso sistémico; glicemia y hematocrito seriados',
+        'Tomografía con contraste <strong>no de entrada</strong>: a las 72 h o antes si hay deterioro o duda diagnóstica'
+      ],
+      manejo: [
+        ['💧', '<strong>Reposición con cristaloides moderada y guiada por la respuesta</strong>: el ensayo WATERFALL mostró <strong>más sobrecarga de volumen con la estrategia agresiva, sin menos pancreatitis grave</strong>. Un esquema razonable es un bolo de 10 mL/kg solo si hay hipovolemia, seguido de 1,5 mL/kg/h de Ringer lactato, reevaluando. <em>Esquema local: verificar con protocolo institucional.</em>'],
+        ['💉', '<strong>Analgesia adecuada y precoz</strong>, incluidos los opioides titulados: el dolor de la pancreatitis es intenso y subtratarlo no protege de nada.'],
+        ['🍽️', '<strong>Realimentación oral precoz</strong> según tolerancia en la pancreatitis leve: el régimen cero prolongado no mejora la evolución.'],
+        ['🚫', '<strong>Sin antibiótico profiláctico</strong> en la pancreatitis aguda no infectada, incluida la necrotizante. El antibiótico se reserva para la infección documentada o la colangitis asociada.'],
+        ['📊', 'Evalúa la gravedad de forma seriada (falla orgánica, respuesta sistémica, comorbilidad) y define el nivel de cuidados. <strong>Las primeras 24 h subestiman la gravedad</strong>.']
+      ],
+      avoid: '<strong>No uses la magnitud de la lipasa como medida de gravedad</strong>, y no pidas tomografía de entrada «para ver cuánto hay». <strong>No omitas la ecografía</strong>: la pancreatitis biliar necesita definición del manejo de la vía biliar y colecistectomía, y si no se busca la causa, el paciente vuelve.',
+      destino: [
+        ['🏥', '<strong>Hospitalización</strong> en toda pancreatitis aguda, con monitorización y balance hídrico.'],
+        ['🛏️', '<strong>Unidad de paciente crítico</strong> ante falla orgánica, respuesta sistémica mantenida, hipoxemia, oliguria o necesidad de volumen elevado.'],
+        ['🔧', 'Pancreatitis biliar con colangitis u obstrucción persistente: <strong>drenaje biliar endoscópico</strong>; colecistectomía en el mismo episodio o según el protocolo local.']
+      ],
+      links: [['./guia-dolor-abdominal.html', '→ Guía de dolor abdominal'], ['./checklist-sepsis_4.html', '→ Checklist de sepsis']]
+    },
+    pelvisFertil: {
+      label: 'Dolor pélvico en la mujer en edad fértil',
+      crit: 'Dolor pélvico o hipogástrico con <strong>prueba de embarazo pendiente o positiva</strong>, o con sospecha de torsión anexial o de absceso tuboovárico, sin inestabilidad. <strong>Con lipotimia, palidez o hipotensión, es ectópico roto y pasa a camino C.</strong>',
+      rule: '<b>Cómo se delata</b> <strong>La prueba de embarazo es el examen que ordena todo este escenario</strong>, y se pide con independencia de la historia menstrual o del método anticonceptivo referido. <strong>Positiva con dolor y sin saco intrauterino visible es un ectópico hasta demostrar lo contrario.</strong> La <strong>torsión anexial</strong> da dolor brusco, intenso y con vómitos, y <strong>un Doppler normal no la descarta</strong>: es un diagnóstico clínico que se opera. Y recuerda que la apendicitis es más difícil justamente aquí: el Alvarado rinde menos en la mujer en edad fértil.',
+      orders: [
+        '<strong>Prueba de embarazo</strong> en orina, y cuantificación de gonadotrofina coriónica en sangre si es positiva o si la clínica lo exige',
+        '<strong>Ecografía pélvica, transvaginal cuando corresponda</strong> <span class="cond">saco intrauterino, masa anexial, líquido libre, flujo ovárico</span>',
+        'Hemograma, grupo y Rh; función renal y proteína C reactiva',
+        'Orina completa; estudio de infecciones de transmisión sexual si hay sospecha de enfermedad inflamatoria pélvica',
+        '<strong>Evaluación ginecológica</strong> con examen bimanual: dolor a la movilización del cuello uterino, dolor anexial, flujo purulento'
+      ],
+      manejo: [
+        ['🤰', '<strong>Prueba de embarazo positiva con dolor: ginecología desde ese momento</strong>, sin esperar la ecografía formal.'],
+        ['🌀', '<strong>Sospecha de torsión anexial: cirugía ginecológica hoy.</strong> El ovario se salva por horas, y la imagen no debe retrasar la exploración cuando la sospecha es alta.'],
+        ['💊', 'Sospecha de enfermedad inflamatoria pélvica: <strong>trata ante la sospecha</strong>, sin esperar la confirmación microbiológica. Esquema ambulatorio u hospitalizado según gravedad, tolerancia oral, embarazo y absceso.'],
+        ['💉', 'Analgesia precoz, antiemético, régimen cero si la cirugía es posible, y vía venosa con exámenes preoperatorios.']
+      ],
+      avoid: '<strong>No aceptes «no puede estar embarazada»</strong> como razón para no pedir la prueba. <strong>No des de alta un dolor pélvico intenso de inicio brusco</strong> con una ecografía «sin hallazgos»: la torsión se diagnostica en pabellón. Y no trates como enfermedad inflamatoria pélvica un dolor con prueba de embarazo positiva sin descartar el ectópico.',
+      destino: [
+        ['🔪', '<strong>Pabellón</strong> ante sospecha de torsión anexial, ectópico con dolor y compromiso, o absceso tuboovárico roto.'],
+        ['🏥', '<strong>Hospitalización</strong> en el embarazo ectópico en observación, el absceso tuboovárico, la enfermedad inflamatoria pélvica con fiebre alta, vómitos, embarazo, inmunosupresión o falla del tratamiento oral.'],
+        ['🚪', 'Alta solo con prueba de embarazo negativa, dolor controlado, diagnóstico razonable y control ginecológico en 48 a 72 h: eso es <button type="button" class="link-btn" onclick="showPath(\'B1\', true)">camino B1</button>.']
+      ],
+      links: [['./guia-dolor-abdominal.html', '→ Guía de dolor abdominal'], ['./sintoma-disuria.html', '→ Síntoma cardinal · disuria']]
+    },
+    riesgo: {
+      label: 'Paciente de alto riesgo con dolor sin diagnóstico',
+      crit: 'Adulto mayor, inmunosuprimido o neutropénico, cirrótico con ascitis, en diálisis peritoneal, anticoagulado, postoperado reciente, con hemorragia digestiva, o con dolor que no cede y reconsulta. <strong>Aquí el examen físico miente:</strong> los signos peritoneales se atenúan, la fiebre y la leucocitosis pueden faltar, y la mortalidad es más alta.',
+      rule: '<b>Cómo se delata</b> Muchas veces <strong>no se delata</strong>: ese es el punto. Lo que queda son los signos indirectos —<strong>taquicardia persistente sin explicación</strong>, hipotensión relativa, confusión nueva, rechazo alimentario, acidosis— y el antecedente. <strong>El umbral de imagen aquí es el más bajo de todos</strong>, y la tomografía se pide antes, no después de observar unas horas. En el cirrótico con ascitis, el examen que falta casi siempre es la <strong>paracentesis diagnóstica</strong>.',
+      orders: [
+        '<strong>Tomografía de abdomen y pelvis con contraste</strong>, con umbral bajo <span class="cond">ajusta por función renal, pero no omitas el estudio por una creatinina levemente alterada sin discutirlo</span>',
+        '<strong>Paracentesis diagnóstica precoz</strong> en el cirrótico con ascitis: recuento celular y cultivo, sembrado junto a la cama <span class="cond">≥ 250 polimorfonucleares/mm³ definen la peritonitis bacteriana espontánea</span>',
+        'Recuento celular, tinción y cultivo del efluente en el paciente en <strong>diálisis peritoneal</strong> con líquido turbio',
+        'Hemograma, proteína C reactiva, función renal, electrolitos, <strong>lactato y gases</strong>, pruebas hepáticas y coagulación',
+        'Hemocultivos antes del antibiótico; grupo, Rh y pruebas cruzadas',
+        '<strong>Electrocardiograma</strong> y troponina si el dolor es del hemiabdomen superior'
+      ],
+      manejo: [
+        ['🕐', '<strong>Observación activa con examen seriado y hora escrita</strong>, no espera pasiva en un pasillo. Deja indicado quién reexamina y cuándo.'],
+        ['💊', '<strong>Antibiótico precoz</strong> si hay fiebre, neutropenia o sospecha de peritonitis, según el PROA local; en la peritonitis bacteriana espontánea, además <strong>albúmina endovenosa</strong> para prevenir el síndrome hepatorrenal. <em>Dosis y esquema: verificar con protocolo institucional.</em>'],
+        ['🩸', 'Anticoagulado con dolor y anemización: <strong>busca el sangrado antes de atribuirlo al abdomen</strong>, y consigna el fármaco, la última dosis y su hora.'],
+        ['📞', '<strong>Postoperado reciente: habla con el equipo que operó.</strong> La taquicardia inexplicada tras cirugía abdominal es un signo de alarma, aunque el examen impresione aceptable.'],
+        ['🔎', 'Reconsulta por el mismo cuadro: <strong>reexamina de cero y revisa lo que se pidió y lo que no</strong>. La reconsulta es, en sí misma, una bandera roja.']
+      ],
+      avoid: '<strong>No uses el examen abdominal tranquilizador para dar de alta a estos pacientes</strong>, y no te apoyes en la ausencia de fiebre ni de leucocitosis. <strong>No postergues la paracentesis</strong> del cirrótico esperando corregir la coagulación: la alteración de la coagulación no la contraindica de rutina.',
+      destino: [
+        ['🏥', '<strong>Hospitalización u observación prolongada</strong> como regla cuando el dolor no tiene diagnóstico en estos pacientes.'],
+        ['🛏️', '<strong>Unidad crítica</strong> ante criterios de sepsis, acidosis o inestabilidad, con control del foco en paralelo.'],
+        ['🚪', 'Si de verdad se va de alta, exige diagnóstico razonable, dolor controlado, tolerancia oral, red de apoyo y <strong>control en 12 a 24 h con responsable y lugar</strong>.']
+      ],
+      links: [['./checklist-sepsis_4.html', '→ Checklist de sepsis'], ['./algoritmo-hda-variceal.html', '→ Hemorragia digestiva variceal'], ['./guia-dolor-abdominal.html', '→ Guía de dolor abdominal']]
+    }
+  };
+
+  // ── Estado (en memoria, no se guarda) ─────────────────────────────
+  const state = {
+    flags: { C: new Set(), B2: new Set(), B1: new Set() },
+    noFlags: false,
+    path: null,
+    scenA: 'inespecifico',
+    scenB1: 'biliar',
+    scenB2: 'inflamatorio',
+    med: { A: null, B1: null },
+    analg: { A: new Set(), B1: new Set() }
+  };
+
+  const PATH_NAMES = {
+    A:  'Camino A · Dolor abdominal de bajo riesgo, alta con red de seguridad',
+    B1: 'Camino B1 · Sospecha definida, de estudio dirigido',
+    B2: 'Camino B2 · Bandera roja que obliga a estudiar hoy',
+    C:  'Camino C · Emergencia tiempo-dependiente',
+    D:  'Camino D · Puede que no venga del abdomen'
+  };
+
+  // ── Triage ────────────────────────────────────────────────────────
+  function flagLabels(group) {
+    return [...state.flags[group]].map(v => {
+      const b = document.querySelector('[data-group="' + group + '"] [data-v="' + v + '"]');
+      return b.childNodes[0].textContent.trim();
+    });
+  }
+
+  function computePath() {
+    const f = state.flags;
+    if (f.C.size) return { p: 'C', why: flagLabels('C') };
+    if (f.B2.size) return { p: 'B2', why: flagLabels('B2') };
+    if (f.B1.size) return { p: 'B1', why: flagLabels('B1') };
+    if (state.noFlags) return { p: 'A', why: ['Sin banderas rojas, con los tres gestos hechos y examen abdominal documentado'] };
+    return null;
+  }
+
+  function suggestB2() {
+    const f = state.flags.B2;
+    if (f.has('pelvis')) return 'pelvisFertil';
+    if (f.has('ictericia')) return 'biliarObstr';
+    if (f.has('obstruccion')) return 'obstruccion';
+    if (f.has('cirrosis') || f.has('inmuno') || f.has('postop') || f.has('digestivo') || f.has('mayor')) return 'riesgo';
+    if (f.has('peritoneal') || f.has('fiebreAbd')) return 'inflamatorio';
+    if (f.has('refractario')) return 'riesgo';
+    return state.scenB2;
+  }
+
+  function suggestB1() {
+    const f = state.flags.B1;
+    if (f.has('biliar')) return 'biliar';
+    if (f.has('renal')) return 'renal';
+    if (f.has('divertic')) return 'divertic';
+    if (f.has('pelvicoNeg')) return 'pelvicoNeg';
+    return state.scenB1;
+  }
+
+  function renderVerdict() {
+    const v = document.getElementById('verdict');
+    const anyFlag = Object.values(state.flags).some(s => s.size);
+    const nf = document.getElementById('noFlags');
+    nf.disabled = anyFlag;
+    if (anyFlag) { state.noFlags = false; nf.classList.remove('on'); }
+
+    const r = computePath();
+    if (!r) {
+      v.className = 'verdict placeholder';
+      v.innerHTML = 'Marca las banderas rojas presentes, o confirma que no hay ninguna.<br>' +
+        '¿El dolor no se explica por el abdomen (corazón, pulmón, metabólico, pared, testículo)? ' +
+        '<button type="button" class="link-btn" onclick="showPath(\'D\', true)">Ver el desvío →</button>';
+      return;
+    }
+    if (r.p === 'B2') setB2(suggestB2());
+    if (r.p === 'B1') setB1(suggestB1());
+
+    let extra = '';
+    if (r.p === 'C' && state.flags.C.has('shock'))
+      extra = ' · Box con monitor, dos vías, grupo y cruce ahora: dolor abdominal con hipotensión es hemorragia, isquemia o sepsis abdominal hasta demostrar lo contrario.';
+    if (r.p === 'C' && state.flags.C.has('aorta'))
+      extra = ' · Ecografía a pie de cama ahora y cirugía vascular en paralelo: al paciente inestable no se lo traslada a tomografía, se lleva a pabellón.';
+    if (r.p === 'C' && state.flags.C.has('isquemia'))
+      extra = ' · Angiotomografía en fase arterial sin esperar el lactato, y cirugía desde la sospecha: un lactato normal no descarta la isquemia precoz.';
+    if (r.p === 'C' && state.flags.C.has('ectopico'))
+      extra = ' · Prueba de embarazo ya, dos vías, cruce de sangre y ginecología: con inestabilidad, pabellón sin esperar la imagen.';
+    if (r.p === 'C' && state.flags.C.has('reynolds'))
+      extra = ' · Hemocultivos y antibiótico en la primera hora, y drenaje biliar urgente coordinado desde el box: el antibiótico no reemplaza el drenaje.';
+    if (r.p === 'B2' && state.flags.B2.has('pelvis'))
+      extra = ' · La prueba de embarazo ordena todo el escenario: positiva con dolor y sin saco intrauterino visible es un ectópico hasta demostrar lo contrario.';
+    if (r.p === 'B2' && state.flags.B2.has('mayor'))
+      extra = ' · En el adulto mayor pueden faltar la fiebre, la leucocitosis y los signos peritoneales: el umbral de imagen y de observación baja, no sube.';
+    if (r.p === 'B2' && state.flags.B2.has('cirrosis'))
+      extra = ' · Paracentesis diagnóstica precoz, aunque el abdomen esté blando y la coagulación alterada.';
+    if (r.p === 'B2' && state.flags.B2.has('refractario'))
+      extra = ' · El dolor que no cede y la reconsulta son, por sí mismos, criterio de estudio y de observación: no se resuelven con una dosis más.';
+    if (r.p === 'B1' && state.flags.B1.has('renal'))
+      extra = ' · Antes de aceptar un cólico renal en un mayor de 60 años con su primer episodio, mira la aorta a pie de cama.';
+    if (r.p === 'B1' && state.flags.B1.has('biliar'))
+      extra = ' · Pide pruebas hepáticas, bilirrubina y lipasa: un patrón colestásico o una lipasa elevada sacan al paciente de este camino.';
+    if (r.p === 'A')
+      extra = ' · Deja consignados los tres gestos (electrocardiograma si corresponde, prueba de embarazo y examen de genitales y hernias), el examen abdominal con hora y el control con fecha.';
+
+    v.className = 'verdict p-' + r.p;
+    v.innerHTML =
+      '<div class="verdict-main">' +
+        '<div class="verdict-tag">Camino sugerido</div>' +
+        '<div class="verdict-title">' + PATH_NAMES[r.p] + '</div>' +
+        '<div class="verdict-why">' + r.why.join(' · ') + extra + '</div>' +
+      '</div>' +
+      '<button type="button" class="go-btn" onclick="showPath(\'' + r.p + '\', true)">Ir al camino ↓</button>';
+    showPath(r.p, false);
+  }
+
+  document.querySelectorAll('[data-group]').forEach(group => {
+    const g = group.dataset.group;
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (state.flags[g].has(v)) { state.flags[g].delete(v); btn.classList.remove('on'); }
+        else { state.flags[g].add(v); btn.classList.add('on'); }
+        renderVerdict();
+      });
+    });
+  });
+
+  document.getElementById('noFlags').addEventListener('click', e => {
+    state.noFlags = !state.noFlags;
+    e.currentTarget.classList.toggle('on', state.noFlags);
+    renderVerdict();
+  });
+
+  // ── Pestañas de camino ────────────────────────────────────────────
+  function showPath(p, scroll) {
+    state.path = p;
+    document.querySelectorAll('.path-tab').forEach(t => {
+      const on = t.dataset.path === p;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on);
+    });
+    document.querySelectorAll('.path-panel').forEach(pn => pn.classList.toggle('active', pn.id === 'panel-' + p));
+    if (scroll) document.getElementById('pathTabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  document.querySelectorAll('.path-tab').forEach(t => t.addEventListener('click', () => showPath(t.dataset.path, false)));
+
+  // ── Listas de fármacos ────────────────────────────────────────────
+  function medButton(m, id, multi, on) {
+    return '<button type="button" class="med' + (multi ? ' multi' : '') + (on ? ' on' : '') + '" data-id="' + id + '">' +
+      '<span class="radio"></span>' +
+      '<span><span class="med-name">' + m.name + '</span>' +
+      '<span class="med-dose" style="display:block">' + m.dose + '</span>' +
+      (m.note ? '<span class="med-note" style="display:block">' + m.note + '</span>' : '') +
+      '</span></button>';
+  }
+
+  function renderMeds(path) {
+    const cfg = path === 'A' ? A[state.scenA] : B1[state.scenB1];
+    const ids = cfg.meds;
+    const box = document.querySelector('[data-meds="' + path + '"]');
+    const boxLabel = box.previousElementSibling;
+
+    if (!ids.length) {
+      state.med[path] = null;
+      box.innerHTML = '';
+      box.style.display = 'none';
+      if (boxLabel && boxLabel.classList.contains('block-label')) boxLabel.style.display = 'none';
+    } else {
+      box.style.display = '';
+      if (boxLabel && boxLabel.classList.contains('block-label')) boxLabel.style.display = '';
+      if (!ids.includes(state.med[path])) state.med[path] = ids[0];
+      box.innerHTML = ids.map(id => medButton(MEDS[id], id, false, state.med[path] === id)).join('');
+      box.querySelectorAll('.med').forEach(b => b.addEventListener('click', () => {
+        state.med[path] = b.dataset.id;
+        renderMeds(path);
+      }));
+    }
+
+    const aIds = cfg.analg;
+    [...state.analg[path]].forEach(a => { if (!aIds.includes(a)) state.analg[path].delete(a); });
+    const abox = document.querySelector('[data-analg="' + path + '"]');
+    const aLabel = abox.previousElementSibling;
+    if (!aIds.length) {
+      abox.innerHTML = '';
+      abox.style.display = 'none';
+      if (aLabel && aLabel.classList.contains('block-label')) aLabel.style.display = 'none';
+    } else {
+      abox.style.display = '';
+      if (aLabel && aLabel.classList.contains('block-label')) aLabel.style.display = '';
+      abox.innerHTML = aIds.map(id => medButton(ANALG[id], id, true, state.analg[path].has(id))).join('');
+      abox.querySelectorAll('.med').forEach(b => b.addEventListener('click', () => {
+        const id = b.dataset.id;
+        state.analg[path].has(id) ? state.analg[path].delete(id) : state.analg[path].add(id);
+        renderMeds(path);
+      }));
+    }
+
+    renderCopy(path);
+  }
+
+  // ── Escenario del camino A ────────────────────────────────────────
+  function setA(s) {
+    state.scenA = s;
+    document.querySelectorAll('#aScen .opt').forEach(b => b.classList.toggle('on', b.dataset.v === s));
+    document.getElementById('aCrit').innerHTML = A[s].crit;
+    document.getElementById('aAvoid').innerHTML = A[s].avoid;
+    renderMeds('A');
+  }
+  document.getElementById('aScen').innerHTML = Object.entries(A)
+    .map(([k, v]) => '<button type="button" class="opt" data-v="' + k + '">' + v.label + '</button>').join('');
+  document.querySelectorAll('#aScen .opt').forEach(b => b.addEventListener('click', () => setA(b.dataset.v)));
+
+  // ── Situación del camino B1 ───────────────────────────────────────
+  function plainList(rows) {
+    return rows.map(([icon, html]) =>
+      '<div class="plain-item"><span class="bullet-icon">' + icon + '</span><span>' + html + '</span></div>').join('');
+  }
+
+  function setB1(s) {
+    state.scenB1 = s;
+    document.querySelectorAll('#b1Scen .opt').forEach(b => b.classList.toggle('on', b.dataset.v === s));
+    document.getElementById('b1Crit').innerHTML = B1[s].crit;
+    document.getElementById('b1Destino').innerHTML = plainList(B1[s].destino);
+    document.getElementById('b1Warn').innerHTML = '<span>⚠️</span><span>' + B1[s].warn + '</span>';
+    renderMeds('B1');
+  }
+  document.getElementById('b1Scen').innerHTML = Object.entries(B1)
+    .map(([k, v]) => '<button type="button" class="opt" data-v="' + k + '">' + v.label + '</button>').join('');
+  document.querySelectorAll('#b1Scen .opt').forEach(b => b.addEventListener('click', () => setB1(b.dataset.v)));
+
+  // ── Escenario del camino B2 ───────────────────────────────────────
+  function setB2(s) {
+    state.scenB2 = s;
+    const c = B2[s];
+    document.querySelectorAll('#b2Scen .opt').forEach(b => b.classList.toggle('on', b.dataset.v === s));
+    document.getElementById('b2Crit').innerHTML = c.crit;
+    document.getElementById('b2Rule').innerHTML = c.rule;
+    document.getElementById('b2Orders').innerHTML = c.orders.map(o => '<li>' + o + '</li>').join('');
+    document.getElementById('b2Manejo').innerHTML = plainList(c.manejo);
+    document.getElementById('b2Avoid').innerHTML = c.avoid;
+    document.getElementById('b2Destino').innerHTML = plainList(c.destino);
+    document.getElementById('b2Links').innerHTML = c.links
+      .map(([href, label]) => '<a class="cross-link" href="' + href + '">' + label + '</a>').join('');
+  }
+  document.getElementById('b2Scen').innerHTML = Object.entries(B2)
+    .map(([k, v]) => '<button type="button" class="opt" data-v="' + k + '">' + v.label + '</button>').join('');
+  document.querySelectorAll('#b2Scen .opt').forEach(b => b.addEventListener('click', () => setB2(b.dataset.v)));
+
+  // ── Texto de indicaciones ─────────────────────────────────────────
+  const ALARM_BASE = [
+    'Dolor que aumenta, que se concentra en un punto, que no se alivia con los medicamentos indicados o que lo despierta de noche.',
+    'Fiebre de 38 °C o más, o calofríos.',
+    'Vómitos que no le permiten tomar líquidos ni los medicamentos.',
+    'Abdomen cada vez más hinchado, o que pase más de un día sin eliminar gases ni deposiciones.',
+    'Sangre en las deposiciones, deposiciones negras como alquitrán, o vómito con sangre o con aspecto de café molido.',
+    'Desmayo, mareo al pararse, palidez, sudoración fría o latidos muy rápidos.',
+    'Color amarillo de la piel o de los ojos, u orina muy oscura.',
+    'Que no pueda caminar, mantenerse de pie ni valerse en su casa por el dolor.'
+  ];
+
+  function pushPt(L, pt) {
+    String(pt).split('|').forEach(line => L.push('• ' + line));
+  }
+
+  function buildText(path) {
+    const L = [];
+
+    if (path === 'A') {
+      const sc = A[state.scenA];
+      const med = MEDS[state.med.A];
+      L.push('INDICACIONES AL ALTA — ' + sc.dx.toUpperCase(), '');
+      L.push('Hoy se evaluó su dolor abdominal. El examen del abdomen y el control de los signos vitales no');
+      L.push('mostraron signos de una causa grave que requiera cirugía, estudio urgente u hospitalización el');
+      L.push('día de hoy. En muchos casos el dolor abdominal mejora sin que se llegue a un diagnóstico exacto,');
+      L.push('y eso no es un problema siempre que usted sepa qué esperar y cuándo volver. Esta evaluación');
+      L.push('vale para hoy: el dolor abdominal puede cambiar en las próximas horas, y por eso son');
+      L.push('importantes los signos de alarma y el control.');
+      L.push('', 'Tratamiento:');
+      if (med) pushPt(L, med.pt);
+      [...state.analg.A].forEach(a => pushPt(L, ANALG[a].pt));
+      L.push('', 'Recomendaciones:');
+      sc.rec.forEach(r => L.push('• ' + r));
+      L.push('', 'CONSULTE DE INMEDIATO EN URGENCIA si presenta:');
+      [...ALARM_BASE, ...sc.extraAlarm].forEach(a => L.push('• ' + a));
+      L.push('', 'Control:');
+      L.push('• ' + sc.control);
+      L.push('', 'Se explicaron el diagnóstico, el tratamiento, el plazo esperado y los signos de alarma.');
+      L.push('El paciente refiere comprender las indicaciones.');
+      return L.join('\n');
+    }
+
+    const sc = B1[state.scenB1];
+    if (!sc.discharge) {
+      return 'Este paciente NO se va de alta desde el box.\n\n' +
+        'Situación seleccionada: ' + sc.label.replace(/<[^>]*>/g, '') + '.\n\n' +
+        'Revisa el bloque «Estudio y destino» de este camino.';
+    }
+
+    const med = MEDS[state.med.B1];
+    const TITLES = {
+      biliar: 'INDICACIONES AL ALTA — CÓLICO BILIAR (CÁLCULOS EN LA VESÍCULA)',
+      renal: 'INDICACIONES AL ALTA — CÓLICO RENAL (CÁLCULO EN LA VÍA URINARIA)',
+      divertic: 'INDICACIONES AL ALTA — DIVERTICULITIS NO COMPLICADA',
+      pelvicoNeg: 'INDICACIONES AL ALTA — DOLOR PÉLVICO'
+    };
+    const INTRO = {
+      biliar: ['Hoy se evaluó su dolor en la parte alta derecha del abdomen. El cuadro corresponde a un cólico',
+               'biliar: un cálculo de la vesícula que bloquea temporalmente su salida y produce dolor que luego',
+               'cede. Los exámenes no mostraron signos de infección de la vesícula ni de obstrucción de la vía',
+               'biliar en este momento. El dolor puede repetirse, y el tratamiento definitivo es la operación de',
+               'la vesícula, que se programa de forma coordinada.'],
+      renal: ['Hoy se evaluó su dolor en la zona lumbar o el costado. El cuadro corresponde a un cólico renal:',
+              'un cálculo que se desplaza por la vía urinaria. Los exámenes no mostraron fiebre, infección con',
+              'compromiso general ni deterioro de la función del riñón en este momento. La mayoría de los',
+              'cálculos pequeños se eliminan solos en días o semanas, con dolor que va y viene.'],
+      divertic: ['Hoy se evaluó su dolor en la parte baja izquierda del abdomen. El cuadro corresponde a una',
+                 'diverticulitis: la inflamación de unas pequeñas bolsas del intestino grueso. El estudio no',
+                 'mostró complicaciones que requieran hospitalización ni cirugía en este momento, y por eso el',
+                 'tratamiento se puede hacer en su casa, con control cercano.'],
+      pelvicoNeg: ['Hoy se evaluó su dolor pélvico. La prueba de embarazo fue negativa, y el examen y los exámenes',
+                   'realizados no mostraron signos de una causa que requiera cirugía ni hospitalización el día de',
+                   'hoy. Esta evaluación vale para hoy: si el dolor cambia o aumenta, debe ser reevaluada.']
+    };
+    const RECS = {
+      biliar: ['Mientras espera la operación, haga una dieta baja en grasas y evite las comidas abundantes, las frituras y los lácteos enteros, que son los que suelen desencadenar el dolor.',
+               'Si el dolor vuelve pero cede en algunas horas y no tiene fiebre ni se pone amarillo, use la analgesia indicada y consulte en su control.',
+               'No postergue la consulta de cirugía: la próxima crisis puede ser una infección de la vesícula o de la vía biliar, que es más grave.'],
+      renal: ['Tome abundante líquido durante el día, salvo que se le haya indicado lo contrario.',
+              'Es esperable que el dolor vuelva en forma de crisis mientras el cálculo baja. Use la analgesia indicada al primer aviso del dolor, sin esperar a que sea intenso.',
+              'Filtre la orina con una gasa o un colador y guarde el cálculo si lo elimina: sirve para el estudio.',
+              'Lleve el resultado de la ecografía o de la tomografía a su control.'],
+      divertic: ['Dieta liviana los primeros días; vuelva a la fibra de forma gradual cuando el dolor haya cedido.',
+                 'Es esperable que el dolor vaya cediendo en 2 a 3 días. Si no mejora o empeora, debe ser reevaluado.',
+                 'Asista al control en 48 a 72 horas aunque se sienta mejor: es parte del tratamiento.',
+                 'Después de este episodio su médico le indicará cuándo hacer una colonoscopia, si corresponde.'],
+      pelvicoNeg: ['Use la analgesia indicada mientras tenga dolor.',
+                   'Asista al control con ginecología en 48 a 72 horas, llevando los resultados de los exámenes y de la ecografía.',
+                   'Si el dolor se hace brusco e intenso, con vómitos, consulte de inmediato: hay causas que necesitan cirugía en pocas horas.']
+    };
+    const ALARM_EXTRA = {
+      biliar: ['Dolor en el mismo lugar que esta vez no cede en algunas horas, a diferencia de sus crisis anteriores.',
+               'Deposiciones muy claras o blanquecinas junto con orina oscura.'],
+      renal: ['Fiebre junto con este dolor: la combinación de cálculo y fiebre es urgente y no espera hasta mañana.',
+              'Que no logre orinar, o que orine muy poco.'],
+      divertic: ['Que el dolor se extienda a todo el abdomen, o que el abdomen se ponga duro y muy sensible al tacto.',
+                 'Sangrado por el recto en cantidad importante.'],
+      pelvicoNeg: ['Dolor pélvico de inicio brusco e intenso, con vómitos.',
+                   'Flujo vaginal de mal olor junto con el dolor.',
+                   'Sangrado vaginal abundante, o atraso de su regla: hágase una prueba de embarazo.']
+    };
+    const CONTROLS = {
+      biliar: ['• Consulta de cirugía ya solicitada, para programar la operación de la vesícula.',
+               '• Control en su centro de salud si el dolor se repite, llevando este documento.'],
+      renal: ['• Control urológico con el resultado de la imagen, en el plazo indicado.',
+              '• Control en su centro de salud si el dolor se repite o si no elimina el cálculo.'],
+      divertic: ['• Control clínico en 48 a 72 horas, con reevaluación del examen abdominal.',
+                 '• Control posterior con su médico para definir el estudio del colon.'],
+      pelvicoNeg: ['• Control con ginecología en 48 a 72 horas.',
+                   '• Control en su centro de salud si el dolor persiste más allá de ese plazo.']
+    };
+
+    const k = state.scenB1;
+    L.push(TITLES[k], '');
+    INTRO[k].forEach(l => L.push(l));
+    L.push('', 'Tratamiento y seguimiento:');
+    if (med) pushPt(L, med.pt);
+    [...state.analg.B1].forEach(a => pushPt(L, ANALG[a].pt));
+    L.push('• Continúe sus medicamentos habituales, tal como los tomaba antes de esta consulta.');
+    L.push('', 'Recomendaciones:');
+    RECS[k].forEach(r => L.push('• ' + r));
+    L.push('• Lleve este documento a todos sus controles.');
+    L.push('', 'CONSULTE DE INMEDIATO EN URGENCIA si presenta:');
+    [...ALARM_BASE, ...ALARM_EXTRA[k]].forEach(a => L.push('• ' + a));
+    L.push('', 'Control:');
+    CONTROLS[k].forEach(c => L.push(c));
+    L.push('', 'Se explicaron el diagnóstico, el tratamiento, el plazo esperado de mejoría y los signos de');
+    L.push('alarma. El paciente refiere comprender las indicaciones.');
+    return L.join('\n');
+  }
+
+  function renderCopy(path) {
+    const el = document.getElementById('copy-' + path);
+    if (el) el.textContent = buildText(path);
+  }
+
+  async function copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (e) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch (_) {}
+      ta.remove();
+      return ok;
+    }
+  }
+
+  document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
+    const ok = await copyText(buildText(btn.dataset.copy));
+    btn.textContent = ok ? 'Copiado ✓' : 'Selecciona y copia';
+    btn.classList.toggle('done', ok);
+    setTimeout(() => { btn.textContent = 'Copiar indicaciones'; btn.classList.remove('done'); }, 1800);
+  }));
+
+  // ── Checklists de alta ────────────────────────────────────────────
+  document.querySelectorAll('[data-check]').forEach(list => {
+    const p = list.dataset.check;
+    const status = document.querySelector('[data-status="' + p + '"]');
+    const boxes = list.querySelectorAll('input');
+    const upd = () => {
+      const n = [...boxes].filter(b => b.checked).length;
+      const done = n === boxes.length;
+      status.textContent = done ? '✓ Listo para el alta' : n + ' / ' + boxes.length + ' verificados';
+      status.classList.toggle('ok', done);
+    };
+    boxes.forEach(b => b.addEventListener('change', upd));
+    upd();
+  });
+
+  // ── Puntaje de Alvarado ───────────────────────────────────────────
+  const ALV_IDS = ['al-migra', 'al-anorexia', 'al-nausea', 'al-dolorfid', 'al-rebote', 'al-temp', 'al-leuco', 'al-desv'];
+
+  function renderAlvarado() {
+    const out = document.getElementById('alv-out');
+    const vals = ALV_IDS.map(id => document.getElementById(id).value);
+    const faltan = vals.filter(v => v === '').length;
+
+    if (faltan > 0) {
+      const parcial = vals.filter(v => v !== '').reduce((a, v) => a + Number(v), 0);
+      out.innerHTML = faltan === ALV_IDS.length
+        ? 'Completa los ocho elementos para ver el puntaje y la banda.'
+        : 'Puntaje acumulado hasta ahora: <strong>' + parcial + '</strong>. Faltan ' + faltan +
+          ' elemento' + (faltan > 1 ? 's' : '') + ' por definir.';
+      return;
+    }
+
+    const total = vals.reduce((a, v) => a + Number(v), 0);
+    let banda, cls, texto;
+    if (total <= 3) {
+      banda = 'probabilidad baja'; cls = 'risk-low';
+      texto = '<strong>Apendicitis poco probable.</strong> Busca activamente otra causa y revisa el diferencial por ' +
+        'localización. Si el cuadro no calza con un diagnóstico alternativo, la conducta es <strong>observación con ' +
+        'examen seriado y control precoz</strong>, no un alta por el número: el puntaje rinde peor en mujeres en edad ' +
+        'fértil, adultos mayores y en el apéndice retrocecal o pélvico.';
+    } else if (total <= 6) {
+      banda = 'probabilidad intermedia'; cls = 'risk-mid';
+      texto = '<strong>Zona de mayor incertidumbre, y no es un alta directa.</strong> Corresponde <strong>imagen</strong> ' +
+        '—ecografía o tomografía según el paciente y la disponibilidad— y <strong>observación con examen seriado</strong>. ' +
+        'Este paciente pertenece al <button type="button" class="link-btn" onclick="showPath(\'B2\', true)">camino B2</button>.';
+    } else {
+      banda = 'probabilidad alta'; cls = 'risk-high';
+      texto = '<strong>Evaluación quirúrgica.</strong> Avisa a cirugía desde ahora, deja al paciente en régimen cero con ' +
+        'vía venosa, analgesia y exámenes preoperatorios. La necesidad de imagen previa depende del paciente y del ' +
+        'protocolo local. Este paciente pertenece al <button type="button" class="link-btn" onclick="showPath(\'B2\', true)">camino B2</button>.';
+    }
+
+    out.innerHTML =
+      '<span class="big ' + cls + '">' + total + ' / 10 puntos · ' + banda + '</span>' + texto +
+      '<br><br>El puntaje <strong>ordena la conducta: no diagnostica ni descarta</strong>, y no se aplica al paciente ' +
+      'con peritonitis evidente ni al inestable. <em>El puntaje que usa el servicio y sus umbrales de imagen y de ' +
+      'derivación quirúrgica: verificar con protocolo institucional.</em>';
+  }
+
+  ALV_IDS.forEach(id => document.getElementById(id).addEventListener('change', renderAlvarado));
+  document.getElementById('alv-reset').addEventListener('click', () => {
+    ALV_IDS.forEach(id => { document.getElementById(id).value = ''; });
+    renderAlvarado();
+  });
+
+  // ── Inicio ────────────────────────────────────────────────────────
+  setA('inespecifico');
+  setB1('biliar');
+  setB2('inflamatorio');
+</script>
+<script>
+(function() {
+  var root = document.documentElement, KEY = 'oc-theme';
+  try { var t = localStorage.getItem(KEY); if (t) root.setAttribute('data-theme', t); } catch (e) {}
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function() {
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>
