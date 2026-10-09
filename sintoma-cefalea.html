@@ -1,0 +1,2563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Síntoma cardinal · Cefalea</title>
+<meta name="description" content="Cefalea en el adulto: bifurcación en los primeros minutos, la pregunta del tiempo hasta el dolor máximo, criterios para no pedir tomografía, bundle simultáneo de las cefaleas secundarias graves, regla de Ottawa para hemorragia subaracnoidea e indicaciones al alta listas para copiar.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --surface2: #eef1f5;
+    --border: rgba(15,23,42,0.10);
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --text-dim: #475569;
+  }
+  :root[data-theme="light"] body::before {
+    background-image:
+      linear-gradient(rgba(15,23,42,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99,102,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(20,184,166,0.06) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 32px; animation: fadeUp 0.6s ease both; }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 0;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .theme-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+    font-size: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .theme-btn:hover { color: var(--text); border-color: var(--text-muted); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(99,102,241,0.1);
+    border: 1px solid rgba(99,102,241,0.25);
+    color: #a5b4fc;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #818cf8, #2dd4bf);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .header-sub strong { color: var(--text); font-weight: 500; }
+
+  /* SECCIONES */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+  .section-title { font-family: var(--display); font-size: 15px; font-weight: 700; color: #fff; }
+  .section-subtitle { font-size: 12px; color: var(--text-muted); font-family: var(--mono); margin-top: 2px; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+  .section-body { padding: 20px 24px 24px; }
+
+  .s1 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s3 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+
+  /* TRIAGE */
+  .q-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .q-label .arrow { color: var(--text-dim); letter-spacing: 0.04em; text-transform: none; }
+  .q-block { margin-bottom: 18px; }
+
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+    line-height: 1.4;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+  .opt.on { background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.45); color: #6ee7b7; }
+  .grp-C .opt.on  { background: rgba(239,68,68,0.14);  border-color: rgba(239,68,68,0.5);  color: #fca5a5; }
+  .grp-B2 .opt.on { background: rgba(99,102,241,0.14); border-color: rgba(99,102,241,0.5); color: #c7d2fe; }
+  .grp-B1 .opt.on { background: rgba(245,158,11,0.13); border-color: rgba(245,158,11,0.5); color: #fcd34d; }
+  .grp-D .opt.on  { background: rgba(59,130,246,0.14); border-color: rgba(59,130,246,0.5); color: #93c5fd; }
+  .opt .sub { display: block; font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+  .opt.on .sub { color: inherit; opacity: 0.8; }
+
+  .no-flags {
+    width: 100%;
+    font-family: var(--display);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px dashed rgba(16,185,129,0.4);
+    background: rgba(16,185,129,0.05);
+    color: #6ee7b7;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.18s;
+  }
+  .no-flags .sub { display: block; font-family: var(--sans); font-weight: 400; font-size: 12.5px; color: var(--text-dim); margin-top: 4px; line-height: 1.5; }
+  .no-flags.on { border-style: solid; background: rgba(16,185,129,0.14); border-color: rgba(16,185,129,0.6); }
+  .no-flags:disabled { opacity: 0.35; cursor: not-allowed; }
+  .no-flags:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+
+  .verdict {
+    margin-top: 18px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    padding: 16px 18px;
+    border-left: 4px solid var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .verdict.placeholder { font-family: var(--mono); font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
+  .verdict-main { flex: 1; min-width: 220px; }
+  .verdict-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+  .verdict-title { font-family: var(--display); font-size: 18px; font-weight: 700; color: #fff; line-height: 1.25; }
+  .verdict-why { font-size: 12.5px; color: var(--text-dim); margin-top: 6px; line-height: 1.5; }
+  .verdict.p-A  { border-left-color: var(--emerald); }
+  .verdict.p-B1 { border-left-color: var(--amber); }
+  .verdict.p-B2 { border-left-color: var(--indigo); }
+  .verdict.p-C  { border-left-color: var(--red); }
+  .verdict.p-D  { border-left-color: var(--blue); }
+
+  .go-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    padding: 11px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .go-btn:hover { background: rgba(255,255,255,0.1); }
+
+  .link-btn {
+    background: none;
+    border: none;
+    color: #93c5fd;
+    font-family: var(--mono);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* CAMINOS */
+  .path-tabs {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .path-tab {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px 12px 11px;
+    cursor: pointer;
+    text-align: left;
+    color: var(--text-dim);
+    transition: all 0.18s;
+    border-top: 3px solid var(--tab-accent);
+  }
+  .path-tab:hover { color: var(--text); background: var(--surface2); }
+  .path-tab:focus-visible { outline: 2px solid var(--tab-accent); outline-offset: 2px; }
+  .path-tab .code { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--tab-accent); }
+  .path-tab .name { display: block; font-family: var(--display); font-size: 13.5px; font-weight: 700; margin-top: 3px; line-height: 1.2; }
+  .path-tab.active { background: var(--surface2); color: #fff; box-shadow: 0 0 0 1px var(--tab-accent) inset; }
+  .t-A  { --tab-accent: var(--emerald); }
+  .t-B1 { --tab-accent: var(--amber); }
+  .t-B2 { --tab-accent: var(--indigo); }
+  .t-C  { --tab-accent: var(--red); }
+  .t-D  { --tab-accent: var(--blue); }
+
+  .path-panel {
+    display: none;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 22px 24px 24px;
+    margin-bottom: 20px;
+    border-top: 3px solid var(--tab-accent);
+  }
+  .path-panel.active { display: block; animation: fadeUp 0.35s ease both; }
+
+  .panel-head { margin-bottom: 14px; }
+  .panel-code { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tab-accent); }
+  .panel-title { font-family: var(--display); font-size: 22px; font-weight: 800; color: #fff; line-height: 1.2; margin-top: 4px; }
+  .panel-crit { font-size: 13px; color: var(--text-dim); margin-top: 6px; line-height: 1.55; }
+
+  .targets { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 6px; }
+  .target {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    padding: 7px 11px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .target b { color: var(--tab-accent); font-weight: 500; }
+
+  .block-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 22px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .block-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .stop {
+    border-radius: 14px;
+    border: 1px solid rgba(239,68,68,0.35);
+    background: rgba(239,68,68,0.07);
+    padding: 14px 16px;
+  }
+  .stop-title { font-family: var(--display); font-weight: 800; font-size: 15px; color: #fca5a5; margin-bottom: 8px; letter-spacing: 0.01em; }
+  .stop ul, .order ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .stop li { font-size: 13.5px; color: #fecaca; line-height: 1.5; padding-left: 22px; position: relative; }
+  .stop li::before { content: '✕'; position: absolute; left: 2px; color: var(--red); font-weight: 700; }
+  .stop li .cond { color: var(--text-muted); font-family: var(--mono); font-size: 11.5px; }
+  .stop .why { margin-top: 10px; font-size: 12.5px; color: var(--text-dim); line-height: 1.55; }
+  .stop .why strong { color: #fff; font-weight: 500; }
+
+  .order {
+    border-radius: 14px;
+    border: 1px solid rgba(16,185,129,0.3);
+    background: rgba(16,185,129,0.06);
+    padding: 14px 16px;
+  }
+  .order-title { font-family: var(--display); font-weight: 800; font-size: 15px; color: #6ee7b7; margin-bottom: 8px; }
+  .order li { font-size: 13.5px; color: var(--text); line-height: 1.5; padding-left: 22px; position: relative; }
+  .order li::before { content: '✓'; position: absolute; left: 2px; color: var(--emerald); font-weight: 700; }
+  .order li .cond { color: var(--text-muted); font-family: var(--mono); font-size: 11.5px; }
+  .order-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; }
+  .order-grid .order-title { font-size: 13px; font-family: var(--mono); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+
+  .inst-rule {
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: #fde68a;
+    background: rgba(245,158,11,0.07);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 10px;
+    padding: 10px 12px;
+    line-height: 1.5;
+  }
+  .inst-rule b { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); font-weight: 500; margin-right: 6px; }
+
+  /* FÁRMACOS */
+  .med-list { display: flex; flex-direction: column; gap: 8px; }
+  .med {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    width: 100%;
+    text-align: left;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    cursor: pointer;
+    color: var(--text-dim);
+    font-family: var(--sans);
+    transition: all 0.18s;
+  }
+  .med:hover { border-color: rgba(255,255,255,0.18); }
+  .med:focus-visible { outline: 2px solid var(--tab-accent); outline-offset: 2px; }
+  .med .radio {
+    width: 16px; height: 16px; border-radius: 50%;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .med.multi .radio { border-radius: 5px; }
+  .med.on { border-color: var(--tab-accent); background: rgba(255,255,255,0.04); }
+  .med.on .radio { border-color: var(--tab-accent); background: var(--tab-accent); box-shadow: inset 0 0 0 3px var(--surface2); }
+  .med-name { font-size: 14px; color: #fff; font-weight: 500; }
+  .med-dose { font-family: var(--mono); font-size: 12.5px; color: var(--text); margin-top: 2px; }
+  .med-note { font-size: 12px; color: var(--text-muted); margin-top: 3px; line-height: 1.45; }
+
+  .avoid {
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+  }
+  .avoid strong { color: #fca5a5; font-weight: 500; }
+
+  /* TABLA COMPACTA */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 11px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td { padding: 11px 14px; border-bottom: 1px solid var(--border); color: var(--text-dim); vertical-align: top; line-height: 1.5; }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; font-family: var(--mono); font-size: 12.5px; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 6px; }
+  .check {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    cursor: pointer;
+    line-height: 1.45;
+  }
+  .check input { accent-color: var(--emerald); width: 17px; height: 17px; margin-top: 1px; flex-shrink: 0; cursor: pointer; }
+  .check:has(input:checked) { color: var(--text); border-color: rgba(16,185,129,0.35); }
+  .check-status { font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); margin-top: 8px; }
+  .check-status.ok { color: #6ee7b7; }
+
+  /* COPIADO */
+  .copy-box {
+    border-radius: 14px;
+    border: 1px solid rgba(59,130,246,0.3);
+    background: rgba(59,130,246,0.05);
+    overflow: hidden;
+  }
+  .copy-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 10px 12px 10px 16px;
+    border-bottom: 1px solid rgba(59,130,246,0.2);
+  }
+  .copy-bar span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #93c5fd; }
+  .copy-btn {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    background: var(--blue);
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.12s, background 0.2s;
+    white-space: nowrap;
+  }
+  .copy-btn:hover { background: #2563eb; }
+  .copy-btn:active { transform: scale(0.97); }
+  .copy-btn.done { background: var(--emerald); }
+  .copy-pre {
+    margin: 0;
+    padding: 14px 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 340px;
+    overflow-y: auto;
+  }
+  .copy-hint { font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.5; }
+
+  /* LISTAS Y BANNERS */
+  .plain-list { display: flex; flex-direction: column; gap: 8px; }
+  .plain-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 11px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  .warning-banner {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.55;
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.22);
+    color: #fca5a5;
+    margin-top: 12px;
+  }
+  .warning-banner strong { color: #fff; font-weight: 500; }
+
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+
+  .deep-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 16px 20px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    text-decoration: none;
+    color: var(--text-dim);
+    margin-bottom: 20px;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .deep-link:hover { border-color: rgba(20,184,166,0.4); transform: translateX(2px); }
+  .deep-link strong { display: block; font-family: var(--display); font-size: 15px; color: #fff; margin-bottom: 3px; }
+  .deep-link span { font-size: 12.5px; line-height: 1.5; }
+  .deep-link .arr { font-family: var(--mono); color: var(--teal); font-size: 18px; flex-shrink: 0; }
+
+  /* DISCLAIMER Y PIE */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--emerald); }
+
+  .thanks {
+    margin-top: 20px;
+    border: 1px solid rgba(16,185,129,0.2);
+    background: rgba(16,185,129,0.05);
+    border-radius: 14px;
+    padding: 16px 20px;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .thanks strong { color: #6ee7b7; font-weight: 500; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+
+  /* CALCULADORA (regla de Ottawa para HSA) */
+  .calc {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-top: 6px;
+  }
+  .calc-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; }
+  .calc-field { display: flex; flex-direction: column; gap: 6px; }
+  .calc-field label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .calc-field select {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 9px 11px;
+    min-width: 150px;
+  }
+  .calc-field select:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
+  .calc-out {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .calc-out strong { color: #fff; font-weight: 500; }
+  .calc-out em { color: #fcd34d; font-style: normal; }
+  .calc-out .big {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: #93c5fd;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .calc-out .big.risk-low { color: #6ee7b7; }
+  .calc-out .big.risk-mid { color: #fcd34d; }
+  .calc-out .big.risk-high { color: #fca5a5; }
+  .calc-reset {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 8px 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .calc-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+  .s4 .section-num { background: rgba(59,130,246,0.12); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s5 .section-num { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+
+  .info-banner {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.55;
+    background: rgba(59,130,246,0.07);
+    border: 1px solid rgba(59,130,246,0.22);
+    color: var(--text-dim);
+    margin-top: 12px;
+  }
+  .info-banner strong { color: #fff; font-weight: 500; }
+
+  .amber-banner {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.55;
+    background: rgba(245,158,11,0.07);
+    border: 1px solid rgba(245,158,11,0.25);
+    color: #fde68a;
+    margin-top: 12px;
+  }
+  .amber-banner strong { color: #fff; font-weight: 500; }
+
+  .links-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .links-row .cross-link { margin-top: 0; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body, .path-panel { padding: 16px; }
+    .section-header { padding: 16px; }
+    .path-tabs { grid-template-columns: repeat(2, 1fr); }
+    .calc-field, .calc-field select { width: 100%; }
+    .opt { width: 100%; }
+    th, td { padding: 10px 12px; }
+    .copy-bar { flex-wrap: wrap; }
+  }
+</style>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <a class="back-link" href="./index.html">← Volver</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Cambiar tema claro u oscuro">◐</button>
+    </div>
+    <div class="header-badge">Síntoma cardinal · Adulto</div>
+    <h1><span>Cefalea</span></h1>
+    <p class="header-sub">
+      Dos preguntas ordenan toda la consulta: <strong>¿cuánto tardó el dolor en llegar a su máximo?</strong> y
+      <strong>¿es la cefalea de siempre o una nueva?</strong> La gran mayoría es una cefalea primaria que se va de alta
+      <strong>sin tomografía y sin laboratorio</strong>, y el error más frecuente no es perder el diagnóstico: es pedir
+      una imagen en lugar de tomar la presión, medir la temperatura y mirar el fondo de ojo. El paciente con bandera
+      roja recibe <strong>todas las órdenes juntas</strong> desde el ingreso.
+    </p>
+  </div>
+
+  <!-- 01 · BIFURCACIÓN -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">MIN 0–3</span>
+      <div>
+        <div class="section-title">¿Tiene banderas rojas?</div>
+        <div class="section-subtitle">Marca lo presente. Manda el grupo más grave</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner" style="margin-top:0;margin-bottom:16px;">
+        <span>⚠️</span>
+        <span><strong>Antes de marcar nada: pregunta cuánto tardó en llegar al dolor máximo, toma la presión y la
+        temperatura, mira el fondo de ojo y pregunta si alguien más en la casa tiene dolor de cabeza.</strong>
+        Son cuatro gestos de dos minutos que cambian el camino: el tiempo hasta el máximo define la cefalea en trueno,
+        el papiledema define la hipertensión endocraneal, y el conviviente con el mismo síntoma define la intoxicación
+        por monóxido de carbono.
+        <button type="button" class="link-btn" onclick="openSiempre()">Ver qué se hace siempre en paralelo →</button></span>
+      </div>
+
+      <div class="q-block grp-C">
+        <div class="q-label">Emergencia tiempo-dependiente <span class="arrow">→ camino C</span></div>
+        <div class="opts" data-group="C">
+          <button type="button" class="opt" data-v="trueno">Cefalea en trueno: el dolor llegó a su máxima intensidad en menos de 1 minuto<span class="sub">se define por el tiempo, no por «la peor de mi vida» · se estudia aunque llegue sin dolor</span></button>
+          <button type="button" class="opt" data-v="deficit">Déficit neurológico focal nuevo, convulsión, confusión o compromiso de conciencia</button>
+          <button type="button" class="opt" data-v="meningismo">Fiebre con rigidez de nuca, púrpura o compromiso de conciencia<span class="sub">sospecha de meningitis: el antibiótico va en la primera hora</span></button>
+          <button type="button" class="opt" data-v="eclampsia">Gestante o puérpera de hasta 6 semanas con cefalea nueva y presión ≥ 140/90, o con convulsión<span class="sub">preeclampsia con criterios de severidad · eclampsia</span></button>
+          <button type="button" class="opt" data-v="papiledemaGrave">Papiledema con deterioro visual o de conciencia, vómitos en proyectil o cefalea que despierta de madrugada</button>
+          <button type="button" class="opt" data-v="ojoAgudo">Ojo rojo doloroso con visión borrosa, halos, pupila media fija y globo duro<span class="sub">glaucoma agudo de ángulo cerrado: la visión se pierde en horas</span></button>
+          <button type="button" class="opt" data-v="apoplejia">Dolor retroorbitario brusco con oftalmoplejía, diplopía o pérdida de campo visual<span class="sub">apoplejía hipofisaria: puede venir con insuficiencia suprarrenal aguda</span></button>
+          <button type="button" class="opt" data-v="coGrave">Sospecha de monóxido de carbono con síncope, convulsión, déficit, dolor torácico o acidosis</button>
+          <button type="button" class="opt" data-v="traumaGrave">Cefalea postraumática con deterioro de conciencia, vómitos repetidos, anisocoria o anticoagulación</button>
+        </div>
+      </div>
+
+      <div class="q-block grp-B2">
+        <div class="q-label">Bandera roja que obliga a estudiar hoy <span class="arrow">→ camino B2</span></div>
+        <div class="opts" data-group="B2">
+          <button type="button" class="opt" data-v="arteritis">Mayor de 50 años con cefalea nueva, dolor temporal, claudicación mandibular, cuero cabelludo sensible o síntomas visuales<span class="sub">arteritis de células gigantes</span></button>
+          <button type="button" class="opt" data-v="nueva50">Primera cefalea de la vida, o cefalea de patrón nuevo, después de los 50 años</button>
+          <button type="button" class="opt" data-v="inmuno">Inmunosupresión, VIH, cáncer activo, neurocirugía previa o derivativa ventricular</button>
+          <button type="button" class="opt" data-v="progresiva">Cefalea progresiva en días o semanas, o que cambió de carácter, lado o frecuencia</button>
+          <button type="button" class="opt" data-v="postural">Cefalea claramente postural: aparece de pie y mejora acostado, o lo contrario<span class="sub">hipotensión intracraneal · post-punción dural · hipertensión endocraneal</span></button>
+          <button type="button" class="opt" data-v="valsalva">Desencadenada de forma consistente por tos, esfuerzo, valsalva o actividad sexual</button>
+          <button type="button" class="opt" data-v="papiledema">Papiledema, diplopía o pérdida de campo visual, sin deterioro de conciencia</button>
+          <button type="button" class="opt" data-v="cuello">Cervicalgia o dolor facial unilateral con Horner parcial, acúfeno pulsátil o trauma cervical reciente<span class="sub">disección arterial cervical</span></button>
+          <button type="button" class="opt" data-v="co">Brasero, estufa a parafina o calefón, o convivientes y mascotas con los mismos síntomas, sin compromiso neurológico</button>
+          <button type="button" class="opt" data-v="anticoag">Anticoagulación, coagulopatía o trombofilia con cefalea nueva</button>
+          <button type="button" class="opt" data-v="fiebreFoco">Fiebre con cefalea y foco otorrinológico o dental, sin meningismo ni inestabilidad</button>
+          <button type="button" class="opt" data-v="gestanteB2">Gestante o puérpera con cefalea nueva, sin criterios de camino C</button>
+        </div>
+      </div>
+
+      <div class="q-block grp-B1">
+        <div class="q-label">Cefalea nueva o distinta, sin bandera roja <span class="arrow">→ camino B1</span></div>
+        <div class="opts" data-group="B1">
+          <button type="button" class="opt" data-v="primera">Primera crisis de una cefalea con fenotipo primario claro, en menor de 50 años</button>
+          <button type="button" class="opt" data-v="distinta">Cefalea conocida pero distinta en intensidad, lado, duración o cortejo</button>
+          <button type="button" class="opt" data-v="status">No cede tras dos ciclos de tratamiento en el box, o lleva más de 72 h<span class="sub">status migrañoso</span></button>
+          <button type="button" class="opt" data-v="abuso">Analgésicos, triptanes, ergotamínicos u opioides 10 o más días al mes</button>
+          <button type="button" class="opt" data-v="repite">Tercera consulta por la misma cefalea en poco tiempo</button>
+          <button type="button" class="opt" data-v="htaB1">Presión ≥ 180/120 con cefalea, sin daño agudo de órgano blanco</button>
+        </div>
+      </div>
+
+      <button type="button" class="no-flags" id="noFlags">
+        Ninguna → camino A
+        <span class="sub">Cefalea <strong>idéntica a sus crisis habituales</strong>, con diagnóstico previo de cefalea
+        primaria, que tardó más de un minuto en llegar al máximo, con presión arterial y temperatura normales, examen
+        neurológico y fondo de ojo normales y documentados, y sin ninguna de las banderas de arriba. Si queda duda, no
+        es camino A.</span>
+      </button>
+
+      <div class="verdict placeholder" id="verdict">
+        Marca las banderas rojas presentes, o confirma que no hay ninguna.
+        <br>¿Puede que no sea una cefalea primaria (ojo, arterias temporales, senos, dientes, cuello, monóxido, fármacos)?
+        <button type="button" class="link-btn" onclick="showPath('D', true)">Ver el desvío →</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PESTAÑAS DE CAMINO -->
+  <div class="path-tabs" id="pathTabs" role="tablist">
+    <button type="button" class="path-tab t-A"  data-path="A"  role="tab"><span class="code">A</span><span class="name">Primaria conocida · alta rápida</span></button>
+    <button type="button" class="path-tab t-B1" data-path="B1" role="tab"><span class="code">B1</span><span class="name">Nueva o distinta</span></button>
+    <button type="button" class="path-tab t-B2" data-path="B2" role="tab"><span class="code">B2</span><span class="name">Bandera roja · hoy</span></button>
+    <button type="button" class="path-tab t-C"  data-path="C"  role="tab"><span class="code">C</span><span class="name">Crítico</span></button>
+    <button type="button" class="path-tab t-D"  data-path="D"  role="tab"><span class="code">D</span><span class="name">No es primaria</span></button>
+  </div>
+
+  <!-- ═══ CAMINO A ═══ -->
+  <div class="path-panel t-A" id="panel-A" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Camino A · Fast-track</div>
+      <div class="panel-title">Cefalea primaria conocida, crisis habitual</div>
+      <div class="panel-crit">Cefalea con diagnóstico previo, <strong>idéntica en carácter, lado, duración y cortejo</strong>
+        a sus crisis de siempre, que tardó más de un minuto en llegar al máximo, con signos vitales, fondo de ojo y
+        examen neurológico normales y documentados. <strong>Si queda duda, el camino es B1 o B2, no A.</strong></div>
+    </div>
+    <div class="targets">
+      <span class="target">⏱ Signos vitales y fondo de ojo en <b>&lt; 10 min</b></span>
+      <span class="target">💉 Analgesia efectiva en <b>&lt; 30 min</b></span>
+      <span class="target">🔁 Reevaluación a los <b>60 min</b></span>
+      <span class="target">🚪 Alta en <b>&lt; 90 min</b></span>
+      <span class="target">🧪 Exámenes: <b>ninguno</b></span>
+      <span class="target">🩻 Imagen: <b>ninguna</b></span>
+    </div>
+
+    <div class="block-label">Stop workup</div>
+    <div class="stop">
+      <div class="stop-title">NO pedir</div>
+      <ul>
+        <li>Tomografía de cerebro en la cefalea recurrente idéntica con examen neurológico y fondo de ojo normales <span class="cond">sí, si cambió el patrón o hay bandera roja</span></li>
+        <li>Resonancia, angiografía ni punción lumbar</li>
+        <li>Radiografía de senos paranasales <span class="cond">no distingue sinusitis bacteriana de viral ni cambia la conducta</span></li>
+        <li>Radiografía o tomografía de columna cervical «porque el dolor sube del cuello»</li>
+        <li>Hemograma, perfil bioquímico ni electroencefalograma de rutina</li>
+        <li>Opioides, petidina ni ergotamínicos <span class="cond">más recurrencia, más estadía y riesgo de cefalea por abuso de medicación</span></li>
+        <li>Tomografía «para tranquilizar» al paciente o al equipo</li>
+      </ul>
+      <div class="why">
+        <strong>Este paciente no necesita una imagen: necesita que le tomen la presión, le midan la temperatura, le
+        mire el fondo de ojo y le traten bien la crisis.</strong> En la cefalea recurrente idéntica, con examen
+        neurológico normal, la tomografía casi nunca cambia la conducta, expone a radiación y
+        <strong>encuentra hallazgos incidentales</strong> que generan estudios y ansiedad propios. Lo que hace segura el
+        alta es el examen escrito con hora, la reevaluación después del tratamiento y el control con criterios de
+        retorno explícitos.
+        <strong>Ojo: la mejoría con el tratamiento no descarta una causa secundaria</strong> —una hemorragia
+        subaracnoidea también alivia con antiinflamatorios—, así que la respuesta al fármaco no reemplaza a la
+        bifurcación.
+        <button type="button" class="link-btn" onclick="openImagen()">Ver qué examen responde qué pregunta →</button>
+      </div>
+    </div>
+
+    <div class="block-label">Escenario</div>
+    <div class="opts" id="aScen"></div>
+    <div class="panel-crit" id="aCrit" style="margin-top:12px;"></div>
+
+    <div class="block-label">Tratamiento de la crisis en el box · elige uno</div>
+    <div class="med-list" data-meds="A"></div>
+    <div class="avoid" id="aAvoid"></div>
+
+    <div class="block-label">Tratamiento al alta · opcional</div>
+    <div class="med-list" data-analg="A"></div>
+
+    <div class="block-label">Lo que sí sirve y no se receta</div>
+    <div class="order">
+      <div class="order-title">Medidas no farmacológicas del box</div>
+      <ul>
+        <li><strong>Ambiente oscuro y silencioso</strong> y permitir el reposo durante la crisis <span class="cond">la foto y la fonofobia son parte del cuadro, no una exageración</span></li>
+        <li><strong>Hidratación</strong> y corregir el ayuno prolongado, frecuentes gatillos y agravantes</li>
+        <li><strong>Reevaluar a los 60 minutos</strong> y consignar la respuesta: es información clínica, no un criterio de descarte</li>
+        <li><strong>Explicar el diagnóstico con su nombre</strong> y entregar un calendario de cefaleas: identificar gatillos y días de uso de analgésicos es lo que después permite prevenir</li>
+        <li>La <strong>profilaxis</strong> (propranolol, amitriptilina, topiramato y otros) no se inicia en el box: se indica en la derivación, con quien hará el seguimiento</li>
+      </ul>
+    </div>
+
+    <div class="block-label">Checklist de alta</div>
+    <div class="checklist" data-check="A">
+      <label class="check"><input type="checkbox"> Tiempo hasta el dolor máximo preguntado de forma explícita: más de un minuto, consignado</label>
+      <label class="check"><input type="checkbox"> Presión arterial, temperatura y glicemia capilar tomadas y consignadas</label>
+      <label class="check"><input type="checkbox"> Fondo de ojo realizado: sin papiledema, consignado</label>
+      <label class="check"><input type="checkbox"> Examen neurológico documentado con hora, incluido campo visual por confrontación y signos meníngeos</label>
+      <label class="check"><input type="checkbox"> Arterias temporales palpadas si tiene más de 50 años</label>
+      <label class="check"><input type="checkbox"> Reevaluado después del tratamiento, con la respuesta consignada</label>
+      <label class="check"><input type="checkbox"> Días de uso de analgésicos al mes preguntados, para descartar cefalea por abuso de medicación</label>
+      <label class="check"><input type="checkbox"> Entiende los criterios de retorno inmediato, en particular el dolor brusco y distinto</label>
+    </div>
+    <div class="check-status" data-status="A"></div>
+
+    <div class="block-label">Indicaciones al paciente</div>
+    <div class="copy-box">
+      <div class="copy-bar"><span>Texto para la ficha / entrega</span><button type="button" class="copy-btn" data-copy="A">Copiar indicaciones</button></div>
+      <pre class="copy-pre" id="copy-A"></pre>
+    </div>
+    <div class="copy-hint">El texto se arma con lo que selecciones arriba. No se guarda ningún dato del paciente.</div>
+  </div>
+
+  <!-- ═══ CAMINO B1 ═══ -->
+  <div class="path-panel t-B1" id="panel-B1" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Camino B1 · Nueva o distinta</div>
+      <div class="panel-title">Cefalea nueva, cambiada o que no cede, sin bandera roja</div>
+      <div class="panel-crit">Aquí el trabajo es <strong>examinar bien, tratar bien y poner un plazo</strong>, no pedir
+        una tomografía. La trampa de este camino es doble: estudiar de más al paciente joven con una primera migraña, y
+        estudiar de menos al que dice <strong>«es mi cefalea de siempre, pero distinta»</strong> —esa palabra obliga a
+        repetir la bifurcación desde el principio.</div>
+    </div>
+    <div class="targets">
+      <span class="target">⏱ Examen con fondo de ojo en <b>&lt; 15 min</b></span>
+      <span class="target">💉 Analgesia efectiva en <b>&lt; 30 min</b></span>
+      <span class="target">🔁 Segundo ciclo y reevaluación a los <b>60 min</b></span>
+      <span class="target">🚪 Destino decidido en <b>&lt; 2 h</b></span>
+    </div>
+
+    <div class="block-label">Pedir · lo que de verdad corresponde</div>
+    <div class="order-grid">
+      <div class="order">
+        <div class="order-title">Examen, no exámenes</div>
+        <ul>
+          <li>Presión arterial, temperatura, frecuencia cardíaca y glicemia capilar</li>
+          <li><strong>Fondo de ojo</strong>: el papiledema es el hallazgo que más cambia la conducta y el que más se omite</li>
+          <li>Examen neurológico con hora, campo visual por confrontación, pares craneales y signos meníngeos</li>
+          <li>Palpación de arterias temporales en el mayor de 50 años; examen del ojo, los senos, los dientes y la articulación temporomandibular</li>
+          <li><strong>Documenta el resultado aunque sea normal</strong> <span class="cond">es la línea base de la próxima consulta</span></li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">Laboratorio dirigido, no de rutina</div>
+        <ul>
+          <li><strong>VHS y PCR</strong> si tiene más de 50 años o hay sospecha de arteritis <span class="cond">una VHS y PCR normales no descartan del todo: la clínica manda</span></li>
+          <li>Prueba de embarazo en toda mujer en edad fértil</li>
+          <li>Carboxihemoglobina si hay exposición o convivientes con síntomas <span class="cond">la saturación por oximetría de pulso es falsamente normal</span></li>
+          <li>Hemograma, función renal y electrolitos solo si van a cambiar una decisión</li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">Imagen</div>
+        <ul>
+          <li>Ninguna desde el box si no hay bandera roja, el examen es normal y el fenotipo es primario</li>
+          <li><strong>Resonancia ambulatoria</strong> cuando la indicación es por patrón nuevo persistente: rinde más que la tomografía para fosa posterior, hipófisis y lesiones pequeñas</li>
+          <li>Tomografía desde el box si aparece cualquier criterio de B2 o C mientras el paciente está en observación</li>
+        </ul>
+      </div>
+    </div>
+    <div class="inst-rule"><b>Verificar</b> El acceso a resonancia ambulatoria, el plazo de la derivación a neurología y
+      la cobertura garantizada que corresponda al caso dependen de la red local y de la normativa vigente:
+      <strong>verificar con protocolo institucional</strong>.</div>
+
+    <div class="block-label">Stop workup</div>
+    <div class="stop">
+      <div class="stop-title">NO pedir ni indicar</div>
+      <ul>
+        <li>Tomografía de cerebro en el menor de 50 años con fenotipo primario claro y examen normal</li>
+        <li>Punción lumbar sin una pregunta concreta <span class="cond">sí, en la sospecha de meningitis, de hemorragia subaracnoidea con tomografía no concluyente y en la hipertensión endocraneal</span></li>
+        <li>Opioides como primera línea, o en receta al alta</li>
+        <li>Una tercera dosis de analgésico al paciente que consulta por cefalea por abuso de medicación</li>
+        <li>Bajar la presión arterial de forma rápida porque «la cefalea es por la presión», sin daño agudo de órgano blanco</li>
+        <li>Antibiótico por una «sinusitis» sin criterios clínicos de sobreinfección bacteriana</li>
+      </ul>
+      <div class="why"><strong>La presión alta rara vez es la causa de la cefalea</strong>, y la cefalea rara vez es la
+        causa de la presión alta: lo habitual es que el dolor eleve la presión. Bajarla de golpe no trata la cefalea y
+        sí puede producir isquemia. Si hay daño agudo de órgano blanco, encefalopatía o convulsión, el paciente no es
+        B1: es <button type="button" class="link-btn" onclick="showPath('C', true)">camino C</button>.</div>
+    </div>
+
+    <div class="block-label">Situación</div>
+    <div class="opts" id="b1Scen"></div>
+    <div class="panel-crit" id="b1Crit" style="margin-top:12px;"></div>
+
+    <div class="block-label">Destino</div>
+    <div class="plain-list" id="b1Destino"></div>
+
+    <div class="amber-banner" id="b1Warn"></div>
+
+    <div class="block-label">Qué se solicita o deriva · elige uno</div>
+    <div class="med-list" data-meds="B1"></div>
+
+    <div class="block-label">Tratamiento al alta · opcional</div>
+    <div class="med-list" data-analg="B1"></div>
+
+    <div class="block-label">Checklist de alta</div>
+    <div class="checklist" data-check="B1">
+      <label class="check"><input type="checkbox"> Tiempo hasta el dolor máximo preguntado y consignado: más de un minuto</label>
+      <label class="check"><input type="checkbox"> Presión arterial, temperatura, glicemia y fondo de ojo normales y consignados</label>
+      <label class="check"><input type="checkbox"> Examen neurológico completo documentado con hora, con campo visual y signos meníngeos</label>
+      <label class="check"><input type="checkbox"> Banderas rojas repasadas una por una y consignadas como ausentes</label>
+      <label class="check"><input type="checkbox"> Dolor controlado tras el tratamiento, paciente capaz de caminar, tolerar líquidos y volver a su domicilio</label>
+      <label class="check"><input type="checkbox"> Control y plazo de reevaluación agendados, con responsable identificado</label>
+      <label class="check"><input type="checkbox"> Entiende los criterios de retorno inmediato, en particular el dolor brusco, la fiebre y el déficit nuevo</label>
+    </div>
+    <div class="check-status" data-status="B1"></div>
+
+    <div class="block-label">Indicaciones al paciente</div>
+    <div class="copy-box">
+      <div class="copy-bar"><span>Texto para la ficha / entrega</span><button type="button" class="copy-btn" data-copy="B1">Copiar indicaciones</button></div>
+      <pre class="copy-pre" id="copy-B1"></pre>
+    </div>
+    <div class="copy-hint">Solo se arma texto de alta cuando la situación seleccionada lo permite. No se guarda ningún dato del paciente.</div>
+  </div>
+
+  <!-- ═══ CAMINO B2 ═══ -->
+  <div class="path-panel t-B2" id="panel-B2" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Camino B2 · Bandera roja</div>
+      <div class="panel-title">Arteritis, monóxido, trombosis venosa, disección, presión intracraneal e inmunosuprimido</div>
+      <div class="panel-crit">Bandera roja sin criterios de C: este paciente <strong>sí se estudia, y se estudia hoy</strong>.
+        La trampa es la inversa del camino A: mandar a casa con metoclopramida a quien tenía una arteritis que le va a
+        costar un ojo, una trombosis venosa cerebral o una intoxicación por monóxido, porque
+        <strong>«la tomografía salió normal»</strong>. En casi todas estas causas la tomografía sin contraste es
+        normal.</div>
+    </div>
+    <div class="targets">
+      <span class="target">⏱ Laboratorio en <b>&lt; 30 min</b></span>
+      <span class="target">👁 Fondo de ojo en <b>&lt; 15 min</b></span>
+      <span class="target">🖥 Imagen definitoria en <b>&lt; 4 h</b></span>
+      <span class="target">🏥 Destino decidido en <b>&lt; 4 h</b></span>
+    </div>
+
+    <div class="block-label">Bundle común de entrada · una sola orden</div>
+    <div class="order-grid">
+      <div class="order">
+        <div class="order-title">Muestras</div>
+        <ul>
+          <li>Hemograma, <strong>PCR y VHS</strong> <span class="cond">la VHS es parte del diagnóstico de la arteritis de células gigantes, no un examen de relleno</span></li>
+          <li>Función renal y electrolitos <span class="cond">antes del contraste</span></li>
+          <li>Glicemia, pruebas hepáticas y calcemia según sospecha</li>
+          <li>Pruebas de coagulación e INR <span class="cond">anticoagulado, coagulopatía o probable punción lumbar</span></li>
+          <li><strong>Carboxihemoglobina</strong> en sangre venosa o arterial si hay exposición o convivientes con síntomas</li>
+          <li>Prueba de embarazo en toda mujer en edad fértil; hemocultivos si hay fiebre</li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">Examen y monitorización</div>
+        <ul>
+          <li>Signos vitales completos con <strong>presión arterial y temperatura</strong>, y escala de dolor</li>
+          <li><strong>Fondo de ojo</strong> buscando papiledema, y campo visual por confrontación</li>
+          <li>Examen neurológico <strong>con hora consignada</strong>, repetido antes del alta o del traslado</li>
+          <li>Palpación de arterias temporales, examen del ojo (rojo, pupila, dureza del globo), senos, dientes y articulación temporomandibular</li>
+          <li>Inspección de la piel: petequias, púrpura, vesículas de zóster en territorio trigeminal</li>
+          <li>Analgesia precoz: el dolor no controlado también es criterio de hospitalización</li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">Imagen inicial</div>
+        <ul>
+          <li>La imagen la define el escenario de abajo: <strong>no hay una imagen única para «cefalea con bandera roja»</strong></li>
+          <li>Tomografía sin contraste si hay que descartar sangre, masa o hidrocefalia <strong>ahora</strong></li>
+          <li><strong>Fase venosa</strong> (angiotomografía o resonancia con venografía) si la sospecha es trombosis venosa cerebral: la tomografía simple no la descarta</li>
+          <li>Angiotomografía o angiorresonancia <strong>de vasos cervicales</strong> si la sospecha es disección</li>
+          <li>Resonancia para fosa posterior, hipófisis, hipotensión intracraneal y lesiones pequeñas</li>
+        </ul>
+      </div>
+    </div>
+    <div class="warning-banner"><span>🩻</span><span><strong>Una tomografía de cerebro sin contraste normal no descarta
+      arteritis de células gigantes, trombosis venosa cerebral, disección arterial cervical, meningitis, hipertensión
+      endocraneal idiopática, hipotensión intracraneal, intoxicación por monóxido ni hemorragia subaracnoidea de más de
+      seis horas de evolución.</strong> Cada una de esas sospechas tiene su propio examen: la tomografía normal no es
+      una conclusión, es un paso.</span></div>
+
+    <div class="block-label">Escenario</div>
+    <div class="opts" id="b2Scen"></div>
+    <div class="panel-crit" id="b2Crit" style="margin-top:12px;"></div>
+
+    <div class="block-label">Cómo se delata</div>
+    <div class="inst-rule" id="b2Rule"></div>
+
+    <div class="block-label">Pedir</div>
+    <div class="order">
+      <div class="order-title">Órdenes del escenario</div>
+      <ul id="b2Orders"></ul>
+    </div>
+
+    <div class="block-label">Manejo mientras se confirma</div>
+    <div class="plain-list" id="b2Manejo"></div>
+    <div class="avoid" id="b2Avoid"></div>
+
+    <div class="block-label">Destino</div>
+    <div class="plain-list" id="b2Destino"></div>
+    <div class="links-row" id="b2Links"></div>
+  </div>
+
+  <!-- ═══ CAMINO C ═══ -->
+  <div class="path-panel t-C" id="panel-C" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Camino C · Crítico</div>
+      <div class="panel-title">Lo que no tolera esperar el resultado</div>
+      <div class="panel-crit">Aquí la <strong>sospecha —no la confirmación—</strong> activa la imagen, el antibiótico o
+        la llamada al especialista. Son cuadros en que el pronóstico se define en la primera hora, y en que el error
+        clásico es <strong>ordenar el estudio y quedarse esperando</strong> en lugar de tratar en paralelo.</div>
+    </div>
+    <div class="targets">
+      <span class="target">🧠 Tomografía en la sospecha de hemorragia: <b>&lt; 60 min</b></span>
+      <span class="target">💊 Antibiótico en la sospecha de meningitis: <b>&lt; 60 min</b></span>
+      <span class="target">👁 Glaucoma agudo: <b>oftalmología ahora</b></span>
+      <span class="target">📞 Especialista: <b>desde la sospecha</b>, con o sin imagen</span>
+    </div>
+
+    <div class="block-label">1 · Cefalea en trueno y hemorragia subaracnoidea</div>
+    <div class="order">
+      <div class="order-title">En este orden, sin pausas</div>
+      <ul>
+        <li><strong>Define el trueno por el tiempo:</strong> dolor que llega a su máxima intensidad en <strong>menos de un minuto</strong>. No se define por la escala de dolor ni por «la peor de mi vida». <strong>Se estudia aunque el paciente llegue sin dolor y con examen normal</strong></li>
+        <li><strong>Tomografía de cerebro sin contraste ahora.</strong> Dentro de las primeras 6 horas del inicio, en paciente alerta, sin déficit y con lectura por radiólogo con experiencia, su sensibilidad para hemorragia subaracnoidea es cercana al 100 % (Perry 2011)</li>
+        <li><strong>Más allá de las 6 horas, una tomografía normal no descarta</strong>: el estudio continúa con <strong>punción lumbar</strong> (rinde mejor a partir de las 12 h, cuando la xantocromía es detectable) o con <strong>angiotomografía cerebral</strong>, según el protocolo local y la probabilidad clínica</li>
+        <li>Punción lumbar: mide la <strong>presión de apertura</strong>, toma recuento celular en el primer y el último tubo —el descenso progresivo orienta a punción traumática— y pide xantocromía por el método del laboratorio</li>
+        <li><strong>Neurocirugía o neurología desde la confirmación</strong>, y traslado a centro con capacidad de tratamiento del aneurisma. Reposo, analgesia adecuada, control de la presión arterial y manejo de la náusea</li>
+        <li><strong>Nimodipino</strong> para la prevención del vasoespasmo y las metas de presión arterial antes de asegurar el aneurisma son decisiones de la unidad crítica y del equipo neuroquirúrgico <span class="cond">esquema, dosis y metas: verificar con protocolo institucional</span></li>
+      </ul>
+    </div>
+    <div class="plain-list" style="margin-top:12px;">
+      <div class="plain-item"><span class="bullet-icon">🚩</span><span><strong>Cefalea centinela.</strong> Una parte
+        importante de los pacientes con hemorragia subaracnoidea refiere una cefalea intensa y brusca en los días o
+        semanas previos. <strong>Una consulta previa por cefalea no tranquiliza: es un antecedente de alarma.</strong></span></div>
+      <div class="plain-item"><span class="bullet-icon">📊</span><span>La hemorragia subaracnoidea explica
+        <strong>del orden del 10 al 25 % de las cefaleas en trueno</strong> según la serie, y es la causa que más se
+        pasa por alto en la primera consulta —en series de urgencia, alrededor del 5 % de los casos—.
+        <strong>El grupo que más se pierde es el de buen grado clínico: alerta, sin déficit y con examen
+        normal.</strong></span></div>
+      <div class="plain-item"><span class="bullet-icon">🧩</span><span><strong>Los imitadores del trueno</strong> también
+        son graves: vasoconstricción cerebral reversible (truenos repetidos, puerperio, fármacos vasoactivos),
+        trombosis venosa cerebral, disección arterial cervical, apoplejía hipofisaria, hemorragia intracerebral,
+        hipotensión intracraneal espontánea y crisis hipertensiva. La <strong>cefalea primaria en trueno es un
+        diagnóstico de exclusión</strong>, nunca del box.</span></div>
+    </div>
+    <div class="links-row">
+      <button type="button" class="cross-link" style="cursor:pointer;" onclick="openOttawa()">→ Aplicar la regla de Ottawa para hemorragia subaracnoidea</button>
+    </div>
+
+    <div class="block-label">2 · Meningitis bacteriana aguda</div>
+    <div class="order">
+      <div class="order-title">Bundle simultáneo · el antibiótico no espera</div>
+      <ul>
+        <li><strong>Hemocultivos y antibiótico dentro de la primera hora</strong> desde la sospecha. <strong>No retrases el antibiótico esperando la tomografía ni la punción lumbar</strong>: es la decisión que más cambia la mortalidad</li>
+        <li><strong>Dexametasona 10 mg IV c/6 h por 4 días</strong>, con la primera dosis <strong>antes o junto</strong> con la primera dosis de antibiótico, en la sospecha de meningitis bacteriana del adulto <span class="cond">indicación y duración: verificar con protocolo institucional</span></li>
+        <li>Esquema empírico habitual del adulto: <strong>ceftriaxona</strong> 2 g IV c/12 h <strong>+ vancomicina</strong> según la resistencia neumocócica local, <strong>más ampicilina</strong> 2 g IV c/4 h si tiene más de 50 años, está embarazada, inmunosuprimida o con alcoholismo, por cobertura de <em>Listeria</em> <span class="cond">esquema, dosis y ajuste renal: verificar con protocolo institucional y PROA local</span></li>
+        <li>Agrega <strong>aciclovir</strong> si hay sospecha de encefalitis herpética: fiebre con confusión, convulsión, alteración conductual o déficit <span class="cond">dosis y ajuste renal: verificar con protocolo institucional</span></li>
+        <li><strong>Tomografía antes de la punción lumbar</strong> solo si hay compromiso de conciencia, déficit focal, convulsión reciente, papiledema, inmunosupresión o lesión del sistema nervioso central conocida. En el resto, la punción no necesita imagen previa</li>
+        <li>Paquete de sepsis en paralelo si hay hipotensión o mala perfusión, y aislamiento respiratorio de gotitas hasta descartar meningococo</li>
+      </ul>
+    </div>
+    <div class="warning-banner"><span>⚠️</span><span><strong>La tríada clásica de fiebre, rigidez de nuca y compromiso
+      de conciencia está completa en una minoría de los pacientes</strong>, y los signos meníngeos clásicos (Kernig y
+      Brudzinski) tienen <strong>sensibilidad baja</strong>: su ausencia no descarta. En el adulto mayor y en el
+      inmunosuprimido el cuadro puede ser solo confusión y decaimiento, sin fiebre. <strong>La púrpura obliga a
+      administrar el antibiótico antes de cualquier otra cosa.</strong></span></div>
+    <div class="links-row">
+      <a class="cross-link" href="./checklist-sepsis_4.html">→ Código Sepsis: paquete de la primera hora</a>
+    </div>
+
+    <div class="block-label">3 · Hemorragia intracerebral y lesión con hipertensión endocraneal</div>
+    <div class="order">
+      <div class="order-title">Cefalea con déficit o deterioro</div>
+      <ul>
+        <li><strong>Tomografía de cerebro sin contraste urgente</strong> y activación del equipo de neurología o neurocirugía desde la sospecha</li>
+        <li><strong>Reversión de la anticoagulación</strong> según el fármaco y el protocolo local, con la hora de la última dosis consignada <span class="cond">agente y dosis: verificar con protocolo institucional</span></li>
+        <li>Control de la presión arterial, de la glicemia, de la temperatura y de la natremia según metas locales; cabecera a 30°, evitar la hipotensión y la hipoxemia</li>
+        <li>Signos de herniación (anisocoria, deterioro rápido, postura de descerebración, respuesta de Cushing): manejo de la hipertensión endocraneal y neurocirugía <strong>en paralelo</strong>, no en secuencia</li>
+        <li>Si el cuadro es postraumático, se maneja como trauma encefalocraneano</li>
+      </ul>
+    </div>
+    <div class="links-row">
+      <a class="cross-link" href="./algoritmo-tec-grave.html">→ Algoritmo de TEC grave e hipertensión endocraneal</a>
+    </div>
+
+    <div class="block-label">4 · Preeclampsia con criterios de severidad y eclampsia</div>
+    <div class="order">
+      <div class="order-title">Gestante o puérpera de hasta 6 semanas</div>
+      <ul>
+        <li><strong>Toda cefalea nueva en la gestante o la puérpera es secundaria hasta demostrar lo contrario</strong>: mide presión arterial, busca proteinuria, reflejos y síntomas visuales, y avisa a obstetricia desde el primer minuto</li>
+        <li><strong>Sulfato de magnesio</strong> para la prevención y el tratamiento de la convulsión eclámptica, con carga y mantención según el protocolo obstétrico, y vigilancia de reflejos, diuresis y frecuencia respiratoria <span class="cond">esquema y dosis: verificar con protocolo institucional</span></li>
+        <li><strong>Control de la presión arterial</strong> con antihipertensivo endovenoso según el protocolo obstétrico local</li>
+        <li>Imagen si hay cefalea en trueno, déficit focal, convulsión atípica o falta de respuesta: piensa en <strong>trombosis venosa cerebral, vasoconstricción cerebral reversible y síndrome de encefalopatía posterior reversible</strong>. <strong>No retrases la imagen necesaria por miedo a la radiación</strong></li>
+        <li>El tratamiento definitivo de la preeclampsia con criterios de severidad es obstétrico: la decisión de interrupción no es del box</li>
+      </ul>
+    </div>
+
+    <div class="block-label">5 · Apoplejía hipofisaria</div>
+    <div class="order">
+      <div class="order-title">Dolor retroorbitario brusco con compromiso visual</div>
+      <ul>
+        <li>Cefalea brusca e intensa con <strong>oftalmoplejía, diplopía o pérdida de campo visual</strong>, con o sin adenoma conocido</li>
+        <li><strong>Hidrocortisona endovenosa precoz</strong> ante sospecha de insuficiencia suprarrenal aguda, que es la causa inmediata de muerte de este cuadro <span class="cond">dosis: verificar con protocolo institucional</span></li>
+        <li><strong>Resonancia de hipófisis</strong>; la tomografía puede ser normal o inespecífica</li>
+        <li>Toma cortisol, ACTH, hormonas tiroideas, prolactina y electrolitos <strong>antes</strong> del corticoide si no retrasa el tratamiento, y busca hiponatremia</li>
+        <li>Neurocirugía y endocrinología desde la sospecha</li>
+      </ul>
+    </div>
+
+    <div class="block-label">6 · Glaucoma agudo de ángulo cerrado</div>
+    <div class="order">
+      <div class="order-title">La visión se pierde en horas</div>
+      <ul>
+        <li>Cefalea o dolor periorbitario intenso con <strong>náuseas y vómitos</strong>, visión borrosa, halos alrededor de las luces, <strong>ojo rojo, córnea opaca, pupila media fija y globo duro a la palpación</strong>. Se confunde con migraña y con abdomen agudo</li>
+        <li><strong>Mide la presión intraocular</strong> si tienes tonómetro y <strong>llama a oftalmología ahora</strong>: el tratamiento definitivo es la iridotomía</li>
+        <li><strong>Acetazolamida</strong> 500 mg endovenosos u orales, más hipotensores tópicos (betabloqueador, alfa-agonista y análogo de prostaglandina según indicación oftalmológica), y pilocarpina una vez bajada la presión <span class="cond">esquema, secuencia y contraindicaciones: verificar con protocolo institucional y con oftalmología</span></li>
+        <li>Analgesia y antiemético; paciente en decúbito supino</li>
+        <li><strong>Evita los fármacos midriáticos y anticolinérgicos</strong>, y revisa los que el paciente ya recibió</li>
+      </ul>
+    </div>
+
+    <div class="block-label">7 · Intoxicación grave por monóxido de carbono</div>
+    <div class="order">
+      <div class="order-title">Cefalea con síncope, déficit, dolor torácico o acidosis</div>
+      <ul>
+        <li><strong>Oxígeno al 100 % con mascarilla de no recirculación de inmediato</strong>, sin esperar la confirmación, y retiro de la fuente de exposición</li>
+        <li><strong>Carboxihemoglobina</strong> en sangre venosa o arterial, electrocardiograma, troponina, gases y lactato <span class="cond">la oximetría de pulso convencional es falsamente normal: no sirve para descartar</span></li>
+        <li>Los criterios más usados para evaluar <strong>oxígeno hiperbárico</strong> son la pérdida de conciencia, el déficit neurológico, la isquemia miocárdica, la acidosis metabólica, la carboxihemoglobina muy elevada y el embarazo <span class="cond">umbrales exactos, disponibilidad de cámara y vía de derivación: verificar con protocolo institucional</span></li>
+        <li>Busca <strong>otras víctimas en el domicilio</strong>, incluidas mascotas, y avisa para que se revise la fuente: es un diagnóstico que se hace por familia, no por paciente</li>
+        <li>El riesgo de <strong>secuelas neurocognitivas tardías</strong> obliga a control y a informar al paciente y a su familia</li>
+      </ul>
+    </div>
+
+    <div class="warning-banner"><span>⏱️</span><span><strong>Mientras se gestiona la imagen o el traslado, el examen
+      neurológico se repite y se consigna con hora.</strong> Un deterioro entre dos exámenes cambia la prioridad
+      quirúrgica y es el dato que el especialista va a pedir por teléfono. Y nunca anotes una respuesta al analgésico
+      como criterio de descarte: la cefalea de la hemorragia subaracnoidea también se alivia.</span></div>
+  </div>
+
+  <!-- ═══ CAMINO D ═══ -->
+  <div class="path-panel t-D" id="panel-D" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Camino D · Desvío</div>
+      <div class="panel-title">Puede que no sea una cefalea primaria</div>
+      <div class="panel-crit">«Cefalea» es un síntoma, no un diagnóstico. Estas causas se pierden cuando el relato
+        —«me dio migraña otra vez»— cierra el caso antes de mirar el ojo, palpar las arterias temporales, preguntar por
+        el brasero o revisar la caja de analgésicos.</div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Causa</th><th>Claves y manejo</th></tr></thead>
+        <tbody>
+          <tr><td>Intoxicación por monóxido de carbono</td><td>Cefalea, náuseas, mareo y decaimiento en <strong>varios convivientes a la vez</strong>, incluidas las mascotas, en invierno, con brasero, estufa a parafina o calefón. <strong>La oximetría de pulso es falsamente normal</strong>: pide carboxihemoglobina. Oxígeno al 100 % desde la sospecha</td></tr>
+          <tr><td>Arteritis de células gigantes</td><td>Mayor de 50 años con cefalea nueva, dolor y sensibilidad temporal, <strong>claudicación mandibular</strong>, amaurosis fugaz o diplopía, polimialgia reumática. VHS y PCR hoy. <strong>El corticoide no espera a la biopsia</strong>: la ceguera que se instala es irreversible y suele ser bilateral si no se trata</td></tr>
+          <tr><td>Glaucoma agudo de ángulo cerrado</td><td>Ojo rojo doloroso, visión borrosa, halos, pupila media fija, globo duro, náuseas y vómitos. Se confunde con migraña. Es <button type="button" class="link-btn" onclick="showPath('C', true)">camino C</button></td></tr>
+          <tr><td>Cefalea por abuso de medicación</td><td>Cefalea 15 o más días al mes en quien usa analgésicos simples 15 o más días al mes, o triptanes, ergotamínicos, combinados u opioides 10 o más días al mes. <strong>No se trata con otra dosis en el box</strong>: necesita un plan de retirada ambulatorio</td></tr>
+          <tr><td>Cefalea cervicogénica y disfunción temporomandibular</td><td>Dolor unilateral que sube del cuello o del ángulo de la mandíbula, reproducible con la movilización cervical o la palpación de la articulación, con chasquido o bruxismo. Kinesiología y manejo dental, no imagen de rutina</td></tr>
+          <tr><td>Neuralgia del trigémino</td><td>Descargas eléctricas de segundos, en territorio de una rama, gatilladas por el tacto, el habla o la masticación. Carbamazepina es el tratamiento de base; el inicio antes de los 40 años, el déficit sensitivo o la bilateralidad obligan a resonancia</td></tr>
+          <tr><td>Sinusitis y causas otorrinológicas o dentales</td><td>Dolor facial con obstrucción nasal, descarga purulenta y dolor a la percusión del seno; la sinusitis esfenoidal puede presentarse como cefalea central intensa. <strong>Fiebre alta, edema periorbitario, diplopía o compromiso de conciencia son complicación</strong> y cambian el camino</td></tr>
+          <tr><td>Herpes zóster oftálmico</td><td>Dolor urente en territorio de la primera rama del trigémino que <strong>precede al exantema en días</strong>; vesículas en la punta de la nariz (signo de Hutchinson). Antiviral precoz y <strong>derivación oftalmológica</strong></td></tr>
+          <tr><td>Cefalea post-punción dural</td><td>Cefalea <strong>claramente postural</strong> tras anestesia neuroaxial o punción lumbar, que aparece al incorporarse y cede acostado. Manejo conservador, hidratación y cafeína; parche hemático por anestesiología si es intensa o persiste. <strong>Si pierde el carácter postural o aparece déficit, piensa en hematoma subdural o trombosis venosa</strong></td></tr>
+          <tr><td>Hipertensión endocraneal idiopática</td><td>Mujer joven con sobrepeso, cefalea diaria, oscurecimientos visuales transitorios, acúfeno pulsátil, diplopía por compromiso del sexto par y <strong>papiledema</strong>. Imagen con fase venosa para descartar trombosis, y punción lumbar con presión de apertura. La pérdida visual es la urgencia</td></tr>
+          <tr><td>Emergencia hipertensiva y encefalopatía</td><td>La presión alta por sí sola rara vez explica la cefalea. <strong>Cefalea con confusión, convulsión, déficit o alteración visual y presión muy elevada</strong> sugiere encefalopatía hipertensiva o síndrome de encefalopatía posterior reversible: eso sí es emergencia y se maneja con metas y velocidad de descenso según protocolo</td></tr>
+          <tr><td>Fármacos, tóxicos y abstinencia</td><td>Nitratos, inhibidores de la fosfodiesterasa, bloqueadores de canales de calcio, estrógenos, exceso o <strong>abstinencia de cafeína</strong>, alcohol y drogas simpaticomiméticas. Revisa el carné de fármacos y lo que cambió en las últimas semanas</td></tr>
+          <tr><td>Causas sistémicas</td><td>Hipoglicemia, anemia grave, hipoxemia, apnea obstructiva del sueño (cefalea matinal que cede en la mañana), diálisis, feocromocitoma (cefalea episódica con sudoración, palpitaciones y palidez)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block-label">Presentaciones que se pasan por alto</div>
+    <div class="plain-list">
+      <div class="plain-item"><span class="bullet-icon">👁️</span><span><strong>El paciente que dice «es mi migraña, pero
+        distinta»:</strong> esa palabra obliga a repetir la bifurcación completa, aunque el diagnóstico previo esté
+        escrito en la ficha. El cambio de patrón es una bandera roja por sí mismo.</span></div>
+      <div class="plain-item"><span class="bullet-icon">👁️</span><span><strong>El adulto mayor con «su primera
+        jaqueca»:</strong> la cefalea primaria rara vez debuta después de los 50 años. Hasta demostrar lo contrario, es
+        arteritis, masa, hematoma subdural o fármaco nuevo.</span></div>
+      <div class="plain-item"><span class="bullet-icon">👁️</span><span><strong>El paciente que llega sin dolor:</strong>
+        una cefalea en trueno que ya cedió sigue siendo una cefalea en trueno. El examen normal y el alivio espontáneo
+        no cambian la indicación de estudio.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🤰</span><span><strong>La gestante y la puérpera:</strong> toda
+        cefalea nueva es secundaria hasta demostrar lo contrario —preeclampsia, trombosis venosa cerebral,
+        vasoconstricción reversible, apoplejía hipofisaria, hemorragia—. Mide la presión arterial siempre.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🧓</span><span><strong>El adulto mayor con caída olvidada o
+        anticoagulado:</strong> el hematoma subdural crónico se presenta como cefalea sorda, cambio conductual o
+        deterioro cognitivo, semanas después de un golpe que nadie recuerda.</span></div>
+      <div class="plain-item"><span class="bullet-icon">✖️</span><span><strong>La mejoría del dolor en el box no descarta
+        nada.</strong> La respuesta al antiinflamatorio, al triptán o a la metoclopramida no distingue entre cefalea
+        primaria y secundaria.</span></div>
+    </div>
+  </div>
+
+  <!-- SIEMPRE, EN PARALELO -->
+  <div class="section s2 collapsed" id="s-siempre">
+    <div class="section-header" onclick="toggleSection('s-siempre')">
+      <span class="section-num">MIN 0–20</span>
+      <div>
+        <div class="section-title">Siempre, en paralelo</div>
+        <div class="section-subtitle">Lo que se hace mientras se decide el camino</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">0–3′</span><span><strong>Signos vitales completos, con presión
+          arterial y temperatura, y glicemia capilar.</strong> Fiebre, hipertensión grave o compromiso de conciencia
+          <strong>sacan al paciente de la categoría «cefalea primaria»</strong> hasta demostrar lo contrario.</span></div>
+        <div class="plain-item"><span class="bullet-icon">0–3′</span><span><strong>La pregunta que ordena toda la
+          consulta:</strong> «desde que empezó el dolor, ¿cuánto tardó en llegar a lo más fuerte?». Menos de un minuto
+          es <strong>cefalea en trueno</strong> y cambia el camino entero. No preguntes si fue «la peor de su vida»:
+          esa pregunta no discrimina.</span></div>
+        <div class="plain-item"><span class="bullet-icon">≤5′</span><span><strong>Las cuatro preguntas que no se
+          saltan:</strong> ¿es la primera cefalea así, o cambió respecto de las suyas? ¿fiebre, cuello rígido o
+          decaimiento? ¿hay alguien más en la casa con dolor de cabeza, o usan brasero, estufa a parafina o calefón?
+          ¿cuántos días al mes toma analgésicos? En la mujer en edad fértil, además: ¿puede estar embarazada?</span></div>
+        <div class="plain-item"><span class="bullet-icon">≤10′</span><span><strong>Fondo de ojo, siempre.</strong>
+          El papiledema es el hallazgo que más cambia la conducta en una cefalea y el que más se omite por falta de
+          tiempo. Si no puedes verlo, consígnalo como no realizado y busca cómo hacerlo, en lugar de darlo por
+          normal.</span></div>
+        <div class="plain-item"><span class="bullet-icon">≤10′</span><span><strong>Examen neurológico con hora
+          consignada:</strong> conciencia, pares craneales, campo visual por confrontación, fuerza, sensibilidad,
+          coordinación, marcha y signos meníngeos. <strong>Documenta el resultado aunque sea normal:</strong> es la
+          línea base contra la que se comparará la próxima consulta.</span></div>
+        <div class="plain-item"><span class="bullet-icon">≤10′</span><span><strong>Mira el ojo, palpa las arterias
+          temporales y revisa la piel.</strong> Ojo rojo con pupila media fija es glaucoma agudo; arteria temporal
+          engrosada y dolorosa en el mayor de 50 años es arteritis; las vesículas del zóster y la púrpura del
+          meningococo se ven si se desviste al paciente.</span></div>
+        <div class="plain-item"><span class="bullet-icon">≤20′</span><span><strong>Analgesia precoz y reevaluación a los
+          60 minutos.</strong> No esperes el resultado de nada para tratar el dolor, y vuelve a examinar al paciente
+          después: <strong>la respuesta al tratamiento es información, no un alta ni un descarte.</strong></span></div>
+      </div>
+
+      <div class="block-label">Tratamiento de la crisis en el box · adulto</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Fármaco</th><th>Dosis habitual en el adulto</th><th>Precauciones</th></tr></thead>
+          <tbody>
+            <tr><td>Metoclopramida</td><td><span class="dose-main">10 mg IV, en 15 min</span><br><span class="dose-note">repetible según respuesta y protocolo</span></td><td>Primera línea de la crisis de migraña en urgencia, y trata además la náusea. La infusión lenta reduce la acatisia; puede dar distonía aguda. Precaución con el intervalo QT y en el parkinsonismo</td></tr>
+            <tr><td>Ketorolaco</td><td><span class="dose-main">30 mg IV</span><br><span class="dose-note">o 60 mg IM</span></td><td>Útil solo o asociado al antidopaminérgico. Evitar en falla renal, úlcera o sangrado digestivo, deshidratación, adulto mayor frágil y tercer trimestre del embarazo</td></tr>
+            <tr><td>Ketoprofeno</td><td><span class="dose-main">100 mg IV o IM, c/8–12 h</span><br><span class="dose-note">diluido y lento</span></td><td>Antiinflamatorio de uso habitual en el box chileno. Mismas precauciones del grupo</td></tr>
+            <tr><td>Paracetamol</td><td><span class="dose-main">1 g IV o VO, c/8 h</span></td><td>Coadyuvante, de eficacia modesta en la crisis moderada a grave. Máximo 3–4 g al día, menos en hepatopatía, desnutrición o consumo de alcohol</td></tr>
+            <tr><td>Dexametasona</td><td><span class="dose-main">4–10 mg IV, dosis única</span></td><td>Se agrega al final de la crisis para <strong>reducir la recurrencia a las 24–72 h</strong>; no alivia el dolor agudo por sí sola</td></tr>
+            <tr><td>Sumatriptán</td><td><span class="dose-main">6 mg subcutáneos</span><br><span class="dose-note">disponibilidad de la presentación subcutánea variable en Chile: verificar en el servicio</span></td><td><strong>Contraindicado</strong> en cardiopatía isquémica, enfermedad cerebrovascular, vasculopatía periférica, hipertensión no controlada, migraña hemipléjica o de tronco, y dentro de 24 h de un ergotamínico. <strong>No usar ante cualquier sospecha de causa secundaria</strong></td></tr>
+            <tr><td>Oxígeno de alto flujo</td><td><span class="dose-main">100 %, 12–15 L/min</span><br><span class="dose-note">mascarilla de no recirculación, 15–20 min</span></td><td>Tratamiento de elección de la crisis de <strong>cefalea en racimos</strong>, junto al sumatriptán subcutáneo. No es tratamiento de la migraña</td></tr>
+            <tr><td>Clorpromazina</td><td><span class="dose-main">Alternativa antidopaminérgica</span><br><span class="dose-note">dosis y dilución: verificar con protocolo institucional</span></td><td>Produce <strong>hipotensión</strong> y sedación: requiere volumen previo y monitorización. Mismas precauciones extrapiramidales y de QT</td></tr>
+            <tr><td>Opioides</td><td><span class="dose-main">No son primera línea</span></td><td>Mayor recurrencia, mayor estadía y riesgo de cefalea por abuso de medicación. Reserva su uso a situaciones puntuales y justificadas, y no los dejes en receta al alta</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="inst-rule"><b>Verificar</b> La disponibilidad, las diluciones y la secuencia del esquema del servicio
+        son locales: <strong>verificar con protocolo institucional</strong>. Revisa alergias, embarazo y lactancia,
+        función renal y hepática, interacciones y los fármacos que el paciente ya tomó en su casa antes de indicar.</div>
+
+      <div class="warning-banner"><span>✖️</span><span><strong>Trampas de los primeros minutos:</strong> no preguntar
+        cuánto tardó el dolor en llegar al máximo; no tomar la presión ni la temperatura; no mirar el fondo de ojo;
+        aceptar «es mi migraña» cuando el paciente dice que esta vez fue distinta; y dar por descartada una causa grave
+        porque el dolor cedió con el tratamiento.</span></div>
+    </div>
+  </div>
+
+  <!-- IMAGEN -->
+  <div class="section s3 collapsed" id="s-imagen">
+    <div class="section-header" onclick="toggleSection('s-imagen')">
+      <span class="section-num">IMAGEN</span>
+      <div>
+        <div class="section-title">Imagen: cuándo sí y cuándo no</div>
+        <div class="section-subtitle">Cada sospecha tiene su examen; la tomografía no sirve para todo</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="warning-banner" style="margin-top:0;"><span>⚠️</span><span>En la cefalea recurrente idéntica, con
+        examen neurológico y fondo de ojo normales, <strong>no se pide imagen</strong>. La tomografía casi nunca cambia
+        la conducta, expone a radiación y <strong>genera hallazgos incidentales</strong> que abren estudios y ansiedad
+        propios. El problema inverso es igual de real: pedir tomografía sin contraste y dar por descartado todo lo
+        demás.</span></div>
+
+      <div class="block-label">Qué examen responde qué pregunta</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Pregunta clínica</th><th>Examen</th><th>Cuándo</th></tr></thead>
+          <tbody>
+            <tr><td>Hemorragia subaracnoidea</td><td><span class="dose-main">Tomografía sin contraste</span><br><span class="dose-note">punción lumbar o angiotomografía si han pasado más de 6 h</span></td><td><strong>Ahora.</strong> Dentro de las 6 h del inicio, en paciente alerta y con lectura experta, la sensibilidad es cercana al 100 %; después cae de forma progresiva</td></tr>
+            <tr><td>Hemorragia intracerebral, masa, hidrocefalia, hematoma subdural</td><td><span class="dose-main">Tomografía sin contraste</span></td><td>Déficit focal, convulsión, compromiso de conciencia, trauma, anticoagulación</td></tr>
+            <tr><td>Trombosis venosa cerebral</td><td><span class="dose-main">Angiotomografía en fase venosa, o resonancia con venografía</span></td><td>Cefalea progresiva, papiledema, convulsión, puerperio, anticonceptivos, trombofilia, déficit que no respeta territorio arterial. <strong>La tomografía simple no la descarta</strong></td></tr>
+            <tr><td>Disección arterial cervical</td><td><span class="dose-main">Angiotomografía o angiorresonancia de vasos cervicales</span></td><td>Cervicalgia o dolor facial unilateral, Horner parcial, acúfeno pulsátil, trauma o manipulación cervical</td></tr>
+            <tr><td>Aneurisma sin sangrado, vasoconstricción cerebral reversible</td><td><span class="dose-main">Angiotomografía o angiorresonancia cerebral</span></td><td>Cefalea en trueno con tomografía y punción lumbar no concluyentes, o truenos repetidos</td></tr>
+            <tr><td>Hipófisis, fosa posterior, hipotensión intracraneal, lesiones pequeñas</td><td><span class="dose-main">Resonancia</span><br><span class="dose-note">con gadolinio según la pregunta</span></td><td>Apoplejía hipofisaria, cefalea postural, cefalea progresiva con tomografía normal</td></tr>
+            <tr><td>Meningitis</td><td><span class="dose-main">Punción lumbar</span><br><span class="dose-note">tomografía previa solo si hay criterios</span></td><td><strong>El antibiótico no espera la imagen ni la punción.</strong> Tomografía previa si hay compromiso de conciencia, déficit focal, convulsión reciente, papiledema, inmunosupresión o lesión conocida del sistema nervioso central</td></tr>
+            <tr><td>Arteritis de células gigantes</td><td><span class="dose-main">VHS y PCR, luego ecografía de arterias temporales o biopsia</span></td><td>Mayor de 50 años con cefalea nueva. <strong>Ninguna imagen de cerebro responde esta pregunta</strong>, y el corticoide no espera la biopsia</td></tr>
+            <tr><td>Intoxicación por monóxido de carbono</td><td><span class="dose-main">Carboxihemoglobina</span></td><td>Exposición o convivientes con síntomas. <strong>La oximetría de pulso es falsamente normal</strong></td></tr>
+            <tr><td>Glaucoma agudo</td><td><span class="dose-main">Presión intraocular y evaluación oftalmológica</span></td><td>Ojo rojo doloroso con pupila media fija. No es una pregunta de imagen cerebral</td></tr>
+            <tr><td>Cefalea primaria recurrente idéntica, examen normal</td><td><span class="dose-main">Ninguna</span></td><td>Sin banderas rojas y sin cambio de patrón</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="block-label">Por qué la tomografía «normal» no tranquiliza tanto como parece</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📊</span><span><strong>No descarta</strong> hemorragia
+          subaracnoidea de más de 6 horas, trombosis venosa cerebral, disección arterial cervical, arteritis de células
+          gigantes, meningitis, hipertensión endocraneal idiopática, hipotensión intracraneal ni intoxicación por
+          monóxido. Es decir: no descarta la mayor parte de lo que buscamos en el camino B2.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📊</span><span><strong>Sí genera hallazgos
+          incidentales</strong> —quistes, aneurismas pequeños, cambios degenerativos— que no explican el dolor pero
+          abren estudios, controles y angustia. Encontrar algo no significa haber encontrado la causa.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📊</span><span>Las causas secundarias graves son una
+          <strong>minoría</strong> de las cefaleas que llegan a urgencia, pero concentran casi todo el daño evitable.
+          Lo que las identifica no es pedir más imágenes: es la bifurcación de los primeros minutos y el examen
+          completo.</span></div>
+      </div>
+
+      <div class="block-label">Banderas rojas de la nemotecnia SNNOOP10</div>
+      <div class="info-banner" style="margin-top:0;"><span>ℹ️</span><span>Lista publicada para detectar cefaleas
+        secundarias (Do 2019): <strong>S</strong>íntomas sistémicos incluida la fiebre; <strong>N</strong>eoplasia;
+        déficit <strong>n</strong>eurológico incluido el compromiso de conciencia; comienzo
+        <strong>s</strong>úbito (<em>onset</em>); edad mayor (<em>older</em>, sobre los 50 años); cambio de
+        <strong>p</strong>atrón o cefalea de inicio reciente; cefalea <strong>p</strong>osicional; desencadenada por
+        tos, esfuerzo o valsalva; <strong>p</strong>apiledema; cefalea <strong>p</strong>rogresiva o de presentación
+        atípica; emba<strong>r</strong>azo o puerperio; ojo doloroso con síntomas autonómicos; inicio
+        <strong>p</strong>ostraumático; <strong>p</strong>atología inmunitaria como el VIH; abuso de analgésicos o
+        fármaco nuevo al inicio de la cefalea.</span></div>
+    </div>
+  </div>
+
+  <!-- OTTAWA -->
+  <div class="section s4 collapsed" id="s-ottawa">
+    <div class="section-header" onclick="toggleSection('s-ottawa')">
+      <span class="section-num">OTTAWA</span>
+      <div>
+        <div class="section-title">¿Hay que investigar una hemorragia subaracnoidea? · regla de Ottawa</div>
+        <div class="section-subtitle">Calculadora interactiva</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="info-banner" style="margin-top:0;"><span>ℹ️</span><span>Es una <strong>regla de descarte</strong>, no
+        un puntaje de probabilidad: está construida para tener sensibilidad muy alta a costa de una especificidad baja
+        —en la validación prospectiva, sensibilidad del 100 % con especificidad en torno al 13–15 %—. Se aplica solo a
+        <strong>adultos alertas, con cefalea nueva, no traumática, intensa, que alcanzó su máximo dentro de la primera
+        hora</strong>. Con un solo criterio presente, la regla indica <strong>investigar</strong>; sin ningún criterio,
+        no identifica riesgo. <strong>No reemplaza el juicio clínico</strong> ni obliga a estudiar de una forma
+        determinada, y el umbral y la secuencia de estudio se ajustan al protocolo institucional.</span></div>
+
+      <div class="calc">
+        <div class="block-label" style="margin-top:0;">Paso 1 · ¿Se puede aplicar la regla? Marca lo presente</div>
+        <div class="opts" id="ott-gate">
+          <button type="button" class="opt" data-g="0">Déficit neurológico nuevo, o paciente no completamente alerta</button>
+          <button type="button" class="opt" data-g="1">Antecedente de aneurisma, hemorragia subaracnoidea o tumor cerebral</button>
+          <button type="button" class="opt" data-g="2">Cefaleas recurrentes similares: 3 o más episodios en 6 meses o más</button>
+          <button type="button" class="opt" data-g="3">Cefalea traumática, o menor de 16 años</button>
+          <button type="button" class="opt" data-g="4">El dolor tardó más de una hora en llegar a su máxima intensidad</button>
+          <button type="button" class="opt" data-g="5">Papiledema en el fondo de ojo</button>
+        </div>
+
+        <div class="block-label">Paso 2 · Criterios de la regla. Marca los presentes</div>
+        <div class="opts" id="ott-list">
+          <button type="button" class="opt" data-c="0">Edad de 40 años o más</button>
+          <button type="button" class="opt" data-c="1">Dolor o rigidez de cuello referidos por el paciente</button>
+          <button type="button" class="opt" data-c="2">Pérdida de conciencia presenciada</button>
+          <button type="button" class="opt" data-c="3">Inicio durante un esfuerzo</button>
+          <button type="button" class="opt" data-c="4">Cefalea en trueno: dolor máximo de forma instantánea</button>
+          <button type="button" class="opt" data-c="5">Limitación de la flexión del cuello al examen</button>
+        </div>
+
+        <div class="calc-out" id="ott-out">
+          Revisa primero si la regla es aplicable y luego marca los criterios presentes.
+        </div>
+        <button type="button" class="calc-reset" id="ott-reset">Reiniciar</button>
+      </div>
+
+      <div class="block-label">Qué hacer con un resultado que indica investigar</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🧠</span><span><strong>Tomografía de cerebro sin
+          contraste</strong>, cuanto antes mejor: la ventana de las 6 horas desde el inicio del dolor es la que da la
+          sensibilidad más alta, y se pierde mientras el paciente espera en la sala.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Si han pasado más de 6 horas</strong>,
+          o si la tomografía no es concluyente, el estudio continúa: punción lumbar —que rinde mejor a partir de las
+          12 h— o angiotomografía cerebral, según el protocolo local y la probabilidad clínica.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📄</span><span><strong>Deja escrita la hora de inicio del
+          dolor y el tiempo hasta el máximo.</strong> Es el dato del que depende la interpretación de la tomografía, y
+          el primero que preguntará quien reciba al paciente.</span></div>
+        <div class="plain-item"><span class="bullet-icon">✖️</span><span>No la apliques fuera de su población: paciente
+          con déficit o no alerta, cefalea traumática, papiledema, antecedente de aneurisma o tumor, o cefaleas
+          recurrentes similares. <strong>En esos casos la decisión es clínica y el umbral de estudio es más
+          bajo</strong>, no más alto.</span></div>
+      </div>
+
+      <div class="amber-banner"><span>⚠️</span><span>La regla <strong>no descarta los imitadores del trueno</strong>:
+        trombosis venosa cerebral, disección arterial cervical, vasoconstricción cerebral reversible, apoplejía
+        hipofisaria e hipotensión intracraneal no se buscan con esta regla ni se descartan con una tomografía sin
+        contraste normal.</span></div>
+    </div>
+  </div>
+
+  <!-- ERRORES -->
+  <div class="section s5 collapsed" id="s-errores">
+    <div class="section-header" onclick="toggleSection('s-errores')">
+      <span class="section-num">ALTA</span>
+      <div>
+        <div class="section-title">Antes de firmar el alta</div>
+        <div class="section-subtitle">Documentación y errores frecuentes</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📄</span><span><strong>Deja escrito el razonamiento:</strong>
+          el tiempo hasta el dolor máximo, qué banderas rojas se buscaron, con qué se descartaron y qué queda
+          pendiente. Consignar «tardó más de una hora en llegar al máximo, sin papiledema, presión y temperatura
+          normales» vale más que cualquier imagen que no pediste.</span></div>
+        <div class="plain-item"><span class="bullet-icon">👁️</span><span><strong>Consigna el fondo de ojo</strong>,
+          realizado o no realizado. Es el examen que distingue la cefalea que se va de alta de la que no, y el que más
+          se omite sin dejar rastro en la ficha.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧠</span><span><strong>Documenta el examen neurológico con su
+          hora</strong>, aunque sea normal: es la línea base contra la que se comparará la próxima consulta.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Pregunta y anota los días de uso de
+          analgésicos al mes.</strong> La cefalea por abuso de medicación se construye en urgencias, una dosis a la
+          vez, y no se trata con otra dosis más.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🗓️</span><span><strong>Cierra el seguimiento:</strong>
+          control con quien corresponda, plazo explícito y, si procede, la imagen o la derivación ya solicitadas. Un
+          alta sin control agendado deja el diagnóstico abierto sin responsable.</span></div>
+      </div>
+      <div class="block-label">Errores frecuentes</div>
+      <div class="stop">
+        <div class="stop-title">Lo que más se repite</div>
+        <ul>
+          <li>No preguntar cuánto tardó el dolor en llegar a su máximo, y perder la cefalea en trueno</li>
+          <li>Preguntar «¿es la peor cefalea de su vida?» y usar la respuesta como criterio de decisión</li>
+          <li>No tomar la presión arterial ni la temperatura en una consulta por cefalea</li>
+          <li>No mirar el fondo de ojo, y después explicar el dolor con el estrés</li>
+          <li>Aceptar «es mi migraña de siempre» cuando el paciente dijo que esta vez fue distinta</li>
+          <li>Dar por descartada una causa grave porque el dolor cedió con el analgésico</li>
+          <li>Dar por descartada una hemorragia subaracnoidea con una tomografía normal tomada después de las 6 horas</li>
+          <li>Pedir tomografía sin contraste y concluir que «no hay nada», en un cuadro que pedía fase venosa, vasos cervicales, resonancia o VHS</li>
+          <li>Retrasar el antibiótico de la meningitis esperando la tomografía o la punción lumbar</li>
+          <li>Retrasar el corticoide de la arteritis de células gigantes esperando la biopsia</li>
+          <li>Rotular como migraña al adulto mayor con su primera cefalea, o al paciente con ojo rojo doloroso</li>
+          <li>No preguntar por brasero, estufa a parafina, calefón ni por otros convivientes con síntomas</li>
+          <li>No medir la presión arterial de la gestante o la puérpera con cefalea nueva</li>
+          <li>Indicar opioides o petidina, o dejarlos en receta al alta</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFUNDIZAR -->
+  <a class="deep-link" href="./guia-cefalea.html">
+    <div>
+      <strong>Profundizar · Guía de cefalea aguda</strong>
+      <span>Orientador por patrón, banderas rojas SNNOOP10 en detalle, las cefaleas que matan o dejan secuela, cefalea
+      en trueno y hemorragia subaracnoidea, estudio inicial con sus límites, cefaleas primarias y su tratamiento,
+      poblaciones especiales y alta segura.</span>
+    </div>
+    <span class="arr">→</span>
+  </a>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda de orientación para la atención de urgencia:
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes del servicio</strong>. Las metas de tiempo son
+    referenciales y <strong>están propuestas, no validadas</strong>. El esquema de la crisis de migraña y su
+    disponibilidad en el servicio, el esquema antimicrobiano empírico y el uso de dexametasona en la meningitis, las
+    dosis de corticoide de la arteritis de células gigantes, el esquema obstétrico de sulfato de magnesio y de control
+    de la presión arterial, el tratamiento del glaucoma agudo, los umbrales y la disponibilidad de oxígeno hiperbárico
+    en la intoxicación por monóxido, los agentes de reversión de la anticoagulación, la secuencia de estudio de la
+    cefalea en trueno después de las seis horas y las vías de derivación a neurología, neurocirugía, oftalmología y
+    obstetricia dependen de cada centro: <strong>verificar con protocolo institucional</strong>. Si existe un protocolo
+    local del servicio para la cefalea, sus esquemas y plazos prevalecen sobre esta página. Verifica dosis, ajuste por
+    función renal y hepática, alergias, interacciones, embarazo y lactancia antes de indicar cualquier fármaco. Las
+    reglas de decisión y los puntajes complementan, no sustituyen, la evaluación clínica. Contenido para
+    <strong>pacientes adultos</strong>: el manejo pediátrico se rige por el protocolo institucional correspondiente.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Do TP, et al. <em>Red and Orange Flags for Secondary Headaches in Clinical Practice: SNNOOP10 List.</em> Neurology. 2019;92(3):134–144.</div>
+      <div class="ref-item">American College of Emergency Physicians Clinical Policies Subcommittee. <em>Clinical Policy: Critical Issues in the Evaluation and Management of Adult Patients Presenting to the Emergency Department With Acute Headache.</em> Ann Emerg Med. 2019;74(4):e41–e74.</div>
+      <div class="ref-item">Perry JJ, et al. <em>Sensitivity of Computed Tomography Performed Within Six Hours of Onset of Headache for Diagnosis of Subarachnoid Haemorrhage: Prospective Cohort Study.</em> BMJ. 2011;343:d4277.</div>
+      <div class="ref-item">Perry JJ, et al. <em>Clinical Decision Rules to Rule Out Subarachnoid Hemorrhage for Acute Headache.</em> JAMA. 2013;310(12):1248–1255.</div>
+      <div class="ref-item">Perry JJ, et al. <em>Validation of the Ottawa Subarachnoid Hemorrhage Rule in Patients with Acute Headache.</em> CMAJ. 2017;189(45):E1379–E1385.</div>
+      <div class="ref-item">Vermeulen MJ, Schull MJ. <em>Missed Diagnosis of Subarachnoid Hemorrhage in the Emergency Department.</em> Stroke. 2007;38(4):1216–1221.</div>
+      <div class="ref-item">Schwedt TJ, Matharu MS, Dodick DW. <em>Thunderclap Headache.</em> Lancet Neurol. 2006;5(7):621–631.</div>
+      <div class="ref-item">Headache Classification Committee of the International Headache Society. <em>The International Classification of Headache Disorders, 3rd edition (ICHD-3).</em> Cephalalgia. 2018;38(1):1–211.</div>
+      <div class="ref-item">Orr SL, et al. <em>Management of Adults With Acute Migraine in the Emergency Department: The American Headache Society Evidence Assessment of Parenteral Pharmacotherapies.</em> Headache. 2016;56(6):911–940.</div>
+      <div class="ref-item">van de Beek D, et al. <em>ESCMID Guideline: Diagnosis and Treatment of Acute Bacterial Meningitis.</em> Clin Microbiol Infect. 2016;22(Suppl 3):S37–S62.</div>
+      <div class="ref-item">Tunkel AR, et al. <em>Practice Guidelines for the Management of Bacterial Meningitis.</em> Clin Infect Dis. 2004;39(9):1267–1284.</div>
+      <div class="ref-item">Hellmich B, et al. <em>2018 Update of the EULAR Recommendations for the Management of Large Vessel Vasculitis.</em> Ann Rheum Dis. 2020;79(1):19–30.</div>
+      <div class="ref-item">Ferro JM, et al. <em>European Stroke Organization Guideline for the Diagnosis and Treatment of Cerebral Venous Thrombosis.</em> Eur J Neurol. 2017;24(10):1203–1213.</div>
+      <div class="ref-item">Friedman DI, Liu GT, Digre KB. <em>Revised Diagnostic Criteria for the Pseudotumor Cerebri Syndrome in Adults and Children.</em> Neurology. 2013;81(13):1159–1165.</div>
+      <div class="ref-item">Rose JJ, et al. <em>Carbon Monoxide Poisoning: Pathogenesis, Management, and Future Directions of Therapy.</em> Am J Respir Crit Care Med. 2017;195(5):596–606.</div>
+      <div class="ref-item">American College of Obstetricians and Gynecologists. <em>Gestational Hypertension and Preeclampsia. ACOG Practice Bulletin No. 222.</em> Obstet Gynecol. 2020;135(6):e237–e260.</div>
+      <div class="ref-item">Los esquemas antimicrobianos y de corticoides, las dosis, los plazos de imagen y de derivación, y la disponibilidad de cada fármaco y de oxígeno hiperbárico deben contrastarse con el protocolo institucional vigente y con las normas del Ministerio de Salud de Chile.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+  function openSection(id) {
+    const s = document.getElementById(id);
+    s.classList.remove('collapsed');
+    s.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  function openSiempre() { openSection('s-siempre'); }
+  function openImagen()  { openSection('s-imagen'); }
+  function openOttawa()  { openSection('s-ottawa'); }
+
+  // ── Tratamiento del box y solicitudes (elige uno) ─────────────────
+  const MEDS = {
+    metoAine: { name: 'Metoclopramida + antiinflamatorio parenteral', dose: 'Metoclopramida 10 mg IV en 15 min + ketorolaco 30 mg IV (o ketoprofeno 100 mg IV)',
+                note: 'Esquema de primera línea de la crisis de migraña en urgencia: trata el dolor y la náusea. La infusión lenta de la metoclopramida reduce la acatisia. Se puede agregar dexametasona 4–10 mg IV en dosis única al final de la crisis para reducir la recurrencia a las 24–72 h.',
+                pt: 'En urgencia recibió metoclopramida y un antiinflamatorio por vía endovenosa para la crisis.' },
+    meto:     { name: 'Metoclopramida sola', dose: '10 mg IV en 15 min',
+                note: 'Opción cuando el antiinflamatorio está contraindicado (falla renal, úlcera o sangrado digestivo, tercer trimestre del embarazo). Precaución con el intervalo QT y en el parkinsonismo.',
+                pt: 'En urgencia recibió metoclopramida endovenosa para la crisis.' },
+    aine:     { name: 'Antiinflamatorio parenteral solo', dose: 'Ketorolaco 30 mg IV, o ketoprofeno 100 mg IV diluido y lento',
+                note: 'Razonable en la crisis moderada sin náusea relevante. Evitar en falla renal, úlcera o sangrado digestivo previo, deshidratación, adulto mayor frágil y tercer trimestre del embarazo.',
+                pt: 'En urgencia recibió un antiinflamatorio por vía endovenosa.' },
+    paraIv:   { name: 'Paracetamol', dose: '1 g IV o VO',
+                note: 'Eficacia modesta en la crisis moderada a grave; es la opción cuando el antiinflamatorio está contraindicado. Máximo 3–4 g al día, menos en hepatopatía, desnutrición o consumo de alcohol.',
+                pt: 'En urgencia recibió paracetamol.' },
+    sumaSc:   { name: 'Sumatriptán subcutáneo', dose: '6 mg SC',
+                note: 'Disponibilidad de la presentación subcutánea variable en Chile: verificar en el servicio. Contraindicado en cardiopatía isquémica, enfermedad cerebrovascular, vasculopatía periférica, hipertensión no controlada, migraña hemipléjica o de tronco, y dentro de 24 h de un ergotamínico. No usar ante cualquier sospecha de causa secundaria.',
+                pt: 'En urgencia recibió sumatriptán inyectable.' },
+    o2Suma:   { name: 'Oxígeno de alto flujo + sumatriptán subcutáneo', dose: 'O₂ 100 % a 12–15 L/min por mascarilla de no recirculación, 15–20 min + sumatriptán 6 mg SC',
+                note: 'Tratamiento de elección de la crisis de cefalea en racimos. El oxígeno de alto flujo no es tratamiento de la migraña. Revisa las contraindicaciones del triptán antes de administrarlo.',
+                pt: 'En urgencia recibió oxígeno de alto flujo y sumatriptán inyectable para la crisis.' },
+    aineOral: { name: 'Antiinflamatorio oral en el box', dose: 'Ibuprofeno 400–600 mg VO, o naproxeno 550 mg VO, con algo de comida',
+                note: 'Suficiente en la cefalea tensional y en la crisis leve. Evitar en ERC, úlcera o sangrado digestivo previo, insuficiencia cardíaca y anticoagulación.',
+                pt: 'En urgencia recibió un antiinflamatorio por vía oral.' },
+    noMas:    { name: 'Sin otra dosis de analgésico', dose: 'Hidratación, antiemético si lo necesita y plan de retirada por escrito',
+                note: 'En la cefalea por abuso de medicación, una dosis más en el box perpetúa el problema. El tratamiento es la retirada programada, con control precoz y, si corresponde, profilaxis indicada por quien hará el seguimiento.',
+                pt: 'En urgencia no se agregó otro analgésico, porque el problema es justamente el uso frecuente de analgésicos.' },
+    derivNeuro: { name: 'Derivación a neurología', dose: 'Solicitud con el fenotipo de la cefalea, el examen documentado y los días de uso de analgésicos al mes',
+                note: 'Para el estudio del patrón nuevo o persistente, el inicio de profilaxis y el manejo de la cefalea por abuso de medicación. Plazo y vía de derivación: verificar con protocolo institucional.',
+                pt: 'Se solicitó una evaluación por neurología para el estudio y el tratamiento de fondo de su cefalea.' },
+    rmAmb:    { name: 'Resonancia cerebral ambulatoria', dose: 'Solicitud con la pregunta clínica explícita',
+                note: 'Para la cefalea de patrón nuevo persistente con examen normal. Rinde más que la tomografía en fosa posterior, hipófisis y lesiones pequeñas. Disponibilidad y plazo: verificar con protocolo institucional.',
+                pt: 'Se solicitó una resonancia de cerebro, que se realizará de forma ambulatoria. No es un examen de urgencia: su examen de hoy fue normal.' },
+    controlAPS: { name: 'Control en su centro de salud', dose: 'Control en 48 a 72 h con el registro de la consulta de hoy',
+                note: 'Cierra el seguimiento con responsable y plazo. Un alta sin control agendado deja el diagnóstico abierto.',
+                pt: 'Debe controlarse en su centro de salud en 48 a 72 horas, llevando este documento.' },
+    retiro:   { name: 'Plan de retirada de analgésicos', dose: 'Suspensión programada del fármaco de abuso, con control precoz y rescate acotado por escrito',
+                note: 'Explica que el dolor puede empeorar durante los primeros días de la retirada y que eso es esperado. Esquema y apoyo: verificar con protocolo institucional.',
+                pt: 'Debe suspender de forma programada el analgésico que está usando a diario, según el plan escrito que se le entregó. Es esperable que el dolor empeore los primeros días antes de mejorar.' }
+  };
+
+  // ── Tratamiento al alta (varias opciones) ─────────────────────────
+  const ANALG = {
+    ibu:     { name: 'Ibuprofeno', dose: '400–600 mg c/8 h VO con comida, solo en la crisis',
+               note: 'Rescate, no de uso diario. Evitar en ERC, úlcera o sangrado digestivo previo, insuficiencia cardíaca, anticoagulación y adulto mayor frágil.',
+               pt: 'Ibuprofeno 400 a 600 mg: 1 comprimido cada 8 horas con comida, solo mientras tenga dolor. No lo tome con el estómago vacío.' },
+    napro:   { name: 'Naproxeno', dose: '550 mg c/12 h VO con comida, solo en la crisis',
+               note: 'Alternativa al ibuprofeno, con dos tomas al día. Mismas precauciones del grupo.',
+               pt: 'Naproxeno 550 mg: 1 comprimido cada 12 horas con comida, solo mientras tenga dolor.' },
+    aas:     { name: 'Ácido acetilsalicílico', dose: '900–1000 mg VO al inicio de la crisis',
+               note: 'Alternativa eficaz en la crisis de migraña, sola o con metoclopramida. Evitar en úlcera, sangrado, anticoagulación y en menores de 18 años.',
+               pt: 'Ácido acetilsalicílico 1 g al comienzo del dolor, con algo de comida.' },
+    para:    { name: 'Paracetamol', dose: '1 g c/8 h VO',
+               note: 'Coadyuvante o alternativa cuando el antiinflamatorio está contraindicado. Máximo 3 g al día.',
+               pt: 'Paracetamol 1 g: 1 comprimido cada 8 horas si tiene dolor. No supere los 3 gramos al día ni lo combine con otros remedios que contengan paracetamol.' },
+    sumaVo:  { name: 'Sumatriptán oral', dose: '50–100 mg VO al inicio de la crisis, repetible una vez a las 2 h',
+               note: 'Rinde más cuanto antes se toma. Máximo 9 días de uso al mes para no inducir cefalea por abuso de medicación. Mismas contraindicaciones cardiovasculares del triptán inyectable.',
+               pt: 'Sumatriptán 50 a 100 mg: tómelo al comienzo del dolor, no cuando ya esté muy intenso. Puede repetir una vez después de 2 horas si no cede. No lo use más de 9 días al mes.' },
+    metoVo:  { name: 'Metoclopramida oral', dose: '10 mg c/8 h VO si hay náuseas, por hasta 5 días',
+               note: 'Mejora la náusea y la absorción del analgésico. Advierte sobre la inquietud motora y la distonía, infrecuentes pero alarmantes.',
+               pt: 'Metoclopramida 10 mg: 1 comprimido cada 8 horas solo si tiene náuseas, por un máximo de 5 días.' },
+    calendario: { name: 'Calendario de cefaleas', dose: 'Registro diario de crisis, gatillos y días de uso de analgésicos',
+               note: 'Es lo que permite diagnosticar el abuso de medicación y decidir la profilaxis en el control. Cuesta nada y cambia el manejo ambulatorio.',
+               pt: 'Anote en un calendario los días con dolor de cabeza, qué lo desencadenó y qué remedio tomó cada día. Llévelo a su control.' }
+  };
+
+  // ── Camino A · escenarios ─────────────────────────────────────────
+  const A = {
+    migrana: {
+      label: 'Migraña',
+      crit: 'Crisis de 4 a 72 h, dolor habitualmente unilateral y pulsátil, de intensidad moderada a grave, que empeora con la actividad, con náuseas o vómitos y foto o fonofobia. El aura típica es visual, se instala <strong>en minutos</strong> y dura menos de una hora: un aura de inicio súbito, siempre del mismo lado, o la primera aura después de los 50 años, obligan a descartar causa vascular.',
+      meds: ['metoAine', 'meto', 'aine', 'sumaSc', 'paraIv'],
+      analg: ['ibu', 'napro', 'aas', 'sumaVo', 'metoVo', 'para', 'calendario'],
+      avoid: '<strong>No uses triptán</strong> si hay cardiopatía isquémica, enfermedad cerebrovascular, vasculopatía periférica, hipertensión no controlada, migraña hemipléjica o de tronco, uso de ergotamínico en las últimas 24 h, o <strong>cualquier sospecha de causa secundaria</strong>. <strong>No uses opioides ni petidina</strong>: más recurrencia, más estadía y riesgo de cefalea por abuso de medicación.',
+      dx: 'Crisis de migraña',
+      rec: ['Durante la crisis, busque un lugar oscuro y silencioso, y descanse.',
+            'Tome el analgésico o el sumatriptán al comienzo del dolor, no cuando ya esté muy intenso: ahí funciona mucho mejor.',
+            'No use analgésicos más de 2 días por semana de forma habitual: el uso frecuente genera un dolor de cabeza propio, más difícil de tratar.',
+            'Cuide el sueño regular, no se salte comidas, hidrátese y limite el alcohol y el exceso de cafeína.',
+            'Anote sus crisis, qué las desencadena y qué remedio tomó: eso es lo que permitirá elegir un tratamiento preventivo.'],
+      extraAlarm: ['Dolor de cabeza que aparece de golpe y llega a lo más fuerte en menos de un minuto, aunque después se alivie.',
+                   'Dolor de cabeza distinto del habitual: en otro lugar, mucho más intenso, o con síntomas que nunca había tenido.'],
+      control: 'Control en su centro de salud en 2 a 4 semanas para evaluar la frecuencia de las crisis y decidir si necesita tratamiento preventivo.'
+    },
+    tensional: {
+      label: 'Cefalea tensional',
+      crit: 'Dolor <strong>bilateral</strong>, opresivo, de intensidad leve a moderada, que no empeora con la actividad habitual y <strong>sin</strong> náuseas ni vómitos. Es un diagnóstico con criterios propios, <strong>no un rótulo para la cefalea que no se estudió</strong>.',
+      meds: ['aineOral', 'aine', 'paraIv'],
+      analg: ['ibu', 'napro', 'para', 'calendario'],
+      avoid: 'Si el dolor es <strong>unilateral, pulsátil, con náuseas o foto y fonofobia</strong>, el diagnóstico es migraña y el tratamiento cambia. <strong>No indiques benzodiacepinas ni opioides</strong>, y no uses relajantes musculares de rutina.',
+      dx: 'Cefalea tensional',
+      rec: ['Mantenga horarios regulares de sueño y pausas durante la jornada; el calor local en cuello y hombros ayuda.',
+            'No use analgésicos más de 2 días por semana de forma habitual: el uso frecuente genera un dolor de cabeza propio.',
+            'El ejercicio regular y el manejo del estrés son parte del tratamiento, no un consejo de relleno.',
+            'Si el dolor cambia de carácter, se hace diario o aparece con otros síntomas, debe ser reevaluado.'],
+      extraAlarm: ['Dolor de cabeza que aparece de golpe y llega a lo más fuerte en menos de un minuto.',
+                   'Dolor de cabeza que se hace diario o que despierta en la madrugada.'],
+      control: 'Control en su centro de salud en 2 a 4 semanas si el dolor persiste o se repite con frecuencia.'
+    },
+    racimos: {
+      label: 'Cefalea en racimos',
+      crit: 'Crisis de 15 a 180 minutos, dolor periorbitario <strong>estrictamente unilateral</strong> y muy intenso, con lagrimeo, congestión nasal, ptosis o miosis del mismo lado, y <strong>paciente inquieto</strong> que no se queda quieto —a diferencia de la migraña—. Las crisis se repiten en racimos, a horas previsibles.',
+      meds: ['o2Suma', 'sumaSc'],
+      analg: ['para', 'calendario'],
+      avoid: '<strong>El antiinflamatorio oral llega tarde</strong> para una crisis de minutos: el tratamiento son el oxígeno de alto flujo y el triptán subcutáneo. La <strong>profilaxis del racimo</strong> (verapamilo y otros, con electrocardiograma previo) la indica neurología, no el box. Un síndrome de Horner que <strong>persiste entre las crisis</strong> obliga a descartar disección carotídea o lesión del seno cavernoso.',
+      dx: 'Cefalea en racimos',
+      rec: ['Las crisis son breves e intensas y suelen repetirse a la misma hora: el tratamiento debe estar disponible y usarse de inmediato.',
+            'Evite el alcohol durante el período de crisis: es un desencadenante característico.',
+            'Este cuadro tiene tratamiento preventivo específico, que debe indicar el especialista: no lo inicie por su cuenta.'],
+      extraAlarm: ['Caída del párpado o pupila pequeña que persiste cuando ya no tiene dolor.',
+                   'Dolor que cambia de lado, se hace continuo, o se acompaña de visión doble o debilidad.'],
+      control: 'Derivación a neurología para iniciar tratamiento preventivo, y control en su centro de salud mientras espera la evaluación.'
+    },
+    abuso: {
+      label: 'Cefalea por abuso de medicación',
+      crit: 'Cefalea <strong>15 o más días al mes</strong> en un paciente con cefalea previa que usa analgésicos simples 15 o más días al mes, o triptanes, ergotamínicos, combinados u opioides <strong>10 o más días al mes</strong>. Es una de las razones más frecuentes de consulta repetida por cefalea, y se construye en urgencias, una dosis a la vez.',
+      meds: ['noMas', 'aine', 'paraIv'],
+      analg: ['calendario'],
+      avoid: '<strong>Una dosis más no es tratamiento: es parte del problema.</strong> No dejes receta de analgésico de uso diario ni de opioide. Antes de rotular, descarta que el aumento de frecuencia sea una cefalea secundaria nueva: si cambió el patrón, el camino es <button type="button" class="link-btn" onclick="showPath(\'B2\', true)">B2</button>.',
+      dx: 'Cefalea por abuso de medicación',
+      rec: ['El remedio que le calma el dolor es, a la vez, lo que mantiene el dolor: por eso la indicación es suspenderlo de forma programada.',
+            'Los primeros días de la suspensión el dolor puede empeorar. Es esperado y transitorio.',
+            'Lleve un calendario con los días de dolor y los remedios que toma: es la herramienta que permite salir de este círculo.',
+            'No reemplace un analgésico por otro de uso diario, y no use opioides.'],
+      extraAlarm: ['Dolor de cabeza que aparece de golpe y llega a lo más fuerte en menos de un minuto.',
+                   'Dolor de cabeza distinto del habitual, con fiebre, vómitos, visión doble o debilidad.'],
+      control: 'Control precoz con su equipo de salud para acompañar la retirada, y derivación a neurología para el tratamiento preventivo.'
+    }
+  };
+
+  // ── Camino B1 · situaciones ───────────────────────────────────────
+  const B1 = {
+    primera: {
+      label: 'Primera crisis con fenotipo primario claro',
+      crit: 'Menor de 50 años, cefalea que cumple el patrón de una cefalea primaria, con signos vitales, fondo de ojo y examen neurológico normales y documentados, y sin banderas rojas. <strong>Se trata y se deriva, no se tomografía.</strong>',
+      discharge: true,
+      meds: ['controlAPS', 'derivNeuro', 'rmAmb'],
+      analg: ['ibu', 'napro', 'para', 'sumaVo', 'metoVo', 'calendario'],
+      destino: [
+        ['🚪', '<strong>Alta con control precoz</strong> y el diagnóstico escrito con su nombre. Entrega el calendario de cefaleas y explica los criterios de retorno.'],
+        ['📄', 'Deja consignado en la ficha el tiempo hasta el dolor máximo, el fondo de ojo, el examen neurológico con hora y las banderas rojas buscadas. Es lo que hace segura el alta sin imagen.'],
+        ['🩺', 'Deriva a neurología si el patrón es nuevo y persistente, si las crisis son frecuentes o incapacitantes, o si hay que iniciar profilaxis.']
+      ],
+      warn: 'Una primera crisis no es lo mismo que una cefalea en trueno. <strong>Si el dolor llegó a su máximo en menos de un minuto, el paciente no es B1</strong>, por joven y por normal que esté: es <button type="button" class="link-btn" onclick="showPath(\'C\', true)">camino C</button>.'
+    },
+    distinta: {
+      label: 'Cefalea conocida, pero distinta esta vez',
+      crit: '<strong>La palabra «distinta» obliga a repetir la bifurcación completa</strong>, aunque el diagnóstico previo esté escrito en la ficha: otro lado, otra intensidad, otra duración, otro cortejo, o algo que nunca había tenido. El cambio de patrón es una bandera roja por sí mismo (es la «P» de SNNOOP10).',
+      discharge: true,
+      meds: ['controlAPS', 'derivNeuro', 'rmAmb'],
+      analg: ['ibu', 'napro', 'para', 'metoVo', 'calendario'],
+      destino: [
+        ['🔎', '<strong>Repasa una por una las banderas rojas</strong> y deja constancia de cada una. El umbral de estudio aquí es más bajo que en el camino A: ante cualquier hallazgo, el paciente pasa a <button type="button" class="link-btn" onclick="showPath(\'B2\', true)">B2</button>.'],
+        ['👁', 'Fondo de ojo, campo visual por confrontación, presión arterial, temperatura y examen neurológico con hora. En el mayor de 50 años, además, palpa las arterias temporales y pide VHS y PCR.'],
+        ['🚪', '<strong>Alta solo con examen completo normal</strong>, dolor controlado, control agendado en 48 a 72 h y criterios de retorno explicados. Si no se puede completar el examen, no se puede cerrar el caso.']
+      ],
+      warn: 'El error que más daño hace en este grupo es <strong>dejar que el diagnóstico antiguo explique el síntoma nuevo</strong>. Un paciente con migraña de años también puede tener una hemorragia subaracnoidea, una arteritis o una trombosis venosa.'
+    },
+    status: {
+      label: 'Status migrañoso o cefalea refractaria al box',
+      crit: 'Crisis que no cede tras <strong>dos ciclos de tratamiento</strong> bien administrados, o que lleva más de 72 h, en un paciente con diagnóstico conocido y sin banderas rojas. Primero se revisa que el esquema haya sido correcto (dosis, vía y velocidad), y después se escala.',
+      discharge: false,
+      meds: [],
+      analg: [],
+      destino: [
+        ['🔁', '<strong>Segundo ciclo con un esquema distinto</strong>, no con el mismo fármaco: si recibió solo antiinflamatorio, agrega el antidopaminérgico; si recibió metoclopramida sin respuesta, considera clorpromazina —que requiere volumen previo y monitorización— según el protocolo del servicio.'],
+        ['💊', '<strong>Dexametasona 4–10 mg IV en dosis única</strong> al final del tratamiento, para reducir la recurrencia a las 24–72 h.'],
+        ['💧', 'Hidratación, antiemético, ambiente oscuro y silencioso, y reevaluación horaria consignada.'],
+        ['🏥', '<strong>Observación prolongada u hospitalización</strong> si el dolor sigue incapacitante, no tolera líquidos, hay vómitos persistentes o deshidratación. El dolor no controlado es por sí mismo un criterio de hospitalización.'],
+        ['🔎', 'Antes de concluir que es refractaria, <strong>vuelve a buscar la causa secundaria</strong>: la refractariedad es uno de los motivos más frecuentes de diagnóstico tardío.']
+      ],
+      warn: 'La refractariedad <strong>no se trata con opioides</strong> y no se resuelve con una tercera dosis del mismo fármaco. Escalar el esquema, hidratar, reevaluar y dudar del diagnóstico es lo que corresponde. Esquemas de segunda línea y sus diluciones: <strong>verificar con protocolo institucional</strong>.'
+    },
+    abuso: {
+      label: 'Cefalea por abuso de medicación',
+      crit: 'Consultas repetidas por cefalea en quien usa analgésicos 15 o más días al mes, o triptanes, ergotamínicos, combinados u opioides 10 o más días al mes. El tratamiento es la <strong>retirada programada</strong> con acompañamiento, no otra dosis.',
+      discharge: true,
+      meds: ['retiro', 'derivNeuro', 'controlAPS'],
+      analg: ['calendario'],
+      destino: [
+        ['📄', '<strong>Plan de retirada por escrito</strong>, con fecha de inicio, rescate acotado y control precoz. Explica que el dolor puede empeorar los primeros días.'],
+        ['🩺', '<strong>Derivación a neurología</strong> para la profilaxis, que es lo que sostiene la retirada en el tiempo.'],
+        ['🔎', 'Antes de rotular, descarta que el aumento de frecuencia sea una cefalea secundaria nueva: si cambió el patrón, el camino es <button type="button" class="link-btn" onclick="showPath(\'B2\', true)">B2</button>.']
+      ],
+      warn: 'Este diagnóstico se construye en urgencias. <strong>Preguntar los días de uso de analgésicos al mes</strong> y anotarlo es la intervención más útil que puede hacer el box, y la que casi nunca se hace.'
+    },
+    hta: {
+      label: 'Cefalea con presión arterial muy elevada, sin daño de órgano blanco',
+      crit: 'Presión ≥ 180/120 con cefalea, <strong>sin</strong> déficit neurológico, convulsión, confusión, alteración visual, dolor torácico, disnea ni compromiso renal agudo. Lo habitual es que el dolor eleve la presión, y no al revés.',
+      discharge: true,
+      meds: ['controlAPS', 'derivNeuro'],
+      analg: ['para', 'ibu', 'calendario'],
+      destino: [
+        ['💊', '<strong>Trata el dolor y reevalúa la presión después</strong>: en buena parte de los casos baja sola. No uses descensos rápidos ni nifedipino sublingual.'],
+        ['🩺', '<strong>Ajuste del tratamiento antihipertensivo con control precoz</strong>, no normalización en el box. La velocidad y las metas de descenso en la urgencia hipertensiva se definen por protocolo.'],
+        ['⚠️', 'Si hay confusión, convulsión, déficit, alteración visual o papiledema, no es este escenario: es <button type="button" class="link-btn" onclick="showPath(\'C\', true)">camino C</button> (encefalopatía hipertensiva o síndrome de encefalopatía posterior reversible).']
+      ],
+      warn: 'Atribuir la cefalea a la presión arterial es una de las formas más frecuentes de cerrar el caso antes de examinar. <strong>Toma la presión, pero sigue buscando la causa del dolor.</strong> Metas y fármacos: <strong>verificar con protocolo institucional</strong>.'
+    }
+  };
+
+  // ── Camino B2 · escenarios ────────────────────────────────────────
+  const B2 = {
+    arteritis: {
+      label: 'Arteritis de células gigantes',
+      crit: 'Mayor de 50 años con cefalea nueva o de patrón nuevo, dolor y sensibilidad del cuero cabelludo o de la región temporal, <strong>claudicación mandibular</strong>, amaurosis fugaz, diplopía, pérdida visual, fiebre o síndrome constitucional, polimialgia reumática.',
+      rule: '<b>Clave</b> La claudicación mandibular y los síntomas visuales son los datos que más pesan. <strong>VHS y PCR el mismo día</strong>: suelen estar elevadas, aunque una pequeña proporción de pacientes las tiene normales, de modo que <strong>un laboratorio normal con clínica compatible no cierra el caso</strong>. La biopsia de arteria temporal sigue siendo positiva días después de iniciar el corticoide, y la ecografía de arterias temporales con signo del halo es una alternativa donde está disponible.',
+      orders: [
+        'VHS y PCR <span class="cond">hoy, no ambulatorias</span>',
+        'Hemograma, función renal, glicemia y pruebas hepáticas <span class="cond">antes de iniciar corticoide</span>',
+        'Evaluación oftalmológica urgente si hay cualquier síntoma visual',
+        'Ecografía de arterias temporales o biopsia, según disponibilidad <span class="cond">coordinar en el mismo día: no retrasa el tratamiento</span>',
+        'Ninguna imagen de cerebro responde esta pregunta'
+      ],
+      manejo: [
+        ['💊', '<strong>El corticoide no espera la biopsia.</strong> Con compromiso visual, altas dosis endovenosas de metilprednisolona; sin compromiso visual, prednisona oral en dosis alta. <strong>Esquema y dosis exactas: verificar con protocolo institucional</strong>, con reumatología u oftalmología.'],
+        ['👁', '<strong>La pérdida visual establecida es irreversible</strong> y, sin tratamiento, el segundo ojo tiene alto riesgo en los días siguientes. Ese es todo el argumento para tratar antes de confirmar.'],
+        ['🦴', 'Deja indicada la protección gástrica y la evaluación de profilaxis de osteoporosis por el corticoide prolongado, y controla la glicemia en el diabético.']
+      ],
+      avoid: '<strong>No esperes la VHS para llamar a oftalmología si hay síntomas visuales, y no esperes la biopsia para iniciar el corticoide.</strong> Tampoco rotules como «cefalea tensional» a un mayor de 50 años con cefalea nueva: la cefalea primaria rara vez debuta a esa edad.',
+      destino: [
+        ['🏥', '<strong>Hospitalización</strong> si hay compromiso visual o requiere tratamiento endovenoso.'],
+        ['🩺', '<strong>Derivación a reumatología y oftalmología</strong> con el corticoide ya iniciado y la biopsia coordinada, cuando el manejo puede ser ambulatorio.']
+      ],
+      links: []
+    },
+    co: {
+      label: 'Intoxicación por monóxido de carbono',
+      crit: 'Cefalea, náuseas, mareo, decaimiento o dificultad para concentrarse, en invierno, con brasero, estufa a parafina, calefón o combustión en espacio cerrado, y <strong>con frecuencia en varios convivientes a la vez, incluidas las mascotas</strong>. Sin compromiso neurológico, dolor torácico ni acidosis.',
+      rule: '<b>Clave</b> <strong>La oximetría de pulso convencional es falsamente normal</strong>: no distingue la carboxihemoglobina de la oxihemoglobina, de modo que una saturación de 98 % no descarta nada. El diagnóstico se hace con <strong>carboxihemoglobina</strong> en sangre venosa o arterial, interpretada junto al tiempo desde que se retiró de la fuente —el nivel cae con el oxígeno— y al hecho de que los fumadores tienen un nivel basal más alto.',
+      orders: [
+        '<strong>Carboxihemoglobina</strong> venosa o arterial <span class="cond">consigna la hora de retiro de la fuente y si fuma</span>',
+        'Electrocardiograma y troponina <span class="cond">la isquemia miocárdica es frecuente y cambia el destino</span>',
+        'Gases y lactato; glicemia y función renal',
+        'Prueba de embarazo en toda mujer en edad fértil <span class="cond">la hemoglobina fetal tiene mayor afinidad por el monóxido</span>',
+        'Examen neurológico documentado, con evaluación cognitiva breve'
+      ],
+      manejo: [
+        ['🫁', '<strong>Oxígeno al 100 % con mascarilla de no recirculación desde la sospecha</strong>, sin esperar el resultado. Mantenlo según el protocolo local y la evolución clínica.'],
+        ['🏠', '<strong>Busca al resto de la casa.</strong> Es un diagnóstico que se hace por familia, no por paciente: pregunta por convivientes, niños y mascotas, y avisa para que se revise la fuente antes de que vuelvan al domicilio.'],
+        ['🧠', 'Evalúa criterios de <strong>oxígeno hiperbárico</strong> (pérdida de conciencia, déficit neurológico, isquemia miocárdica, acidosis metabólica, carboxihemoglobina muy elevada, embarazo) y la vía de derivación local <span class="cond">umbrales y disponibilidad: verificar con protocolo institucional</span>.']
+      ],
+      avoid: '<strong>No uses la saturación de la oximetría de pulso para descartar</strong>, y no mandes al paciente de vuelta al mismo domicilio sin que la fuente haya sido revisada. Informa del riesgo de <strong>secuelas neurocognitivas tardías</strong> y deja control.',
+      destino: [
+        ['🚨', '<strong>Camino C</strong> si hay síncope, convulsión, déficit, dolor torácico, isquemia o acidosis.'],
+        ['🏥', '<strong>Observación con oxígeno</strong> hasta la mejoría clínica y el descenso de la carboxihemoglobina, según protocolo.'],
+        ['🚪', '<strong>Alta</strong> solo con síntomas resueltos, examen neurológico normal, fuente controlada y control agendado.']
+      ],
+      links: []
+    },
+    trombosis: {
+      label: 'Trombosis venosa cerebral',
+      crit: 'Cefalea progresiva en días, a veces en trueno, con papiledema, convulsión, déficit que no respeta un territorio arterial o compromiso de conciencia. Factores: <strong>puerperio y embarazo</strong>, anticonceptivos, trombofilia, cáncer, deshidratación, infección de oído o senos, punción lumbar reciente.',
+      rule: '<b>Clave</b> <strong>La tomografía sin contraste es normal en una proporción importante de los casos</strong> y no descarta el diagnóstico: si la sospecha está, el examen es la <strong>fase venosa</strong> —angiotomografía venosa o resonancia con venografía—. El dímero D puede ser normal, sobre todo en la presentación con cefalea aislada, de modo que <strong>no sirve para descartar</strong> en este escenario.',
+      orders: [
+        '<strong>Angiotomografía en fase venosa, o resonancia con venografía</strong> <span class="cond">examen que define</span>',
+        'Hemograma, función renal, pruebas de coagulación e INR',
+        'Prueba de embarazo; estudio de trombofilia diferido, no desde el box',
+        'Punción lumbar con presión de apertura solo si se descartó lesión con efecto de masa y la pregunta es la presión intracraneal o la infección'
+      ],
+      manejo: [
+        ['💉', '<strong>Anticoagulación</strong> indicada por neurología, que se mantiene incluso en presencia de infarto venoso hemorrágico, según la guía europea <span class="cond">esquema y dosis: verificar con protocolo institucional</span>.'],
+        ['⚡', 'Trata la convulsión y busca y trata el foco infeccioso (oído, senos, mastoides) si lo hay.'],
+        ['🧠', 'Vigila el deterioro de conciencia y los signos de hipertensión endocraneal: la hipertensión endocraneal refractaria y el infarto expansivo son decisiones de neurocirugía.']
+      ],
+      avoid: '<strong>No descartes con una tomografía sin contraste normal, y no descartes con un dímero D normal.</strong> Y no atribuyas a cefalea tensional la cefalea progresiva de la puérpera o de la mujer que usa anticonceptivos.',
+      destino: [
+        ['🏥', '<strong>Hospitalización</strong> con neurología, en unidad de monitorización según el estado neurológico.'],
+        ['🚨', '<strong>Unidad de paciente crítico</strong> si hay compromiso de conciencia, convulsiones repetidas o lesión expansiva.']
+      ],
+      links: []
+    },
+    diseccion: {
+      label: 'Disección arterial cervical',
+      crit: 'Cefalea o <strong>cervicalgia unilateral</strong> de inicio reciente, con <strong>Horner parcial</strong> (ptosis y miosis sin anhidrosis), acúfeno pulsátil, dolor facial o periorbitario, o déficit focal transitorio. Suele haber trauma menor, manipulación cervical, esfuerzo o movimiento brusco del cuello; afecta a pacientes más jóvenes que el ictus habitual.',
+      rule: '<b>Clave</b> El dolor <strong>precede al evento isquémico</strong> en horas o días: esa ventana es toda la oportunidad de prevenirlo. La sospecha se confirma con <strong>angiotomografía o angiorresonancia de vasos cervicales</strong>; la tomografía de cerebro sin contraste no responde la pregunta.',
+      orders: [
+        '<strong>Angiotomografía o angiorresonancia de vasos cervicales e intracraneales</strong>',
+        'Tomografía o resonancia de cerebro para evaluar isquemia establecida',
+        'Hemograma, función renal antes del contraste, pruebas de coagulación',
+        'Electrocardiograma y monitorización neurológica con hora'
+      ],
+      manejo: [
+        ['💉', '<strong>Tratamiento antitrombótico</strong> —antiagregación o anticoagulación— indicado por neurología según la extensión, la presencia de isquemia y el riesgo de sangrado <span class="cond">esquema: verificar con protocolo institucional</span>.'],
+        ['🛑', 'Evita la manipulación cervical, los esfuerzos y las maniobras de valsalva mientras se define el manejo.'],
+        ['🧠', 'Si hay déficit neurológico agudo, activa el protocolo de ictus del servicio en paralelo.']
+      ],
+      avoid: '<strong>No rotules como contractura cervical</strong> el dolor de cuello unilateral de inicio brusco con cefalea, y busca de forma dirigida la ptosis y la miosis: el Horner parcial es discreto y se ve solo si se compara con el otro ojo.',
+      destino: [
+        ['🏥', '<strong>Hospitalización</strong> con neurología para tratamiento antitrombótico y monitorización.'],
+        ['🚨', '<strong>Protocolo de ictus</strong> si hay déficit agudo.']
+      ],
+      links: []
+    },
+    presion: {
+      label: 'Hipertensión endocraneal y papiledema',
+      crit: 'Cefalea que <strong>empeora al acostarse, con la tos o la valsalva</strong>, despierta de madrugada, con <strong>papiledema</strong>, oscurecimientos visuales transitorios, acúfeno pulsátil, diplopía por compromiso del sexto par o pérdida de campo visual. Sin deterioro de conciencia (con deterioro es camino C).',
+      rule: '<b>Clave</b> <strong>El papiledema cambia la conducta completa de la consulta.</strong> El orden es: imagen primero —con <strong>fase venosa</strong> para descartar trombosis venosa cerebral y lesión con efecto de masa— y recién después punción lumbar con <strong>presión de apertura</strong>. El diagnóstico de hipertensión endocraneal idiopática exige descartar causa secundaria: no es un diagnóstico de urgencia.',
+      orders: [
+        'Imagen con <strong>fase venosa</strong>: angiotomografía venosa o resonancia con venografía',
+        '<strong>Punción lumbar con medición de la presión de apertura</strong>, una vez descartada lesión con efecto de masa',
+        'Evaluación oftalmológica con <strong>campo visual</strong> y fondo de ojo documentados <span class="cond">la pérdida visual es la urgencia de este cuadro</span>',
+        'Hemograma, función renal y electrolitos; revisión de fármacos (tetraciclinas, retinoides, corticoides, hormonas)'
+      ],
+      manejo: [
+        ['👁', '<strong>La prioridad es la visión</strong>, no el dolor: pérdida visual rápida o papiledema grave obligan a evaluación oftalmológica y neuroquirúrgica el mismo día.'],
+        ['💊', '<strong>Acetazolamida</strong> es el fármaco de base de la hipertensión endocraneal idiopática, indicado junto con oftalmología o neurología <span class="cond">dosis y escalamiento: verificar con protocolo institucional</span>.'],
+        ['🔎', 'En el paciente con <strong>derivativa ventricular</strong>, piensa en disfunción de la válvula y contacta neurocirugía: la imagen y la evaluación del sistema derivativo son prioritarias.']
+      ],
+      avoid: '<strong>No hagas punción lumbar antes de la imagen</strong> en un paciente con papiledema o sospecha de lesión con efecto de masa. Y <strong>no uses la punción como tratamiento del dolor</strong>: su rol aquí es diagnóstico.',
+      destino: [
+        ['🏥', '<strong>Hospitalización</strong> si hay pérdida visual progresiva, sospecha de disfunción de derivativa o lesión estructural.'],
+        ['🩺', '<strong>Estudio y control coordinados con neurología y oftalmología</strong>, con campo visual seriado, cuando el cuadro es estable.']
+      ],
+      links: []
+    },
+    inmuno: {
+      label: 'Inmunosuprimido, oncológico o con neurocirugía previa',
+      crit: 'Cefalea nueva o progresiva en paciente con <strong>VIH, trasplante, quimioterapia, corticoides, cáncer activo, neurocirugía previa o derivativa ventricular</strong>. Aquí la cefalea es una bandera roja por sí misma, aunque el examen neurológico sea normal y no haya fiebre.',
+      rule: '<b>Clave</b> La inflamación puede estar <strong>atenuada</strong>: fiebre, meningismo y leucocitosis pueden faltar. El espectro incluye <strong>absceso, metástasis, carcinomatosis meníngea, toxoplasmosis, criptococosis, tuberculosis, linfoma y disfunción de derivativa</strong>. La imagen con contraste y, cuando corresponde, la punción lumbar con estudio ampliado, son la regla y no la excepción.',
+      orders: [
+        'Tomografía <strong>con contraste</strong> o resonancia con gadolinio <span class="cond">la tomografía sin contraste puede ser normal</span>',
+        '<strong>Punción lumbar con estudio ampliado</strong> —citoquímico, cultivos, tinta china o antígeno criptocócico, estudios moleculares y citología— según la sospecha y tras descartar lesión con efecto de masa',
+        'Hemograma, PCR, función renal, hemocultivos, carga viral y recuento de CD4 cuando corresponda',
+        'Revisión del sistema derivativo y contacto con neurocirugía si hay válvula'
+      ],
+      manejo: [
+        ['💊', 'Tratamiento empírico dirigido a la sospecha más probable, en coordinación con infectología y según el mapa microbiológico local <span class="cond">esquemas y dosis: verificar con protocolo institucional y PROA local</span>.'],
+        ['🧠', 'Busca signos de hipertensión endocraneal y de lesión con efecto de masa antes de cualquier punción.'],
+        ['📞', 'Contacto precoz con el equipo tratante: la historia oncológica o del trasplante cambia por completo el diagnóstico diferencial.']
+      ],
+      avoid: '<strong>No uses la ausencia de fiebre ni un examen neurológico normal para dar de alta</strong> a este paciente con una cefalea nueva, y no te quedes con una tomografía sin contraste normal.',
+      destino: [
+        ['🏥', '<strong>Hospitalización</strong> para completar el estudio en la mayoría de los casos.'],
+        ['🚨', '<strong>Camino C</strong> si hay compromiso de conciencia, déficit focal, convulsión o sepsis.']
+      ],
+      links: []
+    },
+    postural: {
+      label: 'Cefalea postural: hipotensión intracraneal y post-punción dural',
+      crit: 'Cefalea que <strong>aparece o empeora al incorporarse y mejora al acostarse</strong>, con frecuencia occipital o cervical, a veces con acúfeno, hipoacusia o náuseas. Puede ser <strong>post-punción dural</strong> (anestesia neuroaxial o punción lumbar, típicamente en las primeras 24 a 72 h) o <strong>espontánea</strong>.',
+      rule: '<b>Clave</b> El carácter postural es el dato. <strong>Si el componente postural desaparece, el dolor se hace continuo o aparece déficit, convulsión o compromiso de conciencia, piensa en hematoma subdural o trombosis venosa cerebral</strong>, dos complicaciones conocidas de la hipotensión intracraneal: ahí la imagen deja de ser opcional. La resonancia con gadolinio es el examen de la hipotensión intracraneal espontánea.',
+      orders: [
+        'Resonancia de cerebro con gadolinio <span class="cond">hipotensión intracraneal espontánea, o sospecha de complicación</span>',
+        'Tomografía de cerebro si hay déficit, deterioro o pérdida del carácter postural <span class="cond">hematoma subdural</span>',
+        'Imagen con fase venosa si se sospecha trombosis venosa cerebral',
+        'En la cefalea post-punción: revisa el registro del procedimiento, el calibre de la aguja y la hora'
+      ],
+      manejo: [
+        ['🛏', 'Manejo conservador: reposo, <strong>hidratación</strong>, analgesia simple y <strong>cafeína</strong>, que es el coadyuvante con más uso en este cuadro.'],
+        ['💉', '<strong>Parche hemático epidural por anestesiología</strong> en la cefalea post-punción intensa o persistente: es el tratamiento con mejor rendimiento.'],
+        ['🔎', 'En la hipotensión intracraneal espontánea, el estudio y el tratamiento —parche o reparación de la fuga— son de neurología y neurorradiología.']
+      ],
+      avoid: '<strong>No asumas que toda cefalea postural tras una punción es benigna</strong>: la que cambia de carácter obliga a imagen. Y recuerda que la cefalea que empeora <strong>acostado</strong>, no de pie, apunta al problema inverso —hipertensión endocraneal— y se estudia en el escenario anterior.',
+      destino: [
+        ['🩺', '<strong>Coordinación con anestesiología</strong> para el parche hemático en la cefalea post-punción que no cede.'],
+        ['🏥', '<strong>Hospitalización</strong> si hay vómitos incontrolables, dolor incapacitante o sospecha de complicación.'],
+        ['🚪', '<strong>Alta</strong> con manejo conservador, control precoz y criterios de retorno explícitos sobre el cambio de carácter del dolor.']
+      ],
+      links: []
+    },
+    orl: {
+      label: 'Foco otorrinológico o dental con riesgo de complicación',
+      crit: 'Cefalea o dolor facial con fiebre y <strong>foco en senos paranasales, oído, mastoides, órbita o dientes</strong>: dolor a la percusión del seno, descarga purulenta, otalgia con otorrea, dolor dental, edema periorbitario. Sin meningismo ni inestabilidad hemodinámica.',
+      rule: '<b>Clave</b> Lo que importa en el box no es rotular la sinusitis: es <strong>buscar la complicación</strong>. Edema o eritema periorbitario, proptosis, diplopía, alteración de la motilidad ocular o de la visión, edema frontal, convulsión, déficit o compromiso de conciencia indican <strong>celulitis orbitaria, absceso, tromboflebitis del seno cavernoso o extensión intracraneal</strong>, y cambian el camino. La sinusitis esfenoidal puede presentarse como cefalea central intensa sin síntomas nasales.',
+      orders: [
+        'Tomografía <strong>con contraste</strong> de senos, órbita o peñasco según el foco, si hay sospecha de complicación',
+        'Hemograma, PCR, hemocultivos si hay fiebre alta o compromiso del estado general',
+        'Evaluación por otorrinolaringología, oftalmología o cirugía maxilofacial según el foco',
+        'Glicemia: la mucormicosis rinoorbitaria es un cuadro del diabético descompensado y del inmunosuprimido'
+      ],
+      manejo: [
+        ['💊', 'Antibiótico según el foco, la gravedad y el mapa local <span class="cond">esquema y dosis: verificar con protocolo institucional y PROA local</span>. La sinusitis aguda no complicada <strong>no siempre requiere antibiótico</strong>.'],
+        ['👁', 'Ante compromiso orbitario, <strong>oftalmología el mismo día</strong>: la pérdida visual y la extensión intracraneal son las complicaciones temidas.'],
+        ['🔎', 'Analgesia, manejo del dolor dental y drenaje por el especialista cuando corresponde.']
+      ],
+      avoid: '<strong>No pidas radiografía de senos paranasales:</strong> no distingue la sinusitis bacteriana de la viral y no cambia la conducta. Y no trates como «sinusitis» una cefalea con compromiso neurológico o visual.',
+      destino: [
+        ['🏥', '<strong>Hospitalización</strong> con antibiótico endovenoso si hay complicación orbitaria o intracraneal, o compromiso del estado general.'],
+        ['🚪', '<strong>Alta</strong> con tratamiento y control precoz en el cuadro no complicado, con criterios de retorno explícitos sobre el ojo y el estado neurológico.']
+      ],
+      links: []
+    }
+  };
+
+  // ── Texto de alta del camino B1 por situación ─────────────────────
+  const B1TXT = {
+    primera: {
+      dx: 'CEFALEA EVALUADA EN URGENCIA, SIN SIGNOS DE CAUSA GRAVE',
+      rec: ['Tome el analgésico al comienzo del dolor, no cuando ya esté muy intenso.',
+            'No use analgésicos más de 2 días por semana de forma habitual: el uso frecuente genera un dolor de cabeza propio, más difícil de tratar.',
+            'Cuide el sueño regular, no se salte comidas, hidrátese y limite el alcohol y el exceso de cafeína.',
+            'Anote en un calendario los días con dolor, qué lo desencadenó y qué remedio tomó: es lo que permitirá elegir un tratamiento preventivo.'],
+      control: 'Control en su centro de salud en 2 a 4 semanas, y antes si el dolor cambia o se repite con frecuencia.'
+    },
+    distinta: {
+      dx: 'CEFALEA DISTINTA DE LA HABITUAL, EVALUADA EN URGENCIA',
+      rec: ['Su dolor de cabeza fue distinto del habitual, por eso se revisó con especial cuidado. El examen de hoy fue normal.',
+            'Si el dolor vuelve a ser distinto, más intenso o aparece con síntomas nuevos, debe ser reevaluado: no asuma que es lo mismo de siempre.',
+            'Tome el analgésico al comienzo del dolor y no lo use más de 2 días por semana de forma habitual.',
+            'Lleve este documento a su control y cuente que esta vez el dolor fue diferente.'],
+      control: 'Control médico en 48 a 72 horas para reevaluar la evolución del dolor.'
+    },
+    abuso: {
+      dx: 'CEFALEA POR USO FRECUENTE DE ANALGÉSICOS',
+      rec: ['El remedio que le calma el dolor es, a la vez, lo que mantiene el dolor: la indicación es suspenderlo de forma programada, según el plan escrito que se le entregó.',
+            'Los primeros días de la suspensión el dolor puede empeorar. Es esperado y transitorio.',
+            'No reemplace un analgésico por otro de uso diario, y no use remedios con codeína ni otros derivados de la morfina.',
+            'Anote cada día si tuvo dolor y qué remedio tomó, y lleve ese registro a su control.'],
+      control: 'Control precoz con su equipo de salud para acompañar la suspensión, y evaluación por neurología para el tratamiento preventivo.'
+    },
+    hta: {
+      dx: 'CEFALEA CON PRESIÓN ARTERIAL ELEVADA',
+      rec: ['Hoy su presión estaba alta y su dolor de cabeza fue evaluado: el examen neurológico fue normal.',
+            'La presión alta pocas veces es la causa del dolor de cabeza; lo habitual es que el dolor suba la presión. Por eso no se baja de golpe.',
+            'Tome sus medicamentos para la presión tal como se le indicó, todos los días, aunque se sienta bien.',
+            'Controle su presión en su centro de salud y lleve el registro a los controles.'],
+      control: 'Control en su centro de salud en 48 a 72 horas para ajustar el tratamiento de la presión arterial.'
+    }
+  };
+
+  // ── Estado (en memoria, no se guarda) ─────────────────────────────
+  const state = {
+    flags: { C: new Set(), B2: new Set(), B1: new Set() },
+    noFlags: false,
+    path: null,
+    scenA: 'migrana',
+    scenB1: 'primera',
+    scenB2: 'arteritis',
+    med: { A: null, B1: null },
+    analg: { A: new Set(), B1: new Set() }
+  };
+
+  const PATH_NAMES = {
+    A:  'Camino A · Cefalea primaria conocida, alta rápida',
+    B1: 'Camino B1 · Cefalea nueva o distinta, sin bandera roja',
+    B2: 'Camino B2 · Bandera roja: se estudia hoy',
+    C:  'Camino C · Crítico: imagen, antibiótico o especialista ahora',
+    D:  'Camino D · Puede que no sea una cefalea primaria'
+  };
+
+  // ── Triage ────────────────────────────────────────────────────────
+  function flagLabels(group) {
+    return [...state.flags[group]].map(v => {
+      const b = document.querySelector('[data-group="' + group + '"] [data-v="' + v + '"]');
+      return b.childNodes[0].textContent.trim();
+    });
+  }
+
+  function computePath() {
+    const f = state.flags;
+    if (f.C.size) return { p: 'C', why: flagLabels('C') };
+    if (f.B2.size) return { p: 'B2', why: flagLabels('B2') };
+    if (f.B1.size) return { p: 'B1', why: flagLabels('B1') };
+    if (state.noFlags) return { p: 'A', why: ['Cefalea idéntica a la habitual, sin banderas rojas, con fondo de ojo y examen neurológico normales'] };
+    return null;
+  }
+
+  function suggestB2() {
+    const f = state.flags.B2;
+    if (f.has('arteritis') || f.has('nueva50')) return 'arteritis';
+    if (f.has('co')) return 'co';
+    if (f.has('cuello')) return 'diseccion';
+    if (f.has('papiledema')) return 'presion';
+    if (f.has('inmuno')) return 'inmuno';
+    if (f.has('postural')) return 'postural';
+    if (f.has('fiebreFoco')) return 'orl';
+    if (f.has('gestanteB2') || f.has('anticoag') || f.has('progresiva') || f.has('valsalva')) return 'trombosis';
+    return state.scenB2;
+  }
+
+  function suggestB1() {
+    const f = state.flags.B1;
+    if (f.has('status')) return 'status';
+    if (f.has('abuso')) return 'abuso';
+    if (f.has('distinta') || f.has('repite')) return 'distinta';
+    if (f.has('htaB1')) return 'hta';
+    return 'primera';
+  }
+
+  function renderVerdict() {
+    const v = document.getElementById('verdict');
+    const anyFlag = Object.values(state.flags).some(s => s.size);
+    const nf = document.getElementById('noFlags');
+    nf.disabled = anyFlag;
+    if (anyFlag) { state.noFlags = false; nf.classList.remove('on'); }
+
+    const r = computePath();
+    if (!r) {
+      v.className = 'verdict placeholder';
+      v.innerHTML = 'Marca las banderas rojas presentes, o confirma que no hay ninguna.<br>' +
+        '¿Puede que no sea una cefalea primaria (ojo, arterias temporales, senos, dientes, cuello, monóxido, fármacos)? ' +
+        '<button type="button" class="link-btn" onclick="showPath(\'D\', true)">Ver el desvío →</button>';
+      return;
+    }
+    if (r.p === 'B2') setB2(suggestB2());
+    if (r.p === 'B1') setB1(suggestB1());
+
+    let extra = '';
+    if (r.p === 'C' && state.flags.C.has('trueno')) extra = ' · Tomografía ahora: la ventana de las 6 horas se pierde esperando, y se estudia aunque el dolor ya haya cedido.';
+    if (r.p === 'C' && state.flags.C.has('meningismo')) extra = ' · Hemocultivos y antibiótico en la primera hora; la dexametasona va antes o junto con la primera dosis. No esperes la tomografía ni la punción.';
+    if (r.p === 'C' && state.flags.C.has('ojoAgudo')) extra = ' · Oftalmología ahora: la visión se pierde en horas.';
+    if (r.p === 'C' && state.flags.C.has('coGrave')) extra = ' · Oxígeno al 100 % ya, sin esperar la carboxihemoglobina, y pregunta por el resto de la casa.';
+    if (r.p === 'B2' && state.flags.B2.has('co')) extra = ' · Oxígeno al 100 % desde la sospecha: la oximetría de pulso es falsamente normal.';
+    if (r.p === 'B2' && state.flags.B2.has('arteritis')) extra = ' · VHS y PCR hoy; con síntomas visuales, oftalmología y corticoide sin esperar la biopsia.';
+    if (r.p === 'B2' && state.flags.B2.has('gestanteB2')) extra = ' · Gestante o puérpera: presión arterial, proteinuria y obstetricia en paralelo.';
+    if (r.p === 'B1' && state.flags.B1.has('distinta')) extra = ' · «Distinta» obliga a repasar las banderas rojas una por una antes de cerrar el caso.';
+
+    v.className = 'verdict p-' + r.p;
+    v.innerHTML =
+      '<div class="verdict-main">' +
+        '<div class="verdict-tag">Camino sugerido</div>' +
+        '<div class="verdict-title">' + PATH_NAMES[r.p] + '</div>' +
+        '<div class="verdict-why">' + r.why.join(' · ') + extra + '</div>' +
+      '</div>' +
+      '<button type="button" class="go-btn" onclick="showPath(\'' + r.p + '\', true)">Ir al camino ↓</button>';
+    showPath(r.p, false);
+  }
+
+  document.querySelectorAll('[data-group]').forEach(group => {
+    const g = group.dataset.group;
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (state.flags[g].has(v)) { state.flags[g].delete(v); btn.classList.remove('on'); }
+        else { state.flags[g].add(v); btn.classList.add('on'); }
+        renderVerdict();
+      });
+    });
+  });
+
+  document.getElementById('noFlags').addEventListener('click', e => {
+    state.noFlags = !state.noFlags;
+    e.currentTarget.classList.toggle('on', state.noFlags);
+    renderVerdict();
+  });
+
+  // ── Pestañas de camino ────────────────────────────────────────────
+  function showPath(p, scroll) {
+    state.path = p;
+    document.querySelectorAll('.path-tab').forEach(t => {
+      const on = t.dataset.path === p;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on);
+    });
+    document.querySelectorAll('.path-panel').forEach(pn => pn.classList.toggle('active', pn.id === 'panel-' + p));
+    if (scroll) document.getElementById('pathTabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  document.querySelectorAll('.path-tab').forEach(t => t.addEventListener('click', () => showPath(t.dataset.path, false)));
+
+  // ── Listas de fármacos y solicitudes ──────────────────────────────
+  function medButton(m, id, multi, on) {
+    return '<button type="button" class="med' + (multi ? ' multi' : '') + (on ? ' on' : '') + '" data-id="' + id + '">' +
+      '<span class="radio"></span>' +
+      '<span><span class="med-name">' + m.name + '</span>' +
+      '<span class="med-dose" style="display:block">' + m.dose + '</span>' +
+      (m.note ? '<span class="med-note" style="display:block">' + m.note + '</span>' : '') +
+      '</span></button>';
+  }
+
+  function renderMeds(path) {
+    const cfg = path === 'A' ? A[state.scenA] : B1[state.scenB1];
+    const ids = cfg.meds;
+    const box = document.querySelector('[data-meds="' + path + '"]');
+    const boxLabel = box.previousElementSibling;
+
+    if (!ids.length) {
+      state.med[path] = null;
+      box.innerHTML = '';
+      box.style.display = 'none';
+      if (boxLabel && boxLabel.classList.contains('block-label')) boxLabel.style.display = 'none';
+    } else {
+      box.style.display = '';
+      if (boxLabel && boxLabel.classList.contains('block-label')) boxLabel.style.display = '';
+      if (!ids.includes(state.med[path])) state.med[path] = ids[0];
+      box.innerHTML = ids.map(id => medButton(MEDS[id], id, false, state.med[path] === id)).join('');
+      box.querySelectorAll('.med').forEach(b => b.addEventListener('click', () => {
+        state.med[path] = b.dataset.id;
+        renderMeds(path);
+      }));
+    }
+
+    const aIds = cfg.analg;
+    [...state.analg[path]].forEach(a => { if (!aIds.includes(a)) state.analg[path].delete(a); });
+    const abox = document.querySelector('[data-analg="' + path + '"]');
+    const aLabel = abox.previousElementSibling;
+    if (!aIds.length) {
+      abox.innerHTML = '';
+      abox.style.display = 'none';
+      if (aLabel && aLabel.classList.contains('block-label')) aLabel.style.display = 'none';
+    } else {
+      abox.style.display = '';
+      if (aLabel && aLabel.classList.contains('block-label')) aLabel.style.display = '';
+      abox.innerHTML = aIds.map(id => medButton(ANALG[id], id, true, state.analg[path].has(id))).join('');
+      abox.querySelectorAll('.med').forEach(b => b.addEventListener('click', () => {
+        const id = b.dataset.id;
+        state.analg[path].has(id) ? state.analg[path].delete(id) : state.analg[path].add(id);
+        renderMeds(path);
+      }));
+    }
+
+    renderCopy(path);
+  }
+
+  // ── Escenario del camino A ────────────────────────────────────────
+  function setA(s) {
+    state.scenA = s;
+    document.querySelectorAll('#aScen .opt').forEach(b => b.classList.toggle('on', b.dataset.v === s));
+    document.getElementById('aCrit').innerHTML = A[s].crit;
+    document.getElementById('aAvoid').innerHTML = A[s].avoid;
+    renderMeds('A');
+  }
+  document.getElementById('aScen').innerHTML = Object.entries(A)
+    .map(([k, v]) => '<button type="button" class="opt" data-v="' + k + '">' + v.label + '</button>').join('');
+  document.querySelectorAll('#aScen .opt').forEach(b => b.addEventListener('click', () => setA(b.dataset.v)));
+
+  // ── Situación del camino B1 ───────────────────────────────────────
+  function plainList(rows) {
+    return rows.map(([icon, html]) =>
+      '<div class="plain-item"><span class="bullet-icon">' + icon + '</span><span>' + html + '</span></div>').join('');
+  }
+
+  function setB1(s) {
+    state.scenB1 = s;
+    document.querySelectorAll('#b1Scen .opt').forEach(b => b.classList.toggle('on', b.dataset.v === s));
+    document.getElementById('b1Crit').innerHTML = B1[s].crit;
+    document.getElementById('b1Destino').innerHTML = plainList(B1[s].destino);
+    document.getElementById('b1Warn').innerHTML = '<span>⚠️</span><span>' + B1[s].warn + '</span>';
+    renderMeds('B1');
+  }
+  document.getElementById('b1Scen').innerHTML = Object.entries(B1)
+    .map(([k, v]) => '<button type="button" class="opt" data-v="' + k + '">' + v.label + '</button>').join('');
+  document.querySelectorAll('#b1Scen .opt').forEach(b => b.addEventListener('click', () => setB1(b.dataset.v)));
+
+  // ── Escenario del camino B2 ───────────────────────────────────────
+  function setB2(s) {
+    state.scenB2 = s;
+    const c = B2[s];
+    document.querySelectorAll('#b2Scen .opt').forEach(b => b.classList.toggle('on', b.dataset.v === s));
+    document.getElementById('b2Crit').innerHTML = c.crit;
+    document.getElementById('b2Rule').innerHTML = c.rule;
+    document.getElementById('b2Orders').innerHTML = c.orders.map(o => '<li>' + o + '</li>').join('');
+    document.getElementById('b2Manejo').innerHTML = plainList(c.manejo);
+    document.getElementById('b2Avoid').innerHTML = c.avoid;
+    document.getElementById('b2Destino').innerHTML = plainList(c.destino);
+    document.getElementById('b2Links').innerHTML = c.links
+      .map(([href, label]) => '<a class="cross-link" href="' + href + '">' + label + '</a>').join('');
+  }
+  document.getElementById('b2Scen').innerHTML = Object.entries(B2)
+    .map(([k, v]) => '<button type="button" class="opt" data-v="' + k + '">' + v.label + '</button>').join('');
+  document.querySelectorAll('#b2Scen .opt').forEach(b => b.addEventListener('click', () => setB2(b.dataset.v)));
+
+  // ── Texto de indicaciones ─────────────────────────────────────────
+  const ALARM_BASE = [
+    'Dolor de cabeza que aparece de golpe y llega a lo más fuerte en menos de un minuto, aunque después se alivie.',
+    'Dolor de cabeza distinto del habitual: en otro lugar, mucho más intenso, o con síntomas que nunca había tenido.',
+    'Fiebre con rigidez de cuello, manchas rojas o moradas en la piel, o decaimiento importante.',
+    'Vómitos repetidos, visión doble o borrosa, pérdida de visión, o dolor intenso en un ojo con el ojo rojo.',
+    'Debilidad o falta de sensibilidad en la cara, un brazo o una pierna, dificultad para hablar, confusión o convulsión.',
+    'Somnolencia excesiva, dificultad para despertar, o un cambio en la forma de comportarse que noten quienes lo rodean.',
+    'Dolor de cabeza que empeora al acostarse, que lo despierta de madrugada, o que aumenta día tras día.',
+    'Si está embarazada o tuvo un parto en las últimas 6 semanas: cualquier dolor de cabeza nuevo debe evaluarse el mismo día.'
+  ];
+
+  function buildText(path) {
+    const L = [];
+
+    if (path === 'A') {
+      const sc = A[state.scenA];
+      const med = MEDS[state.med.A];
+      L.push('INDICACIONES AL ALTA — ' + sc.dx.toUpperCase(), '');
+      L.push('Hoy se evaluó su dolor de cabeza. El examen físico y neurológico, incluido el fondo de ojo, la');
+      L.push('presión arterial y la temperatura, no mostró signos de una causa grave, y el dolor corresponde al');
+      L.push('tipo de cefalea que se le indica a continuación. Por eso no se pidieron exámenes de imagen: en este');
+      L.push('cuadro no aportan y pueden llevar a estudios innecesarios. Esto no descarta para siempre otra causa:');
+      L.push('por eso son importantes los signos de alarma y el control.');
+      L.push('', 'Tratamiento:');
+      if (med) L.push('• ' + med.pt);
+      [...state.analg.A].forEach(a => L.push('• ' + ANALG[a].pt));
+      L.push('', 'Recomendaciones:');
+      sc.rec.forEach(r => L.push('• ' + r));
+      L.push('', 'CONSULTE DE INMEDIATO EN URGENCIA si presenta:');
+      [...ALARM_BASE, ...sc.extraAlarm].forEach(a => L.push('• ' + a));
+      L.push('', 'Control:');
+      L.push('• ' + sc.control);
+      L.push('', 'Se explicaron el diagnóstico, el tratamiento y los signos de alarma. El paciente refiere');
+      L.push('comprender las indicaciones.');
+      return L.join('\n');
+    }
+
+    const sc = B1[state.scenB1];
+    if (!sc.discharge) {
+      return 'Este paciente NO se va de alta desde el box en este momento.\n\n' +
+        'Situación seleccionada: ' + sc.label.replace(/<[^>]*>/g, '') + '.\n\n' +
+        'La cefalea refractaria al tratamiento del box necesita un segundo ciclo con un esquema distinto,\n' +
+        'hidratación, reevaluación horaria consignada y observación prolongada u hospitalización si el dolor\n' +
+        'sigue incapacitante o no tolera líquidos. Antes de concluir que es refractaria, vuelve a buscar la\n' +
+        'causa secundaria. Revisa el bloque «Destino» de este camino.';
+    }
+
+    const txt = B1TXT[state.scenB1];
+    const med = MEDS[state.med.B1];
+    L.push('INDICACIONES AL ALTA — ' + txt.dx, '');
+    L.push('Hoy se evaluó su dolor de cabeza. El examen físico y neurológico, incluido el fondo de ojo, la');
+    L.push('presión arterial y la temperatura, no mostró signos de una causa grave. Por eso no se pidieron');
+    L.push('exámenes de imagen de urgencia. Esto no significa que su dolor de cabeza esté estudiado por');
+    L.push('completo: por eso necesita el control que se indica más abajo y conocer los signos de alarma.');
+    L.push('', 'Tratamiento y seguimiento:');
+    if (med) L.push('• ' + med.pt);
+    [...state.analg.B1].forEach(a => L.push('• ' + ANALG[a].pt));
+    L.push('• Continúe sus medicamentos habituales, tal como los tomaba antes de esta consulta.');
+    L.push('', 'Recomendaciones:');
+    txt.rec.forEach(r => L.push('• ' + r));
+    L.push('', 'CONSULTE DE INMEDIATO EN URGENCIA si presenta:');
+    ALARM_BASE.forEach(a => L.push('• ' + a));
+    L.push('', 'Control:');
+    L.push('• ' + txt.control);
+    L.push('', 'Se explicaron la evaluación realizada, el tratamiento, el plan de control y los signos de');
+    L.push('alarma. El paciente refiere comprender las indicaciones.');
+    return L.join('\n');
+  }
+
+  function renderCopy(path) {
+    const el = document.getElementById('copy-' + path);
+    if (el) el.textContent = buildText(path);
+  }
+
+  async function copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (e) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch (_) {}
+      ta.remove();
+      return ok;
+    }
+  }
+
+  document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
+    const ok = await copyText(buildText(btn.dataset.copy));
+    btn.textContent = ok ? 'Copiado ✓' : 'Selecciona y copia';
+    btn.classList.toggle('done', ok);
+    setTimeout(() => { btn.textContent = 'Copiar indicaciones'; btn.classList.remove('done'); }, 1800);
+  }));
+
+  // ── Checklists de alta ────────────────────────────────────────────
+  document.querySelectorAll('[data-check]').forEach(list => {
+    const p = list.dataset.check;
+    const status = document.querySelector('[data-status="' + p + '"]');
+    const boxes = list.querySelectorAll('input');
+    const upd = () => {
+      const n = [...boxes].filter(b => b.checked).length;
+      const done = n === boxes.length;
+      status.textContent = done ? '✓ Listo para el alta' : n + ' / ' + boxes.length + ' verificados';
+      status.classList.toggle('ok', done);
+    };
+    boxes.forEach(b => b.addEventListener('change', upd));
+    upd();
+  });
+
+  // ── Regla de Ottawa para hemorragia subaracnoidea ─────────────────
+  const ott = { gate: new Set(), crit: new Set(), touched: false };
+
+  function renderOttawa() {
+    const out = document.getElementById('ott-out');
+
+    if (!ott.touched) {
+      out.innerHTML = 'Revisa primero si la regla es aplicable y luego marca los criterios presentes.';
+      return;
+    }
+
+    if (ott.gate.size) {
+      out.innerHTML =
+        '<span class="big risk-mid">La regla NO se aplica a este paciente</span>' +
+        'Hay al menos un criterio de exclusión marcado, de modo que la regla de Ottawa no puede usarse para ' +
+        'orientar la decisión. <strong>Eso no significa que el riesgo sea menor: significa que es más alto o que no ' +
+        'fue estudiado</strong>, porque la regla se derivó excluyendo justamente a estos pacientes. ' +
+        'La decisión es clínica y el umbral de estudio es <strong>más bajo</strong>: déficit neurológico, paciente no ' +
+        'alerta, papiledema, antecedente de aneurisma, hemorragia subaracnoidea o tumor cerebral son por sí mismos ' +
+        'motivo de imagen urgente.' +
+        '<br><br><button type="button" class="link-btn" onclick="showPath(\'C\', true)">Ir al camino crítico →</button>';
+      return;
+    }
+
+    if (ott.crit.size) {
+      out.innerHTML =
+        '<span class="big risk-high">' + ott.crit.size + ' de 6 criterios · investigar</span>' +
+        '<strong>La regla indica investigar una hemorragia subaracnoidea.</strong> Con un solo criterio presente ya ' +
+        'corresponde estudiar: <strong>tomografía de cerebro sin contraste</strong> cuanto antes, porque la ventana de ' +
+        'las 6 horas desde el inicio del dolor es la que da la sensibilidad más alta. Si han pasado más de 6 horas o la ' +
+        'tomografía no es concluyente, el estudio continúa con punción lumbar o angiotomografía, según el protocolo ' +
+        'local y la probabilidad clínica. <em>Verificar con protocolo institucional.</em>' +
+        '<br><br>Recuerda que la regla <strong>no cubre los imitadores del trueno</strong>: trombosis venosa cerebral, ' +
+        'disección arterial cervical, vasoconstricción cerebral reversible, apoplejía hipofisaria e hipotensión ' +
+        'intracraneal necesitan su propio examen.' +
+        '<br><br><button type="button" class="link-btn" onclick="showPath(\'C\', true)">Ir al camino crítico →</button>';
+      return;
+    }
+
+    out.innerHTML =
+      '<span class="big risk-low">Ningún criterio presente</span>' +
+      'En la población en que fue derivada y validada, la regla <strong>no identifica riesgo</strong> de hemorragia ' +
+      'subaracnoidea con los seis criterios ausentes: su sensibilidad fue del 100 %, a costa de una especificidad baja ' +
+      '(en torno al 13–15 %). <strong>Es una regla de descarte, no un alta.</strong> El resultado no reemplaza el ' +
+      'juicio clínico, no descarta los imitadores del trueno y no exime de documentar el tiempo hasta el dolor ' +
+      'máximo, el fondo de ojo y el examen neurológico. <em>El umbral y la secuencia de estudio se ajustan al ' +
+      'protocolo institucional.</em>';
+  }
+
+  document.querySelectorAll('#ott-gate .opt').forEach(b => b.addEventListener('click', () => {
+    const k = b.dataset.g;
+    ott.touched = true;
+    if (ott.gate.has(k)) { ott.gate.delete(k); b.classList.remove('on'); }
+    else { ott.gate.add(k); b.classList.add('on'); }
+    renderOttawa();
+  }));
+
+  document.querySelectorAll('#ott-list .opt').forEach(b => b.addEventListener('click', () => {
+    const k = b.dataset.c;
+    ott.touched = true;
+    if (ott.crit.has(k)) { ott.crit.delete(k); b.classList.remove('on'); }
+    else { ott.crit.add(k); b.classList.add('on'); }
+    renderOttawa();
+  }));
+
+  document.getElementById('ott-reset').addEventListener('click', () => {
+    ott.gate.clear();
+    ott.crit.clear();
+    ott.touched = false;
+    document.querySelectorAll('#ott-gate .opt, #ott-list .opt').forEach(b => b.classList.remove('on'));
+    renderOttawa();
+  });
+
+  // ── Inicio ────────────────────────────────────────────────────────
+  setA('migrana');
+  setB1('primera');
+  setB2('arteritis');
+  renderOttawa();
+</script>
+<script>
+(function() {
+  var root = document.documentElement, KEY = 'oc-theme';
+  try { var t = localStorage.getItem(KEY); if (t) root.setAttribute('data-theme', t); } catch (e) {}
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function() {
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>

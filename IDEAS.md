@@ -496,7 +496,42 @@ Reglas de contenido:
       urgencia; los agentes de reversión de la anticoagulación; el esquema escalonado de analgesia
       parenteral y su disponibilidad (morfina, fentanilo, ketoprofeno, ketorolaco, metamizol,
       butilescopolamina); y las vías de derivación a cirugía, urología y ginecología.
-- [ ] Cefalea — base: `guia-cefalea.html`
+- [x] Cefalea — `sintoma-cefalea.html` (reemplaza en el index a `guia-cefalea.html`, que
+      queda accesible desde «Profundizar →»). Caminos A / B1 / B2 / C más un camino D de desvío
+      («puede que no sea una cefalea primaria»). La bifurcación la ordenan dos preguntas —**cuánto
+      tardó el dolor en llegar a su máximo** (menos de un minuto es cefalea en trueno y cambia el
+      camino entero) y **si es la cefalea de siempre o una nueva**— y, antes de marcar cualquier
+      bandera, **los cuatro gestos de dos minutos**: presión arterial, temperatura, fondo de ojo y
+      preguntar si alguien más en la casa tiene dolor de cabeza. El camino A es un *fast-track* para
+      la cefalea primaria conocida con migraña, tensional, racimos y cefalea por abuso de medicación:
+      el recuadro «NO pedir» apunta a la tomografía de la cefalea recurrente idéntica, a la
+      radiografía de senos paranasales, al laboratorio de rutina, a los opioides y a la tomografía
+      «para tranquilizar», y se insiste en que **la mejoría con el tratamiento no descarta una causa
+      secundaria**. El camino B1 toma la cefalea nueva o distinta sin bandera roja (primera crisis,
+      «es mi migraña pero distinta», status migrañoso, abuso de medicación y cefalea con presión muy
+      elevada sin daño de órgano blanco), con examen dirigido, laboratorio acotado y plazos en lugar
+      de imagen. El camino B2 reúne los ocho escenarios que se estudian hoy —arteritis de células
+      gigantes, monóxido de carbono, trombosis venosa cerebral, disección arterial cervical,
+      hipertensión endocraneal con papiledema, inmunosuprimido u oncológico, cefalea postural y foco
+      otorrinológico o dental— sobre una sola idea: **en casi todos ellos la tomografía sin contraste
+      es normal**, de modo que cada sospecha tiene su propio examen (fase venosa, vasos cervicales,
+      resonancia, VHS y PCR, carboxihemoglobina). El camino C reúne las siete emergencias en que
+      manda la sospecha: cefalea en trueno y hemorragia subaracnoidea (ventana de 6 h de la
+      tomografía, Perry 2011), meningitis bacteriana (antibiótico en la primera hora, dexametasona
+      antes o con la primera dosis, sin esperar la tomografía ni la punción), hemorragia
+      intracerebral, preeclampsia y eclampsia, apoplejía hipofisaria, glaucoma agudo de ángulo
+      cerrado e intoxicación grave por monóxido. Incluye la calculadora de la **regla de Ottawa para
+      hemorragia subaracnoidea** con sus criterios de exclusión, explicada como regla de descarte de
+      sensibilidad 100 % y especificidad baja, que no cubre los imitadores del trueno. Pendiente de
+      validación: todas las metas de tiempo propuestas; el esquema de la crisis de migraña del
+      servicio y la disponibilidad de sumatriptán subcutáneo y de clorpromazina en Chile; el esquema
+      antimicrobiano empírico y el uso de dexametasona en la meningitis según el PROA local; las
+      dosis de corticoide de la arteritis de células gigantes; el esquema obstétrico de sulfato de
+      magnesio y de control de la presión arterial; el tratamiento del glaucoma agudo acordado con
+      oftalmología; los umbrales y la disponibilidad de oxígeno hiperbárico en la intoxicación por
+      monóxido; los agentes de reversión de la anticoagulación; la secuencia local de estudio de la
+      cefalea en trueno después de las seis horas (punción lumbar frente a angiotomografía); y las
+      vías de derivación a neurología, neurocirugía, oftalmología y obstetricia.
 - [ ] Contusión / trauma menor — base: `guia-policontusiones.html`
 - [ ] Disnea (nueva)
 - [ ] Fiebre (nueva; enlazar al checklist de sepsis)
