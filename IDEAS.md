@@ -532,7 +532,46 @@ Reglas de contenido:
       monóxido; los agentes de reversión de la anticoagulación; la secuencia local de estudio de la
       cefalea en trueno después de las seis horas (punción lumbar frente a angiotomografía); y las
       vías de derivación a neurología, neurocirugía, oftalmología y obstetricia.
-- [ ] Contusión / trauma menor — base: `guia-policontusiones.html`
+- [x] Contusión / trauma menor — `sintoma-contusion.html` (reemplaza en el index a
+      `guia-policontusiones.html`, que queda accesible desde «Profundizar →»). Caminos A / B1 / B2 / C
+      más un camino D de desvío («puede que no sea solo una contusión»). La bifurcación la ordenan dos
+      preguntas —**¿está fisiológicamente normal?** y **¿el examen es completo y confiable?**— y, antes
+      de marcar cualquier bandera, **los cuatro gestos que se olvidan**: desvestir al paciente, girarlo
+      para palpar la columna, preguntar **por qué** se cayó —en el adulto mayor la caída suele ser un
+      síntoma y no un accidente— y revisar la anticoagulación, que lo saca de **todas** las reglas de
+      decisión. El camino A es un *fast-track* cuyo criterio de alta no es una imagen negativa sino el
+      **examen segmentario escrito con hora**: el recuadro «NO pedir» apunta a la radiografía de la zona
+      contundida sin dolor óseo, a la radiografía de cráneo, a la de parrilla costal (no cambia la
+      conducta), a la radiografía simple de abdomen, al antibiótico profiláctico de la contusión cerrada
+      y al reposo absoluto, e insiste en advertir que **el dolor y los hematomas aumentan en las primeras
+      48 horas**. El camino B1 toma la lesión localizada con una pregunta concreta (criterio de Ottawa
+      presente, tabaquera anatómica, trauma torácico localizado, herida que hay que explorar, reconsulta)
+      sobre una sola idea: **la radiografía normal es un paso, no una conclusión** —el escafoides y la
+      cadera del adulto mayor viven de ese error—. El camino B2 reúne los catorce escenarios del paciente
+      estable que sí se estudia hoy, donde vive el diagnóstico tardío del trauma contuso: el
+      anticoagulado con **intervalo lúcido**, la cervical cuyo dolor es diferido, el abdomen que estaba
+      blando a las dos horas, las costillas del adulto mayor (Bulger 2000), la fractura oculta de cadera,
+      la rabdomiólisis, el examen no confiable, la violencia y el estrangulamiento, la disección
+      cervical, el trauma ocular y el trauma en la embarazada. El camino C reúne los nueve cuadros en que
+      manda la sospecha: alteración fisiológica o mecanismo de alta energía, deterioro neurológico,
+      lesión medular, neumotórax a tensión, hemorragia no controlada y pelvis inestable, síndrome
+      compartimental, estrangulamiento, hematoma retrobulbar y globo abierto, y embarazo de 20 semanas o
+      más. Incluye **dos calculadoras**: la **regla canadiense de tomografía de cerebro** y la **regla
+      canadiense de columna cervical** (secuencial, con los cuatro pasos), ambas con su paso de
+      aplicabilidad explícito, porque el error característico es usarlas en quien queda fuera de su
+      población y concluir que «la regla dice que no necesita imagen». Pendiente de validación: todas las
+      metas de tiempo propuestas; el esquema escalonado de analgesia del servicio y su disponibilidad
+      (paracetamol, ibuprofeno, naproxeno, ketoprofeno, ketorolaco, opioides, gel tópico) y la
+      disponibilidad de bloqueos de pared torácica; la modalidad de imagen de columna cervical y las
+      proyecciones del protocolo local; los tiempos de observación del traumatismo craneal y los agentes
+      y esquemas de reversión de la anticoagulación; la indicación y la dosis del ácido tranexámico; el
+      preparado y el esquema de profilaxis antitetánica según el programa nacional de inmunizaciones; el
+      umbral de presión y la técnica de la fasciotomía; las metas de volumen, de diuresis y el rol de la
+      alcalinización en la rabdomiólisis; los esquemas antimicrobianos de la mordedura y de la herida
+      contaminada según el PROA local; la duración de la monitorización cardiotocográfica y la
+      inmunoprofilaxis anti-D; el acceso a resonancia o tomografía para la fractura oculta; los
+      formularios, plazos y obligaciones de notificación y denuncia; y las vías de derivación a
+      traumatología, neurocirugía, cirugía, urología, oftalmología y obstetricia.
 - [ ] Disnea (nueva)
 - [ ] Fiebre (nueva; enlazar al checklist de sepsis)
 - [ ] Mareo / vértigo (nueva; HINTS, VPPB en el camino rápido)
