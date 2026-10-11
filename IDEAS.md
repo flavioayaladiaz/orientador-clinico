@@ -572,7 +572,45 @@ Reglas de contenido:
       inmunoprofilaxis anti-D; el acceso a resonancia o tomografía para la fractura oculta; los
       formularios, plazos y obligaciones de notificación y denuncia; y las vías de derivación a
       traumatología, neurocirugía, cirugía, urología, oftalmología y obstetricia.
-- [ ] Disnea (nueva)
+- [x] Disnea — `sintoma-disnea.html` (nueva; no había guía previa de este motivo de consulta).
+      Seis caminos: A benigna de alta rápida, B1 cardiogénica, B2 obstructiva, B3 vascular, pleural o
+      infecciosa, C crítico y D de desvío («puede que no sea el pulmón ni el corazón»). Tres ideas la
+      ordenan: **el oxígeno se indica con objetivo escrito y no «al máximo»** —94–98 % en general y
+      **88–92 % en riesgo de hipercapnia**, según la guía británica de oxígeno en el adulto—, **el patrón
+      de la ecografía a pie de cama decide el camino** en seis preguntas (deslizamiento, líneas B y su
+      distribución, derrame, ventrículo derecho, pericardio, vena cava), y **la coexistencia es la regla**:
+      cuando hay banderas de más de un grupo, la página lo dice explícitamente y manda recorrer los dos
+      caminos, porque tratar solo una de las dos o tres causas del adulto mayor (EPOC + insuficiencia
+      cardíaca + neumonía) es el error más repetido de este síntoma. El camino A tiene un recuadro «NO pedir»
+      que apunta al dímero D sin probabilidad pretest, al angioTAC «por descartar», al péptido natriurético y
+      a la troponina de rutina, a los gases con saturación normal, a la radiografía de la infección respiratoria
+      alta, al antibiótico de la bronquitis aguda y a la espirometría desde el box, y su criterio de alta no es
+      una imagen negativa sino **la frecuencia respiratoria contada y la prueba de caminar en el box**. B1 se
+      organiza por perfil hemodinámico (hipertensivo «flash», congestivo, frío e insuficiencia derecha) sobre
+      la distinción que más cambia la conducta: **el edema pulmonar hipertensivo es redistribución y responde
+      al vasodilatador y a la ventilación no invasiva, no al bolo de furosemida**. B2 separa asma de EPOC en
+      los dos puntos que importan —objetivo de saturación e indicación de ventilación no invasiva— con el
+      corticoide sistémico precoz como intervención que cambia el curso, los criterios de Anthonisen para el
+      antibiótico y los 5 días de corticoide del ensayo REDUCE, y entrega el plan de alta con técnica
+      inhalatoria revisada. B3 reúne tromboembolismo, neumonía y sepsis, neumotórax, derrame y empiema,
+      taponamiento y aspiración o distrés. Incluye **tres calculadoras**: **Wells**, la **regla PERC** (con su
+      paso de aplicabilidad explícito: solo sirve con probabilidad clínica baja) y el **dímero D ajustado por
+      edad** (edad × 10 µg/L sobre los 50 años, ADJUST-PE), más **CURB-65** con lo que el puntaje no ve y que
+      igual hospitaliza. El camino D recorre la disnea que no es del pulmón ni del corazón —acidosis metabólica,
+      anemia, monóxido de carbono, metahemoglobinemia, tirotoxicosis, enfermedad neuromuscular, obstrucción
+      laríngea inducible, hiperventilación, causas mecánicas, intersticio y final de vida— con las **dos trampas
+      de la oximetría** que hay que saber de memoria. Pendiente de validación: todas las metas de tiempo
+      propuestas; los objetivos de saturación definitivos y los parámetros de ventilación no invasiva y de cánula
+      nasal de alto flujo del servicio; los esquemas y preparados de broncodilatador, corticoide sistémico e
+      inhalado, sulfato de magnesio, diurético, vasodilatador y vasoactivo; la dosis endovenosa de furosemida en
+      el usuario crónico; los esquemas antimicrobianos de la neumonía, de la exacerbación de EPOC y de la
+      aspiración según el PROA local; las unidades y el umbral del dímero D del laboratorio y la validez del
+      ajuste por edad en ese ensayo; los umbrales del péptido natriurético del laboratorio; el umbral local de
+      hospitalización de la neumonía y los criterios de manejo ambulatorio del tromboembolismo de bajo riesgo;
+      los criterios y la técnica de drenaje del neumotórax y el límite de volumen de la toracocentesis
+      evacuadora; la disponibilidad de azul de metileno y los umbrales y el acceso a oxígeno hiperbárico; el
+      punto de corte de la prueba de caminar en el box; el algoritmo de la embarazada; y las vías de derivación
+      a broncopulmonar, cardiología, cirugía de tórax y unidad de paciente crítico.
 - [ ] Fiebre (nueva; enlazar al checklist de sepsis)
 - [ ] Mareo / vértigo (nueva; HINTS, VPPB en el camino rápido)
 - [ ] Dolor / trauma de extremidades (nueva; reglas de Ottawa de tobillo y
