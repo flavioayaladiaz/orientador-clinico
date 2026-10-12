@@ -611,7 +611,68 @@ Reglas de contenido:
       evacuadora; la disponibilidad de azul de metileno y los umbrales y el acceso a oxígeno hiperbárico; el
       punto de corte de la prueba de caminar en el box; el algoritmo de la embarazada; y las vías de derivación
       a broncopulmonar, cardiología, cirugía de tórax y unidad de paciente crítico.
-- [ ] Fiebre (nueva; enlazar al checklist de sepsis)
+- [x] Fiebre — `sintoma-fiebre.html` (nueva; no había guía previa de este motivo de consulta; enlaza al
+      checklist de sepsis desde la bifurcación, el camino crítico y la calculadora de qSOFA). Seis caminos:
+      A foco benigno de alta rápida, B1 foco que se trata hoy, B2 fiebre sin foco, B3 huésped de riesgo,
+      C crítico y D de desvío («puede que no sea una infección»). Tres ideas la ordenan: **el huésped antes que
+      el foco** —la jerarquía de la bifurcación pone el huésped de riesgo por encima del foco encontrado, porque
+      la neutropenia, la asplenia, el embarazo, la prótesis y el catéter cambian el plazo, el espectro y la vía
+      antes de saber de qué se trata—, **la perfusión antes que la temperatura** —39,8 °C en un joven con
+      faringitis es un alta de media hora y 37,8 °C en un neutropénico es antibiótico en la primera hora— y
+      **la fiebre no siempre es infección**, con la separación explícita entre fiebre e hipertermia (mecanismo,
+      piel, respuesta al antipirético, rigidez, techo de temperatura y tratamiento) porque en la segunda el
+      antipirético no actúa y lo que corresponde es enfriar y retirar el agente. El camino A tiene un recuadro
+      «NO pedir» que apunta al hemograma, la proteína C reactiva y la procalcitonina «para ver si es viral o
+      bacteriano», a los hemocultivos del paciente ambulatorio con foco benigno, a la orina sin síntomas
+      urinarios, a la radiografía de la infección respiratoria alta, al panel viral que no cambia conducta, a la
+      tomografía «de búsqueda de foco», al antibiótico de la faringitis con McIsaac ≤ 1 y de la bronquitis
+      aguda, y a perseguir la normotermia; y su criterio de alta no es un examen normal sino el foco encontrado
+      con el paciente desvestido, el huésped revisado y el plazo de control escrito. B1 recorre siete focos
+      (respiratorio, urinario, piel y partes blandas, abdominal o biliar, articular o vertebral, catéter o
+      dispositivo, y ORL y dental), cada uno con la idea que lo ordena: la obstrucción de la pielonefritis que
+      necesita drenaje, la colangitis de Charcot y Reynolds, el «¿hay pus que drenar y puede ser necrotizante?»
+      de las partes blandas, la artrocentesis que no se posterga, la resonancia del dolor vertebral febril y la
+      pregunta de si el dispositivo se retira. B2 separa seis contextos (joven sano, adulto mayor o con
+      comorbilidad, viajero, exposición rural o a animales, postoperatorio y fármaco nuevo) sobre dos ideas:
+      **«sin foco» no significa «sin examinar»** —con el segundo examen desvestido, la percusión de toda la
+      columna, el periné, la boca y los sitios de punción— y **el tiempo rinde más que otro examen el mismo
+      día** en el paciente de bajo riesgo, siempre que el plazo quede escrito. Incluye la malaria del viajero
+      que se descarta hoy y el hantavirus de la exposición rural, con su trombocitopenia y hemoconcentración,
+      notificación inmediata y derivación precoz. B3 desarma el huésped en siete (neutropenia febril,
+      inmunosupresión no neutropénica, asplenia, válvula o prótesis o dispositivo, embarazo y puerperio, drogas
+      endovenosas, y cirrosis o diálisis o diabetes o desnutrición) y repite el dato que más cuesta internalizar:
+      la ausencia de fiebre, de pus y de signos inflamatorios es parte de la enfermedad. C reúne las seis
+      situaciones en que el tratamiento va antes del diagnóstico —sepsis y shock séptico con el bundle de la
+      primera hora, meningitis y encefalitis con la dexametasona **antes o junto con** la primera dosis y la
+      tomografía solo si hay criterio, meningococcemia, infección necrotizante que es pabellón y no imagen (con
+      el LRINEC explícitamente descartado como criterio para posponer la exploración), vía aérea amenazada por
+      infección e hipertermia grave—. D recorre la hipertermia (golpe de calor, síndrome neuroléptico maligno,
+      serotoninérgico, hipertermia maligna, anticolinérgico, simpaticomiméticos, abstinencia y tormenta
+      tiroidea) y la fiebre no infecciosa (fármacos y DRESS, reacción transfusional, hemorragia subaracnoidea,
+      enfermedad tromboembólica, inflamatorias, neoplasias, crisis suprarrenal e inflamación estéril), con las
+      **dos trampas del termómetro** para saber de memoria. Incluye **tres calculadoras**: **qSOFA** (con su
+      paso de aplicabilidad explícito: no es criterio diagnóstico, no se usa como única herramienta de tamizaje
+      y un 0 no descarta sepsis, con enlace a la NEWS2 del código sepsis), **MASCC** para la neutropenia febril
+      (0 a 26 puntos, umbral de riesgo bajo en 21, dejando claro que decide la vía y el lugar y no si se trata)
+      y **McIsaac** para la faringitis, con su recuadro de hallazgos que invalidan el puntaje. Secciones
+      transversales: «siempre en paralelo», «el antipirético no es el tratamiento» (objetivo de confort, ensayo
+      HEAT, medios físicos que sí y que no), «lo que el laboratorio dice y lo que no» (hemocultivos, marcadores,
+      lactato, imagen y exámenes dirigidos por epidemiología) y una tabla de antimicrobiano empírico por foco
+      encabezada por la advertencia de que el PROA local prevalece. Pendiente de validación: todas las metas de
+      tiempo propuestas; todos los esquemas antimicrobianos empíricos y sus dosis según el PROA local; la
+      elección y las dosis del antipirético disponible (en particular el lugar del metamizol en el servicio);
+      los esquemas de dexametasona, vancomicina, ampicilina y aciclovir de la meningitis y los criterios locales
+      de tomografía antes de la punción; el esquema de profilaxis de contactos del meningococo; el esquema y la
+      disponibilidad de oseltamivir y los grupos de riesgo de la campaña vigente; los objetivos, los métodos y
+      la monitorización del enfriamiento en la hipertermia, y las dosis de dantroleno, bromocriptina y
+      ciproheptadina; el esquema de hidrocortisona de la crisis suprarrenal y de la cobertura de estrés; las
+      metas de volumen en la sospecha de hantavirus y el flujo de confirmación y de derivación; la lista vigente
+      de enfermedades de notificación obligatoria, sus formularios y plazos; las normas y las salas de
+      aislamiento disponibles; el panel de pruebas de laboratorio accesibles para malaria, dengue,
+      leptospirosis, hantavirus y tuberculosis; el instrumento de estratificación de la neutropenia febril que
+      usa el servicio y su umbral de manejo ambulatorio; los esquemas obstétricos de la fiebre en el embarazo y
+      el puerperio; el tamizaje de sepsis obstétrica; y las vías de derivación a infectología, cirugía,
+      obstetricia, oncología y hematología, otorrinolaringología, traumatología y unidad de paciente crítico.
 - [ ] Mareo / vértigo (nueva; HINTS, VPPB en el camino rápido)
 - [ ] Dolor / trauma de extremidades (nueva; reglas de Ottawa de tobillo y
       rodilla como criterio "NO pedir imagen")
