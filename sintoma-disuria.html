@@ -390,6 +390,7 @@
     background: rgba(239,68,68,0.07);
     padding: 14px 16px;
   }
+  .order + .stop { margin-top: 14px; }
   .stop-title { font-family: var(--display); font-weight: 800; font-size: 15px; color: #fca5a5; margin-bottom: 8px; letter-spacing: 0.01em; }
   .stop ul, .order ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
   .stop li { font-size: 13.5px; color: #fecaca; line-height: 1.5; padding-left: 22px; position: relative; }
@@ -628,6 +629,7 @@
   }
   .note strong { color: var(--text); font-weight: 500; }
 
+  #s-epi { margin-top: 20px; }
   .references-footer {
     margin-top: 20px;
     border: 1px solid var(--border);
@@ -647,6 +649,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -711,72 +718,61 @@
       <a class="back-link" href="./index.html">← Volver</a>
       <button class="theme-btn" id="themeBtn" type="button" aria-label="Cambiar tema claro u oscuro">◐</button>
     </div>
-    <div class="header-badge">Síntoma cardinal · Adulto</div>
     <h1><span>Disuria</span></h1>
-    <p class="header-sub">
-      Decide el camino en los <strong>primeros 3 minutos</strong>. La mayoría de las cistitis se diagnostican
-      y tratan <strong>sin exámenes</strong>; los pacientes complicados, en cambio, reciben
-      <strong>todas las órdenes juntas</strong> desde el inicio.
-    </p>
   </div>
 
   <!-- 01 · BIFURCACIÓN -->
   <div class="section s1" id="s1" style="animation-delay:0.06s;">
     <div class="section-header" onclick="toggleSection('s1')">
-      <span class="section-num">MIN 0–3</span>
       <div>
         <div class="section-title">¿Tiene banderas rojas?</div>
-        <div class="section-subtitle">Marca lo presente. Manda el grupo más grave</div>
       </div>
       <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
     </div>
     <div class="section-body">
 
       <div class="q-block grp-C">
-        <div class="q-label">Sepsis <span class="arrow">→ camino C</span></div>
         <div class="opts" data-group="C">
           <button type="button" class="opt" data-v="pas">PAS ≤ 100 mmHg</button>
           <button type="button" class="opt" data-v="fr">FR ≥ 22</button>
           <button type="button" class="opt" data-v="conciencia">Alteración de conciencia</button>
-          <button type="button" class="opt" data-v="perfusion">Mala perfusión<span class="sub">piel moteada · llene capilar &gt; 3 s · oliguria</span></button>
+          <button type="button" class="opt" data-v="perfusion">Mala perfusión</button>
         </div>
       </div>
 
       <div class="q-block grp-B2">
-        <div class="q-label">Requiere hospitalización <span class="arrow">→ camino B2</span></div>
         <div class="opts" data-group="B2">
           <button type="button" class="opt" data-v="vomitos">Vómitos o intolerancia oral</button>
-          <button type="button" class="opt" data-v="obstruccion">Sospecha de obstrucción<span class="sub">cólico + fiebre · litiasis · globo vesical · anuria</span></button>
+          <button type="button" class="opt" data-v="obstruccion">Sospecha de obstrucción<span class="sub">dolor tipo cólico</span></button>
           <button type="button" class="opt" data-v="inmuno">Inmunosupresión, trasplante o neutropenia</button>
           <button type="button" class="opt" data-v="erc">ERC avanzada o riñón único</button>
           <button type="button" class="opt" data-v="sonda">Portador de sonda vesical</button>
-          <button type="button" class="opt" data-v="dmdesc">Diabetes descompensada<span class="sub">cetoacidosis o estado hiperosmolar</span></button>
-          <button type="button" class="opt" data-v="fallaPNA">Falla de tratamiento ambulatorio de pielonefritis</button>
+          <button type="button" class="opt" data-v="dmdesc">Diabetes descompensada</button>
+          <button type="button" class="opt" data-v="fallaPNA">Falla de tratamiento ambulatorio</button>
           <button type="button" class="opt" data-v="social">No puede asegurar tratamiento ni control</button>
         </div>
       </div>
 
       <div class="q-block grp-B1">
-        <div class="q-label">Complicada o sistémica <span class="arrow">→ camino B1</span></div>
         <div class="opts" data-group="B1">
           <button type="button" class="opt" data-v="fiebre">Fiebre ≥ 38 °C o calofríos</button>
           <button type="button" class="opt" data-v="lumbar">Dolor lumbar o puñopercusión (+)</button>
           <button type="button" class="opt" data-v="hombre">Hombre</button>
           <button type="button" class="opt" data-v="embarazo">Embarazada</button>
-          <button type="button" class="opt" data-v="riesgo">Diabetes mal controlada o adulto mayor frágil</button>
-          <button type="button" class="opt" data-v="instrum">Instrumentación o cirugía urológica reciente<span class="sub">o alteración anatómica de la vía urinaria</span></button>
-          <button type="button" class="opt" data-v="falla">Falla terapéutica o ITU recurrente<span class="sub">≥ 2 en 6 meses o ≥ 3 en un año</span></button>
+          <button type="button" class="opt" data-v="riesgo">Adulto mayor frágil</button>
+          <button type="button" class="opt" data-v="instrum">Instrumentación o cirugía urológica reciente</button>
+          <button type="button" class="opt" data-v="anatomia">Alteración anatómica de la vía urinaria</button>
+          <button type="button" class="opt" data-v="falla">ITU recurrente<span class="sub">≥ 2 en 6 meses o ≥ 3 en un año</span></button>
         </div>
       </div>
 
       <button type="button" class="no-flags" id="noFlags">
-        Ninguna → camino A
+        Ninguna
         <span class="sub">Mujer no embarazada, con disuria y polaquiuria o urgencia, sin flujo ni prurito vaginal.</span>
       </button>
 
       <div class="verdict placeholder" id="verdict">
-        Marca las banderas rojas presentes, o confirma que no hay ninguna.
-        <br>¿Hay flujo vaginal, secreción uretral o lesiones genitales?
+        ¿Hay flujo vaginal, secreción uretral o lesiones genitales?
         <button type="button" class="link-btn" onclick="openDiff()">Puede que no sea una ITU →</button>
       </div>
 
@@ -785,29 +781,22 @@
 
   <!-- PESTAÑAS DE CAMINO -->
   <div class="path-tabs" id="pathTabs" role="tablist">
-    <button type="button" class="path-tab t-A"  data-path="A"  role="tab"><span class="code">A</span><span class="name">Cistitis · alta rápida</span></button>
-    <button type="button" class="path-tab t-B1" data-path="B1" role="tab"><span class="code">B1</span><span class="name">Complicada · ambulatoria</span></button>
-    <button type="button" class="path-tab t-B2" data-path="B2" role="tab"><span class="code">B2</span><span class="name">Complicada · hospitalizar</span></button>
-    <button type="button" class="path-tab t-C"  data-path="C"  role="tab"><span class="code">C</span><span class="name">Sepsis / shock</span></button>
+    <button type="button" class="path-tab t-A"  data-path="A"  role="tab"><span class="name">Cistitis · alta rápida</span></button>
+    <button type="button" class="path-tab t-B1" data-path="B1" role="tab"><span class="name">Complicada · ambulatoria</span></button>
+    <button type="button" class="path-tab t-B2" data-path="B2" role="tab"><span class="name">Complicada · hospitalizar</span></button>
+    <button type="button" class="path-tab t-C"  data-path="C"  role="tab"><span class="name">Sepsis / shock</span></button>
   </div>
 
   <!-- ═══ CAMINO A ═══ -->
   <div class="path-panel t-A" id="panel-A" role="tabpanel">
     <div class="panel-head">
-      <div class="panel-code">Camino A · Fast-track</div>
+      <div class="panel-code">Fast-track</div>
       <div class="panel-title">Cistitis no complicada</div>
-      <div class="panel-crit">Mujer no embarazada · síntomas bajos típicos · sin fiebre ni dolor lumbar · sin flujo vaginal.</div>
     </div>
-    <div class="targets">
-      <span class="target">⏱ Alta en <b>&lt; 30 min</b></span>
-      <span class="target">🧪 Exámenes: <b>ninguno</b></span>
-    </div>
-
-    <div class="block-label">Stop workup</div>
     <div class="stop">
       <div class="stop-title">NO pedir</div>
       <ul>
-        <li>Orina completa ni tira reactiva</li>
+        <li>Orina completa</li>
         <li>Urocultivo</li>
         <li>Hemograma, PCR, creatinina ni otro laboratorio</li>
         <li>Ecografía ni TAC</li>
@@ -816,7 +805,6 @@
         <strong>El diagnóstico es clínico.</strong> Disuria más polaquiuria sin flujo vaginal da una probabilidad de ITU
         mayor del 90 %. Con una probabilidad pretest tan alta, un examen negativo no descarta la infección y
         <strong>no cambia la conducta</strong>; solo prolonga la estadía en el box.
-        Si es recurrente o hay falla terapéutica, pasa a <button type="button" class="link-btn" onclick="showPath('B1', true)">B1</button>.
       </div>
     </div>
 
@@ -835,51 +823,39 @@
     <div class="block-label">Checklist de alta</div>
     <div class="checklist" data-check="A">
       <label class="check"><input type="checkbox"> Sin fiebre, dolor lumbar ni banderas rojas</label>
-      <label class="check"><input type="checkbox"> Embarazo descartado (FUR; test en el box si hay duda)</label>
-      <label class="check"><input type="checkbox"> Alergias consultadas</label>
+      <label class="check"><input type="checkbox"> Embarazo descartado (FUR; test si hay duda)</label>
+      <label class="check"><input type="checkbox"> Alergias descartadas</label>
       <label class="check"><input type="checkbox"> Entiende el tratamiento y los signos de alarma</label>
     </div>
     <div class="check-status" data-status="A"></div>
 
     <div class="block-label">Indicaciones al paciente</div>
     <div class="copy-box">
-      <div class="copy-bar"><span>Texto para la ficha / entrega</span><button type="button" class="copy-btn" data-copy="A">Copiar indicaciones</button></div>
+      <div class="copy-bar"><button type="button" class="copy-btn" data-copy="A">Copiar indicaciones</button></div>
       <pre class="copy-pre" id="copy-A"></pre>
     </div>
-    <div class="copy-hint">El texto se arma con lo que selecciones arriba. No se guarda ningún dato.</div>
   </div>
 
   <!-- ═══ CAMINO B1 ═══ -->
   <div class="path-panel t-B1" id="panel-B1" role="tabpanel">
     <div class="panel-head">
-      <div class="panel-code">Camino B1 · Estudio dirigido, alta</div>
       <div class="panel-title">ITU complicada o pielonefritis estable</div>
-      <div class="panel-crit">Estable, tolera la vía oral, sin criterios de B2 ni de C. Se va de alta <strong>sin esperar resultados</strong>.</div>
     </div>
 
     <div class="block-label">Escenario</div>
     <div class="opts" id="b1Scen"></div>
-
-    <div class="targets">
-      <span class="target">⏱ Muestras + 1.ª dosis en <b>&lt; 60 min</b></span>
-      <span class="target">🚪 Alta en <b>&lt; 2 h</b></span>
-      <span class="target">🔬 Control con urocultivo en <b>48–72 h</b></span>
-    </div>
 
     <div class="block-label">Pedir · todo junto al ingreso</div>
     <div class="order">
       <div class="order-title">Órdenes</div>
       <ul id="b1Orders"></ul>
     </div>
-    <div class="inst-rule"><b>Regla institucional</b> El urocultivo solo se procesa si hay orina completa inflamatoria previa, fracaso terapéutico o pertenencia a una población especial (hombre, embarazada, ITU complicada). Pide ambos exámenes en la misma orden.</div>
 
-    <div class="block-label">Stop workup</div>
     <div class="stop">
       <div class="stop-title">NO pedir</div>
       <ul>
         <li>Hemograma ni PCR de rutina: no cambian el destino de un paciente estable que se va de alta</li>
-        <li>Imagen: sin sospecha de obstrucción no aporta; si la sospechas, el paciente pasa a B2</li>
-        <li>No esperar el urocultivo para dar el alta: se revisa en el control</li>
+        <li>Imagen: sin sospecha de obstrucción no aporta; si la sospechas, el paciente se hospitaliza</li>
       </ul>
       <div class="why"><strong>Creatinina</strong> solo si se usará amikacina, o si tiene más de 65 años, diabetes, sospecha de ERC o fármacos nefrotóxicos: define la dosis y el uso de nitrofurantoína.</div>
     </div>
@@ -896,14 +872,13 @@
       <label class="check"><input type="checkbox"> Orina completa y urocultivo tomados antes del antibiótico</label>
       <label class="check"><input type="checkbox"> Primera dosis administrada en el box (si corresponde)</label>
       <label class="check"><input type="checkbox"> Tolera la vía oral, sin signos de sepsis</label>
-      <label class="check"><input type="checkbox"> Alta asistida o control a las 48–72 h agendado, y responsable de revisar el urocultivo definido</label>
       <label class="check"><input type="checkbox"> Entiende el tratamiento y los signos de alarma</label>
     </div>
     <div class="check-status" data-status="B1"></div>
 
     <div class="block-label">Indicaciones al paciente</div>
     <div class="copy-box">
-      <div class="copy-bar"><span>Texto para la ficha / entrega</span><button type="button" class="copy-btn" data-copy="B1">Copiar indicaciones</button></div>
+      <div class="copy-bar"><button type="button" class="copy-btn" data-copy="B1">Copiar indicaciones</button></div>
       <pre class="copy-pre" id="copy-B1"></pre>
     </div>
     <div class="copy-hint">El texto se arma con el escenario y los fármacos elegidos. No se guarda ningún dato.</div>
@@ -912,7 +887,7 @@
   <!-- ═══ CAMINO B2 ═══ -->
   <div class="path-panel t-B2" id="panel-B2" role="tabpanel">
     <div class="panel-head">
-      <div class="panel-code">Camino B2 · Estudio dirigido, hospitalización</div>
+      <div class="panel-code">Estudio dirigido, hospitalización</div>
       <div class="panel-title">ITU complicada que no puede irse a casa</div>
       <div class="panel-crit">Intolerancia oral, sospecha de obstrucción, inmunosupresión, ERC avanzada o riñón único, sonda vesical,
         diabetes descompensada, falla del tratamiento ambulatorio, embarazada con fiebre o dolor lumbar, o paciente que no puede asegurar el tratamiento.</div>
@@ -986,14 +961,14 @@
         bacilo gram negativo no fermentador (<em>Pseudomonas</em>, <em>Acinetobacter</em>) o <em>S. aureus</em>, ITU a repetición, paciente inmunosuprimido.</span></div>
       <div class="plain-item"><span class="bullet-icon">🪨</span><span><strong>Obstrucción + infección = urología inmediata.</strong> La pionefrosis requiere drenaje (nefrostomía o catéter ureteral); el antibiótico solo no basta.</span></div>
       <div class="plain-item"><span class="bullet-icon">🤰</span><span><strong>Embarazada:</strong> hospitalizar, con evaluación obstétrica.</span></div>
-      <div class="plain-item"><span class="bullet-icon">⚠️</span><span><strong>Si aparece hipotensión, confusión o taquipnea,</strong> pasa a <button type="button" class="link-btn" onclick="showPath('C', true)">camino C</button>.</span></div>
+      <div class="plain-item"><span class="bullet-icon">⚠️</span><span><strong>Si aparece hipotensión, confusión o taquipnea,</strong> pasa a <button type="button" class="link-btn" onclick="showPath('C', true)">manejo de sepsis</button>.</span></div>
     </div>
   </div>
 
   <!-- ═══ CAMINO C ═══ -->
   <div class="path-panel t-C" id="panel-C" role="tabpanel">
     <div class="panel-head">
-      <div class="panel-code">Camino C · Crítico</div>
+      <div class="panel-code">Crítico</div>
       <div class="panel-title">Sepsis o shock séptico de foco urinario</div>
       <div class="panel-crit">ITU con disfunción orgánica. Es <strong>shock séptico</strong> si requiere vasopresores para una PAM ≥ 65 y tiene lactato &gt; 2 mmol/L pese a volemizar.</div>
     </div>
@@ -1054,39 +1029,9 @@
     <a class="cross-link" href="./checklist-sepsis_4.html">→ Abrir checklist de sepsis y shock séptico</a>
   </div>
 
-  <!-- EPIDEMIOLOGÍA LOCAL -->
-  <div class="section s2 collapsed" id="s-epi">
-    <div class="section-header" onclick="toggleSection('s-epi')">
-      <span class="section-num">LOCAL</span>
-      <div>
-        <div class="section-title">Epidemiología local · HUAP 2023</div>
-        <div class="section-subtitle">Por qué estos esquemas empíricos</div>
-      </div>
-      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-    </div>
-    <div class="section-body">
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Agente (urocultivos de urgencia)</th><th>Sensibilidad</th></tr></thead>
-          <tbody>
-            <tr><td><em>E. coli</em> · 84 %</td><td>Amikacina 98 % · ceftriaxona &gt; 85 % · quinolonas 50 %</td></tr>
-            <tr><td><em>K. pneumoniae</em> · 12 %</td><td>Amikacina 85 % · cefalosporinas de 3.ª generación ~60 % · quinolonas 50 %</td></tr>
-            <tr><td><em>P. aeruginosa</em> · 3 %</td><td>Amikacina 93 % · cefalosporina de 3.ª generación antipseudomónica 85 % · quinolonas 73 %</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="plain-list" style="margin-top:12px;">
-        <div class="plain-item"><span class="bullet-icon">🚫</span><span><strong>Sin quinolonas empíricas:</strong> la mitad de los <em>E. coli</em> y <em>K. pneumoniae</em> son resistentes.</span></div>
-        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>La amikacina es la base del esquema hospitalizado:</strong> mantiene sensibilidad ≥ 85 % en todos los agentes.</span></div>
-      </div>
-      <div class="copy-hint">Fuente: Informe de susceptibilidad antimicrobiana 2023 del HUAP, citado en el Protocolo PROA 12/2024.</div>
-    </div>
-  </div>
-
   <!-- 02 · NO ES ITU -->
   <div class="section s3 collapsed" id="s-diff" style="animation-delay:0.12s;">
     <div class="section-header" onclick="toggleSection('s-diff')">
-      <span class="section-num">DESVÍO</span>
       <div>
         <div class="section-title">Puede que no sea una ITU</div>
         <div class="section-subtitle">Disuria sin infección urinaria</div>
@@ -1101,8 +1046,8 @@
             <tr><td>Uretritis / cervicitis (ITS)</td><td>Pareja nueva, secreción uretral o cervical, inicio gradual, sin polaquiuria marcada</td><td>Estudio de ITS y tratamiento sindromático según la norma MINSAL de ITS; notificación y estudio de la pareja</td></tr>
             <tr><td>Vulvovaginitis</td><td>Flujo, prurito, disuria «externa» al pasar la orina por la piel</td><td>Especuloscopía y tratamiento según el agente probable. No indicar antibiótico urinario</td></tr>
             <tr><td>Herpes genital</td><td>Disuria muy intensa, vesículas o úlceras</td><td>Tratamiento antiviral; puede causar retención urinaria</td></tr>
-            <tr><td>Cólico renal sin fiebre</td><td>Dolor cólico, hematuria, sin fiebre</td><td>Manejo de litiasis. <strong>Si aparece fiebre, pasa a B2</strong></td></tr>
-            <tr><td>Prostatitis</td><td>Hombre con fiebre, dolor perineal, próstata dolorosa</td><td>Camino B1 (estable) o B2 (compromiso sistémico)</td></tr>
+            <tr><td>Cólico renal sin fiebre</td><td>Dolor cólico, hematuria, sin fiebre</td><td>Manejo de litiasis. <strong>Si aparece fiebre, hospitalizar</strong></td></tr>
+            <tr><td>Prostatitis</td><td>Hombre con fiebre, dolor perineal, próstata dolorosa</td><td>Ambulatoria si está estable; hospitalizar si hay compromiso sistémico</td></tr>
             <tr><td><em>S. aureus</em> en el urocultivo</td><td>Sin procedimiento urológico previo</td><td>Probable siembra hematógena: hemocultivos y búsqueda de un foco a distancia</td></tr>
           </tbody>
         </table>
@@ -1128,9 +1073,37 @@
     alergias y contraindicaciones antes de indicar cualquier fármaco.
   </div>
 
+  <!-- EPIDEMIOLOGÍA LOCAL -->
+  <div class="section s2 collapsed" id="s-epi">
+    <div class="section-header" onclick="toggleSection('s-epi')">
+      <div>
+        <div class="section-title">Epidemiología local · HUAP 2023</div>
+        <div class="section-subtitle">Por qué estos esquemas empíricos</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Agente (urocultivos de urgencia)</th><th>Sensibilidad</th></tr></thead>
+          <tbody>
+            <tr><td><em>E. coli</em> · 84 %</td><td>Amikacina 98 % · ceftriaxona &gt; 85 % · quinolonas 50 %</td></tr>
+            <tr><td><em>K. pneumoniae</em> · 12 %</td><td>Amikacina 85 % · cefalosporinas de 3.ª generación ~60 % · quinolonas 50 %</td></tr>
+            <tr><td><em>P. aeruginosa</em> · 3 %</td><td>Amikacina 93 % · cefalosporina de 3.ª generación antipseudomónica 85 % · quinolonas 73 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="plain-list" style="margin-top:12px;">
+        <div class="plain-item"><span class="bullet-icon">🚫</span><span><strong>Sin quinolonas empíricas:</strong> la mitad de los <em>E. coli</em> y <em>K. pneumoniae</em> son resistentes.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>La amikacina es la base del esquema hospitalizado:</strong> mantiene sensibilidad ≥ 85 % en todos los agentes.</span></div>
+      </div>
+      <div class="copy-hint">Fuente: Informe de susceptibilidad antimicrobiana 2023 del HUAP, citado en el Protocolo PROA 12/2024.</div>
+    </div>
+  </div>
+
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Hospital de Urgencia Asistencia Pública. <em>Protocolo clínico del manejo empírico de infecciones urinarias.</em> Código PROA, versión 01. Unidad de Infectología; diciembre 2024.</div>
       <div class="ref-item">Trautner BW, et al. <em>IDSA 2025 Guidelines on Management and Treatment of Complicated Urinary Tract Infections — Duration of Antibiotics.</em> Clin Infect Dis. 2026;82(Suppl 3):i79–i88.</div>
@@ -1144,15 +1117,14 @@
       <div class="ref-item">Gupta K, Trautner B. <em>Infecciones de vías urinarias, pielonefritis y prostatitis.</em> En: Harrison. Principios de medicina interna. 18.ª ed. McGraw-Hill; 2012.</div>
       <div class="ref-item">Evans L, et al. <em>Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2021.</em> Crit Care Med. 2021;49(11):e1063–e1143.</div>
     </div>
-  </div>
+  </details>
 
   <!-- AGRADECIMIENTOS -->
   <div class="thanks">
-    <strong>Agradecimientos.</strong> A Jaime Carril, por su colaboración con el borrador clínico sobre infección
-    del tracto urinario en el adulto que sirvió de base para esta página.
+    <strong>Agradecimientos.</strong> A Jaime Carril, por su colaboración.
   </div>
 
-  <div class="footer">Solo uso clínico · 2026</div>
+  <div class="footer">Creado por Flavio Ayala Díaz · 2026</div>
 </div>
 
 <script>
@@ -1173,9 +1145,9 @@
 
   // ── Datos: fármacos (dosis para ficha + texto para el paciente) ───
   const MEDS = {
-    nitro3:   { name: 'Nitrofurantoína macrocristales', dose: '100 mg c/12 h VO × 3 días', note: 'Primera línea (protocolo HUAP). No usar con ClCr < 30 ni si se sospecha pielonefritis.',
+    nitro3:   { name: 'Nitrofurantoína', dose: '100 mg c/12 h VO × 3 días', note: 'Primera línea (protocolo HUAP). No usar con ClCr < 30 ni si se sospecha pielonefritis.',
                 pt: 'Nitrofurantoína 100 mg: 1 cápsula cada 12 horas por 3 días, junto con las comidas.' },
-    fosfo:    { name: 'Fosfomicina trometamol', dose: '3 g VO dosis única', note: 'Primera línea. Buena adherencia; algo menos eficaz que 5 días de nitrofurantoína.',
+    fosfo:    { name: 'Fosfomicina trometamol', dose: '3 g VO dosis única', note: 'Primera línea. Buena adherencia.',
                 pt: 'Fosfomicina 3 g: disolver 1 sobre en medio vaso de agua y tomarlo UNA sola vez, idealmente en la noche, después de orinar y con el estómago vacío.' },
     cefa5:    { name: 'Cefadroxilo', dose: '500 mg c/12 h VO × 5 días', note: 'Alternativa.',
                 pt: 'Cefadroxilo 500 mg: 1 cápsula cada 12 horas por 5 días.' },
@@ -1189,9 +1161,9 @@
                 pt: 'Cefadroxilo 500 mg: 1 cápsula cada 12 horas por 7 días.' },
     cotri21:  { name: 'Cotrimoxazol forte', dose: '800/160 mg c/12 h VO × 21 días', note: 'Protocolo HUAP para cistitis y prostatitis en el hombre. No usar con alergia a sulfas.',
                 pt: 'Cotrimoxazol forte 800/160 mg: 1 comprimido cada 12 horas por 21 días. No suspender antes aunque se sienta bien. Beba abundante agua.' },
-    cotriITS: { name: 'Cotrimoxazol forte + tratamiento de ITS', dose: 'Cotrimoxazol forte c/12 h × 21 días + ceftriaxona 2 g EV dosis única + azitromicina 1 g VO dosis única', note: 'Hombre joven. Derivar a UNACESS.',
+    cotriITS: { name: 'Cotrimoxazol forte + tratamiento de ITS', dose: 'Cotrimoxazol forte c/12 h × 21 días + ceftriaxona 2 g EV dosis única + doxiciclina 100 mg c/12 h VO × 7 días', note: 'Hombre joven. Derivar a UNACESS.',
                 pt: 'Cotrimoxazol forte 800/160 mg: 1 comprimido cada 12 horas por 21 días. No suspender antes aunque se sienta bien. Beba abundante agua.',
-                box: 'Hoy recibió en este servicio una dosis única de ceftriaxona inyectable y de azitromicina 1 g, para tratar una posible infección de transmisión sexual. Debe acudir a UNACESS para completar su estudio; su pareja también debe consultar.' },
+                box: 'Hoy recibió en este servicio una dosis única de ceftriaxona inyectable y receta de doxiciclina 100 mg cada 12 horas por 7 días, para tratar una posible infección de transmisión sexual. Debe acudir a UNACESS para completar su estudio; su pareja también debe consultar.' },
     embCefa:  { name: 'Cefadroxilo', dose: '500 mg c/12 h VO × 7 días', note: 'Seguro en todo el embarazo.',
                 pt: 'Cefadroxilo 500 mg: 1 cápsula cada 12 horas por 7 días.' },
     embNitro: { name: 'Nitrofurantoína macrocristales', dose: '100 mg c/12 h VO × 7 días', note: 'Evitar desde las 37 semanas y en el déficit de G6PD.',
@@ -1210,7 +1182,7 @@
     pna: {
       label: 'Pielonefritis estable',
       meds: ['pnaCro', 'pnaAmk'], analg: ['para', 'ibu'],
-      orders: ['Orina completa + urocultivo con antibiograma', 'Test de embarazo en mujer en edad fértil', 'Creatinina si se usará amikacina'],
+      orders: ['Orina completa + urocultivo', 'Test de embarazo en mujer en edad fértil', 'Creatinina si se usará amikacina'],
       avoid: '<strong>No usar nitrofurantoína ni fosfomicina</strong> (no alcanzan concentraciones útiles en el riñón) <strong>ni quinolonas</strong> (sensibilidad local ~50 %).',
       dx: 'Infección urinaria alta (pielonefritis)',
       extraAlarm: [],
@@ -1219,8 +1191,8 @@
     hombre: {
       label: 'Hombre: cistitis o prostatitis',
       meds: ['cotri21', 'cotriITS'], analg: ['para', 'ibu'],
-      orders: ['Orina completa + urocultivo con antibiograma', 'Estudio de ITS en hombre joven'],
-      avoid: 'Toda ITU en el hombre es complicada: <strong>no tratar 3 días</strong>. El protocolo HUAP usa el mismo esquema para cistitis y prostatitis sin criterio de hospitalización. Evitar el masaje prostático.',
+      orders: ['Orina completa + urocultivo', 'Estudio de ITS en hombre joven'],
+      avoid: '',
       dx: 'Infección urinaria en el hombre (vejiga o próstata)',
       extraAlarm: ['Imposibilidad de orinar o dolor intenso en la zona entre los testículos y el ano.'],
       control: 'Control en 48 a 72 horas para revisar el resultado del urocultivo. Complete los 21 días de tratamiento.'
@@ -1228,8 +1200,8 @@
     embarazo: {
       label: 'Cistitis en embarazada',
       meds: ['embCefa', 'embNitro'], analg: ['para'],
-      orders: ['Orina completa + urocultivo con antibiograma'],
-      avoid: '<strong>Contraindicados:</strong> quinolonas y cotrimoxazol. Sin fiebre ni dolor lumbar; si los tiene, es pielonefritis → B2.',
+      orders: ['Orina completa + urocultivo'],
+      avoid: '<strong>Contraindicados:</strong> quinolonas y cotrimoxazol. Sin fiebre ni dolor lumbar; si los tiene, es pielonefritis → hospitalizar.',
       dx: 'Infección urinaria baja durante el embarazo',
       extraAlarm: ['Contracciones, sangrado vaginal o pérdida de líquido por la vagina.', 'Disminución de los movimientos del bebé.'],
       control: 'Control en 48 a 72 horas para revisar el urocultivo. Al terminar el tratamiento necesitará un urocultivo de control: avise a su matrona o médico tratante.'
@@ -1237,7 +1209,7 @@
     falla: {
       label: 'Cistitis complicada (falla, recurrencia, instrumentación)',
       meds: ['cefa7', 'nitro7', 'fosfo'], analg: ['para', 'ibu'],
-      orders: ['Orina completa + urocultivo con antibiograma'],
+      orders: ['Orina completa + urocultivo'],
       avoid: 'Elige una <strong>familia distinta</strong> de la que falló. Ajusta según el urocultivo.',
       dx: 'Infección urinaria baja complicada',
       extraAlarm: [],
@@ -1257,10 +1229,10 @@
 
   // ── Triage ────────────────────────────────────────────────────────
   const PATH_NAMES = {
-    A:  'Camino A · Cistitis no complicada, alta rápida',
-    B1: 'Camino B1 · ITU complicada o pielonefritis estable, alta',
-    B2: 'Camino B2 · ITU complicada, hospitalizar',
-    C:  'Camino C · Sepsis de foco urinario'
+    A:  'Cistitis no complicada, alta rápida',
+    B1: 'ITU complicada o pielonefritis estable, alta',
+    B2: 'ITU complicada, hospitalizar',
+    C:  'Sepsis de foco urinario'
   };
 
   function flagLabels(group) {
@@ -1286,7 +1258,7 @@
     if (f.has('embarazo')) return 'embarazo';
     if (f.has('hombre')) return 'hombre';
     if (f.has('fiebre') || f.has('lumbar')) return 'pna';
-    if (f.has('falla') || f.has('instrum')) return 'falla';
+    if (f.has('falla') || f.has('instrum') || f.has('anatomia')) return 'falla';
     return state.scen;
   }
 
@@ -1300,7 +1272,7 @@
     const r = computePath();
     if (!r) {
       v.className = 'verdict placeholder';
-      v.innerHTML = 'Marca las banderas rojas presentes, o confirma que no hay ninguna.<br>¿Hay flujo vaginal, secreción uretral o lesiones genitales? <button type="button" class="link-btn" onclick="openDiff()">Puede que no sea una ITU →</button>';
+      v.innerHTML = '¿Hay flujo vaginal, secreción uretral o lesiones genitales? <button type="button" class="link-btn" onclick="openDiff()">Puede que no sea una ITU →</button>';
       return;
     }
     if (r.p === 'B1') setScenario(suggestScenario());
@@ -1383,6 +1355,7 @@
     document.querySelectorAll('#b1Scen .opt').forEach(b => b.classList.toggle('on', b.dataset.v === s));
     document.getElementById('b1Orders').innerHTML = B1[s].orders.map(o => `<li>${o}</li>`).join('');
     document.getElementById('b1Avoid').innerHTML = B1[s].avoid;
+    document.getElementById('b1Avoid').hidden = !B1[s].avoid;
     renderMeds('B1');
   }
   document.getElementById('b1Scen').innerHTML = Object.entries(B1)
@@ -1423,7 +1396,7 @@
     [...alarm, ...(isA ? [] : sc.extraAlarm)].forEach(a => L.push('• ' + a));
     L.push('', 'Control:');
     L.push('• ' + (isA
-      ? 'Si los síntomas persisten después de terminar el tratamiento, o reaparecen dentro de 2 semanas, controle en su CESFAM: necesitará un examen de orina.'
+      ? 'Si los síntomas persisten después de terminar el tratamiento, o reaparecen dentro de 2 semanas, consulte en su CESFAM.'
       : sc.control));
     L.push('', 'Se explicaron el diagnóstico, el tratamiento y los signos de alarma. El paciente refiere comprender las indicaciones.');
     return L.join('\n');
