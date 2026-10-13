@@ -1,0 +1,2530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Síntoma cardinal · Mareo y vértigo</title>
+<meta name="description" content="Mareo y vértigo en el adulto: bifurcación por tiempo y desencadenante, VPPB con Dix-Hallpike y Epley en el box sin imagen, examen oculomotor STANDING y HINTS+, patrón central que la TAC no descarta, el mareo que no es vestibular e indicaciones al alta listas para copiar.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --surface2: #eef1f5;
+    --border: rgba(15,23,42,0.10);
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --text-dim: #475569;
+  }
+  :root[data-theme="light"] body::before {
+    background-image:
+      linear-gradient(rgba(15,23,42,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99,102,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(20,184,166,0.06) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 32px; animation: fadeUp 0.6s ease both; }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 0;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .theme-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+    font-size: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .theme-btn:hover { color: var(--text); border-color: var(--text-muted); }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #6366f1, #14b8a6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .header-sub strong { color: var(--text); font-weight: 500; }
+
+  /* SECCIONES */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+  .section-title { font-family: var(--display); font-size: 15px; font-weight: 700; color: #fff; }
+  .section-subtitle { font-size: 12px; color: var(--text-muted); font-family: var(--mono); margin-top: 2px; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+  .section-body { padding: 20px 24px 24px; }
+
+  .s1 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s2 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s3 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s4 .section-num { background: rgba(59,130,246,0.12); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s5 .section-num { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s6 .section-num { background: rgba(20,184,166,0.12); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+
+  /* TRIAGE */
+  .q-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .q-label .arrow { color: var(--text-dim); letter-spacing: 0.04em; text-transform: none; }
+  .q-block { margin-bottom: 18px; }
+
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+    line-height: 1.4;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+  .opt.on { background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.45); color: #6ee7b7; }
+  .grp-C .opt.on  { background: rgba(239,68,68,0.14);  border-color: rgba(239,68,68,0.5);  color: #fca5a5; }
+  .grp-B2 .opt.on { background: rgba(99,102,241,0.14); border-color: rgba(99,102,241,0.5); color: #c7d2fe; }
+  .grp-B1 .opt.on { background: rgba(245,158,11,0.13); border-color: rgba(245,158,11,0.5); color: #fcd34d; }
+  .opt .sub { display: block; font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+  .opt.on .sub { color: inherit; opacity: 0.8; }
+
+  .no-flags {
+    width: 100%;
+    font-family: var(--display);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px dashed rgba(16,185,129,0.4);
+    background: rgba(16,185,129,0.05);
+    color: #6ee7b7;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.18s;
+  }
+  .no-flags .sub { display: block; font-family: var(--sans); font-weight: 400; font-size: 12.5px; color: var(--text-dim); margin-top: 4px; line-height: 1.5; }
+  .no-flags.on { border-style: solid; background: rgba(16,185,129,0.14); border-color: rgba(16,185,129,0.6); }
+  .no-flags:disabled { opacity: 0.35; cursor: not-allowed; }
+  .no-flags:focus-visible { outline: 2px solid var(--emerald); outline-offset: 2px; }
+
+  .verdict {
+    margin-top: 18px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    padding: 16px 18px;
+    border-left: 4px solid var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .verdict.placeholder { font-family: var(--mono); font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
+  .verdict-main { flex: 1; min-width: 220px; }
+  .verdict-tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+  .verdict-title { font-family: var(--display); font-size: 18px; font-weight: 700; color: #fff; line-height: 1.25; }
+  .verdict-why { font-size: 12.5px; color: var(--text-dim); margin-top: 6px; line-height: 1.5; }
+  .verdict.p-A  { border-left-color: var(--emerald); }
+  .verdict.p-B1 { border-left-color: var(--amber); }
+  .verdict.p-B2 { border-left-color: var(--indigo); }
+  .verdict.p-C  { border-left-color: var(--red); }
+
+  .go-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    padding: 11px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .go-btn:hover { background: rgba(255,255,255,0.1); }
+
+  .link-btn {
+    background: none;
+    border: none;
+    color: #93c5fd;
+    font-family: var(--mono);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* CAMINOS */
+  .path-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .path-tab {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 12px 12px 11px;
+    cursor: pointer;
+    text-align: left;
+    color: var(--text-dim);
+    transition: all 0.18s;
+    border-top: 3px solid var(--tab-accent);
+  }
+  .path-tab:hover { color: var(--text); background: var(--surface2); }
+  .path-tab:focus-visible { outline: 2px solid var(--tab-accent); outline-offset: 2px; }
+  .path-tab .code { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: var(--tab-accent); }
+  .path-tab .name { display: block; font-family: var(--display); font-size: 13.5px; font-weight: 700; margin-top: 3px; line-height: 1.2; }
+  .path-tab.active { background: var(--surface2); color: #fff; box-shadow: 0 0 0 1px var(--tab-accent) inset; }
+  .t-A  { --tab-accent: var(--emerald); }
+  .t-B1 { --tab-accent: var(--amber); }
+  .t-B2 { --tab-accent: var(--indigo); }
+  .t-C  { --tab-accent: var(--red); }
+
+  .path-panel {
+    display: none;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    padding: 22px 24px 24px;
+    margin-bottom: 20px;
+    border-top: 3px solid var(--tab-accent);
+  }
+  .path-panel.active { display: block; animation: fadeUp 0.35s ease both; }
+
+  .panel-head { margin-bottom: 14px; }
+  .panel-code { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tab-accent); }
+  .panel-title { font-family: var(--display); font-size: 22px; font-weight: 800; color: #fff; line-height: 1.2; margin-top: 4px; }
+  .panel-crit { font-size: 13px; color: var(--text-dim); margin-top: 6px; line-height: 1.55; }
+
+  .targets { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 6px; }
+  .target {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    padding: 7px 11px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .target b { color: var(--tab-accent); font-weight: 500; }
+
+  .block-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 22px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .block-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .subhead {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin: 20px 0 8px;
+    line-height: 1.3;
+  }
+
+  .stop {
+    border-radius: 14px;
+    border: 1px solid rgba(239,68,68,0.35);
+    background: rgba(239,68,68,0.07);
+    padding: 14px 16px;
+  }
+  .order + .stop { margin-top: 14px; }
+  .stop-title { font-family: var(--display); font-weight: 800; font-size: 15px; color: #fca5a5; margin-bottom: 8px; letter-spacing: 0.01em; }
+  .stop ul, .order ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .stop li { font-size: 13.5px; color: #fecaca; line-height: 1.5; padding-left: 22px; position: relative; }
+  .stop li::before { content: '✕'; position: absolute; left: 2px; color: var(--red); font-weight: 700; }
+  .stop li .cond { color: var(--text-muted); font-family: var(--mono); font-size: 11.5px; }
+  .stop .why { margin-top: 10px; font-size: 12.5px; color: var(--text-dim); line-height: 1.55; }
+  .stop .why strong { color: #fff; font-weight: 500; }
+
+  .order {
+    border-radius: 14px;
+    border: 1px solid rgba(16,185,129,0.3);
+    background: rgba(16,185,129,0.06);
+    padding: 14px 16px;
+  }
+  .order-title { font-family: var(--display); font-weight: 800; font-size: 15px; color: #6ee7b7; margin-bottom: 8px; }
+  .order li { font-size: 13.5px; color: var(--text); line-height: 1.5; padding-left: 22px; position: relative; }
+  .order li::before { content: '✓'; position: absolute; left: 2px; color: var(--emerald); font-weight: 700; }
+  .order li .cond { color: var(--text-muted); font-family: var(--mono); font-size: 11.5px; }
+  .order-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; }
+  .order-grid .order-title { font-size: 13px; font-family: var(--mono); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+
+  .inst-rule {
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: #fde68a;
+    background: rgba(245,158,11,0.07);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 10px;
+    padding: 10px 12px;
+    line-height: 1.5;
+  }
+  .inst-rule b { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); font-weight: 500; margin-right: 6px; }
+
+  /* PASOS DE MANIOBRA */
+  .steps { counter-reset: st; display: flex; flex-direction: column; gap: 8px; }
+  .step {
+    counter-increment: st;
+    position: relative;
+    padding: 12px 14px 12px 48px;
+    border-radius: 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .step::before {
+    content: counter(st);
+    position: absolute;
+    left: 14px;
+    top: 11px;
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--tab-accent, var(--text-dim));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step strong { color: #fff; font-weight: 500; }
+  .step .hold { display: block; font-family: var(--mono); font-size: 11.5px; color: #93c5fd; margin-top: 4px; }
+
+  /* FÁRMACOS */
+  .med-list { display: flex; flex-direction: column; gap: 8px; }
+  .med {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    width: 100%;
+    text-align: left;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    cursor: pointer;
+    color: var(--text-dim);
+    font-family: var(--sans);
+    transition: all 0.18s;
+  }
+  .med:hover { border-color: rgba(255,255,255,0.18); }
+  .med:focus-visible { outline: 2px solid var(--tab-accent); outline-offset: 2px; }
+  .med .radio {
+    width: 16px; height: 16px; border-radius: 50%;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .med.multi .radio { border-radius: 5px; }
+  .med.on { border-color: var(--tab-accent); background: rgba(255,255,255,0.04); }
+  .med.on .radio { border-color: var(--tab-accent); background: var(--tab-accent); box-shadow: inset 0 0 0 3px var(--surface2); }
+  .med-name { font-size: 14px; color: #fff; font-weight: 500; }
+  .med-dose { font-family: var(--mono); font-size: 12.5px; color: var(--text); margin-top: 2px; }
+  .med-note { font-size: 12px; color: var(--text-muted); margin-top: 3px; line-height: 1.45; }
+
+  .avoid {
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+  }
+  .avoid strong { color: #fca5a5; font-weight: 500; }
+
+  /* TABLA COMPACTA */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 11px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td { padding: 11px 14px; border-bottom: 1px solid var(--border); color: var(--text-dim); vertical-align: top; line-height: 1.5; }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; font-family: var(--mono); font-size: 12.5px; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ESQUEMAS */
+  .figure {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 16px 14px;
+    margin-bottom: 14px;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .fig-caption {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .fig-caption strong { color: var(--text-dim); font-weight: 500; }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 6px; }
+  .check {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    cursor: pointer;
+    line-height: 1.45;
+  }
+  .check input { accent-color: var(--emerald); width: 17px; height: 17px; margin-top: 1px; flex-shrink: 0; cursor: pointer; }
+  .check:has(input:checked) { color: var(--text); border-color: rgba(16,185,129,0.35); }
+  .check-status { font-family: var(--mono); font-size: 11.5px; color: var(--text-muted); margin-top: 8px; }
+  .check-status.ok { color: #6ee7b7; }
+
+  /* COPIADO */
+  .copy-box {
+    border-radius: 14px;
+    border: 1px solid rgba(59,130,246,0.3);
+    background: rgba(59,130,246,0.05);
+    overflow: hidden;
+  }
+  .copy-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 10px 12px 10px 16px;
+    border-bottom: 1px solid rgba(59,130,246,0.2);
+  }
+  .copy-bar span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #93c5fd; }
+  .copy-btn {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    background: var(--blue);
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.12s, background 0.2s;
+    white-space: nowrap;
+  }
+  .copy-btn:hover { background: #2563eb; }
+  .copy-btn:active { transform: scale(0.97); }
+  .copy-btn.done { background: var(--emerald); }
+  .copy-pre {
+    margin: 0;
+    padding: 14px 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 340px;
+    overflow-y: auto;
+  }
+  .copy-hint { font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.5; }
+
+  /* LISTAS Y BANNERS */
+  .plain-list { display: flex; flex-direction: column; gap: 8px; }
+  .plain-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 11px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+  .plain-item.flag { border-color: rgba(239,68,68,0.3); background: rgba(239,68,68,0.06); }
+
+  .warning-banner {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.55;
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.22);
+    color: #fca5a5;
+    margin-top: 12px;
+  }
+  .warning-banner strong { color: #fff; font-weight: 500; }
+
+  .info-banner {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.55;
+    background: rgba(59,130,246,0.07);
+    border: 1px solid rgba(59,130,246,0.22);
+    color: var(--text-dim);
+    margin-top: 12px;
+  }
+  .info-banner strong { color: #fff; font-weight: 500; }
+  .info-banner em { color: #fcd34d; font-style: normal; }
+
+  .amber-banner {
+    display: flex; gap: 12px; align-items: flex-start;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.55;
+    background: rgba(245,158,11,0.07);
+    border: 1px solid rgba(245,158,11,0.25);
+    color: #fde68a;
+    margin-top: 12px;
+  }
+  .amber-banner strong { color: #fff; font-weight: 500; }
+
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+
+  .links-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .links-row .cross-link { margin-top: 0; }
+
+  /* CALCULADORA */
+  .calc {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-top: 6px;
+  }
+  .calc-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; }
+  .calc-field { display: flex; flex-direction: column; gap: 6px; }
+  .calc-field label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .calc-field select, .calc-field input {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 9px 11px;
+    min-width: 150px;
+  }
+  .calc-field select:focus-visible, .calc-field input:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
+  .calc-out {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .calc-out strong { color: #fff; font-weight: 500; }
+  .calc-out em { color: #fcd34d; font-style: normal; }
+  .calc-out .big {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: #93c5fd;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .calc-out .big.risk-low { color: #6ee7b7; }
+  .calc-out .big.risk-mid { color: #fcd34d; }
+  .calc-out .big.risk-high { color: #fca5a5; }
+  .calc-reset {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 8px 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .calc-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+  /* DISCLAIMER Y PIE */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--emerald); }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body, .path-panel { padding: 16px; }
+    .section-header { padding: 16px; }
+    .path-tabs { grid-template-columns: repeat(2, 1fr); }
+    .calc-field, .calc-field select, .calc-field input { width: 100%; }
+    .opt { width: 100%; }
+    th, td { padding: 10px 12px; }
+    .copy-bar { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <a class="back-link" href="./index.html">← Volver</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Cambiar tema claro u oscuro">◐</button>
+    </div>
+    <h1><span>Mareo y vértigo</span></h1>
+    <div class="header-sub">No preguntes «¿qué tipo de mareo es?». Pregunta <strong>cuánto duró, qué lo
+      desencadena y qué muestra el examen de los ojos y de la marcha</strong>: eso separa el vértigo posicional que
+      se trata y se va de alta en el box, de la neuritis vestibular, y de los dos que matan —el infarto de fosa
+      posterior y el mareo que nunca fue vestibular—.</div>
+  </div>
+
+  <!-- 01 · BIFURCACIÓN -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">0–3 MIN</span>
+      <div>
+        <div class="section-title">¿Tiene banderas rojas?</div>
+        <div class="section-subtitle">Manda el grupo más grave que marques</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="q-label">Crítico <span class="arrow">→ el mareo es el síntoma, no el problema</span></div>
+      <div class="q-block grp-C">
+        <div class="opts" data-group="C">
+          <button type="button" class="opt" data-v="pas">PAS ≤ 90 mmHg o mala perfusión</button>
+          <button type="button" class="opt" data-v="conciencia">Alteración de conciencia</button>
+          <button type="button" class="opt" data-v="focal">Déficit focal nuevo<span class="sub">disartria · diplopía · disfagia · hemiparesia · hemihipoestesia</span></button>
+          <button type="button" class="opt" data-v="nosienta">No puede sentarse ni quedarse de pie sin ayuda</button>
+          <button type="button" class="opt" data-v="cefalea">Cefalea o cervicalgia intensa de inicio brusco</button>
+          <button type="button" class="opt" data-v="torax">Dolor torácico, disnea o síncope asociado</button>
+          <button type="button" class="opt" data-v="sangrado">Sangrado activo, melena o palidez marcada</button>
+          <button type="button" class="opt" data-v="wernicke">Confusión + ataxia + alteración de los movimientos oculares<span class="sub">alcohol · vómitos prolongados · cirugía bariátrica</span></button>
+          <button type="button" class="opt" data-v="hipoglicemia">Hipoglicemia o intoxicación sospechada<span class="sub">monóxido de carbono, fármacos</span></button>
+        </div>
+      </div>
+
+      <div class="q-label">Patrón central o no concluyente <span class="arrow">→ imagen y hospitalización</span></div>
+      <div class="q-block grp-B2">
+        <div class="opts" data-group="B2">
+          <button type="button" class="opt" data-v="nistCentral">Nistagmo vertical, torsional puro o que cambia de dirección</button>
+          <button type="button" class="opt" data-v="hitNormal">Impulso cefálico <strong>normal</strong> con vértigo continuo y nistagmo<span class="sub">lo tranquilizador es que esté alterado, no que sea normal</span></button>
+          <button type="button" class="opt" data-v="skew">Desalineación vertical de los ojos (<em>skew</em>)</button>
+          <button type="button" class="opt" data-v="hipoacusia">Hipoacusia súbita nueva junto con el vértigo</button>
+          <button type="button" class="opt" data-v="marcha">Marcha muy inestable: camina solo con ayuda</button>
+          <button type="button" class="opt" data-v="diseccion">Cervicalgia, trauma o manipulación cervical reciente<span class="sub">disección vertebral</span></button>
+          <button type="button" class="opt" data-v="riesgo">Primer episodio continuo con riesgo vascular alto<span class="sub">edad · HTA · DM · FA · tabaco · ictus previo</span></button>
+          <button type="button" class="opt" data-v="tac">Anticoagulado o con trastorno de coagulación</button>
+          <button type="button" class="opt" data-v="noconcluyente">No puedo aplicar o interpretar el examen oculomotor con confianza</button>
+        </div>
+      </div>
+
+      <div class="q-label">Vestibular agudo o episódico <span class="arrow">→ estudio dirigido, mayoría ambulatorio</span></div>
+      <div class="q-block grp-B1">
+        <div class="opts" data-group="B1">
+          <button type="button" class="opt" data-v="continuo">Vértigo continuo de horas a días, de inicio agudo</button>
+          <button type="button" class="opt" data-v="nistPerif">Nistagmo horizontal unidireccional que no cambia de dirección</button>
+          <button type="button" class="opt" data-v="hitAlterado">Impulso cefálico <strong>alterado</strong> hacia un lado</button>
+          <button type="button" class="opt" data-v="episodico">Episodios espontáneos recurrentes<span class="sub">minutos a horas, sin desencadenante postural</span></button>
+          <button type="button" class="opt" data-v="ortostatico">Mareo solo al ponerse de pie</button>
+          <button type="button" class="opt" data-v="vomitos">Vómitos o intolerancia oral</button>
+          <button type="button" class="opt" data-v="frail">Adulto mayor frágil, con riesgo de caída o sin red de apoyo</button>
+        </div>
+      </div>
+
+      <button type="button" class="no-flags" id="noFlags">
+        Ninguna
+        <span class="sub">Crisis de <strong>segundos</strong> desencadenadas por girar en la cama, mirar hacia arriba o
+        acostarse; entre las crisis está asintomático o solo con «resaca»; sin nistagmo espontáneo, sin hipoacusia,
+        con examen neurológico y marcha normales.</span>
+      </button>
+
+      <div class="verdict placeholder" id="verdict">
+        Primero: ¿cuánto dura cada episodio y qué lo desencadena? Después mira los ojos y hazlo caminar.
+        <button type="button" class="link-btn" onclick="openDiff()">Puede que no sea vértigo →</button>
+      </div>
+
+      <div class="info-banner"><span>🧭</span><span><strong>Las tres preguntas que ordenan todo el resto:</strong>
+        <strong>1)</strong> ¿Es un episodio <em>continuo</em> que lleva horas o días, o son <em>crisis</em> que empiezan
+        y terminan? <strong>2)</strong> ¿Se desencadena con algo —mover la cabeza, ponerse de pie— o aparece
+        espontáneamente? <strong>3)</strong> ¿Qué muestran el nistagmo, el impulso cefálico y la marcha? Clasificar
+        por <em>tiempo y desencadenante</em> rinde mucho más que pedirle al paciente que describa «qué tipo de mareo»
+        siente: esa descripción es poco fiable y los pacientes cambian de respuesta si se les vuelve a preguntar.
+        <button type="button" class="link-btn" onclick="openStanding()">Abrir el examen oculomotor en cuatro pasos →</button></span></div>
+
+      <div class="warning-banner"><span>🚶</span><span><strong>Haz caminar a todo paciente con mareo antes de decidir
+        cualquier cosa.</strong> El paciente que no puede mantenerse de pie ni caminar sin ayuda tiene un patrón
+        central hasta que se demuestre lo contrario, aunque el resto del examen neurológico sea normal. Es el gesto
+        más barato y más rentable de toda la consulta, y es el que más se omite porque el paciente está en la
+        camilla con una vía puesta.</span></div>
+
+    </div>
+  </div>
+
+  <!-- PESTAÑAS DE CAMINO -->
+  <div class="path-tabs" id="pathTabs" role="tablist">
+    <button type="button" class="path-tab t-A"  data-path="A"  role="tab"><span class="code">Fast-track</span><span class="name">VPPB · Epley y alta</span></button>
+    <button type="button" class="path-tab t-B1" data-path="B1" role="tab"><span class="code">Dirigido</span><span class="name">Vestibular periférico</span></button>
+    <button type="button" class="path-tab t-B2" data-path="B2" role="tab"><span class="code">Imagen</span><span class="name">Patrón central</span></button>
+    <button type="button" class="path-tab t-C"  data-path="C"  role="tab"><span class="code">Crítico</span><span class="name">No es vestibular</span></button>
+  </div>
+
+  <!-- ═══ CAMINO A ═══ -->
+  <div class="path-panel t-A" id="panel-A" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Fast-track · el diagnóstico es la maniobra</div>
+      <div class="panel-title">Vértigo posicional paroxístico benigno</div>
+      <div class="panel-crit">Crisis de <strong>segundos</strong> (habitualmente menos de un minuto) desencadenadas por
+        cambios de posición de la cabeza, con intervalos asintomáticos, sin hipoacusia y con examen neurológico y
+        marcha normales. Se diagnostica y se trata <strong>en la misma camilla, sin exámenes</strong>.</div>
+    </div>
+    <div class="targets">
+      <span class="target">🧪 Prueba posicional en <b>&lt; 10 min</b></span>
+      <span class="target">🔁 Maniobra de tratamiento <b>en la misma visita</b></span>
+      <span class="target">🏠 Alta en <b>&lt; 60 min</b></span>
+    </div>
+
+    <div class="stop">
+      <div class="stop-title">NO pedir · NO dar</div>
+      <ul>
+        <li>TAC ni resonancia <span class="cond">la guía recomienda explícitamente no pedir imagen cuando el cuadro cumple criterios de VPPB y no hay hallazgos discordantes</span></li>
+        <li>Hemograma, electrolitos ni otro laboratorio «para ver por qué está mareado»</li>
+        <li>Radiografía de columna cervical</li>
+        <li>Eco-Doppler carotídeo o vertebral «para descartar que sea circulatorio»</li>
+        <li>Pruebas vestibulares formales ni derivación urgente a otorrinolaringología</li>
+        <li>Sedantes vestibulares de rutina <span class="cond">antihistamínicos y benzodiazepinas: recomendación en contra</span></li>
+        <li>Reposo ni «restricciones posturales» después de la maniobra <span class="cond">recomendación fuerte en contra</span></li>
+      </ul>
+      <div class="why">
+        <strong>El diagnóstico es clínico y posicional.</strong> La historia típica más un Dix-Hallpike positivo
+        establecen el diagnóstico; ninguna imagen lo confirma y una imagen normal no cambia nada. Los sedantes
+        vestibulares empeoran el resultado por dos vías: <strong>enmascaran el nistagmo</strong> que necesitas para
+        identificar el canal y <strong>retrasan la compensación central</strong>. La indicación correcta en el VPPB
+        es la maniobra de reposición, no un medicamento.
+      </div>
+    </div>
+
+    <div class="block-label">Paso 1 · Dix-Hallpike (canal posterior, el 80–90 % de los casos)</div>
+    <div class="figure">
+      <svg viewBox="0 0 680 260" role="img" aria-label="Esquema de la maniobra de Dix-Hallpike en tres tiempos: paciente sentado con la cabeza girada 45 grados hacia el lado a probar, descenso rapido a decubito supino con la cabeza colgando 20 grados por debajo del plano de la camilla y el oido a probar hacia abajo, y observacion del nistagmo torsional con componente hacia arriba durante al menos 30 segundos.">
+        <g font-family="DM Mono, monospace" font-size="11" fill="#94a3b8">
+          <rect x="10" y="10" width="660" height="240" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+          <text x="26" y="34" fill="#6ee7b7" font-size="12">Dix-Hallpike · se prueba el oído que queda abajo</text>
+
+          <!-- tiempo 1 -->
+          <g transform="translate(30,52)">
+            <text x="0" y="0" fill="#a5b4fc" font-size="10.5">1 · sentado</text>
+            <line x1="0" y1="140" x2="170" y2="140" stroke="#475569" stroke-width="2.5"/>
+            <text x="0" y="158" fill="#64748b" font-size="9.5">camilla</text>
+            <!-- tronco -->
+            <path d="M92,140 L92,66" stroke="#cbd5e1" stroke-width="7" stroke-linecap="round"/>
+            <!-- cabeza girada 45 -->
+            <circle cx="80" cy="50" r="17" fill="rgba(99,102,241,0.18)" stroke="#a5b4fc" stroke-width="1.6"/>
+            <path d="M80,50 L62,38" stroke="#fcd34d" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M80,50 L80,28" stroke="#475569" stroke-width="1.2" stroke-dasharray="3 3"/>
+            <path d="M80,34 A16,16 0 0 0 68,40" fill="none" stroke="#fcd34d" stroke-width="1.2"/>
+            <text x="112" y="44" fill="#fcd34d" font-size="10.5">45°</text>
+            <text x="112" y="58" fill="#64748b" font-size="9.5">hacia el lado</text>
+            <text x="112" y="70" fill="#64748b" font-size="9.5">que se prueba</text>
+          </g>
+
+          <!-- flecha -->
+          <path d="M218,140 L252,140" stroke="#6ee7b7" stroke-width="1.6" marker-end="url(#ar)"/>
+          <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#6ee7b7"/></marker></defs>
+          <text x="214" y="128" fill="#6ee7b7" font-size="9.5">rápido</text>
+
+          <!-- tiempo 2 -->
+          <g transform="translate(262,52)">
+            <text x="0" y="0" fill="#a5b4fc" font-size="10.5">2 · supino, cabeza colgando</text>
+            <line x1="40" y1="100" x2="200" y2="100" stroke="#475569" stroke-width="2.5"/>
+            <line x1="0" y1="100" x2="40" y2="100" stroke="#475569" stroke-width="1" stroke-dasharray="4 4"/>
+            <text x="150" y="118" fill="#64748b" font-size="9.5">camilla</text>
+            <!-- tronco acostado -->
+            <path d="M64,88 L190,88" stroke="#cbd5e1" stroke-width="7" stroke-linecap="round"/>
+            <!-- cabeza por debajo del plano -->
+            <circle cx="36" cy="106" r="17" fill="rgba(99,102,241,0.18)" stroke="#a5b4fc" stroke-width="1.6"/>
+            <path d="M36,106 L22,118" stroke="#fcd34d" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M58,100 A26,26 0 0 1 44,120" fill="none" stroke="#fcd34d" stroke-width="1.2"/>
+            <text x="4" y="146" fill="#fcd34d" font-size="10.5">20° bajo el plano</text>
+            <text x="4" y="160" fill="#64748b" font-size="9.5">oído probado hacia abajo</text>
+          </g>
+
+          <!-- tiempo 3 -->
+          <g transform="translate(500,52)">
+            <text x="0" y="0" fill="#a5b4fc" font-size="10.5">3 · mira los ojos</text>
+            <ellipse cx="46" cy="52" rx="34" ry="20" fill="rgba(255,255,255,0.04)" stroke="#cbd5e1" stroke-width="1.4"/>
+            <circle cx="46" cy="52" r="11" fill="#0a0e1a" stroke="#e2e8f0" stroke-width="1.2"/>
+            <path d="M46,30 A24,24 0 0 1 70,44" fill="none" stroke="#6ee7b7" stroke-width="2" marker-end="url(#ar)"/>
+            <text x="0" y="92" fill="#6ee7b7" font-size="10">torsional + hacia arriba</text>
+            <text x="0" y="108" fill="#64748b" font-size="9.5">latencia 1–5 s (hasta 20 s)</text>
+            <text x="0" y="122" fill="#64748b" font-size="9.5">dura &lt; 60 s · fatigable</text>
+            <text x="0" y="140" fill="#fca5a5" font-size="9.5">mantén la posición ≥ 30 s</text>
+            <text x="0" y="154" fill="#fca5a5" font-size="9.5">antes de llamarla negativa</text>
+          </g>
+        </g>
+      </svg>
+      <div class="fig-caption"><strong>Esquema orientativo, no una ilustración a escala.</strong> Desde sentado, con la
+      cabeza girada 45° hacia el lado que se prueba, se lleva al paciente rápidamente a decúbito supino con el cuello
+      extendido unos 20° por debajo del plano de la camilla, dejando ese oído hacia abajo. Avisa al paciente de que la
+      prueba <em>provoca</em> el vértigo a propósito y que dura poco: eso baja a la mitad la resistencia a hacerla.</div>
+    </div>
+
+    <div class="plain-list">
+      <div class="plain-item"><span class="bullet-icon">⏱️</span><span><strong>Lo que hace positivo el
+        Dix-Hallpike:</strong> nistagmo <strong>torsional con componente hacia arriba</strong> (geotrópico, el polo
+        superior del ojo late hacia el oído que está abajo), con <strong>latencia</strong> de 1 a 5 segundos,
+        <strong>duración menor de 60 segundos</strong>, acompañado de vértigo y que <strong>se fatiga</strong> al
+        repetir. El nistagmo típico más la historia típica cierran el diagnóstico.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🔄</span><span><strong>Si el Dix-Hallpike muestra nistagmo
+        horizontal, o no muestra nistagmo pero la historia es compatible:</strong> haz la <strong>prueba de rotación
+        en supino</strong> (<em>supine roll test</em> o Pagnini-McClure) buscando el canal horizontal, que explica
+        cerca de un 10 % de los casos y se trata con otras maniobras.</span></div>
+      <div class="plain-item flag"><span class="bullet-icon">🛑</span><span><strong>Nistagmo posicional que dura más de
+        un minuto, puramente vertical hacia abajo, que no se fatiga, o vértigo posicional sin nistagmo con examen
+        neurológico anormal:</strong> no es un VPPB típico. Eso es <em>vértigo posicional central</em> y sale de este
+        camino: <button type="button" class="link-btn" onclick="showPath('B2', true)">pasa al patrón central →</button></span></div>
+      <div class="plain-item"><span class="bullet-icon">🦴</span><span><strong>Cuándo modificar la técnica:</strong>
+        estenosis cervical significativa, artritis reumatoide con compromiso cervical, cirugía cervical reciente,
+        inestabilidad atlantoaxial, cifosis marcada u obesidad que impide la extensión. En esos casos usa la variante
+        en decúbito lateral (<em>side-lying</em>) en lugar de la extensión del cuello, o deriva. <em>Si sospechas
+        lesión cervical aguda, no manipules el cuello.</em></span></div>
+    </div>
+
+    <div class="block-label">Paso 2 · ¿Qué canal y qué maniobra?</div>
+    <div class="info-banner" style="margin-top:0;"><span>🧮</span><span>El identificador interactivo de canal y
+      maniobra está más abajo, con los pasos de cada maniobra:
+      <button type="button" class="link-btn" onclick="openCanal()">abrir el identificador de canal →</button></span></div>
+
+    <div class="block-label">Paso 3 · Maniobra de Epley (canal posterior)</div>
+    <div class="figure">
+      <svg viewBox="0 0 680 220" role="img" aria-label="Esquema de las cuatro posiciones de la maniobra de Epley: posicion de Dix-Hallpike con la cabeza girada cuarenta y cinco grados hacia el lado afectado, giro de la cabeza noventa grados hacia el lado sano, giro del cuerpo a decubito lateral con la cara mirando al suelo, y vuelta a sentarse. Cada posicion se mantiene al menos treinta segundos o hasta que cese el nistagmo.">
+        <g font-family="DM Mono, monospace" font-size="10.5" fill="#94a3b8">
+          <rect x="10" y="10" width="660" height="200" rx="12" fill="rgba(255,255,255,0.02)" stroke="#334155" stroke-width="1.2"/>
+          <text x="26" y="32" fill="#6ee7b7" font-size="12">Epley · ejemplo para canal posterior izquierdo</text>
+
+          <g transform="translate(34,48)">
+            <line x1="0" y1="92" x2="130" y2="92" stroke="#475569" stroke-width="2"/>
+            <path d="M34,80 L120,80" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="20" cy="96" r="14" fill="rgba(16,185,129,0.16)" stroke="#6ee7b7" stroke-width="1.5"/>
+            <path d="M20,96 L8,106" stroke="#fcd34d" stroke-width="2"/>
+            <text x="0" y="128" fill="#a5b4fc">A · Dix-Hallpike</text>
+            <text x="0" y="142" fill="#64748b" font-size="9.5">cabeza 45° a la izquierda</text>
+            <text x="0" y="156" fill="#6ee7b7" font-size="9.5">≥ 30 s o hasta que cese</text>
+          </g>
+
+          <path d="M172,140 L198,140" stroke="#6ee7b7" stroke-width="1.5" marker-end="url(#ar2)"/>
+          <defs><marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#6ee7b7"/></marker></defs>
+
+          <g transform="translate(208,48)">
+            <line x1="0" y1="92" x2="130" y2="92" stroke="#475569" stroke-width="2"/>
+            <path d="M34,80 L120,80" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="20" cy="96" r="14" fill="rgba(16,185,129,0.16)" stroke="#6ee7b7" stroke-width="1.5"/>
+            <path d="M20,96 L32,106" stroke="#fcd34d" stroke-width="2"/>
+            <path d="M6,112 A18,18 0 0 0 34,112" fill="none" stroke="#fcd34d" stroke-width="1.2" marker-end="url(#ar2)"/>
+            <text x="0" y="128" fill="#a5b4fc">B · gira 90°</text>
+            <text x="0" y="142" fill="#64748b" font-size="9.5">ahora 45° a la derecha</text>
+            <text x="0" y="156" fill="#6ee7b7" font-size="9.5">≥ 30 s</text>
+          </g>
+
+          <path d="M346,140 L372,140" stroke="#6ee7b7" stroke-width="1.5" marker-end="url(#ar2)"/>
+
+          <g transform="translate(382,48)">
+            <line x1="0" y1="92" x2="130" y2="92" stroke="#475569" stroke-width="2"/>
+            <path d="M34,78 L120,86" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="20" cy="96" r="14" fill="rgba(16,185,129,0.16)" stroke="#6ee7b7" stroke-width="1.5"/>
+            <path d="M20,96 L26,110" stroke="#fcd34d" stroke-width="2"/>
+            <text x="0" y="128" fill="#a5b4fc">C · cuerpo de lado</text>
+            <text x="0" y="142" fill="#64748b" font-size="9.5">cara mirando al suelo</text>
+            <text x="0" y="156" fill="#6ee7b7" font-size="9.5">≥ 30 s</text>
+          </g>
+
+          <path d="M520,140 L546,140" stroke="#6ee7b7" stroke-width="1.5" marker-end="url(#ar2)"/>
+
+          <g transform="translate(556,48)">
+            <line x1="0" y1="92" x2="96" y2="92" stroke="#475569" stroke-width="2"/>
+            <path d="M48,92 L48,36" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="48" cy="24" r="14" fill="rgba(16,185,129,0.16)" stroke="#6ee7b7" stroke-width="1.5"/>
+            <path d="M48,24 L48,10" stroke="#fcd34d" stroke-width="2"/>
+            <text x="0" y="128" fill="#a5b4fc">D · se sienta</text>
+            <text x="0" y="142" fill="#64748b" font-size="9.5">despacio, con apoyo</text>
+          </g>
+        </g>
+      </svg>
+      <div class="fig-caption"><strong>Esquema orientativo.</strong> El ejemplo es para el canal posterior
+      <em>izquierdo</em>; para el derecho, todos los giros son al revés. Cada posición se mantiene al menos 30
+      segundos, o hasta que el nistagmo y el vértigo cesen. Si hay nistagmo en la posición C, es buena señal: el
+      otolito está saliendo del canal.</div>
+    </div>
+
+    <div class="steps">
+      <div class="step"><strong>Explica antes de empezar.</strong> «Voy a mover su cabeza en cuatro posiciones; en la
+        primera va a sentir el mareo otra vez, es lo que buscamos, dura menos de un minuto y después pasa». Ten una
+        bolsa a mano. <span class="hold">Si el paciente vomita incontrolablemente, una dosis única de antiemético y
+        se reintenta; no un sedante vestibular.</span></div>
+      <div class="step"><strong>Posición A:</strong> desde sentado, cabeza girada 45° hacia el <strong>lado
+        afectado</strong>, descenso rápido a supino con la cabeza colgando 20° bajo el plano. Mantén ≥ 30 s o hasta
+        que cese el nistagmo.</div>
+      <div class="step"><strong>Posición B:</strong> gira la cabeza 90° hacia el <strong>lado sano</strong>, hasta
+        quedar a 45° del otro lado, sin levantarla. Mantén ≥ 30 s.</div>
+      <div class="step"><strong>Posición C:</strong> gira el <strong>cuerpo</strong> hacia ese mismo lado hasta
+        decúbito lateral, con la cara mirando hacia el suelo (unos 45° bajo la horizontal). Mantén ≥ 30 s.</div>
+      <div class="step"><strong>Posición D:</strong> siéntalo despacio, con apoyo, manteniendo la cabeza girada hasta
+        el final. Déjalo sentado un par de minutos antes de pararse.</div>
+      <div class="step"><strong>Reevalúa:</strong> repite el Dix-Hallpike. Si sigue positivo, repite la maniobra. La
+        mayoría de los pacientes responde con <strong>una a tres repeticiones en la misma visita</strong>; si después
+        de tres no hay cambio, reconsidera el canal, reconsidera el diagnóstico y deriva en lugar de insistir.
+        <span class="hold">Alternativa equivalente si no logras la secuencia de Epley: maniobra de Semont.</span></div>
+      <div class="step"><strong>No indiques restricciones posturales</strong> (collar, dormir sentado, no inclinar la
+        cabeza): la guía las recomienda explícitamente en contra y no mejoran el resultado.</div>
+    </div>
+
+    <div class="block-label">Síntomas · solo si hacen falta</div>
+    <div class="med-list" data-analg="A"></div>
+    <div class="avoid">
+      <strong>El sedante vestibular no es el tratamiento del VPPB.</strong> Si usas un antiemético porque el paciente
+      vomita, que sea <strong>una dosis</strong> en el box y no una receta: más allá de 24 a 72 horas retrasa la
+      compensación central, aumenta el riesgo de caída en el adulto mayor y enmascara el examen de la próxima
+      consulta. En el mayor de 65 años, la primera opción es no dar nada.
+    </div>
+
+    <div class="block-label">Checklist de alta</div>
+    <div class="checklist" data-check="A">
+      <label class="check"><input type="checkbox"> Dix-Hallpike (o prueba de rotación) documentado, con el canal y el lado identificados</label>
+      <label class="check"><input type="checkbox"> Maniobra de reposición realizada y repetida hasta negativizar, o derivación acordada</label>
+      <label class="check"><input type="checkbox"> Caminó sin ayuda antes del alta</label>
+      <label class="check"><input type="checkbox"> Sin nistagmo espontáneo, sin hipoacusia y sin déficit focal</label>
+      <label class="check"><input type="checkbox"> Riesgo de caída evaluado: vive acompañado, puede subir escalas, revisión de fármacos</label>
+      <label class="check"><input type="checkbox"> Entiende que puede recurrir, y el plazo de control</label>
+    </div>
+    <div class="check-status" data-status="A"></div>
+
+    <div class="block-label">Indicaciones al paciente</div>
+    <div class="copy-box">
+      <div class="copy-bar"><button type="button" class="copy-btn" data-copy="A">Copiar indicaciones</button></div>
+      <pre class="copy-pre" id="copy-A"></pre>
+    </div>
+    <div class="copy-hint">El texto se arma con lo que elijas en pantalla. No se guarda ningún dato del paciente.</div>
+  </div>
+
+  <!-- ═══ CAMINO B1 ═══ -->
+  <div class="path-panel t-B1" id="panel-B1" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Estudio dirigido · mayoría ambulatorio</div>
+      <div class="panel-title">Vestibular agudo o episódico, patrón periférico</div>
+      <div class="panel-crit">Vértigo continuo con <strong>nistagmo horizontal unidireccional, impulso cefálico
+        alterado, sin desalineación vertical, sin hipoacusia nueva y con marcha posible sin ayuda</strong>; o crisis
+        espontáneas recurrentes con un patrón reconocible. Este camino exige haber hecho el examen oculomotor y haber
+        hecho caminar al paciente.</div>
+    </div>
+    <div class="targets">
+      <span class="target">👁 Examen oculomotor estructurado en <b>&lt; 10 min</b></span>
+      <span class="target">🚶 Prueba de marcha <b>siempre</b></span>
+      <span class="target">🏥 Destino decidido en <b>&lt; 2 h</b></span>
+    </div>
+
+    <div class="warning-banner" style="margin-top:0;"><span>⚠️</span><span><strong>Antes de quedarte en este camino,
+      lee esto.</strong> En la serie coreana de 240 infartos cerebelosos aislados, <strong>25 (10,4 %)</strong> se
+      presentaron como <em>vértigo espontáneo prolongado con inestabilidad y nada más</em>, indistinguible de una
+      neuritis vestibular; <strong>24 de esos 25 (96 %)</strong> estaban en el territorio de la rama medial de la
+      arteria cerebelosa posteroinferior. Un paciente con riesgo vascular y un primer episodio continuo
+      <strong>no se va de alta con el rótulo de «neuritis» porque el examen neurológico grueso sea normal</strong>:
+      se va de alta porque el examen oculomotor y la marcha fueron explícitamente periféricos, y eso quedó escrito
+      en la ficha.</span></div>
+
+    <div class="info-banner" style="margin-top:14px;"><span>👁</span><span>Este camino se apoya en un examen
+      oculomotor hecho y documentado. Si no lo has recorrido todavía:
+      <button type="button" class="link-btn" onclick="openStanding()">abrir el examen en cuatro pasos →</button></span></div>
+
+    <div class="block-label">Escenario</div>
+    <div class="opts" id="b1Scen"></div>
+    <div class="info-banner" id="b1Crit"></div>
+
+    <div class="block-label">Pedir · todo junto, y poco</div>
+    <div class="order">
+      <div class="order-title">Órdenes</div>
+      <ul id="b1Orders"></ul>
+    </div>
+
+    <div class="stop">
+      <div class="stop-title">NO pedir</div>
+      <ul>
+        <li>TAC de cerebro «para descartar algo central» <span class="cond">si crees que puede ser central, el examen que corresponde es resonancia y el paciente no se va de alta: la TAC normal no te autoriza a darlo de alta</span></li>
+        <li>Laboratorio de rutina en el paciente joven, sin vómitos y sin comorbilidad</li>
+        <li>Radiografía de columna cervical ni estudio de «vértigo cervicogénico»</li>
+        <li>Eco-Doppler de vasos del cuello en urgencia sin sospecha de disección ni de patrón central</li>
+        <li>Pruebas vestibulares formales, audiometría urgente ni electroencefalograma</li>
+        <li>ABCD2 para decidir qué hacer con este mareo <span class="cond">se diseñó para estimar riesgo después de un accidente isquémico transitorio ya diagnosticado, no para decidir si este mareo es vascular</span></li>
+      </ul>
+      <div class="why"><strong>Lo que sí vale la pena pedir es barato:</strong> glicemia capilar en todos,
+      electrocardiograma si el perfil es presincopal o hay riesgo vascular, presión acostado y de pie, y una revisión
+      ordenada de los fármacos. Eso rinde más que cualquier imagen en el mareo de patrón periférico.</div>
+    </div>
+
+    <div class="block-label">Tratamiento · elige uno</div>
+    <div class="med-list" data-meds="B1"></div>
+    <div class="avoid" id="b1Avoid"></div>
+
+    <div class="block-label">Síntomas · opcional, y corto</div>
+    <div class="med-list" data-analg="B1"></div>
+    <div class="amber-banner"><span>⏳</span><span><strong>La regla de las 72 horas.</strong> Los sedantes vestibulares
+      (dimenhidrinato, cinarizina) y las benzodiazepinas sirven para que el paciente deje de vomitar en las primeras
+      horas, y después <strong>estorban</strong>: retrasan la compensación vestibular central, que es el mecanismo por
+      el que realmente mejora. Indícalos <strong>por horas, no por semanas</strong>, con fecha de término escrita, y
+      en el adulto mayor pésalos contra el riesgo de caída y de delirium. Lo que sí tiene evidencia favorable para
+      acelerar la recuperación es la <strong>rehabilitación vestibular precoz</strong>: moverse, no quedarse quieto en
+      una habitación a oscuras.</span></div>
+
+    <div class="block-label">Checklist de alta</div>
+    <div class="checklist" data-check="B1">
+      <label class="check"><input type="checkbox"> Examen oculomotor documentado: nistagmo, impulso cefálico y alineación vertical</label>
+      <label class="check"><input type="checkbox"> Audición evaluada en la cabecera (frote de dedos o voz susurrada) y sin hipoacusia nueva</label>
+      <label class="check"><input type="checkbox"> Caminó sin ayuda, con los ojos abiertos, antes del alta</label>
+      <label class="check"><input type="checkbox"> Glicemia capilar, presión acostado y de pie, y electrocardiograma si correspondía</label>
+      <label class="check"><input type="checkbox"> Tolera la vía oral y puede hidratarse en casa</label>
+      <label class="check"><input type="checkbox"> Fecha de término del sedante vestibular escrita en la receta</label>
+      <label class="check"><input type="checkbox"> Red de apoyo y riesgo de caída evaluados</label>
+      <label class="check"><input type="checkbox"> Entiende el tratamiento, el control y los signos de alarma</label>
+    </div>
+    <div class="check-status" data-status="B1"></div>
+
+    <div class="block-label">Indicaciones al paciente</div>
+    <div class="copy-box">
+      <div class="copy-bar"><button type="button" class="copy-btn" data-copy="B1">Copiar indicaciones</button></div>
+      <pre class="copy-pre" id="copy-B1"></pre>
+    </div>
+    <div class="copy-hint">El texto se arma con el escenario y los fármacos elegidos. No se guarda ningún dato.</div>
+
+    <div class="block-label">Cuándo este camino deja de ser este camino</div>
+    <div class="plain-list">
+      <div class="plain-item flag"><span class="bullet-icon">🔁</span><span><strong>Si a las pocas horas el paciente
+        sigue sin poder caminar</strong>, o aparece cualquier signo central, <strong>deja de ser periférico</strong>:
+        <button type="button" class="link-btn" onclick="showPath('B2', true)">pasa al patrón central →</button></span></div>
+      <div class="plain-item flag"><span class="bullet-icon">👂</span><span><strong>Hipoacusia súbita nueva con el
+        vértigo no es «laberintitis» hasta que se demuestre.</strong> El infarto en el territorio de la arteria
+        cerebelosa anteroinferior da exactamente eso: vértigo con sordera brusca, con o sin paresia facial y ataxia
+        ipsilateral. Esa combinación va a imagen, no a casa.</span></div>
+    </div>
+  </div>
+
+  <!-- ═══ CAMINO B2 ═══ -->
+  <div class="path-panel t-B2" id="panel-B2" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Imagen, hospitalización, código de ictus si corresponde</div>
+      <div class="panel-title">Patrón central o examen no concluyente</div>
+      <div class="panel-crit">Cualquiera de estos basta: nistagmo vertical, torsional puro o que cambia de dirección;
+        impulso cefálico <strong>normal</strong> en un paciente con vértigo continuo y nistagmo; desalineación
+        vertical; hipoacusia súbita nueva; marcha imposible sin ayuda; cervicalgia o manipulación cervical reciente;
+        <strong>o un examen oculomotor que no pudiste aplicar o interpretar con confianza</strong>.</div>
+    </div>
+    <div class="targets">
+      <span class="target">⏱ Si &lt; 4,5 h del inicio: <b>código de ictus ahora</b></span>
+      <span class="target">🧲 Resonancia con difusión, <b>no TAC</b></span>
+      <span class="target">🩻 Angio-TAC o angio-RM de cuello <b>si sospechas disección</b></span>
+      <span class="target">🏥 Monitorización y destino en <b>&lt; 3 h</b></span>
+    </div>
+
+    <div class="warning-banner" style="margin-top:0;"><span>🧲</span><span><strong>Una TAC normal no descarta un
+      infarto de fosa posterior.</strong> El artefacto del hueso degrada la imagen justo donde está la lesión, y el
+      infarto isquémico agudo no se ve en TAC durante las primeras horas. La TAC sin contraste sirve para otra cosa:
+      <strong>descartar hemorragia</strong> antes de trombolisis y evaluar al paciente que se deteriora. El examen
+      que responde la pregunta es la <strong>resonancia con difusión</strong>, y aun ella falla: en la serie original
+      de HINTS, la difusión inicial fue <strong>falsamente negativa en 12 %</strong> de los casos, todos realizados
+      antes de las 48 horas del inicio. <em>Si el examen de cabecera dice central y la imagen dice normal, manda el
+      examen de cabecera: el paciente se queda y se repite la imagen.</em></span></div>
+
+    <div class="block-label">Bundle de entrada · pedir todo en una sola orden</div>
+    <div class="order-grid">
+      <div class="order">
+        <div class="order-title">Al ingreso</div>
+        <ul>
+          <li>Glicemia capilar <span class="cond">antes que cualquier otra cosa</span></li>
+          <li>Electrocardiograma y monitorización continua <span class="cond">fibrilación auricular</span></li>
+          <li>Presión arterial en ambos brazos</li>
+          <li>Hemograma, pruebas de coagulación, electrolitos, creatinina</li>
+          <li>Troponina <span class="cond">si hay dolor torácico o perfil presincopal</span></li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">Imagen</div>
+        <ul>
+          <li><strong>Resonancia de cerebro con difusión</strong>, con atención a fosa posterior</li>
+          <li>TAC sin contraste <span class="cond">solo para descartar hemorragia antes de trombolisis, o si se deteriora</span></li>
+          <li>Angio-TAC o angio-RM de vasos de cuello e intracraneales <span class="cond">cervicalgia, trauma o manipulación cervical, paciente joven, sospecha de oclusión basilar</span></li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">En paralelo</div>
+        <ul>
+          <li>Activar el <strong>código de ictus</strong> si el inicio está dentro de ventana</li>
+          <li>Régimen cero y evaluación de deglución</li>
+          <li>Reposo en cama con barandas y prevención de caídas</li>
+          <li>Reevaluación neurológica horaria las primeras horas</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="amber-banner"><span>📉</span><span><strong>El NIHSS no sirve para medir la gravedad de un ictus de
+      circulación posterior.</strong> Un infarto cerebeloso que va a necesitar neurocirugía en 48 horas puede puntuar
+      0 o 1. No uses un NIHSS bajo como argumento para no estudiar ni para no hospitalizar. <em>Los criterios locales
+      de trombolisis y de trombectomía, y los umbrales de la escala que use el servicio: verificar con protocolo
+      institucional.</em></span></div>
+
+    <div class="block-label">Los síndromes que hay que reconocer</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Territorio</th><th>Lo que ves además del vértigo</th><th>Conducta</th></tr></thead>
+        <tbody>
+          <tr><td>PICA medial<br><span class="dose-note">cerebelo</span></td><td><strong>Vértigo e inestabilidad y nada más</strong>: el gran imitador de la neuritis vestibular. A veces solo se delata por el impulso cefálico normal, el nistagmo que cambia de dirección o la imposibilidad de caminar</td><td>Resonancia con difusión. <strong>Vigilar 48–96 h:</strong> el edema cerebeloso puede comprimir el tronco e hidrocefalizar</td></tr>
+          <tr><td>PICA lateral<br><span class="dose-note">bulbo lateral · Wallenberg</span></td><td>Hipoalgesia facial <em>ipsilateral</em>, Horner ipsilateral, disfonía y disfagia, ataxia de extremidades ipsilateral, hipoalgesia corporal <em>contralateral</em>, hipo persistente</td><td>Resonancia y angio de cuello (disección vertebral). Riesgo de aspiración: régimen cero y evaluación de deglución</td></tr>
+          <tr><td>AICA<br><span class="dose-note">cerebelo anteroinferior y laberinto</span></td><td><strong>Vértigo con hipoacusia súbita</strong>, con o sin paresia facial periférica y ataxia ipsilateral. Se diagnostica como «laberintitis» con frecuencia</td><td>Resonancia. La sordera brusca con vértigo <strong>no se va de alta</strong> sin descartar origen central</td></tr>
+          <tr><td>Arteria basilar</td><td>Fluctuación, compromiso de conciencia, oftalmoparesia, tetraparesia, disartria y disfagia, respiración irregular. Puede empezar solo con vértigo y vómitos</td><td><strong>Emergencia tiempo-dependiente:</strong> angio-TAC o angio-RM ahora, contacto inmediato con neurología e intervencionismo. <em>Las ventanas y criterios de trombectomía en la oclusión basilar se han ampliado y varían: verificar con protocolo institucional</em></td></tr>
+          <tr><td>Disección vertebral</td><td>Paciente joven, cervicalgia u occipitalgia de inicio brusco, a veces tras trauma menor o manipulación cervical, con signos de bulbo lateral o cerebelo</td><td>Angio-TAC o angio-RM de vasos de cuello. <em>Antitrombótico o anticoagulación: decisión con neurología, verificar con protocolo institucional</em></td></tr>
+          <tr><td>Hemorragia cerebelosa</td><td>Cefalea occipital brusca, vómitos, ataxia, deterioro rápido de conciencia. Más probable en anticoagulado o hipertenso</td><td><strong>TAC sin contraste de inmediato</strong> y neurocirugía: el hematoma cerebeloso es una de las indicaciones quirúrgicas más claras y más urgentes</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stop">
+      <div class="stop-title">NO hacer</div>
+      <ul>
+        <li>Dar de alta con una TAC normal porque «salió bien el escáner»</li>
+        <li>Rotular de «neuritis vestibular» a un paciente que no puede caminar</li>
+        <li>Pedir resonancia y mandar al paciente a casa a esperar el resultado</li>
+        <li>Hacer el impulso cefálico con fuerza en un paciente con sospecha de lesión o disección cervical</li>
+        <li>Dar sedantes vestibulares antes de haber mirado los ojos <span class="cond">borran el nistagmo, que es el dato</span></li>
+        <li>Bajar agresivamente la presión arterial en el ictus isquémico agudo <span class="cond">umbrales y objetivos: verificar con protocolo institucional</span></li>
+      </ul>
+    </div>
+
+    <div class="block-label">Destino</div>
+    <div class="plain-list">
+      <div class="plain-item"><span class="bullet-icon">🏥</span><span><strong>Unidad de ictus o cama monitorizada</strong>,
+        con evaluación neurológica seriada. El paciente con patrón central <strong>se hospitaliza aunque la primera
+        imagen sea normal</strong>.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🧠</span><span><strong>Neurocirugía desde el inicio</strong> si
+        hay hematoma cerebeloso, infarto cerebeloso extenso, compresión del cuarto ventrículo o hidrocefalia: la
+        ventana de deterioro del infarto cerebeloso está entre las <strong>24 y las 96 horas</strong>, y el paciente
+        que se deteriora lo hace rápido.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🚨</span><span><strong>Unidad de paciente crítico</strong> si
+        hay compromiso de conciencia, vía aérea amenazada, compromiso de deglución con riesgo de aspiración o
+        sospecha de oclusión basilar.</span></div>
+      <div class="plain-item"><span class="bullet-icon">📞</span><span><strong>Neurología desde la sospecha</strong>, no
+        después de la imagen. Si el inicio está en ventana, el código de ictus se activa <em>antes</em> de tener la
+        resonancia.</span></div>
+    </div>
+    <div class="links-row">
+      <a class="cross-link" href="./sintoma-cefalea.html">→ Cefalea: la bandera roja que la TAC no descarta</a>
+      <a class="cross-link" href="./algoritmo-tec-grave.html">→ Hipertensión endocraneal y herniación (contenido de TEC grave)</a>
+    </div>
+  </div>
+
+  <!-- ═══ CAMINO C ═══ -->
+  <div class="path-panel t-C" id="panel-C" role="tabpanel">
+    <div class="panel-head">
+      <div class="panel-code">Crítico · tratar antes de diagnosticar</div>
+      <div class="panel-title">El mareo es el síntoma, no el problema</div>
+      <div class="panel-crit">Aquí el paciente no tiene un problema del oído ni del cerebelo: tiene
+        <strong>hipoperfusión, hipoxia, sangrado, arritmia, una intoxicación o una carencia</strong>, y el mareo es
+        la primera manifestación. El examen oculomotor puede esperar; la perfusión no.</div>
+    </div>
+    <div class="targets">
+      <span class="target">🩸 Glicemia capilar en <b>&lt; 2 min</b></span>
+      <span class="target">💓 Electrocardiograma en <b>&lt; 10 min</b></span>
+      <span class="target">🩺 Monitor, dos vías y oxígeno con objetivo <b>ahora</b></span>
+      <span class="target">🧪 Lactato y hemograma <b>con la primera vía</b></span>
+    </div>
+
+    <div class="block-label">Bundle de entrada · simultáneo</div>
+    <div class="order-grid">
+      <div class="order">
+        <div class="order-title">Cabecera, en minutos</div>
+        <ul>
+          <li>Glicemia capilar</li>
+          <li>Electrocardiograma de 12 derivaciones</li>
+          <li>Monitor, presión en ambos brazos, saturación</li>
+          <li>Presión acostado y de pie <span class="cond">solo si está estable</span></li>
+          <li>Ecografía a pie de cama <span class="cond">volemia, derrame, aorta, líquido libre</span></li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">Laboratorio</div>
+        <ul>
+          <li>Hemograma, lactato, gases</li>
+          <li>Electrolitos, creatinina, BUN</li>
+          <li>Troponina</li>
+          <li>Prueba de embarazo <span class="cond">mujer en edad fértil</span></li>
+          <li>Carboxihemoglobina <span class="cond">estufa, brasero, calefón, varios enfermos en la misma casa</span></li>
+        </ul>
+      </div>
+      <div class="order">
+        <div class="order-title">Tratamiento que no espera</div>
+        <ul>
+          <li>Glucosa si la glicemia es baja</li>
+          <li><strong>Tiamina antes de la glucosa</strong> si sospechas Wernicke</li>
+          <li>Volumen si hay hipoperfusión</li>
+          <li>Oxígeno a alta concentración si sospechas monóxido de carbono</li>
+          <li>Suspender el fármaco responsable</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="block-label">Las causas que matan, y la pista que las delata</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Causa</th><th>Pista</th><th>Primera acción</th></tr></thead>
+        <tbody>
+          <tr><td>Arritmia</td><td>Mareo brusco sin desencadenante postural, palpitaciones, síncope, cardiopatía conocida, electrocardiograma anormal</td><td>Monitor continuo. <strong>Un electrocardiograma normal no descarta una arritmia paroxística:</strong> si el episodio fue sugerente, el paciente queda monitorizado</td></tr>
+          <tr><td>Hemorragia · anemia aguda</td><td>Mareo al ponerse de pie, palidez, taquicardia, melena, metrorragia, uso de antiinflamatorios o anticoagulantes</td><td>Dos vías gruesas, hemograma y clasificación, tacto rectal. <strong>El hematocrito inicial puede ser normal en el sangrado agudo</strong></td></tr>
+          <tr><td>Síndrome coronario agudo</td><td>Mareo con disnea, sudoración o dolor torácico; diabético o adulto mayor en quien el dolor puede faltar</td><td>Electrocardiograma en menos de 10 minutos y troponina</td></tr>
+          <tr><td>Sepsis</td><td>Fiebre o hipotermia, taquipnea, confusión, foco infeccioso</td><td>Paquete de la primera hora</td></tr>
+          <tr><td>Hipoglicemia</td><td>Diabético con insulina o sulfonilurea, ayuno, alcohol, sudoración</td><td>Glicemia capilar y glucosa. <strong>Se mide, no se adivina</strong></td></tr>
+          <tr><td>Intoxicación por monóxido de carbono</td><td>Mareo, cefalea y náuseas en invierno, varios conviviente afectados, estufa o calefón sin ventilación. <strong>La saturación por oximetría de pulso puede ser normal</strong></td><td>Oxígeno a alta concentración de inmediato y carboxihemoglobina. <em>Umbrales e indicaciones de cámara hiperbárica: verificar con protocolo institucional</em></td></tr>
+          <tr><td>Encefalopatía de Wernicke</td><td>Nistagmo u oftalmoparesia + ataxia + confusión, en alcohol, vómitos prolongados, hiperemesis gravídica, desnutrición o cirugía bariátrica. <strong>La tríada completa es la excepción</strong></td><td><strong>Tiamina endovenosa antes de administrar glucosa.</strong> Dosis altas por varios días. <em>El esquema exacto de tiamina del servicio: verificar con protocolo institucional</em></td></tr>
+          <tr><td>Fármacos</td><td>Inicio o aumento reciente de antihipertensivo, alfabloqueador, antidepresivo, anticonvulsivante, benzodiazepina o aminoglucósido</td><td>Revisar la receta completa, suspender o ajustar. <strong>En el adulto mareado, la lista de fármacos es un examen diagnóstico</strong></td></tr>
+          <tr><td>Deshidratación · insuficiencia suprarrenal</td><td>Vómitos y diarrea, corticoides suspendidos, hiperpigmentación, hiponatremia con hiperkalemia</td><td>Volumen, electrolitos y cortisol. <em>Esquema de hidrocortisona: verificar con protocolo institucional</em></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="warning-banner"><span>💊</span><span><strong>Tiamina antes que glucosa, no al revés.</strong> En el
+      paciente con sospecha de Wernicke, una carga de glucosa sin tiamina previa puede precipitar o agravar el
+      cuadro. Si el paciente está hipoglicémico y además sospechas Wernicke, administra la tiamina
+      <strong>inmediatamente antes o junto con</strong> la glucosa, y no retrases la corrección de la
+      hipoglicemia.</span></div>
+
+    <div class="block-label">Destino</div>
+    <div class="plain-list">
+      <div class="plain-item"><span class="bullet-icon">🚨</span><span><strong>Unidad de paciente crítico</strong> ante
+        shock, arritmia maligna, compromiso de conciencia o intoxicación grave. El destino lo decide la causa, no el
+        mareo.</span></div>
+      <div class="plain-item"><span class="bullet-icon">🔎</span><span><strong>Si al estabilizar desaparece el
+        mareo</strong>, el diagnóstico probablemente era la causa sistémica. Si persiste con nistagmo y ataxia,
+        vuelve al <button type="button" class="link-btn" onclick="showPath('B2', true)">patrón central →</button></span></div>
+    </div>
+    <div class="links-row">
+      <a class="cross-link" href="./checklist-sepsis_4.html">→ Código sepsis: NEWS2 y paquete de la primera hora</a>
+      <a class="cross-link" href="./sintoma-dolor-toracico.html">→ Dolor torácico: causas letales y puntaje HEART</a>
+      <a class="cross-link" href="./algoritmo-hda-variceal.html">→ Hemorragia digestiva alta masiva</a>
+      <a class="cross-link" href="./sintoma-fiebre.html">→ Fiebre: el huésped antes que el foco</a>
+    </div>
+  </div>
+
+  <!-- 02 · PUEDE QUE NO SEA VÉRTIGO -->
+  <div class="section s3 collapsed" id="s-diff" style="animation-delay:0.12s;">
+    <div class="section-header" onclick="toggleSection('s-diff')">
+      <span class="section-num">DESVÍO</span>
+      <div>
+        <div class="section-title">Puede que no sea vértigo</div>
+        <div class="section-subtitle">Mareo sin enfermedad vestibular</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="info-banner" style="margin-top:0;"><span>🗣️</span><span>Buena parte de los pacientes que dicen
+        «mareo» no tienen vértigo, y buena parte de los que tienen vértigo dicen otra cosa. <strong>No construyas el
+        diagnóstico sobre el adjetivo que usa el paciente.</strong> Si la pregunta «¿se le da vuelta todo o siente
+        que se va a desmayar?» se repite a los diez minutos, muchos pacientes contestan distinto; el tiempo, el
+        desencadenante y el examen no cambian de respuesta.</span></div>
+      <div class="table-wrap" style="margin-top:14px;">
+        <table>
+          <thead><tr><th>Sospecha</th><th>Pistas</th><th>Conducta</th></tr></thead>
+          <tbody>
+            <tr><td>Presíncope</td><td>Sensación de desvanecimiento, visión en túnel, sudoración, calor; al ponerse de pie, al orinar, con dolor o con calor; sin sensación de giro</td><td>Electrocardiograma, presión acostado y de pie, hemograma. Buscar arritmia, hemorragia y fármacos. <em>El estudio del síncope como motivo de consulta tendrá contenido propio</em></td></tr>
+            <tr><td>Hipotensión ortostática</td><td>Solo al incorporarse, mejora al sentarse; antihipertensivos, alfabloqueadores, diuréticos, antidepresivos, deshidratación, diabetes, parkinsonismo</td><td>Medición formal de ortostatismo (calculadora más abajo), revisión de fármacos, hidratación, medidas posturales</td></tr>
+            <tr><td>Desequilibrio multisensorial del adulto mayor</td><td>Inestabilidad al caminar, <em>no</em> en la cama ni sentado; mala visión, neuropatía, artrosis, sarcopenia, polifarmacia. Varias causas pequeñas sumadas</td><td>No busques una sola causa: revisa visión, fármacos, pies y calzado, fuerza y marcha. Derivación a kinesiología y programa de caídas. Rinde más que cualquier imagen</td></tr>
+            <tr><td>Mareo persistente postural-perceptual</td><td>Mareo o inestabilidad <strong>casi todos los días por tres meses o más</strong>, peor de pie, al moverse y en ambientes visualmente complejos (supermercado, pantallas); suele empezar tras un episodio vestibular agudo real</td><td>Es un diagnóstico positivo, no «no tiene nada». No se estudia en urgencia: explicación, rehabilitación vestibular y derivación. Repetir imágenes empeora el cuadro</td></tr>
+            <tr><td>Ansiedad e hiperventilación</td><td>Parestesias peribucales y en las manos, opresión torácica, disnea suspirosa, sensación de irrealidad, episodios en contexto reconocible</td><td>Es un diagnóstico de inclusión, no de exclusión por agotamiento. Descarta primero lo que tenga banderas rojas. Cuidado: el embolismo pulmonar y la arritmia también se presentan así</td></tr>
+            <tr><td>Fármacos y alcohol</td><td>Inicio o cambio reciente de dosis; nistagmo y ataxia con fenitoína o carbamazepina en rango tóxico; hipoacusia y oscilopsia con aminoglucósidos</td><td>Revisar la receta completa, niveles cuando corresponda, suspender o ajustar. <strong>La toxicidad por anticonvulsivantes imita un patrón central</strong></td></tr>
+            <tr><td>Anemia e hipotiroidismo</td><td>Astenia progresiva, palidez, disnea de esfuerzo; o bradicardia, piel seca, bocio</td><td>Hemograma, pruebas tiroideas según contexto. No es estudio de urgencia salvo que haya repercusión</td></tr>
+            <tr><td>Monóxido de carbono</td><td>Invierno, brasero o calefón sin ventilación, cefalea y náuseas, <strong>más de un enfermo en la misma casa</strong></td><td>Oxígeno a alta concentración y carboxihemoglobina. Pregunta siempre por los convivientes y por la mascota</td></tr>
+            <tr><td>«Vértigo cervicogénico»</td><td>Se invoca cuando hay cervicalgia y mareo juntos</td><td><strong>Entidad discutida y sin prueba diagnóstica.</strong> El riesgo real es usar la etiqueta para no estudiar: la cervicalgia aguda con vértigo también es la presentación de una disección vertebral. No pidas radiografía cervical «por el vértigo»</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 · STANDING / HINTS -->
+  <div class="section s4 collapsed" id="s-standing" style="animation-delay:0.16s;">
+    <div class="section-header" onclick="toggleSection('s-standing')">
+      <span class="section-num">STANDING</span>
+      <div>
+        <div class="section-title">Examen oculomotor en cuatro pasos · STANDING y HINTS+</div>
+        <div class="section-subtitle">Herramienta interactiva · guía paso a paso</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner" style="margin-top:0;"><span>ℹ️</span><span><strong>Dos herramientas, una misma
+        idea.</strong> <strong>HINTS</strong> (impulso cefálico, nistagmo, desalineación vertical) se describió en
+        pacientes con <em>síndrome vestibular agudo</em> y al menos un factor de riesgo vascular, examinados por
+        neurólogos: en esa serie de 101 pacientes —25 periféricos y 76 centrales— la presencia de impulso cefálico
+        normal, nistagmo que cambia de dirección en la mirada excéntrica, o desalineación vertical fue
+        <strong>100 % sensible y 96 % específica</strong> para ictus, y <strong>más sensible que la resonancia con
+        difusión precoz</strong>. <strong>STANDING</strong> reordena los mismos hallazgos en cuatro pasos y
+        <em>añade la marcha</em>; se validó con médicos de urgencia con experiencia limitada en nistagmo, que la
+        aplicaron en <strong>9,9 ± 2,8 minutos</strong> con sensibilidad 92,9 % y especificidad 96,4 % frente al
+        estándar local, y con buena concordancia entre observadores.</span></div>
+
+      <div class="warning-banner"><span>🚧</span><span><strong>La advertencia que hace falta antes de usar
+        cualquiera de las dos.</strong> En el metaanálisis de cinco estudios y 617 pacientes, HINTS rindió
+        sensibilidad 96,7 % y especificidad 94,8 % <em>en manos de neurólogos</em>; cuando el examen lo realizó un
+        grupo que incluía médicos de urgencia, la sensibilidad cayó a <strong>83 %</strong> y la especificidad a
+        <strong>44 %</strong>. La conclusión de los autores es explícita: <strong>HINTS, usada de forma aislada por
+        médicos de urgencia, no ha demostrado ser suficientemente exacta para descartar un ictus</strong>. Por eso en
+        esta página un examen que no puedas aplicar o interpretar con confianza <strong>no es un resultado
+        periférico: es un examen no concluyente</strong>, y eso manda al camino de imagen.</span></div>
+
+      <div class="block-label">Paso 0 · ¿Es aplicable?</div>
+      <div class="order">
+        <div class="order-title">Se usa solo si se cumple todo esto</div>
+        <ul>
+          <li>Vértigo o mareo <strong>continuo, en curso ahora</strong>, de inicio agudo (horas a días)</li>
+          <li>El paciente <strong>no</strong> tiene un cuadro posicional de segundos (eso es VPPB y se evalúa con Dix-Hallpike)</li>
+          <li>No hay déficit focal evidente <span class="cond">si lo hay, ya es central y no hace falta el examen para decidirlo</span></li>
+          <li>No ha recibido sedantes vestibulares que borren el nistagmo</li>
+          <li>Puedes mover el cuello con seguridad <span class="cond">sin sospecha de lesión ni de disección cervical</span></li>
+        </ul>
+      </div>
+      <div class="amber-banner"><span>🙈</span><span><strong>Si el paciente tiene un síndrome vestibular agudo
+        continuo y NO tiene nistagmo, HINTS no se aplica.</strong> El impulso cefálico y la prueba de desalineación
+        pierden su interpretación sin nistagmo espontáneo, y la ausencia de nistagmo en un vértigo agudo continuo no
+        es tranquilizadora. En ese escenario, la marcha y la imagen deciden.</span></div>
+
+      <div class="block-label">Los cuatro pasos, en orden</div>
+      <div class="calc">
+        <div class="calc-row">
+          <div class="calc-field">
+            <label for="st-1">1 · Nistagmo espontáneo</label>
+            <select id="st-1">
+              <option value="">— elige —</option>
+              <option value="si">Sí, hay nistagmo espontáneo</option>
+              <option value="pos">No espontáneo, pero sí posicional</option>
+              <option value="no">No hay nistagmo de ningún tipo</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="st-2">2 · Dirección del nistagmo</label>
+            <select id="st-2">
+              <option value="">— elige —</option>
+              <option value="uni">Horizontal unidireccional (no cambia con la mirada)</option>
+              <option value="cambia">Cambia de dirección con la mirada excéntrica</option>
+              <option value="vert">Vertical o torsional puro</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="st-3">3 · Impulso cefálico (horizontal)</label>
+            <select id="st-3">
+              <option value="">— elige —</option>
+              <option value="alterado">Alterado: hay sacada de refijación</option>
+              <option value="normal">Normal: no hay sacada correctora</option>
+              <option value="nohecho">No lo pude hacer o interpretar</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="st-4">4 · Marcha y bipedestación</label>
+            <select id="st-4">
+              <option value="">— elige —</option>
+              <option value="camina">Camina, con inestabilidad leve o moderada</option>
+              <option value="nocamina">No puede caminar ni mantenerse de pie sin ayuda</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="st-5">Extra · desalineación vertical e hipoacusia</label>
+            <select id="st-5">
+              <option value="no">Sin desalineación vertical ni hipoacusia nueva</option>
+              <option value="skew">Hay desalineación vertical (skew)</option>
+              <option value="hipo">Hay hipoacusia súbita nueva</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-out" id="standing-out"></div>
+        <button type="button" class="calc-reset" id="standing-reset">Reiniciar</button>
+      </div>
+
+      <div class="block-label">Cómo se hace cada paso</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Paso</th><th>Técnica</th><th>Qué significa</th></tr></thead>
+          <tbody>
+            <tr><td>Nistagmo</td><td>Mirada al frente y luego a 20–30° a derecha, izquierda, arriba y abajo. <strong>Sin fijación</strong> si puedes (gafas de Frenzel u oftalmoscopio sobre el ojo contrario). Anota la dirección de la fase rápida</td><td>El nistagmo periférico late siempre hacia el mismo lado y aumenta al mirar en esa dirección. El que <strong>cambia de dirección</strong> según dónde mire el paciente es central</td></tr>
+            <tr><td>Dirección</td><td>Observa si la fase rápida es horizontal, vertical o torsional</td><td><strong>Vertical o torsional puro es central</strong>, sin más discusión. Puramente vertical hacia abajo apunta a unión bulbo-medular o cerebelo</td></tr>
+            <tr><td>Impulso cefálico</td><td>Paciente fijando tu nariz. Sujeta la cabeza y gírala <strong>rápido</strong> unos 10–20° hacia un lado, y observa los ojos. Repite al otro lado. Movimiento pequeño y rápido, no amplio y lento</td><td><strong>Alterado</strong> (sacada de refijación al volver a tu nariz) = reflejo vestíbulo-ocular dañado de ese lado = periférico. <strong>Normal</strong> en un paciente con vértigo agudo y nistagmo = <em>el laberinto funciona</em> = sospecha central. Es contraintuitivo: lo tranquilizador es que esté <em>alterado</em></td></tr>
+            <tr><td>Marcha</td><td>Siéntalo sin apoyo, luego de pie con los pies juntos, luego caminando. Dos personas al lado</td><td><strong>No poder mantenerse de pie ni caminar sin ayuda es el hallazgo que más veces delata un infarto cerebeloso</strong> con el resto del examen normal. El paciente con neuritis vestibular se desvía, pero camina</td></tr>
+            <tr><td>Desalineación vertical</td><td>Prueba de cobertura alternante: tapa un ojo y destápalo pasando al otro, buscando un movimiento vertical de refijación</td><td>Presente en 17 % de la serie original, asociada a lesión del tronco. Puede identificar el ictus cuando el impulso cefálico engaña y parece periférico</td></tr>
+            <tr><td>Audición (HINTS+)</td><td>Frote de dedos o voz susurrada junto a cada oído, y pregunta dirigida por hipoacusia o acúfeno nuevo</td><td>La hipoacusia súbita <strong>no es un signo tranquilizador</strong>: el infarto de AICA afecta el laberinto. Añadir la audición a HINTS mejora la detección de ictus</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="amber-banner"><span>📝</span><span><strong>Escríbelo en la ficha, con palabras.</strong>
+        «Nistagmo horizontal izquierdo unidireccional que no cambia con la mirada; impulso cefálico alterado a
+        derecha; sin desalineación vertical; audición normal al frote de dedos; camina sin ayuda con desviación a
+        derecha». Esa frase es lo que permite que el siguiente turno sepa si el paciente fue evaluado o solo
+        rotulado. «Mareo, examen neurológico normal» no es un examen oculomotor.</span></div>
+    </div>
+  </div>
+
+  <!-- 04 · CANAL Y MANIOBRA -->
+  <div class="section s4 collapsed" id="s-canal" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s-canal')">
+      <span class="section-num">VPPB</span>
+      <div>
+        <div class="section-title">¿Qué canal y qué maniobra? · identificador</div>
+        <div class="section-subtitle">Herramienta interactiva · prueba posicional y tratamiento</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="info-banner" style="margin-top:0;"><span>🧭</span><span>El canal se identifica por <strong>qué prueba
+        lo provoca y en qué dirección late el nistagmo</strong>. Elige lo que viste y abajo aparece el canal probable
+        y la maniobra que corresponde. <em>Si el patrón no encaja con ninguno, eso ya es información: no fuerces un
+        VPPB que no está.</em></span></div>
+
+      <div class="calc">
+        <div class="calc-row">
+          <div class="calc-field">
+            <label for="cn-test">Prueba que provocó el nistagmo</label>
+            <select id="cn-test">
+              <option value="">— elige —</option>
+              <option value="dh">Dix-Hallpike</option>
+              <option value="roll">Rotación en supino (supine roll)</option>
+              <option value="ninguna">Ninguna lo provocó</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="cn-dir">Dirección del nistagmo provocado</label>
+            <select id="cn-dir">
+              <option value="">— elige —</option>
+              <option value="torsUp">Torsional con componente hacia arriba</option>
+              <option value="down">Puramente hacia abajo, persistente</option>
+              <option value="geo">Horizontal hacia el oído que queda abajo (geotrópico)</option>
+              <option value="ageo">Horizontal hacia el oído que queda arriba (ageotrópico)</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="cn-lado">Lado en que fue más intenso</label>
+            <select id="cn-lado">
+              <option value="">— elige —</option>
+              <option value="der">Derecho</option>
+              <option value="izq">Izquierdo</option>
+              <option value="igual">Igual en ambos lados</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-out" id="canal-out"></div>
+        <button type="button" class="calc-reset" id="canal-reset">Reiniciar</button>
+      </div>
+
+      <div class="block-label">Las maniobras, en resumen</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Canal</th><th>Cómo se confirma</th><th>Tratamiento</th></tr></thead>
+          <tbody>
+            <tr><td>Posterior<br><span class="dose-note">el más frecuente</span></td><td>Dix-Hallpike con nistagmo torsional y hacia arriba, latencia corta, menos de 60 s, fatigable</td><td><strong>Epley</strong> (reposición canalicular), con <strong>Semont</strong> como alternativa equivalente. Recomendación fuerte a favor</td></tr>
+            <tr><td>Horizontal</td><td>Rotación en supino con nistagmo horizontal. <strong>Geotrópico</strong> (hacia el oído de abajo): canalolitiasis, el lado afectado es el del nistagmo más intenso. <strong>Ageotrópico</strong>: cupulolitiasis, el lado afectado es el del nistagmo <em>menos</em> intenso</td><td><strong>Rotación de Lempert</strong> («barbacoa», giros de 90° hacia el lado sano hasta completar 270–360°) o <strong>maniobra de Gufoni</strong>. Menos estandarizadas y con más recurrencia que el Epley</td></tr>
+            <tr><td>Anterior<br><span class="dose-note">raro y discutido</span></td><td>Nistagmo posicional puramente hacia abajo</td><td><strong>Primero descarta causa central:</strong> el nistagmo posicional hacia abajo es más frecuentemente central que un VPPB del canal anterior. No lo trates como VPPB sin evaluar lo demás</td></tr>
+            <tr><td>Dudoso o no reproducible</td><td>Historia compatible pero pruebas negativas hoy</td><td>Puede ser un VPPB en remisión. Observación con control, educación y <strong>reevaluación dentro de un mes</strong> para documentar si resolvió o persiste. Sin imagen</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="amber-banner"><span>↩️</span><span><strong>El VPPB recurre, y eso no es un fracaso.</strong> Avísaselo
+        al paciente: una parte de los pacientes vuelve a tener episodios, y la conducta entonces es repetir la
+        maniobra, no repetir los exámenes. Reevalúa dentro de un mes para documentar resolución o persistencia, y si
+        persiste pese a maniobras bien hechas, deriva para buscar otro vestibulopatía periférica o una causa
+        central.</span></div>
+    </div>
+  </div>
+
+  <!-- 05 · ORTOSTATISMO -->
+  <div class="section s5 collapsed" id="s-orto" style="animation-delay:0.20s;">
+    <div class="section-header" onclick="toggleSection('s-orto')">
+      <span class="section-num">ORTO</span>
+      <div>
+        <div class="section-title">Hipotensión ortostática · medición y cálculo</div>
+        <div class="section-subtitle">Calculadora interactiva · delta de presión</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="info-banner" style="margin-top:0;"><span>📏</span><span><strong>Cómo se mide de verdad.</strong>
+        Paciente <strong>acostado al menos 5 minutos</strong>; registra presión y pulso. Luego <strong>de pie</strong>
+        (no sentado) y registra <strong>al minuto 1 y al minuto 3</strong>. Es positiva si cae
+        <strong>≥ 20 mmHg la sistólica</strong> o <strong>≥ 10 mmHg la diastólica</strong> dentro de los 3 minutos.
+        Pregunta también si reprodujo el síntoma: una caída asintomática y un desvanecimiento no valen lo
+        mismo.</span></div>
+
+      <div class="calc">
+        <div class="calc-row">
+          <div class="calc-field">
+            <label for="or-sup-s">Acostado · sistólica</label>
+            <input id="or-sup-s" type="number" inputmode="numeric" min="40" max="300" placeholder="mmHg">
+          </div>
+          <div class="calc-field">
+            <label for="or-sup-d">Acostado · diastólica</label>
+            <input id="or-sup-d" type="number" inputmode="numeric" min="20" max="200" placeholder="mmHg">
+          </div>
+          <div class="calc-field">
+            <label for="or-pie-s">De pie · sistólica</label>
+            <input id="or-pie-s" type="number" inputmode="numeric" min="40" max="300" placeholder="mmHg">
+          </div>
+          <div class="calc-field">
+            <label for="or-pie-d">De pie · diastólica</label>
+            <input id="or-pie-d" type="number" inputmode="numeric" min="20" max="200" placeholder="mmHg">
+          </div>
+          <div class="calc-field">
+            <label for="or-sint">¿Reprodujo el síntoma?</label>
+            <select id="or-sint">
+              <option value="no">No</option>
+              <option value="si">Sí, se marea o casi se desvanece de pie</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-out" id="orto-out"></div>
+        <button type="button" class="calc-reset" id="orto-reset">Reiniciar</button>
+      </div>
+
+      <div class="block-label">Qué hacer con una ortostática positiva</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔍</span><span><strong>Primero busca la causa, no la
+          etiqueta:</strong> hemorragia o anemia, deshidratación por vómitos o diarrea, fármacos (antihipertensivos,
+          alfabloqueadores como la tamsulosina, diuréticos, nitratos, antidepresivos, antipsicóticos), insuficiencia
+          suprarrenal, sepsis incipiente, y neuropatía autonómica en el diabético o el parkinsoniano.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🩸</span><span><strong>Una ortostática nueva y marcada
+          en un paciente sin fármacos nuevos obliga a descartar sangrado.</strong> Hemograma, tacto rectal y revisión
+          de antiinflamatorios y anticoagulantes antes de llamarla «deshidratación».</span></div>
+        <div class="plain-item"><span class="bullet-icon">💧</span><span><strong>Lo que sí ayuda al alta:</strong>
+          volumen si está deplecionado, revisión y ajuste del fármaco responsable, levantarse en dos tiempos
+          (sentarse, esperar, pararse), hidratación y sal según comorbilidad, medias de compresión, y evitar el
+          alcohol y las comidas copiosas. <em>Los fármacos de segunda línea para la hipotensión ortostática crónica
+          se manejan con el especialista: verificar con protocolo institucional.</em></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 · SIEMPRE EN PARALELO -->
+  <div class="section s2 collapsed" id="s-paralelo" style="animation-delay:0.22s;">
+    <div class="section-header" onclick="toggleSection('s-paralelo')">
+      <span class="section-num">PARALELO</span>
+      <div>
+        <div class="section-title">Los gestos que se olvidan</div>
+        <div class="section-subtitle">Baratos, rápidos y los que más cambian la conducta</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🚶</span><span><strong>Hacerlo caminar.</strong> El gesto más
+          rentable y el que más se omite. Siéntalo sin apoyo, párelo con los pies juntos, hazlo caminar con dos
+          personas al lado. Si no puede, el camino cambia.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Glicemia capilar en todos.</strong>
+          Dos minutos, y descarta una causa que se trata en el box.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💓</span><span><strong>Electrocardiograma</strong> si el
+          perfil es presincopal, si hay riesgo vascular, si hubo síncope o palpitaciones, o si el paciente es adulto
+          mayor. Busca fibrilación auricular: cambia el diagnóstico y el tratamiento.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📏</span><span><strong>Presión acostado y de pie</strong>, al
+          minuto 1 y al minuto 3, no «sentado y de pie» ni «de memoria».</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>La lista completa de fármacos,</strong>
+          incluidos los que empezó la semana pasada, las gotas oftálmicas, lo que toma «para dormir» y lo que compró
+          sin receta. En el adulto mayor mareado es el examen con mayor rendimiento diagnóstico.</span></div>
+        <div class="plain-item"><span class="bullet-icon">👂</span><span><strong>Preguntar y probar la audición.</strong>
+          Frote de dedos junto a cada oído y pregunta dirigida por hipoacusia o acúfeno nuevo. Otoscopia: busca
+          colesteatoma, perforación y otitis.</span></div>
+        <div class="plain-item"><span class="bullet-icon">👁</span><span><strong>Mirar los ojos con y sin fijación,</strong>
+          y en las cinco posiciones de mirada. El nistagmo que no se busca no se encuentra.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🤰</span><span><strong>Prueba de embarazo</strong> en mujer en
+          edad fértil: cambia el estudio, el fármaco y abre la hiperemesis con riesgo de Wernicke.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🏠</span><span><strong>Preguntar con quién vive y cómo es su
+          casa.</strong> El mismo vértigo se va de alta en un adulto joven y se queda en observación en una persona
+          de 85 años que vive sola en un segundo piso sin ascensor.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 · IMAGEN -->
+  <div class="section s6 collapsed" id="s-imagen" style="animation-delay:0.24s;">
+    <div class="section-header" onclick="toggleSection('s-imagen')">
+      <span class="section-num">IMAGEN</span>
+      <div>
+        <div class="section-title">Lo que la imagen dice y lo que no</div>
+        <div class="section-subtitle">Por qué la TAC no cierra la pregunta</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Examen</th><th>Para qué sirve</th><th>Para qué NO sirve</th></tr></thead>
+          <tbody>
+            <tr><td>TAC sin contraste</td><td>Descartar <strong>hemorragia</strong> antes de trombolisis; evaluar al paciente que se deteriora; hematoma cerebeloso</td><td><strong>No descarta un infarto de fosa posterior.</strong> El hueso de la base degrada la imagen y el infarto isquémico agudo no se ve en las primeras horas. Una TAC normal <em>no autoriza el alta</em> del paciente con patrón central</td></tr>
+            <tr><td>Resonancia con difusión</td><td>El examen que responde la pregunta en el síndrome vestibular agudo de patrón central</td><td><strong>No es infalible:</strong> en la serie original de HINTS la difusión inicial fue falsamente negativa en 12 %, todas realizadas antes de las 48 h. Si el examen de cabecera dice central, el paciente se queda y la imagen se repite</td></tr>
+            <tr><td>Angio-TAC o angio-RM de cuello e intracraneal</td><td>Disección vertebral, estenosis o oclusión vertebrobasilar, selección para trombectomía</td><td>No es un examen de tamizaje para todo paciente mareado</td></tr>
+            <tr><td>Eco-Doppler de vasos del cuello</td><td>Estudio electivo de enfermedad carotídea</td><td><strong>No tiene lugar en la urgencia del mareo agudo:</strong> no ve bien el territorio posterior, demora y da falsa tranquilidad</td></tr>
+            <tr><td>Radiografía de columna cervical</td><td>Trauma cervical según regla de decisión</td><td>No aporta nada al estudio del vértigo. Pedirla por «vértigo cervicogénico» irradia sin cambiar conducta</td></tr>
+            <tr><td>Electroencefalograma</td><td>Sospecha de crisis epiléptica</td><td>No es parte del estudio del mareo o del vértigo</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="info-banner"><span>⚖️</span><span><strong>La regla práctica:</strong> si el examen de cabecera es
+        claramente periférico y el paciente camina, <strong>no pidas imagen</strong>. Si el examen es central o no
+        concluyente, <strong>pide resonancia y hospitaliza</strong> —no pidas TAC para tranquilizarte—. La TAC se pide
+        cuando buscas sangre, no cuando buscas isquemia. <em>La disponibilidad y los tiempos reales de resonancia en
+        el servicio, y la conducta cuando no hay resonancia disponible: verificar con protocolo
+        institucional.</em></span></div>
+    </div>
+  </div>
+
+  <!-- 08 · FÁRMACOS QUE MAREAN -->
+  <div class="section s5 collapsed" id="s-farmacos" style="animation-delay:0.26s;">
+    <div class="section-header" onclick="toggleSection('s-farmacos')">
+      <span class="section-num">FÁRMACOS</span>
+      <div>
+        <div class="section-title">Fármacos que marean</div>
+        <div class="section-subtitle">La receta como examen diagnóstico</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Grupo</th><th>Mecanismo del mareo</th><th>Pista</th></tr></thead>
+          <tbody>
+            <tr><td>Antihipertensivos, diuréticos, nitratos</td><td>Hipotensión y ortostatismo</td><td>Inicio o aumento reciente de dosis; mareo solo al incorporarse</td></tr>
+            <tr><td>Alfabloqueadores<br><span class="dose-note">tamsulosina, doxazosina</span></td><td>Hipotensión ortostática, sobre todo con la primera dosis</td><td>Hombre mayor con hiperplasia prostática que empezó el fármaco esta semana</td></tr>
+            <tr><td>Benzodiazepinas, antihistamínicos, antipsicóticos</td><td>Sedación, ataxia, caídas; hipotensión ortostática</td><td>Polifarmacia en adulto mayor. Incluye lo que toma «para dormir»</td></tr>
+            <tr><td>Anticonvulsivantes<br><span class="dose-note">fenitoína, carbamazepina</span></td><td>Toxicidad cerebelosa</td><td><strong>Nistagmo y ataxia que imitan un patrón central.</strong> Pide niveles antes de pedir imagen si el cuadro encaja</td></tr>
+            <tr><td>Aminoglucósidos<br><span class="dose-note">gentamicina, amikacina</span></td><td>Vestibulotoxicidad, a veces bilateral y permanente</td><td>Inestabilidad al caminar y oscilopsia, más que vértigo rotatorio; tratamiento prolongado o función renal deteriorada</td></tr>
+            <tr><td>Antidepresivos</td><td>Hipotensión ortostática; mareo por suspensión brusca</td><td>Cambio reciente de dosis o abandono del tratamiento</td></tr>
+            <tr><td>Hipoglicemiantes<br><span class="dose-note">insulina, sulfonilureas</span></td><td>Hipoglicemia</td><td>Ayuno, alcohol, cambio de dosis, enfermedad intercurrente</td></tr>
+            <tr><td>Alcohol</td><td>Nistagmo posicional, ataxia, y además carencia de tiamina</td><td>El nistagmo posicional del alcohol se parece a un VPPB. Y no olvides la tiamina</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="amber-banner"><span>✂️</span><span><strong>Suspender un fármaco es una intervención terapéutica.</strong>
+        En el adulto mayor con mareo crónico y polifarmacia, retirar o ajustar un fármaco rinde más que agregar otro
+        —y agregar un sedante vestibular a esa lista es la peor de las opciones disponibles—.</span></div>
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda de orientación para la atención de urgencia del adulto:
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes del servicio</strong>. Las metas de tiempo son
+    referenciales y están propuestas, no validadas. El examen oculomotor de cabecera es
+    <strong>operador-dependiente</strong>: usado de forma aislada por médicos no entrenados no ha demostrado ser
+    suficientemente exacto para descartar un ictus, y por eso un examen no concluyente se maneja como un patrón
+    central. Verifica dosis, ajuste por función renal, alergias, interacciones y contraindicaciones antes de indicar
+    cualquier fármaco, y confirma con el protocolo institucional los criterios locales de trombolisis y
+    trombectomía, las ventanas de imagen, la disponibilidad de resonancia y las vías de derivación. No incluye
+    población pediátrica.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
+    <div class="references-list">
+      <div class="ref-item">Kattah JC, Talkad AV, Wang DZ, Hsieh YH, Newman-Toker DE. <em>HINTS to diagnose stroke in the acute vestibular syndrome: three-step bedside oculomotor examination more sensitive than early MRI diffusion-weighted imaging.</em> Stroke. 2009;40(11):3504–3510.</div>
+      <div class="ref-item">Ohle R, Montpellier RA, Marchadier V, Wharton A, McIsaac S, Anderson M, Savage D. <em>Can Emergency Physicians Accurately Rule Out a Central Cause of Vertigo Using the HINTS Examination? A Systematic Review and Meta-analysis.</em> Acad Emerg Med. 2020;27(9):887–896.</div>
+      <div class="ref-item">Vanni S, Nazerian P, Casati C, et al. <em>Can emergency physicians accurately and reliably assess acute vertigo in the emergency department?</em> (algoritmo STANDING). Emerg Med Australas. 2015;27(2):126–131.</div>
+      <div class="ref-item">Bhattacharyya N, Gubbels SP, Schwartz SR, Edlow JA, et al. <em>Clinical Practice Guideline: Benign Paroxysmal Positional Vertigo (Update).</em> American Academy of Otolaryngology–Head and Neck Surgery Foundation. Otolaryngol Head Neck Surg. 2017;156(3_suppl):S1–S47.</div>
+      <div class="ref-item">Lee H, Sohn SI, Cho YW, Lee SR, Ahn BH, Park BR, Baloh RW. <em>Cerebellar infarction presenting isolated vertigo: frequency and vascular topographical patterns.</em> Neurology. 2006;67(7):1178–1183.</div>
+      <div class="ref-item">Newman-Toker DE, Edlow JA. <em>TiTrATE: A Novel, Evidence-Based Approach to Diagnosing Acute Dizziness and Vertigo.</em> Neurol Clin. 2015;33(3):577–599.</div>
+      <div class="ref-item">Edlow JA, Gurley KL, Newman-Toker DE. <em>A New Diagnostic Approach to the Adult Patient with Acute Dizziness.</em> J Emerg Med. 2018;54(4):469–483.</div>
+      <div class="ref-item">Bisdorff A, Von Brevern M, Lempert T, Newman-Toker DE. <em>Classification of vestibular symptoms: towards an international classification of vestibular disorders.</em> Bárány Society. J Vestib Res. 2009;19(1-2):1–13.</div>
+      <div class="ref-item">Lempert T, Olesen J, Furman J, et al. <em>Vestibular migraine: diagnostic criteria.</em> Bárány Society / International Headache Society. J Vestib Res. 2012;22(4):167–172.</div>
+      <div class="ref-item">Lopez-Escamez JA, Carey J, Chung WH, et al. <em>Diagnostic criteria for Menière's disease.</em> Bárány Society / AAO-HNS / EAONO. J Vestib Res. 2015;25(1):1–7.</div>
+      <div class="ref-item">Staab JP, Eckhardt-Henn A, Horii A, et al. <em>Diagnostic criteria for persistent postural-perceptual dizziness (PPPD).</em> Bárány Society. J Vestib Res. 2017;27(4):191–208.</div>
+      <div class="ref-item">Strupp M, Mandalà M, López-Escámez JA. <em>Peripheral vestibular disorders: an update.</em> Curr Opin Neurol. 2019;32(1):165–173.</div>
+      <div class="ref-item">McDonnell MN, Hillier SL. <em>Vestibular rehabilitation for unilateral peripheral vestibular dysfunction.</em> Cochrane Database Syst Rev. 2015;(1):CD005397.</div>
+      <div class="ref-item">Fishman JM, Burgess C, Waddell A. <em>Corticosteroids for the treatment of idiopathic acute vestibular dysfunction (vestibular neuritis).</em> Cochrane Database Syst Rev. 2011;(5):CD008607.</div>
+      <div class="ref-item">Freeman R, Wieling W, Axelrod FB, et al. <em>Consensus statement on the definition of orthostatic hypotension, neurally mediated syncope and the postural tachycardia syndrome.</em> Clin Auton Res. 2011;21(2):69–72.</div>
+      <div class="ref-item">Edlow JA, Carpenter C, Akhter M, et al. <em>Guidelines for Reasonable and Appropriate Care in the Emergency Department (GRACE-3): Acute dizziness and vertigo in the emergency department.</em> Acad Emerg Med. 2023;30(5):442–486.</div>
+    </div>
+  </details>
+
+  <div class="footer">Creado por Flavio Ayala Díaz · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+  function openSection(id) {
+    const s = document.getElementById(id);
+    s.classList.remove('collapsed');
+    s.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  function openDiff()     { openSection('s-diff'); }
+  function openStanding() { openSection('s-standing'); }
+  function openCanal()    { openSection('s-canal'); }
+  function openOrto()     { openSection('s-orto'); }
+
+  // ── Datos: fármacos ───────────────────────────────────────────────
+  const MEDS = {
+    nada: { name: 'Sin fármaco', dose: 'Rehabilitación vestibular y movimiento precoz', note: 'Primera opción en el VPPB tratado con maniobra y en el adulto mayor. Lo que acelera la recuperación es moverse.',
+            pt: 'No necesita medicamentos para el mareo. Lo que más ayuda es moverse: haga sus actividades habituales con cuidado, aunque al principio le dé algo de mareo.' },
+    dimen: { name: 'Dimenhidrinato', dose: '50 mg c/8 h VO, por un máximo de 48–72 h', note: 'Solo mientras haya náuseas o vómitos que impidan hidratarse o moverse. Sedante y anticolinérgico: evitar en el adulto mayor, en el glaucoma de ángulo estrecho y en la retención urinaria.',
+            pt: 'Dimenhidrinato 50 mg: 1 comprimido cada 8 horas SOLO si tiene náuseas o mareo intenso, y por un máximo de 2 a 3 días. Da sueño: no conduzca ni opere maquinaria.' },
+    ondan: { name: 'Ondansetrón', dose: '4–8 mg c/8 h VO o EV si hay vómitos', note: 'Antiemético sin efecto sedante vestibular: no enmascara el nistagmo. Precaución con la prolongación del QT.',
+             pt: 'Ondansetrón: 1 comprimido cada 8 horas solo si tiene vómitos, por un máximo de 2 a 3 días.' },
+    betah: { name: 'Betahistina', dose: '8–16 mg c/8 h VO', note: 'Uso habitual en la enfermedad de Ménière, con evidencia débil: un ensayo controlado no mostró diferencia frente a placebo en la frecuencia de crisis. No es tratamiento de la crisis aguda. Decisión con otorrinolaringología.',
+             pt: 'Betahistina: 1 comprimido cada 8 horas, con las comidas, según le indique su médico tratante.' },
+    diaz:  { name: 'Diazepam', dose: '2–5 mg VO o EV lento, dosis única o por pocas horas', note: 'Solo en el vértigo agudo muy intenso que no cede, y por el tiempo más corto posible. Evitar en el adulto mayor: caídas, delirium y retraso de la compensación.',
+             pt: 'Diazepam: solo si el mareo es muy intenso, según le indique su médico. Da mucho sueño: no conduzca, no tome alcohol y pida ayuda para levantarse.' },
+    sal:   { name: 'Medidas de volumen y postura', dose: 'Hidratación, levantarse en dos tiempos, medias de compresión', note: 'Base del manejo de la hipotensión ortostática, junto con el ajuste del fármaco responsable. Sal y volumen según comorbilidad cardíaca y renal.',
+             pt: 'Beba más líquido durante el día, salvo que su médico le haya indicado restringirlo. Para levantarse: primero siéntese en la cama, espere un minuto, y solo después póngase de pie. Si le indicaron medias de compresión, úselas durante el día.' },
+    ajuste:{ name: 'Ajustar o suspender el fármaco responsable', dose: 'Según la lista de fármacos revisada hoy', note: 'En la hipotensión ortostática y en el mareo del adulto mayor es la intervención con mayor rendimiento. Coordinar con el médico tratante.',
+             pt: 'Se revisó su lista de medicamentos y se cambió o suspendió uno de ellos porque puede estar causando el mareo. Lleve esta indicación a su control habitual y no reinicie el medicamento por su cuenta.',
+             box: 'Cambio de medicamento indicado en este servicio: revisar en el control.' },
+    profMig:{ name: 'Analgesia de la crisis migrañosa', dose: 'Según el esquema de la crisis de migraña del servicio', note: 'La migraña vestibular se trata como la migraña del paciente. La profilaxis se decide en control ambulatorio, no en urgencia.',
+             pt: 'Use el tratamiento que ya le indicaron para sus migrañas al comenzar la crisis. Si no tiene uno, consulte en su centro de salud para que se lo indiquen.' }
+  };
+
+  const ANALG = {
+    para:  { name: 'Paracetamol', dose: '1 g c/8 h VO si hay dolor o cefalea', note: 'Máximo 3 g al día.',
+             pt: 'Paracetamol 1 g: cada 8 horas solo si tiene dolor o dolor de cabeza (máximo 3 g al día).' },
+    ondanS:{ name: 'Ondansetrón', dose: '4–8 mg c/8 h VO si hay náuseas', note: 'No enmascara el nistagmo. Precaución con la prolongación del QT.',
+             pt: 'Ondansetrón: 1 comprimido cada 8 horas solo si tiene náuseas o vómitos, por un máximo de 2 a 3 días.' },
+    dimenS:{ name: 'Dimenhidrinato', dose: '50 mg c/8 h VO, máximo 48–72 h', note: 'Sedante. Evitar en el adulto mayor y si va a conducir.',
+             pt: 'Dimenhidrinato 50 mg: 1 comprimido cada 8 horas SOLO si el mareo o las náuseas son intensos, por un máximo de 2 a 3 días. Da sueño: no conduzca.' }
+  };
+
+  // ── Escenarios del camino B1 ──────────────────────────────────────
+  const B1 = {
+    neuritis: {
+      label: 'Neuritis vestibular',
+      crit: '<strong>Vértigo continuo de inicio agudo</strong>, de horas a días, con nistagmo horizontal unidireccional, impulso cefálico alterado hacia un lado, <strong>sin hipoacusia</strong>, sin desalineación vertical y con marcha posible sin ayuda. Mejora progresivamente en días a semanas.',
+      meds: ['nada', 'dimen', 'ondan'], analg: ['para', 'ondanS'],
+      orders: ['Glicemia capilar', 'Audición en la cabecera (frote de dedos) y otoscopia', 'Electrocardiograma <span class="cond">si hay riesgo vascular o perfil presincopal</span>', 'Prueba de marcha documentada', 'Electrolitos y función renal <span class="cond">solo si hubo vómitos prolongados o intolerancia oral</span>'],
+      avoid: '<strong>No corticoides de rutina:</strong> mejoran la función vestibular medida en pruebas calóricas, pero la revisión sistemática no encontró evidencia suficiente de mejor recuperación clínica. <strong>No antivirales.</strong> <em>La conducta local sobre corticoides en la neuritis vestibular: verificar con protocolo institucional.</em>',
+      dx: 'Inflamación del nervio del equilibrio (neuritis vestibular)',
+      extraAlarm: ['Pérdida de audición nueva, o zumbido intenso que no tenía antes.', 'Visión doble, dificultad para hablar o para tragar, o debilidad de un lado del cuerpo.'],
+      control: 'Control en 48 a 72 horas para ver si está mejorando y para revisar los medicamentos. Si a la semana sigue sin poder caminar normal, debe volver a evaluarse.'
+    },
+    migrana: {
+      label: 'Migraña vestibular',
+      crit: 'Crisis <strong>espontáneas de 5 minutos a 72 horas</strong>, repetidas, en una persona con historia de migraña, y con rasgos migrañosos (cefalea, fotofobia, fonofobia o aura visual) en al menos la mitad de los episodios. Es la causa más frecuente de vértigo episódico espontáneo.',
+      meds: ['profMig', 'nada', 'ondan'], analg: ['para', 'ondanS'],
+      orders: ['Glicemia capilar', 'Examen oculomotor documentado <span class="cond">debe ser normal entre crisis</span>', 'Prueba de marcha documentada'],
+      avoid: 'Sin imagen si el patrón es típico, las crisis son repetidas y el examen entre crisis es normal. <strong>El primer episodio en un paciente con riesgo vascular no es una migraña vestibular hasta que se descarte lo demás.</strong>',
+      dx: 'Migraña con síntomas de vértigo (migraña vestibular)',
+      extraAlarm: ['Un episodio distinto a los anteriores: más intenso, más largo, o con síntomas nuevos.', 'Visión doble, dificultad para hablar o tragar, o debilidad de un lado del cuerpo.'],
+      control: 'Control con su médico habitual para evaluar tratamiento preventivo si las crisis son frecuentes. Lleve un registro de los episodios: fecha, duración y qué los acompañó.'
+    },
+    meniere: {
+      label: 'Enfermedad de Ménière',
+      crit: 'Crisis espontáneas de vértigo de <strong>20 minutos a 12 horas</strong>, con <strong>hipoacusia fluctuante, acúfeno y sensación de plenitud</strong> en el oído afectado. El diagnóstico <strong>no se hace en urgencia</strong>: requiere audiometría y seguimiento.',
+      meds: ['ondan', 'dimen', 'betah'], analg: ['para', 'ondanS'],
+      orders: ['Glicemia capilar', 'Audición en la cabecera y otoscopia', 'Prueba de marcha documentada', 'Derivación a otorrinolaringología con audiometría <span class="cond">ambulatoria, no urgente</span>'],
+      avoid: '<strong>La primera crisis de vértigo con hipoacusia súbita no se rotula de Ménière:</strong> el infarto de la arteria cerebelosa anteroinferior se presenta exactamente así. En urgencia se trata la crisis y se descarta lo central; la etiqueta se pone después, con audiometría.',
+      dx: 'Crisis de vértigo con síntomas del oído, en estudio',
+      extraAlarm: ['Pérdida de audición que no se recupera entre las crisis.', 'Visión doble, dificultad para hablar o tragar, o debilidad de un lado del cuerpo.'],
+      control: 'Control con otorrinolaringología para audiometría y estudio. Hasta entonces, consulte si una crisis es distinta o más intensa que las anteriores.'
+    },
+    orto: {
+      label: 'Hipotensión ortostática',
+      crit: 'Mareo <strong>solo al incorporarse</strong>, que mejora al sentarse o acostarse, con caída documentada de <strong>≥ 20 mmHg sistólica o ≥ 10 mmHg diastólica</strong> en los primeros 3 minutos de pie. <button type="button" class="link-btn" onclick="openOrto()">Abrir la calculadora de ortostatismo →</button>',
+      meds: ['sal', 'ajuste'], analg: ['para'],
+      orders: ['Glicemia capilar', 'Presión acostado y de pie al minuto 1 y al minuto 3', 'Electrocardiograma', 'Hemograma <span class="cond">descartar anemia o sangrado</span>', 'Electrolitos, creatinina y BUN', 'Revisión completa de la lista de fármacos'],
+      avoid: '<strong>No la llames deshidratación antes de descartar sangrado:</strong> una ortostática nueva y marcada sin fármacos nuevos obliga a hemograma, tacto rectal y revisión de antiinflamatorios y anticoagulantes.',
+      dx: 'Baja de presión al ponerse de pie (hipotensión ortostática)',
+      extraAlarm: ['Deposiciones negras o con sangre, o vómito con sangre.', 'Desmayo, dolor en el pecho o falta de aire.', 'Palidez marcada o debilidad que va en aumento.'],
+      control: 'Control en su centro de salud dentro de una semana para revisar la presión y los medicamentos. Lleve la lista completa de lo que toma.'
+    },
+    posvest: {
+      label: 'Vestibulopatía en recuperación o episodio resuelto',
+      crit: 'Paciente que llega <strong>ya sin síntomas</strong> o claramente mejor, con examen oculomotor normal, sin nistagmo y caminando. El riesgo aquí no es el diagnóstico: es <strong>irse de alta sin plan y sin red</strong>.',
+      meds: ['nada', 'ondan'], analg: ['para'],
+      orders: ['Glicemia capilar', 'Electrocardiograma <span class="cond">si hubo perfil presincopal o riesgo vascular</span>', 'Prueba de marcha documentada', 'Revisión de fármacos'],
+      avoid: 'No pidas imagen «para quedar tranquilo» en un paciente asintomático con examen normal y un episodio compatible. <strong>Pero si el episodio fue el primero, fue continuo y el paciente tiene riesgo vascular alto, discútelo como posible accidente isquémico transitorio de circulación posterior en lugar de darlo de alta sin más.</strong>',
+      dx: 'Episodio de vértigo en recuperación',
+      extraAlarm: ['Que el mareo vuelva y no lo deje caminar.', 'Visión doble, dificultad para hablar o tragar, debilidad o pérdida de sensibilidad de un lado del cuerpo.', 'Pérdida de audición nueva.'],
+      control: 'Control en su centro de salud dentro de una semana. Si el mareo vuelve con alguno de los signos de alarma, consulte de inmediato.'
+    }
+  };
+
+  // ── Estado (en memoria, no se guarda) ─────────────────────────────
+  const state = {
+    flags: { C: new Set(), B2: new Set(), B1: new Set() },
+    noFlags: false,
+    path: null,
+    scen: 'neuritis',
+    med: { A: null, B1: null },
+    analg: { A: new Set(), B1: new Set() }
+  };
+
+  const PATH_NAMES = {
+    A:  'VPPB: maniobra en el box y alta sin exámenes',
+    B1: 'Vestibular periférico: estudio dirigido',
+    B2: 'Patrón central o no concluyente: imagen y hospitalización',
+    C:  'El mareo no es vestibular: estabilizar primero'
+  };
+
+  function flagLabels(group) {
+    return [...state.flags[group]].map(v => {
+      const b = document.querySelector(`[data-group="${group}"] [data-v="${v}"]`);
+      const clone = b.cloneNode(true);
+      const sub = clone.querySelector('.sub');
+      if (sub) sub.remove();
+      return clone.textContent.trim();
+    });
+  }
+
+  function computePath() {
+    const f = state.flags;
+    if (f.C.size) return { p: 'C', why: flagLabels('C') };
+    if (f.B2.size) return { p: 'B2', why: flagLabels('B2') };
+    if (f.B1.size) return { p: 'B1', why: flagLabels('B1') };
+    if (state.noFlags) return { p: 'A', why: ['Cuadro posicional de segundos, sin banderas rojas'] };
+    return null;
+  }
+
+  function suggestScenario() {
+    const f = state.flags.B1;
+    if (f.has('ortostatico')) return 'orto';
+    if (f.has('continuo') || f.has('nistPerif') || f.has('hitAlterado')) return 'neuritis';
+    if (f.has('episodico')) return 'migrana';
+    return state.scen;
+  }
+
+  function renderVerdict() {
+    const v = document.getElementById('verdict');
+    const anyFlag = Object.values(state.flags).some(s => s.size);
+    const nf = document.getElementById('noFlags');
+    nf.disabled = anyFlag;
+    if (anyFlag) { state.noFlags = false; nf.classList.remove('on'); }
+
+    const r = computePath();
+    if (!r) {
+      v.className = 'verdict placeholder';
+      v.innerHTML = 'Primero: ¿cuánto dura cada episodio y qué lo desencadena? Después mira los ojos y hazlo caminar. ' +
+        '<button type="button" class="link-btn" onclick="openDiff()">Puede que no sea vértigo →</button>';
+      return;
+    }
+    if (r.p === 'B1') setScenario(suggestScenario());
+    v.className = 'verdict p-' + r.p;
+    v.innerHTML = `
+      <div class="verdict-main">
+        <div class="verdict-tag">Camino sugerido</div>
+        <div class="verdict-title">${PATH_NAMES[r.p]}</div>
+        <div class="verdict-why">${r.why.join(' · ')}</div>
+      </div>
+      <button type="button" class="go-btn" onclick="showPath('${r.p}', true)">Ir al camino ↓</button>`;
+    showPath(r.p, false);
+  }
+
+  document.querySelectorAll('[data-group]').forEach(group => {
+    const g = group.dataset.group;
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (state.flags[g].has(v)) { state.flags[g].delete(v); btn.classList.remove('on'); }
+        else { state.flags[g].add(v); btn.classList.add('on'); }
+        renderVerdict();
+      });
+    });
+  });
+
+  document.getElementById('noFlags').addEventListener('click', e => {
+    state.noFlags = !state.noFlags;
+    e.currentTarget.classList.toggle('on', state.noFlags);
+    renderVerdict();
+  });
+
+  // ── Pestañas de camino ────────────────────────────────────────────
+  function showPath(p, scroll) {
+    state.path = p;
+    document.querySelectorAll('.path-tab').forEach(t => {
+      const on = t.dataset.path === p;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on);
+    });
+    document.querySelectorAll('.path-panel').forEach(pn => pn.classList.toggle('active', pn.id === 'panel-' + p));
+    if (scroll) document.getElementById('pathTabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  document.querySelectorAll('.path-tab').forEach(t => t.addEventListener('click', () => showPath(t.dataset.path, false)));
+
+  // ── Listas de fármacos ────────────────────────────────────────────
+  function medButton(m, id, multi, on) {
+    return `<button type="button" class="med${multi ? ' multi' : ''}${on ? ' on' : ''}" data-id="${id}">
+      <span class="radio"></span>
+      <span><span class="med-name">${m.name}</span><span class="med-dose" style="display:block">${m.dose}</span>${m.note ? `<span class="med-note" style="display:block">${m.note}</span>` : ''}</span>
+    </button>`;
+  }
+
+  function renderMeds(path) {
+    if (path === 'B1') {
+      const ids = B1[state.scen].meds;
+      if (!ids.includes(state.med.B1)) state.med.B1 = ids[0];
+      const box = document.querySelector('[data-meds="B1"]');
+      box.innerHTML = ids.map(id => medButton(MEDS[id], id, false, state.med.B1 === id)).join('');
+      box.querySelectorAll('.med').forEach(b => b.addEventListener('click', () => {
+        state.med.B1 = b.dataset.id;
+        renderMeds('B1');
+      }));
+    }
+
+    const aIds = path === 'A' ? ['ondanS', 'dimenS', 'para'] : B1[state.scen].analg;
+    [...state.analg[path]].forEach(a => { if (!aIds.includes(a)) state.analg[path].delete(a); });
+    const abox = document.querySelector(`[data-analg="${path}"]`);
+    abox.innerHTML = aIds.map(id => medButton(ANALG[id], id, true, state.analg[path].has(id))).join('');
+    abox.querySelectorAll('.med').forEach(b => b.addEventListener('click', () => {
+      const id = b.dataset.id;
+      state.analg[path].has(id) ? state.analg[path].delete(id) : state.analg[path].add(id);
+      renderMeds(path);
+    }));
+
+    renderCopy(path);
+  }
+
+  // ── Escenario B1 ──────────────────────────────────────────────────
+  function setScenario(s) {
+    state.scen = s;
+    document.querySelectorAll('#b1Scen .opt').forEach(b => b.classList.toggle('on', b.dataset.v === s));
+    document.getElementById('b1Crit').innerHTML = '<span>📋</span><span>' + B1[s].crit + '</span>';
+    document.getElementById('b1Orders').innerHTML = B1[s].orders.map(o => `<li>${o}</li>`).join('');
+    document.getElementById('b1Avoid').innerHTML = B1[s].avoid;
+    document.getElementById('b1Avoid').hidden = !B1[s].avoid;
+    renderMeds('B1');
+  }
+  document.getElementById('b1Scen').innerHTML = Object.entries(B1)
+    .map(([k, v]) => `<button type="button" class="opt" data-v="${k}">${v.label}</button>`).join('');
+  document.querySelectorAll('#b1Scen .opt').forEach(b => b.addEventListener('click', () => setScenario(b.dataset.v)));
+
+  // ── Texto de indicaciones ─────────────────────────────────────────
+  const ALARM_BASE = [
+    'Debilidad, hormigueo o pérdida de fuerza en la cara, un brazo o una pierna.',
+    'Dificultad para hablar, para entender, para tragar, o visión doble.',
+    'Dolor de cabeza o de cuello intenso y de comienzo brusco.',
+    'Que el mareo no lo deje caminar ni mantenerse de pie, incluso con ayuda.',
+    'Pérdida de audición nueva en un oído.',
+    'Desmayo, dolor en el pecho, falta de aire o palpitaciones.',
+    'Vómitos que le impidan tomar líquidos ni los medicamentos.'
+  ];
+
+  function buildText(path) {
+    const isA = path === 'A';
+    const sc = B1[state.scen];
+    const L = [];
+    const dx = isA ? 'Vértigo posicional paroxístico benigno (VPPB)' : sc.dx;
+    L.push('INDICACIONES AL ALTA — ' + dx.toUpperCase(), '');
+
+    if (isA) {
+      L.push('Qué tiene:');
+      L.push('• Pequeños cristales de calcio se desprendieron dentro del oído interno y, al mover la cabeza,');
+      L.push('  hacen que sienta que todo gira por unos segundos. NO es un problema del cerebro y no es peligroso.');
+      L.push('');
+      L.push('Tratamiento:');
+      L.push('• Hoy se le realizó en este servicio una maniobra para devolver esos cristales a su lugar.');
+      L.push('• NO necesita reposo, collar, ni dormir sentado: puede dormir y moverse como siempre.');
+      L.push('• Muévase con normalidad. Al principio puede sentir inestabilidad o "resaca" por algunas horas o días:');
+      L.push('  eso es esperado y mejora moviéndose, no quedándose quieto.');
+    } else {
+      L.push('Tratamiento:');
+      const med = MEDS[state.med.B1];
+      if (med.box) L.push('• ' + med.box);
+      L.push('• ' + med.pt);
+    }
+
+    [...state.analg[path]].forEach(a => L.push('• ' + ANALG[a].pt));
+
+    L.push('', 'Recomendaciones:');
+    if (isA) {
+      L.push('• El mareo puede volver en semanas o meses: eso no significa que algo salió mal. Si vuelve,');
+      L.push('  consulte y se repite la maniobra.');
+      L.push('• Tenga cuidado al levantarse de noche: encienda la luz y apóyese.');
+      L.push('• No conduzca mientras tenga crisis de mareo.');
+    } else {
+      L.push('• Muévase progresivamente desde el primer día: el reposo prolongado retrasa la recuperación.');
+      L.push('• Si le indicaron un medicamento para el mareo o las náuseas, úselo SOLO los días indicados');
+      L.push('  y suspéndalo después: usado por más tiempo retrasa la mejoría.');
+      L.push('• No conduzca ni opere maquinaria mientras tenga mareo o esté tomando estos medicamentos.');
+      L.push('• Tenga cuidado con las escalas y al levantarse de noche. Pida ayuda si vive solo.');
+      L.push('• Beba líquidos en abundancia, salvo que su médico le haya indicado restringirlos.');
+    }
+
+    L.push('', 'CONSULTE DE INMEDIATO EN URGENCIA si presenta:');
+    [...ALARM_BASE, ...(isA ? [] : sc.extraAlarm)].forEach(a => L.push('• ' + a));
+
+    L.push('', 'Control:');
+    L.push('• ' + (isA
+      ? 'Control en su centro de salud dentro de un mes para confirmar que el mareo cedió. Si las crisis continúan pese a la maniobra, debe ser reevaluado.'
+      : sc.control));
+
+    L.push('', 'Se explicaron el diagnóstico, el tratamiento y los signos de alarma. El paciente refiere comprender las indicaciones.');
+    return L.join('\n');
+  }
+
+  function renderCopy(path) {
+    const el = document.getElementById('copy-' + path);
+    if (el) el.textContent = buildText(path);
+  }
+
+  async function copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch (e) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch (_) {}
+      ta.remove();
+      return ok;
+    }
+  }
+
+  document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
+    const ok = await copyText(buildText(btn.dataset.copy));
+    btn.textContent = ok ? 'Copiado ✓' : 'Selecciona y copia';
+    btn.classList.toggle('done', ok);
+    setTimeout(() => { btn.textContent = 'Copiar indicaciones'; btn.classList.remove('done'); }, 1800);
+  }));
+
+  // ── Checklists de alta ────────────────────────────────────────────
+  document.querySelectorAll('[data-check]').forEach(list => {
+    const p = list.dataset.check;
+    const status = document.querySelector(`[data-status="${p}"]`);
+    const boxes = list.querySelectorAll('input');
+    const upd = () => {
+      const n = [...boxes].filter(b => b.checked).length;
+      const done = n === boxes.length;
+      status.textContent = done ? '✓ Listo para el alta' : `${n} / ${boxes.length} verificados`;
+      status.classList.toggle('ok', done);
+    };
+    boxes.forEach(b => b.addEventListener('change', upd));
+    upd();
+  });
+
+  // ── STANDING / HINTS+ ─────────────────────────────────────────────
+  const ST_IDS = ['st-1', 'st-2', 'st-3', 'st-4', 'st-5'];
+  const DISCLAIM_ST = '<br><br>Esta herramienta <strong>complementa y no reemplaza el juicio clínico</strong>. ' +
+    'El examen es <em>operador-dependiente</em>: en manos de médicos de urgencia, usado de forma aislada, no ha ' +
+    'demostrado ser suficientemente exacto para descartar un ictus. Un resultado periférico no autoriza el alta por ' +
+    'sí solo: requiere además marcha posible sin ayuda, audición normal, ausencia de déficit focal y un plan de ' +
+    'control escrito. <em>Los criterios locales de imagen, hospitalización y derivación se ajustan al protocolo ' +
+    'institucional.</em>';
+
+  function renderStanding() {
+    const out = document.getElementById('standing-out');
+    const v = {}; ST_IDS.forEach(id => { v[id] = document.getElementById(id).value; });
+    let clase = 'risk-mid', titulo, texto;
+
+    if (!v['st-1']) {
+      out.innerHTML = '<span class="big">Elige al menos el paso 1</span>El examen se recorre en orden: nistagmo, ' +
+        'dirección, impulso cefálico y marcha. Los pasos 2 y 3 solo tienen sentido si hay nistagmo espontáneo.' + DISCLAIM_ST;
+      return;
+    }
+
+    // Paso 1: sin nistagmo espontáneo
+    if (v['st-1'] === 'pos') {
+      clase = 'risk-low'; titulo = 'Patrón posicional · evalúa VPPB';
+      texto = 'Sin nistagmo espontáneo y con nistagmo <strong>provocado por la posición</strong>, el examen que ' +
+        'corresponde no es HINTS sino la <strong>prueba posicional</strong>: Dix-Hallpike y, si es horizontal o ' +
+        'negativo, rotación en supino. <button type="button" class="link-btn" onclick="openCanal()">Abrir el ' +
+        'identificador de canal →</button> Recuerda que el nistagmo posicional que dura más de un minuto, el ' +
+        'puramente hacia abajo y el que no se fatiga son <strong>centrales</strong>.';
+    } else if (v['st-1'] === 'no') {
+      clase = 'risk-mid'; titulo = 'Sin nistagmo · HINTS no se aplica';
+      texto = 'En un paciente con vértigo agudo <strong>continuo y sin nistagmo de ningún tipo</strong>, HINTS ' +
+        '<strong>no es interpretable</strong> y la ausencia de nistagmo no es tranquilizadora. Deciden otras cosas: ' +
+        'la <strong>marcha</strong>, la búsqueda de déficit focal, el perfil temporal y la imagen. Revisa también si ' +
+        'el cuadro es en realidad <button type="button" class="link-btn" onclick="openDiff()">un mareo no ' +
+        'vestibular →</button> (presíncope, ortostatismo, fármacos, anemia).' +
+        (v['st-4'] === 'nocamina' ? ' <strong>Además no puede caminar: eso es patrón central, va a imagen y se hospitaliza.</strong>' : '');
+      if (v['st-4'] === 'nocamina') clase = 'risk-high';
+    } else {
+      // Hay nistagmo espontáneo: recorrer pasos 2, 3, 4
+      const central = [];
+      if (v['st-2'] === 'vert') central.push('nistagmo vertical o torsional puro');
+      if (v['st-2'] === 'cambia') central.push('nistagmo que cambia de dirección con la mirada');
+      if (v['st-3'] === 'normal') central.push('impulso cefálico normal con vértigo continuo y nistagmo');
+      if (v['st-4'] === 'nocamina') central.push('no puede caminar ni mantenerse de pie sin ayuda');
+      if (v['st-5'] === 'skew') central.push('desalineación vertical (skew)');
+      if (v['st-5'] === 'hipo') central.push('hipoacusia súbita nueva (HINTS+)');
+
+      if (central.length) {
+        clase = 'risk-high'; titulo = 'Patrón CENTRAL · ' + central.length + (central.length === 1 ? ' hallazgo' : ' hallazgos');
+        texto = 'Hallazgos centrales: <strong>' + central.join(' · ') + '</strong>. <strong>Basta uno.</strong> ' +
+          'Conducta: <strong>resonancia con difusión —no TAC—, monitorización y hospitalización</strong>, con ' +
+          'activación del código de ictus si el inicio está en ventana. Una TAC normal no cambia esta conducta, y ' +
+          'una resonancia inicial normal tampoco: la difusión precoz fue falsamente negativa en 12 % de la serie ' +
+          'original. <button type="button" class="link-btn" onclick="showPath(\'B2\', true)">Ir al camino de patrón central →</button>';
+      } else if (!v['st-2'] || !v['st-3'] || !v['st-4']) {
+        clase = 'risk-mid'; titulo = 'Examen incompleto';
+        texto = 'Hay nistagmo espontáneo, así que los cuatro pasos son obligatorios antes de concluir. Falta ' +
+          'completar: <strong>' +
+          [!v['st-2'] ? 'dirección del nistagmo' : null, !v['st-3'] ? 'impulso cefálico' : null, !v['st-4'] ? 'marcha' : null]
+            .filter(Boolean).join(', ') +
+          '</strong>. Un examen incompleto <em>no es un examen periférico</em>.';
+      } else if (v['st-3'] === 'nohecho') {
+        clase = 'risk-mid'; titulo = 'Examen NO concluyente';
+        texto = 'No pudiste realizar o interpretar el impulso cefálico, y <strong>sin ese paso el examen no ' +
+          'descarta nada</strong>. Un examen no concluyente <strong>se maneja como patrón central</strong>: imagen y ' +
+          'hospitalización, o consulta con quien sí pueda realizarlo antes de decidir el alta. ' +
+          '<button type="button" class="link-btn" onclick="showPath(\'B2\', true)">Ir al camino de patrón central →</button>';
+      } else {
+        clase = 'risk-low'; titulo = 'Patrón periférico · ninguno de los cuatro criterios centrales';
+        texto = 'Nistagmo horizontal unidireccional, impulso cefálico <strong>alterado</strong>, sin desalineación ' +
+          'vertical, sin hipoacusia nueva y camina sin ayuda: el patrón es compatible con una <strong>vestibulopatía ' +
+          'periférica aguda</strong>. <button type="button" class="link-btn" onclick="showPath(\'B1\', true)">Ir al ' +
+          'camino periférico →</button><br><br><strong>Dos condiciones antes de darlo de alta con esa etiqueta:</strong> ' +
+          'que el examen quede <em>escrito con palabras</em> en la ficha, y que el paciente tenga control precoz. ' +
+          'Recuerda que un 10,4 % de los infartos cerebelosos aislados se presentan como vértigo prolongado con ' +
+          'inestabilidad y nada más; con riesgo vascular alto y primer episodio, el umbral para estudiar baja.';
+      }
+    }
+
+    out.innerHTML = '<span class="big ' + clase + '">' + titulo + '</span>' + texto + DISCLAIM_ST;
+  }
+  ST_IDS.forEach(id => document.getElementById(id).addEventListener('change', renderStanding));
+  document.getElementById('standing-reset').addEventListener('click', () => {
+    ST_IDS.forEach(id => { document.getElementById(id).value = id === 'st-5' ? 'no' : ''; });
+    renderStanding();
+  });
+
+  // ── Identificador de canal ────────────────────────────────────────
+  const CN_IDS = ['cn-test', 'cn-dir', 'cn-lado'];
+  const DISCLAIM_CN = '<br><br>El identificador <strong>complementa y no reemplaza el examen ni el juicio clínico</strong>. ' +
+    'Un patrón que no encaja, un nistagmo posicional que dura más de un minuto o que no se fatiga, y cualquier ' +
+    'hallazgo central obligan a salir de este camino. <em>La disponibilidad de kinesiología vestibular y las vías de ' +
+    'derivación: verificar con protocolo institucional.</em>';
+
+  function renderCanal() {
+    const out = document.getElementById('canal-out');
+    const t = document.getElementById('cn-test').value;
+    const d = document.getElementById('cn-dir').value;
+    const l = document.getElementById('cn-lado').value;
+    const ladoTxt = l === 'der' ? 'derecho' : l === 'izq' ? 'izquierdo' : '';
+    let clase = 'risk-mid', titulo, texto;
+
+    if (!t) {
+      out.innerHTML = '<span class="big">Elige la prueba que hiciste</span>Primero el Dix-Hallpike. Si da nistagmo ' +
+        'horizontal o no da nistagmo y la historia es compatible, haz la rotación en supino.' + DISCLAIM_CN;
+      return;
+    }
+
+    if (t === 'ninguna') {
+      clase = 'risk-mid'; titulo = 'Pruebas negativas hoy';
+      texto = 'Con una historia compatible y pruebas posicionales negativas, lo más probable es un <strong>VPPB en ' +
+        'remisión</strong>. Conducta: <strong>observación con control y educación, sin imagen y sin sedantes</strong>, ' +
+        'y <strong>reevaluación dentro de un mes</strong> para documentar si resolvió o persiste. Antes de cerrar, ' +
+        'revisa que no sea otra cosa: <button type="button" class="link-btn" onclick="openDiff()">mareo no ' +
+        'vestibular →</button>';
+    } else if (t === 'dh' && d === 'torsUp') {
+      clase = 'risk-low'; titulo = 'Canal posterior ' + (ladoTxt || '(define el lado)');
+      texto = 'Es el VPPB típico y el más frecuente. <strong>Tratamiento: maniobra de Epley</strong> hacia ese lado ' +
+        '(Semont como alternativa equivalente), repetida hasta negativizar el Dix-Hallpike, habitualmente una a tres ' +
+        'veces en la misma visita. <strong>Sin imagen, sin laboratorio, sin sedantes de rutina y sin restricciones ' +
+        'posturales después.</strong> ' + (ladoTxt ? 'El lado afectado es el <strong>' + ladoTxt + '</strong>: es el oído que quedaba abajo cuando apareció el nistagmo.' : 'Falta definir el lado: es el oído que queda abajo en la posición que provoca el nistagmo.') +
+        ' <button type="button" class="link-btn" onclick="showPath(\'A\', true)">Ir al camino de VPPB →</button>';
+    } else if (t === 'dh' && d === 'down') {
+      clase = 'risk-high'; titulo = 'Nistagmo posicional hacia abajo · descarta causa central primero';
+      texto = 'El nistagmo posicional <strong>puramente hacia abajo y persistente</strong> se atribuye a veces al ' +
+        'canal anterior, pero es <strong>más frecuentemente de origen central</strong> (lesión de línea media ' +
+        'cerebelosa o de la unión bulbo-medular). <strong>No lo trates como VPPB:</strong> examen neurológico ' +
+        'completo, marcha, y estudio por patrón central. ' +
+        '<button type="button" class="link-btn" onclick="showPath(\'B2\', true)">Ir al camino de patrón central →</button>';
+    } else if (t === 'dh' && (d === 'geo' || d === 'ageo')) {
+      clase = 'risk-mid'; titulo = 'Nistagmo horizontal en el Dix-Hallpike · pasa a la rotación en supino';
+      texto = 'Un nistagmo <strong>horizontal</strong> en el Dix-Hallpike apunta al <strong>canal horizontal</strong>, ' +
+        'y la prueba que lo caracteriza es la <strong>rotación en supino</strong>. Hazla y vuelve a elegir aquí la ' +
+        'prueba «Rotación en supino» para definir el lado y la maniobra.';
+    } else if (t === 'roll' && d === 'geo') {
+      clase = 'risk-low'; titulo = 'Canal horizontal · canalolitiasis' + (ladoTxt ? ' ' + ladoTxt : '');
+      texto = 'Nistagmo <strong>geotrópico</strong> (hacia el oído que queda abajo): canalolitiasis del canal ' +
+        'horizontal. <strong>El lado afectado es el del nistagmo más intenso.</strong> ' +
+        (ladoTxt ? 'Según lo que marcaste, el lado afectado es el <strong>' + ladoTxt + '</strong>. ' : 'Falta definir en qué lado fue más intenso. ') +
+        'Tratamiento: <strong>rotación de Lempert</strong> («barbacoa»: giros de 90° hacia el lado sano hasta ' +
+        'completar 270–360°, manteniendo cada posición unos 30 s) o <strong>maniobra de Gufoni</strong>. Menos ' +
+        'estandarizadas y con más recurrencia que el Epley: controla y repite si persiste.';
+    } else if (t === 'roll' && d === 'ageo') {
+      clase = 'risk-low'; titulo = 'Canal horizontal · cupulolitiasis' + (ladoTxt ? ' (más intenso: ' + ladoTxt + ')' : '');
+      texto = 'Nistagmo <strong>ageotrópico</strong> (hacia el oído que queda arriba): sugiere cupulolitiasis del ' +
+        'canal horizontal. <strong>Aquí el lado afectado es el del nistagmo MENOS intenso</strong>, al revés que en ' +
+        'la canalolitiasis: es el error de lateralización más frecuente. ' +
+        (ladoTxt ? 'Si el más intenso fue el <strong>' + ladoTxt + '</strong>, el oído afectado es el contrario. ' : '') +
+        'Tratamiento: maniobras para convertirlo a geotrópico y luego reposicionar (Gufoni, Lempert). <em>Si no ' +
+        'manejas estas maniobras, deriva en lugar de improvisar.</em>';
+    } else if (t === 'roll' && (d === 'torsUp' || d === 'down')) {
+      clase = 'risk-mid'; titulo = 'Patrón que no encaja con canal horizontal';
+      texto = 'Un nistagmo torsional-hacia arriba corresponde al <strong>canal posterior</strong> y se evalúa con ' +
+        'Dix-Hallpike; un nistagmo puramente hacia abajo obliga a <strong>descartar causa central</strong>. ' +
+        'Revisa qué prueba y qué dirección observaste realmente.';
+    } else {
+      clase = 'risk-mid'; titulo = 'Completa la dirección del nistagmo';
+      texto = 'Falta la dirección de la fase rápida del nistagmo provocado. Si no observaste nistagmo con la prueba, ' +
+        'elige «Ninguna lo provocó».';
+    }
+
+    out.innerHTML = '<span class="big ' + clase + '">' + titulo + '</span>' + texto + DISCLAIM_CN;
+  }
+  CN_IDS.forEach(id => document.getElementById(id).addEventListener('change', renderCanal));
+  document.getElementById('canal-reset').addEventListener('click', () => {
+    CN_IDS.forEach(id => { document.getElementById(id).value = ''; });
+    renderCanal();
+  });
+
+  // ── Ortostatismo ──────────────────────────────────────────────────
+  const OR_IDS = ['or-sup-s', 'or-sup-d', 'or-pie-s', 'or-pie-d', 'or-sint'];
+  const DISCLAIM_OR = '<br><br>La medición <strong>complementa y no reemplaza el juicio clínico</strong>. Una ' +
+    'ortostática negativa no descarta presíncope ni arritmia, y una positiva no explica por sí sola un vértigo ' +
+    'rotatorio con nistagmo. <em>Los objetivos de presión y el manejo farmacológico de la hipotensión ortostática ' +
+    'crónica se ajustan al protocolo institucional y al especialista.</em>';
+
+  function renderOrto() {
+    const out = document.getElementById('orto-out');
+    const n = id => { const x = document.getElementById(id).value; return x === '' ? null : Number(x); };
+    const ss = n('or-sup-s'), sd = n('or-sup-d'), ps = n('or-pie-s'), pd = n('or-pie-d');
+    const sint = document.getElementById('or-sint').value === 'si';
+
+    if (ss === null || ps === null) {
+      out.innerHTML = '<span class="big">Ingresa al menos las sistólicas</span>Acostado 5 minutos, luego de pie al ' +
+        'minuto 1 y al minuto 3. Registra el peor valor de pie.' + DISCLAIM_OR;
+      return;
+    }
+
+    const dS = ss - ps;
+    const dD = (sd !== null && pd !== null) ? sd - pd : null;
+    const posS = dS >= 20;
+    const posD = dD !== null && dD >= 10;
+    const pos = posS || posD;
+
+    const deltas = 'Caída sistólica <strong>' + dS + ' mmHg</strong>' +
+      (dD !== null ? ' · caída diastólica <strong>' + dD + ' mmHg</strong>' : ' · diastólica no ingresada');
+
+    let clase, titulo, texto;
+    if (pos) {
+      clase = sint ? 'risk-high' : 'risk-mid';
+      titulo = 'Hipotensión ortostática presente' + (sint ? ' y sintomática' : '');
+      texto = deltas + '. Cumple el criterio de consenso (caída ≥ 20 mmHg sistólica o ≥ 10 mmHg diastólica dentro de ' +
+        'los 3 minutos de pie)' + (sint ? ', <strong>y reprodujo el síntoma</strong>, lo que la hace clínicamente ' +
+        'relevante' : '. No reprodujo el síntoma: tómala como un hallazgo a corregir, no necesariamente como la ' +
+        'explicación del cuadro') + '. <strong>Busca la causa antes de la etiqueta:</strong> sangrado o anemia, ' +
+        'depleción de volumen, fármacos (antihipertensivos, alfabloqueadores, diuréticos, nitratos, antidepresivos), ' +
+        'insuficiencia suprarrenal, sepsis incipiente, neuropatía autonómica. ' +
+        '<em>Una ortostática nueva y marcada sin fármacos nuevos obliga a descartar hemorragia: hemograma y tacto ' +
+        'rectal.</em> <button type="button" class="link-btn" onclick="showPath(\'B1\', true)">Ir al escenario de ' +
+        'hipotensión ortostática →</button>';
+      if (ps <= 90) {
+        clase = 'risk-high';
+        texto += '<br><br><strong>Atención: la sistólica de pie es ≤ 90 mmHg.</strong> Eso ya no es solo ' +
+          'ortostatismo: evalúa hipoperfusión y pasa al ' +
+          '<button type="button" class="link-btn" onclick="showPath(\'C\', true)">camino crítico →</button>';
+      }
+    } else {
+      clase = 'risk-low'; titulo = 'No cumple criterio de hipotensión ortostática';
+      texto = deltas + '. No alcanza el umbral de consenso' + (dD === null ? ' con los datos ingresados (falta la ' +
+        'diastólica, que puede ser la que cumpla el criterio)' : '') + '. <strong>Esto no cierra el caso:</strong> ' +
+        'una sola medición puede ser negativa en un paciente que sí tiene ortostatismo, y el presíncope por arritmia ' +
+        'o por hemorragia no se descarta con la presión de pie. Si el relato es presincopal, sigue con ' +
+        'electrocardiograma, hemograma y revisión de fármacos.' +
+        (sint ? ' <strong>Ojo: el paciente reprodujo el síntoma de pie sin cumplir el umbral de presión.</strong> ' +
+          'Considera síndrome de taquicardia postural (compara la frecuencia cardíaca acostado y de pie), repetir la ' +
+          'medición y buscar otras causas.' : '');
+    }
+
+    out.innerHTML = '<span class="big ' + clase + '">' + titulo + '</span>' + texto + DISCLAIM_OR;
+  }
+  OR_IDS.forEach(id => {
+    const el = document.getElementById(id);
+    el.addEventListener('change', renderOrto);
+    el.addEventListener('input', renderOrto);
+  });
+  document.getElementById('orto-reset').addEventListener('click', () => {
+    ['or-sup-s', 'or-sup-d', 'or-pie-s', 'or-pie-d'].forEach(id => { document.getElementById(id).value = ''; });
+    document.getElementById('or-sint').value = 'no';
+    renderOrto();
+  });
+
+  // ── Inicio ────────────────────────────────────────────────────────
+  renderMeds('A');
+  setScenario('neuritis');
+  showPath('A', false);
+  renderStanding();
+  renderCanal();
+  renderOrto();
+</script>
+<script>
+(function() {
+  var root = document.documentElement, KEY = 'oc-theme';
+  try { var t = localStorage.getItem(KEY); if (t) root.setAttribute('data-theme', t); } catch (e) {}
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function() {
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>

@@ -673,7 +673,46 @@ Reglas de contenido:
       usa el servicio y su umbral de manejo ambulatorio; los esquemas obstétricos de la fiebre en el embarazo y
       el puerperio; el tamizaje de sepsis obstétrica; y las vías de derivación a infectología, cirugía,
       obstetricia, oncología y hematología, otorrinolaringología, traumatología y unidad de paciente crítico.
-- [ ] Mareo / vértigo (nueva; HINTS, VPPB en el camino rápido)
+- [x] Mareo / vértigo — `sintoma-mareo-vertigo.html` (nueva; no había guía previa de este motivo de consulta).
+      Cuatro caminos: A de VPPB con maniobra y alta sin exámenes, B1 vestibular periférico ambulatorio, B2 patrón
+      central o no concluyente que va a imagen y hospitalización, y C del mareo que nunca fue vestibular. La página
+      se ordena sobre tres ideas: **clasificar por tiempo y desencadenante, no por «qué tipo de mareo» siente el
+      paciente** —esa descripción es poco fiable y cambia si se vuelve a preguntar—; **hacer caminar a todo paciente
+      antes de decidir** —no poder mantenerse de pie sin ayuda es el hallazgo que más veces delata un infarto
+      cerebeloso con el resto del examen normal—; y **lo tranquilizador del impulso cefálico es que esté alterado,
+      no que sea normal**, que es el dato más contraintuitivo del examen. El camino A lleva el recuadro «NO pedir ·
+      NO dar» construido sobre las recomendaciones en contra de la guía AAO-HNS 2017 (imagen, pruebas vestibulares,
+      sedantes vestibulares de rutina y restricciones posturales posteriores, estas últimas con recomendación
+      fuerte en contra), con la técnica exacta del Dix-Hallpike y los cuatro tiempos del Epley en esquemas
+      vectoriales. El camino B2 desarma el «salió bien el escáner»: la TAC sirve para descartar hemorragia, no para
+      descartar isquemia de fosa posterior, y la propia resonancia con difusión fue falsamente negativa en 12 % de
+      la serie de Kattah 2009, todas antes de las 48 h; incluye además que el NIHSS no mide la gravedad del ictus de
+      circulación posterior, y la tabla de PICA medial, Wallenberg, AICA, basilar, disección vertebral y hemorragia
+      cerebelosa. Contra el alta precipitada con rótulo de «neuritis» se cita Lee 2006: 25 de 240 infartos
+      cerebelosos aislados (10,4 %) se presentaron como vértigo prolongado con inestabilidad y nada más, 24 de ellos
+      (96 %) en el territorio de la rama medial de la PICA. Incluye **tres herramientas interactivas**: el examen
+      oculomotor en cuatro pasos (**STANDING**, de Vanni 2015, validado con médicos de urgencia con experiencia
+      limitada en nistagmo: 9,9 ± 2,8 min, sensibilidad 92,9 % y especificidad 96,4 %, que integra **HINTS+** con su
+      paso de aplicabilidad explícito), el **identificador de canal y maniobra** del VPPB (incluida la trampa de
+      lateralización del nistagmo ageotrópico, donde el oído afectado es el del nistagmo *menos* intenso) y la
+      **calculadora de ortostatismo** con la definición de consenso. La honestidad sobre el rendimiento del examen
+      es parte del contenido: el metaanálisis de Ohle 2020 (5 estudios, 617 pacientes) muestra sensibilidad 96,7 % y
+      especificidad 94,8 % en manos de neurólogos, pero 83 % y 44 % cuando lo aplica un grupo que incluye médicos de
+      urgencia, y los autores concluyen que HINTS aislada en manos de urgenciólogos no ha demostrado ser
+      suficientemente exacta para descartar un ictus; por eso en la página **un examen no concluyente no es un
+      resultado periférico, es un camino a imagen**. Secciones transversales: el desvío «puede que no sea vértigo»
+      (presíncope, ortostatismo, desequilibrio multisensorial del adulto mayor, mareo persistente
+      postural-perceptual, ansiedad, fármacos, monóxido de carbono y el discutido «vértigo cervicogénico»), «los
+      gestos que se olvidan», «lo que la imagen dice y lo que no» y la tabla de fármacos que marean, con la
+      toxicidad por anticonvulsivantes que imita un patrón central. Pendiente de validación: todas las metas de
+      tiempo propuestas; los preparados, dosis y disponibilidad del sedante vestibular, el antiemético y la
+      betahistina en el servicio; la conducta local sobre corticoides en la neuritis vestibular; el esquema de
+      tiamina de la sospecha de Wernicke; los criterios locales de trombolisis y de trombectomía, en particular las
+      ventanas de la oclusión basilar; la disponibilidad y los tiempos reales de resonancia y la conducta cuando no
+      la hay; los umbrales de presión arterial en el ictus isquémico agudo; los umbrales e indicaciones de cámara
+      hiperbárica en la intoxicación por monóxido de carbono; el esquema de hidrocortisona de la crisis suprarrenal;
+      el manejo de la hipotensión ortostática crónica; la disponibilidad de kinesiología vestibular; y las vías de
+      derivación a neurología, otorrinolaringología y unidad de paciente crítico.
 - [ ] Dolor / trauma de extremidades (nueva; reglas de Ottawa de tobillo y
       rodilla como criterio "NO pedir imagen")
 
