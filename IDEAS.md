@@ -45,6 +45,13 @@ diagnóstica, calculadora, etc).
 6. Marca el ítem como hecho (`[x]`) en este archivo, en el mismo commit.
 7. Un commit por día, mensaje claro (ej: `feat: guía de orientación — dolor torácico`).
 8. Push directo a `main` (no se usan PRs en este proyecto).
+9. Si un ítem indica un **documento fuente** (`fuentes/...`), el contenido
+   debe basarse en ese documento: léelo completo antes de escribir y respeta
+   sus definiciones, criterios, dosis y flujos, sin reemplazarlos por otras
+   guías. Si complementas con otra fuente, indícalo explícitamente. Cita el
+   documento (nombre, institución, número de resolución y fecha) al pie de la
+   página creada. Los PDF de `fuentes/` no se agregan a `sw.js`. Si el PDF es
+   escaneado (sin texto), léelo como imágenes por tramos de páginas.
 
 Puedes agregar ideas nuevas a este archivo en cualquier momento; el agente las
 tomará en orden la próxima vez que corra.
@@ -740,3 +747,12 @@ en su sección temática, porque el agente recorre el archivo en orden.
 - [ ] Parocardiorespiratorio (PCR) traumático
 - [ ] Pancreatitis - Desde el leve al grave con necesidad de UCI. Biliar, Hipercalcemia, por alcohol y trigliceridos. Integrado con calculadora APACHE 
 - [ ] Epistaxis - Taponamiento anterior con "burrito" de algodon empapado con acido tranexamico + lidocaina + adrenalina, taponamiento con merocell y rapidrhino, además de cauterización con nitrato de plata; y taponamiento posterior con Sonda Foley. Con indicaciones de cuando hospitalizar y/o ineicar antibioticos y cuando no.
+- [ ] Malaria: sospecha, diagnóstico y manejo en urgencia.
+      **Documento fuente:** `fuentes/malaria-oott-minsal-2026.pdf`
+      (OOTT MINSAL v2.0, Res. Exenta N°1153, 25/09/2026). El PDF es
+      escaneado; las primeras páginas son el memo y la resolución, el
+      contenido técnico viene después. Formato sugerido: algoritmo
+      (sospecha en paciente febril con antecedente de viaje a zona
+      endémica, confirmación diagnóstica, criterios de malaria grave,
+      tratamiento según especie y gravedad, derivación y notificación
+      obligatoria).
