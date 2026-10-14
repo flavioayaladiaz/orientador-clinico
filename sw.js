@@ -3,7 +3,7 @@
    Al subir una nueva versión, cambia CACHE_VERSION y todos los
    dispositivos se actualizarán en su próxima conexión. */
 
-const CACHE_VERSION = "orientador-clinico-v0.41.0";
+const CACHE_VERSION = "orientador-clinico-v0.42.0";
 const ASSETS = [
   "./",
   "./index.html",
@@ -18,6 +18,7 @@ const ASSETS = [
   "./sintoma-disnea.html",
   "./sintoma-fiebre.html",
   "./sintoma-mareo-vertigo.html",
+  "./sintoma-dolor-extremidades.html",
   "./checklist-sepsis_4.html",
   "./checklist-politrauma_2.html",
   "./checklist-fibrinolisis.html",

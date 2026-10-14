@@ -720,8 +720,53 @@ Reglas de contenido:
       hiperbárica en la intoxicación por monóxido de carbono; el esquema de hidrocortisona de la crisis suprarrenal;
       el manejo de la hipotensión ortostática crónica; la disponibilidad de kinesiología vestibular; y las vías de
       derivación a neurología, otorrinolaringología y unidad de paciente crítico.
-- [ ] Dolor / trauma de extremidades (nueva; reglas de Ottawa de tobillo y
-      rodilla como criterio "NO pedir imagen")
+- [x] Dolor / trauma de extremidades — `sintoma-dolor-extremidades.html` (nueva; no había guía previa
+      de este motivo de consulta). La página se ordena sobre **dos preguntas en orden**: primero *¿está
+      amenazada la extremidad ahora?* y solo después *¿hace falta esta radiografía?*. Cuatro caminos: A de
+      esguince y contusión con regla de decisión negativa y **ningún examen**, B1 de trauma con criterio de
+      imagen, B2 de la extremidad dolorosa **sin trauma** —el hueco que no cubría `sintoma-contusion.html`—
+      y C de las **siete que amenazan la extremidad** (compartimental, isquemia aguda, lesión arterial,
+      fractura expuesta, infección necrotizante, luxación con compromiso neurovascular y hemorragia
+      exanguinante). El recuadro «NO pedir» del camino A se construye sobre las reglas de Ottawa con sus
+      cifras por delante: razón de verosimilitud negativa **0,08** para tobillo y mediopié (Bachmann 2003,
+      27 estudios y 15 581 pacientes, con reducción de radiografías de 30–40 %) y sensibilidad **1,00 (IC
+      95 % 0,94–1,00)** en la rodilla con probabilidad de fractura de 0 % (0–0,4 %) si es negativa (Stiell
+      1996, 1096 adultos). Tres cosas organizan el resto: **lo que la regla descarta es la fractura y nada
+      más** —ni ligamento, ni tendón, ni compartimento, ni vaso—; **«la radiografía salió normal» es un dato
+      y no un diagnóstico**, con la tabla de ocho fracturas de alta consecuencia que la primera placa no
+      muestra (escafoides, cuello femoral, platillo tibial, Lisfranc, Maisonneuve, cabeza del radio, fractura
+      por estrés y rama pélvica); y **el examen neurovascular escrito antes y después** de toda reducción o
+      inmovilización. Incluye **tres herramientas interactivas**: las **reglas de Ottawa** de los tres
+      segmentos con su paso de aplicabilidad explícito (un paciente fuera de la regla no tiene menos riesgo,
+      tiene riesgo *no estudiado*), el **puntaje de Wells** para trombosis venosa profunda con su regla de
+      uso del dímero D —negativo solo descarta en la banda improbable— y la **categoría de Rutherford** de
+      la isquemia aguda, que deliberadamente **no clasifica ninguna extremidad como irreversible**: ante
+      hallazgos de categoría III avisa y deriva esa decisión, y la de amputación primaria, al cirujano
+      vascular. La honestidad sobre el rendimiento de las pruebas es parte del contenido: el LRINEC ≥ 6
+      tiene sensibilidad **68,2 %** y no sirve para descartar una infección necrotizante (Fernando 2019, 23
+      estudios y 5982 pacientes, donde la fiebre rinde 46,0 % y las bulas hemorrágicas 25,2 %); en el
+      compartimento, un umbral absoluto de 30 mmHg habría operado al **43 %** de una serie de 116 tibias
+      mientras la presión diferencial < 30 mmHg no perdió ningún caso (McQueen 1996); y en la monoartritis
+      aguda la prevalencia de artritis séptica ronda el **27 %** y ni el examen ni los marcadores séricos la
+      modifican de forma útil, con razones de verosimilitud del recuento sinovial por intervalos que dejan
+      claro que **un recuento bajo baja la probabilidad pero no la lleva a cero** (Carpenter 2011). Dos
+      esquemas vectoriales: los cuatro puntos de palpación del tobillo y el mediopié en visión lateral y
+      medial, y los cinco criterios de la rodilla. Se enlaza en ambos sentidos con `sintoma-contusion.html`,
+      que conserva el trauma multisegmentario y las reglas canadienses de cerebro y columna cervical.
+      Pendiente de validación: todas las metas de tiempo propuestas; el esquema escalonado de analgesia del
+      servicio y la disponibilidad y dosis de ketoprofeno, ketorolaco, metamizol, morfina y diclofenaco gel;
+      quién realiza el bloqueo de la fascia ilíaca y con qué técnica y dosis; los esquemas antimicrobianos
+      empíricos de la fractura expuesta por grado, de la artritis séptica, de la celulitis, de la mordedura
+      y del pie diabético según el PROA local, y el esquema de profilaxis antirrábica y antitetánica; la
+      dosis, la vía y las contraindicaciones de la anticoagulación en la isquemia aguda; el esquema de
+      anticoagulación de la trombosis venosa profunda, el corte del dímero D del laboratorio y los criterios
+      locales de manejo ambulatorio; la política de tromboprofilaxis en la inmovilización de extremidad
+      inferior; la dosis y el ajuste renal de la colchicina y la disponibilidad de sus presentaciones; la
+      disponibilidad del manómetro de presión compartimental y el umbral local; los plazos de reducción de
+      la luxación de cadera; la disponibilidad y los tiempos reales de tomografía y resonancia y la conducta
+      cuando no las hay; el agente de reversión de la anticoagulación disponible y sus criterios de uso; y
+      las vías de derivación a traumatología, cirugía vascular, reumatología, infectología y equipo de pie
+      diabético.
 
 ## 5. Cola final
 
