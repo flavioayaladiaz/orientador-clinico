@@ -747,12 +747,13 @@ en su sección temática, porque el agente recorre el archivo en orden.
 - [ ] Parocardiorespiratorio (PCR) traumático
 - [ ] Pancreatitis - Desde el leve al grave con necesidad de UCI. Biliar, Hipercalcemia, por alcohol y trigliceridos. Integrado con calculadora APACHE 
 - [ ] Epistaxis - Taponamiento anterior con "burrito" de algodon empapado con acido tranexamico + lidocaina + adrenalina, taponamiento con merocell y rapidrhino, además de cauterización con nitrato de plata; y taponamiento posterior con Sonda Foley. Con indicaciones de cuando hospitalizar y/o ineicar antibioticos y cuando no.
-- [ ] Malaria: sospecha, diagnóstico y manejo en urgencia.
+- [ ] Malaria en el adulto: sospecha, diagnóstico y manejo en urgencia.
       **Documento fuente:** `fuentes/malaria-oott-minsal-2026.pdf`
       (OOTT MINSAL v2.0, Res. Exenta N°1153, 25/09/2026). El PDF es
       escaneado; las primeras páginas son el memo y la resolución, el
-      contenido técnico viene después. Formato sugerido: algoritmo
-      (sospecha en paciente febril con antecedente de viaje a zona
-      endémica, confirmación diagnóstica, criterios de malaria grave,
-      tratamiento según especie y gravedad, derivación y notificación
-      obligatoria).
+      contenido técnico viene después. Solo adultos: omitir todo lo
+      pediátrico. En la embarazada, incluir solo lo que cambia en el manejo
+      inicial y la derivación. Formato sugerido: algoritmo (sospecha en
+      paciente febril con antecedente de viaje a zona endémica, confirmación
+      diagnóstica, criterios de malaria grave, tratamiento según especie y
+      gravedad, derivación y notificación obligatoria).
