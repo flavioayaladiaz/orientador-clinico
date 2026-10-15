@@ -773,18 +773,53 @@ Reglas de contenido:
 Ítems que deben tomarse **al final**, después de todo lo anterior. Van aquí, y no
 en su sección temática, porque el agente recorre el archivo en orden.
 
-- [ ] Síncope — *motivo de consulta* (guía de orientación: diferenciar síncope
-      reflejo, ortostático y cardiogénico; red flags de causa arrítmica o
-      estructural; estudio inicial y criterios de hospitalización). Incluir el
-      **Canadian Syncope Risk Score** como calculadora interactiva dentro de la
-      misma página, en la sección de estratificación de riesgo: puntaje que
-      predice eventos adversos graves a 30 días en pacientes que consultan por
-      síncope, para apoyar la decisión de alta versus observación. Implementarlo
-      con sus variables y bandas de riesgo tomadas de la publicación original
-      (Thiruganasambandamoorthy V, et al. CMAJ 2016), dejando explícito que el
-      score complementa —no reemplaza— el juicio clínico, que no aplica a
-      pacientes con causa grave ya identificada en la evaluación inicial, y que
-      el umbral de alta se ajusta al protocolo institucional.
+- [x] Síncope — `sintoma-sincope.html`. Se implementó como **página de síntoma cardinal** y no
+      como guía de orientación: no existía guía previa de este motivo de consulta, y el paso 3 de
+      «Cómo trabaja el agente diario» establece que el formato de síntoma cardinal reemplaza a la
+      guía como puerta de entrada. La página se ordena sobre una idea: **lo que se decide en el box
+      no es la causa del síncope, sino si el paciente se puede ir de alta hoy**, con tres preguntas
+      en orden —¿fue un síncope?, ¿hay una causa grave ya evidente?, y solo si no la hay, ¿cuánto
+      riesgo tiene a 30 días?—. Cuatro caminos: A de síncope reflejo con alta sin exámenes, B1 de
+      hipotensión ortostática —donde la intervención más eficaz es **quitar un fármaco**, con la
+      tabla de los nueve grupos que lo causan—, B2 de alto riesgo sin causa identificada y C de
+      causa grave evidente. La estructura de C está deliberadamente alineada con la condición de
+      uso del puntaje: **C es exactamente el grupo en que el CSRS no se aplica**. Incluye **tres
+      herramientas interactivas**: el **Canadian Syncope Risk Score** con sus nueve variables y sus
+      cinco bandas, el **puntaje de Sheldon** para separar síncope de convulsión, y la
+      **calculadora de ortostatismo** con la definición de consenso más la lectura de la respuesta
+      del pulso —que sube cuando falta volumen y no sube en la falla autonómica o bajo bloqueo
+      farmacológico—. Dos esquemas vectoriales: los **tres mecanismos** que convergen en la misma
+      hipoperfusión, y **seis patrones electrocardiográficos** de riesgo (bloqueo AV completo, QT
+      largo, Brugada tipo 1, preexcitación, TV no sostenida e hipertrofia con Q patológicas). La
+      honestidad sobre el rendimiento es parte del contenido: del CSRS se citan la derivación
+      (Thiruganasambandamoorthy, *CMAJ* 2016; 4030 pacientes, 6 servicios, eventos a 30 días 3,6 %,
+      estadístico C 0,88 [IC 95 % 0,85–0,90], riesgo de 0,4 % con −3 puntos a 83,6 % con 11,
+      sensibilidad 99,2 % con umbral −2) y la validación (*JAMA Intern Med* 2020; 3819 pacientes,
+      9 servicios, área bajo la curva 0,91 [0,88–0,93], calibración 1,0, eventos de 0,3 % en riesgo
+      muy bajo a 51,3 % en muy alto, y **ningún paciente de riesgo muy bajo ni bajo murió ni tuvo
+      arritmia ventricular**), y se deja explícito que el puntaje **complementa y no reemplaza el
+      juicio clínico**, que **no aplica a quien ya tiene una causa grave identificada** y que **el
+      umbral de alta se ajusta al protocolo institucional**; del puntaje de Sheldon se advierte que
+      se derivó en pacientes derivados por **episodios recurrentes** y no en un primer episodio de
+      urgencia; y del estudio PESIT se advierte que su 17,3 % corresponde a pacientes seleccionados
+      para hospitalización y no justifica un estudio tromboembólico de rutina. Deliberadamente **no
+      se publican las cifras de riesgo por cada punto del puntaje**, que no se pudieron verificar
+      contra la publicación original: se remite a ella. Secciones transversales: el desvío «¿y si no
+      fue un síncope?» (convulsión, mioclonías del síncope, hipoglicemia, pseudosíncope psicógeno,
+      lo neurológico que no es síncope, intoxicación, cataplejía, y la pregunta de si se golpeó
+      porque se desmayó o al revés), «los gestos que se olvidan» y la lectura dirigida del
+      electrocardiograma. Pendiente de validación: todas las metas de tiempo propuestas; los
+      esquemas y las energías de cardioversión y desfibrilación, los parámetros de estimulación
+      transcutánea y la disponibilidad y preparado de isoprenalina; los esquemas de infusión de
+      amiodarona y las alternativas disponibles; la disponibilidad y los plazos reales de
+      ecocardiograma, monitorización prolongada, holter y registradores de eventos; los criterios
+      locales de hospitalización, de unidad de observación y de duración de la observación
+      monitorizada para cada banda de riesgo; los umbrales de medición del QTc por sexo y el método
+      de corrección; quién realiza el masaje del seno carotídeo, dónde y con qué contraindicaciones;
+      las conductas de deprescripción y las metas de presión arterial, y la indicación, dosis y
+      titulación de midodrina y fludrocortisona; las vías de derivación a cardiología, neurología y
+      salud mental; y **la normativa vigente sobre conducción de vehículos y trabajos de riesgo**,
+      que es normativa y no clínica.
 - [ ] Trabajo de parto (de término y pretérmino)
 - [ ] Reanimación neonatal
 - [ ] Reanimación pediátrica (trauma y no trauma)
