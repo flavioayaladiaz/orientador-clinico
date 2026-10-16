@@ -820,7 +820,66 @@ en su sección temática, porque el agente recorre el archivo en orden.
       titulación de midodrina y fludrocortisona; las vías de derivación a cardiología, neurología y
       salud mental; y **la normativa vigente sobre conducción de vehículos y trabajos de riesgo**,
       que es normativa y no clínica.
-- [ ] Trabajo de parto (de término y pretérmino)
+- [x] Trabajo de parto (de término y pretérmino) — `checklist-parto-urgencia.html`. Se implementó como
+      **checklist con cronómetro** y no como algoritmo: el tema es una secuencia de preparación y de
+      maniobras con tiempos críticos, y el paso 3 de «Cómo trabaja el agente diario» reserva ese formato
+      para ese caso. Se creó además la sección **«Obstetricia de urgencia»** en `index.html`, donde
+      podrán entrar los ítems obstétricos y neonatales que vienen. La página se ordena sobre **tres
+      preguntas en orden**: *¿hay una emergencia que amenaza a la madre o al feto ahora?*, *¿este parto
+      ocurre acá?* y *¿es de término o pretérmino?* La tercera es la que más cambia la conducta, y la
+      idea que organiza la sección del pretérmino se dice explícita: **lo que modifica el desenlace del
+      recién nacido no es detener el parto —casi nunca se logra— sino lo que se alcanza a hacer mientras
+      ocurre**; la tocolisis no es el tratamiento, es el medio para ganar 48 horas útiles para el
+      corticoide y el traslado. Diez secciones: la emergencia antes del parto con **las seis que llegan
+      como «contracciones» y no lo son** (desprendimiento, placenta previa, preeclampsia severa y
+      eclampsia, prolapso de cordón, corioamnionitis y trauma), el cronómetro con sus hitos, el examen
+      obstétrico en el orden en que se hace, el paquete del pretérmino, la rotura de membranas, la
+      atención del parto en el box, las cuatro emergencias del expulsivo, el recién nacido en los
+      primeros 60 segundos, la urgencia hipertensiva del embarazo y el registro. Dos reglas de seguridad
+      quedan escritas como tales y repetidas: **no se hace tacto vaginal ante metrorragia del tercer
+      trimestre sin placenta localizada**, y **no se empuja el fondo uterino —maniobra de Kristeller—
+      nunca**, menos que nunca en la distocia de hombros, donde impacta más el hombro. Incluye **tres
+      herramientas interactivas**: la **calculadora de edad gestacional** por fecha de última
+      menstruación (regla de Naegele, con su supuesto de ciclos de 28 días declarado) o por ecografía
+      previa, que devuelve semanas + días, fecha probable de parto y **qué cambia en esa banda**; el
+      **orientador de traslado**, que cruza paridad, dilatación, signos de expulsivo y tiempo real puerta
+      a puerta, y que se presenta explícitamente como **no validado** —no existe regla de decisión
+      validada para esta pregunta— apoyado en la asimetría del error: un parto atendido en urgencia con
+      el equipo preparado es manejable, uno que ocurre en una ambulancia o un pasillo no; y el **índice
+      de shock obstétrico** (frecuencia cardíaca ÷ presión sistólica), con sus bandas y su limitación
+      declarada. Tres esquemas vectoriales: el **expulsivo en cuatro tiempos**, la **distocia de
+      hombros** con McRoberts y la presión suprapúbica frente a la presión fúndica tachada, y el
+      **prolapso de cordón** con elevación manual, posición y llenado vesical. La honestidad sobre la
+      evidencia es parte del contenido: del corticoide antenatal se citan las cifras de certeza alta de
+      la revisión Cochrane actualizada (McGoldrick 2020, 27 estudios, 11 272 mujeres: muerte perinatal
+      RR 0,85 [IC 95 % 0,77–0,93], muerte neonatal RR 0,78 [0,70–0,87], dificultad respiratoria RR 0,71
+      [0,65–0,78]); del sulfato de magnesio, la revisión Cochrane 2024 (Shepherd, 6 ensayos, 5917
+      participantes: parálisis cerebral RR 0,71 [0,57–0,89]) **junto con su costo** —efectos adversos
+      maternos suficientes para suspender el tratamiento RR 3,21 [1,88–5,48]—, más el análisis secuencial
+      de Wolf 2020; del pretérmino tardío, el ensayo ALPS con su beneficio respiratorio (11,6 % frente a
+      14,4 %; RR 0,80 [0,66–0,97]) **y su exceso de hipoglicemia neonatal** (24,0 % frente a 15,0 %),
+      que es la razón de no presentar esa indicación como universal; del ácido tranexámico, el ensayo
+      WOMAN (20 060 mujeres; muerte por sangrado RR 0,81 [0,65–1,00], y RR 0,69 [0,52–0,91] dentro de
+      **3 horas**), dejando dicho que **no redujo la histerectomía**; y del índice de shock obstétrico se
+      declara que viene de un estudio retrospectivo de 50 casos y 50 controles (Le Bas 2014), por lo que
+      es complemento de la evaluación clínica y **no criterio de transfusión**. Pendiente de validación:
+      todas las metas de tiempo del cronómetro salvo las 3 horas del ácido tranexámico; el umbral local
+      de viabilidad neonatal y de reanimación activa del prematuro extremo; el umbral de edad gestacional
+      del sulfato de magnesio y su esquema de carga y mantención; la indicación de corticoide en el
+      pretérmino tardío; los esquemas, dosis máximas y asociaciones de nifedipino, indometacina y
+      atosibán, y el lugar que conserven los betamiméticos en el protocolo local; el esquema de
+      profilaxis de estreptococo grupo B y su manejo en la alergia a penicilina; el esquema de
+      antibióticos de latencia en la rotura prematura de membranas y el esquema antibiótico de la
+      corioamnionitis según el PROA local; la secuencia y las dosis de uterotónicos y los gatillos del
+      protocolo de transfusión masiva; el dispositivo de taponamiento uterino disponible en el servicio;
+      el volumen, la técnica y la indicación del llenado vesical en el prolapso de cordón; la dosis, la
+      vía y la disponibilidad de la tocolisis de rescate; las dosis e intervalos de los antihipertensivos
+      de la crisis hipertensiva del embarazo y el esquema de sulfato de magnesio de la eclampsia,
+      incluido el esquema intramuscular donde no hay bomba de infusión; el esquema y el plazo de la
+      inmunoglobulina anti-D; los criterios y la ventana de la hipotermia terapéutica neonatal y los
+      umbrales de hipoglicemia del recién nacido; quién atiende una podálica en el servicio y cuál es el
+      plan cuando no hay obstetra; y las vías de derivación y los tiempos reales de la red obstétrica y
+      neonatal de referencia.
 - [ ] Reanimación neonatal
 - [ ] Reanimación pediátrica (trauma y no trauma)
 - [ ] Sedación en el paciente agitado - Combinando la escala BARS para el tratamiento sugerido y sugiriendo ketamina im en casos de agitación peligrosa, haciendo énfasis en aportar oxígeno a alta concentración tras sedar al paciente.

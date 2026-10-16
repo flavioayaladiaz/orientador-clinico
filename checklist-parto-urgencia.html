@@ -1,0 +1,2588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Checklist · Trabajo de parto en urgencia</title>
+<meta name="description" content="Trabajo de parto de término y pretérmino en el servicio de urgencia: reconocer la emergencia obstétrica antes que el parto, decidir si la paciente alcanza a trasladarse o pare aquí, calculadora de edad gestacional, el paquete del pretérmino (corticoides antenatales, sulfato de magnesio para neuroprotección, tocolisis como puente, profilaxis de estreptococo grupo B y traslado in utero), rotura prematura de membranas, atención del parto en el box paso a paso, clampeo diferido y manejo activo del tercer periodo, las cuatro emergencias del expulsivo —distocia de hombros, prolapso de cordón, podálica y hemorragia posparto— con índice de shock obstétrico, y el registro del parto listo para copiar.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --surface2: #eef1f5;
+    --border: rgba(15,23,42,0.10);
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --text-dim: #475569;
+  }
+  :root[data-theme="light"] body::before {
+    background-image:
+      linear-gradient(rgba(15,23,42,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99,102,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(16,185,129,0.06) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 36px; animation: fadeUp 0.6s ease both; }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .theme-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+    font-size: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .theme-btn:hover { color: var(--text); border-color: var(--text-muted); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(99,102,241,0.1);
+    border: 1px solid rgba(99,102,241,0.28);
+    color: #a5b4fc;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  .header-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--indigo);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--indigo);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  :root[data-theme="light"] h1 { color: #0f172a; }
+  h1 span {
+    background: linear-gradient(135deg, #6366f1, #10b981);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .header-sub strong { color: #fff; font-weight: 500; }
+  :root[data-theme="light"] .header-sub strong,
+  :root[data-theme="light"] .check-label strong,
+  :root[data-theme="light"] .plain-item strong,
+  :root[data-theme="light"] .step strong,
+  :root[data-theme="light"] td strong,
+  :root[data-theme="light"] .calc-out strong,
+  :root[data-theme="light"] .med-name,
+  :root[data-theme="light"] .section-title { color: #0f172a; }
+  .header-sub em { color: #fcd34d; font-style: normal; }
+  :root[data-theme="light"] em { color: #b45309; }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .section-check-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .s1 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s1 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s2 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s2 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s3 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s3 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s4 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s4 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s5 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s5 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s6 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s6 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s7 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s7 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s8 .section-num { background: rgba(59,130,246,0.10); color: #bfdbfe; border: 1px solid rgba(59,130,246,0.18); }
+  .s8 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s9 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s9 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s10 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s10 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+
+  /* CRONÓMETRO */
+  .stopwatch {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+  .sw-display {
+    font-family: var(--mono);
+    font-size: clamp(40px, 11vw, 60px);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #fff;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  :root[data-theme="light"] .sw-display { color: #0f172a; }
+  .sw-display.warn { color: #fcd34d; }
+  .sw-display.late { color: #fca5a5; }
+  .sw-caption {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+  .sw-controls { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+  .sw-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .sw-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .sw-btn:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
+  .sw-btn.primary {
+    background: rgba(99,102,241,0.14);
+    border-color: rgba(99,102,241,0.45);
+    color: #a5b4fc;
+  }
+  .sw-btn.primary:hover { background: rgba(99,102,241,0.22); color: #c7d2fe; }
+
+  .milestones { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .ms {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .ms:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .ms:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .ms.done { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); color: #6ee7b7; }
+  .ms-goal {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .ms.done .ms-goal { color: #6ee7b7; border-color: rgba(16,185,129,0.4); }
+  .ms.done.over .ms-goal { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+  }
+  .check-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .check-item:hover::before { opacity: 1; }
+  .check-item:hover { border-color: rgba(255,255,255,0.12); }
+  .check-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .check-item.checked { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+  .check-item.checked::before { opacity: 0.5; }
+
+  .checkbox {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+    background: transparent;
+  }
+  .check-item.checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .checkmark {
+    opacity: 0;
+    transform: scale(0) rotate(-10deg);
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .check-item.checked .checkmark { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  .check-label {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-dim);
+    transition: color 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+  .check-item.checked .check-label {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(100,116,139,0.5);
+  }
+  .check-label strong { color: #fff; font-weight: 500; }
+  .check-label em { color: #fcd34d; font-style: normal; }
+  .check-step {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+
+  /* PROGRESO */
+  .progress-bottom {
+    margin-top: 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .progress-bar-track {
+    flex: 1;
+    min-width: 120px;
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6366f1, #10b981);
+    border-radius: 100px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px rgba(99,102,241,0.5);
+  }
+  .progress-label { font-family: var(--mono); font-size: 12px; color: var(--text-dim); white-space: nowrap; }
+  #progress-pct { color: var(--indigo); font-weight: 500; }
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+  /* BANNERS */
+  .warning-banner, .info-banner, .go-banner, .amber-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #fca5a5; }
+  .info-banner { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.18); color: #bfdbfe; }
+  .go-banner { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); color: #6ee7b7; }
+  .amber-banner { background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.25); color: #fde68a; }
+  .warning-banner strong, .info-banner strong, .go-banner strong, .amber-banner strong { color: #fff; font-weight: 500; }
+  :root[data-theme="light"] .warning-banner, :root[data-theme="light"] .amber-banner { color: #7c2d12; }
+  :root[data-theme="light"] .info-banner, :root[data-theme="light"] .go-banner { color: #334155; }
+  :root[data-theme="light"] .warning-banner strong, :root[data-theme="light"] .info-banner strong,
+  :root[data-theme="light"] .go-banner strong, :root[data-theme="light"] .amber-banner strong { color: #0f172a; }
+  .warning-banner em, .info-banner em, .go-banner em, .amber-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+  :root[data-theme="light"] .plain-item.flag strong { color: #b91c1c; }
+  .plain-item.good { background: rgba(16,185,129,0.05); border-color: rgba(16,185,129,0.16); }
+  .plain-item.good strong { color: #6ee7b7; }
+  :root[data-theme="light"] .plain-item.good strong { color: #047857; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* PASOS NUMERADOS */
+  .steps { counter-reset: st; display: flex; flex-direction: column; gap: 8px; }
+  .step {
+    counter-increment: st;
+    position: relative;
+    padding: 11px 14px 11px 48px;
+    border-radius: 11px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .step::before {
+    content: counter(st);
+    position: absolute;
+    left: 14px;
+    top: 11px;
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--accent, var(--text-dim));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step strong { color: #fff; font-weight: 500; }
+  .step em { color: #fcd34d; font-style: normal; }
+  .step .hold { display: block; font-family: var(--mono); font-size: 11.5px; color: #93c5fd; margin-top: 4px; }
+
+  /* STOP */
+  .stop {
+    margin-top: 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(239,68,68,0.25);
+    background: rgba(239,68,68,0.05);
+    padding: 14px 16px;
+  }
+  .stop-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fca5a5;
+    margin-bottom: 10px;
+  }
+  .stop ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .stop li {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--text-dim);
+    padding-left: 18px;
+    position: relative;
+  }
+  .stop li::before { content: '✖'; position: absolute; left: 0; color: #fca5a5; font-size: 11px; top: 2px; }
+  .stop li .cond { display: block; font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .stop .why {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(239,68,68,0.18);
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+  .stop .why strong { color: var(--text); font-weight: 500; }
+  .stop .why em { color: #fcd34d; font-style: normal; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  :root[data-theme="light"] td .dose-main { color: #0f172a; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ESQUEMAS */
+  .figure {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 16px 14px;
+    margin-bottom: 14px;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .fig-caption {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .fig-caption strong { color: var(--text-dim); font-weight: 500; }
+
+  /* CALCULADORAS */
+  .calc {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-top: 6px;
+  }
+  .calc-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; }
+  .calc-field { display: flex; flex-direction: column; gap: 6px; }
+  .calc-field label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .calc-field select, .calc-field input {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 9px 11px;
+    min-width: 150px;
+  }
+  .calc-field select:focus-visible, .calc-field input:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
+  .calc-out {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .calc-out strong { color: #fff; font-weight: 500; }
+  .calc-out em { color: #fcd34d; font-style: normal; }
+  .calc-out .big {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: #93c5fd;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .calc-out .big.risk-low { color: #6ee7b7; }
+  .calc-out .big.risk-mid { color: #fcd34d; }
+  .calc-out .big.risk-high { color: #fca5a5; }
+  .calc-note { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-top: 10px; }
+  .calc-note strong { color: var(--text-dim); font-weight: 500; }
+  .calc-reset {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 8px 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .calc-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+  /* OPCIONES (orientador de inminencia) */
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.4;
+    text-align: left;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 10px 13px;
+    cursor: pointer;
+    transition: all 0.16s;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+  .opt:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+  .opt.on { border-color: var(--blue); background: rgba(59,130,246,0.12); color: #bfdbfe; }
+  .opt .sub { display: block; font-size: 11.5px; color: var(--text-muted); margin-top: 3px; }
+  .block-label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 14px 0 7px;
+  }
+
+  /* COPIADO */
+  .copy-box {
+    border-radius: 14px;
+    border: 1px solid rgba(59,130,246,0.3);
+    background: rgba(59,130,246,0.05);
+    overflow: hidden;
+  }
+  .copy-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 10px 12px 10px 16px;
+    border-bottom: 1px solid rgba(59,130,246,0.2);
+  }
+  .copy-bar span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #93c5fd; }
+  .copy-btn {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    background: var(--blue);
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.12s, background 0.2s;
+    white-space: nowrap;
+  }
+  .copy-btn:hover { background: #2563eb; }
+  .copy-btn:active { transform: scale(0.97); }
+  .copy-btn.done { background: var(--emerald); }
+  .copy-pre {
+    margin: 0;
+    padding: 14px 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 380px;
+    overflow-y: auto;
+  }
+  .copy-hint { font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.5; }
+
+  /* ENLACES INTERNOS */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+  :root[data-theme="light"] .cross-link { color: #0f766e; }
+  .links-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .links-row .cross-link { margin-top: 0; }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--indigo); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+  .ref-item strong { color: var(--text-dim); font-weight: 500; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .ms { align-items: flex-start; flex-wrap: wrap; }
+    .ms-goal { margin-left: 0; }
+    .sw-btn { flex: 1; text-align: center; }
+    .calc-field, .calc-field select, .calc-field input { width: 100%; }
+    .opt { width: 100%; }
+    .copy-bar { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <a class="back-link" href="./index.html">← Volver</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Cambiar tema claro u oscuro">◐</button>
+    </div>
+    <div class="header-badge">Obstetricia de urgencia · Checklist</div>
+    <h1>Trabajo de parto <span>de término y pretérmino</span></h1>
+    <p class="header-sub">
+      En urgencia nadie «maneja un trabajo de parto»: se contestan <strong>tres preguntas, en este orden</strong>.
+      <strong>(1) ¿Hay una emergencia que amenaza a la madre o al feto ahora?</strong> —porque la metrorragia, la
+      eclampsia, el prolapso de cordón y la bradicardia fetal llegan disfrazados de «viene con contracciones»—.
+      <strong>(2) ¿Este parto ocurre acá?</strong> —y eso lo deciden el pujo y el periné, no el reloj del
+      traslado—. <strong>(3) ¿Es de término o pretérmino?</strong> Esta última es la que más cambia lo que hay que
+      hacer: antes de las 34 semanas existe una ventana de minutos a horas —corticoides antenatales, sulfato de
+      magnesio, antibiótico, traslado con el feto adentro— en la que <em>un par de inyecciones modifican el
+      desenlace del recién nacido más que todo lo que venga después</em>. Esta página ordena esas tres decisiones,
+      la atención del parto cuando ya no se puede trasladar, y las cuatro emergencias del expulsivo.
+    </p>
+  </div>
+
+  <!-- 01 · PRIMERO LA EMERGENCIA -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">0–5 MIN</span>
+      <div>
+        <div class="section-title">Primero la emergencia, después el parto</div>
+        <div class="section-subtitle">Lo que llega como «contracciones» y no lo es</div>
+      </div>
+      <span class="section-check-count" id="count-s1">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner" style="margin-top:0;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Las dos reglas que evitan los dos errores más graves de esta página.</strong>
+        <strong>(1) No se hace tacto vaginal ante metrorragia del tercer trimestre</strong> mientras no se haya
+        descartado una placenta previa —por ecografía de este embarazo o por una ecografía hecha ahora—: el tacto
+        sobre una placenta previa puede desencadenar una hemorragia masiva.
+        <strong>(2) No se espera a obstetricia para empezar.</strong> Llamar y actuar son simultáneos: el oxígeno,
+        la vía, el decúbito lateral izquierdo, los corticoides del pretérmino y la auscultación de latidos fetales
+        no requieren especialista.</span>
+      </div>
+
+      <div class="subhead">Los ocho gestos de los primeros cinco minutos</div>
+      <div class="checklist" id="list-s1">
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Dos pacientes</span><strong>Decir en voz alta que hay dos pacientes y repartir el equipo.</strong> Una persona a cargo de la madre y otra, distinta, a cargo del recién nacido —con cuna de calor radiante encendida desde ya—. Si el servicio tiene un código obstétrico o neonatal, <em>este es el momento de activarlo</em>, no cuando la cabeza está coronando.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Semanas</span><strong>Establecer la edad gestacional con lo que haya en 30 segundos:</strong> carné de control, fecha de última menstruación, la ecografía más precoz del embarazo o, si no hay nada, la altura uterina. <em>Es el dato que decide si corresponde o no el paquete del pretérmino</em>, y el que neonatología va a pedir primero.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Posición</span><strong>Decúbito lateral izquierdo, o desplazamiento uterino manual hacia la izquierda.</strong> Desde alrededor de las 20 semanas el útero comprime la cava y la aorta en decúbito supino. Una paciente obstétrica hipotensa acostada de espaldas puede estar hipotensa <em>por estar acostada de espaldas</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Latidos fetales</span><strong>Auscultar los latidos fetales y contarlos un minuto completo</strong>, con doppler o estetoscopio de Pinard, idealmente <em>inmediatamente después de una contracción</em>. Rango normal 110–160 por minuto. Una frecuencia sostenida bajo 110 es una emergencia, no un hallazgo para anotar y seguir.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Presión arterial</span><strong>Presión arterial en los dos brazos y búsqueda dirigida de preeclampsia.</strong> Cefalea, fotopsias, tinnitus, epigastralgia o dolor en hipocondrio derecho, con presión ≥ 140/90 —y sobre todo ≥ 160/110— cambian el diagnóstico completo. <em>La epigastralgia de la embarazada no es gastritis hasta que se haya descartado el HELLP.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Mirar</span><strong>Mirar el periné y el apósito antes de tocar.</strong> Sangre roja activa, líquido amniótico con meconio espeso, un cordón visible o una presentación en el introito son diagnósticos que se hacen con la vista en tres segundos y que cambian todo lo que viene después.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Accesos</span><strong>Una vía venosa gruesa —dos si hay sangrado o inestabilidad— y exámenes en el mismo pinchazo:</strong> hemograma, grupo y Rh, pruebas de coagulación, función renal y hepática, y pruebas cruzadas si hay metrorragia. <em>El grupo y Rh se pide siempre, incluso en el parto que parece simple.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Llamar</span><strong>Llamar a obstetricia y a neonatología con los cuatro datos que van a pedir:</strong> semanas de gestación, paridad, dilatación si ya se evaluó, y si hay o no latidos fetales. Si el parto parece inminente, agregar la frase que ordena la respuesta del otro lado: <em>«va a parir en urgencia, necesito ayuda ahora»</em>.</span>
+        </button>
+      </div>
+
+      <div class="subhead">Las seis que llegan como «trabajo de parto» y no lo son</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🩸</span><span><strong>Desprendimiento de placenta.</strong> Dolor abdominal continuo —no en oleadas—, útero duro y sensible que no se relaja entre contracciones, con o sin sangrado visible: <em>el sangrado puede ser todo retroplacentario y el hematocrito no haber caído aún</em>. No se tocoliza, no se espera la ecografía para decidir —la ecografía normal no lo descarta— y el camino es estabilizar, llamar a obstetricia y resolver el parto.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚫</span><span><strong>Placenta previa.</strong> Sangrado rojo, habitualmente indoloro y sin útero duro. <em>Aquí es donde el tacto vaginal hace daño.</em> Vía, volumen, grupo y Rh, pruebas cruzadas y obstetricia; el tacto queda prohibido hasta tener una ecografía que ubique la placenta.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚡</span><span><strong>Preeclampsia severa y eclampsia.</strong> La convulsión de una embarazada de más de 20 semanas es una eclampsia hasta que se demuestre lo contrario: <strong>sulfato de magnesio</strong> y control de la presión arterial, no benzodiacepina sola ni tomografía primero. Ver la sección 09.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🪢</span><span><strong>Prolapso de cordón.</strong> Un cordón que se palpa o se ve después de la rotura de membranas es la emergencia más dependiente del tiempo de toda esta página, y la conducta inicial son <em>las manos y la posición</em>, no la ambulancia. Ver la sección 07.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🌡️</span><span><strong>Corioamnionitis.</strong> Fiebre materna con taquicardia fetal, útero sensible, líquido de mal olor o leucocitosis, habitualmente con membranas rotas. Cambia el manejo en dos sentidos: <strong>antibióticos de inmediato</strong> y <em>el parto deja de poder postergarse</em> —no se tocoliza una corioamnionitis para ganar tiempo—.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚗</span><span><strong>Trauma en la embarazada.</strong> Un accidente, una caída o una agresión en el tercer trimestre pueden presentarse como contracciones. La madre se evalúa como cualquier politraumatizado —con el útero desplazado a la izquierda— y se agrega la monitorización fetal prolongada y la búsqueda de desprendimiento, que puede aparecer horas después del golpe. <em>Preguntar por violencia de pareja en privado es parte del examen.</em></span></div>
+      </div>
+
+      <div class="links-row">
+        <a class="cross-link" href="./checklist-histerotomia-reanimacion.html">Paro cardíaco materno · histerotomía de reanimación →</a>
+        <a class="cross-link" href="./sintoma-dolor-abdominal.html">Dolor abdominal · síntoma cardinal →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · CRONÓMETRO -->
+  <div class="section s2" id="s2" style="animation-delay:0.10s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Cronómetro e hitos</div>
+        <div class="section-subtitle">Parte el reloj al ingreso, no cuando se complica</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="stopwatch">
+        <div class="sw-display" id="swDisplay">00:00</div>
+        <div class="sw-caption" id="swCaption">Detenido · parte el reloj al ingreso de la paciente</div>
+        <div class="sw-controls">
+          <button type="button" class="sw-btn primary" id="swToggle" onclick="swToggle()">▶ Iniciar</button>
+          <button type="button" class="sw-btn" onclick="swReset()">↺ Reiniciar</button>
+        </div>
+        <div class="milestones" id="milestones">
+          <button type="button" class="ms" data-goal="120" data-prefix="meta ~" onclick="markMs(this)"><span>Latidos fetales auscultados un minuto · presión arterial · periné mirado</span><span class="ms-goal">meta ~120 s</span></button>
+          <button type="button" class="ms" data-goal="300" data-prefix="meta ~" onclick="markMs(this)"><span>Edad gestacional establecida · vía venosa · exámenes tomados · obstetricia y neonatología llamadas</span><span class="ms-goal">meta ~300 s</span></button>
+          <button type="button" class="ms" data-goal="600" data-prefix="meta ~" onclick="markMs(this)"><span>Decisión tomada y dicha en voz alta: <b>se atiende acá</b> o <b>se traslada</b></span><span class="ms-goal">meta ~600 s</span></button>
+          <button type="button" class="ms" data-goal="1800" data-prefix="meta ~" onclick="markMs(this)"><span>Pretérmino: primera dosis de corticoide antenatal administrada</span><span class="ms-goal">meta ~30 min</span></button>
+          <button type="button" class="ms" data-goal="1800" data-prefix="meta ~" onclick="markMs(this)"><span>Pretérmino &lt; 32 semanas con parto previsible: carga de sulfato de magnesio iniciada</span><span class="ms-goal">meta ~30 min</span></button>
+          <button type="button" class="ms" data-goal="2700" data-prefix="meta ~" onclick="markMs(this)"><span>Antibiótico de profilaxis de estreptococo grupo B iniciado, si corresponde</span><span class="ms-goal">meta ~45 min</span></button>
+          <button type="button" class="ms" data-goal="3600" data-prefix="meta ~" onclick="markMs(this)"><span>Traslado coordinado con cama receptora confirmada, o box de parto armado</span><span class="ms-goal">meta ~60 min</span></button>
+        </div>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⏱️</span>
+        <span><strong>Estas metas de tiempo son referenciales y no constituyen un estándar validado:</strong> se
+        proponen para ordenar la secuencia y hacer visible la demora, no para medir desempeño. <em>Verificar con el
+        protocolo institucional</em> los plazos propios del servicio. Los dos relojes que sí están descritos en la
+        literatura son otros: el de la histerotomía de reanimación en el paro materno y el de las <strong>tres
+        horas</strong> desde el inicio del sangrado para el ácido tranexámico en la hemorragia posparto.</span>
+      </div>
+
+      <div class="subhead">Los cuatro relojes que corren en paralelo</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🫀</span><span><strong>El reloj fetal.</strong> Una bradicardia fetal sostenida, un prolapso de cordón o un desprendimiento no admiten espera: se mide en minutos y manda sobre todos los demás.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>El reloj farmacológico del pretérmino.</strong> El corticoide antenatal necesita horas para su efecto máximo, pero <em>una dosis incompleta ya aporta beneficio</em>: se pone ahora, no «cuando se decida el traslado».</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚑</span><span><strong>El reloj del traslado.</strong> Cuenta el tiempo real puerta a puerta —llamada, llegada del móvil, viaje, recepción—, no el tiempo del mapa. Si ese número es mayor que el tiempo que queda de parto, <strong>la decisión ya está tomada: se atiende acá</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🤰</span><span><strong>El reloj obstétrico.</strong> El progreso de la dilatación. Es el más lento de los cuatro y el que más engaña: una multípara con contracciones cada dos minutos puede pasar de 6 centímetros a parir en menos de lo que toma preparar una camilla.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · ¿VA A PARIR ACÁ? -->
+  <div class="section s3" id="s3" style="animation-delay:0.14s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">¿Está en trabajo de parto? ¿Va a parir acá?</div>
+        <div class="section-subtitle">Semanas, dilatación y pujo · dos calculadoras</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner" style="margin-top:0;">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>Trabajo de parto no es «tener contracciones»: es contracciones regulares <em>más</em>
+        modificación del cuello.</strong> Contracciones dolorosas con cuello cerrado y sin borramiento son, la mayoría
+        de las veces, un falso trabajo de parto —irregulares, que ceden con reposo e hidratación, sin descenso de la
+        presentación—. La diferencia no es académica: <strong>un falso trabajo de parto no justifica tocolisis ni
+        corticoides, y un trabajo de parto pretérmino verdadero sí.</strong> Cuando la duda persiste, la conducta es
+        observar y reevaluar el cuello, no tratar «por si acaso».</span>
+      </div>
+
+      <div class="subhead">Calculadora · edad gestacional y qué cambia según las semanas</div>
+      <div class="calc">
+        <div class="calc-row">
+          <div class="calc-field">
+            <label for="egMode">A partir de</label>
+            <select id="egMode" onchange="egModeChange()">
+              <option value="fum">Fecha de última menstruación</option>
+              <option value="eco">Ecografía previa del embarazo</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="egFecha" id="egFechaLabel">Fecha de última menstruación</label>
+            <input type="date" id="egFecha" oninput="calcEG()">
+          </div>
+          <div class="calc-field" id="egEcoWrap" style="display:none;">
+            <label for="egEcoSem">EG en esa ecografía (sem + días)</label>
+            <div style="display:flex; gap:6px;">
+              <input type="number" id="egEcoSem" min="4" max="42" step="1" placeholder="sem" style="min-width:76px;" oninput="calcEG()">
+              <input type="number" id="egEcoDias" min="0" max="6" step="1" placeholder="días" style="min-width:76px;" oninput="calcEG()">
+            </div>
+          </div>
+        </div>
+        <div class="calc-out" id="egOut">
+          Ingresa la fecha de última menstruación, o la fecha y la edad gestacional de la ecografía más precoz
+          del embarazo.
+        </div>
+        <button type="button" class="calc-reset" onclick="resetEG()">↺ Limpiar</button>
+        <div class="calc-note">
+          <strong>Aritmética, no estimación clínica.</strong> Por fecha de última menstruación la calculadora usa la
+          <strong>regla de Naegele</strong> (280 días desde el primer día de la última menstruación), que asume ciclos
+          regulares de 28 días con ovulación el día 14: en ciclos irregulares, con anticoncepción hormonal reciente o
+          con sangrados atípicos puede errar por semanas. <em>Cuando existe una ecografía precoz del embarazo —idealmente
+          del primer trimestre— esa es la que vale, y la calculadora debe usarse en modo «ecografía previa».</em> Si no hay
+          ninguno de los dos datos, la altura uterina orienta de forma gruesa: fondo en el ombligo ≈ 20 semanas, reborde
+          costal ≈ término, con error importante en obesidad, embarazo múltiple, polihidramnios y miomas.
+        </div>
+      </div>
+
+      <div class="subhead">Las bandas que importan y qué cambia en cada una</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Edad gestacional</th><th>Nombre</th><th>Qué cambia en urgencia</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>&lt; 22–24 sem</strong></td>
+              <td>Límite de viabilidad</td>
+              <td>Territorio de decisión compartida con neonatología y la familia. <strong>El umbral local de viabilidad y de reanimación activa se verifica con el protocolo institucional</strong>: varía entre servicios y países. No se asume ni se anuncia a la familia un pronóstico sin esa conversación.</td>
+            </tr>
+            <tr>
+              <td><strong>24+0 – 27+6</strong></td>
+              <td>Pretérmino extremo</td>
+              <td>Máximo beneficio del paquete completo: <span class="dose-main">corticoide + sulfato de magnesio + traslado in utero</span> a un centro con unidad neonatal de alta complejidad. Es el grupo en que trasladar al feto adentro cambia más el desenlace.</td>
+            </tr>
+            <tr>
+              <td><strong>28+0 – 31+6</strong></td>
+              <td>Muy pretérmino</td>
+              <td>Igual que el anterior: corticoide, sulfato de magnesio para neuroprotección y traslado. Profilaxis de estreptococo grupo B si hay trabajo de parto.</td>
+            </tr>
+            <tr>
+              <td><strong>32+0 – 33+6</strong></td>
+              <td>Pretérmino moderado</td>
+              <td>Corticoide antenatal indicado. El sulfato de magnesio <em>depende del umbral del protocolo local</em>: la mayor parte de la evidencia proviene de embarazos bajo 34 semanas y varios protocolos lo indican hasta 31+6 y otros hasta 33+6. <strong>Verificar con protocolo institucional.</strong></td>
+            </tr>
+            <tr>
+              <td><strong>34+0 – 36+6</strong></td>
+              <td>Pretérmino tardío</td>
+              <td>Es el grupo más numeroso y el que más se subestima. Un <strong>curso único</strong> de betametasona reduce la morbilidad respiratoria neonatal (ensayo ALPS), a costa de más hipoglicemia neonatal: la indicación en esta banda <em>no es universal</em> y se verifica con el protocolo institucional. El recién nacido no es «casi de término»: necesita control de temperatura, glicemia y alimentación.</td>
+            </tr>
+            <tr>
+              <td><strong>37+0 – 41+6</strong></td>
+              <td>Término</td>
+              <td>No hay paquete farmacológico que ganar. La pregunta pasa a ser únicamente <strong>dónde ocurre este parto</strong> y si hay alguna emergencia asociada.</td>
+            </tr>
+            <tr>
+              <td><strong>≥ 42+0</strong></td>
+              <td>Postérmino</td>
+              <td>Mayor riesgo de meconio, macrosomía —y con ella de distocia de hombros— y de compromiso fetal. Anticipar: equipo de reanimación neonatal presente y el esquema de distocia de hombros repasado antes del expulsivo.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Orientador · ¿alcanza el traslado o se atiende acá?</div>
+      <div class="calc">
+        <div class="block-label">Paridad</div>
+        <div class="opts" id="trPar">
+          <button type="button" class="opt" data-v="nuli">Nulípara<span class="sub">primer parto</span></button>
+          <button type="button" class="opt" data-v="multi">Multípara<span class="sub">uno o más partos vaginales previos</span></button>
+          <button type="button" class="opt" data-v="granmulti">Multípara de parto rápido<span class="sub">refiere partos previos muy rápidos, o 4 o más partos</span></button>
+        </div>
+
+        <div class="block-label">Dilatación cervical</div>
+        <div class="opts" id="trDil">
+          <button type="button" class="opt" data-v="nd">No evaluada o no evaluable<span class="sub">metrorragia sin ecografía, o no corresponde tactar</span></button>
+          <button type="button" class="opt" data-v="d0">Cuello cerrado o &lt; 4 cm</button>
+          <button type="button" class="opt" data-v="d4">4–6 cm</button>
+          <button type="button" class="opt" data-v="d7">7–9 cm</button>
+          <button type="button" class="opt" data-v="d10">Completa (10 cm)</button>
+        </div>
+
+        <div class="block-label">Signos de expulsivo (marca todos los que estén)</div>
+        <div class="opts" id="trSig">
+          <button type="button" class="opt" data-v="pujo">Pujo involuntario, o sensación imperiosa de pujar o de defecar</button>
+          <button type="button" class="opt" data-v="corona">Presentación visible en el introito, periné abombado o cabeza coronando</button>
+          <button type="button" class="opt" data-v="contr">Contracciones cada 2–3 minutos, intensas, de 45 segundos o más</button>
+          <button type="button" class="opt" data-v="rpm">Membranas rotas</button>
+        </div>
+
+        <div class="calc-row" style="margin-top:14px;">
+          <div class="calc-field">
+            <label for="trTiempo">Traslado puerta a puerta (min)</label>
+            <input type="number" id="trTiempo" min="0" max="600" step="5" placeholder="min" oninput="calcTraslado()">
+          </div>
+        </div>
+
+        <div class="calc-out" id="trOut">
+          Marca la paridad, la dilatación y los signos de expulsivo, y escribe el tiempo <strong>real</strong> de
+          traslado puerta a puerta.
+        </div>
+        <button type="button" class="calc-reset" onclick="resetTraslado()">↺ Limpiar</button>
+        <div class="calc-note">
+          <strong>Esto no es un puntaje validado: es una ayuda para ordenar la decisión.</strong> No existe una regla
+          de decisión validada para decidir el traslado de una paciente en trabajo de parto desde un servicio de
+          urgencia, y <em>la conducta la define el criterio de quien está en el box junto con obstetricia</em>. La
+          regla de seguridad que sí vale la pena memorizar es la asimetría del error: <strong>un parto atendido en
+          urgencia con el equipo preparado es un evento manejable; un parto que ocurre dentro de una ambulancia, en
+          un pasillo o en un ascensor, no.</strong> Ante la duda, se queda.
+        </div>
+      </div>
+
+      <div class="subhead">Lo que se registra en el examen obstétrico, en el orden en que se hace</div>
+      <div class="steps" style="--accent:var(--blue);">
+        <div class="step"><strong>Inspección del periné antes de tocar.</strong> Sangrado, líquido amniótico y su color, cordón o presentación visible, condilomas o lesiones herpéticas activas.</div>
+        <div class="step"><strong>Maniobras de Leopold.</strong> Qué está abajo —cefálico, podálico, transverso—, dónde está el dorso y si la presentación está encajada. <em>Una presentación que no es cefálica cambia el plan y se avisa de inmediato.</em></div>
+        <div class="step"><strong>Dinámica uterina en 10 minutos.</strong> Frecuencia, duración e intensidad de las contracciones, y —clave— <strong>si el útero se relaja completamente entre una y otra</strong>. Un útero que no se relaja es desprendimiento o hipertonía, no trabajo de parto normal.</div>
+        <div class="step"><strong>Latidos fetales durante y después de la contracción.</strong> Un minuto completo. Las desaceleraciones que persisten después de que la contracción terminó son el hallazgo preocupante.</div>
+        <div class="step"><strong>Tacto vaginal, <em>solo si no está contraindicado</em>, con la menor cantidad de repeticiones posible.</strong> Dilatación en centímetros, borramiento, consistencia y posición del cuello, estación de la presentación respecto de las espinas isquiáticas, variedad de posición, y estado de las membranas. <span class="hold">Contraindicado ante metrorragia sin placenta localizada. En membranas rotas sin trabajo de parto, cada tacto agrega riesgo de infección: se evita el tacto de rutina.</span></div>
+        <div class="step"><strong>Escribir la hora de cada hallazgo.</strong> La dilatación sin hora no sirve para nada: lo que decide es <em>el cambio entre dos exámenes</em>, no el número aislado.</div>
+      </div>
+
+      <div class="go-banner" style="margin-top:14px;">
+        <span class="warning-icon">🧠</span>
+        <span><strong>La frase que conviene decir en voz alta, y temprano:</strong> «esta paciente va a parir acá».
+        Dicha a tiempo, moviliza la cuna de calor radiante, el set de parto, la segunda persona y la llamada a
+        neonatología. Dicha tarde —o nunca, por no querer admitirla— deja a todo el equipo improvisando con la cabeza
+        del recién nacido ya afuera. <em>El error más frecuente en este escenario no es técnico: es negar la
+        inminencia hasta que ya no hay tiempo de prepararse.</em></span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · PRETÉRMINO -->
+  <div class="section s4" id="s4" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Pretérmino: la ventana de las primeras horas</div>
+        <div class="section-subtitle">Corticoide, magnesio, antibiótico y traslado con el feto adentro</div>
+      </div>
+      <span class="section-check-count" id="count-s4">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="go-banner" style="margin-top:0;">
+        <span class="warning-icon">💡</span>
+        <span><strong>La idea que ordena toda esta sección:</strong> en el trabajo de parto pretérmino, lo que más
+        cambia el desenlace del recién nacido <em>no es detener el parto</em> —casi nunca se logra— <strong>sino lo
+        que se alcanza a hacer mientras ocurre</strong>: poner el corticoide, poner el magnesio y llegar al lugar
+        correcto. La tocolisis no es el tratamiento: es el medio para ganar tiempo para los otros tres.</span>
+      </div>
+
+      <div class="subhead">El paquete pretérmino · siete decisiones</div>
+      <div class="checklist" id="list-s4">
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">1 · Corticoide antenatal</span><strong>Primera dosis de betametasona o dexametasona, ahora.</strong> Indicada en riesgo de parto dentro de los próximos 7 días, en el rango de <strong>24+0 a 33+6 semanas</strong> (y a considerar en 34+0–36+6, y bajo 24 semanas como decisión compartida: <em>verificar con protocolo institucional</em>). Es la intervención con mejor evidencia de toda la página: reduce muerte neonatal, síndrome de dificultad respiratoria y hemorragia intraventricular. <em>No se posterga esperando el traslado, la ecografía ni la opinión del especialista.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">2 · Sulfato de magnesio</span><strong>Sulfato de magnesio para neuroprotección fetal si el parto es inminente o previsible en 24 horas, bajo las 32 semanas</strong> —el umbral exacto, entre 30 y 34 semanas, <em>se verifica con el protocolo institucional</em>—. Reduce la parálisis cerebral. Requiere vigilancia de reflejos, frecuencia respiratoria y diuresis, y gluconato de calcio disponible.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">3 · Tocolisis, con un objetivo escrito</span><strong>Tocolisis solo si sirve para algo concreto:</strong> completar el corticoide o alcanzar el traslado. <em>No se tocoliza para «prolongar el embarazo»</em>, no se mantiene más allá de 48 horas y <strong>no se tocoliza si hay sangrado significativo, desprendimiento, corioamnionitis, preeclampsia severa, estado fetal no tranquilizador, muerte fetal o dilatación avanzada</strong>. En el expulsivo la tocolisis ya no tiene ningún papel.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">4 · Estreptococo grupo B</span><strong>Profilaxis antibiótica intraparto para estreptococo grupo B.</strong> Se indica en el trabajo de parto pretérmino <em>porque el resultado del cultivo habitualmente no está o no es válido</em>, y además ante rotura de membranas de más de 18 horas, fiebre intraparto, bacteriuria por estreptococo grupo B en este embarazo, cultivo positivo o recién nacido previo con enfermedad por este agente. <strong>El esquema vigente y el manejo de la alergia se verifican con el protocolo institucional.</strong></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">5 · Traslado in utero</span><strong>El mejor transporte neonatal es el útero.</strong> Si el parto no es inminente y el centro de destino tiene la unidad neonatal que este recién nacido va a necesitar, se traslada a la madre <em>con el tratamiento ya puesto</em> y con cama receptora confirmada por nombre, no «avisada». Si el parto es inminente, se queda: un prematuro extremo naciendo en una ambulancia es el peor de los escenarios posibles.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">6 · Buscar la causa</span><strong>Buscar lo que desencadenó el trabajo de parto pretérmino.</strong> Infección urinaria, corioamnionitis, rotura de membranas, infección genital, desprendimiento, polihidramnios, embarazo múltiple, consumo de drogas, trauma reciente. <em>Tratar la causa cambia el manejo más que subir la dosis del tocolítico</em>, y una corioamnionitis convierte la tocolisis en un error.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">7 · Conversar con los padres</span><strong>Hablar con la madre y su acompañante antes del parto, con neonatología si alcanza.</strong> Qué significan estas semanas, qué va a pasar en los primeros minutos, dónde va a estar el recién nacido y qué decisiones pueden tener que tomar. <em>En el límite de la viabilidad, esa conversación es parte del tratamiento</em> y se registra en la ficha.</span>
+        </button>
+      </div>
+
+      <div class="progress-bottom">
+        <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBar"></div></div>
+        <div class="progress-label"><span id="progress-pct">0%</span> del checklist</div>
+        <button type="button" class="reset-btn" onclick="resetAll()">↺ Reiniciar</button>
+      </div>
+
+      <div class="subhead">Fármacos del paquete pretérmino</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Fármaco</th><th>Esquema habitual</th><th>Advertencias</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Betametasona</strong><br><span class="dose-note">corticoide antenatal de elección</span></td>
+              <td><span class="dose-main">12 mg IM cada 24 h × 2 dosis</span></td>
+              <td>Una sola dosis ya aporta beneficio: <em>si el parto ocurre antes de la segunda, el corticoide no fue en vano</em>. Vigilar glicemia, sobre todo en diabetes gestacional. La repetición de cursos es una decisión del especialista, no de urgencia.</td>
+            </tr>
+            <tr>
+              <td><strong>Dexametasona</strong><br><span class="dose-note">alternativa equivalente</span></td>
+              <td><span class="dose-main">6 mg IM cada 12 h × 4 dosis</span></td>
+              <td>Se usa cuando no hay betametasona disponible. Mismas consideraciones.</td>
+            </tr>
+            <tr>
+              <td><strong>Sulfato de magnesio</strong><br><span class="dose-note">neuroprotección fetal</span></td>
+              <td><span class="dose-main">4 g IV de carga en 20–30 min</span>, luego <span class="dose-main">1 g/h</span> hasta el parto o 24 h<br><span class="dose-note">existen esquemas de carga de 5 g y mantención de 2 g/h: verificar con protocolo institucional</span></td>
+              <td>Vigilar <strong>reflejo rotuliano, frecuencia respiratoria y diuresis horaria</strong>; ajustar o suspender en falla renal. <strong>Gluconato de calcio disponible al lado de la cama</strong> como antídoto de la toxicidad. Potencia la hipotensión y el bloqueo neuromuscular si se asocia a nifedipino: la asociación <em>se verifica con el protocolo institucional</em>. Produce rubor, calor y náusea: avisarle a la paciente antes.</td>
+            </tr>
+            <tr>
+              <td><strong>Nifedipino</strong><br><span class="dose-note">tocolítico de primera línea en la mayoría de los protocolos</span></td>
+              <td><span class="dose-main">20 mg oral</span>, repetir 20 mg a los 30 min si persisten las contracciones; mantención <span class="dose-main">10–20 mg cada 6–8 h</span> por un máximo de 48 h<br><span class="dose-note">dosis máxima diaria y esquema exacto: verificar con protocolo institucional</span></td>
+              <td>Produce hipotensión, cefalea y rubor: <em>control de presión arterial antes y después de cada dosis</em>. No usar si hay hipotensión, hipovolemia o sangrado activo. Precaución con el sulfato de magnesio administrado en paralelo.</td>
+            </tr>
+            <tr>
+              <td><strong>Indometacina</strong><br><span class="dose-note">alternativa, solo bajo 32 semanas</span></td>
+              <td><span class="dose-main">Esquema según protocolo institucional</span>, por un máximo de 48 h</td>
+              <td>Riesgo de <strong>constricción del ductus arterioso y de oligohidramnios</strong>, que aumenta con la edad gestacional y con la duración: por eso se restringe a menos de 32 semanas y a cursos cortos. <em>La dosis y la duración se verifican con el protocolo institucional</em> antes de administrar.</td>
+            </tr>
+            <tr>
+              <td><strong>Atosibán</strong><br><span class="dose-note">donde esté disponible</span></td>
+              <td><span class="dose-main">Esquema según protocolo institucional</span></td>
+              <td>Perfil de efectos adversos maternos más favorable que el nifedipino; disponibilidad y costo variables. <strong>Verificar disponibilidad en el servicio.</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Penicilina G sódica</strong><br><span class="dose-note">profilaxis de estreptococo grupo B</span></td>
+              <td><span class="dose-main">5 millones UI IV de carga</span>, luego <span class="dose-main">2,5–3 millones UI IV cada 4 h</span> hasta el parto</td>
+              <td>Alternativa: ampicilina 2 g IV de carga y 1 g IV cada 4 h. <strong>En alergia a penicilina el esquema depende del tipo de alergia y de la sensibilidad del germen</strong> —cefazolina, clindamicina o vancomicina—: <em>verificar con el protocolo institucional y el equipo de infectología</em>. La profilaxis rinde más cuanto antes se inicie: no se espera a estar en el expulsivo.</td>
+            </tr>
+            <tr>
+              <td><strong>Betamiméticos</strong><br><span class="dose-note">fenoterol, salbutamol, terbutalina</span></td>
+              <td><span class="dose-main">No son primera línea como tocolisis</span></td>
+              <td>Efectos adversos maternos cardiovasculares y metabólicos relevantes, incluido el edema pulmonar. Su uso quedó restringido; <em>donde todavía figuran en el protocolo local, se usan con monitorización estrecha y por el menor tiempo posible</em>. La terbutalina subcutánea conserva un papel distinto: la <strong>tocolisis de rescate</strong> ante hipertonía uterina con compromiso fetal, descrita en la sección 07.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">💊</span>
+        <span><strong>Todas las dosis de esta página son órdenes de magnitud habituales y deben verificarse contra el
+        protocolo institucional y el formulario nacional antes de administrar</strong>, junto con sus
+        contraindicaciones, dilución y velocidad de infusión. Los esquemas de tocolisis, de neuroprotección y de
+        profilaxis antibiótica <em>varían de forma significativa entre servicios</em>, y la página no reemplaza esa
+        verificación.</span>
+      </div>
+
+      <div class="subhead">Lo que NO hay que hacer en el trabajo de parto pretérmino</div>
+      <div class="stop">
+        <div class="stop-title">NO hacer</div>
+        <ul>
+          <li>Postergar el corticoide esperando confirmación, traslado o especialista <span class="cond">es la intervención con mejor evidencia de la sección y se pone en el box</span></li>
+          <li>Tocolizar una corioamnionitis, un desprendimiento o una metrorragia activa <span class="cond">prolongar la exposición a esos escenarios empeora el desenlace de ambos</span></li>
+          <li>Tocolizar para «llegar al término» <span class="cond">el objetivo es 48 h útiles, no semanas: la tocolisis no previene la prematurez</span></li>
+          <li>Repetir tactos vaginales con membranas rotas <span class="cond">cada tacto aumenta el riesgo de infección y no agrega información útil si no hay trabajo de parto</span></li>
+          <li>Trasladar con el expulsivo en curso <span class="cond">si la presentación está en el periné, el traslado ya no es una opción: el parto ocurre donde está la paciente</span></li>
+          <li>Trasladar sin cama receptora confirmada por nombre <span class="cond">«ya avisamos» no es una recepción confirmada</span></li>
+          <li>Anunciar un pronóstico neonatal a la familia sin neonatología <span class="cond">especialmente en el límite de la viabilidad, donde el umbral local es el que manda</span></li>
+        </ul>
+        <div class="why">
+          <strong>Por qué esta lista es tan corta y tan rígida.</strong> La evidencia de beneficio del corticoide
+          antenatal y del sulfato de magnesio es robusta y transversal a distintos entornos. La de la tocolisis es
+          mucho más modesta y <em>su beneficio se limita a ganar horas</em>. Cuando se invierten esas prioridades
+          —se discute largo el tocolítico y se olvida la inyección de betametasona— se pierde justamente lo que sí
+          cambia el desenlace del recién nacido.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · ROTURA DE MEMBRANAS -->
+  <div class="section s5" id="s5" style="animation-delay:0.22s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Rotura de membranas</div>
+        <div class="section-subtitle">Confirmarla sin empeorarla, y qué cambia según las semanas</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner" style="margin-top:0;">
+        <span class="warning-icon">💧</span>
+        <span><strong>Dos preguntas y en este orden:</strong> ¿<strong>se rompieron</strong> las membranas, y <strong>a
+        cuántas semanas</strong>? La primera se contesta mirando, no tactando. La segunda define si el objetivo es
+        que el parto ocurra —de término— o ganar tiempo con tratamiento —pretérmino—.</span>
+      </div>
+
+      <div class="subhead">Cómo se confirma</div>
+      <div class="steps" style="--accent:var(--teal);">
+        <div class="step"><strong>El relato suele bastar.</strong> Pérdida súbita de líquido claro, abundante, que sigue goteando y moja la ropa interior o escurre por las piernas, distinta de la orina y del flujo. <em>Cuando el relato es típico y hay líquido en el introito, el diagnóstico ya está hecho.</em></div>
+        <div class="step"><strong>Observación directa con espéculo estéril.</strong> Se busca líquido en el fondo de saco posterior o su salida por el orificio cervical al pujar o al toser. En el mismo acto se evalúa el cuello <em>a la vista</em>, lo que evita un tacto. <span class="hold">Es el examen de elección: aporta diagnóstico, estado del cuello y muestras, con un solo procedimiento.</span></div>
+        <div class="step"><strong>Pruebas complementarias, si siguen dudas.</strong> Cristalografía, pH vaginal o pruebas inmunocromatográficas de proteínas amnióticas; la ecografía que muestra oligohidramnios apoya el diagnóstico pero no lo confirma. <em>La disponibilidad, el rendimiento y la interpretación de cada prueba se verifican con el protocolo institucional y con el laboratorio local.</em></div>
+        <div class="step"><strong>Muestras en el mismo examen.</strong> Cultivo vaginal y perianal para estreptococo grupo B si no hay uno vigente, y lo que el protocolo local indique. Hemograma y proteína C reactiva como base para comparar después.</div>
+      </div>
+
+      <div class="subhead">Qué hacer según las semanas</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Escenario</th><th>Objetivo</th><th>Conducta en urgencia</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>≥ 37 semanas</strong><br><span class="dose-note">rotura de membranas de término</span></td>
+              <td>Que el parto ocurra</td>
+              <td>Hospitalizar. Profilaxis de estreptococo grupo B si corresponde —y siempre si la rotura supera las 18 h o hay fiebre—. <strong>La conducta expectante frente a la inducción, y el plazo de cada una, los define obstetricia según el protocolo local.</strong> Evitar tactos innecesarios mientras no haya trabajo de parto.</td>
+            </tr>
+            <tr>
+              <td><strong>34+0 – 36+6</strong></td>
+              <td>Zona de decisión</td>
+              <td>Hospitalizar, profilaxis antibiótica según protocolo, corticoide <em>a considerar</em> y conducta —expectante o resolución— definida por obstetricia. <strong>Verificar con protocolo institucional.</strong></td>
+            </tr>
+            <tr>
+              <td><strong>&lt; 34 semanas</strong><br><span class="dose-note">rotura prematura de membranas de pretérmino</span></td>
+              <td>Ganar tiempo con tratamiento</td>
+              <td>Hospitalizar. <strong>Corticoide antenatal</strong>, <strong>antibióticos de latencia</strong> para prolongar el periodo entre la rotura y el parto y reducir la infección, sulfato de magnesio si el parto es inminente bajo el umbral local, y vigilancia de corioamnionitis. <em>El esquema exacto de antibióticos de latencia se verifica con el protocolo institucional</em>; lo que sí es transversal es que <strong>no se usa amoxicilina con ácido clavulánico</strong>, por su asociación con enterocolitis necrotizante neonatal.</td>
+            </tr>
+            <tr>
+              <td><strong>Cualquier edad gestacional con corioamnionitis</strong></td>
+              <td>Resolver, no postergar</td>
+              <td>Antibióticos de amplio espectro de inmediato, antipirético, y <strong>el parto deja de poder postergarse</strong>: se avisa a obstetricia como urgencia y se prepara al equipo neonatal. No se tocoliza. <em>El esquema antibiótico se verifica con el protocolo institucional y el programa local de uso de antimicrobianos.</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">🔍</span>
+        <span><strong>Dos cosas que se buscan siempre con membranas rotas, y que se olvidan.</strong>
+        <strong>(1) Prolapso de cordón</strong>: la rotura es el momento de mayor riesgo, sobre todo si la
+        presentación no está encajada, si es podálica o transversa, en el polihidramnios y en el embarazo múltiple.
+        <strong>(2) Corioamnionitis</strong>: temperatura, frecuencia cardíaca materna y fetal, sensibilidad uterina
+        y características del líquido, <em>reevaluadas en el tiempo y no una sola vez al ingreso</em>.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · ATENDER EL PARTO -->
+  <div class="section s6" id="s6" style="animation-delay:0.26s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Atender el parto en el box</div>
+        <div class="section-subtitle">Preparación, expulsivo, clampeo y tercer periodo</div>
+      </div>
+      <span class="section-check-count" id="count-s6">0/9</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="go-banner" style="margin-top:0;">
+        <span class="warning-icon">🤲</span>
+        <span><strong>El parto normal no se «hace»: se acompaña.</strong> La mayoría de los partos que ocurren en
+        urgencia se resuelven solos y lo que el equipo aporta es <em>calor, calma, manos limpias, una salida lenta de
+        la cabeza y un tercer periodo bien manejado</em>. Casi todos los daños evitables de este escenario vienen de
+        hacer <strong>demasiado</strong>: tirar, apurar, empujar el fondo uterino, cortar donde no hace falta.</span>
+      </div>
+
+      <div class="subhead">Armar el box · nueve cosas antes de que salga la cabeza</div>
+      <div class="checklist" id="list-s6">
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Dos equipos</span><strong>Dos equipos nombrados en voz alta: madre y recién nacido.</strong> Nadie que esté atendiendo el parto puede hacerse cargo simultáneamente de un recién nacido que no respira.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Calor</span><strong>Cuna de calor radiante encendida, sala sin corrientes de aire y paños secos y tibios a mano.</strong> La hipotermia del recién nacido es la complicación más frecuente, la más prevenible y la que más empeora todo lo demás. <em>Dos paños: uno para secar, otro, seco, para envolver.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Vía aérea neonatal</span><strong>Equipo de reanimación neonatal revisado:</strong> bolsa autoinflable con mascarillas de tamaño de recién nacido, fuente de oxígeno con mezclador si existe, aspiración a baja presión con sondas, saturómetro, reloj a la vista y, si el servicio los tiene, bolsa de polietileno y gorro para el prematuro.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Set de parto</span><strong>Dos pinzas de cordón o clamps, tijera estéril, campos, guantes estériles, gasas, y un recipiente para la placenta.</strong> Si no hay set de parto formal, eso es el mínimo. <em>Fotografiar el set real del servicio y dejar la foto junto al carro es más útil que cualquier lista escrita.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Uterotónico</span><strong>Oxitocina cargada y rotulada antes del nacimiento</strong>, más el resto del arsenal de hemorragia posparto identificado y accesible: ácido tranexámico, segundo uterotónico, sonda vesical y balón intrauterino o su equivalente local. <em>Nadie debería estar buscando una ampolla con el útero atónico.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Sangre</span><strong>Grupo y Rh tomados, y pruebas cruzadas pedidas si hay cualquier factor de riesgo de hemorragia</strong> —multiparidad, embarazo múltiple, polihidramnios, trabajo de parto prolongado, hemorragia posparto previa, miomas, corioamnionitis, anticoagulación—.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Posición</span><strong>Posición cómoda para la madre y accesible para quien atiende.</strong> Camilla con respaldo levantado, caderas al borde si es posible, y permitirle elegir la posición en que puja mejor. <em>La litotomía forzada no es un requisito del parto: es una comodidad del operador.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Reloj y registro</span><strong>Alguien con el reloj y la hoja: hora de nacimiento, hora de salida de la placenta, maniobras y tiempos.</strong> En una distocia de hombros o una hemorragia, <em>el registro de los tiempos es parte del manejo</em>, no un trámite posterior.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Repasar en voz alta</span><strong>Decir en voz alta, antes, qué se hace si hay distocia de hombros, prolapso de cordón o hemorragia.</strong> Treinta segundos de repaso con el equipo completo valen más que cualquier lectura posterior. <em>Nombrar quién pide ayuda y a quién.</em></span>
+        </button>
+      </div>
+
+      <div class="subhead">El expulsivo, en orden</div>
+      <div class="figure">
+        <svg viewBox="0 0 680 230" role="img" aria-label="Esquema en cuatro tiempos del expulsivo: descenso con flexión de la cabeza, rotación interna, extensión con desprendimiento de la cabeza y rotación externa con desprendimiento de los hombros, representados como un círculo que atraviesa un arco pélvico esquemático.">
+          <g font-family="DM Mono, monospace" font-size="10.5" fill="#94a3b8">
+            <!-- PANEL 1 -->
+            <g transform="translate(0,0)">
+              <path d="M26,150 Q86,88 146,150" fill="none" stroke="#475569" stroke-width="2"/>
+              <path d="M34,168 Q86,120 138,168" fill="none" stroke="#475569" stroke-width="1.2" stroke-dasharray="4 4"/>
+              <circle cx="86" cy="118" r="22" fill="rgba(99,102,241,0.16)" stroke="#a5b4fc" stroke-width="2"/>
+              <path d="M86,50 L86,86" stroke="#6ee7b7" stroke-width="2.2"/>
+              <path d="M86,86 L80,77 M86,86 L92,77" fill="none" stroke="#6ee7b7" stroke-width="2.2"/>
+              <text x="98" y="66" fill="#6ee7b7" font-size="10">desciende</text>
+              <text x="86" y="196" text-anchor="middle" fill="#c7d2fe" font-size="11.5">1 · Descenso</text>
+              <text x="86" y="212" text-anchor="middle">con flexión</text>
+            </g>
+            <!-- PANEL 2 -->
+            <g transform="translate(170,0)">
+              <path d="M26,150 Q86,88 146,150" fill="none" stroke="#475569" stroke-width="2"/>
+              <circle cx="86" cy="134" r="22" fill="rgba(99,102,241,0.16)" stroke="#a5b4fc" stroke-width="2"/>
+              <path d="M66,120 A26,26 0 0 1 106,120" fill="none" stroke="#fcd34d" stroke-width="1.8"/>
+              <path d="M106,120 L100,114 M106,120 L100,126" fill="none" stroke="#fcd34d" stroke-width="1.8"/>
+              <text x="86" y="196" text-anchor="middle" fill="#c7d2fe" font-size="11.5">2 · Rotación interna</text>
+              <text x="86" y="212" text-anchor="middle">occipucio al pubis</text>
+            </g>
+            <!-- PANEL 3 -->
+            <g transform="translate(340,0)">
+              <path d="M26,150 Q86,88 146,150" fill="none" stroke="#475569" stroke-width="2"/>
+              <circle cx="86" cy="104" r="22" fill="rgba(16,185,129,0.16)" stroke="#6ee7b7" stroke-width="2"/>
+              <path d="M58,88 Q68,70 86,66" fill="none" stroke="#6ee7b7" stroke-width="1.6" stroke-dasharray="3 3"/>
+              <path d="M112,146 L122,156 M112,146 L104,154" fill="none" stroke="#fca5a5" stroke-width="2"/>
+              <text x="132" y="150" fill="#fca5a5" font-size="10">apoyo</text>
+              <text x="132" y="163" fill="#fca5a5" font-size="10">del periné</text>
+              <text x="86" y="196" text-anchor="middle" fill="#6ee7b7" font-size="11.5">3 · Extensión</text>
+              <text x="86" y="212" text-anchor="middle">salida LENTA</text>
+            </g>
+            <!-- PANEL 4 -->
+            <g transform="translate(510,0)">
+              <path d="M26,150 Q86,88 146,150" fill="none" stroke="#475569" stroke-width="2"/>
+              <circle cx="86" cy="96" r="22" fill="rgba(16,185,129,0.16)" stroke="#6ee7b7" stroke-width="2"/>
+              <line x1="64" y1="96" x2="108" y2="96" stroke="#6ee7b7" stroke-width="1.4" stroke-dasharray="3 3"/>
+              <ellipse cx="86" cy="134" rx="30" ry="13" fill="rgba(245,158,11,0.14)" stroke="#fcd34d" stroke-width="1.8"/>
+              <text x="86" y="196" text-anchor="middle" fill="#6ee7b7" font-size="11.5">4 · Rotación externa</text>
+              <text x="86" y="212" text-anchor="middle">y hombros</text>
+            </g>
+          </g>
+        </svg>
+        <div class="fig-caption">
+          <strong>Esquema orientativo, no a escala y no una ilustración anatómica.</strong> Sirve para una sola cosa:
+          anticipar <em>qué viene después</em> y no tirar. Los movimientos ocurren solos; el aporte del operador es
+          sostener el periné, controlar que la cabeza salga lentamente y <strong>esperar la rotación externa en lugar
+          de forzarla</strong>. Cuando los hombros no salen con la siguiente contracción, eso ya no es el tiempo 4:
+          es una distocia de hombros, y se pasa a la sección 07.
+        </div>
+      </div>
+
+      <div class="steps" style="--accent:var(--emerald);">
+        <div class="step"><strong>Dejar pujar con el deseo, no contra el reloj.</strong> El pujo espontáneo con la contracción rinde más que el pujo dirigido a gritos y daña menos el periné. En el pretérmino, con más razón: la salida debe ser controlada.</div>
+        <div class="step"><strong>Sostener el periné y frenar la cabeza.</strong> Una mano apoya el periné y la otra controla la velocidad de salida de la cabeza para que ocurra <em>entre contracciones</em> si es posible. <span class="hold">La salida brusca es la que desgarra.</span></div>
+        <div class="step"><strong>No empujar el fondo uterino. Nunca.</strong> La presión sobre el fondo —maniobra de Kristeller— no ayuda a salir y se asocia a desgarros graves, rotura uterina y lesión fetal. <em>Esta prohibición vale tanto en el expulsivo normal como —sobre todo— en la distocia de hombros.</em></div>
+        <div class="step"><strong>No hacer episiotomía de rutina.</strong> La episiotomía selectiva, por indicación y no por costumbre, es la conducta recomendada. Si no se sabe hacer y reparar una, <em>no es el momento de aprender</em>.</div>
+        <div class="step"><strong>Revisar el cuello del recién nacido cuando sale la cabeza.</strong> Si hay cordón alrededor, se desliza suavemente por sobre la cabeza o se deja que el cuerpo salga a través del asa. <span class="hold">Cortar el cordón antes del nacimiento del cuerpo es un último recurso para un cordón realmente apretado e irreductible: deja al recién nacido sin su circulación placentaria antes de respirar.</span></div>
+        <div class="step"><strong>Esperar la rotación externa y acompañar los hombros.</strong> Primero el anterior con tracción suave hacia abajo <em>en el eje</em>, después el posterior; nunca con tracción lateral del cuello ni con fuerza.</div>
+        <div class="step"><strong>Recibir al recién nacido sobre el abdomen o el pecho de la madre</strong>, secarlo con el primer paño, retirar ese paño mojado y cubrirlo con uno seco más gorro. <span class="hold">Si está vigoroso —tono, llanto, respiración—, el mejor lugar del mundo es el pecho de su madre. La reanimación, si hace falta, va en la cuna.</span></div>
+        <div class="step"><strong>Clampeo diferido del cordón: esperar al menos 60 segundos</strong> si el recién nacido está vigoroso y no requiere reanimación inmediata. Reduce la anemia del lactante y, en el prematuro, se asocia a mejores desenlaces. <em>Si necesita reanimación que no puede hacerse junto a la madre, se clampea y se traslada a la cuna sin demora.</em></div>
+        <div class="step"><strong>Identificar al recién nacido antes de que salga del box</strong> —brazalete o el sistema del servicio— y anotar hora de nacimiento, sexo y Apgar al minuto y a los cinco minutos.</div>
+      </div>
+
+      <div class="subhead">El tercer periodo: donde está el riesgo materno</div>
+      <div class="warning-banner">
+        <span class="warning-icon">🩸</span>
+        <span><strong>El parto no termina cuando nace el recién nacido.</strong> La hemorragia posparto es la primera
+        causa de muerte materna en el mundo y ocurre <em>en los minutos siguientes</em>, cuando el equipo está
+        celebrando y mirando al recién nacido. <strong>Alguien tiene que seguir mirando el útero y el apósito de la
+        madre.</strong></span>
+      </div>
+      <div class="steps" style="--accent:var(--emerald);">
+        <div class="step"><strong>Uterotónico inmediatamente después del nacimiento:</strong> <span class="hold">oxitocina 10 UI IM, o 5 UI IV lenta y diluida. Nunca en bolo rápido: produce hipotensión y taquicardia. Donde esté disponible, la carbetocina es una alternativa de dosis única. Verificar esquema con el protocolo institucional.</span></div>
+        <div class="step"><strong>Tracción controlada del cordón, solo por quien sabe hacerla, y siempre con contratracción suprapúbica</strong> que sostenga el útero. <em>Tirar del cordón sin sostener el útero puede producir una inversión uterina, que es una catástrofe.</em> Si no hay entrenamiento, se espera el desprendimiento espontáneo.</div>
+        <div class="step"><strong>Masaje uterino después de la salida de la placenta</strong> y comprobación de que el útero queda duro y contraído, con reevaluación periódica.</div>
+        <div class="step"><strong>Revisar la placenta y las membranas.</strong> Un cotiledón o una membrana que falta explica una hemorragia que todavía no empezó. Guardar la placenta para que la revise obstetricia.</div>
+        <div class="step"><strong>Revisar el canal y el periné con buena luz</strong> buscando desgarros, y estimar la pérdida de sangre <em>de forma explícita y por escrito</em>. <span class="hold">La estimación visual subestima el sangrado de forma sistemática: pesar apósitos y usar recipientes graduados cuando se pueda.</span></div>
+        <div class="step"><strong>Placenta retenida: si no sale en 30 minutos con manejo activo, es un problema</strong> y se avisa a obstetricia. La extracción manual es un procedimiento con anestesia y riesgo propio: <em>no se improvisa en el box</em>.</div>
+        <div class="step"><strong>Dejar a la madre monitorizada y con alguien mirándola.</strong> Útero, apósito, presión arterial y pulso en las dos primeras horas; vejiga vacía —una vejiga llena impide la contracción uterina—; y la inmunoglobulina anti-D según el Rh, <em>cuyo esquema y plazo se verifican con el protocolo institucional</em>.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · LAS CUATRO EMERGENCIAS -->
+  <div class="section s7" id="s7" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Las cuatro emergencias del expulsivo</div>
+        <div class="section-subtitle">Hombros, cordón, podálica y hemorragia</div>
+      </div>
+      <span class="section-check-count" id="count-s7">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner" style="margin-top:0;">
+        <span class="warning-icon">🎯</span>
+        <span><strong>Cuatro escenarios, y cada uno tiene una sola cosa que hay que recordar bajo presión.</strong>
+        Distocia de hombros: <em>no tirar y no empujar el fondo</em>. Prolapso de cordón: <em>levantar la
+        presentación con la mano y no soltar</em>. Podálica: <em>manos fuera hasta las escápulas</em>. Hemorragia
+        posparto: <em>masaje, oxitocina y ácido tranexámico antes de las 3 horas</em>. Todo lo demás se puede
+        leer; esas cuatro hay que saberlas de memoria.</span>
+      </div>
+
+      <div class="subhead">A · Distocia de hombros</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔎</span><span><strong>Cómo se reconoce.</strong> La cabeza nació y <strong>los hombros no salen con la siguiente contracción</strong>, con el signo de la tortuga —la cabeza se retrae contra el periné— y la rotación externa que no ocurre. Complica aproximadamente el <strong>0,6–1,4 %</strong> de los partos vaginales, y <em>la mayoría ocurre sin ningún factor de riesgo identificable</em>: anticiparla no es predecirla, es tener el esquema repasado.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Las tres cosas que empeoran el cuadro.</strong> <strong>(1) Traccionar la cabeza con fuerza o lateralmente</strong> —produce la lesión del plexo braquial, que es el daño más temido—. <strong>(2) Empujar el fondo uterino</strong>: impacta más el hombro contra el pubis y agrega riesgo de rotura uterina. <strong>(3) Pedirle a la madre que puje más fuerte</strong> mientras el hombro está impactado: el problema no es falta de fuerza, es un obstáculo óseo.</span></div>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 640 250" role="img" aria-label="Esquema de la distocia de hombros: a la izquierda la posición de McRoberts con hiperflexión de los muslos sobre el abdomen; a la derecha la dirección de la presión suprapúbica, oblicua y por detrás de la sínfisis del pubis, junto a una flecha tachada sobre el fondo uterino que indica que la presión fúndica está prohibida.">
+          <g font-family="DM Mono, monospace" font-size="10.5" fill="#94a3b8">
+            <!-- IZQUIERDA: McROBERTS -->
+            <g>
+              <text x="20" y="22" fill="#6ee7b7" font-size="11.5">McROBERTS · primera maniobra</text>
+              <!-- camilla -->
+              <line x1="20" y1="190" x2="300" y2="190" stroke="#475569" stroke-width="2"/>
+              <!-- tronco -->
+              <path d="M34,190 L34,120 Q34,104 54,104 L170,104 Q190,104 190,124 L190,190 Z" fill="rgba(255,255,255,0.02)" stroke="#475569" stroke-width="1.5"/>
+              <!-- utero -->
+              <ellipse cx="128" cy="146" rx="46" ry="34" fill="rgba(99,102,241,0.12)" stroke="#a5b4fc" stroke-width="1.6"/>
+              <text x="128" y="150" text-anchor="middle" fill="#c7d2fe" font-size="10">útero</text>
+              <!-- muslos hiperflexionados -->
+              <path d="M190,180 L236,112" stroke="#5eead4" stroke-width="5" stroke-linecap="round"/>
+              <path d="M236,112 L214,60" stroke="#5eead4" stroke-width="5" stroke-linecap="round"/>
+              <path d="M196,176 Q226,150 240,120" fill="none" stroke="#6ee7b7" stroke-width="1.4" stroke-dasharray="3 3"/>
+              <path d="M240,120 L234,126 M240,120 L233,117" fill="none" stroke="#6ee7b7" stroke-width="1.6"/>
+              <text x="250" y="160" fill="#6ee7b7">muslos sobre</text>
+              <text x="250" y="174" fill="#6ee7b7">el abdomen</text>
+              <text x="20" y="218">Aplana el sacro y rota la sínfisis:</text>
+              <text x="20" y="232">libera el hombro sin tocar al feto.</text>
+            </g>
+            <!-- DERECHA: PRESIONES -->
+            <g transform="translate(340,0)">
+              <text x="0" y="22" fill="#fcd34d" font-size="11.5">PRESIÓN SUPRAPÚBICA · sí</text>
+              <!-- abdomen de frente -->
+              <path d="M30,186 L30,78 Q30,58 58,58 L188,58 Q216,58 216,82 L216,186 Z" fill="rgba(255,255,255,0.02)" stroke="#475569" stroke-width="1.5"/>
+              <ellipse cx="123" cy="126" rx="60" ry="54" fill="rgba(99,102,241,0.10)" stroke="#a5b4fc" stroke-width="1.4"/>
+              <!-- sinfisis -->
+              <rect x="104" y="172" width="38" height="12" rx="4" fill="rgba(252,211,77,0.18)" stroke="#fcd34d" stroke-width="1.4"/>
+              <text x="123" y="202" text-anchor="middle" fill="#fcd34d" font-size="10">sínfisis del pubis</text>
+              <!-- flecha suprapubica -->
+              <path d="M123,138 L123,168" stroke="#fcd34d" stroke-width="2.6"/>
+              <path d="M123,168 L117,160 M123,168 L129,160" fill="none" stroke="#fcd34d" stroke-width="2.6"/>
+              <text x="140" y="152" fill="#fcd34d" font-size="10">firme, justo</text>
+              <text x="140" y="164" fill="#fcd34d" font-size="10">sobre el pubis</text>
+              <!-- fondo: prohibido -->
+              <path d="M123,74 L123,50" stroke="#fca5a5" stroke-width="2.6"/>
+              <path d="M123,50 L117,58 M123,50 L129,58" fill="none" stroke="#fca5a5" stroke-width="2.6"/>
+              <line x1="106" y1="46" x2="140" y2="78" stroke="#ef4444" stroke-width="3"/>
+              <text x="150" y="58" fill="#fca5a5" font-size="10.5">PRESIÓN FÚNDICA</text>
+              <text x="150" y="71" fill="#fca5a5" font-size="10.5">PROHIBIDA</text>
+              <text x="0" y="226">La presión va sobre el <tspan fill="#fcd34d">pubis</tspan>, no sobre el fondo.</text>
+              <text x="0" y="240">Dirección oblicua, por detrás de la sínfisis.</text>
+            </g>
+          </g>
+        </svg>
+        <div class="fig-caption">
+          <strong>Esquema orientativo, no a escala.</strong> Las dos primeras maniobras —hiperflexión de los muslos y
+          presión suprapúbica— resuelven la mayoría de las distocias y <em>ninguna de las dos toca al feto</em>. La
+          diferencia entre la presión suprapúbica y la presión fúndica no es un matiz: la primera desimpacta el
+          hombro, la segunda lo impacta más. <strong>Verificar con el protocolo institucional</strong> la secuencia
+          adoptada por el servicio y quién realiza las maniobras internas.
+        </div>
+      </div>
+
+      <div class="block-label">La secuencia, en orden de escalada</div>
+      <div class="steps" style="--accent:var(--red);">
+        <div class="step"><strong>Decirlo en voz alta y pedir ayuda, con el reloj.</strong> «Distocia de hombros, son las 14:07, necesito obstetricia y neonatología ahora». <em>Alguien anota la hora de cada maniobra: eso es parte del manejo y del registro posterior.</em></div>
+        <div class="step"><strong>Dejar de traccionar y de pujar.</strong> Bajar las nalgas al borde de la camilla, vaciar la vejiga si hay sonda, y <strong>nada de presión fúndica</strong>.</div>
+        <div class="step"><strong>Hiperflexión de los muslos sobre el abdomen (McRoberts),</strong> con un ayudante a cada lado. Es la maniobra más efectiva en relación a su simpleza y no requiere tocar al feto.</div>
+        <div class="step"><strong>Presión suprapúbica</strong> firme y oblicua, dirigida por detrás de la sínfisis hacia el lado del dorso fetal, continua o intermitente, <em>mientras se aplica tracción axial suave</em>.</div>
+        <div class="step"><strong>Evaluar una episiotomía solo si el acceso para las maniobras internas lo requiere.</strong> <span class="hold">La episiotomía no resuelve la distocia de hombros: el obstáculo es óseo, no de partes blandas. Solo agrega espacio para la mano.</span></div>
+        <div class="step"><strong>Maniobras internas rotacionales</strong> —presión sobre la cara posterior del hombro anterior para aducirlo y rotarlo, y rotación del hombro posterior— para convertir el diámetro biacromial en oblicuo. <em>Requieren entrenamiento y mano dentro de la pelvis.</em></div>
+        <div class="step"><strong>Extracción del brazo posterior,</strong> siguiendo el húmero hasta el codo, flexionándolo y barriendo el antebrazo por delante del tórax fetal. <span class="hold">Muy efectiva. Riesgo conocido de fractura de húmero o clavícula, que consolida bien: una fractura es un desenlace mucho mejor que una hipoxia.</span></div>
+        <div class="step"><strong>Cambio de posición materna a cuatro apoyos</strong> (maniobra de Gaskin) si la configuración del box y la paciente lo permiten: cambia la geometría de la pelvis y puede resolver lo que no cedió en decúbito.</div>
+        <div class="step"><strong>Maniobras de último recurso, por obstetra:</strong> fractura deliberada de clavícula, maniobra de Zavanelli, sinfisiotomía. <em>Se nombran para que se sepa que existen y que no son del repertorio de urgencia.</em> <span class="hold">Verificar con protocolo institucional quién las realiza y en qué escenario.</span></div>
+        <div class="step"><strong>Después del nacimiento:</strong> examinar al recién nacido buscando lesión del plexo braquial y fractura, <strong>vigilar hemorragia posparto</strong> —riesgo aumentado— y revisar el canal buscando desgarros. Explicar a la madre lo que ocurrió y registrar la secuencia completa con horas.</div>
+      </div>
+
+      <div class="subhead">B · Prolapso de cordón</div>
+      <div class="warning-banner">
+        <span class="warning-icon">🪢</span>
+        <span><strong>Es la emergencia más dependiente del tiempo de esta página, y el tratamiento inicial son las
+        manos, no la ambulancia.</strong> Ocurre en el <strong>0,1–0,6 %</strong> de los partos, con más frecuencia
+        tras la rotura de membranas con presentación no encajada, podálica o transversa, en el polihidramnios y en el
+        embarazo múltiple. El daño viene de la <em>compresión del cordón entre la presentación y la pelvis</em> y del
+        vasoespasmo: todo lo que se hace apunta a descomprimirlo hasta que nazca.</span>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 640 230" role="img" aria-label="Esquema del prolapso de cordón: elevación manual de la presentación para descomprimir el cordón, posición genupectoral o de Trendelenburg para alejar la presentación de la pelvis, y llenado vesical con sonda Foley como alternativa cuando el traslado se prolonga.">
+          <g font-family="DM Mono, monospace" font-size="10.5" fill="#94a3b8">
+            <!-- 1 ELEVAR -->
+            <g>
+              <text x="14" y="20" fill="#fca5a5" font-size="11.5">1 · ELEVAR Y NO SOLTAR</text>
+              <path d="M40,180 Q110,96 180,180" fill="none" stroke="#475569" stroke-width="2"/>
+              <circle cx="110" cy="128" r="26" fill="rgba(99,102,241,0.14)" stroke="#a5b4fc" stroke-width="1.8"/>
+              <path d="M128,146 Q152,168 148,198" fill="none" stroke="#fcd34d" stroke-width="2.6"/>
+              <text x="156" y="186" fill="#fcd34d" font-size="10">cordón</text>
+              <path d="M104,192 L104,162" stroke="#6ee7b7" stroke-width="2.6"/>
+              <path d="M104,162 L98,170 M104,162 L110,170" fill="none" stroke="#6ee7b7" stroke-width="2.6"/>
+              <text x="14" y="214" fill="#6ee7b7">mano que empuja la</text>
+              <text x="14" y="228" fill="#6ee7b7">presentación hacia arriba</text>
+            </g>
+            <!-- 2 POSICION -->
+            <g transform="translate(215,0)">
+              <text x="0" y="20" fill="#5eead4" font-size="11.5">2 · POSICIÓN</text>
+              <line x1="0" y1="172" x2="190" y2="172" stroke="#475569" stroke-width="2"/>
+              <!-- genupectoral: rodillas y pecho apoyados, pelvis arriba -->
+              <path d="M126,170 L126,116" stroke="#5eead4" stroke-width="5" stroke-linecap="round"/>
+              <path d="M126,116 L52,166" stroke="#5eead4" stroke-width="5" stroke-linecap="round"/>
+              <circle cx="34" cy="162" r="11" fill="rgba(20,184,166,0.16)" stroke="#5eead4" stroke-width="1.6"/>
+              <path d="M146,112 L146,86" stroke="#6ee7b7" stroke-width="2"/>
+              <path d="M146,86 L140,94 M146,86 L152,94" fill="none" stroke="#6ee7b7" stroke-width="2"/>
+              <text x="156" y="100" fill="#6ee7b7" font-size="10">pelvis</text>
+              <text x="156" y="113" fill="#6ee7b7" font-size="10">arriba</text>
+              <text x="0" y="196" fill="#5eead4">genupectoral, o</text>
+              <text x="0" y="210" fill="#5eead4">Trendelenburg, o decúbito</text>
+              <text x="0" y="224" fill="#5eead4">lateral izquierdo exagerado</text>
+            </g>
+            <!-- 3 VEJIGA -->
+            <g transform="translate(440,0)">
+              <text x="0" y="20" fill="#93c5fd" font-size="11.5">3 · LLENADO VESICAL</text>
+              <path d="M18,176 Q78,104 138,176" fill="none" stroke="#475569" stroke-width="2"/>
+              <circle cx="78" cy="128" r="24" fill="rgba(99,102,241,0.10)" stroke="#a5b4fc" stroke-width="1.4"/>
+              <ellipse cx="78" cy="168" rx="34" ry="20" fill="rgba(59,130,246,0.18)" stroke="#93c5fd" stroke-width="1.8"/>
+              <text x="78" y="172" text-anchor="middle" fill="#bfdbfe" font-size="10">vejiga</text>
+              <path d="M112,178 L150,194" stroke="#93c5fd" stroke-width="1.8"/>
+              <text x="0" y="212" fill="#93c5fd">alternativa cuando el traslado</text>
+              <text x="0" y="226" fill="#93c5fd">se prolonga · según protocolo</text>
+            </g>
+          </g>
+        </svg>
+        <div class="fig-caption">
+          <strong>Esquema orientativo, no a escala.</strong> Las tres medidas buscan lo mismo: <em>sacar la
+          presentación de encima del cordón</em>. La mano que eleva no se retira hasta que el equipo quirúrgico la
+          releve o nazca el recién nacido —se avisa que esa persona queda inmovilizada y se traslada con la
+          paciente—. El <strong>volumen exacto de llenado vesical, la técnica y su indicación se verifican con el
+          protocolo institucional</strong>: es una medida descrita para cuando el intervalo hasta el parto se
+          prolonga, no un sustituto de las dos anteriores.
+        </div>
+      </div>
+
+      <div class="steps" style="--accent:var(--red);">
+        <div class="step"><strong>Declarar la emergencia y pedir pabellón.</strong> «Prolapso de cordón» es una frase que debe movilizar a obstetricia, anestesia, neonatología y pabellón de inmediato. <em>Casi siempre termina en cesárea de urgencia; la excepción es la dilatación completa con parto verdaderamente inminente.</em></div>
+        <div class="step"><strong>Elevar la presentación con la mano enguantada por vía vaginal y no soltar.</strong> Dos dedos o la mano completa empujan la cabeza o las nalgas hacia arriba para liberar el cordón. <span class="hold">Esa mano se queda ahí durante el traslado a pabellón. Decirlo en voz alta para que nadie la mueva.</span></div>
+        <div class="step"><strong>Cambiar la posición materna:</strong> genupectoral, Trendelenburg o decúbito lateral izquierdo exagerado con la pelvis elevada. Reduce la compresión y complementa la mano.</div>
+        <div class="step"><strong>No manipular el cordón, no intentar reducirlo y no pinzarlo.</strong> Si está fuera de la vulva se mantiene <em>tibio y húmedo</em> con compresas con suero tibio, sin tracción. <span class="hold">Intentar reintroducir el cordón agrega vasoespasmo y no resuelve la compresión.</span></div>
+        <div class="step"><strong>Suspender la oxitocina si está corriendo</strong>, y considerar <strong>tocolisis de rescate</strong> —habitualmente terbutalina subcutánea, <em>cuya dosis y disponibilidad se verifican con el protocolo institucional</em>— si hay hipertonía o contracciones que comprimen el cordón mientras se organiza el parto.</div>
+        <div class="step"><strong>Monitorizar los latidos fetales</strong> de forma continua si hay equipo, o auscultar repetidamente, y oxígeno materno con objetivo de saturación. Vía venosa y volumen.</div>
+        <div class="step"><strong>Avisar a neonatología que viene un recién nacido potencialmente asfixiado</strong> y preparar reanimación completa, con el esquema de hipotermia terapéutica neonatal del servicio a mano. <span class="hold">Los criterios y la ventana de la hipotermia terapéutica se verifican con el protocolo institucional y con neonatología.</span></div>
+      </div>
+
+      <div class="subhead">C · Presentación podálica inesperada</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🧘</span><span><strong>La regla única: manos fuera.</strong> No se tracciona, no se tira de las piernas, no se apura. <em>Se deja que el cuerpo salga con el esfuerzo de la madre hasta que se ven las escápulas</em>, y solo entonces se asiste. Cada tracción prematura convierte una podálica en una distocia de brazos o de cabeza.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>Por qué asusta y con razón.</strong> El riesgo mayor es la <strong>retención de la cabeza</strong> después de que salió el cuerpo, especialmente en el prematuro —donde el cuerpo pasa por un cuello que la cabeza todavía no dilató—. Ese es el escenario que hace que una podálica de urgencia necesite obstetra, y el motivo por el que <em>la vía de parto en la podálica es una decisión obstétrica, no de urgencia</em>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🤝</span><span><strong>Qué se hace mientras llega la ayuda.</strong> Pedir obstetra y neonatología de inmediato; no pujar fuera de contracción; mantener a la madre en una posición en que el cuerpo fetal pueda colgar; <strong>no tocar hasta las escápulas</strong>; y tener presente que existen maniobras descritas —desprendimiento de brazos por rotación del tronco, y maniobras para la cabeza con flexión mantenida— que <em>requieren entrenamiento específico y no se improvisan leyendo</em>. Si el parto progresa solo, acompañar y no interferir es la conducta correcta. <span class="hold">Verificar con el protocolo institucional quién atiende una podálica en el servicio y cuál es el plan cuando no hay obstetra disponible.</span></span></div>
+      </div>
+
+      <div class="subhead">D · Hemorragia posparto</div>
+      <div class="warning-banner">
+        <span class="warning-icon">🩸</span>
+        <span><strong>Se define por el volumen y por la repercusión, y la segunda manda sobre la primera:</strong>
+        habitualmente ≥ 500 mL en parto vaginal o ≥ 1000 mL en cesárea, pero <em>cualquier sangrado que produce
+        signos de hipovolemia es una hemorragia posparto</em>, aunque el volumen anotado sea menor. La estimación
+        visual subestima la pérdida de forma sistemática: <strong>se pesan apósitos y se usan recipientes
+        graduados.</strong></span>
+      </div>
+
+      <div class="block-label">Las 4 T · la causa se busca mientras se trata</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Causa</th><th>Cómo se reconoce</th><th>Qué se hace</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Tono</strong><br><span class="dose-note">atonía uterina · la mayoría de los casos</span></td>
+              <td>Útero blando, que no se contrae al palparlo, con sangrado continuo. Más frecuente en trabajo de parto prolongado, multiparidad, embarazo múltiple, polihidramnios, corioamnionitis y uso prolongado de oxitocina.</td>
+              <td><span class="dose-main">Masaje uterino + uterotónicos + vaciar la vejiga</span>, en ese orden y simultáneamente. Si no cede: compresión bimanual, balón intrauterino, compresión aórtica externa y pabellón.</td>
+            </tr>
+            <tr>
+              <td><strong>Trauma</strong><br><span class="dose-note">desgarros, hematomas, rotura, inversión</span></td>
+              <td><em>Útero bien contraído y sangrado activo igual</em>: ese contraste es el dato. Revisar con buena luz periné, vagina y cuello. Un dolor desproporcionado con masa palpable sugiere hematoma.</td>
+              <td>Compresión directa y <strong>reparación quirúrgica</strong>: es un sangrado que no responde a uterotónicos. La inversión uterina se reconoce por la masa en vagina con fondo ausente y requiere reposición inmediata por obstetra.</td>
+            </tr>
+            <tr>
+              <td><strong>Tejido</strong><br><span class="dose-note">restos placentarios, acretismo</span></td>
+              <td>Placenta incompleta a la revisión, o un cotiledón o membrana que falta. Útero que se contrae y vuelve a relajarse.</td>
+              <td>Revisión instrumental o manual de la cavidad <strong>por obstetra</strong>, con analgesia. No se improvisa en el box.</td>
+            </tr>
+            <tr>
+              <td><strong>Trombina</strong><br><span class="dose-note">coagulopatía</span></td>
+              <td>Sangrado en napa, por los sitios de punción o por las encías, sin coágulos. Sospechar en desprendimiento, embolia de líquido amniótico, preeclampsia severa, HELLP, sepsis, anticoagulación y en la coagulopatía por consumo de la propia hemorragia masiva.</td>
+              <td><strong>Protocolo de transfusión masiva</strong> del servicio, ácido tranexámico, corrección guiada por laboratorio y, si existe, por pruebas viscoelásticas. <em>El esquema transfusional y los gatillos se verifican con el protocolo institucional y el banco de sangre.</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="block-label">El paquete de la hemorragia posparto · ocho acciones casi simultáneas</div>
+      <div class="checklist" id="list-s7">
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">1 · Declarar</span><strong>Decirlo en voz alta con la hora y activar la respuesta del servicio.</strong> «Hemorragia posparto, 14:07». Pedir obstetricia, anestesia, banco de sangre y una segunda persona dedicada solo a registrar el tiempo y los volúmenes.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">2 · Masaje</span><strong>Masaje uterino inmediato y vaciar la vejiga con sonda.</strong> Son las dos medidas mecánicas más rápidas y más olvidadas: <em>una vejiga llena impide que el útero se contraiga</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">3 · Uterotónico</span><strong>Oxitocina en infusión</strong>, y un segundo uterotónico si no cede: <em>metilergonovina intramuscular —contraindicada en hipertensión y preeclampsia—, misoprostol sublingual, o carbetocina donde exista</em>. <span class="check-step" style="margin-top:4px;">Las dosis, la secuencia y las contraindicaciones se verifican con el protocolo institucional.</span></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">4 · Ácido tranexámico</span><strong>Ácido tranexámico 1 g IV en 10 minutos, lo antes posible y <em>dentro de las 3 horas</em> desde el inicio del sangrado</strong>, con una segunda dosis de 1 g si el sangrado continúa después de 30 minutos o reaparece dentro de 24 horas. En el ensayo WOMAN redujo la muerte por sangrado, y <strong>el beneficio fue mayor cuando se administró precozmente</strong>; administrado más allá de 3 horas no mostró beneficio.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">5 · Reanimación</span><strong>Dos accesos venosos gruesos, cristaloides tibios y sangre precoz</strong> según el protocolo de transfusión masiva. Evitar la hipotermia y la acidosis. <em>Pedir sangre temprano es más fácil que recuperar a una paciente exangüe.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">6 · Buscar la causa</span><strong>Recorrer las 4 T mientras se trata</strong>, no después: palpar el útero, revisar el canal con buena luz, revisar la placenta y mirar si el sangrado coagula.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">7 · Medidas mecánicas</span><strong>Compresión bimanual del útero, taponamiento con balón intrauterino y compresión aórtica externa</strong> como puente mientras se organiza el pabellón. <em>El dispositivo disponible en el servicio —balón comercial, sonda con condón, traje antishock no neumático— se verifica antes, no durante.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s7')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">8 · Escalar a tiempo</span><strong>Definir el momento del pabellón antes de que sea tarde.</strong> La hemorragia que no cede con uterotónicos y medidas mecánicas necesita cirugía o radiología intervencional. <em>El error típico no es elegir mal la técnica: es demorar la decisión mientras se repite el mismo uterotónico.</em></span>
+        </button>
+      </div>
+
+      <div class="subhead">Calculadora · índice de shock obstétrico</div>
+      <div class="calc">
+        <div class="calc-row">
+          <div class="calc-field">
+            <label for="osiFc">Frecuencia cardíaca (lpm)</label>
+            <input type="number" id="osiFc" min="20" max="250" step="1" placeholder="lpm" oninput="calcOSI()">
+          </div>
+          <div class="calc-field">
+            <label for="osiPas">Presión sistólica (mmHg)</label>
+            <input type="number" id="osiPas" min="30" max="260" step="1" placeholder="mmHg" oninput="calcOSI()">
+          </div>
+        </div>
+        <div class="calc-out" id="osiOut">
+          Índice de shock obstétrico = frecuencia cardíaca ÷ presión arterial sistólica.
+        </div>
+        <button type="button" class="calc-reset" onclick="resetOSI()">↺ Limpiar</button>
+        <div class="calc-note">
+          <strong>Para qué sirve y para qué no.</strong> Sirve porque la embarazada compensa: <em>puede perder un
+          volumen importante manteniendo una presión arterial normal</em>, y el cociente se altera antes que la
+          presión aislada. <strong>No sirve para descartar</strong>: un índice normal en una paciente que sangra no
+          autoriza a bajar la guardia, y un índice alterado por dolor, ansiedad, fiebre o fármacos no es, por sí
+          solo, una hemorragia. La evidencia que lo sustenta es modesta —un estudio retrospectivo de casos y
+          controles con 50 pacientes por grupo, que propuso el rango normal de 0,7–0,9 y encontró que el 89 % de las
+          mujeres con índice ≥ 1,1 a los 10 minutos requirieron transfusión—, por lo que es un
+          <strong>complemento de la evaluación clínica y no un criterio de decisión aislado</strong>. Los gatillos de
+          transfusión y de activación del protocolo de hemorragia masiva <em>se verifican con el protocolo
+          institucional</em>.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · EL RECIÉN NACIDO -->
+  <div class="section s8" id="s8" style="animation-delay:0.34s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">El recién nacido en los primeros 60 segundos</div>
+        <div class="section-subtitle">Lo mínimo, mientras llega neonatología</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner" style="margin-top:0;">
+        <span class="warning-icon">👶</span>
+        <span><strong>Esta sección es deliberadamente corta y no reemplaza al protocolo de reanimación neonatal del
+        servicio</strong>, que es el que manda y el que se debe tener entrenado. Es el mínimo para los segundos en que
+        el recién nacido ya está afuera y neonatología todavía no llegó. <em>La reanimación neonatal tendrá su propia
+        página en este orientador.</em></span>
+      </div>
+
+      <div class="steps" style="--accent:var(--blue);">
+        <div class="step"><strong>Tres preguntas al nacer, en tres segundos:</strong> ¿es de término?, ¿tiene buen tono?, ¿respira o llora? <span class="hold">Si las tres son sí: secar, calor, piel con piel y clampeo diferido junto a su madre. No hace falta nada más.</span></div>
+        <div class="step"><strong>Si alguna es no: calor, posición, secar, estimular.</strong> A la cuna de calor radiante, secar con energía la espalda y las plantas, retirar el paño mojado, posición neutra de la cabeza y despejar la vía aérea <em>solo si hay obstrucción evidente</em>: la aspiración de rutina no está indicada y puede producir bradicardia.</div>
+        <div class="step"><strong>Reevaluar a los 60 segundos: respiración y frecuencia cardíaca.</strong> <strong>Apnea, boqueo o frecuencia cardíaca bajo 100 por minuto obligan a iniciar ventilación con presión positiva</strong>, que es la intervención que resuelve la gran mayoría de las reanimaciones neonatales. <span class="hold">La concentración inicial de oxígeno, las presiones y la secuencia completa se rigen por el protocolo de reanimación neonatal vigente del servicio: verificar.</span></div>
+        <div class="step"><strong>El prematuro pierde calor de forma dramática.</strong> Sala más tibia, gorro, bolsa de polietileno si el servicio la tiene, manipulación mínima y traslado en incubadora. <em>La hipotermia del prematuro empeora todos los desenlaces y es completamente prevenible.</em></div>
+        <div class="step"><strong>Glicemia en el prematuro tardío, el pequeño, el grande y el hijo de madre diabética</strong>, y en cualquier recién nacido que no se alimenta bien o está hipotónico. La hipoglicemia neonatal es frecuente, silenciosa y tratable. <span class="hold">Los umbrales y el esquema de tratamiento se verifican con el protocolo institucional.</span></div>
+        <div class="step"><strong>Apgar al minuto y a los cinco minutos, anotados con la hora.</strong> No se usa para decidir la reanimación —esa decisión se toma antes, con la respiración y la frecuencia cardíaca— sino para describir la condición y para el registro.</div>
+        <div class="step"><strong>Antes de que salga del box:</strong> identificación puesta, hora de nacimiento, sexo, peso si es posible, vitamina K y profilaxis ocular según el protocolo del servicio, y <em>la madre informada de dónde va su hijo y con quién</em>.</div>
+      </div>
+
+      <div class="amber-banner">
+        <span class="warning-icon">🫂</span>
+        <span><strong>Y lo que no está en ninguna lista de pasos.</strong> Decirle a la madre que su hijo nació, si
+        está bien o no, y qué va a pasar ahora. En un parto inesperado en urgencia <em>ella es la persona con menos
+        información de toda la sala</em>, y con frecuencia la última a la que alguien le habla.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · LO QUE LLEGA COMO TRABAJO DE PARTO -->
+  <div class="section s9" id="s9" style="animation-delay:0.38s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Urgencia hipertensiva del embarazo y el desvío de las otras causas</div>
+        <div class="section-subtitle">Eclampsia, preeclampsia severa y lo que no se puede tocolizar</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner" style="margin-top:0;">
+        <span class="warning-icon">⚡</span>
+        <span><strong>La convulsión de una embarazada o puérpera de más de 20 semanas es una eclampsia hasta que se
+        demuestre lo contrario</strong>, y el tratamiento no es el de una convulsión cualquiera: <strong>es el sulfato
+        de magnesio</strong>. La benzodiacepina puede controlar el episodio pero no previene la recurrencia ni trata
+        la causa, y <em>una tomografía primero solo gasta tiempo</em>. La eclampsia también ocurre en el posparto,
+        incluso días después.</span>
+      </div>
+
+      <div class="subhead">Preeclampsia severa y eclampsia · las tres cosas que se hacen en paralelo</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Objetivo</th><th>Esquema habitual</th><th>Advertencias</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Prevenir y tratar la convulsión</strong><br><span class="dose-note">sulfato de magnesio</span></td>
+              <td><span class="dose-main">4–6 g IV de carga en 15–20 min</span>, luego <span class="dose-main">1–2 g/h</span> en infusión por al menos 24 h<br><span class="dose-note">convulsión recurrente bajo infusión: bolo adicional de 2 g según protocolo</span></td>
+              <td>Vigilar <strong>reflejo rotuliano, frecuencia respiratoria y diuresis</strong>; ajustar en falla renal. <strong>Gluconato de calcio al lado de la cama.</strong> Existe un esquema intramuscular alternativo donde no hay bomba de infusión. <em>Las dosis, la dilución, la velocidad y el esquema de monitorización se verifican con el protocolo institucional</em> antes de administrar.</td>
+            </tr>
+            <tr>
+              <td><strong>Bajar la presión arterial</strong><br><span class="dose-note">crisis hipertensiva: ≥ 160/110</span></td>
+              <td><span class="dose-main">Labetalol IV</span>, <span class="dose-main">hidralazina IV</span> o <span class="dose-main">nifedipino oral</span>, escalonados y repetidos según respuesta</td>
+              <td>El objetivo es <em>salir del rango de crisis sin producir hipotensión</em>, que compromete la perfusión placentaria: no se busca normalizar la presión de golpe. <strong>Las dosis, los intervalos y el fármaco de primera línea se verifican con el protocolo institucional</strong>; la elección depende de lo disponible y de las contraindicaciones de la paciente.</td>
+            </tr>
+            <tr>
+              <td><strong>Resolver el embarazo</strong><br><span class="dose-note">el tratamiento definitivo</span></td>
+              <td><span class="dose-main">Decisión obstétrica</span></td>
+              <td>La preeclampsia severa y la eclampsia no se curan con fármacos: <strong>se curan con el parto</strong>. Los fármacos estabilizan a la madre para que ese parto ocurra en condiciones seguras. <em>La vía y el momento los define obstetricia</em>; el corticoide antenatal mantiene su indicación si corresponde por edad gestacional.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Durante la convulsión</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🛏️</span><span><strong>Proteger, no sujetar.</strong> Decúbito lateral izquierdo, barandas, aspiración disponible, oxígeno, y nada en la boca. La mayoría de las convulsiones eclámpticas son autolimitadas.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>Sulfato de magnesio como tratamiento, no como profilaxis tardía</strong>, y control de la presión arterial inmediatamente después.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫀</span><span><strong>Los latidos fetales van a estar alterados durante y después de la convulsión.</strong> Habitualmente se recuperan al estabilizar a la madre: <em>la conducta es reanimar a la madre primero y reevaluar al feto después</em>, no indicar una cesárea de urgencia en medio de la convulsión.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🔄</span><span><strong>Si no se recupera la conciencia, o hay déficit focal, o la primera convulsión ocurre bajo magnesio bien administrado</strong>, el diagnóstico diferencial se amplía: hemorragia intracraneal, trombosis venosa cerebral, síndrome de encefalopatía posterior reversible, hipoglicemia, intoxicación, epilepsia previa. <em>Ahí sí corresponde imagen.</em></span></div>
+      </div>
+
+      <div class="subhead">Lo que no se tocoliza y lo que no espera</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🩸</span><span><strong>Desprendimiento de placenta.</strong> Estabilizar, grupo y pruebas cruzadas, vigilar coagulopatía y resolver el parto. <em>No se tocoliza, no se espera la ecografía para avisar a obstetricia y la ecografía normal no lo descarta.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚫</span><span><strong>Placenta previa sangrante.</strong> Sin tacto vaginal. Dos vías, volumen, sangre disponible y obstetricia de inmediato.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🌡️</span><span><strong>Corioamnionitis.</strong> Antibióticos ahora y el parto deja de poder postergarse. Avisar a neonatología: el recién nacido necesita evaluación de sepsis.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">💔</span><span><strong>Paro cardíaco materno.</strong> Reanimación con desplazamiento uterino manual izquierdo, accesos sobre el diafragma y, si el fondo uterino está a la altura del ombligo o por encima sin retorno de circulación, <strong>histerotomía de reanimación</strong>. Es una maniobra de reanimación <em>materna</em>.</span></div>
+      </div>
+
+      <div class="links-row">
+        <a class="cross-link" href="./checklist-histerotomia-reanimacion.html">Histerotomía de reanimación →</a>
+        <a class="cross-link" href="./checklist-sepsis_4.html">Sepsis y shock séptico →</a>
+        <a class="cross-link" href="./sintoma-fiebre.html">Fiebre · síntoma cardinal →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · REGISTRO Y TRASLADO -->
+  <div class="section s10" id="s10" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Registro, traslado y las dos pacientes que quedan</div>
+        <div class="section-subtitle">Lo que se escribe y lo que se entrega</div>
+      </div>
+      <span class="section-check-count" id="count-s10">0/6</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="checklist" id="list-s10">
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Madre</span><strong>La madre queda monitorizada y con alguien mirándola:</strong> útero contraído, apósito, presión arterial y pulso en las dos primeras horas, vejiga vacía y analgesia indicada. <em>La hemorragia posparto aparece después de que todos dejaron de mirar.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Recién nacido</span><strong>El recién nacido queda identificado, con temperatura y glicemia controladas, y entregado a neonatología con un relato completo:</strong> semanas, hora de nacimiento, Apgar, si necesitó reanimación y qué se hizo, meconio, maniobras del parto y antibióticos que recibió la madre.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Placenta</span><strong>La placenta se guarda y se revisa</strong>, no se descarta. Si hay sospecha de corioamnionitis o un desenlace adverso, se envía a estudio según el protocolo del servicio.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Rh y vacunas</span><strong>Inmunoglobulina anti-D según el Rh materno</strong>, y revisión del estado de vacunación. <em>El esquema, la dosis y el plazo se verifican con el protocolo institucional.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Traslado</span><strong>Si se traslada, se traslada con todo:</strong> cama receptora confirmada por nombre, copia de la ficha y de los exámenes, vía permeable, uterotónico y ácido tranexámico a bordo, y —si corresponde— la persona que sostiene la presentación en el prolapso de cordón. <em>Nunca se traslada con el expulsivo en curso.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Equipo</span><strong>Repaso del caso con el equipo antes de que se disuelva.</strong> Qué funcionó, qué faltó en el carro, qué se demoró. <em>Un parto en urgencia es la mejor oportunidad que va a tener el servicio para arreglar su caja de parto</em>, y se desperdicia si nadie lo conversa.</span>
+        </button>
+      </div>
+
+      <div class="subhead">Registro del parto · plantilla para copiar a la ficha</div>
+      <div class="copy-box">
+        <div class="copy-bar">
+          <span>Registro de atención de parto</span>
+          <button type="button" class="copy-btn" id="copyBtn" onclick="copyRegistro()">Copiar</button>
+        </div>
+        <pre class="copy-pre" id="registroPre">ATENCIÓN DE PARTO EN SERVICIO DE URGENCIA
+
+Ingreso: __:__ h   ·   Edad gestacional: __ sem __ días (por FUM / ecografía del __/__/____)
+Paridad: G__ P__ A__   ·   Controles prenatales: sí / no   ·   Grupo y Rh: ____
+Antecedentes relevantes: ______________________________________________
+
+EVALUACIÓN AL INGRESO
+Presión arterial __/__ mmHg · pulso __ lpm · temperatura __ °C · saturación __ %
+Latidos cardíacos fetales: __ lpm (auscultados 1 min, posterior a contracción)
+Dinámica uterina: __ contracciones en 10 min, duración __ s, relajación entre contracciones: sí / no
+Membranas: íntegras / rotas desde __:__ h · líquido: claro / meconial / con sangre / fétido
+Tacto vaginal (__:__ h): dilatación __ cm · borramiento __ % · estación __ · presentación ______
+  (no realizado por: metrorragia sin placenta localizada / otro: ____________)
+Metrorragia: no / sí, cuantía ______   ·   Signos de preeclampsia: no / sí ____________
+
+DECISIÓN Y HORA
+[ ] Se atiende en urgencia   [ ] Traslado a ____________, confirmado con ____________ a las __:__ h
+Obstetricia avisada __:__ h (Dr./Dra. ________)   ·   Neonatología avisada __:__ h
+
+TRATAMIENTO ADMINISTRADO (fármaco, dosis, vía, hora)
+______________________________________________________________________
+______________________________________________________________________
+  Corticoide antenatal: ____________ a las __:__ h
+  Sulfato de magnesio: carga ____ a las __:__ h, mantención ____
+  Profilaxis estreptococo grupo B: ____________ a las __:__ h
+  Tocolisis: ____________ , objetivo: completar corticoide / traslado
+
+PARTO
+Hora de nacimiento: __:__ h   ·   Tipo: espontáneo / asistido   ·   Presentación: ______
+Episiotomía: no / sí   ·   Desgarro: no / sí, grado __   ·   Circular de cordón: no / sí
+Complicaciones: ninguna / distocia de hombros / prolapso de cordón / otra ____________
+  Si hubo distocia de hombros — maniobras y horas:
+  ______________________________________________________________________
+Clampeo de cordón: diferido __ s / inmediato, motivo ____________
+
+RECIÉN NACIDO
+Sexo: __   ·   Peso: ____ g   ·   Apgar 1 min: __   ·   Apgar 5 min: __
+Reanimación: no requirió / secado y estimulación / ventilación con presión positiva / otra ______
+Destino: piel con piel con la madre / cuna / unidad neonatal
+Identificación instalada: sí   ·   Vitamina K y profilaxis ocular según protocolo: sí / pendiente
+
+TERCER PERIODO
+Uterotónico: ____________ a las __:__ h
+Salida de placenta: __:__ h   ·   Completa: sí / no   ·   Membranas completas: sí / no
+Sangrado estimado: ____ mL (método: pesaje de apósitos / recipiente graduado / estimación visual)
+Útero contraído al cierre del registro: sí / no   ·   Ácido tranexámico: no / sí, __:__ h
+
+ESTADO AL ENTREGAR EL TURNO O AL TRASLADO
+Madre: PA __/__ · pulso __ · útero ______ · apósito ______ · vía permeable: sí
+Recién nacido: ______________________________________________________
+Información entregada a la madre y a su acompañante: sí
+Equipo presente: ______________________________________________________
+Médico responsable: ____________________</pre>
+      </div>
+      <div class="copy-hint">
+        La plantilla se copia tal cual y se completa en la ficha. <strong>El cronómetro y el checklist de esta página
+        no guardan ningún dato:</strong> si no se escribió en la ficha, no quedó registrado. En una distocia de
+        hombros o una hemorragia, <em>las horas de cada maniobra son el registro que más va a importar después</em>.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni la asesoría de
+    obstetricia y neonatología, ni el entrenamiento presencial en urgencias obstétricas. La <strong>atención de un
+    parto, la asistencia de una presentación podálica y las maniobras internas de la distocia de hombros son
+    procedimientos que requieren entrenamiento supervisado y simulación</strong>: leer este checklist no sustituye
+    esa formación. Todas las <strong>dosis</strong> mencionadas —corticoides antenatales, sulfato de magnesio,
+    tocolíticos, antibióticos, uterotónicos, ácido tranexámico, antihipertensivos— son órdenes de magnitud habituales
+    y <strong>deben verificarse con el protocolo institucional</strong> y el formulario nacional antes de administrar,
+    junto con sus contraindicaciones, dilución y velocidad de infusión. Las <strong>metas de tiempo del cronómetro
+    son referenciales y no constituyen un estándar validado</strong>; las dos únicas con respaldo citable son el
+    plazo de 3 horas del ácido tranexámico en la hemorragia posparto y la ventana de la histerotomía de reanimación,
+    que tiene su propia página. El <strong>orientador de traslado no es un puntaje validado</strong>: no existe una
+    regla de decisión validada para esta pregunta y la conducta la define el criterio clínico junto con obstetricia.
+    El <strong>índice de shock obstétrico</strong> proviene de un estudio retrospectivo pequeño y es un complemento de
+    la evaluación clínica, <em>no un criterio de transfusión</em>. Se deben verificar con el <strong>protocolo
+    institucional</strong> y con los equipos de obstetricia, neonatología, anestesia, banco de sangre y la red de
+    derivación: el <strong>umbral local de viabilidad neonatal</strong> y de reanimación activa del prematuro extremo;
+    el umbral de edad gestacional del sulfato de magnesio; la indicación de corticoide en el pretérmino tardío; el
+    esquema de antibióticos de latencia en la rotura prematura de membranas; el esquema de profilaxis de estreptococo
+    grupo B y su manejo en la alergia a penicilina; la secuencia de uterotónicos y los gatillos del protocolo de
+    transfusión masiva; el dispositivo de taponamiento uterino disponible; el volumen y la técnica del llenado vesical
+    en el prolapso de cordón; el esquema y la dosis de la tocolisis de rescate; el esquema de inmunoglobulina anti-D;
+    los criterios y la ventana de la hipotermia terapéutica neonatal; y el protocolo de reanimación neonatal vigente,
+    que es el que rige la sección 08. Los <strong>esquemas son dibujos orientativos, no fotografías ni ilustraciones
+    anatómicas a escala.</strong> El contenido está escrito para la <strong>atención inicial de una paciente adulta en
+    un servicio de urgencia general</strong> y no para la conducción de un trabajo de parto en una unidad de
+    obstetricia. El cronómetro y el checklist <strong>no guardan ningún dato</strong>: el registro se hace en la ficha
+    clínica.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
+    <div class="references-list">
+      <div class="ref-item">McGoldrick E, Stewart F, Parker R, Dalziel SR. <em>Antenatal corticosteroids for accelerating fetal lung maturation for women at risk of preterm birth.</em> Cochrane Database Syst Rev. 2020;12(12):CD004454. <a href="https://doi.org/10.1002/14651858.CD004454.pub4" target="_blank" rel="noopener">DOI: 10.1002/14651858.CD004454.pub4</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/33368142/" target="_blank" rel="noopener">PMID 33368142</a> — 27 estudios, 11 272 mujeres y 11 925 recién nacidos en 20 países. Con certeza <strong>alta</strong>: reducción de muerte perinatal (RR 0,85; IC 95 % 0,77–0,93), muerte neonatal (RR 0,78; 0,70–0,87) y síndrome de dificultad respiratoria (RR 0,71; 0,65–0,78); con certeza moderada, reducción de hemorragia intraventricular (RR 0,58; 0,45–0,75). El beneficio se mantiene en entornos de recursos altos, medios y bajos. Es la base de la indicación de la sección 04.</div>
+      <div class="ref-item">Gyamfi-Bannerman C, Thom EA, Blackwell SC, et al. <em>Antenatal Betamethasone for Women at Risk for Late Preterm Delivery (ensayo ALPS).</em> N Engl J Med. 2016;374(14):1311–1320. <a href="https://doi.org/10.1056/NEJMoa1516783" target="_blank" rel="noopener">DOI: 10.1056/NEJMoa1516783</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/26842679/" target="_blank" rel="noopener">PMID 26842679</a> — Ensayo aleatorizado en embarazos únicos de 34+0 a 36+5 semanas con riesgo de parto en el periodo pretérmino tardío: el desenlace primario respiratorio ocurrió en 11,6 % con betametasona frente a 14,4 % con placebo (RR 0,80; IC 95 % 0,66–0,97; p = 0,02), con menos complicaciones respiratorias graves, taquipnea transitoria, uso de surfactante y displasia broncopulmonar, pero <strong>más hipoglicemia neonatal (24,0 % frente a 15,0 %; RR 1,60; 1,37–1,87)</strong>. Es el respaldo —y la advertencia— de la banda de 34–36+6 semanas.</div>
+      <div class="ref-item">Shepherd ES, Goldsmith S, Doyle LW, et al. <em>Magnesium Sulfate Before Preterm Birth for Neuroprotection: An Updated Cochrane Systematic Review.</em> Obstet Gynecol. 2024;144(2):161–170. <a href="https://doi.org/10.1097/AOG.0000000000005644" target="_blank" rel="noopener">DOI: 10.1097/AOG.0000000000005644</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/38830233/" target="_blank" rel="noopener">PMID 38830233</a> — 6 ensayos aleatorizados, 5917 participantes y 6759 fetos bajo 34 semanas al momento de la aleatorización. Certeza <strong>alta</strong> para reducción de parálisis cerebral (RR 0,71; IC 95 % 0,57–0,89) y de muerte o parálisis cerebral (RR 0,87; 0,77–0,98) hasta los 2 años de edad corregida; reducción de hemorragia intraventricular grave con certeza moderada. También documenta el costo: <strong>mayor frecuencia de efectos adversos maternos suficientes para suspender el tratamiento (RR 3,21; 1,88–5,48)</strong>, que es la razón de la vigilancia de reflejos, frecuencia respiratoria y diuresis.</div>
+      <div class="ref-item">Wolf HT, Huusom LD, Henriksen TB, Hegaard HK, Brok J, Pinborg A. <em>Magnesium sulphate for fetal neuroprotection at imminent risk for preterm delivery: a systematic review with meta-analysis and trial sequential analysis.</em> BJOG. 2020;127(10):1180–1188. <a href="https://doi.org/10.1111/1471-0528.16238" target="_blank" rel="noopener">DOI: 10.1111/1471-0528.16238</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/32237069/" target="_blank" rel="noopener">PMID 32237069</a> — Metaanálisis con análisis secuencial de ensayos sobre los mismos 6 estudios: RR de parálisis cerebral 0,68 (IC 95 % 0,54–0,85), y 0,69 (0,48–0,97) en el análisis secuencial, que los autores interpretan como evidencia concluyente del efecto.</div>
+      <div class="ref-item">WOMAN Trial Collaborators. <em>Effect of early tranexamic acid administration on mortality, hysterectomy, and other morbidities in women with post-partum haemorrhage (WOMAN): an international, randomised, double-blind, placebo-controlled trial.</em> Lancet. 2017;389(10084):2105–2116. <a href="https://doi.org/10.1016/S0140-6736(17)30638-4" target="_blank" rel="noopener">DOI: 10.1016/S0140-6736(17)30638-4</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/28456509/" target="_blank" rel="noopener">PMID 28456509</a> — 20 060 mujeres en 193 hospitales de 21 países. La muerte por sangrado se redujo con ácido tranexámico (1,5 % frente a 1,9 %; RR 0,81; IC 95 % 0,65–1,00; p = 0,045), y el efecto fue mayor cuando se administró <strong>dentro de las 3 horas</strong> del inicio del sangrado (1,2 % frente a 1,7 %; RR 0,69; 0,52–0,91; p = 0,008). <strong>No redujo la histerectomía</strong> ni el desenlace compuesto, y no aumentó los eventos tromboembólicos. De aquí viene el reloj de 3 horas y la indicación de administrarlo lo antes posible.</div>
+      <div class="ref-item">Le Bas A, Chandraharan E, Addei A, Arulkumaran S. <em>Use of the «obstetric shock index» as an adjunct in identifying significant blood loss in patients with massive postpartum hemorrhage.</em> Int J Gynaecol Obstet. 2014;124(3):253–255. <a href="https://doi.org/10.1016/j.ijgo.2013.08.020" target="_blank" rel="noopener">DOI: 10.1016/j.ijgo.2013.08.020</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/24373705/" target="_blank" rel="noopener">PMID 24373705</a> — Análisis <strong>retrospectivo</strong> de casos y controles, 50 mujeres sin hemorragia y 50 con hemorragia masiva: índice medio de 0,74–0,76 en los controles y 0,90–0,91 en los casos; <strong>89 % de las mujeres con índice ≥ 1,1 a los 10 minutos requirieron transfusión</strong>. Los autores proponen 0,7–0,9 como rango normal y lo plantean explícitamente como <em>complemento</em> para estimar la pérdida, dado que la estimación visual la subestima. Muestra pequeña, diseño retrospectivo: la calculadora de la sección 07 se presenta con esa limitación declarada.</div>
+      <div class="ref-item">Guías y documentos de referencia usados para la estructura y los criterios, <strong>cuya versión vigente debe verificarse</strong>: Organización Mundial de la Salud, <em>Recomendaciones de la OMS para los cuidados durante el parto, para una experiencia de parto positiva</em> (2018) y <em>WHO recommendations on interventions to improve preterm birth outcomes</em> (2015) —manejo activo del tercer periodo, uterotónico de elección, clampeo diferido del cordón, corticoides antenatales, sulfato de magnesio y antibióticos—; <em>ACOG Practice Bulletin No. 171, Management of Preterm Labor</em>; <em>ACOG Practice Bulletin No. 217, Prelabor Rupture of Membranes</em>; <em>ACOG Practice Bulletin No. 178, Shoulder Dystocia</em>; <em>RCOG Green-top Guideline No. 50, Umbilical Cord Prolapse</em>; <em>ACOG Committee Opinion No. 797, Prevention of Group B Streptococcal Early-Onset Disease in Newborns</em>; y, en el ámbito nacional, la <em>Guía Perinatal</em> del Ministerio de Salud de Chile. Las cifras de incidencia de distocia de hombros (0,6–1,4 %) y de prolapso de cordón (0,1–0,6 %) corresponden a los rangos habitualmente citados en esas guías.</div>
+      <div class="ref-item">Referencias localizadas y verificadas mediante <strong>PubMed</strong>. Los aspectos <strong>técnicos</strong> descritos —secuencia de maniobras de la distocia de hombros, elevación manual de la presentación y llenado vesical en el prolapso de cordón, conducta de «manos fuera» en la podálica, compresión bimanual y compresión aórtica externa, apoyo del periné y conducción del expulsivo— corresponden a <strong>descripciones convencionales de guías, textos y cursos de urgencia obstétrica</strong>, y varias de ellas <strong>no están respaldadas individualmente por estudios de desenlace</strong>. Los esquemas de dosis, los umbrales de edad gestacional, los criterios de traslado y los protocolos de transfusión deben contrastarse con el <strong>protocolo institucional vigente</strong>.</div>
+    </div>
+  </details>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Tema claro / oscuro ───────────────────────────────────────────
+  (function() {
+    var root = document.documentElement, KEY = 'oc-theme';
+    try { var t = localStorage.getItem(KEY); if (t) root.setAttribute('data-theme', t); } catch (e) {}
+    var btn = document.getElementById('themeBtn');
+    if (btn) btn.addEventListener('click', function() {
+      var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem(KEY, next); } catch (e) {}
+    });
+  })();
+
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Checklist con progreso ────────────────────────────────────────
+  const SECTIONS = ['s1', 's4', 's6', 's7', 's10'];
+  const totals = {};
+  SECTIONS.forEach(s => {
+    const list = document.getElementById('list-' + s);
+    totals[s] = list ? list.querySelectorAll('.check-item').length : 0;
+  });
+  const TOTAL_CHECKS = SECTIONS.reduce((acc, s) => acc + totals[s], 0);
+
+  function countChecked(section) {
+    return document.querySelectorAll('#list-' + section + ' .check-item.checked').length;
+  }
+
+  function toggle(el, section) {
+    el.classList.toggle('checked');
+    updateCount(section);
+    updateProgress();
+  }
+
+  function updateCount(section) {
+    const el = document.getElementById('count-' + section);
+    if (!el) return;
+    const n = countChecked(section);
+    const t = totals[section];
+    el.textContent = n + '/' + t;
+    if (t > 0 && n === t) {
+      el.style.background = 'rgba(16,185,129,0.15)';
+      el.style.borderColor = 'rgba(16,185,129,0.3)';
+      el.style.color = '#6ee7b7';
+    } else {
+      el.style.background = '';
+      el.style.borderColor = '';
+      el.style.color = '';
+    }
+  }
+
+  function updateProgress() {
+    const done = SECTIONS.reduce((acc, s) => acc + countChecked(s), 0);
+    const pct = TOTAL_CHECKS ? Math.round((done / TOTAL_CHECKS) * 100) : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.check-item.checked').forEach(el => el.classList.remove('checked'));
+    SECTIONS.forEach(updateCount);
+    updateProgress();
+  }
+
+  SECTIONS.forEach(updateCount);
+  updateProgress();
+
+  // ── Cronómetro (sin persistencia) ─────────────────────────────────
+  let swStart = null;
+  let swAccum = 0;
+  let swTick = null;
+
+  function swElapsed() {
+    return swAccum + (swStart !== null ? Date.now() - swStart : 0);
+  }
+
+  function fmt(ms) {
+    const total = Math.floor(ms / 1000);
+    const m = String(Math.floor(total / 60)).padStart(2, '0');
+    const s = String(total % 60).padStart(2, '0');
+    return m + ':' + s;
+  }
+
+  function swRender() {
+    const ms = swElapsed();
+    const disp = document.getElementById('swDisplay');
+    disp.textContent = fmt(ms);
+    disp.classList.toggle('warn', ms >= 600000 && ms < 1800000);
+    disp.classList.toggle('late', ms >= 1800000);
+  }
+
+  function swToggle() {
+    const btn = document.getElementById('swToggle');
+    const cap = document.getElementById('swCaption');
+    if (swStart === null) {
+      swStart = Date.now();
+      swTick = setInterval(swRender, 200);
+      btn.textContent = '⏸ Detener';
+      cap.textContent = 'Corriendo desde el ingreso de la paciente';
+    } else {
+      swAccum += Date.now() - swStart;
+      swStart = null;
+      clearInterval(swTick);
+      swTick = null;
+      btn.textContent = '▶ Continuar';
+      cap.textContent = 'En pausa';
+      swRender();
+    }
+  }
+
+  function msLabel(el) {
+    const goal = parseInt(el.dataset.goal, 10);
+    return el.dataset.prefix + (goal >= 1800 ? Math.round(goal / 60) + ' min' : goal + ' s');
+  }
+
+  function swReset() {
+    if (swTick) clearInterval(swTick);
+    swTick = null;
+    swStart = null;
+    swAccum = 0;
+    document.getElementById('swToggle').textContent = '▶ Iniciar';
+    document.getElementById('swCaption').textContent = 'Detenido · parte el reloj al ingreso de la paciente';
+    document.querySelectorAll('.ms').forEach(ms => {
+      ms.classList.remove('done', 'over');
+      ms.querySelector('.ms-goal').textContent = msLabel(ms);
+    });
+    swRender();
+  }
+
+  function markMs(el) {
+    if (el.classList.contains('done')) {
+      el.classList.remove('done', 'over');
+      el.querySelector('.ms-goal').textContent = msLabel(el);
+      return;
+    }
+    if (swStart === null && swAccum === 0) swToggle();
+    const secs = Math.round(swElapsed() / 1000);
+    const goal = parseInt(el.dataset.goal, 10);
+    el.classList.add('done');
+    el.classList.toggle('over', secs > goal);
+    const shown = secs >= 120 ? Math.floor(secs / 60) + ' min ' + (secs % 60) + ' s' : secs + ' s';
+    const goalShown = goal >= 1800 ? Math.round(goal / 60) + ' min' : goal + ' s';
+    el.querySelector('.ms-goal').textContent = shown + ' · meta ' + goalShown;
+  }
+
+  swRender();
+
+  // ── Calculadora de edad gestacional ───────────────────────────────
+  function egModeChange() {
+    const modo = document.getElementById('egMode').value;
+    document.getElementById('egEcoWrap').style.display = (modo === 'eco') ? '' : 'none';
+    document.getElementById('egFechaLabel').textContent =
+      (modo === 'eco') ? 'Fecha de esa ecografía' : 'Fecha de última menstruación';
+    calcEG();
+  }
+
+  function parseFecha(v) {
+    if (!v) return null;
+    const p = v.split('-');
+    if (p.length !== 3) return null;
+    const d = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+    return isNaN(d.getTime()) ? null : d;
+  }
+
+  function hoy0() {
+    const n = new Date();
+    return new Date(n.getFullYear(), n.getMonth(), n.getDate());
+  }
+
+  function fmtFecha(d) {
+    return String(d.getDate()).padStart(2, '0') + '/' +
+           String(d.getMonth() + 1).padStart(2, '0') + '/' + d.getFullYear();
+  }
+
+  function bandaEG(sem) {
+    if (sem < 22) return { n: 'Bajo el límite de viabilidad habitual', c: 'risk-high', t: 'Decisión compartida con neonatología y la familia. <strong>El umbral local de viabilidad se verifica con el protocolo institucional.</strong>' };
+    if (sem < 24) return { n: 'Límite de viabilidad', c: 'risk-high', t: 'Conversación con neonatología y la familia antes de definir conductas. Corticoide antenatal <em>a considerar</em> como decisión compartida: <strong>verificar con protocolo institucional</strong>.' };
+    if (sem < 28) return { n: 'Pretérmino extremo', c: 'risk-high', t: 'Paquete completo: <strong>corticoide antenatal + sulfato de magnesio + profilaxis de estreptococo grupo B + traslado in utero</strong> a centro con unidad neonatal de alta complejidad.' };
+    if (sem < 32) return { n: 'Muy pretérmino', c: 'risk-high', t: 'Paquete completo: <strong>corticoide antenatal + sulfato de magnesio + profilaxis de estreptococo grupo B + traslado in utero</strong>.' };
+    if (sem < 34) return { n: 'Pretérmino moderado', c: 'risk-mid', t: '<strong>Corticoide antenatal indicado.</strong> Sulfato de magnesio <em>según el umbral del protocolo local</em> (varios protocolos lo indican hasta 31+6 y otros hasta 33+6). Profilaxis de estreptococo grupo B si hay trabajo de parto.' };
+    if (sem < 37) return { n: 'Pretérmino tardío', c: 'risk-mid', t: 'Curso único de betametasona <em>a considerar</em> —reduce morbilidad respiratoria y aumenta la hipoglicemia neonatal—: <strong>verificar con protocolo institucional</strong>. Profilaxis de estreptococo grupo B si hay trabajo de parto. Vigilar temperatura y glicemia del recién nacido.' };
+    if (sem < 42) return { n: 'Término', c: 'risk-low', t: 'Sin paquete farmacológico que ganar. La pregunta es <strong>dónde ocurre este parto</strong> y si hay alguna emergencia asociada.' };
+    return { n: 'Postérmino', c: 'risk-mid', t: 'Mayor riesgo de meconio, macrosomía y compromiso fetal: <strong>anticipar distocia de hombros</strong> y tener presente al equipo de reanimación neonatal.' };
+  }
+
+  function calcEG() {
+    const out = document.getElementById('egOut');
+    const modo = document.getElementById('egMode').value;
+    const f = parseFecha(document.getElementById('egFecha').value);
+    if (!f) {
+      out.innerHTML = (modo === 'eco')
+        ? 'Ingresa la fecha de la ecografía y la edad gestacional que informaba ese día.'
+        : 'Ingresa la fecha de última menstruación.';
+      return;
+    }
+    const MS = 86400000;
+    const hoy = hoy0();
+    let diasTotales, fpp;
+
+    if (modo === 'eco') {
+      const sem = parseInt(document.getElementById('egEcoSem').value, 10);
+      const dd = parseInt(document.getElementById('egEcoDias').value, 10) || 0;
+      if (isNaN(sem)) { out.innerHTML = 'Falta la edad gestacional en semanas que informaba esa ecografía.'; return; }
+      if (dd < 0 || dd > 6) { out.innerHTML = 'Los días deben estar entre 0 y 6.'; return; }
+      const egEco = sem * 7 + dd;
+      diasTotales = egEco + Math.round((hoy - f) / MS);
+      fpp = new Date(f.getTime() + (280 - egEco) * MS);
+    } else {
+      diasTotales = Math.round((hoy - f) / MS);
+      fpp = new Date(f.getTime() + 280 * MS);
+    }
+
+    if (diasTotales < 0) { out.innerHTML = '<strong>La fecha ingresada es futura.</strong> Revisa el dato.'; return; }
+    if (diasTotales > 322) {
+      out.innerHTML = '<strong>El cálculo da más de 46 semanas.</strong> Revisa la fecha: con ese dato la calculadora no es confiable y la edad gestacional debe establecerse con la ecografía más precoz del embarazo o con la altura uterina.';
+      return;
+    }
+
+    const sem = Math.floor(diasTotales / 7);
+    const dias = diasTotales % 7;
+    const b = bandaEG(sem);
+    const restan = Math.round((fpp - hoy) / MS);
+    const txtRestan = restan > 0
+      ? 'Faltan <strong>' + restan + ' días</strong> para la fecha probable de parto.'
+      : (restan === 0 ? 'Hoy es la fecha probable de parto.' : 'La fecha probable de parto fue hace <strong>' + Math.abs(restan) + ' días</strong>.');
+
+    out.innerHTML =
+      '<span class="big ' + b.c + '">' + sem + ' semanas + ' + dias + ' días · ' + b.n + '</span>' +
+      b.t +
+      '<div style="margin-top:8px;">Fecha probable de parto: <strong>' + fmtFecha(fpp) + '</strong>. ' + txtRestan + '</div>';
+  }
+
+  function resetEG() {
+    document.getElementById('egMode').value = 'fum';
+    document.getElementById('egFecha').value = '';
+    document.getElementById('egEcoSem').value = '';
+    document.getElementById('egEcoDias').value = '';
+    egModeChange();
+  }
+
+  // ── Orientador de traslado ────────────────────────────────────────
+  const trState = { par: null, dil: null, sig: {} };
+
+  function initOpts(id, key, multi) {
+    const cont = document.getElementById(id);
+    if (!cont) return;
+    cont.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (multi) {
+          trState.sig[v] = !trState.sig[v];
+          btn.classList.toggle('on', !!trState.sig[v]);
+        } else {
+          cont.querySelectorAll('.opt').forEach(b => b.classList.remove('on'));
+          btn.classList.add('on');
+          trState[key] = v;
+        }
+        calcTraslado();
+      });
+    });
+  }
+  initOpts('trPar', 'par', false);
+  initOpts('trDil', 'dil', false);
+  initOpts('trSig', 'sig', true);
+
+  const BASE_MIN = {
+    nuli:      { d0: 240, d4: 120, d7: 45 },
+    multi:     { d0: 150, d4: 60,  d7: 20 },
+    granmulti: { d0: 90,  d4: 30,  d7: 10 }
+  };
+
+  function calcTraslado() {
+    const out = document.getElementById('trOut');
+    const s = trState;
+    const tras = parseInt(document.getElementById('trTiempo').value, 10);
+    const inminente = !!(s.sig.corona || s.sig.pujo) || s.dil === 'd10';
+
+    if (inminente) {
+      out.innerHTML =
+        '<span class="big risk-high">Se atiende acá</span>' +
+        'Con <strong>pujo involuntario, presentación visible o dilatación completa, el traslado ya no es una ' +
+        'opción</strong>: el parto ocurre donde está la paciente. Armar el box (sección 06), llamar a obstetricia y ' +
+        'neonatología, y repasar en voz alta distocia de hombros y hemorragia posparto.' +
+        '<div style="margin-top:8px;">Si además es pretérmino, el paquete de la sección 04 se pone <em>igual</em>: ' +
+        'el corticoide y el magnesio no dependen de que haya traslado.</div>';
+      return;
+    }
+
+    if (!s.par || !s.dil) {
+      out.innerHTML = 'Marca la paridad y la dilatación para que el orientador funcione. Si la dilatación no se puede evaluar —metrorragia sin placenta localizada—, márcalo así.';
+      return;
+    }
+
+    if (s.dil === 'nd') {
+      out.innerHTML =
+        '<span class="big risk-mid">No estimable · decide por criterio clínico</span>' +
+        'Sin dilatación evaluada no hay nada que estimar, y <strong>si el motivo es una metrorragia sin placenta ' +
+        'localizada, el tacto sigue contraindicado</strong>. Decide con lo que sí tienes: dinámica uterina, pujo, ' +
+        'aspecto del periné, paridad y partos previos rápidos. ' +
+        '<em>Ante la duda, se queda y se prepara el box.</em>';
+      return;
+    }
+
+    let min = BASE_MIN[s.par][s.dil];
+    let mods = [];
+    if (s.sig.contr) { min = Math.round(min * 0.7); mods.push('contracciones cada 2–3 min, intensas'); }
+    if (s.sig.rpm)   { min = Math.round(min * 0.9); mods.push('membranas rotas'); }
+
+    const alto = Math.round(min * 2.5);
+    let verdicto, clase, texto;
+
+    if (!isNaN(tras) && tras > 0) {
+      if (tras * 1.5 >= min) {
+        verdicto = 'No trasladar · atender acá';
+        clase = 'risk-high';
+        texto = 'El traslado declarado (<strong>' + tras + ' min</strong> puerta a puerta) consume una parte ' +
+          'demasiado grande de la ventana estimada. <strong>Armar el box.</strong>';
+      } else if (tras * 2.5 >= min) {
+        verdicto = 'Traslado solo con el parto a bordo';
+        clase = 'risk-mid';
+        texto = 'El margen es estrecho: si se traslada, va <strong>con set de parto, uterotónico y alguien ' +
+          'capacitado para atender el parto en el móvil</strong>, y con cama receptora confirmada por nombre. ' +
+          '<em>Si hay cualquier duda, se queda.</em>';
+      } else {
+        verdicto = 'Alcanza el traslado';
+        clase = 'risk-low';
+        texto = 'Hay margen razonable para el traslado. Se traslada <strong>con el tratamiento ya puesto</strong> ' +
+          '—corticoide y magnesio si es pretérmino, antibiótico si corresponde— y con cama receptora confirmada ' +
+          'por nombre, no «avisada».';
+      }
+    } else {
+      verdicto = 'Falta el tiempo de traslado';
+      clase = 'risk-mid';
+      texto = 'Escribe el tiempo <strong>real</strong> puerta a puerta —llamada, llegada del móvil, viaje y ' +
+        'recepción—, no el del mapa.';
+    }
+
+    out.innerHTML =
+      '<span class="big ' + clase + '">' + verdicto + '</span>' + texto +
+      '<div style="margin-top:8px;">Ventana orientativa hasta el parto: <strong>' + min + ' a ' + alto +
+      ' minutos</strong>' + (mods.length ? ' (ajustada por: ' + mods.join(' y ') + ')' : '') +
+      '. <em>Es un rango grueso de orientación, no una predicción: el progreso del trabajo de parto es muy ' +
+      'variable y una multípara puede parir muy por debajo del extremo inferior.</em></div>';
+  }
+
+  function resetTraslado() {
+    trState.par = null; trState.dil = null; trState.sig = {};
+    ['trPar', 'trDil', 'trSig'].forEach(id => {
+      document.querySelectorAll('#' + id + ' .opt').forEach(b => b.classList.remove('on'));
+    });
+    document.getElementById('trTiempo').value = '';
+    document.getElementById('trOut').innerHTML =
+      'Marca la paridad, la dilatación y los signos de expulsivo, y escribe el tiempo <strong>real</strong> de traslado puerta a puerta.';
+  }
+
+  // ── Índice de shock obstétrico ────────────────────────────────────
+  function calcOSI() {
+    const out = document.getElementById('osiOut');
+    const fc = parseFloat(document.getElementById('osiFc').value);
+    const pas = parseFloat(document.getElementById('osiPas').value);
+    if (isNaN(fc) || isNaN(pas) || pas <= 0 || fc <= 0) {
+      out.innerHTML = 'Índice de shock obstétrico = frecuencia cardíaca ÷ presión arterial sistólica.';
+      return;
+    }
+    const osi = fc / pas;
+    const v = osi.toFixed(2).replace('.', ',');
+    let clase, txt;
+    if (osi < 0.7) {
+      clase = 'risk-low';
+      txt = 'Por debajo del rango normal descrito en el posparto (0,7–0,9). <strong>Un índice bajo no descarta nada</strong> si la paciente está sangrando: lo que manda es el sangrado que ves y la tendencia.';
+    } else if (osi < 0.9) {
+      clase = 'risk-low';
+      txt = 'Dentro del <strong>rango normal descrito en el posparto (0,7–0,9)</strong>. Si hay sangrado activo, el índice normal <em>no autoriza a bajar la guardia</em>: repetirlo, porque lo informativo es el cambio en el tiempo.';
+    } else if (osi < 1.0) {
+      clase = 'risk-mid';
+      txt = '<strong>Sobre el rango normal: zona de alerta.</strong> Cuantificar el sangrado con pesaje de apósitos, asegurar dos accesos venosos, avisar a obstetricia y tener el ácido tranexámico y el banco de sangre en el plan.';
+    } else if (osi < 1.1) {
+      clase = 'risk-high';
+      txt = '<strong>Índice sobre 1,0.</strong> En la serie que propuso este índice, los valores sobre 1 se asociaron a pérdida significativa y a necesidad de hemoderivados. Tratar como hemorragia significativa: paquete completo de la sección 07 y activación del protocolo de hemorragia del servicio.';
+    } else {
+      clase = 'risk-high';
+      txt = '<strong>Índice ≥ 1,1.</strong> En la serie citada, <strong>89 % de las mujeres con este valor a los 10 minutos requirieron transfusión</strong>. Activar el protocolo de transfusión masiva, pedir sangre ahora y escalar a pabellón si no cede con uterotónicos y medidas mecánicas.';
+    }
+    out.innerHTML = '<span class="big ' + clase + '">Índice de shock obstétrico ' + v + '</span>' + txt +
+      '<div style="margin-top:8px;"><em>Complemento de la evaluación clínica, no criterio de transfusión por sí solo.</em> Dolor, ansiedad, fiebre, anemia previa y fármacos lo alteran sin que haya hemorragia.</div>';
+  }
+
+  function resetOSI() {
+    document.getElementById('osiFc').value = '';
+    document.getElementById('osiPas').value = '';
+    document.getElementById('osiOut').innerHTML = 'Índice de shock obstétrico = frecuencia cardíaca ÷ presión arterial sistólica.';
+  }
+
+  // ── Copiar el registro ────────────────────────────────────────────
+  function copyRegistro() {
+    const txt = document.getElementById('registroPre').textContent;
+    const btn = document.getElementById('copyBtn');
+    const ok = () => {
+      btn.textContent = '✓ Copiado';
+      btn.classList.add('done');
+      setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('done'); }, 2200);
+    };
+    const fallback = () => {
+      const ta = document.createElement('textarea');
+      ta.value = txt;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); ok(); } catch (e) { btn.textContent = 'Copia manual'; }
+      document.body.removeChild(ta);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(ok).catch(fallback);
+    } else {
+      fallback();
+    }
+  }
+
+  egModeChange();
+</script>
+</body>
+</html>
