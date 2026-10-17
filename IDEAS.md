@@ -880,7 +880,72 @@ en su sección temática, porque el agente recorre el archivo en orden.
       umbrales de hipoglicemia del recién nacido; quién atiende una podálica en el servicio y cuál es el
       plan cuando no hay obstetra; y las vías de derivación y los tiempos reales de la red obstétrica y
       neonatal de referencia.
-- [ ] Reanimación neonatal
+- [x] Reanimación neonatal — `checklist-reanimacion-neonatal.html`. Se implementó como **checklist con
+      cronómetro**: el tema es una secuencia de pasos con un plazo explícito —el minuto de oro— y el paso 3 de
+      «Cómo trabaja el agente diario» reserva ese formato para ese caso. El tema estaba **parcialmente cubierto**
+      por la sección 08 de `checklist-parto-urgencia.html`, que es deliberadamente corta y anunciaba esta página;
+      esa sección se mantiene como mínimo de bolsillo y ahora **enlaza** a la nueva, que a su vez enlaza de vuelta.
+      La tarjeta entra en la sección del index creada con el ítem anterior, que pasa a llamarse **«Obstetricia y
+      neonatología de urgencia»**. La página se ordena sobre una sola idea, dicha antes que cualquier dosis:
+      **el recién nacido que no arranca casi nunca necesita un fármaco, necesita que alguien le mueva el pecho**
+      —el paro neonatal es respiratorio en su origen—, de modo que todo el contenido está dispuesto para que la
+      ventilación ocurra antes y mejor, y para que **no se avance a compresiones ni a adrenalina sin haber visto
+      el pecho moverse**. Diez secciones: la preparación antes del nacimiento con las cuatro preguntas previas, el
+      cronómetro, las tres preguntas del nacimiento junto con el manejo del cordón y los métodos de medir la
+      frecuencia cardíaca, los pasos iniciales, la ventilación con presión positiva, las compresiones, los fármacos
+      y accesos, el prematuro, los cuidados posreanimación con la encefalopatía hipóxico-isquémica, y el registro.
+      Incluye **tres herramientas interactivas**: el **orientador del algoritmo**, que cruza respiración,
+      frecuencia cardíaca y si ya hay ventilación efectiva para devolver el siguiente paso —presentado
+      explícitamente como **no validado**, porque reproduce la lógica del algoritmo y no incorpora edad
+      gestacional ni contexto—; la **calculadora de dosis y material** por peso y edad gestacional, que existe
+      sobre todo por una razón de seguridad concreta (la adrenalina neonatal se usa a **0,1 mg/mL** y la
+      presentación habitual en Chile es de **1 mg/mL**, diez veces más concentrada, de modo que el error de
+      concentración es un error por diez), y que avisa cuando la estimación de calibre de tubo por peso y la de
+      edad gestacional no coinciden; y las **metas de saturación preductal minuto a minuto**, que corrigen la
+      intuición de que el recién nacido «debería» estar sobre 90 % y que llevan a dar oxígeno de más. Tres
+      esquemas vectoriales: el **minuto de oro** con las tres preguntas y sus dos ramas sobre un eje de tiempo,
+      los seis pasos correctores **MR SOPA**, y la **técnica de compresiones** con el punto en el tercio inferior
+      del esternón, los dos pulgares, la profundidad de un tercio y la cadencia 3:1. La honestidad sobre la
+      evidencia es parte del contenido: del clampeo diferido se cita el metaanálisis en red con datos individuales
+      de Seidler (*Lancet* 2023; 47 ensayos, 6094 prematuros: diferimiento largo ≥ 120 s frente a clampeo
+      inmediato, OR de muerte antes del alta 0,31 [ICr 95 % 0,11–0,80], certeza moderada) **con su salvedad**, que
+      el hallazgo solo sería generalizable en quien requiere reanimación inmediata si existe la posibilidad de
+      atenderlo con el cordón intacto; del aire frente al oxígeno al 100 %, Davis (*Lancet* 2004; 5 ensayos, 1302
+      recién nacidos: RR de mortalidad 0,71 [0,54–0,94]); de las metas de saturación, la serie de referencia de
+      Dawson (*Pediatrics* 2010; 468 recién nacidos sin intervención, 61 650 mediciones: mediana de **7,9 min**
+      [RIQ 5,0–10] hasta superar 90 % y percentil 50 de **66 %** al minuto); de la aspiración traqueal en el no
+      vigoroso con meconio, la revisión Cochrane de Nangia (4 ensayos, 581 recién nacidos, **certeza muy baja**:
+      sin diferencias en aspiración meconial RR 1,00 [0,80–1,25] ni en mortalidad RR 1,24 [0,76–2,02]), dicho como
+      *no hay evidencia de beneficio* y no como *está demostrado que no sirve*; de la máscara laríngea, el ensayo
+      NeoSupra de Pejovic (*NEJM* 2020; 1154 recién nacidos en Uganda: desenlace compuesto 27,4 % frente a 24,4 %,
+      RR ajustado 1,16 [0,90–1,51]), es decir **segura pero no superior** a la mascarilla facial; de la hipotermia
+      terapéutica, la revisión Cochrane de Jacobs (11 ensayos, 1505 recién nacidos: muerte o discapacidad mayor
+      RR 0,75 [0,68–0,83], NNT 7; mortalidad RR 0,75 [0,64–0,88], NNT 11) **con su condición operativa**, la
+      ventana de **6 horas**, que la página convierte en el tercer reloj; y del paquete térmico, la cohorte de
+      Laptook (*Pediatrics* 2007; 5277 recién nacidos de 401–1499 g: 14,3 % ingresó bajo 35 °C y cada grado menos
+      se asoció a 28 % más de mortalidad), reproduciendo la cautela de los propios autores sobre si es causa o
+      marcador. Donde las guías vigentes **discrepan entre sí** —estabilización con cordón intacto, ordeñamiento
+      del cordón en el prematuro extremo, concentración inicial de oxígeno, parámetros de ventilación,
+      videolaringoscopio, máscara laríngea y cánula de alto flujo— la página **lo dice en lugar de elegir una
+      cifra y presentarla como consenso**, apoyada en la comparación de Kuitunen y Davis (*Resusc Plus* 2026).
+      La estructura sigue el **CoSTR 2025 de reanimación neonatal del ILCOR** (Liley, *Circulation* 2025, y
+      *Pediatrics* 2026) y la guía **ERC 2025** derivada de él. Pendiente de validación: todas las metas de tiempo
+      del cronómetro **salvo dos**, que sí tienen respaldo citable —el inicio de la ventilación dentro de los
+      primeros 60 segundos y la ventana de 6 horas de la hipotermia terapéutica—; la concentración inicial de
+      oxígeno por banda de edad gestacional y los rangos objetivo de saturación; las presiones de ventilación, el
+      manejo de las primeras insuflaciones y el nivel de CPAP; el tiempo exacto de clampeo diferido y el lugar del
+      ordeñamiento y de la estabilización con cordón intacto; la presión de aspiración y los calibres de sonda;
+      los tamaños de máscara laríngea y los dispositivos disponibles; la técnica, profundidad y calibre de la
+      cateterización umbilical y de la vía intraósea; la velocidad de infusión del volumen en el prematuro; los
+      umbrales de hipoglicemia y el esquema de corrección; las medidas térmicas por banda de edad gestacional y la
+      temperatura de sala; la indicación, ventana, dosis y técnica del surfactante; los criterios de ingreso a
+      hipotermia terapéutica, su umbral de edad gestacional y el centro de referencia que la realiza; el umbral
+      local de viabilidad y de reanimación activa del prematuro extremo; el plazo, la autoridad y la documentación
+      de la decisión de no iniciar o suspender la reanimación; el esquema de vitamina K y profilaxis ocular; y las
+      vías de derivación y los tiempos reales de la red neonatal. El contenido es **neonatal** —el primer ítem del
+      backlog que sale de la regla de «solo adultos» de los síntomas cardinales, porque es precisamente el
+      contenido pediátrico propio que esa regla anticipaba— y está escrito para la atención inicial en un servicio
+      de urgencia general, no para una unidad de neonatología.
 - [ ] Reanimación pediátrica (trauma y no trauma)
 - [ ] Sedación en el paciente agitado - Combinando la escala BARS para el tratamiento sugerido y sugiriendo ketamina im en casos de agitación peligrosa, haciendo énfasis en aportar oxígeno a alta concentración tras sedar al paciente.
 - [ ] Parocardiorespiratorio (PCR) traumático

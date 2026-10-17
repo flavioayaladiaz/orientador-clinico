@@ -1,0 +1,2494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Checklist · Reanimación neonatal</title>
+<meta name="description" content="Reanimación neonatal en el servicio de urgencia: la preparación antes del nacimiento, las tres preguntas de los primeros segundos, el manejo del cordón, los pasos iniciales, el minuto de oro y la ventilación con presión positiva como la intervención que resuelve casi todo, los pasos correctores MR SOPA, las metas de saturación preductal minuto a minuto, las compresiones torácicas en relación 3:1, la adrenalina y los accesos vasculares con calculadora de dosis por peso, lo que cambia en el prematuro, el reconocimiento de la encefalopatía hipóxico-isquémica y la ventana de la hipotermia terapéutica, y el registro listo para copiar.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --surface2: #eef1f5;
+    --border: rgba(15,23,42,0.10);
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --text-dim: #475569;
+  }
+  :root[data-theme="light"] body::before {
+    background-image:
+      linear-gradient(rgba(15,23,42,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99,102,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(16,185,129,0.06) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 36px; animation: fadeUp 0.6s ease both; }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .theme-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+    font-size: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .theme-btn:hover { color: var(--text); border-color: var(--text-muted); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(99,102,241,0.1);
+    border: 1px solid rgba(99,102,241,0.28);
+    color: #a5b4fc;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  .header-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--indigo);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--indigo);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  :root[data-theme="light"] h1 { color: #0f172a; }
+  h1 span {
+    background: linear-gradient(135deg, #6366f1, #10b981);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .header-sub strong { color: #fff; font-weight: 500; }
+  :root[data-theme="light"] .header-sub strong,
+  :root[data-theme="light"] .check-label strong,
+  :root[data-theme="light"] .plain-item strong,
+  :root[data-theme="light"] .step strong,
+  :root[data-theme="light"] td strong,
+  :root[data-theme="light"] .calc-out strong,
+  :root[data-theme="light"] .med-name,
+  :root[data-theme="light"] .section-title { color: #0f172a; }
+  .header-sub em { color: #fcd34d; font-style: normal; }
+  :root[data-theme="light"] em { color: #b45309; }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .section-check-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .s1 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s1 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s2 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s2 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s3 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s3 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s4 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s4 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s5 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s5 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s6 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s6 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s7 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s7 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s8 .section-num { background: rgba(59,130,246,0.10); color: #bfdbfe; border: 1px solid rgba(59,130,246,0.18); }
+  .s8 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s9 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s9 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s10 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s10 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+
+  /* CRONÓMETRO */
+  .stopwatch {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+  .sw-display {
+    font-family: var(--mono);
+    font-size: clamp(40px, 11vw, 60px);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #fff;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  :root[data-theme="light"] .sw-display { color: #0f172a; }
+  .sw-display.warn { color: #fcd34d; }
+  .sw-display.late { color: #fca5a5; }
+  .sw-caption {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+  .sw-controls { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+  .sw-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .sw-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .sw-btn:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
+  .sw-btn.primary {
+    background: rgba(99,102,241,0.14);
+    border-color: rgba(99,102,241,0.45);
+    color: #a5b4fc;
+  }
+  .sw-btn.primary:hover { background: rgba(99,102,241,0.22); color: #c7d2fe; }
+
+  .milestones { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .ms {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .ms:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .ms:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .ms.done { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); color: #6ee7b7; }
+  .ms-goal {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .ms.done .ms-goal { color: #6ee7b7; border-color: rgba(16,185,129,0.4); }
+  .ms.done.over .ms-goal { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+  }
+  .check-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .check-item:hover::before { opacity: 1; }
+  .check-item:hover { border-color: rgba(255,255,255,0.12); }
+  .check-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .check-item.checked { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+  .check-item.checked::before { opacity: 0.5; }
+
+  .checkbox {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+    background: transparent;
+  }
+  .check-item.checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .checkmark {
+    opacity: 0;
+    transform: scale(0) rotate(-10deg);
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .check-item.checked .checkmark { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  .check-label {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-dim);
+    transition: color 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+  .check-item.checked .check-label {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(100,116,139,0.5);
+  }
+  .check-label strong { color: #fff; font-weight: 500; }
+  .check-label em { color: #fcd34d; font-style: normal; }
+  .check-step {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+
+  /* PROGRESO */
+  .progress-bottom {
+    margin-top: 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .progress-bar-track {
+    flex: 1;
+    min-width: 120px;
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6366f1, #10b981);
+    border-radius: 100px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px rgba(99,102,241,0.5);
+  }
+  .progress-label { font-family: var(--mono); font-size: 12px; color: var(--text-dim); white-space: nowrap; }
+  #progress-pct { color: var(--indigo); font-weight: 500; }
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+  /* BANNERS */
+  .warning-banner, .info-banner, .go-banner, .amber-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #fca5a5; }
+  .info-banner { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.18); color: #bfdbfe; }
+  .go-banner { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); color: #6ee7b7; }
+  .amber-banner { background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.25); color: #fde68a; }
+  .warning-banner strong, .info-banner strong, .go-banner strong, .amber-banner strong { color: #fff; font-weight: 500; }
+  :root[data-theme="light"] .warning-banner, :root[data-theme="light"] .amber-banner { color: #7c2d12; }
+  :root[data-theme="light"] .info-banner, :root[data-theme="light"] .go-banner { color: #334155; }
+  :root[data-theme="light"] .warning-banner strong, :root[data-theme="light"] .info-banner strong,
+  :root[data-theme="light"] .go-banner strong, :root[data-theme="light"] .amber-banner strong { color: #0f172a; }
+  .warning-banner em, .info-banner em, .go-banner em, .amber-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+  :root[data-theme="light"] .plain-item.flag strong { color: #b91c1c; }
+  .plain-item.good { background: rgba(16,185,129,0.05); border-color: rgba(16,185,129,0.16); }
+  .plain-item.good strong { color: #6ee7b7; }
+  :root[data-theme="light"] .plain-item.good strong { color: #047857; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* PASOS NUMERADOS */
+  .steps { counter-reset: st; display: flex; flex-direction: column; gap: 8px; }
+  .step {
+    counter-increment: st;
+    position: relative;
+    padding: 11px 14px 11px 48px;
+    border-radius: 11px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .step::before {
+    content: counter(st);
+    position: absolute;
+    left: 14px;
+    top: 11px;
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--accent, var(--text-dim));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step strong { color: #fff; font-weight: 500; }
+  .step em { color: #fcd34d; font-style: normal; }
+  .step .hold { display: block; font-family: var(--mono); font-size: 11.5px; color: #93c5fd; margin-top: 4px; }
+
+  /* STOP */
+  .stop {
+    margin-top: 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(239,68,68,0.25);
+    background: rgba(239,68,68,0.05);
+    padding: 14px 16px;
+  }
+  .stop-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fca5a5;
+    margin-bottom: 10px;
+  }
+  .stop ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .stop li {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--text-dim);
+    padding-left: 18px;
+    position: relative;
+  }
+  .stop li::before { content: '✖'; position: absolute; left: 0; color: #fca5a5; font-size: 11px; top: 2px; }
+  .stop li .cond { display: block; font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .stop .why {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(239,68,68,0.18);
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+  .stop .why strong { color: var(--text); font-weight: 500; }
+  .stop .why em { color: #fcd34d; font-style: normal; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  :root[data-theme="light"] td .dose-main { color: #0f172a; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ESQUEMAS */
+  .figure {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 16px 14px;
+    margin-bottom: 14px;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .fig-caption {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .fig-caption strong { color: var(--text-dim); font-weight: 500; }
+
+  /* CALCULADORAS */
+  .calc {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-top: 6px;
+  }
+  .calc-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; }
+  .calc-field { display: flex; flex-direction: column; gap: 6px; }
+  .calc-field label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .calc-field select, .calc-field input {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 9px 11px;
+    min-width: 150px;
+  }
+  .calc-field select:focus-visible, .calc-field input:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
+  .calc-out {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .calc-out strong { color: #fff; font-weight: 500; }
+  .calc-out em { color: #fcd34d; font-style: normal; }
+  .calc-out .big {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: #93c5fd;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .calc-out .big.risk-low { color: #6ee7b7; }
+  .calc-out .big.risk-mid { color: #fcd34d; }
+  .calc-out .big.risk-high { color: #fca5a5; }
+  .calc-note { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-top: 10px; }
+  .calc-note strong { color: var(--text-dim); font-weight: 500; }
+  .calc-reset {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 8px 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .calc-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+  /* OPCIONES (orientador de inminencia) */
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.4;
+    text-align: left;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 10px 13px;
+    cursor: pointer;
+    transition: all 0.16s;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+  .opt:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+  .opt.on { border-color: var(--blue); background: rgba(59,130,246,0.12); color: #bfdbfe; }
+  .opt .sub { display: block; font-size: 11.5px; color: var(--text-muted); margin-top: 3px; }
+  .block-label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 14px 0 7px;
+  }
+
+  /* COPIADO */
+  .copy-box {
+    border-radius: 14px;
+    border: 1px solid rgba(59,130,246,0.3);
+    background: rgba(59,130,246,0.05);
+    overflow: hidden;
+  }
+  .copy-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 10px 12px 10px 16px;
+    border-bottom: 1px solid rgba(59,130,246,0.2);
+  }
+  .copy-bar span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #93c5fd; }
+  .copy-btn {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    background: var(--blue);
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.12s, background 0.2s;
+    white-space: nowrap;
+  }
+  .copy-btn:hover { background: #2563eb; }
+  .copy-btn:active { transform: scale(0.97); }
+  .copy-btn.done { background: var(--emerald); }
+  .copy-pre {
+    margin: 0;
+    padding: 14px 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 380px;
+    overflow-y: auto;
+  }
+  .copy-hint { font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.5; }
+
+  /* ENLACES INTERNOS */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+  :root[data-theme="light"] .cross-link { color: #0f766e; }
+  .links-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .links-row .cross-link { margin-top: 0; }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--indigo); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+  .ref-item strong { color: var(--text-dim); font-weight: 500; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .ms { align-items: flex-start; flex-wrap: wrap; }
+    .ms-goal { margin-left: 0; }
+    .sw-btn { flex: 1; text-align: center; }
+    .calc-field, .calc-field select, .calc-field input { width: 100%; }
+    .opt { width: 100%; }
+    .copy-bar { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <a class="back-link" href="./index.html">← Volver</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Cambiar tema claro u oscuro">◐</button>
+    </div>
+    <div class="header-badge">Obstetricia y neonatología de urgencia · Checklist</div>
+    <h1>Reanimación <span>neonatal</span></h1>
+    <p class="header-sub">
+      Toda esta página se sostiene en un solo hecho, y conviene decirlo antes que cualquier dosis:
+      <strong>el recién nacido que no arranca casi nunca necesita un fármaco, necesita que alguien le mueva el
+      pecho</strong>. El paro neonatal es respiratorio en su origen —el pulmón está lleno de líquido y nunca se
+      ventiló—, de modo que la maniobra que salva vidas en los primeros minutos es la <strong>ventilación con
+      presión positiva bien hecha</strong>, y casi todos los fracasos de una reanimación neonatal son fracasos de
+      ventilación disfrazados de otra cosa. De ahí el orden de esta página: primero preparar, después las tres
+      preguntas del nacimiento, después ventilar, y solo entonces comprimir y medicar.
+      <em>El pecho que no se mueve es el único problema que hay que resolver antes de pasar al siguiente paso.</em>
+    </p>
+    <p class="header-sub" style="margin-top:12px;">
+      Aproximadamente <strong>un 10 % de los recién nacidos necesita algún tipo de apoyo al nacer</strong> y una
+      fracción mucho menor necesita compresiones o adrenalina. En un servicio de urgencia general eso se traduce en
+      algo incómodo: el evento es <em>poco frecuente, muy dependiente del tiempo y casi siempre lo enfrenta un
+      equipo que no lo hace a diario</em>. Esta página está escrita para ese equipo, y para los minutos en que
+      neonatología todavía no llegó.
+    </p>
+  </div>
+
+  <!-- 01 · ANTES DE QUE NAZCA -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">ANTES</span>
+      <div>
+        <div class="section-title">Antes de que nazca</div>
+        <div class="section-subtitle">Las cuatro preguntas y el carro que se revisa <em>ahora</em>, no después</div>
+      </div>
+      <span class="section-check-count" id="count-s1">0/9</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner" style="margin-top:0;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>La reanimación neonatal se gana o se pierde antes del nacimiento.</strong> No hay tiempo de
+        buscar una mascarilla del tamaño correcto, diluir adrenalina o encender la cuna cuando el recién nacido ya
+        está apneico sobre la mesa. Si hay un parto previsible en el servicio —o una paciente obstétrica inestable—,
+        <strong>el equipo se arma ahora y se asigna por nombre</strong>. <em>Una persona a cargo de la madre y otra,
+        distinta, a cargo del recién nacido: son dos pacientes y no se atienden con el mismo par de manos.</em></span>
+      </div>
+
+      <div class="subhead">Las cuatro preguntas antes del nacimiento</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">①</span><span><strong>¿Cuál es la edad gestacional?</strong> Define la mascarilla, el tubo, la concentración inicial de oxígeno, las medidas térmicas y la expectativa completa. Es el primer dato que va a pedir neonatología.</span></div>
+        <div class="plain-item"><span class="bullet-icon">②</span><span><strong>¿Cómo es el líquido amniótico?</strong> Claro, con meconio, con sangre o fétido. El meconio <em>ya no obliga a aspirar la tráquea</em> (sección 04), pero sí anticipa un recién nacido que puede necesitar ventilación.</span></div>
+        <div class="plain-item"><span class="bullet-icon">③</span><span><strong>¿Cuántos recién nacidos se esperan?</strong> Un embarazo múltiple duplica o triplica todo: cunas, equipos, personas. <em>Se descubre antes, no cuando sale el segundo.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">④</span><span><strong>¿Hay factores de riesgo adicionales?</strong> Bradicardia fetal, desprendimiento, prolapso de cordón, corioamnionitis, preeclampsia severa, trauma materno, anestesia general o opioides maternos recientes, malformación conocida, hidrops. Cada uno cambia quién tiene que estar en la sala.</span></div>
+      </div>
+
+      <div class="subhead">Los nueve gestos de la preparación</div>
+      <div class="checklist" id="list-s1">
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Roles</span><strong>Asignar los roles en voz alta y por nombre:</strong> quién ventila, quién monitoriza y toma la frecuencia cardíaca, quién registra los tiempos, quién va por material y quién habla con la madre. <em>En un equipo que no reanima recién nacidos a diario, el rol que más se olvida es el de registrar los tiempos</em>, y es el que después permite saber qué pasó.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Calor</span><strong>Cuna de calor radiante encendida, paños y gorro tibios, sala sin corrientes de aire.</strong> Para el prematuro se agrega bolsa o film de polietileno y colchón térmico si el servicio los tiene, y se sube la temperatura de la sala —<em>habitualmente se recomienda 23–25 °C para el parto de pretérmino: verificar con el protocolo institucional</em>—. La meta es temperatura axilar de <strong>36,5–37,5 °C</strong>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Ventilación</span><strong>Probar el dispositivo de ventilación con la mascarilla del tamaño correcto, antes del nacimiento.</strong> Bolsa autoinflable, bolsa de anestesia o reanimador en T: <em>el que el equipo sepa usar</em>. Se comprueba que sella, que entrega presión y que la válvula de escape funciona. Mascarilla que cubra boca y nariz apoyada en el mentón, <strong>sin tapar los ojos y sin pasar del mentón</strong>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Oxígeno</span><strong>Fuente de oxígeno conectada, con mezclador si existe, y saturómetro listo con el sensor preparado.</strong> El sensor va en la <strong>mano o muñeca derecha</strong> —preductal—: en otra extremidad la cifra no sirve para guiar el oxígeno. Si hay mezclador, se deja puesto en la concentración inicial que corresponda a la edad gestacional (sección 05).</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Aspiración</span><strong>Aspiración armada y probada, con sonda del calibre adecuado y presión limitada.</strong> La presión habitualmente recomendada es de <em>80–100 mmHg: verificar con el protocolo institucional</em>. Y conviene recordar desde ya para qué <strong>no</strong> se va a usar: la aspiración de rutina no está indicada (sección 04).</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Vía aérea avanzada</span><strong>Laringoscopio que ilumina, hoja del tamaño correcto, tubos de tres calibres y máscara laríngea si está disponible.</strong> Se dejan a la vista, con el conductor y el detector de CO₂ exhalado si el servicio cuenta con uno. Verificar los calibres en la calculadora de la sección 07.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Adrenalina</span><strong>Adrenalina diluida a 0,1 mg/mL y rotulada, antes de necesitarla.</strong> En Chile la presentación habitual es de <strong>1 mg/mL</strong>, que <em>no es la concentración neonatal</em>: hay que diluir 1 mL en 9 mL de suero fisiológico. <strong>Diluir con el recién nacido en paro es la forma más fácil de equivocarse por diez.</strong> Jeringa rotulada con concentración y volumen calculado para el peso estimado.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Accesos</span><strong>Material de cateterización venosa umbilical y de vía intraósea identificado y accesible.</strong> No se arma todo, pero se sabe dónde está y quién lo va a hacer. Suero fisiológico para expansión de volumen a la vista, con el volumen de <strong>10 mL/kg</strong> ya calculado.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Llamar</span><strong>Llamar a neonatología y pedir ayuda antes del nacimiento, no después.</strong> Con los cuatro datos de las preguntas de arriba. Si el parto es inminente y el recién nacido se anticipa deprimido o prematuro, la frase que ordena la respuesta del otro lado es <em>«necesito a alguien que reanime recién nacidos, acá, ahora»</em>. Y preguntar el dato operativo que nadie pregunta a tiempo: <strong>quién viene, en cuántos minutos y con qué</strong>.</span>
+        </button>
+      </div>
+
+      <div class="info-banner">
+        <span class="warning-icon">🧭</span>
+        <span><strong>Dónde encaja esta página.</strong> Si el problema es el trabajo de parto, la emergencia
+        obstétrica o el expulsivo, eso está en la página de parto en urgencia, que incluye la atención del parto
+        paso a paso y las emergencias del expulsivo. Esta página empieza <em>cuando el recién nacido ya está
+        afuera</em> —o en los minutos previos, armando el equipo que lo va a recibir—.</span>
+      </div>
+
+      <div class="links-row">
+        <a class="cross-link" href="./checklist-parto-urgencia.html">Trabajo de parto en urgencia →</a>
+        <a class="cross-link" href="./checklist-histerotomia-reanimacion.html">Paro materno · histerotomía de reanimación →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · CRONÓMETRO -->
+  <div class="section s2" id="s2" style="animation-delay:0.10s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">Cronómetro e hitos · el minuto de oro</div>
+        <div class="section-subtitle">Parte el reloj con el nacimiento, no cuando se complica</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="stopwatch">
+        <div class="sw-display" id="swDisplay">00:00</div>
+        <div class="sw-caption" id="swCaption">Detenido · parte el reloj en el momento del nacimiento</div>
+        <div class="sw-controls">
+          <button type="button" class="sw-btn primary" id="swToggle" onclick="swToggle()">▶ Iniciar</button>
+          <button type="button" class="sw-btn" onclick="swReset()">↺ Reiniciar</button>
+        </div>
+        <div class="milestones" id="milestones">
+          <button type="button" class="ms" data-goal="30" data-prefix="meta ~" onclick="markMs(this)"><span>Tres preguntas contestadas · pasos iniciales completos (calor, posición, secar, estimular)</span><span class="ms-goal">meta ~30 s</span></button>
+          <button type="button" class="ms" data-goal="60" data-prefix="meta ~" onclick="markMs(this)"><span><b>Ventilación con presión positiva iniciada</b> si hay apnea, boqueo o frecuencia cardíaca &lt; 100</span><span class="ms-goal">meta ~60 s</span></button>
+          <button type="button" class="ms" data-goal="90" data-prefix="meta ~" onclick="markMs(this)"><span>Saturómetro preductal puesto · frecuencia cardíaca con un método fiable · <b>pecho que se mueve confirmado</b></span><span class="ms-goal">meta ~90 s</span></button>
+          <button type="button" class="ms" data-goal="120" data-prefix="meta ~" onclick="markMs(this)"><span>Pasos correctores MR SOPA completados si el pecho no se movía · vía aérea avanzada considerada</span><span class="ms-goal">meta ~120 s</span></button>
+          <button type="button" class="ms" data-goal="150" data-prefix="meta ~" onclick="markMs(this)"><span>Compresiones torácicas 3:1 iniciadas si la frecuencia sigue &lt; 60 con ventilación efectiva</span><span class="ms-goal">meta ~150 s</span></button>
+          <button type="button" class="ms" data-goal="240" data-prefix="meta ~" onclick="markMs(this)"><span>Acceso vascular (vena umbilical o intraósea) y <b>primera dosis de adrenalina</b> si la frecuencia sigue &lt; 60</span><span class="ms-goal">meta ~240 s</span></button>
+          <button type="button" class="ms" data-goal="300" data-prefix="meta ~" onclick="markMs(this)"><span>Apgar de 5 minutos registrado · causas reversibles revisadas · neonatología presente o en camino confirmada</span><span class="ms-goal">meta ~5 min</span></button>
+          <button type="button" class="ms" data-goal="600" data-prefix="meta ~" onclick="markMs(this)"><span>Glicemia y temperatura medidas · decisión sobre encefalopatía e hipotermia terapéutica planteada · traslado coordinado</span><span class="ms-goal">meta ~10 min</span></button>
+        </div>
+      </div>
+
+      <div class="go-banner" style="margin-top:14px;">
+        <span class="warning-icon">⏱️</span>
+        <span><strong>A diferencia de otras páginas de este orientador, acá el reloj principal no es una
+        propuesta.</strong> Las guías de reanimación neonatal establecen que, cuando la ventilación con presión
+        positiva está indicada, <strong>debe estar iniciada dentro de los primeros 60 segundos de vida</strong>: eso
+        es el «minuto de oro», y es un criterio de las guías, no una meta inventada para esta página. Los
+        <em>demás</em> hitos del cronómetro —90, 120, 150, 240, 300 y 600 segundos— sí son referenciales: se
+        proponen para ordenar la secuencia y hacer visible la demora. <em>Verificar con el protocolo
+        institucional.</em></span>
+      </div>
+
+      <div class="subhead">Los tres relojes que corren en paralelo</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🫁</span><span><strong>El reloj de la ventilación.</strong> Es el único que realmente importa en el primer minuto. Cada segundo que pasa sin que el pulmón se expanda es un segundo de hipoxia que ningún fármaco posterior compensa. <em>Si solo se puede hacer una cosa bien, es esta.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🌡️</span><span><strong>El reloj térmico.</strong> Corre desde el primer segundo y no avisa. El recién nacido mojado, desnudo y con gran superficie corporal pierde temperatura rápidamente, y el prematuro de forma dramática. <em>La hipotermia no da síntomas durante la reanimación: se descubre a la llegada a la unidad, cuando ya está hecha.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🧠</span><span><strong>El reloj neurológico.</strong> Es el más largo y el más fácil de perder de vista: si hubo asfixia y aparece encefalopatía, <strong>la ventana de la hipotermia terapéutica es de 6 horas desde el nacimiento</strong> (sección 09). Se piensa durante la reanimación, no al día siguiente.</span></div>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 760 330" role="img" aria-label="Esquema del minuto de oro: tres preguntas al nacer, dos ramas, pasos iniciales en los primeros 30 segundos y ventilación iniciada antes de los 60 segundos.">
+          <defs>
+            <marker id="arrA" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#94a3b8"/></marker>
+          </defs>
+          <!-- eje de tiempo -->
+          <line x1="40" y1="300" x2="720" y2="300" stroke="#475569" stroke-width="1.5"/>
+          <g font-family="DM Mono, monospace" font-size="11" fill="#94a3b8" text-anchor="middle">
+            <line x1="40" y1="294" x2="40" y2="306" stroke="#475569" stroke-width="1.5"/><text x="40" y="322">0 s</text>
+            <line x1="266" y1="294" x2="266" y2="306" stroke="#475569" stroke-width="1.5"/><text x="266" y="322">30 s</text>
+            <line x1="492" y1="294" x2="492" y2="306" stroke="#475569" stroke-width="1.5"/><text x="492" y="322">60 s</text>
+            <line x1="718" y1="294" x2="718" y2="306" stroke="#475569" stroke-width="1.5"/><text x="718" y="322">90 s</text>
+          </g>
+          <text x="40" y="22" font-family="Syne, sans-serif" font-size="13" font-weight="700" fill="#e2e8f0">NACE</text>
+          <text x="40" y="40" font-family="DM Sans, sans-serif" font-size="11.5" fill="#94a3b8">Tres preguntas, en tres segundos</text>
+          <!-- caja preguntas -->
+          <rect x="36" y="52" width="208" height="86" rx="9" fill="rgba(99,102,241,0.10)" stroke="rgba(99,102,241,0.45)" stroke-width="1.2"/>
+          <g font-family="DM Sans, sans-serif" font-size="11.5" fill="#c7d2fe">
+            <text x="50" y="72">¿Es de término?</text>
+            <text x="50" y="92">¿Tiene buen tono?</text>
+            <text x="50" y="112">¿Respira o llora?</text>
+          </g>
+          <text x="50" y="130" font-family="DM Mono, monospace" font-size="10" fill="#94a3b8">las tres juntas, de una mirada</text>
+          <!-- rama si -->
+          <path d="M244,78 C280,78 280,66 310,66" stroke="#10b981" stroke-width="1.6" fill="none" marker-end="url(#arrA)"/>
+          <rect x="318" y="40" width="404" height="56" rx="9" fill="rgba(16,185,129,0.09)" stroke="rgba(16,185,129,0.4)" stroke-width="1.2"/>
+          <text x="332" y="60" font-family="Syne, sans-serif" font-size="12" font-weight="700" fill="#6ee7b7">LAS TRES SON SÍ</text>
+          <text x="332" y="78" font-family="DM Sans, sans-serif" font-size="11.5" fill="#a7f3d0">Secar, calor, piel con piel con su madre, clampeo diferido.</text>
+          <text x="332" y="92" font-family="DM Mono, monospace" font-size="10" fill="#6ee7b7">No hace falta nada más · vigilancia continua</text>
+          <!-- rama no -->
+          <path d="M244,118 C280,118 280,140 310,140" stroke="#f59e0b" stroke-width="1.6" fill="none" marker-end="url(#arrA)"/>
+          <rect x="318" y="112" width="404" height="60" rx="9" fill="rgba(245,158,11,0.09)" stroke="rgba(245,158,11,0.4)" stroke-width="1.2"/>
+          <text x="332" y="132" font-family="Syne, sans-serif" font-size="12" font-weight="700" fill="#fcd34d">ALGUNA ES NO · primeros 30 s</text>
+          <text x="332" y="150" font-family="DM Sans, sans-serif" font-size="11.5" fill="#fde68a">Calor · posición · secar · estimular · despejar solo si obstruye</text>
+          <text x="332" y="165" font-family="DM Mono, monospace" font-size="10" fill="#fcd34d">a la cuna de calor radiante</text>
+          <!-- evaluacion 30s -->
+          <path d="M520,172 L520,196" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#arrA)"/>
+          <rect x="318" y="202" width="404" height="74" rx="9" fill="rgba(239,68,68,0.09)" stroke="rgba(239,68,68,0.45)" stroke-width="1.3"/>
+          <text x="332" y="222" font-family="Syne, sans-serif" font-size="12" font-weight="700" fill="#fca5a5">REEVALUAR: ¿RESPIRA? ¿FRECUENCIA CARDÍACA?</text>
+          <text x="332" y="240" font-family="DM Sans, sans-serif" font-size="11.5" fill="#fecaca">Apnea, boqueo o frecuencia &lt; 100 por minuto</text>
+          <text x="332" y="258" font-family="Syne, sans-serif" font-size="12.5" font-weight="700" fill="#fff">→ VENTILAR, antes de los 60 segundos</text>
+          <text x="332" y="272" font-family="DM Mono, monospace" font-size="10" fill="#fca5a5">la intervención que resuelve la gran mayoría de las reanimaciones</text>
+          <!-- banda minuto de oro -->
+          <rect x="40" y="284" width="452" height="8" rx="4" fill="rgba(239,68,68,0.28)"/>
+          <text x="46" y="279" font-family="DM Mono, monospace" font-size="10" fill="#fca5a5">EL MINUTO DE ORO</text>
+        </svg>
+        <div class="fig-caption"><strong>Esquema 1 · el minuto de oro.</strong> Las tres preguntas del nacimiento abren dos caminos, y el camino de «alguna es no» tiene un plazo: los pasos iniciales ocupan los primeros 30 segundos y la ventilación con presión positiva, cuando está indicada, debe estar <em>andando</em> antes del segundo 60. Dibujo orientativo, no a escala.</div>
+      </div>
+
+      <div class="progress-bottom">
+        <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBar"></div></div>
+        <div class="progress-label"><span id="progress-pct">0%</span> del checklist</div>
+        <button type="button" class="reset-btn" onclick="resetAll()">↺ Reiniciar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · EL NACIMIENTO -->
+  <div class="section s3" id="s3" style="animation-delay:0.14s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">El nacimiento: tres preguntas, el cordón y la frecuencia cardíaca</div>
+        <div class="section-subtitle">Lo que se decide en los primeros tres segundos y el número que manda</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner" style="margin-top:0;">
+        <span class="warning-icon">👁️</span>
+        <span><strong>La evaluación inicial no se hace con un puntaje, se hace con la vista.</strong>
+        <em>¿Es de término? ¿Tiene buen tono? ¿Respira o llora?</em> Son tres preguntas que se contestan de una
+        mirada, en el momento del nacimiento. <strong>El Apgar no se usa para decidir si hay que reanimar</strong>
+        —se calcula al minuto, cuando la decisión ya está tomada hace 50 segundos— y la frecuencia cardíaca, que es
+        el indicador que de verdad guía toda la secuencia, todavía no se ha medido.</span>
+      </div>
+
+      <div class="subhead">Manejo del cordón: cuándo se espera y cuándo no</div>
+      <div class="plain-list">
+        <div class="plain-item good"><span class="bullet-icon">✔</span><span><strong>Recién nacido vigoroso, de término o prematuro, que no necesita reanimación: clampeo diferido.</strong> Se espera al menos <strong>60 segundos</strong> antes de clampear, con el recién nacido en contacto con su madre y bajo calor. <em>El tiempo exacto de espera se verifica con el protocolo institucional</em>, porque las guías vigentes no coinciden en la cifra: unas recomiendan «al menos 60 segundos», otras hablan de rangos mayores.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📊</span><span><strong>Por qué importa, y cuánto.</strong> En el metaanálisis en red con datos individuales de 47 ensayos y 6094 prematuros de Seidler, el <strong>diferimiento largo (≥ 120 s)</strong> fue la estrategia que más redujo la muerte antes del alta frente al clampeo inmediato —<strong>OR 0,31 (ICr 95 % 0,11–0,80), certeza moderada</strong>—. Los propios autores advierten el límite: en recién nacidos que requieren reanimación inmediata, el hallazgo <em>solo es aplicable si existe la posibilidad de dar esa atención con el cordón intacto</em>.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Recién nacido que necesita reanimación y no se puede atender con el cordón intacto: se clampea y se traslada a la cuna.</strong> <em>No se retrasa la ventilación por esperar el cordón.</em> La estabilización con cordón intacto requiere equipamiento y entrenamiento específicos, y las guías vigentes <strong>no coinciden</strong> en recomendarla: en un servicio de urgencia general que no la practica, la conducta segura es clampear y ventilar.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Ordeñamiento del cordón en el prematuro extremo: no.</strong> No se recomienda en el prematuro de menos de 28 semanas, por la señal de mayor hemorragia intraventricular. Fuera de ese grupo, su lugar es discrepante entre guías: <em>verificar con el protocolo institucional</em>.</span></div>
+      </div>
+
+      <div class="subhead">Cómo se mide la frecuencia cardíaca (y por qué el método importa)</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Método</th><th>Cuándo usarlo</th><th>Lo que hay que saber</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Auscultación precordial</strong></td>
+              <td><span class="dose-main">Primera evaluación, siempre disponible</span><br><span class="dose-note">contar 6 s × 10, o 10 s × 6</span></td>
+              <td>Es el método inicial y no requiere nada. <em>Tiende a subestimar</em> la frecuencia real y obliga a interrumpir. Se dice el número <strong>en voz alta</strong> para todo el equipo.</td>
+            </tr>
+            <tr>
+              <td><strong>Electrocardiograma de 3 electrodos</strong></td>
+              <td><span class="dose-main">Cuando está disponible, de preferencia si se anticipa reanimación</span></td>
+              <td>Es el <strong>más rápido y más exacto</strong> de los tres, y las guías sugieren usarlo cuando se dispone de él. Advertencia: puede mostrar actividad eléctrica <em>sin</em> gasto cardíaco, de modo que una frecuencia en el monitor con un recién nacido pálido y sin pulso <strong>no es tranquilizadora</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Saturómetro preductal</strong></td>
+              <td><span class="dose-main">Siempre que se ventile, se dé oxígeno o haya cianosis persistente</span><br><span class="dose-note">mano o muñeca <strong>derecha</strong></span></td>
+              <td>Tarda en dar señal y <em>puede subestimar la frecuencia</em> con mala perfusión. Su función principal no es la frecuencia, es <strong>titular el oxígeno</strong> contra las metas de la sección 05.</td>
+            </tr>
+            <tr>
+              <td><strong>Palpación del pulso del cordón</strong></td>
+              <td><span class="dose-main">No recomendado como método único</span></td>
+              <td><em>Poco fiable y habitualmente subestima.</em> Si es lo único que hay, se usa, pero se corrobora cuanto antes por auscultación.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Los tres números que organizan toda la reanimación</div>
+      <div class="plain-list">
+        <div class="plain-item good"><span class="bullet-icon">💚</span><span><strong>Frecuencia cardíaca ≥ 100 por minuto, respirando: va bien.</strong> Si respira con esfuerzo o está cianótico, el problema es de oxigenación, no de ventilación: posición, saturómetro, oxígeno titulado y considerar presión positiva continua —CPAP—. No se ventila con presión positiva a un recién nacido que respira y tiene buena frecuencia.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💛</span><span><strong>Frecuencia cardíaca 60–99 por minuto, o apnea o boqueo: ventilación con presión positiva, ya.</strong> Esta es la zona que define el minuto de oro. <em>La bradicardia del recién nacido es signo de hipoxia, no de problema cardíaco</em>, y la respuesta es aire que entra al pulmón.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">❤️</span><span><strong>Frecuencia cardíaca &lt; 60 por minuto: ventilación efectiva primero, compresiones después.</strong> La palabra <em>efectiva</em> es la que decide: compresiones sobre un pulmón que no se está ventilando no sirven de nada. Antes de comprimir hay que haber visto el pecho moverse durante 30 segundos (sección 05 y 06).</span></div>
+      </div>
+
+      <div class="calc">
+        <div class="block-label">Orientador del algoritmo · ¿qué toca ahora?</div>
+        <div class="calc-row">
+          <div class="calc-field">
+            <label for="algResp">Respiración</label>
+            <select id="algResp" onchange="calcAlg()">
+              <option value="">— elegir —</option>
+              <option value="apnea">Apnea o boqueo (gasping)</option>
+              <option value="dificultad">Respira con dificultad o cianosis persistente</option>
+              <option value="normal">Respira o llora con normalidad</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="algFc">Frecuencia cardíaca</label>
+            <select id="algFc" onchange="calcAlg()">
+              <option value="">— elegir —</option>
+              <option value="alta">≥ 100 por minuto</option>
+              <option value="media">60 – 99 por minuto</option>
+              <option value="baja">&lt; 60 por minuto</option>
+              <option value="cero">Indetectable</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="algVent">¿Ya hay ventilación <em>efectiva</em>?</label>
+            <select id="algVent" onchange="calcAlg()">
+              <option value="no">No se ha ventilado todavía</option>
+              <option value="sinmov">Se ventila, pero el pecho NO se mueve</option>
+              <option value="efectiva">Sí · pecho que se mueve, ≥ 30 s</option>
+              <option value="avanzada">Sí · con tubo o máscara laríngea y oxígeno al 100 %</option>
+            </select>
+          </div>
+          <button type="button" class="calc-reset" onclick="resetAlg()">↺ Limpiar</button>
+        </div>
+        <div class="calc-out" id="algOut">Marca la respiración y la frecuencia cardíaca. El orientador devuelve el <strong>siguiente paso</strong> del algoritmo, no un diagnóstico.</div>
+        <div class="calc-note"><strong>Advertencia.</strong> Esta herramienta reproduce la lógica del algoritmo de reanimación neonatal en su forma más simple y <em>no es una regla de decisión validada</em>: no incorpora la edad gestacional, las malformaciones, el contexto del parto ni el juicio del equipo. El algoritmo vigente del servicio es el que manda, y la reevaluación es continua, no por pasos aislados.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · PASOS INICIALES -->
+  <div class="section s4" id="s4" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Pasos iniciales · los primeros 30 segundos</div>
+        <div class="section-subtitle">Calor, posición, secar, estimular — y lo que no se hace</div>
+      </div>
+      <span class="section-check-count" id="count-s4">0/6</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="checklist" id="list-s4">
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">1 · Calor</span><strong>A la cuna de calor radiante, y el paño mojado fuera.</strong> El paño con que se secó ya está húmedo y enfría: se retira y se cambia por uno tibio. Gorro puesto. <em>Secar no es solo secar: es la principal fuente de estímulo de los primeros segundos y a la vez la principal medida térmica.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">2 · Posición</span><strong>Cabeza en posición neutra o con ligera extensión, «de olfateo».</strong> El cuello del recién nacido es corto y el occipucio prominente: apoyado plano, el mentón cae sobre el tórax y <em>la vía aérea se cierra sola</em>. Un rollo pequeño bajo los hombros corrige la flexión. <strong>Ni hiperextensión ni flexión: las dos obstruyen.</strong></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">3 · Secar</span><strong>Secar con energía la cabeza, el tronco, la espalda y las extremidades.</strong> Dos propósitos a la vez: evitar la pérdida de calor por evaporación y estimular la respiración. En el <strong>prematuro de menos de 32 semanas no se seca con fricción</strong>: va directo a bolsa o film de polietileno sobre la piel húmeda (sección 08).</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">4 · Estimular</span><strong>Estimulación táctil breve: frotar la espalda o golpear suavemente las plantas de los pies.</strong> Dos o tres intentos, no más. <em>Si no responde en unos segundos, el problema no se resuelve estimulando más fuerte: se resuelve ventilando.</em> La estimulación prolongada es una de las formas más frecuentes de perder el minuto de oro.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">5 · Despejar</span><strong>Despejar la vía aérea solo si hay obstrucción evidente o si va a necesitar ventilación con presión positiva.</strong> Primero boca, después nariz —así no inspira lo que quedaba en la boca al estimularse la nariz—. Sonda del calibre adecuado y presión limitada. <em>No se aspira por rutina.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">6 · Reevaluar</span><strong>A los 30 segundos: respiración y frecuencia cardíaca, dichas en voz alta.</strong> Son las dos variables que deciden el paso siguiente, y la frecuencia se dice como número, no como impresión. <em>«Está bradicárdico» no es un dato; «48 por minuto» sí.</em> Si hay apnea, boqueo o frecuencia bajo 100, se pasa a ventilar sin esperar nada más.</span>
+        </button>
+      </div>
+
+      <div class="stop">
+        <div class="stop-title">✖ Lo que no se hace en los primeros 30 segundos</div>
+        <ul>
+          <li><strong>Aspirar la boca y la nariz por rutina al recién nacido vigoroso.</strong><span class="cond">La estimulación de la faringe posterior puede producir <em>bradicardia refleja y apnea</em>, es decir, crear el problema que se estaba tratando de evitar. Se aspira si hay obstrucción o si se va a ventilar, no «porque nació».</span></li>
+          <li><strong>Aspirar la tráquea de rutina al recién nacido no vigoroso con líquido meconial.</strong><span class="cond">Ya no se recomienda como paso obligado antes de ventilar. La revisión Cochrane de Nangia (4 ensayos, 581 recién nacidos, todos en India) <strong>no encontró diferencias</strong> en síndrome de aspiración meconial (RR 1,00; IC 95 % 0,80–1,25) ni en mortalidad (RR 1,24; 0,76–2,02), con <em>certeza muy baja</em>: el mensaje honesto es que <strong>no hay evidencia de beneficio</strong> y que aspirar retrasa la ventilación, que es lo que sí sirve. Si hay obstrucción de la vía aérea por meconio espeso, la aspiración bajo visión directa sigue siendo una opción.</span></li>
+          <li><strong>Estimular durante más de unos segundos.</strong><span class="cond">Sacudir, voltear, golpear la espalda repetidamente o «esperar a ver si arranca» es tiempo de hipoxia. Dos o tres estímulos y se decide.</span></li>
+          <li><strong>Esperar el Apgar del minuto para decidir.</strong><span class="cond">El Apgar describe, no decide. A los 60 segundos la ventilación ya debería estar andando si estaba indicada.</span></li>
+          <li><strong>Maniobras de rutina sin evidencia de beneficio.</strong><span class="cond">Comprimir el tórax para «sacar líquido», colgar al recién nacido de los pies, dar palmadas en la espalda con fuerza, dilatar el esfínter anal o aplicar compresas frías o calientes: ninguna tiene lugar en la reanimación neonatal y varias pueden hacer daño.</span></li>
+        </ul>
+        <div class="why"><strong>Por qué esta lista es tan importante.</strong> Casi todo lo que se hace mal en una reanimación neonatal no es un error de ejecución, es un error de <em>orden</em>: cosas razonables hechas antes de la que había que hacer primero. El costo de aspirar de rutina o de estimular treinta segundos más no es el procedimiento en sí, es <strong>el minuto de ventilación que se perdió haciéndolo</strong>.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · VENTILACIÓN -->
+  <div class="section s5" id="s5" style="animation-delay:0.22s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Ventilación con presión positiva</div>
+        <div class="section-subtitle">La intervención que resuelve casi todo · y el pecho que no se mueve</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner" style="margin-top:0;">
+        <span class="warning-icon">🫁</span>
+        <span><strong>Las dos frases que hay que tener grabadas de esta sección.</strong>
+        <strong>(1) El signo de que la ventilación funciona es el ascenso de la frecuencia cardíaca</strong>, y el
+        signo de que el aire está entrando es que <strong>el pecho se mueve</strong>. Si la frecuencia no sube, la
+        pregunta no es «¿qué fármaco toca?», es <em>«¿por qué no está entrando aire?»</em>.
+        <strong>(2) No se avanza a compresiones ni a adrenalina sin haber conseguido antes una ventilación que
+        mueva el pecho.</strong> Comprimir y medicar sobre un pulmón que no se ventila es la forma más común de
+        reanimar sin reanimar.</span>
+      </div>
+
+      <div class="subhead">Indicación y parámetros iniciales</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Parámetro</th><th>Valor habitual</th><th>Advertencias</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Indicación</strong></td>
+              <td><span class="dose-main">Apnea, boqueo, o frecuencia cardíaca &lt; 100 por minuto</span><br><span class="dose-note">tras los pasos iniciales</span></td>
+              <td>Debe estar <strong>iniciada dentro de los primeros 60 segundos de vida</strong>. Es el criterio de las guías, no una meta propuesta por esta página.</td>
+            </tr>
+            <tr>
+              <td><strong>Frecuencia</strong></td>
+              <td><span class="dose-main">40–60 ventilaciones por minuto</span><br><span class="dose-note">cadencia útil en voz alta: «ventila — dos — tres»</span></td>
+              <td>El error habitual es ventilar <em>demasiado rápido</em>, lo que impide el vaciamiento y atrapa aire. Decir la cadencia en voz alta la corrige sola.</td>
+            </tr>
+            <tr>
+              <td><strong>Presión inspiratoria</strong></td>
+              <td><span class="dose-main">20–25 cm H₂O como punto de partida</span><br><span class="dose-note">el recién nacido de término puede requerir presiones mayores en las primeras insuflaciones</span></td>
+              <td>Son <strong>órdenes de magnitud</strong>: el valor que decide es el que <em>mueve el pecho</em>, no la cifra del manómetro. Las guías vigentes no coinciden en los valores exactos ni en el manejo de las primeras insuflaciones. <em>Verificar con el protocolo institucional</em>, y usar manómetro y válvula de escape cuando el dispositivo lo permita.</td>
+            </tr>
+            <tr>
+              <td><strong>Presión positiva al final de la espiración (PEEP)</strong></td>
+              <td><span class="dose-main">≈ 5 cm H₂O</span></td>
+              <td>Especialmente relevante en el prematuro, para no perder el volumen pulmonar ganado en cada insuflación. Requiere reanimador en T o bolsa de anestesia con válvula; <em>la bolsa autoinflable no entrega PEEP fiable sin válvula específica</em>.</td>
+            </tr>
+            <tr>
+              <td><strong>Oxígeno inicial · ≥ 35 semanas</strong></td>
+              <td><span class="dose-main">Aire ambiental, 21 %</span></td>
+              <td>Se empieza con aire y se titula según la saturación preductal. El metaanálisis de Davis (5 ensayos, 1302 recién nacidos) mostró <strong>menor mortalidad con aire que con oxígeno al 100 %</strong> (RR 0,71; IC 95 % 0,54–0,94). <em>Partir con 100 % en el recién nacido de término no es neutro: es peor.</em></td>
+            </tr>
+            <tr>
+              <td><strong>Oxígeno inicial · &lt; 35 semanas</strong></td>
+              <td><span class="dose-main">21–30 %</span><br><span class="dose-note">y se titula con el saturómetro</span></td>
+              <td>Aquí es donde las guías vigentes <strong>discrepan más abiertamente</strong> entre sí, por falta de evidencia concluyente. <em>Verificar con el protocolo institucional</em> la concentración inicial que usa el servicio por banda de edad gestacional.</td>
+            </tr>
+            <tr>
+              <td><strong>Oxígeno durante compresiones</strong></td>
+              <td><span class="dose-main">Subir a 100 %</span></td>
+              <td>Y <strong>bajarlo en cuanto la frecuencia cardíaca se recupere</strong>, guiado por la saturación. El oxígeno al 100 % mantenido después de la recuperación no es inocuo.</td>
+            </tr>
+            <tr>
+              <td><strong>Presión positiva continua (CPAP)</strong></td>
+              <td><span class="dose-main">≈ 5–8 cm H₂O</span></td>
+              <td>Es para el recién nacido que <strong>respira espontáneamente</strong> con dificultad respiratoria o cianosis persistente y frecuencia cardíaca adecuada —típicamente el prematuro—. <em>No es tratamiento de la apnea ni de la bradicardia</em>: ahí corresponde ventilación con presión positiva.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">MR SOPA · los seis pasos correctores cuando el pecho no se mueve</div>
+
+      <div class="figure">
+        <svg viewBox="0 0 760 290" role="img" aria-label="Esquema de los seis pasos correctores MR SOPA cuando el pecho no se mueve durante la ventilación con presión positiva.">
+          <defs>
+            <marker id="arrB" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#94a3b8"/></marker>
+          </defs>
+          <!-- cabeza esquematica -->
+          <g transform="translate(20,40)">
+            <ellipse cx="86" cy="104" rx="66" ry="76" fill="rgba(148,163,184,0.10)" stroke="#64748b" stroke-width="1.3"/>
+            <path d="M32,140 Q60,168 96,164" stroke="#64748b" stroke-width="1.2" fill="none"/>
+            <ellipse cx="62" cy="88" rx="5" ry="3.4" fill="#64748b"/>
+            <!-- mascarilla -->
+            <ellipse cx="78" cy="126" rx="38" ry="30" fill="rgba(20,184,166,0.14)" stroke="#14b8a6" stroke-width="1.8"/>
+            <circle cx="78" cy="126" r="9" fill="none" stroke="#14b8a6" stroke-width="1.4"/>
+            <text x="86" y="200" font-family="DM Mono, monospace" font-size="10" fill="#5eead4" text-anchor="middle">sella boca y nariz,</text>
+            <text x="86" y="214" font-family="DM Mono, monospace" font-size="10" fill="#5eead4" text-anchor="middle">apoya en el mentón</text>
+          </g>
+          <!-- pasos -->
+          <g font-family="DM Sans, sans-serif" font-size="12">
+            <rect x="216" y="22" width="528" height="36" rx="8" fill="rgba(239,68,68,0.08)" stroke="rgba(239,68,68,0.3)" stroke-width="1"/>
+            <text x="232" y="39" font-family="Syne, sans-serif" font-size="13" font-weight="700" fill="#fca5a5">M</text>
+            <text x="256" y="39" fill="#e2e8f0"><tspan font-weight="500" fill="#fff">Mascarilla</tspan> · reajustar el sello, levantar el mentón, no apretar sobre los ojos</text>
+            <text x="232" y="52" font-family="DM Mono, monospace" font-size="9.5" fill="#94a3b8">mask</text>
+
+            <rect x="216" y="62" width="528" height="36" rx="8" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+            <text x="232" y="79" font-family="Syne, sans-serif" font-size="13" font-weight="700" fill="#fcd34d">R</text>
+            <text x="256" y="79" fill="#e2e8f0"><tspan font-weight="500" fill="#fff">Reposicionar</tspan> · cabeza en neutro o leve extensión, rollo bajo los hombros</text>
+            <text x="232" y="92" font-family="DM Mono, monospace" font-size="9.5" fill="#94a3b8">reposition</text>
+
+            <rect x="216" y="102" width="528" height="36" rx="8" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.3)" stroke-width="1"/>
+            <text x="232" y="119" font-family="Syne, sans-serif" font-size="13" font-weight="700" fill="#93c5fd">S</text>
+            <text x="256" y="119" fill="#e2e8f0"><tspan font-weight="500" fill="#fff">Succionar</tspan> · boca y después nariz, solo si hay secreciones que obstruyen</text>
+            <text x="232" y="132" font-family="DM Mono, monospace" font-size="9.5" fill="#94a3b8">suction</text>
+
+            <rect x="216" y="142" width="528" height="36" rx="8" fill="rgba(99,102,241,0.08)" stroke="rgba(99,102,241,0.3)" stroke-width="1"/>
+            <text x="232" y="159" font-family="Syne, sans-serif" font-size="13" font-weight="700" fill="#a5b4fc">O</text>
+            <text x="256" y="159" fill="#e2e8f0"><tspan font-weight="500" fill="#fff">Open · abrir la boca</tspan> · separar los labios y adelantar el mentón</text>
+            <text x="232" y="172" font-family="DM Mono, monospace" font-size="9.5" fill="#94a3b8">open mouth</text>
+
+            <rect x="216" y="182" width="528" height="36" rx="8" fill="rgba(20,184,166,0.08)" stroke="rgba(20,184,166,0.3)" stroke-width="1"/>
+            <text x="232" y="199" font-family="Syne, sans-serif" font-size="13" font-weight="700" fill="#5eead4">P</text>
+            <text x="256" y="199" fill="#e2e8f0"><tspan font-weight="500" fill="#fff">Presión</tspan> · subir la presión inspiratoria por pasos, hasta que el pecho se mueva</text>
+            <text x="232" y="212" font-family="DM Mono, monospace" font-size="9.5" fill="#94a3b8">pressure</text>
+
+            <rect x="216" y="222" width="528" height="40" rx="8" fill="rgba(16,185,129,0.10)" stroke="rgba(16,185,129,0.38)" stroke-width="1.2"/>
+            <text x="232" y="240" font-family="Syne, sans-serif" font-size="13" font-weight="700" fill="#6ee7b7">A</text>
+            <text x="256" y="240" fill="#e2e8f0"><tspan font-weight="500" fill="#fff">Alternativa de vía aérea</tspan> · tubo endotraqueal o máscara laríngea</text>
+            <text x="232" y="254" font-family="DM Mono, monospace" font-size="9.5" fill="#94a3b8">airway · si nada de lo anterior movió el pecho, el problema es la vía aérea</text>
+          </g>
+          <path d="M204,36 L204,252" stroke="#475569" stroke-width="1.2" marker-end="url(#arrB)"/>
+          <text x="194" y="144" font-family="DM Mono, monospace" font-size="9.5" fill="#64748b" text-anchor="middle" transform="rotate(-90 194 144)">en orden, sin saltarse pasos</text>
+        </svg>
+        <div class="fig-caption"><strong>Esquema 2 · MR SOPA.</strong> Los seis pasos correctores se aplican <em>en orden</em> cuando se está ventilando y el pecho no se mueve. Los cuatro primeros son gratis y se resuelven con las manos; los dos últimos cambian el dispositivo o la vía aérea. Dibujo orientativo, no una ilustración anatómica a escala.</div>
+      </div>
+
+      <div class="info-banner">
+        <span class="warning-icon">🫧</span>
+        <span><strong>Sobre la máscara laríngea.</strong> Es una alternativa razonable cuando la ventilación con
+        mascarilla falla y la intubación no se logra o no hay quien la haga, y se usa habitualmente desde las
+        <strong>34 semanas y los 2000 g</strong> —<em>verificar con el dispositivo disponible y el protocolo
+        institucional</em>—. Lo que la evidencia <em>no</em> dice es que sea mejor: en el ensayo NeoSupra de Pejovic
+        (Uganda, 1154 recién nacidos de ≥ 34 semanas o ≥ 2000 g, ventilados por matronas), la máscara laríngea
+        <strong>no fue superior</strong> a la mascarilla facial en muerte a 7 días o encefalopatía moderada a severa
+        (27,4 % frente a 24,4 %; RR ajustado 1,16; IC 95 % 0,90–1,51), aunque <strong>sí resultó segura</strong> en
+        manos de personal no médico. Es decir: es una salida válida cuando la mascarilla no funciona, no un
+        reemplazo de hacer bien la mascarilla.</span>
+      </div>
+
+      <div class="subhead">Metas de saturación preductal, minuto a minuto</div>
+
+      <div class="calc">
+        <div class="block-label">¿Esta saturación es la que corresponde a este minuto?</div>
+        <div class="calc-row">
+          <div class="calc-field">
+            <label for="satMin">Minutos de vida</label>
+            <select id="satMin" onchange="calcSat()">
+              <option value="">— elegir —</option>
+              <option value="1">1 minuto</option>
+              <option value="2">2 minutos</option>
+              <option value="3">3 minutos</option>
+              <option value="4">4 minutos</option>
+              <option value="5">5 minutos</option>
+              <option value="10">10 minutos o más</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="satVal">Saturación preductal medida (%)</label>
+            <input id="satVal" type="number" inputmode="numeric" min="20" max="100" placeholder="ej: 72" oninput="calcSat()">
+          </div>
+          <button type="button" class="calc-reset" onclick="resetSat()">↺ Limpiar</button>
+        </div>
+        <div class="calc-out" id="satOut">Sensor en la <strong>mano o muñeca derecha</strong>. Elige el minuto de vida y, si quieres, escribe la saturación medida.</div>
+        <div class="calc-note"><strong>Lo que esta tabla corrige.</strong> La intuición de que un recién nacido «debería» estar sobre 90 % es falsa y lleva a dar oxígeno de más. En la serie de referencia de Dawson (468 recién nacidos sin intervención, 61 650 mediciones), la mediana de tiempo hasta alcanzar una saturación &gt; 90 % fue de <strong>7,9 minutos</strong> (rango intercuartílico 5,0–10), y el percentil 50 al minuto de vida fue de <strong>66 %</strong>. <em>Un recién nacido con 70 % al tercer minuto, rosado en tronco y con buena frecuencia cardíaca, está transicionando, no desaturando.</em> Los rangos objetivo usados acá son los de las tablas habituales del algoritmo de reanimación neonatal: verificar los que usa el protocolo institucional.</div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-title">✖ Los errores de ventilación que más veces explican una reanimación que no avanza</div>
+        <ul>
+          <li><strong>Mascarilla que no sella.</strong><span class="cond">Es la causa número uno. Se oye el escape, el pecho no se mueve y el manómetro no sube. Mascarilla del tamaño correcto, sostenida con los dedos sobre el borde y el mentón, no apretada contra la cara.</span></li>
+          <li><strong>Cuello flexionado.</strong><span class="cond">Por el occipucio prominente del recién nacido. Es gratis de corregir y se olvida constantemente.</span></li>
+          <li><strong>Ventilar demasiado rápido.</strong><span class="cond">Impide el vaciamiento, atrapa aire, aumenta el riesgo de neumotórax y disminuye el retorno venoso. La cadencia dicha en voz alta es el remedio.</span></li>
+          <li><strong>Presión insuficiente y no corregirla.</strong><span class="cond">El pulmón que nunca se ventiló necesita abrir: si el pecho no se mueve con 20–25 cm H₂O y los cuatro primeros pasos de MR SOPA ya se hicieron, hay que subir la presión por pasos, no insistir con la misma.</span></li>
+          <li><strong>Interrumpir la ventilación para hacer otra cosa.</strong><span class="cond">Poner el saturómetro, buscar una vía, auscultar largamente, comentar el caso. Cada interrupción es tiempo sin ventilación. <em>Hay un solo trabajo que no se detiene: el de ventilar.</em></span></li>
+          <li><strong>Pasar a compresiones o a adrenalina sin haber movido el pecho.</strong><span class="cond">Es el error más grave de esta página, porque además <em>parece</em> que se está escalando el tratamiento. Si el pecho no se mueve, el escalón que falta es la vía aérea, no el fármaco.</span></li>
+        </ul>
+        <div class="why"><strong>La regla que resume la sección.</strong> Si la frecuencia cardíaca no sube con la ventilación, hay exactamente tres posibilidades, y en este orden: <strong>(1)</strong> el aire no está entrando —vía aérea, sello, presión—; <strong>(2)</strong> está entrando pero el pulmón no se expande —neumotórax, hernia diafragmática, hipoplasia pulmonar—; <strong>(3)</strong> está entrando, el pulmón se expande, y el problema ya no es pulmonar —hipovolemia, asfixia muy prolongada, cardiopatía—. <em>La tercera es la menos frecuente y la única que justifica fármacos.</em></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · COMPRESIONES -->
+  <div class="section s6" id="s6" style="animation-delay:0.26s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Compresiones torácicas</div>
+        <div class="section-subtitle">Relación 3:1 · solo después de una ventilación que mueve el pecho</div>
+      </div>
+      <span class="section-check-count" id="count-s6">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner" style="margin-top:0;">
+        <span class="warning-icon">🚦</span>
+        <span><strong>La condición de entrada, completa, antes de comprimir.</strong> Frecuencia cardíaca
+        <strong>&lt; 60 por minuto</strong> después de <strong>30 segundos de ventilación con presión positiva que
+        mueve el pecho</strong>. Las tres partes cuentan: la cifra, el tiempo y <em>que el pecho se haya movido</em>.
+        Si no se ha conseguido mover el pecho, el paso que corresponde no es comprimir, es completar MR SOPA y
+        asegurar la vía aérea (sección 05). <strong>Lo ideal es intubar o poner una máscara laríngea antes de
+        iniciar compresiones</strong>, y subir el oxígeno al 100 % al empezar.</span>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 760 300" role="img" aria-label="Esquema de la técnica de compresiones torácicas neonatales con los dos pulgares, punto de compresión en el tercio inferior del esternón y profundidad de un tercio del diámetro anteroposterior.">
+          <!-- torax frontal -->
+          <g transform="translate(28,30)">
+            <text x="0" y="0" font-family="Syne, sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">DÓNDE</text>
+            <ellipse cx="110" cy="42" rx="34" ry="30" fill="rgba(148,163,184,0.08)" stroke="#64748b" stroke-width="1.2"/>
+            <path d="M76,66 L72,180 Q110,210 148,180 L144,66 Z" fill="rgba(148,163,184,0.08)" stroke="#64748b" stroke-width="1.2"/>
+            <!-- linea intermamaria -->
+            <line x1="74" y1="112" x2="146" y2="112" stroke="#f59e0b" stroke-width="1.3" stroke-dasharray="4 3"/>
+            <circle cx="90" cy="112" r="3" fill="#f59e0b"/><circle cx="130" cy="112" r="3" fill="#f59e0b"/>
+            <text x="152" y="110" font-family="DM Mono, monospace" font-size="9.5" fill="#fcd34d">línea intermamaria</text>
+            <!-- esternon -->
+            <rect x="103" y="76" width="14" height="78" rx="4" fill="rgba(148,163,184,0.16)" stroke="#64748b" stroke-width="1"/>
+            <!-- tercio inferior -->
+            <rect x="101" y="122" width="18" height="26" rx="4" fill="rgba(239,68,68,0.22)" stroke="#ef4444" stroke-width="1.6"/>
+            <text x="152" y="136" font-family="DM Mono, monospace" font-size="9.5" fill="#fca5a5">tercio inferior del esternón,</text>
+            <text x="152" y="149" font-family="DM Mono, monospace" font-size="9.5" fill="#fca5a5">justo bajo la línea intermamaria</text>
+            <!-- apendice xifoides -->
+            <path d="M110,154 L110,163" stroke="#64748b" stroke-width="1.2"/>
+            <text x="152" y="170" font-family="DM Mono, monospace" font-size="9.5" fill="#94a3b8">✖ nunca sobre el apéndice xifoides</text>
+          </g>
+          <!-- tecnica dos pulgares -->
+          <g transform="translate(356,30)">
+            <text x="0" y="0" font-family="Syne, sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">CÓMO · dos pulgares, manos que abrazan</text>
+            <path d="M40,46 L36,150 Q84,178 132,150 L128,46 Z" fill="rgba(148,163,184,0.08)" stroke="#64748b" stroke-width="1.2"/>
+            <!-- manos -->
+            <path d="M16,60 Q6,104 24,146 Q44,160 56,150" fill="none" stroke="#14b8a6" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M152,60 Q162,104 144,146 Q124,160 112,150" fill="none" stroke="#14b8a6" stroke-width="2.2" stroke-linecap="round"/>
+            <!-- pulgares -->
+            <rect x="72" y="92" width="11" height="26" rx="5" fill="rgba(20,184,166,0.45)" stroke="#14b8a6" stroke-width="1.2"/>
+            <rect x="85" y="92" width="11" height="26" rx="5" fill="rgba(20,184,166,0.45)" stroke="#14b8a6" stroke-width="1.2"/>
+            <text x="172" y="104" font-family="DM Mono, monospace" font-size="9.5" fill="#5eead4">pulgares juntos o</text>
+            <text x="172" y="117" font-family="DM Mono, monospace" font-size="9.5" fill="#5eead4">superpuestos en el prematuro</text>
+            <text x="172" y="134" font-family="DM Mono, monospace" font-size="9.5" fill="#94a3b8">los dedos sostienen la espalda</text>
+            <!-- profundidad -->
+            <g transform="translate(0,196)">
+              <text x="0" y="0" font-family="Syne, sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">CUÁNTO</text>
+              <line x1="40" y1="22" x2="40" y2="66" stroke="#64748b" stroke-width="1.2"/>
+              <line x1="34" y1="22" x2="46" y2="22" stroke="#64748b" stroke-width="1.2"/>
+              <line x1="34" y1="66" x2="46" y2="66" stroke="#64748b" stroke-width="1.2"/>
+              <text x="52" y="30" font-family="DM Mono, monospace" font-size="9.5" fill="#94a3b8">diámetro anteroposterior</text>
+              <rect x="34" y="22" width="12" height="15" fill="rgba(239,68,68,0.35)" stroke="#ef4444" stroke-width="1.2"/>
+              <text x="52" y="48" font-family="DM Sans, sans-serif" font-size="11.5" fill="#fca5a5"><tspan font-weight="500" fill="#fff">un tercio</tspan> de profundidad</text>
+              <text x="52" y="63" font-family="DM Mono, monospace" font-size="9.5" fill="#94a3b8">descompresión completa, sin despegar los pulgares</text>
+            </g>
+          </g>
+          <!-- ritmo -->
+          <g transform="translate(28,222)">
+            <rect x="0" y="0" width="300" height="72" rx="9" fill="rgba(99,102,241,0.10)" stroke="rgba(99,102,241,0.4)" stroke-width="1.2"/>
+            <text x="14" y="21" font-family="Syne, sans-serif" font-size="12" font-weight="700" fill="#a5b4fc">RITMO · 3:1</text>
+            <text x="14" y="40" font-family="DM Mono, monospace" font-size="11" fill="#c7d2fe">«uno — y — dos — y — tres — y — ventila»</text>
+            <text x="14" y="55" font-family="DM Mono, monospace" font-size="9.5" fill="#94a3b8">90 compresiones + 30 ventilaciones</text>
+            <text x="14" y="67" font-family="DM Mono, monospace" font-size="9.5" fill="#94a3b8">= 120 eventos por minuto</text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Esquema 3 · compresiones torácicas neonatales.</strong> Punto de compresión, técnica de los dos pulgares con las manos abrazando el tórax, profundidad de un tercio del diámetro anteroposterior y la cadencia 3:1 dicha en voz alta. Dibujo orientativo, no una ilustración anatómica a escala.</div>
+      </div>
+
+      <div class="checklist" id="list-s6">
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">1 · Confirmar</span><strong>Decir en voz alta la condición de entrada antes de empezar:</strong> «frecuencia cardíaca bajo 60, llevamos 30 segundos ventilando y el pecho se mueve, inicio compresiones». <em>Esa frase evita el error de comprimir sobre una ventilación que no ventila</em>, y además deja constancia de la hora.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">2 · Vía aérea y oxígeno</span><strong>Asegurar la vía aérea —tubo endotraqueal o máscara laríngea— y subir el oxígeno al 100 %.</strong> Si no hay quien intube, se comprime con mascarilla bien sellada: <em>no se suspenden las compresiones por esperar una intubación</em>. El oxígeno se vuelve a titular en cuanto la frecuencia se recupere.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">3 · Posición</span><strong>Técnica de los dos pulgares con las manos abrazando el tórax, en el tercio inferior del esternón.</strong> Es la técnica preferida: genera mejores presiones y cansa menos. Los pulgares van juntos —o superpuestos en el recién nacido muy pequeño—, justo bajo la línea intermamaria y <strong>nunca sobre el apéndice xifoides</strong>. Quien comprime se ubica <em>a los pies o al lado</em>, para dejar libre la cabeza.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">4 · Profundidad</span><strong>Un tercio del diámetro anteroposterior del tórax, con descompresión completa.</strong> Los pulgares <em>no se despegan</em> del tórax entre compresiones, para no perder el punto. La descompresión incompleta es tan deletérea como la profundidad insuficiente: el corazón se llena en la fase de descompresión.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">5 · Ritmo 3:1</span><strong>Tres compresiones por cada ventilación, contadas en voz alta: «uno — y — dos — y — tres — y — ventila».</strong> Son <strong>90 compresiones y 30 ventilaciones por minuto</strong>, es decir 120 eventos. <em>Compresiones y ventilaciones no son simultáneas en el recién nacido</em>: se intercalan. La relación 3:1 refleja el origen respiratorio del paro neonatal; si el paro es claramente de causa cardíaca después del nacimiento, puede considerarse 15:2, <em>según el protocolo institucional</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">6 · Reevaluar</span><strong>Reevaluar la frecuencia cardíaca cada 60 segundos, no antes.</strong> Interrumpir a cada rato para contar destruye la perfusión que se estaba generando. <em>El electrocardiograma permite ver la frecuencia sin interrumpir, y es su principal ventaja en este momento.</em> Se suspenden las compresiones cuando la frecuencia es <strong>≥ 60 por minuto</strong>, y se continúa ventilando.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s6')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">7 · Rotar</span><strong>Rotar a quien comprime si la reanimación se prolonga.</strong> La calidad cae con la fatiga antes de que la persona lo note, y en el recién nacido la caída no se ve. Al mismo tiempo, <em>alguien debe estar consiguiendo el acceso vascular</em> para la sección 07: las compresiones no se interrumpen para eso.</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · FÁRMACOS Y ACCESOS -->
+  <div class="section s7" id="s7" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Adrenalina, volumen y accesos</div>
+        <div class="section-subtitle">Lo último de la lista, y la calculadora que evita el error por diez</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner" style="margin-top:0;">
+        <span class="warning-icon">💉</span>
+        <span><strong>La trampa de concentración, dicha con todas sus letras.</strong> La adrenalina neonatal se usa
+        a <strong>0,1 mg/mL</strong> (la antigua dilución «1:10 000»). La presentación habitual en Chile es de
+        <strong>1 mg/mL</strong> («1:1000»), que es <strong>diez veces más concentrada</strong>. Administrar el
+        volumen correcto de la ampolla equivocada es una sobredosis de <strong>diez veces</strong>. Por eso la
+        dilución se prepara y se rotula <em>antes</em> (sección 01): <strong>1 mL de la ampolla de 1 mg/mL + 9 mL de
+        suero fisiológico = 10 mL a 0,1 mg/mL</strong>. Verificar las presentaciones disponibles en el servicio y la
+        forma de preparación con el protocolo institucional.</span>
+      </div>
+
+      <div class="calc">
+        <div class="block-label">Calculadora de dosis y material por peso y edad gestacional</div>
+        <div class="calc-row">
+          <div class="calc-field">
+            <label for="dosPeso">Peso estimado o real (kg)</label>
+            <input id="dosPeso" type="number" inputmode="decimal" step="0.05" min="0.3" max="6" placeholder="ej: 3,2" oninput="calcDosis()">
+          </div>
+          <div class="calc-field">
+            <label for="dosEg">Edad gestacional (semanas)</label>
+            <select id="dosEg" onchange="calcDosis()">
+              <option value="">— elegir —</option>
+              <option value="24">23 – 24</option>
+              <option value="26">25 – 26</option>
+              <option value="28">27 – 29</option>
+              <option value="31">30 – 32</option>
+              <option value="34">33 – 34</option>
+              <option value="36">35 – 37</option>
+              <option value="39">38 – 40</option>
+              <option value="42">41 – 43</option>
+            </select>
+          </div>
+          <button type="button" class="calc-reset" onclick="resetDosis()">↺ Limpiar</button>
+        </div>
+        <div class="calc-out" id="dosOut">Escribe el peso para calcular los volúmenes, y la edad gestacional para el material de vía aérea.</div>
+        <div class="calc-note"><strong>Verificar antes de administrar.</strong> Esta calculadora aplica aritmética a esquemas de dosis habituales y <strong>no reemplaza la verificación con el protocolo institucional, el formulario nacional y el prospecto del producto</strong>. Toda dosis se confirma en voz alta con una segunda persona —fármaco, concentración, dosis, volumen y vía— antes de administrarse. Los calibres y las profundidades de tubo son <em>puntos de partida</em>: el que vale es el que se confirma por auscultación, movimiento del tórax y detección de CO₂ exhalado. En el prematuro de peso extremadamente bajo las reglas basadas en el peso pierden exactitud.</div>
+      </div>
+
+      <div class="subhead">Fármacos de la reanimación neonatal</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Fármaco</th><th>Indicación y esquema habitual</th><th>Advertencias</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Adrenalina</strong><br><span class="dose-note">vía intravenosa o intraósea · 0,1 mg/mL</span></td>
+              <td><span class="dose-main">0,01–0,03 mg/kg = <strong>0,1–0,3 mL/kg</strong> de la solución de 0,1 mg/mL</span><br><span class="dose-note">repetir cada 3–5 min mientras la frecuencia siga &lt; 60</span></td>
+              <td>Indicada cuando la frecuencia cardíaca sigue <strong>&lt; 60</strong> después de <strong>60 segundos</strong> de compresiones coordinadas con ventilación efectiva, de preferencia con vía aérea avanzada y oxígeno al 100 %. Se pasa rápido y se <em>arrastra con 0,5–1 mL de suero fisiológico</em>. <strong>No es un sustituto de ventilar</strong>: sobre un pulmón no ventilado no funciona.</td>
+            </tr>
+            <tr>
+              <td><strong>Adrenalina</strong><br><span class="dose-note">vía endotraqueal · solo si no hay acceso vascular</span></td>
+              <td><span class="dose-main">0,05–0,1 mg/kg = <strong>0,5–1 mL/kg</strong> de la solución de 0,1 mg/mL</span></td>
+              <td>Dosis <strong>mayor</strong> que la intravenosa, porque la absorción es errática. <em>Es una medida puente mientras se consigue el acceso</em>, no la vía de elección: si se usó esta vía y no hubo respuesta, se administra la dosis intravenosa en cuanto haya acceso, sin esperar el intervalo completo.</td>
+            </tr>
+            <tr>
+              <td><strong>Expansión de volumen</strong><br><span class="dose-note">suero fisiológico, o sangre O Rh negativo</span></td>
+              <td><span class="dose-main"><strong>10 mL/kg</strong> en 5–10 minutos</span><br><span class="dose-note">puede repetirse según respuesta</span></td>
+              <td>Indicada ante <strong>sospecha de hipovolemia</strong>: pérdida de sangre conocida o sospechada —desprendimiento, placenta previa, transfusión fetomaterna, vasa previa, hemorragia del cordón— o palidez y mala perfusión que no responden. <em>La infusión rápida en el prematuro se asocia a hemorragia intraventricular</em>: en ese grupo se administra más lento, según el protocolo institucional. No se usa como medida de rutina.</td>
+            </tr>
+            <tr>
+              <td><strong>Glucosa</strong><br><span class="dose-note">suero glucosado al 10 %</span></td>
+              <td><span class="dose-main">Habitualmente 2 mL/kg en bolo</span><br><span class="dose-note">seguido de infusión de mantención</span></td>
+              <td>Para <strong>hipoglicemia documentada</strong>, no empírica. Los <strong>umbrales de glicemia, el volumen del bolo y el esquema de mantención se verifican con el protocolo institucional</strong>, porque varían entre guías y según la edad posnatal. Medir glicemia es parte del cuidado posreanimación (sección 09).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="stop">
+        <div class="stop-title">✖ Fármacos que no tienen lugar en la reanimación neonatal inmediata</div>
+        <ul>
+          <li><strong>Naloxona.</strong><span class="cond">No se recomienda como parte de la reanimación inicial del recién nacido deprimido, ni siquiera cuando la madre recibió opioides. <em>El tratamiento de la depresión respiratoria del recién nacido es la ventilación</em>, y la naloxona en el hijo de madre dependiente de opioides puede precipitar convulsiones por deprivación aguda.</span></li>
+          <li><strong>Bicarbonato de sodio.</strong><span class="cond">No se recomienda en la reanimación de la sala de partos. Es hiperosmolar, aumenta la carga de CO₂ —que hay que ventilar— y se asocia a hemorragia intraventricular en el prematuro.</span></li>
+          <li><strong>Atropina, calcio y vasopresores distintos de la adrenalina.</strong><span class="cond">Sin lugar establecido en los primeros minutos. La bradicardia neonatal es hipóxica, no vagal: la atropina no corrige la causa.</span></li>
+          <li><strong>Estimulantes respiratorios y «analepticos».</strong><span class="cond">Sin indicación. El estímulo que sirve son 40 a 60 ventilaciones por minuto.</span></li>
+        </ul>
+        <div class="why"><strong>La idea que ordena toda la sección.</strong> En el adulto, los fármacos ocupan un lugar temprano de la reanimación. En el recién nacido ocupan el <em>último</em>, y la razón es fisiológica: el corazón casi siempre está sano y lo que falta es que el pulmón se llene de aire por primera vez. <strong>La proporción de reanimaciones neonatales que llega a necesitar adrenalina es muy pequeña</strong>, y una parte de las que llegan es porque la ventilación no estaba funcionando.</div>
+      </div>
+
+      <div class="subhead">Accesos vasculares, en orden de preferencia</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">①</span><span><strong>Vena umbilical.</strong> Es el acceso de elección en la reanimación neonatal: es rápido, grande y está a la vista. Se identifica la vena —<em>única, de pared delgada y lumen amplio, frente a las dos arterias de pared gruesa</em>—, se introduce el catéter unos pocos centímetros, <strong>solo hasta obtener retorno de sangre libre</strong>, y se fija. <em>No se avanza «hasta donde entre»</em>: el objetivo acá es administrar fármacos, no una posición central. La profundidad, el calibre y la técnica estéril se verifican con el protocolo institucional.</span></div>
+        <div class="plain-item"><span class="bullet-icon">②</span><span><strong>Vía intraósea.</strong> Alternativa válida cuando la vena umbilical no es posible —cordón ya seccionado y retraído, onfalocele, sin material— o cuando el equipo tiene más destreza con ella. Es utilizable en el recién nacido, incluido el prematuro, <em>con la advertencia de que el hueso es frágil y las complicaciones locales son más frecuentes que en el niño mayor</em>: sitio, calibre y técnica según el protocolo institucional.</span></div>
+        <div class="plain-item"><span class="bullet-icon">③</span><span><strong>Vía periférica.</strong> Útil si ya está puesta, poco realista como plan en un recién nacido en paro: tarda y se pierden intentos. <em>No se insiste con punciones periféricas mientras la frecuencia cardíaca sigue bajo 60.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠</span><span><strong>Lo que no se hace:</strong> interrumpir las compresiones o la ventilación para conseguir un acceso. El acceso lo consigue <em>otra</em> persona, en paralelo. Si no hay nadie más, la prioridad sigue siendo ventilar y comprimir.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · EL PREMATURO -->
+  <div class="section s8" id="s8" style="animation-delay:0.34s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">El prematuro: lo que cambia</div>
+        <div class="section-subtitle">El calor como intervención, el pulmón como órgano frágil</div>
+      </div>
+      <span class="section-check-count" id="count-s8">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="amber-banner" style="margin-top:0;">
+        <span class="warning-icon">🌡️</span>
+        <span><strong>En el prematuro, el calor no es confort: es tratamiento.</strong> En la cohorte de la red
+        neonatal estadounidense de Laptook (5277 recién nacidos de 401 a 1499 g), <strong>14,3 % llegó a la unidad
+        con temperatura bajo 35 °C</strong>, y en el análisis ajustado cada <strong>grado centígrado menos de
+        temperatura de ingreso se asoció a un 28 % más de mortalidad</strong> y a un 11 % más de sepsis tardía. Los
+        autores son explícitos en que no se puede afirmar si la hipotermia es causa o marcador —<em>eso sigue sin
+        resolverse</em>—, pero el gesto que se deduce es el mismo y es gratis: <strong>no dejar que se enfríe</strong>.
+        La meta es temperatura axilar de <strong>36,5–37,5 °C</strong>, y la hipertermia también es dañina: no se
+        trata de calentar de más.</span>
+      </div>
+
+      <div class="checklist" id="list-s8">
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">1 · Térmico</span><strong>Paquete térmico completo desde el primer segundo:</strong> sala más tibia, cuna de calor radiante precalentada, gorro, <strong>bolsa o film de polietileno sobre la piel húmeda sin secar con fricción</strong> en el muy prematuro, colchón térmico si existe, manipulación mínima y traslado en incubadora. <em>Verificar con el protocolo institucional</em> el umbral de edad gestacional para cada medida y la temperatura de sala que usa el servicio.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">2 · Medir</span><strong>Medir la temperatura, no estimarla, y volver a medirla antes del traslado.</strong> La hipotermia del prematuro <em>no da signos durante la reanimación</em>: se descubre al llegar a la unidad, cuando ya está hecha y ya contó.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">3 · CPAP antes que tubo</span><strong>Si respira espontáneamente y tiene buena frecuencia cardíaca, presión positiva continua antes que intubación.</strong> El prematuro que respira con dificultad se beneficia de que no se le abra la vía aérea con un tubo que no necesitaba. <em>Si está apneico o bradicárdico, no: eso es ventilación con presión positiva.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">4 · Pulmón frágil</span><strong>Ventilar con la presión mínima que mueva el pecho, con PEEP y con oxígeno titulado.</strong> El pulmón inmaduro se lesiona por volumen y por oxígeno: <em>los dos daños se hacen en los primeros minutos y duran meses</em>. Reanimador en T con manómetro cuando esté disponible, y la mirada puesta en el pecho, no en el manómetro.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">5 · Surfactante</span><strong>Plantear el surfactante, pero no improvisarlo.</strong> La indicación, la ventana de tiempo, la dosis y la técnica —intubación, instilación o técnicas menos invasivas— <strong>las define el protocolo institucional y habitualmente el equipo de neonatología</strong>. En un servicio de urgencia general, lo que corresponde es <em>plantearlo en la llamada</em> y preparar el traslado, no administrarlo sin el equipo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">6 · Glicemia</span><strong>Medir glicemia precozmente.</strong> El prematuro, el pequeño para la edad gestacional, el grande, el hijo de madre diabética y cualquier recién nacido que no se alimenta bien o está hipotónico tienen riesgo de hipoglicemia, que es <em>frecuente, silenciosa y tratable</em>. <strong>Umbrales y esquema según el protocolo institucional.</strong></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s8')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">7 · Hablar</span><strong>En el límite de la viabilidad, hablar con los padres es parte del tratamiento.</strong> Qué significa esta edad gestacional, qué se va a intentar y qué no, y qué decisiones pueden tener que tomar. <strong>El umbral local de viabilidad y de reanimación activa del prematuro extremo lo define el protocolo institucional</strong> junto con neonatología, <em>no esta página y no la urgencia sola</em>. La conversación y sus acuerdos se registran en la ficha.</span>
+        </button>
+      </div>
+
+      <div class="info-banner">
+        <span class="warning-icon">📐</span>
+        <span><strong>Lo que cambia en los números.</strong> Mascarilla y tubo más pequeños, hoja de laringoscopio
+        más corta, pulgares superpuestos en las compresiones, concentración inicial de oxígeno más baja, PEEP más
+        importante, infusión de volumen más lenta. La calculadora de la sección 07 entrega esos valores por edad
+        gestacional. <em>Y una advertencia de método: en el prematuro de peso extremadamente bajo, las reglas
+        basadas en el peso pierden exactitud</em> y el valor que vale es el que se confirma en el paciente.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · DESPUÉS -->
+  <div class="section s9" id="s9" style="animation-delay:0.38s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Después de la reanimación</div>
+        <div class="section-subtitle">El recién nacido que no responde, la encefalopatía y cuándo detenerse</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">El recién nacido que no responde: las causas que hay que buscar</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🫁</span><span><strong>Neumotórax.</strong> Deterioro brusco durante la ventilación, asimetría del murmullo, desplazamiento del latido. Es la complicación mecánica que más veces explica un deterioro súbito bajo ventilación con presión positiva, y la que más rápido se resuelve. <em>El diagnóstico y la punción se verifican con el protocolo institucional.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🩸</span><span><strong>Hipovolemia.</strong> Palidez marcada, pulsos débiles, mala respuesta a una ventilación que sí mueve el pecho, con antecedente de sangrado —desprendimiento, placenta previa, vasa previa, sangrado del cordón, transfusión fetomaterna—. Es la indicación clásica de los 10 mL/kg de la sección 07.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⬇️</span><span><strong>Hernia diafragmática congénita.</strong> Abdomen excavado, murmullo ausente en un hemitórax, latido desplazado, dificultad respiratoria precoz. <strong>Aquí la ventilación con mascarilla hace daño</strong>: distiende el intestino intratorácico y empeora la compresión pulmonar. La conducta es <em>intubar precozmente y descomprimir el estómago con sonda</em>, y llamar con urgencia.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">👄</span><span><strong>Obstrucción de la vía aérea alta.</strong> Micrognatia y glosoptosis —secuencia de Pierre Robin—, higroma o masa cervical, atresia de coanas. Pistas: ventila bien con la boca abierta y mal con la boca cerrada, o mejora en <em>prono</em>. Medidas de rescate: posición prona, cánula nasofaríngea, máscara laríngea. <strong>Verificar con el protocolo institucional.</strong></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">💙</span><span><strong>Cardiopatía congénita e hipertensión pulmonar.</strong> Rara como causa de un fracaso de reanimación en el primer minuto, relevante en el recién nacido que <em>se ventila bien y sigue hipoxémico o en shock</em>. No es un diagnóstico de los primeros minutos: es la razón para no quedarse tranquilo ni cerrar el caso.</span></div>
+      </div>
+
+      <div class="subhead">Cuidados posreanimación</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🌡️</span><span><strong>Temperatura, en los dos sentidos.</strong> Evitar la hipotermia y también la <strong>hipertermia</strong>, que empeora el daño después de un evento hipóxico. Si el recién nacido es candidato a hipotermia terapéutica, <em>no se recalienta activamente</em> mientras se consulta: esa decisión y su umbral se verifican con neonatología y el protocolo institucional.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩺</span><span><strong>Monitorización y exámenes.</strong> Saturación, frecuencia cardíaca, presión arterial, <strong>glicemia</strong> y temperatura. Gases, hemograma y lactato según disponibilidad y protocolo. Mantener la saturación en rango objetivo: <em>el oxígeno al 100 % mantenido después de la recuperación no es neutro</em>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🍼</span><span><strong>No alimentar al recién nacido que acaba de ser reanimado</strong> hasta que el equipo que lo recibe lo autorice, y sonda gástrica si se ventiló prolongadamente con mascarilla —el estómago queda distendido de aire y eso limita la ventilación—.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚑</span><span><strong>Traslado con cama receptora confirmada por nombre</strong>, en incubadora, con la vía aérea asegurada si se intubó y con el registro de los tiempos en la mano. <em>«Avisado» no es «confirmado».</em></span></div>
+      </div>
+
+      <div class="subhead">Encefalopatía hipóxico-isquémica y la ventana de las 6 horas</div>
+      <div class="warning-banner">
+        <span class="warning-icon">🧠</span>
+        <span><strong>Es la decisión posreanimación con más impacto a largo plazo, y tiene plazo.</strong> En la
+        revisión Cochrane de Jacobs (11 ensayos, 1505 recién nacidos de término y pretérmino tardío con
+        encefalopatía moderada o severa y evidencia de asfixia intraparto), la hipotermia terapéutica redujo el
+        desenlace combinado de <strong>muerte o discapacidad mayor del neurodesarrollo a los 18 meses: RR 0,75
+        (IC 95 % 0,68–0,83), NNT 7</strong>; la <strong>mortalidad: RR 0,75 (0,64–0,88), NNT 11</strong>; y la
+        discapacidad en los sobrevivientes: RR 0,77 (0,63–0,94), NNT 8. Los propios autores establecen la
+        condición operativa: <strong>debe instaurarse si el recién nacido se identifica antes de las 6 horas de
+        vida</strong>. Es decir, <em>la tarea de la urgencia no es enfriar: es reconocer, consultar y trasladar
+        dentro de esa ventana</em>.</span>
+      </div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔎</span><span><strong>A quién hay que plantearlo.</strong> Recién nacido de <strong>35–36 semanas o más</strong> —el umbral exacto de edad gestacional lo define el protocolo institucional— con evidencia de evento hipóxico-isquémico perinatal <em>y</em> signos de encefalopatía moderada o severa en el examen: alteración del estado de conciencia, hipotonía, reflejos primitivos ausentes o débiles, alteraciones pupilares o de la mirada, respiración irregular, convulsiones. <strong>Los criterios de ingreso —gases, Apgar, necesidad de reanimación prolongada, estadificación del examen neurológico— se verifican con el protocolo institucional y con el centro que enfría.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">📞</span><span><strong>Qué hace la urgencia.</strong> Reconocer, <strong>registrar la hora de nacimiento</strong> —que es la que marca la ventana—, medir y documentar el examen neurológico, evitar la hipertermia, consultar al centro de referencia y coordinar el traslado. <em>La temperatura objetivo, la duración y el método del enfriamiento son del centro que lo realiza</em>, con su protocolo y su seguimiento.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠</span><span><strong>Lo que no se hace:</strong> enfriar de forma improvisada con hielo o compresas, ni «enfriar un poco mientras llega el traslado», fuera de un protocolo que lo indique y supervise. <em>El enfriamiento sin control de temperatura puede causar hipotermia excesiva y daño.</em> Igual de importante: no recalentar activamente a un candidato antes de consultar.</span></div>
+      </div>
+
+      <div class="subhead">Apgar, registro y la pregunta de cuándo detenerse</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🔢</span><span><strong>Apgar al minuto y a los 5 minutos, con la hora anotada</strong>, y si a los 5 minutos es menor de 7, se repite cada 5 minutos hasta los 20. <em>Describe la condición y sirve para el registro y para los criterios de encefalopatía; no se usa para decidir la reanimación</em>, que ya se decidió mucho antes con la respiración y la frecuencia cardíaca. Conviene registrar además <strong>qué intervenciones estaban en curso</strong> en cada puntaje: un Apgar de 4 bajo ventilación no significa lo mismo que un Apgar de 4 sin apoyo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏹️</span><span><strong>Cuándo es razonable detenerse.</strong> Cuando la frecuencia cardíaca se mantiene <strong>indetectable</strong> pese a haber ejecutado <em>todos</em> los pasos —ventilación confirmada por movimiento del pecho, vía aérea avanzada, compresiones, adrenalina y causas reversibles revisadas—, las guías plantean que es razonable discutir la redirección de los cuidados <strong>alrededor de los 20 minutos de vida</strong>. <em>El plazo exacto, quién toma la decisión y cómo se documenta se verifican con el protocolo institucional</em>; la decisión se toma <strong>con el equipo y con la familia informada</strong>, nunca por una sola persona y nunca sin haber confirmado que la ventilación era efectiva.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚫</span><span><strong>Y cuándo es razonable no iniciar.</strong> En situaciones de edad gestacional extremadamente baja, malformación letal confirmada o cuando existe una decisión anticipada acordada con la familia. <em>Es una decisión de equipo, con neonatología y según el umbral local de viabilidad</em>, y no es una decisión que se improvise en el box: ante la duda, se reanima y se reevalúa con información.</span></div>
+      </div>
+
+      <div class="links-row">
+        <a class="cross-link" href="./checklist-parto-urgencia.html">Trabajo de parto en urgencia →</a>
+        <a class="cross-link" href="./checklist-cricotiroidotomia.html">Vía aérea quirúrgica (adulto) →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · REGISTRO, EQUIPO Y FAMILIA -->
+  <div class="section s10" id="s10" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Registro, equipo y familia</div>
+        <div class="section-subtitle">Lo que no está en ninguna lista de pasos</div>
+      </div>
+      <span class="section-check-count" id="count-s10">0/6</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="checklist" id="list-s10">
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">1 · Hora de nacimiento</span><strong>La hora exacta del nacimiento, anotada por alguien.</strong> Es el dato del que dependen el minuto de oro, los Apgar, la ventana de las 6 horas de la hipotermia terapéutica y toda la reconstrucción posterior. <em>Es también el dato que más veces se pierde</em>, porque en el momento todos estaban haciendo otra cosa.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">2 · Identificación</span><strong>Identificación del recién nacido puesta antes de que salga del box</strong>, con sexo, peso si es posible, y la correspondencia con su madre verificada. <em>En un parto inesperado en urgencia este paso se salta con facilidad y después es muy difícil de reconstruir.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">3 · Profilaxis</span><strong>Vitamina K y profilaxis ocular según el protocolo del servicio</strong>, y registro de lo administrado con hora. <em>Dosis, vía y momento se verifican con el protocolo institucional.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">4 · Hablarle a la madre</span><strong>Decirle a la madre que su hijo nació, si está bien o no, y qué va a pasar ahora.</strong> En un parto inesperado en urgencia ella es <em>la persona con menos información de toda la sala</em>, y con frecuencia la última a la que alguien le habla. Si el recién nacido se traslada, se le dice <strong>a dónde, con quién y cuándo va a tener noticias</strong>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">5 · Entrega</span><strong>Entrega estructurada a quien recibe:</strong> edad gestacional, hora de nacimiento, qué se hizo y a qué minuto, concentración de oxígeno usada, dosis administradas, temperatura, glicemia, Apgar y <em>si hay sospecha de encefalopatía y a qué hora vence la ventana de 6 horas</em>. Se entrega en voz alta y por escrito, no solo en voz alta.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s10')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">6 · Repasar</span><strong>Repaso breve del equipo cuando termina, pase lo que haya pasado.</strong> Qué funcionó, qué faltó en el carro, qué se demoró y por qué. <em>Es el único momento en que una reanimación neonatal poco frecuente se convierte en aprendizaje para la próxima</em>, y es también cuando se detecta que el equipo quedó afectado. Dos minutos, de pie, sin buscar culpables.</span>
+        </button>
+      </div>
+
+      <div class="copy-box">
+        <div class="copy-bar">
+          <span>Registro de reanimación neonatal</span>
+          <button type="button" class="copy-btn" id="copyBtn" onclick="copyRegistro()">Copiar</button>
+        </div>
+        <pre class="copy-pre" id="registroPre">REANIMACIÓN NEONATAL EN SERVICIO DE URGENCIA
+
+Hora de nacimiento: __:__ h   (hora que define el minuto de oro, los Apgar y la ventana de 6 h)
+Edad gestacional: __ sem __ días (por FUM / ecografía / carné de control / estimada)
+Sexo: __   ·   Peso: ____ g (real / estimado)   ·   Embarazo único / múltiple (__ de __)
+Líquido amniótico: claro / meconial fluido / meconial espeso / con sangre / fétido
+Factores de riesgo: ______________________________________________________
+Equipo presente al nacer: ________________________________________________
+
+EVALUACIÓN AL NACER (tres preguntas)
+¿De término? sí / no      ¿Buen tono? sí / no      ¿Respira o llora? sí / no
+Cordón: clampeo diferido __ s / inmediato, motivo ____________________________
+
+PASOS INICIALES (primeros 30 s)                                  hora __:__
+[ ] Calor (cuna radiante, gorro, paño seco)   [ ] Posición neutra
+[ ] Secado y estimulación                     [ ] Aspiración (motivo: ____________)
+Frecuencia cardíaca a los 30 s: ____ lpm   ·   Respiración: apnea / boqueo / regular
+
+VENTILACIÓN CON PRESIÓN POSITIVA
+Iniciada a los ____ segundos de vida (meta: &lt; 60 s)              hora __:__
+Dispositivo: bolsa autoinflable / bolsa de anestesia / reanimador en T
+Oxígeno inicial: ____ %   ·   Presión inspiratoria ____ cmH2O   ·   PEEP ____ cmH2O
+Pecho que se mueve: sí / no    Pasos correctores MR SOPA aplicados: ____________
+Vía aérea avanzada: no / tubo __ mm a __ cm / máscara laríngea n° __   hora __:__
+  Confirmación: auscultación / movimiento torácico / CO2 exhalado
+CPAP: no / sí, ____ cmH2O
+
+COMPRESIONES TORÁCICAS
+Inicio: hora __:__ , a los ____ s de vida   ·   FC previa ____ lpm
+Relación 3:1   ·   Oxígeno subido a 100 %: sí / no   ·   Duración total ____ min
+Suspendidas con FC ____ lpm a las __:__ h
+
+FÁRMACOS Y ACCESOS (fármaco, concentración, dosis, volumen, vía, hora)
+Acceso: vena umbilical / intraósea / periférica / ninguno        hora __:__
+Adrenalina 0,1 mg/mL: ____ mL ( ____ mg/kg) por vía ______ a las __:__ h
+  2.ª dosis __:__ h ____ mL    3.ª dosis __:__ h ____ mL
+Suero fisiológico 10 mL/kg: ____ mL en ____ min a las __:__ h
+Glucosa 10 %: ____ mL a las __:__ h   (glicemia previa ____ mg/dL)
+Otros: ________________________________________________________________
+
+EVOLUCIÓN Y SATURACIÓN PREDUCTAL (sensor mano derecha)
+min 1: FC ____ SpO2 ____ %      min 5: FC ____ SpO2 ____ %
+min 10: FC ____ SpO2 ____ %     Oxígeno al traslado: ____ %
+APGAR: 1 min ____   5 min ____   10 min ____   15 min ____   20 min ____
+  (intervenciones en curso en cada puntaje: ____________________________)
+Temperatura axilar: ____ °C a las __:__ h (meta 36,5–37,5 °C)
+Glicemia: ____ mg/dL a las __:__ h
+
+ENCEFALOPATÍA E HIPOTERMIA TERAPÉUTICA
+Examen neurológico: normal / alterado — describir: ____________________________
+¿Se plantea hipotermia terapéutica? no / sí → consultado con ____________ a las __:__ h
+VENTANA DE 6 HORAS VENCE A LAS: __:__ h
+Recalentamiento activo evitado: sí / no aplica
+
+DESENLACE Y DESTINO
+[ ] Recuperación con FC ≥ 100 y respiración espontánea a las __:__ h
+[ ] Traslado a ____________ , cama confirmada con ____________ a las __:__ h
+[ ] Reanimación suspendida a las __:__ h , a los ____ min de vida
+    Decisión tomada con: ____________________  Familia informada por: ____________
+Identificación puesta: sí / no   ·   Vitamina K: __:__ h   ·   Profilaxis ocular: __:__ h
+Madre informada por ____________ a las __:__ h
+Repaso del equipo realizado: sí / no   ·   Pendientes del carro: ____________________
+
+Profesional responsable: ______________________   Firma: ______________</pre>
+        <div class="copy-hint">Plantilla para pegar en la ficha clínica y completar. <strong>No se guarda ningún dato en este dispositivo</strong>: el cronómetro, el checklist y las calculadoras se reinician al cerrar la página, y el registro clínico se hace en la ficha.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni la asesoría de
+    neonatología, ni —y esto es especialmente cierto acá— <strong>el entrenamiento presencial y la simulación
+    periódica en reanimación neonatal</strong>. La reanimación neonatal es una competencia que se mantiene
+    practicando: <strong>leer un checklist no sustituye el curso acreditado que esté vigente en el servicio</strong>,
+    y la ventilación con mascarilla, la intubación neonatal, la máscara laríngea, la cateterización de la vena
+    umbilical y la vía intraósea son procedimientos que requieren entrenamiento supervisado.
+    <strong>El protocolo de reanimación neonatal vigente de la institución es el que manda</strong> sobre esta
+    página en cada punto en que difieran. Todas las <strong>dosis</strong> mencionadas —adrenalina, expansión de
+    volumen, glucosa— y todos los <strong>parámetros de ventilación</strong> —presión inspiratoria, PEEP, CPAP,
+    concentración inicial de oxígeno— son órdenes de magnitud habituales y <strong>deben verificarse con el
+    protocolo institucional y el formulario nacional antes de administrar o programar</strong>, junto con sus
+    contraindicaciones y su forma de preparación. Se advierte de manera específica que la
+    <strong>adrenalina neonatal se usa a 0,1 mg/mL y que la presentación habitual en Chile es diez veces más
+    concentrada</strong>: la dilución y el rotulado se verifican antes de cada uso. La <strong>calculadora de dosis
+    y material</strong> solo aplica aritmética a esquemas habituales, no valida la indicación y <em>pierde exactitud
+    en el prematuro de peso extremadamente bajo</em>; los calibres y profundidades de tubo que entrega son puntos de
+    partida que se confirman en el paciente. El <strong>orientador del algoritmo no es una regla de decisión
+    validada</strong>: reproduce la lógica del algoritmo en su forma más simple y no incorpora edad gestacional,
+    malformaciones ni contexto. Las <strong>metas de tiempo del cronómetro son referenciales</strong>, con una sola
+    excepción con respaldo en las guías: el <strong>inicio de la ventilación con presión positiva dentro de los
+    primeros 60 segundos</strong> cuando está indicada; la otra cifra con respaldo citable es la
+    <strong>ventana de 6 horas</strong> para la hipotermia terapéutica. Deben verificarse con el
+    <strong>protocolo institucional</strong>, con neonatología y con la red de derivación: la concentración inicial
+    de oxígeno por banda de edad gestacional y los rangos objetivo de saturación; las presiones de ventilación, el
+    manejo de las primeras insuflaciones y el nivel de CPAP; el tiempo exacto de clampeo diferido y el lugar del
+    ordeñamiento del cordón y de la estabilización con cordón intacto, que son <em>puntos en que las guías vigentes
+    discrepan entre sí</em>; la presión de aspiración y los calibres de sonda; los tamaños de máscara laríngea y los
+    dispositivos disponibles; la técnica, profundidad y calibre de la cateterización umbilical y de la vía
+    intraósea; la velocidad de infusión del volumen en el prematuro; los <strong>umbrales de hipoglicemia</strong> y
+    el esquema de corrección y mantención; las medidas térmicas por banda de edad gestacional y la temperatura de
+    sala; la indicación, ventana, dosis y técnica del <strong>surfactante</strong>; los <strong>criterios de ingreso
+    a hipotermia terapéutica</strong>, el umbral de edad gestacional, la estadificación del examen neurológico y el
+    centro de referencia que la realiza; el <strong>umbral local de viabilidad</strong> y de reanimación activa del
+    prematuro extremo; el plazo, la autoridad y la documentación de la decisión de <strong>no iniciar o
+    suspender</strong> la reanimación; el esquema de vitamina K y profilaxis ocular; y las vías de derivación y los
+    tiempos reales de la red neonatal. Los <strong>esquemas son dibujos orientativos, no fotografías ni
+    ilustraciones anatómicas a escala.</strong> El contenido está escrito para la <strong>atención inicial de un
+    recién nacido en un servicio de urgencia general</strong>, en los minutos en que neonatología aún no ha llegado,
+    y no para la conducción de una reanimación en una unidad de neonatología ni para el cuidado intensivo posterior.
+    El cronómetro, el checklist y las calculadoras <strong>no guardan ningún dato</strong>: el registro se hace en la
+    ficha clínica.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
+    <div class="references-list">
+      <div class="ref-item">Liley HG, Weiner GM, Wyckoff MH, et al. <em>Neonatal Life Support: 2025 International Liaison Committee on Resuscitation Consensus on Science With Treatment Recommendations.</em> Circulation. 2025;152(16_suppl_1):S165–S204. <a href="https://doi.org/10.1161/CIR.0000000000001363" target="_blank" rel="noopener">DOI: 10.1161/CIR.0000000000001363</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/41122846/" target="_blank" rel="noopener">PMID 41122846</a> — Publicado simultáneamente en <em>Pediatrics</em> 2026;157(1) (<a href="https://doi.org/10.1542/peds.2025-074766" target="_blank" rel="noopener">DOI: 10.1542/peds.2025-074766</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/41122837/" target="_blank" rel="noopener">PMID 41122837</a>). Es la <strong>revisión de evidencia que sustenta los algoritmos vigentes</strong>: aborda 40 preguntas estructuradas sobre todas las partes del algoritmo de reanimación neonatal, con 4 revisiones sistemáticas nuevas, 2 revisiones de alcance y actualizaciones de evidencia, evaluadas con metodología GRADE. Es la fuente de referencia para la estructura de esta página; <strong>la versión vigente y su adopción local deben verificarse</strong>.</div>
+      <div class="ref-item">Hogeveen M, Monnelly V, Binkhorst M, et al. <em>European Resuscitation Council Guidelines 2025: Newborn Resuscitation and Support of Transition of Infants at Birth.</em> Resuscitation. 2025;215 Suppl 1:110766. <a href="https://doi.org/10.1016/j.resuscitation.2025.110766" target="_blank" rel="noopener">DOI: 10.1016/j.resuscitation.2025.110766</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/41117576/" target="_blank" rel="noopener">PMID 41117576</a> — Guía derivada del consenso anterior, que ordena el abordaje en los mismos bloques usados acá: factores previos al nacimiento, entrenamiento, control térmico, manejo del cordón, evaluación inicial, vía aérea, ventilación y circulación, acceso vascular de emergencia, entornos de bajos recursos y extrahospitalarios, comunicación con los padres, y consideraciones sobre no iniciar o suspender el soporte vital.</div>
+      <div class="ref-item">Kuitunen I, Davis PG. <em>How consistent are recent neonatal resuscitation guidelines?</em> Resusc Plus. 2026;29:101314. <a href="https://doi.org/10.1016/j.resplu.2026.101314" target="_blank" rel="noopener">DOI: 10.1016/j.resplu.2026.101314</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42027799/" target="_blank" rel="noopener">PMID 42027799</a> — Revisión que compara las guías vigentes de AHA/AAP, ANZCOR y ERC, todas derivadas del mismo consenso de 2025. Es la fuente de las advertencias de discrepancia de esta página: las tres <strong>coinciden</strong> en el clampeo diferido en el recién nacido vigoroso, en <strong>desaconsejar la aspiración de rutina</strong> ante líquido meconial y en ventilar <strong>dentro de los 60 segundos</strong> cuando está indicado, pero <strong>difieren</strong> en la estabilización con cordón intacto, el ordeñamiento del cordón en el prematuro extremo, las concentraciones iniciales de oxígeno, los parámetros de ventilación y el lugar del videolaringoscopio, la máscara laríngea y la cánula nasal de alto flujo. También es la fuente de la cifra de que <strong>alrededor del 10 % de los recién nacidos requiere apoyo respiratorio o cardiovascular al nacer</strong>.</div>
+      <div class="ref-item">Seidler AL, Libesman S, Hunter KE, et al. <em>Short, medium, and long deferral of umbilical cord clamping compared with umbilical cord milking and immediate clamping at preterm birth: a systematic review and network meta-analysis with individual participant data.</em> Lancet. 2023;402(10418):2223–2234. <a href="https://doi.org/10.1016/S0140-6736(23)02469-8" target="_blank" rel="noopener">DOI: 10.1016/S0140-6736(23)02469-8</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/37977170/" target="_blank" rel="noopener">PMID 37977170</a> — Datos individuales de <strong>47 ensayos y 6094 prematuros</strong>. El <strong>diferimiento largo (≥ 120 s)</strong> fue la estrategia que más redujo la muerte antes del alta frente al clampeo inmediato (<strong>OR 0,31; ICr 95 % 0,11–0,80; certeza moderada</strong>). Los autores advierten que en recién nacidos que requieren reanimación inmediata el hallazgo <em>solo sería generalizable si existe la posibilidad de dar esa atención con el cordón intacto</em>, que es exactamente la salvedad que esta página hace explícita.</div>
+      <div class="ref-item">Davis PG, Tan A, O'Donnell CPF, Schulze A. <em>Resuscitation of newborn infants with 100% oxygen or air: a systematic review and meta-analysis.</em> Lancet. 2004;364(9442):1329–1333. <a href="https://doi.org/10.1016/S0140-6736(04)17189-4" target="_blank" rel="noopener">DOI: 10.1016/S0140-6736(04)17189-4</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/15474135/" target="_blank" rel="noopener">PMID 15474135</a> — 5 ensayos, 1302 recién nacidos, la mayoría de término o cercanos al término. Beneficio significativo del aire frente al oxígeno al 100 %: <strong>riesgo relativo de mortalidad 0,71 (IC 95 % 0,54–0,94)</strong>. Es el origen de la recomendación de iniciar con aire ambiental en el recién nacido de término. Hallazgo concordante en el metaanálisis de Rabi Y, Rabi D, Yee W. <em>Room air resuscitation of the depressed newborn.</em> Resuscitation. 2007;72(3):353–363 (<a href="https://doi.org/10.1016/j.resuscitation.2006.06.134" target="_blank" rel="noopener">DOI</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/17240032/" target="_blank" rel="noopener">PMID 17240032</a>): 7 ensayos, mortalidad en la primera semana OR 0,70 (0,50–0,98) y al mes o más OR 0,63 (0,42–0,94).</div>
+      <div class="ref-item">Dawson JA, Kamlin COF, Vento M, et al. <em>Defining the reference range for oxygen saturation for infants after birth.</em> Pediatrics. 2010;125(6):e1340–e1347. <a href="https://doi.org/10.1542/peds.2009-1510" target="_blank" rel="noopener">DOI: 10.1542/peds.2009-1510</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/20439604/" target="_blank" rel="noopener">PMID 20439604</a> — 468 recién nacidos <strong>sin ninguna intervención</strong> en la sala de partos y 61 650 mediciones de saturación tomadas cada 2 segundos en la mano o muñeca derecha. Percentil 50 al minuto <strong>66 %</strong>, a los 2 minutos 73 % y a los 5 minutos 89 %; mediana de <strong>7,9 minutos</strong> (RIQ 5,0–10) hasta superar 90 %, y ascenso más lento en los prematuros. Es la base empírica de por qué una saturación «baja» en los primeros minutos puede ser normal y de por qué el oxígeno se titula contra una tabla y no contra la intuición.</div>
+      <div class="ref-item">Nangia S, Thukral A, Chawla D. <em>Tracheal suction at birth in non-vigorous neonates born through meconium-stained amniotic fluid.</em> Cochrane Database Syst Rev. 2021;6(6):CD012671. <a href="https://doi.org/10.1002/14651858.CD012671.pub2" target="_blank" rel="noopener">DOI: 10.1002/14651858.CD012671.pub2</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/34133025/" target="_blank" rel="noopener">PMID 34133025</a> — 4 ensayos, 581 recién nacidos no vigorosos con líquido meconial, todos en hospitales de tercer nivel en India. Sin diferencias en <strong>síndrome de aspiración meconial (RR 1,00; IC 95 % 0,80–1,25)</strong> ni en <strong>mortalidad (RR 1,24; 0,76–2,02)</strong>, ni en ventilación mecánica, escape aéreo, hipertensión pulmonar persistente o sepsis. Los autores califican <strong>toda la evidencia como de certeza muy baja</strong> y concluyen que el efecto es <em>incierto</em>: lo que esta página afirma es que no hay evidencia de beneficio que justifique retrasar la ventilación, no que esté demostrado que no sirva.</div>
+      <div class="ref-item">Pejovic NJ, Myrnerts Höök S, Byamugisha J, et al. <em>A Randomized Trial of Laryngeal Mask Airway in Neonatal Resuscitation (NeoSupra).</em> N Engl J Med. 2020;383(22):2138–2147. <a href="https://doi.org/10.1056/NEJMoa2005333" target="_blank" rel="noopener">DOI: 10.1056/NEJMoa2005333</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/33252870/" target="_blank" rel="noopener">PMID 33252870</a> — Ensayo de fase 3 en Uganda, 1154 recién nacidos de al menos 34 semanas o 2000 g que requirieron ventilación con presión positiva, aleatorizados a máscara laríngea o mascarilla facial administradas por matronas. Desenlace primario compuesto —muerte a 7 días o ingreso con encefalopatía hipóxico-isquémica moderada a severa— en <strong>27,4 % frente a 24,4 % (RR ajustado 1,16; IC 95 % 0,90–1,51; p = 0,26)</strong>: la máscara laríngea fue <strong>segura pero no superior</strong>. De aquí la formulación de esta página: es una salida válida cuando la mascarilla no funciona, no un reemplazo de hacerla bien.</div>
+      <div class="ref-item">Jacobs SE, Berg M, Hunt R, Tarnow-Mordi WO, Inder TE, Davis PG. <em>Cooling for newborns with hypoxic ischaemic encephalopathy.</em> Cochrane Database Syst Rev. 2013;2013(1):CD003311. <a href="https://doi.org/10.1002/14651858.CD003311.pub3" target="_blank" rel="noopener">DOI: 10.1002/14651858.CD003311.pub3</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/23440789/" target="_blank" rel="noopener">PMID 23440789</a> — 11 ensayos aleatorizados, 1505 recién nacidos de término y pretérmino tardío con encefalopatía moderada o severa y evidencia de asfixia intraparto. Reducción de <strong>muerte o discapacidad mayor del neurodesarrollo a los 18 meses: RR 0,75 (IC 95 % 0,68–0,83), NNT 7</strong>; <strong>mortalidad: RR 0,75 (0,64–0,88), NNT 11</strong>; discapacidad en sobrevivientes: RR 0,77 (0,63–0,94), NNT 8. Efectos adversos documentados: bradicardia sinusal y trombocitopenia. La conclusión incluye la condición operativa que esta página convierte en reloj: <strong>debe instaurarse si el recién nacido se identifica antes de las 6 horas de vida</strong>.</div>
+      <div class="ref-item">Laptook AR, Salhab W, Bhaskar B; Neonatal Research Network. <em>Admission temperature of low birth weight infants: predictors and associated morbidities.</em> Pediatrics. 2007;119(3):e643–e649. <a href="https://doi.org/10.1542/peds.2006-0943" target="_blank" rel="noopener">DOI: 10.1542/peds.2006-0943</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/17296783/" target="_blank" rel="noopener">PMID 17296783</a> — 5277 recién nacidos de 401 a 1499 g admitidos directamente desde la sala de partos. <strong>14,3 % ingresó con temperatura bajo 35 °C</strong> y solo 10,8 % con 37 °C o más. En el análisis ajustado, la temperatura de ingreso se asoció inversamente con la <strong>mortalidad (28 % más por cada grado centígrado menos)</strong> y con la sepsis tardía (11 % más por grado), pero no con hemorragia intraventricular ni enterocolitis necrotizante. Los autores dejan explícitamente abierto <em>si la hipotermia está en la vía causal o es un marcador</em>, y esta página reproduce esa cautela.</div>
+      <div class="ref-item">Referencias localizadas y verificadas mediante <strong>PubMed</strong>. Los aspectos <strong>técnicos</strong> descritos —secuencia de los pasos iniciales, los pasos correctores MR SOPA, la técnica de los dos pulgares y la relación 3:1, el posicionamiento de la mascarilla y de la cabeza, los calibres y profundidades de tubo endotraqueal por edad gestacional, la cateterización de la vena umbilical y la conducta ante hernia diafragmática u obstrucción de la vía aérea alta— corresponden a <strong>descripciones convencionales de las guías, los algoritmos y los cursos acreditados de reanimación neonatal</strong>, y varias de ellas <strong>no están respaldadas individualmente por estudios de desenlace</strong>. Los esquemas de dosis, los parámetros de ventilación, las concentraciones iniciales de oxígeno, los umbrales de glicemia, los criterios de hipotermia terapéutica y los plazos de suspensión deben contrastarse con el <strong>protocolo institucional vigente</strong>; en el ámbito nacional, con la <em>Guía Perinatal</em> y la normativa vigente del Ministerio de Salud de Chile, <strong>cuya versión en vigor debe verificarse</strong>. Donde las guías internacionales vigentes discrepan entre sí, esta página lo dice en lugar de elegir una cifra y presentarla como consenso.</div>
+    </div>
+  </details>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Tema claro / oscuro ───────────────────────────────────────────
+  (function() {
+    var root = document.documentElement, KEY = 'oc-theme';
+    try { var t = localStorage.getItem(KEY); if (t) root.setAttribute('data-theme', t); } catch (e) {}
+    var btn = document.getElementById('themeBtn');
+    if (btn) btn.addEventListener('click', function() {
+      var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem(KEY, next); } catch (e) {}
+    });
+  })();
+
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Checklist con progreso ────────────────────────────────────────
+  const SECTIONS = ['s1', 's4', 's6', 's8', 's10'];
+  const totals = {};
+  SECTIONS.forEach(s => {
+    const list = document.getElementById('list-' + s);
+    totals[s] = list ? list.querySelectorAll('.check-item').length : 0;
+  });
+  const TOTAL_CHECKS = SECTIONS.reduce((acc, s) => acc + totals[s], 0);
+
+  function countChecked(section) {
+    return document.querySelectorAll('#list-' + section + ' .check-item.checked').length;
+  }
+
+  function toggle(el, section) {
+    el.classList.toggle('checked');
+    updateCount(section);
+    updateProgress();
+  }
+
+  function updateCount(section) {
+    const el = document.getElementById('count-' + section);
+    if (!el) return;
+    const n = countChecked(section);
+    const t = totals[section];
+    el.textContent = n + '/' + t;
+    if (t > 0 && n === t) {
+      el.style.background = 'rgba(16,185,129,0.15)';
+      el.style.borderColor = 'rgba(16,185,129,0.3)';
+      el.style.color = '#6ee7b7';
+    } else {
+      el.style.background = '';
+      el.style.borderColor = '';
+      el.style.color = '';
+    }
+  }
+
+  function updateProgress() {
+    const done = SECTIONS.reduce((acc, s) => acc + countChecked(s), 0);
+    const pct = TOTAL_CHECKS ? Math.round((done / TOTAL_CHECKS) * 100) : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.check-item.checked').forEach(el => el.classList.remove('checked'));
+    SECTIONS.forEach(updateCount);
+    updateProgress();
+  }
+
+  SECTIONS.forEach(updateCount);
+  updateProgress();
+
+  // ── Cronómetro (sin persistencia) ─────────────────────────────────
+  let swStart = null;
+  let swAccum = 0;
+  let swTick = null;
+
+  function swElapsed() {
+    return swAccum + (swStart !== null ? Date.now() - swStart : 0);
+  }
+
+  function fmt(ms) {
+    const total = Math.floor(ms / 1000);
+    const m = String(Math.floor(total / 60)).padStart(2, '0');
+    const s = String(total % 60).padStart(2, '0');
+    return m + ':' + s;
+  }
+
+  function swRender() {
+    const ms = swElapsed();
+    const disp = document.getElementById('swDisplay');
+    disp.textContent = fmt(ms);
+    // En reanimación neonatal la escala es corta: el aviso entra al pasar el
+    // minuto de oro y la alerta a los 10 minutos.
+    disp.classList.toggle('warn', ms >= 60000 && ms < 600000);
+    disp.classList.toggle('late', ms >= 600000);
+  }
+
+  function swToggle() {
+    const btn = document.getElementById('swToggle');
+    const cap = document.getElementById('swCaption');
+    if (swStart === null) {
+      swStart = Date.now();
+      swTick = setInterval(swRender, 200);
+      btn.textContent = '⏸ Detener';
+      cap.textContent = 'Corriendo desde el momento del nacimiento';
+    } else {
+      swAccum += Date.now() - swStart;
+      swStart = null;
+      clearInterval(swTick);
+      swTick = null;
+      btn.textContent = '▶ Continuar';
+      cap.textContent = 'En pausa';
+      swRender();
+    }
+  }
+
+  function msLabel(el) {
+    const goal = parseInt(el.dataset.goal, 10);
+    return el.dataset.prefix + (goal >= 300 ? (goal / 60) + ' min' : goal + ' s');
+  }
+
+  function swReset() {
+    if (swTick) clearInterval(swTick);
+    swTick = null;
+    swStart = null;
+    swAccum = 0;
+    document.getElementById('swToggle').textContent = '▶ Iniciar';
+    document.getElementById('swCaption').textContent = 'Detenido · parte el reloj en el momento del nacimiento';
+    document.querySelectorAll('.ms').forEach(ms => {
+      ms.classList.remove('done', 'over');
+      ms.querySelector('.ms-goal').textContent = msLabel(ms);
+    });
+    swRender();
+  }
+
+  function markMs(el) {
+    if (el.classList.contains('done')) {
+      el.classList.remove('done', 'over');
+      el.querySelector('.ms-goal').textContent = msLabel(el);
+      return;
+    }
+    if (swStart === null && swAccum === 0) swToggle();
+    const secs = Math.round(swElapsed() / 1000);
+    const goal = parseInt(el.dataset.goal, 10);
+    el.classList.add('done');
+    el.classList.toggle('over', secs > goal);
+    const shown = secs >= 300 ? Math.floor(secs / 60) + ' min ' + (secs % 60) + ' s' : secs + ' s';
+    const goalShown = goal >= 300 ? (goal / 60) + ' min' : goal + ' s';
+    el.querySelector('.ms-goal').textContent = shown + ' · meta ' + goalShown;
+  }
+
+  // Las metas se muestran con la misma regla con que se escribieron en el HTML.
+  document.querySelectorAll('.ms').forEach(ms => {
+    ms.querySelector('.ms-goal').textContent = msLabel(ms);
+  });
+  swRender();
+
+  // ── Utilidad de formato en coma decimal ───────────────────────────
+  function nf(x, dec) {
+    return x.toFixed(dec).replace('.', ',');
+  }
+
+  // ── Orientador del algoritmo ──────────────────────────────────────
+  const MSG_SIN_VENT =
+    '<div style="margin-top:8px;">Mientras el pecho no se mueva, <strong>no corresponde comprimir ni administrar ' +
+    'adrenalina</strong>: sobre un pulmón que no se ventila, ninguna de las dos funciona.</div>';
+
+  function calcAlg() {
+    const out = document.getElementById('algOut');
+    const resp = document.getElementById('algResp').value;
+    const fc = document.getElementById('algFc').value;
+    const vent = document.getElementById('algVent').value;
+
+    if (!resp || !fc) {
+      out.innerHTML = 'Marca la respiración y la frecuencia cardíaca. El orientador devuelve el <strong>siguiente paso</strong> del algoritmo, no un diagnóstico.';
+      return;
+    }
+
+    let clase, titulo, texto = '';
+
+    if (fc === 'baja' || fc === 'cero') {
+      if (vent === 'no') {
+        clase = 'risk-high';
+        titulo = 'Ventilar ahora · antes que cualquier otra cosa';
+        texto = 'Frecuencia cardíaca bajo 60 sin ventilación es, por definición, un problema de ventilación. ' +
+          '<strong>Ventilación con presión positiva a 40–60 por minuto, con mascarilla que selle y cabeza en ' +
+          'posición neutra</strong>, y la mirada puesta en el pecho. Pedir ayuda en voz alta.' + MSG_SIN_VENT;
+      } else if (vent === 'sinmov') {
+        clase = 'risk-high';
+        titulo = 'MR SOPA · el pecho no se mueve';
+        texto = 'Este es el único problema que hay que resolver, y se resuelve en orden: <strong>Mascarilla, ' +
+          'Reposicionar, Succionar, Open —abrir la boca—, Presión y Alternativa de vía aérea</strong> ' +
+          '(sección 05). Los cuatro primeros pasos son gratis y se hacen con las manos.' + MSG_SIN_VENT;
+      } else if (vent === 'efectiva') {
+        clase = 'risk-high';
+        titulo = 'Compresiones torácicas 3:1';
+        texto = 'Se cumple la condición de entrada: frecuencia bajo 60 con <strong>30 segundos de ventilación que ' +
+          'mueve el pecho</strong>. Iniciar compresiones con la técnica de los dos pulgares en el tercio inferior ' +
+          'del esternón, relación <strong>3:1</strong> contada en voz alta, <strong>subir el oxígeno al 100 %</strong> ' +
+          'y <strong>asegurar la vía aérea</strong> —tubo o máscara laríngea— sin suspender las compresiones. ' +
+          'En paralelo, <em>otra</em> persona consigue el acceso vascular.';
+      } else {
+        clase = 'risk-high';
+        titulo = 'Compresiones + adrenalina si ya pasaron 60 s';
+        texto = 'Con vía aérea avanzada y oxígeno al 100 %: si las compresiones coordinadas llevan ' +
+          '<strong>60 segundos</strong> y la frecuencia sigue bajo 60, corresponde <strong>adrenalina ' +
+          '0,01–0,03 mg/kg por vía intravenosa o intraósea</strong> —es decir 0,1–0,3 mL/kg de la solución de ' +
+          '<strong>0,1 mg/mL</strong>—, repetible cada 3–5 minutos (calculadora en la sección 07). ' +
+          'Y revisar las causas que no responden a adrenalina: <strong>neumotórax, hipovolemia, hernia ' +
+          'diafragmática y obstrucción de la vía aérea</strong> (sección 09).';
+      }
+      if (fc === 'cero') {
+        texto += '<div style="margin-top:8px;"><strong>Frecuencia indetectable:</strong> se maneja igual que una ' +
+          'frecuencia bajo 60, con compresiones. Confirmar que no es un problema de medición ' +
+          '—auscultar, electrodos— y revisar causas reversibles. Si se mantiene indetectable con <em>todos</em> ' +
+          'los pasos ejecutados, alrededor de los <strong>20 minutos de vida</strong> las guías plantean discutir ' +
+          'la redirección de los cuidados: <em>el plazo y la autoridad para esa decisión se verifican con el ' +
+          'protocolo institucional</em> y se toma con el equipo y con la familia informada.</div>';
+      }
+    } else if (fc === 'media') {
+      if (vent === 'no') {
+        clase = 'risk-mid';
+        titulo = 'Ventilar ahora · frecuencia bajo 100 es indicación';
+        texto = 'Una frecuencia cardíaca entre 60 y 99 por minuto <strong>es indicación de ventilación con presión ' +
+          'positiva</strong>, aunque el recién nacido haga algún esfuerzo respiratorio, y debe estar iniciada ' +
+          '<strong>antes de los 60 segundos de vida</strong>. Poner el saturómetro en la mano derecha sin ' +
+          'interrumpir la ventilación.';
+      } else if (vent === 'sinmov') {
+        clase = 'risk-high';
+        titulo = 'MR SOPA · el pecho no se mueve';
+        texto = 'Se está ventilando pero no entra aire, y por eso la frecuencia no sube. Aplicar los seis pasos ' +
+          'correctores <strong>en orden</strong> (sección 05). <em>No subir el escalón del tratamiento mientras ' +
+          'el pecho no se mueva.</em>';
+      } else {
+        clase = 'risk-mid';
+        titulo = 'Seguir ventilando y reevaluar';
+        texto = 'Mantener la ventilación a 40–60 por minuto con la presión mínima que mueva el pecho, titular el ' +
+          'oxígeno contra las metas de saturación del minuto que corresponda, y reevaluar. ' +
+          '<strong>El signo de que funciona es que la frecuencia cardíaca sube.</strong> ' +
+          '<em>Mientras la frecuencia sea 60 o más, no corresponden compresiones.</em> Si no sube en los próximos ' +
+          '30 segundos, volver a MR SOPA y considerar vía aérea avanzada.';
+      }
+    } else {
+      if (resp === 'apnea') {
+        clase = 'risk-mid';
+        titulo = 'Ventilar · la apnea manda aunque la frecuencia esté bien';
+        texto = 'Apnea o boqueo <strong>es indicación de ventilación con presión positiva por sí sola</strong>, ' +
+          'incluso con frecuencia cardíaca de 100 o más. El boqueo es un patrón agónico, no respiración: ' +
+          '<em>no se espera a que «se acomode»</em>.';
+      } else if (resp === 'dificultad') {
+        clase = 'risk-mid';
+        titulo = 'No ventilar con presión positiva · oxigenar y considerar CPAP';
+        texto = 'Con frecuencia cardíaca de 100 o más y respiración espontánea, el problema es de <strong>oxigenación, ' +
+          'no de ventilación</strong>. Corresponde: posición de la vía aérea, <strong>saturómetro preductal en la ' +
+          'mano derecha</strong>, oxígeno titulado contra la meta del minuto, y considerar <strong>presión positiva ' +
+          'continua (CPAP)</strong> —especialmente en el prematuro—. ' +
+          '<em>Y recordar que una saturación de 70 % al tercer minuto puede ser normal: ver la tabla de la ' +
+          'sección 05 antes de subir el oxígeno.</em>';
+      } else {
+        clase = 'risk-low';
+        titulo = 'No necesita reanimación · cuidados de rutina';
+        texto = 'Las tres preguntas del nacimiento están contestadas en positivo. <strong>Secar, calor, gorro, piel ' +
+          'con piel con su madre y clampeo diferido del cordón</strong>, con vigilancia continua de la ' +
+          'respiración, el tono y el color. <em>No hace falta nada más</em>, y en particular no corresponde aspirar ' +
+          'por rutina ni separarlo de su madre.';
+      }
+    }
+
+    out.innerHTML = '<span class="big ' + clase + '">' + titulo + '</span>' + texto +
+      '<div style="margin-top:8px;"><em>La reevaluación es continua: este resultado corresponde al estado que ' +
+      'acabas de marcar y cambia en cuanto cambie la frecuencia cardíaca.</em></div>';
+  }
+
+  function resetAlg() {
+    document.getElementById('algResp').value = '';
+    document.getElementById('algFc').value = '';
+    document.getElementById('algVent').value = 'no';
+    calcAlg();
+  }
+
+  // ── Metas de saturación preductal ─────────────────────────────────
+  const SAT_META = {
+    1:  [60, 65],
+    2:  [65, 70],
+    3:  [70, 75],
+    4:  [75, 80],
+    5:  [80, 85],
+    10: [85, 95]
+  };
+
+  function calcSat() {
+    const out = document.getElementById('satOut');
+    const min = document.getElementById('satMin').value;
+    const valRaw = document.getElementById('satVal').value;
+
+    if (!min) {
+      out.innerHTML = 'Sensor en la <strong>mano o muñeca derecha</strong>. Elige el minuto de vida y, si quieres, escribe la saturación medida.';
+      return;
+    }
+
+    const meta = SAT_META[min];
+    const etiqueta = (min === '10') ? 'a los 10 minutos o más'
+                   : (min === '1')  ? 'al minuto 1'
+                   : 'a los ' + min + ' minutos';
+    const rango = meta[0] + '–' + meta[1] + ' %';
+    const val = parseFloat(valRaw);
+
+    if (isNaN(val)) {
+      out.innerHTML = '<span class="big risk-mid">Meta ' + etiqueta + ': ' + rango + '</span>' +
+        'Escribe la saturación medida para comparar. <em>El objetivo es estar dentro del rango, no por encima.</em>';
+      return;
+    }
+
+    let clase, titulo, texto;
+    if (val < meta[0]) {
+      clase = 'risk-mid';
+      titulo = 'Bajo la meta ' + etiqueta + ' (' + rango + ')';
+      texto = '<strong>Antes de subir el oxígeno, verificar que la ventilación funciona:</strong> sello de la ' +
+        'mascarilla, posición de la cabeza, pecho que se mueve, frecuencia cardíaca que sube. ' +
+        'La hipoxemia que persiste con ventilación inefectiva no se corrige con más oxígeno. ' +
+        'Si la ventilación es efectiva, <strong>subir la concentración de oxígeno por pasos</strong> y volver a ' +
+        'medir. Comprobar también que el sensor está en la <em>mano derecha</em> y que tiene buena señal.';
+    } else if (val <= meta[1]) {
+      clase = 'risk-low';
+      titulo = 'Dentro de la meta ' + etiqueta + ' (' + rango + ')';
+      texto = '<strong>Mantener la concentración de oxígeno actual</strong> y seguir midiendo. ' +
+        '<em>Estar dentro del rango es el objetivo: no hay que llevarlo más arriba.</em>';
+    } else {
+      clase = 'risk-mid';
+      titulo = 'Sobre la meta ' + etiqueta + ' (' + rango + ')';
+      texto = '<strong>Bajar la concentración de oxígeno por pasos</strong> y volver a medir. ' +
+        'La hiperoxia en los primeros minutos no es inocua, y en el prematuro es un daño que se hace ahora y se ' +
+        'paga después. Si el recién nacido está con oxígeno al 100 % por compresiones y ya recuperó la frecuencia ' +
+        'cardíaca, <em>este es el momento de bajarlo</em>.';
+    }
+
+    out.innerHTML = '<span class="big ' + clase + '">' + titulo + '</span>' +
+      'Saturación medida: <strong>' + nf(val, 0) + ' %</strong>. ' + texto;
+  }
+
+  function resetSat() {
+    document.getElementById('satMin').value = '';
+    document.getElementById('satVal').value = '';
+    calcSat();
+  }
+
+  // ── Calculadora de dosis y material ───────────────────────────────
+  // Profundidad de inserción del tubo (cm desde el labio) y calibre por banda
+  // de edad gestacional, según las tablas habituales del algoritmo neonatal.
+  const EG_DATOS = {
+    24: { banda: '23–24 semanas', prof: '5,5', tubo: '2,5',     hoja: 'Miller 00',    fio2: '21–30 %' },
+    26: { banda: '25–26 semanas', prof: '6,0', tubo: '2,5',     hoja: 'Miller 00',    fio2: '21–30 %' },
+    28: { banda: '27–29 semanas', prof: '6,5', tubo: '2,5–3,0', hoja: 'Miller 00 o 0', fio2: '21–30 %' },
+    31: { banda: '30–32 semanas', prof: '7,0', tubo: '3,0',     hoja: 'Miller 0',     fio2: '21–30 %' },
+    34: { banda: '33–34 semanas', prof: '7,5', tubo: '3,0',     hoja: 'Miller 0',     fio2: '21–30 %' },
+    36: { banda: '35–37 semanas', prof: '8,0', tubo: '3,5',     hoja: 'Miller 0 o 1', fio2: '21 % · aire ambiental' },
+    39: { banda: '38–40 semanas', prof: '8,5', tubo: '3,5',     hoja: 'Miller 1',     fio2: '21 % · aire ambiental' },
+    42: { banda: '41–43 semanas', prof: '9,0', tubo: '3,5',     hoja: 'Miller 1',     fio2: '21 % · aire ambiental' }
+  };
+
+  function tuboPorPeso(p) {
+    if (p < 1.0) return '2,5';
+    if (p <= 2.0) return '3,0';
+    return '3,5';
+  }
+
+  function calcDosis() {
+    const out = document.getElementById('dosOut');
+    const peso = parseFloat(String(document.getElementById('dosPeso').value).replace(',', '.'));
+    const eg = document.getElementById('dosEg').value;
+
+    if (isNaN(peso) && !eg) {
+      out.innerHTML = 'Escribe el peso para calcular los volúmenes, y la edad gestacional para el material de vía aérea.';
+      return;
+    }
+
+    let html = '';
+
+    if (!isNaN(peso) && peso > 0) {
+      const adrMin = peso * 0.1, adrMax = peso * 0.3, adrUsual = peso * 0.2;
+      const adrTet1 = peso * 0.5, adrTet2 = peso * 1.0;
+      const vol = peso * 10;
+      const glu = peso * 2;
+
+      html += '<span class="big">Para ' + nf(peso, 2) + ' kg</span>';
+      html += '<div style="margin-top:4px;"><strong>Adrenalina intravenosa o intraósea</strong> ' +
+        '(solución de <strong>0,1 mg/mL</strong>): <strong>' + nf(adrMin, 2) + ' a ' + nf(adrMax, 2) + ' mL</strong> ' +
+        '— equivalente a 0,01–0,03 mg/kg. Punto de partida habitual, 0,02 mg/kg: <strong>' + nf(adrUsual, 2) + ' mL</strong>. ' +
+        'Arrastrar con 0,5–1 mL de suero fisiológico. Repetible cada 3–5 minutos.</div>';
+      html += '<div style="margin-top:6px;"><strong>Adrenalina endotraqueal</strong> (solo si no hay acceso vascular, ' +
+        'misma solución de 0,1 mg/mL): <strong>' + nf(adrTet1, 2) + ' a ' + nf(adrTet2, 2) + ' mL</strong> ' +
+        '— equivalente a 0,05–0,1 mg/kg. <em>Es dosis mayor porque la absorción es errática</em>; en cuanto haya ' +
+        'acceso vascular se administra la dosis intravenosa.</div>';
+      html += '<div style="margin-top:6px;"><strong>Expansión de volumen</strong> (suero fisiológico o sangre O Rh ' +
+        'negativo), 10 mL/kg: <strong>' + nf(vol, 0) + ' mL</strong> en 5–10 minutos. ' +
+        '<em>Más lento en el prematuro, según el protocolo institucional.</em></div>';
+      html += '<div style="margin-top:6px;"><strong>Glucosa al 10 %</strong> para hipoglicemia documentada, ' +
+        'habitualmente 2 mL/kg: <strong>' + nf(glu, 0) + ' mL</strong>. ' +
+        '<em>Umbral de glicemia, bolo y mantención según el protocolo institucional.</em></div>';
+      html += '<div style="margin-top:6px;"><strong>Tubo endotraqueal estimado por peso:</strong> ' +
+        tuboPorPeso(peso) + ' mm de diámetro interno.</div>';
+    }
+
+    if (eg) {
+      const d = EG_DATOS[eg];
+      if (!isNaN(peso) && peso > 0) html += '<div style="margin-top:12px;height:1px;background:rgba(255,255,255,0.08);"></div>';
+      html += '<div style="margin-top:' + (html ? '10px' : '4px') + ';"><strong>' + d.banda + '</strong></div>';
+      html += '<div style="margin-top:4px;"><strong>Tubo endotraqueal:</strong> ' + d.tubo + ' mm · ' +
+        '<strong>profundidad de inserción:</strong> ' + d.prof + ' cm medidos desde el labio superior. ' +
+        'Alternativa de cabecera: <em>distancia nariz–trago más 1 cm</em>.</div>';
+      html += '<div style="margin-top:6px;"><strong>Hoja de laringoscopio:</strong> ' + d.hoja + '.</div>';
+      html += '<div style="margin-top:6px;"><strong>Oxígeno inicial sugerido:</strong> ' + d.fio2 + ' · ' +
+        'titulado contra las metas de saturación de la sección 05. ' +
+        '<em>Es uno de los puntos en que las guías vigentes discrepan: verificar el valor que usa el servicio.</em></div>';
+      if (Number(eg) >= 34) {
+        html += '<div style="margin-top:6px;"><strong>Máscara laríngea:</strong> habitualmente tamaño 1, utilizable ' +
+          'desde las 34 semanas y los 2000 g. <em>Verificar con el dispositivo disponible.</em></div>';
+      } else {
+        html += '<div style="margin-top:6px;"><strong>Máscara laríngea:</strong> por debajo de 34 semanas o 2000 g ' +
+          '<em>no hay evidencia ni dispositivo habitual que la respalden</em>: la alternativa de vía aérea es el tubo.</div>';
+      }
+      if (Number(eg) <= 32) {
+        html += '<div style="margin-top:6px;"><strong>Paquete térmico del prematuro:</strong> no secar con fricción, ' +
+          'bolsa o film de polietileno sobre la piel húmeda, gorro, colchón térmico si existe, sala más tibia y ' +
+          'traslado en incubadora. <strong>Pulgares superpuestos</strong> si hay que comprimir.</div>';
+      }
+      if (!isNaN(peso) && peso > 0) {
+        const tp = tuboPorPeso(peso);
+        if (tp !== d.tubo && d.tubo.indexOf(tp) === -1) {
+          html += '<div style="margin-top:8px;color:#fcd34d;"><strong>Atención:</strong> la estimación por peso ' +
+            '(' + tp + ' mm) y la de edad gestacional (' + d.tubo + ' mm) no coinciden. ' +
+            'Tener los dos calibres a mano y <em>confirmar en el paciente</em>: lo que decide es el tubo que ventila, ' +
+            'no la tabla.</div>';
+        }
+      }
+    }
+
+    html += '<div style="margin-top:10px;"><em>Confirmar en voz alta con una segunda persona —fármaco, ' +
+      'concentración, dosis, volumen y vía— antes de administrar.</em></div>';
+
+    out.innerHTML = html;
+  }
+
+  function resetDosis() {
+    document.getElementById('dosPeso').value = '';
+    document.getElementById('dosEg').value = '';
+    document.getElementById('dosOut').innerHTML =
+      'Escribe el peso para calcular los volúmenes, y la edad gestacional para el material de vía aérea.';
+  }
+
+  // ── Copiar el registro ────────────────────────────────────────────
+  function copyRegistro() {
+    const txt = document.getElementById('registroPre').textContent;
+    const btn = document.getElementById('copyBtn');
+    const ok = () => {
+      btn.textContent = '✓ Copiado';
+      btn.classList.add('done');
+      setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('done'); }, 2200);
+    };
+    const fallback = () => {
+      const ta = document.createElement('textarea');
+      ta.value = txt;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); ok(); } catch (e) { btn.textContent = 'Copia manual'; }
+      document.body.removeChild(ta);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(ok).catch(fallback);
+    } else {
+      fallback();
+    }
+  }
+</script>
+</body>
+</html>
