@@ -946,9 +946,106 @@ en su sección temática, porque el agente recorre el archivo en orden.
       backlog que sale de la regla de «solo adultos» de los síntomas cardinales, porque es precisamente el
       contenido pediátrico propio que esa regla anticipaba— y está escrito para la atención inicial en un servicio
       de urgencia general, no para una unidad de neonatología.
-- [ ] Reanimación pediátrica (trauma y no trauma)
+- [x] Reanimación pediátrica (trauma y no trauma) — `checklist-reanimacion-pediatrica.html`. Se implementó como
+      **checklist con cronómetro**: el tema es una secuencia de pasos con tiempos críticos y ciclos de dos minutos, y el
+      paso 3 de «Cómo trabaja el agente diario» reserva ese formato para ese caso. El tema **no estaba cubierto**: la
+      página neonatal cubre el recién nacido *en el momento del parto*, que es otro algoritmo y otra relación de
+      compresiones, y `checklist-politrauma_2.html` es la secuencia ABCDE del adulto; ambas se enlazan y la neonatal
+      ahora enlaza de vuelta. Se creó la sección **«Pediatría de urgencia»** en `index.html`, donde entrarán los ítems
+      pediátricos que vienen. La página se ordena sobre una sola idea, dicha antes que cualquier dosis: **el paro del
+      niño casi nunca empieza en el corazón** —empieza como una insuficiencia respiratoria o un shock que nadie
+      detuvo—, con dos consecuencias que recorren todo: **la mejor reanimación pediátrica es la que no llega a
+      ocurrir**, de modo que la sección 01 es la más importante de la página y está deliberadamente antes del
+      cronómetro; y cuando ya ocurrió, **ventilar no es un paso más del algoritmo, es la mitad del tratamiento**. Sobre
+      eso se monta la **bifurcación** que organiza el resto y que responde al «trauma y no trauma» del ítem: una sola
+      pregunta —*¿hay trauma?*— abre dos algoritmos distintos, porque en el paro traumático la causa es mecánica y no
+      hipóxica, y ahí **el algoritmo se invierte**: lo que trata no es el fármaco sino deshacer las cuatro causas
+      —hemorragia, oxigenación, neumotórax a tensión y taponamiento— a la vez y repartidas por nombre. Diez secciones:
+      el paro que se puede evitar con el triángulo de evaluación pediátrica y los cuatro patrones que lo anuncian, el
+      cronómetro, la bifurcación, la reanimación de calidad con la técnica por edad, la vía aérea y la ventilación, el
+      peso con las dosis y los calibres, las causas reversibles con sus desvíos, el paro traumático, los cuidados
+      posreanimación junto con la decisión de suspender, y el registro. Tres reglas de seguridad quedan escritas como
+      tales y repetidas: **en el niño la presión arterial se cae al final**, de modo que esperar la hipotensión para
+      tratar un shock es esperar el paro; **la bradicardia bajo 60 con hipoperfusión es un preparo y no una arritmia**,
+      se trata con oxígeno y ventilación y, si no mejora, con compresiones aunque haya pulso; y **el pecho que no se
+      mueve es el único problema a resolver** antes de subir cualquier escalón. Incluye **tres herramientas
+      interactivas**: el **orientador del algoritmo**, que cruza contexto (trauma o no), estado circulatorio, ritmo y
+      ventilación efectiva para devolver el siguiente paso —presentado explícitamente como **no validado**—; la
+      **calculadora de peso, dosis, energía y material**, que existe sobre todo por una razón de seguridad concreta
+      (la adrenalina de reanimación se usa a **0,1 mg/mL** y la presentación habitual en Chile es de **1 mg/mL**, diez
+      veces más concentrada, de modo que el error de concentración es un error por diez), que aplica los topes de dosis
+      y que **avisa en amarillo cuando el peso es una estimación por edad**; y los **umbrales de signos vitales por
+      edad**, que corrigen las dos intuiciones que más daño hacen —leer una frecuencia «normal de adulto» como normal
+      en un niño, y leer una presión normal como ausencia de shock—. Tres esquemas vectoriales: la **bifurcación de los
+      primeros 60 segundos** con los dos algoritmos enfrentados, la **técnica de compresiones por edad** con las cinco
+      reglas y la relación 15:2, y el **algoritmo invertido del paro traumático** con las cuatro causas en paralelo y no
+      en secuencia. La honestidad sobre la evidencia es parte del contenido: de la ventilación se cita la cohorte
+      poblacional de Kitamura (*Lancet* 2010; 5170 niños, 71 % de causa no cardíaca: en los de 1–17 años con causa no
+      cardíaca, desenlace neurológico favorable 7,2 % con reanimación convencional frente a 1,6 % con compresiones
+      solas, OR 5,54 [IC 95 % 2,52–16,99], y equivalencia en la causa cardíaca), **con su salvedad** de que es
+      observacional, en testigos, y con desenlace malo en todos los grupos en el lactante; de la precocidad de la
+      adrenalina, Andersen (*JAMA* 2015; 1558 niños con paro intrahospitalario y ritmo no desfibrilable: RR ajustado
+      0,95 por minuto de demora [0,93–0,98], y 21,0 % frente a 33,1 % de supervivencia sobre y bajo los 5 minutos),
+      dicho como *respalda la dirección, no un plazo exacto*; del volumen, FEAST (Maitland, *NEJM* 2011; 3141 niños:
+      mortalidad a 48 h de 10,6 %, 10,5 % y 7,3 %, RR de cualquier bolo 1,45 [1,13–1,86]) **con sus límites explícitos**
+      —entorno sin cuidados intensivos, 57 % de malaria, desnutrición y gastroenteritis excluidas—, contrastado con la
+      *Surviving Sepsis* pediátrica (Weiss 2020), de la que además se cita que **solo 6 de sus 77 declaraciones son
+      recomendaciones fuertes**; de la hiperoxia, el metaanálisis de Lilien (*JAMA Netw Open* 2022; 16 estudios,
+      27 555 pacientes: OR 1,59 [1,00–2,51]) con su heterogeneidad del 92 %; del control de temperatura, los dos
+      ensayos THAPCA —extrahospitalario (*NEJM* 2015; 20 % frente a 12 %, p = 0,14) e intrahospitalario (*NEJM* 2017,
+      **detenido por futilidad**; 36 % frente a 39 %)—, de donde se concluye *control activo y prevención de la fiebre*
+      y no una cifra objetivo; del peso, el metaanálisis de Wells (*Int J Emerg Med* 2017: dentro del 10 % del peso real
+      en 78,0 % con cinta PAWPER, 70,9 % con Mercy, 69,8 % con la estimación de los padres y 55,6 % con Broselow, y
+      **exactitud muy baja de las fórmulas por edad, que los autores recomiendan abandonar**), que es la razón de que la
+      calculadora ponga la estimación por edad como último recurso y lo advierta; de la toracotomía en el niño,
+      Moskowitz (*Pediatr Surg Int* 2018: mortalidad comparable a la del adulto en trauma **penetrante**, y **ningún
+      sobreviviente menor de 15 años** en trauma cerrado, con la recomendación de considerar no realizarla en esa
+      situación), declarado como evidencia de nivel IV con sesgo de publicación; del ácido tranexámico, PED-TRAX
+      (Eckert, *J Trauma Acute Care Surg* 2014; 766 pacientes ≤ 18 años en Afganistán, 66 tratados **con dosificación de
+      adulto**: OR de mortalidad 0,3, p = 0,03), dicho como *sugiere beneficio, no lo demuestra*, de modo que el esquema
+      pediátrico se presenta como extrapolación a verificar; y de la adrenalina en el paro traumático, Witt (*Prehosp
+      Emerg Care* 2026; 1631 pacientes: supervivencia 5 % frente a 16 %, aRR 0,33 [0,23–0,46], y 0,20 [0,11–0,37] en el
+      trauma cerrado), citado **con su confusión por indicación declarada** y usado solo para sostener la jerarquía —la
+      adrenalina no desplaza el control del sangrado, la descompresión torácica ni la transfusión—, nunca como
+      indicación de no administrarla. Donde las guías vigentes **discrepan entre sí** —relación de compresiones y
+      ventilaciones, frecuencia de ventilación con vía aérea avanzada, energías de desfibrilación y su escalonamiento,
+      y el lugar del videolaringoscopio y de la máscara laríngea— la página **lo dice en lugar de elegir una cifra y
+      presentarla como consenso**. La estructura sigue el **CoSTR 2025 de soporte vital pediátrico del ILCOR**
+      (Scholefield, *Circulation* 2025, y *Pediatrics* 2026) y la guía **ERC 2025 de soporte vital pediátrico**
+      (Djakow, *Resuscitation* 2025), cuyo alcance —0 a 18 años, excluyendo el recién nacido al nacer— es exactamente
+      el de esta página. Se incluyen además, como desvíos que cambian la conducta por completo, la obstrucción por
+      cuerpo extraño, el ahogamiento, la anafilaxia, las intoxicaciones con antídoto, el niño con cardiopatía congénita
+      o cirugía cardíaca previa —donde la única instrucción es llamar al cardiólogo pediátrico en el primer minuto— y
+      el **paro sin explicación en un lactante**, con la obligación de considerar el traumatismo no accidental y activar
+      el protocolo de protección de la infancia. Sobre la decisión de suspender se dice lo que se puede sostener:
+      **no existe una regla validada de término de la reanimación en pediatría**, y la página no propone ninguna; lista
+      lo que pesa en la decisión y las situaciones en que hay que prolongar. Pendiente de validación: **todas las metas
+      de tiempo del cronómetro**, con una sola excepción parcial —la dirección de la precocidad de la adrenalina, que
+      viene de un estudio observacional y no fija un plazo—; la relación de compresiones y ventilaciones y la frecuencia
+      de ventilación con vía aérea avanzada; las energías de desfibrilación, su escalonamiento y el uso de parches
+      pediátricos o atenuador; el tipo, el volumen y el ritmo de los bolos de fluido, y los gatillos, las proporciones
+      y los volúmenes del protocolo de transfusión masiva pediátrico; la dosis, la vía, el plazo y la mantención del
+      ácido tranexámico, y la conducta local sobre adrenalina en el paro traumático; los esquemas de hiperkalemia,
+      hipoglicemia, hipocalcemia, anafilaxia e intoxicaciones y la disponibilidad de cada antídoto; el plazo para pasar
+      a vía intraósea, el dispositivo y los sitios autorizados; los calibres, el uso de tubo con o sin balón y la
+      presión del balón; la técnica, el sitio y el calibre de la descompresión torácica por edad; las indicaciones, los
+      plazos, el instrumental y quién realiza la toracotomía de reanimación; las metas de presión arterial, saturación
+      y CO₂ posreanimación y el vasoactivo de elección; el objetivo y la duración del control de temperatura; el esquema
+      de tratamiento de las convulsiones; la existencia, los criterios y el tiempo real de activación de la reanimación
+      extracorpórea; los criterios locales de no iniciar o suspender y la autoridad y documentación de esa decisión; los
+      rangos de signos vitales y los umbrales de hipotensión que use el servicio; y las obligaciones **normativas y no
+      clínicas** —certificación, aviso al Servicio Médico Legal, protocolo de protección de la infancia, denuncia,
+      custodia de muestras y notificación epidemiológica—, que se verifican con la normativa vigente. El contenido es el
+      **segundo del backlog que sale de la regla de «solo adultos»** de los síntomas cardinales, después de la
+      reanimación neonatal, y está escrito para la atención inicial en un servicio de urgencia general —no para una
+      unidad de cuidados intensivos pediátricos—.
 - [ ] Sedación en el paciente agitado - Combinando la escala BARS para el tratamiento sugerido y sugiriendo ketamina im en casos de agitación peligrosa, haciendo énfasis en aportar oxígeno a alta concentración tras sedar al paciente.
-- [ ] Parocardiorespiratorio (PCR) traumático
+- [ ] Parocardiorespiratorio (PCR) traumático. **Nota de cobertura (paso 2):** la sección 08 de
+      `checklist-reanimacion-pediatrica.html` ya cubre el PCR traumático **en el niño** —las cuatro causas
+      mecánicas en paralelo, el algoritmo invertido, el lugar discutido de la adrenalina y el límite de la
+      toracotomía—. Lo que falta es la versión **del adulto**: revisar si corresponde página propia o si se
+      integra con `checklist-politrauma_2.html` y `checklist-toracotomia-reanimacion.html`, y en cualquier caso
+      enlazar con la sección pediátrica en vez de duplicarla.
 - [ ] Pancreatitis - Desde el leve al grave con necesidad de UCI. Biliar, Hipercalcemia, por alcohol y trigliceridos. Integrado con calculadora APACHE 
 - [ ] Epistaxis - Taponamiento anterior con "burrito" de algodon empapado con acido tranexamico + lidocaina + adrenalina, taponamiento con merocell y rapidrhino, además de cauterización con nitrato de plata; y taponamiento posterior con Sonda Foley. Con indicaciones de cuando hospitalizar y/o ineicar antibioticos y cuando no.
 - [ ] Malaria en el adulto: sospecha, diagnóstico y manejo en urgencia.
