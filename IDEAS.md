@@ -1039,7 +1039,52 @@ en su sección temática, porque el agente recorre el archivo en orden.
       **segundo del backlog que sale de la regla de «solo adultos»** de los síntomas cardinales, después de la
       reanimación neonatal, y está escrito para la atención inicial en un servicio de urgencia general —no para una
       unidad de cuidados intensivos pediátricos—.
-- [ ] Sedación en el paciente agitado - Combinando la escala BARS para el tratamiento sugerido y sugiriendo ketamina im en casos de agitación peligrosa, haciendo énfasis en aportar oxígeno a alta concentración tras sedar al paciente.
+- [x] Sedación en el paciente agitado — `checklist-sedacion-agitacion.html`. Se implementó como **checklist con
+      cronómetro** y no como algoritmo: lo que el médico necesita en el box no es una rama diagnóstica sino un
+      orden de ejecución con roles, tiempos y vigilancia. La página se ordena sobre tres ideas. La primera es que
+      **la agitación es un signo y no un diagnóstico**, con los cinco datos que se toman en todos —glicemia
+      capilar, saturación, temperatura, presión y pupilas con examen neurológico básico— y la tabla del
+      diferencial médico, además de la distinción delirium/psicosis que es la que realmente cambia el fármaco. La
+      segunda es que **la meta es un paciente tranquilo y despertable, BARS 3 o 4, no un paciente inconsciente**:
+      la sobresedación es la complicación más frecuente y un BARS 1 es un fracaso, no un éxito. La tercera, que es
+      el énfasis pedido en el backlog, es que **el momento de mayor riesgo no es la lucha sino el silencio que
+      viene después de la inyección**: el paciente que peleó llega a la sedación con acidosis láctica y consumo de
+      oxígeno altísimo, compensando con taquipnea, y el sedante le quita justamente eso, de modo que dessatura
+      rápido y sin hacer ruido. De ahí la regla de **oxígeno a alta concentración, posición y monitor apenas se
+      administra el fármaco**, con una persona asignada solo a mirar la respiración. Incluye **tres herramientas
+      interactivas**: la **escala BARS** de siete niveles como calculadora, que para cada nivel entrega la conducta
+      —con la advertencia explícita de que BARS está validada como medida de actividad conductual y que la
+      correspondencia nivel → tratamiento es una convención práctica y no parte del instrumento—; la
+      **calculadora de ketamina por peso**, con pauta, concentración del vial, volumen resultante, aviso cuando
+      el volumen supera los 5 mL y aviso cuando la dosis calculada queda bajo los 200 mg; y una **plantilla de
+      nota para la ficha** que se arma con el nivel BARS, la intervención y el fármaco, y se copia al portapapeles.
+      Dos esquemas vectoriales en uno: la disposición de las cinco personas de la contención con el paciente en
+      decúbito supino y cabecera elevada, y el decúbito prono tachado. La honestidad sobre el rendimiento de los
+      fármacos es parte del contenido: de la ketamina se citan la rapidez (mediana **5,8 min** frente a 14,7 con
+      midazolam + haloperidol, Barbic 2021; **5 frente a 17 min** contra haloperidol, Cole 2016) junto con su
+      precio (complicaciones **49 % frente a 5 %**, hipersalivación 38 %, laringoespasmo 5 %, y una intubación del
+      **39 %** prehospitalaria que el metaanálisis de Mankowitz 2018 sitúa en **1,8 % cuando se administra en el
+      servicio de urgencia**, es decir, mayormente una decisión del entorno y no un efecto inevitable del
+      fármaco); del midazolam, que es el intramuscular más rápido (Klein 2018) y a la vez el que más sobreseda
+      (**28 % frente a 6 %** del droperidol en el DORM); y del droperidol, que la alerta histórica del QT no se
+      sostiene con **13 QT anormales en 1009 electrocardiogramas y ningún torsades** (Calver 2015). Incluye además
+      la tabla de elección por causa probable del Project BETA —con los errores que importan: antipsicótico solo
+      en la abstinencia alcohólica o en simpaticomiméticos, benzodiazepina en el delirium del adulto mayor,
+      haloperidol en Parkinson o cuerpos de Lewy, cualquier antipsicótico en el síndrome serotoninérgico y en el
+      neuroléptico maligno—, el apartado de contención física y la sección de registro con el marco legal chileno.
+      Sobre el «delirio excitado» se dice lo que se puede sostener: que no hay acuerdo sobre su definición, que la
+      contención agresiva en prono es factor de riesgo establecido de muerte y que el término no debería usarse
+      como diagnóstico (Slocum 2022). Pendiente de validación: **todas las metas de tiempo del cronómetro**, que
+      son una propuesta de orden de trabajo y no un estándar; la correspondencia entre nivel BARS y conducta; las
+      dosis, dosis máximas y presentaciones de haloperidol, midazolam, lorazepam, diazepam, olanzapina,
+      droperidol, ketamina, prometazina, risperidona, quetiapina y biperideno, y la **disponibilidad real de cada
+      una en el arsenal del servicio** —droperidol, olanzapina intramuscular y lorazepam parenteral no están en
+      todos lados—; el esquema de la abstinencia alcohólica; el uso o no de antisialagogo con ketamina; la
+      conducta en el laringoespasmo; la frecuencia de los controles y de la revisión de la contención, su plazo
+      máximo y el formulario de registro; el panel de exámenes posterior; los criterios de observación, ingreso y
+      derivación a salud mental; y las **obligaciones normativas y no clínicas** —Ley 20.584, Ley 21.331,
+      hospitalización involuntaria, notificación y documentación de la medida—, cuyo texto vigente debe revisarse
+      directamente y no desde esta página. El contenido es **solo para adultos**.
 - [ ] Parocardiorespiratorio (PCR) traumático. **Nota de cobertura (paso 2):** la sección 08 de
       `checklist-reanimacion-pediatrica.html` ya cubre el PCR traumático **en el niño** —las cuatro causas
       mecánicas en paralelo, el algoritmo invertido, el lugar discutido de la adrenalina y el límite de la

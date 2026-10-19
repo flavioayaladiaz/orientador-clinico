@@ -1,0 +1,2344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Checklist · Sedación del paciente agitado</title>
+<meta name="description" content="Sedación del paciente agitado en urgencia: seguridad del box antes de tocar al paciente, escala BARS como calculadora para graduar la respuesta, las causas médicas que hay que descartar antes de llamarlo psiquiátrico, de-escalación verbal, contención física sin prono, elección del fármaco según la causa probable, dosis de haloperidol, midazolam, olanzapina, lorazepam y droperidol, ketamina intramuscular en la agitación peligrosa con calculadora de dosis por peso, y el cuidado después de sedar: oxígeno a alta concentración, posición, monitorización y cronómetro con hitos.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --surface2: #eef1f5;
+    --border: rgba(15,23,42,0.10);
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --text-dim: #475569;
+  }
+  :root[data-theme="light"] body::before {
+    background-image:
+      linear-gradient(rgba(15,23,42,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99,102,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(245,158,11,0.06) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 36px; animation: fadeUp 0.6s ease both; }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 0;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .theme-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+    font-size: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .theme-btn:hover { color: var(--text); border-color: var(--text-muted); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(99,102,241,0.1);
+    border: 1px solid rgba(99,102,241,0.28);
+    color: #c7d2fe;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  .header-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--indigo);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--indigo);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #6366f1, #14b8a6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .header-sub strong { color: #fff; font-weight: 500; }
+  .header-sub em { color: #fcd34d; font-style: normal; }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .section-check-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .s1 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s1 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s2 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s2 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s3 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s3 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s4 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s4 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s5 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s5 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s6 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s6 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s7 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s7 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s8 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s8 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s9 .section-num { background: rgba(99,102,241,0.12); color: #c7d2fe; border: 1px solid rgba(99,102,241,0.18); }
+  .s9 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s10 .section-num { background: rgba(59,130,246,0.10); color: #bfdbfe; border: 1px solid rgba(59,130,246,0.18); }
+  .s10 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s11 .section-num { background: rgba(16,185,129,0.10); color: #a7f3d0; border: 1px solid rgba(16,185,129,0.18); }
+  .s11 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s12 .section-num { background: rgba(239,68,68,0.10); color: #fecaca; border: 1px solid rgba(239,68,68,0.18); }
+  .s12 { --accent: var(--red); --accent-glow: var(--red-glow); }
+
+  /* CRONÓMETRO */
+  .stopwatch {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+  .sw-display {
+    font-family: var(--mono);
+    font-size: clamp(40px, 11vw, 60px);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #fff;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .sw-display.warn { color: #fcd34d; }
+  .sw-display.late { color: #fca5a5; }
+  .sw-caption {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+  .sw-controls { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+  .sw-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .sw-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .sw-btn:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
+  .sw-btn.primary {
+    background: rgba(99,102,241,0.14);
+    border-color: rgba(99,102,241,0.45);
+    color: #c7d2fe;
+  }
+  .sw-btn.primary:hover { background: rgba(99,102,241,0.22); color: #e0e7ff; }
+
+  .milestones { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .ms {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .ms:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .ms:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .ms.done { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); color: #6ee7b7; }
+  .ms-goal {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .ms.done .ms-goal { color: #6ee7b7; border-color: rgba(16,185,129,0.4); }
+  .ms.done.over .ms-goal { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+  }
+  .check-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .check-item:hover::before { opacity: 1; }
+  .check-item:hover { border-color: rgba(255,255,255,0.12); }
+  .check-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .check-item.checked { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+  .check-item.checked::before { opacity: 0.5; }
+
+  .checkbox {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+    background: transparent;
+  }
+  .check-item.checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .checkmark {
+    opacity: 0;
+    transform: scale(0) rotate(-10deg);
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .check-item.checked .checkmark { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  .check-label {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-dim);
+    transition: color 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+  .check-item.checked .check-label {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(100,116,139,0.5);
+  }
+  .check-label strong { color: #fff; font-weight: 500; }
+  .check-label em { color: #fcd34d; font-style: normal; }
+  .check-step {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+
+  /* PROGRESO */
+  .progress-bottom {
+    margin-top: 6px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .progress-bar-track {
+    flex: 1;
+    min-width: 120px;
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6366f1, #14b8a6);
+    border-radius: 100px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px rgba(99,102,241,0.5);
+  }
+  .progress-label { font-family: var(--mono); font-size: 12px; color: var(--text-dim); white-space: nowrap; }
+  #progress-pct { color: var(--indigo); font-weight: 500; }
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+  /* BANNERS */
+  .warning-banner, .info-banner, .go-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #fca5a5; }
+  .info-banner { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.18); color: #bfdbfe; }
+  .go-banner { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); color: #6ee7b7; }
+  .warning-banner strong, .info-banner strong, .go-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em, .go-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+  .plain-item.good { background: rgba(16,185,129,0.05); border-color: rgba(16,185,129,0.16); }
+  .plain-item.good strong { color: #6ee7b7; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  .block-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 22px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .block-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* CALCULADORA */
+  .calc {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-top: 6px;
+  }
+  .calc-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; }
+  .calc-field { display: flex; flex-direction: column; gap: 6px; }
+  .calc-field label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .calc-field select, .calc-field input {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 9px 11px;
+    min-width: 150px;
+  }
+  .calc-field select:focus-visible, .calc-field input:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
+  .calc-out {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .calc-out strong { color: #fff; font-weight: 500; }
+  .calc-out em { color: #fcd34d; font-style: normal; }
+  .calc-out .big {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: #93c5fd;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .calc-out .big.risk-low { color: #6ee7b7; }
+  .calc-out .big.risk-mid { color: #fcd34d; }
+  .calc-out .big.risk-high { color: #fca5a5; }
+  .calc-reset {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 8px 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .calc-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+  .opts { display: flex; flex-direction: column; gap: 8px; }
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+    line-height: 1.4;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .opt.on { background: rgba(245,158,11,0.13); border-color: rgba(245,158,11,0.5); color: #fcd34d; }
+  .opt .sub { display: block; font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+  .opt.on .sub { color: inherit; opacity: 0.85; }
+  .opt .lvl {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1px 7px;
+    margin-right: 9px;
+    color: var(--text-muted);
+  }
+  .opt.on .lvl { border-color: currentColor; color: inherit; }
+
+  /* NOTA PARA LA FICHA */
+  .note-gen textarea {
+    width: 100%;
+    min-height: 220px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.65;
+    padding: 13px 15px;
+    resize: vertical;
+  }
+  .note-gen textarea:focus-visible { outline: 2px solid var(--emerald); outline-offset: 1px; }
+  .copy-btn {
+    margin-top: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: #6ee7b7;
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.3);
+    border-radius: 9px;
+    padding: 9px 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .copy-btn:hover { background: rgba(16,185,129,0.18); }
+
+  /* ESQUEMAS */
+  .figure {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 16px 14px;
+    margin-bottom: 14px;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .fig-caption {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .fig-caption strong { color: var(--text-dim); font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .link-row .cross-link { margin-top: 0; }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--indigo); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .ms { align-items: flex-start; flex-wrap: wrap; }
+    .ms-goal { margin-left: 0; }
+    .sw-btn { flex: 1; text-align: center; }
+    .calc-field, .calc-field select, .calc-field input { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <a class="back-link" href="./index.html">← Volver</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Cambiar tema claro u oscuro">◐</button>
+    </div>
+    <div class="header-badge">Urgencia conductual · Checklist</div>
+    <h1>Sedación del <span>paciente agitado</span></h1>
+    <p class="header-sub">
+      Tres ideas ordenan esta página. La primera es que <strong>la agitación es un signo, no un diagnóstico</strong>:
+      antes de atribuirla a lo psiquiátrico hay que haber mirado la glicemia capilar, la saturación, la temperatura,
+      la presión y las pupilas, porque la hipoglicemia, la hipoxemia, el traumatismo craneal y la sepsis se agitan
+      igual que una psicosis. La segunda es que <strong>el objetivo no es dormir al paciente, es que deje de estar en
+      peligro</strong>: la meta razonable es un paciente tranquilo y despertable —<em>BARS 3 o 4</em>—, no un paciente
+      inconsciente, y la sobresedación es la complicación más frecuente de todo esto. La tercera es la que más se
+      olvida y la que más mata: <strong>el momento de mayor riesgo no es la lucha, es el silencio que viene después
+      de la inyección</strong>. Un paciente que peleó varios minutos llega a la sedación con acidosis, taquicardia y
+      consumo de oxígeno altísimo; cuando el fármaco le quita el impulso respiratorio, dessatura rápido y lo hace sin
+      hacer ruido. Por eso aquí la regla es <em>oxígeno a alta concentración, posición y monitor apenas se administra
+      el fármaco</em>, y nunca dejarlo en decúbito prono.
+    </p>
+  </div>
+
+  <!-- 01 · SEGURIDAD -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">Los primeros 30 segundos: el box y el equipo</div>
+        <div class="section-subtitle">Antes de acercarse, antes de hablar, antes de cualquier fármaco</div>
+      </div>
+      <span class="section-check-count" id="count-s1">0/9</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>El error inicial más común no es elegir mal el fármaco: es <strong>entrar solo a un box del que no se
+        puede salir</strong>. La agitación se maneja con gente, espacio y tiempo antes que con jeringas; la mayoría
+        de las lesiones del personal ocurren en la contención improvisada por una o dos personas.</span>
+      </div>
+
+      <div class="subhead">Preparación del box</div>
+      <div class="checklist" id="list-s1">
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 1</span><strong>Pide ayuda antes de necesitarla.</strong> Llama al personal de apoyo y a seguridad <em>mientras el paciente todavía está hablando</em>. Es mucho más fácil desconvocar gente que reunirla con el paciente encima.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 2</span><strong>Ubícate entre el paciente y la salida</strong>, sin bloquearle la suya. Ni tú ni él deben quedar acorralados: un paciente sin salida pelea, y un médico sin salida no puede retirarse.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 3</span><strong>Retira del alcance lo que puede ser arma:</strong> tijeras, pinzas, bandejas metálicas, sueros con soporte, sillas sueltas, teléfonos colgantes. Revisa también tu propia ropa: fonendoscopio al cuello, cordones del carné, aros.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 4</span><strong>Mantén distancia de dos brazos</strong> y postura en ángulo, nunca de frente ni invadiendo la línea media. Manos visibles, abiertas, a la altura de la cintura. No toques al paciente sin avisar.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 5</span><strong>Un solo interlocutor.</strong> Designa en voz alta quién habla; el resto permanece visible pero callado. Varias personas hablando a la vez a un paciente desorganizado es, por sí mismo, un estímulo que lo escala.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 6</span><strong>Baja el estímulo del entorno:</strong> luz, ruido, público, monitor con alarmas. Si es posible, trasládalo a un espacio tranquilo y con dos accesos. Saca a los acompañantes que escalan y deja a los que calman.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 7</span><strong>Asigna roles antes de actuar:</strong> quién habla, quién prepara el fármaco, quién lo administra, quién controla cada extremidad y la cabeza, quién pone el oxígeno y el monitor, quién registra la hora. <em>Si vas a contener, se necesitan cinco personas.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 8</span><strong>Ten el equipo de vía aérea listo <em>antes</em> de inyectar:</strong> fuente de oxígeno con mascarilla de reservorio, aspiración funcionando, bolsa-mascarilla, cánula orofaríngea, monitor y saturómetro. Esto no es exceso de celo: es la consecuencia esperable de sedar.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Paso 9</span><strong>Glicemia capilar en todos</strong>, lo antes que la seguridad lo permita. Si no se puede ahora, queda pendiente como la primera acción después de sedar. <em>Ningún paciente agitado se queda sin glicemia.</em></span>
+        </button>
+      </div>
+
+      <div class="info-banner">
+        <span class="warning-icon">🛈</span>
+        <span>Si el paciente porta un arma, hay una amenaza directa a terceros o la situación excede la capacidad del
+        equipo clínico, <strong>esto deja de ser un problema médico antes de volver a serlo</strong>: retírate, cierra
+        el área y activa el protocolo de seguridad del establecimiento. <em>La forma de activación, la dotación de
+        seguridad y la relación con la policía se verifican con el protocolo institucional.</em></span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · BARS -->
+  <div class="section s2" id="s2" style="animation-delay:0.10s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">¿Cuánta agitación? La escala BARS</div>
+        <div class="section-subtitle">Siete niveles · calculadora con la conducta sugerida para cada uno</div>
+      </div>
+      <span class="section-check-count">Calculadora</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">🛈</span>
+        <span>La <strong>Behavioural Activity Rating Scale (BARS)</strong> es una escala de <strong>un solo ítem y
+        siete niveles</strong> que mide actividad conductual observada, desde el paciente que no se logra despertar
+        (1) hasta el paciente violento que requiere contención (7). Se puntúa mirando, en segundos, sin preguntar
+        nada. Fue validada en pacientes psicóticos agudamente agitados, con concordancia entre observadores
+        prácticamente perfecta y mejor sensibilidad al cambio con el tratamiento que escalas más largas
+        (Swift 2002). Su valor en urgencia es doble: <strong>ordena la conversación del equipo</strong> —«está en
+        6», y todos entienden lo mismo— y <strong>permite comparar antes y después</strong> de cada intervención.</span>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Lo que la escala sí es y lo que no es.</strong> BARS está validada como <em>medida de actividad
+        conductual</em>; <strong>no es un algoritmo de tratamiento validado</strong>. La correspondencia entre nivel y
+        conducta que se propone abajo es una convención práctica, construida sobre las recomendaciones de consenso
+        del Project BETA y los ensayos de sedación en urgencia, y <strong>debe ajustarse al protocolo institucional
+        vigente</strong>. Dos cosas que el puntaje no sabe y tú sí: <strong>la causa probable de la agitación</strong>
+        —que decide el fármaco— y <strong>la trayectoria</strong>: un 5 que sube es más preocupante que un 6 que baja.</span>
+      </div>
+
+      <div class="calc">
+        <div class="subhead" style="margin-top:0;">Marca el nivel que describe al paciente ahora</div>
+        <div class="opts" id="bars-opts"></div>
+        <div class="calc-out" id="bars-out"></div>
+        <button type="button" class="calc-reset" id="bars-reset">Reiniciar</button>
+      </div>
+
+      <div class="block-label">Los siete niveles, con la redacción original</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nivel</th><th>Descripción</th><th>Qué significa en el box</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td><span class="dose-main">Difícil o imposible de despertar</span></td><td>No es agitación: es compromiso de conciencia. <strong>Vía aérea, glicemia, oxígeno, tóxicos.</strong> Si viene después de sedar, es <em>sobresedación</em></td></tr>
+            <tr><td>2</td><td><span class="dose-main">Dormido, pero responde normalmente al contacto verbal o físico</span></td><td>Sedación profunda. Vigilancia continua con saturómetro; no agregar fármacos</td></tr>
+            <tr><td>3</td><td><span class="dose-main">Somnoliento, parece sedado</span></td><td><strong>Meta habitual después de sedar.</strong> Tranquilo y despertable, protege su vía aérea</td></tr>
+            <tr><td>4</td><td><span class="dose-main">Tranquilo y despierto, actividad normal</span></td><td>Estado basal normal. <strong>No requiere sedación</strong></td></tr>
+            <tr><td>5</td><td><span class="dose-main">Signos de hiperactividad física o verbal; se calma con instrucciones</span></td><td>Agitación leve. <strong>Terreno de la palabra</strong>, no de la jeringa. Medicación oral ofrecida, no impuesta</td></tr>
+            <tr><td>6</td><td><span class="dose-main">Extremada o continuamente activo; no requiere contención</span></td><td>Agitación moderada a grave. De-escalación + oral ofrecida; si rechaza o escala, parenteral</td></tr>
+            <tr><td>7</td><td><span class="dose-main">Violento; requiere contención</span></td><td><strong>Peligro inmediato.</strong> Contención física por equipo entrenado + sedación parenteral sin demora</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="block-label">Cómo se usa en la práctica</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">⏱️</span><span><strong>Se repite, no se toma una vez.</strong> Al ingreso, antes de medicar, y a los 10–15 minutos de cada dosis. Una tendencia de 7 → 6 → 5 es éxito aunque el paciente siga molesto; un 6 que no se mueve a los 20 minutos es fracaso de esa dosis.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🎯</span><span><strong>La meta es 3 o 4, no 1.</strong> Un paciente en BARS 1 está sobresedado: perdió la capacidad de proteger su vía aérea y ya no puede colaborar con el examen que todavía le debes. <em>Buscar el 1 es cambiar un riesgo por otro peor.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">✍️</span><span><strong>Se escribe.</strong> «BARS 7 al ingreso, BARS 4 a los 15 min de haloperidol 5 mg IM» es una frase que defiende una indicación; «paciente agitado, se seda» no lo es.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚩</span><span><strong>Un BARS que baja demasiado rápido es una alerta, no un alivio.</strong> Un paciente que pasa de 7 a 1 en tres minutos puede estar sedado, pero también puede estar hipoglicémico, hipóxico, posictal o herniando. <em>La caída brusca obliga a reexaminar, no a felicitarse.</em></span></div>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px; margin-bottom:0;">
+        <span class="warning-icon">🛈</span>
+        <span>Otras escalas usadas para lo mismo y que puedes encontrar en protocolos locales: <strong>RASS</strong>
+        (Richmond Agitation–Sedation Scale, de −5 a +4; el ensayo de ketamina de Barbic incluyó pacientes con RASS
+        ≥ +3 y definió sedación adecuada como RASS ≤ −1), <strong>AMSS</strong> (Altered Mental Status Scale, usada
+        en la serie de Hennepin) y <strong>SAT</strong> (Sedation Assessment Tool, de los estudios australianos de
+        droperidol). <em>No son intercambiables punto a punto</em>: usa la que esté en tu protocolo y anota cuál es.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · LA CAUSA -->
+  <div class="section s3" id="s3" style="animation-delay:0.14s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Agitación es un signo, no un diagnóstico</div>
+        <div class="section-subtitle">Lo que hay que descartar antes de llamarlo «psiquiátrico»</div>
+      </div>
+      <span class="section-check-count">Diferencial</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>El sesgo que más daño hace en esta consulta tiene nombre: <strong>atribución psiquiátrica
+        prematura</strong>. Una vez que el equipo decide que «es psiquiátrico», deja de buscar, y la hipoglicemia, el
+        hematoma subdural y la sepsis se quedan sin diagnóstico hasta que es tarde. El consenso del Project BETA es
+        explícito: <strong>si la agitación es un delirium o la manifestación de otra enfermedad médica, el
+        tratamiento es la causa</strong>, no el antipsicótico.</span>
+      </div>
+
+      <div class="subhead">Los cinco datos que se toman en todos, siempre</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🩸</span><span><strong>Glicemia capilar.</strong> Es el único examen que puede resolver el cuadro completo en dos minutos y el único que no tiene excusa para faltar. La hipoglicemia se agita, pelea y no colabora, exactamente igual que una psicosis.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🫁</span><span><strong>Saturación de oxígeno.</strong> La hipoxemia produce agitación antes que somnolencia. Un paciente agitado con saturación baja no necesita sedación primero: necesita oxígeno primero.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🌡️</span><span><strong>Temperatura.</strong> Fiebre en un paciente agitado y confuso es infección del sistema nervioso central hasta demostrar lo contrario; <strong>hipertermia</strong> (sin foco infeccioso, con piel seca o con rigidez) obliga a pensar en golpe de calor, simpaticomiméticos, síndrome serotoninérgico, síndrome neuroléptico maligno y tormenta tiroidea, y es una emergencia que se enfría activamente.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">💓</span><span><strong>Presión arterial y frecuencia cardíaca.</strong> El shock se presenta como agitación. Un paciente inquieto, pálido y taquicárdico no está nervioso: está hipoperfundido.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">👁️</span><span><strong>Pupilas, examen neurológico básico y revisión de la cabeza.</strong> Anisocoria, focalidad, lenguaje incoherente de inicio brusco, herida o hematoma en el cuero cabelludo. <em>La agitación de inicio súbito en alguien sin antecedentes psiquiátricos es orgánica hasta que se demuestre lo contrario.</em></span></div>
+      </div>
+
+      <div class="block-label">Causas médicas que se presentan agitadas</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Grupo</th><th>Qué buscar</th><th>Pista que lo delata</th></tr></thead>
+          <tbody>
+            <tr><td>Metabólico</td><td><span class="dose-main">Hipoglicemia</span>, hiperglicemia con cetoacidosis, hiponatremia, hipercalcemia, uremia, encefalopatía hepática</td><td>Glicemia capilar y electrolitos. La hipoglicemia puede dar focalidad y simular un ictus</td></tr>
+            <tr><td>Respiratorio</td><td>Hipoxemia, hipercapnia</td><td>Saturación, frecuencia respiratoria, uso de musculatura accesoria. El retenedor de CO₂ se agita y luego se duerme</td></tr>
+            <tr><td>Neurológico</td><td>Traumatismo craneal, hematoma subdural, hemorragia subaracnoídea, ictus, estado posictal, estado epiléptico no convulsivo, encefalitis, meningitis</td><td>Inicio brusco, cefalea, focalidad, fiebre, lesión en el cuero cabelludo, anticoagulantes. <strong>El adulto mayor con subdural suele no recordar el golpe</strong></td></tr>
+            <tr><td>Infeccioso</td><td>Sepsis de cualquier foco, en especial urinaria y respiratoria en el adulto mayor</td><td>Delirium como única manifestación. Fiebre, taquipnea, hipotensión, o <em>ninguna de las tres</em> en el muy anciano</td></tr>
+            <tr><td>Tóxico · intoxicación</td><td>Alcohol, cocaína y simpaticomiméticos, anfetaminas, anticolinérgicos, cannabinoides sintéticos, alucinógenos, monóxido de carbono</td><td>Pupilas, piel (seca y caliente en lo anticolinérgico, sudorosa en lo simpaticomimético), temperatura, antecedente de consumo</td></tr>
+            <tr><td>Tóxico · abstinencia</td><td><span class="dose-main">Alcohol</span> y <span class="dose-main">benzodiazepinas</span>; también opioides (agitación sin riesgo vital)</td><td>Temblor, sudoración, taquicardia, alucinaciones, convulsiones. <strong>Cambia el fármaco: aquí la benzodiazepina es el tratamiento, no el sedante</strong></td></tr>
+            <tr><td>Endocrino</td><td>Tormenta tiroidea, crisis suprarrenal, hipoglicemia por insulina o sulfonilureas</td><td>Fibrilación auricular, hipertermia, bocio, pérdida de peso. <em>Ver la página de tormenta tiroidea</em></td></tr>
+            <tr><td>Farmacológico</td><td>Síndrome serotoninérgico, síndrome neuroléptico maligno, corticoides, anticolinérgicos, suspensión brusca de psicofármacos</td><td>Clonus e hiperreflexia (serotoninérgico) frente a rigidez «en tubo de plomo» e hipertermia (neuroléptico maligno). <strong>Ambos contraindican más antipsicótico</strong></td></tr>
+            <tr><td>Dolor y causas banales</td><td>Retención urinaria, fecaloma, fractura no detectada, isquemia de extremidad, mal posicionamiento, deprivación sensorial (sin lentes, sin audífonos)</td><td>Especialmente en demencia y en el paciente que no puede relatar. <em>Palpa el hipogastrio antes de indicar un antipsicótico a un anciano agitado</em></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="block-label">Delirium o psicosis: la distinción que cambia el tratamiento</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Rasgo</th><th>Delirium (causa médica)</th><th>Psicosis primaria</th></tr></thead>
+          <tbody>
+            <tr><td>Inicio</td><td><span class="dose-main">Agudo, en horas o días</span></td><td>Más gradual, con pródromos</td></tr>
+            <tr><td>Curso</td><td><strong>Fluctuante</strong>, peor de noche</td><td>Más estable a lo largo del día</td></tr>
+            <tr><td>Atención</td><td><strong>Alterada</strong>: no logra sostener el hilo ni repetir series</td><td>Conservada en general</td></tr>
+            <tr><td>Orientación</td><td>Desorientado en tiempo y lugar</td><td>Habitualmente orientado</td></tr>
+            <tr><td>Alucinaciones</td><td>Más visuales, zoopsias</td><td>Más auditivas</td></tr>
+            <tr><td>Edad y antecedentes</td><td>Mayor, con comorbilidad, polifarmacia, hospitalización</td><td>Antecedente psiquiátrico conocido, debut en adulto joven</td></tr>
+            <tr><td>Consecuencia práctica</td><td><strong>Tratar la causa.</strong> Si hay que sedar, antipsicótico en dosis baja; <em>evitar benzodiazepinas salvo abstinencia</em></td><td>Antipsicótico, idealmente oral, y continuidad con salud mental</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:16px;">
+        <span class="warning-icon">🛈</span>
+        <span><strong>Sobre el término «delirium agitado» o «delirio excitado».</strong> Es una etiqueta
+        controvertida: una revisión de alcance de 97 estudios encontró que ni siquiera hay acuerdo sobre su
+        definición, que se ha usado sobre todo fuera del hospital como justificación del uso de la fuerza y la
+        contención, y que <strong>la contención agresiva en prono es un factor de riesgo establecido de muerte</strong>
+        en estos casos (Slocum 2022). Los autores concluyen que no debería usarse como diagnóstico. La conducta
+        clínica no depende de la etiqueta: <em>paciente hipertérmico, con agitación extrema, taquicárdico y que no
+        responde al dolor, es una emergencia médica con riesgo de paro</em> —enfriar, sedar con cuidado, oxigenar,
+        volumen, buscar acidosis, rabdomiólisis y electrolitos— y nunca un caso para dejar boca abajo esperando.</span>
+      </div>
+
+      <div class="link-row" style="margin-top:14px;">
+        <a class="cross-link" href="./algoritmo-tormenta-tiroidea.html">Tormenta tiroidea →</a>
+        <a class="cross-link" href="./algoritmo-tec-grave.html">TEC grave →</a>
+        <a class="cross-link" href="./sintoma-fiebre.html">Fiebre y sospecha de infección →</a>
+        <a class="cross-link" href="./checklist-sepsis_4.html">Código sepsis →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · DE-ESCALACIÓN -->
+  <div class="section s4" id="s4" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">De-escalación verbal</div>
+        <div class="section-subtitle">La intervención de primera línea en BARS 5 y 6 · dura menos de lo que parece</div>
+      </div>
+      <span class="section-check-count" id="count-s4">0/10</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="go-banner">
+        <span class="warning-icon">💬</span>
+        <span>El consenso del Project BETA invierte la práctica tradicional: <strong>la contención y la medicación
+        involuntaria dejan de ser la respuesta estándar y pasan a ser el fracaso de la primera línea</strong>. Los
+        cuatro objetivos son: que nadie salga lesionado, que el paciente recupere el control de su conducta, evitar
+        la contención y <strong>evitar las intervenciones coercitivas que escalan la agitación</strong>. La
+        de-escalación bien hecha suele tomar <em>menos de cinco minutos</em>.</span>
+      </div>
+
+      <div class="subhead">Las maniobras, en orden de uso</div>
+      <div class="checklist" id="list-s4">
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Preséntate y di qué vas a hacer.</strong> Nombre, rol y una frase de propósito: «soy el médico de turno, estoy aquí para ayudarlo y no voy a hacerle daño». La ausencia de presentación es una de las causas más frecuentes de escalada.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Respeta el espacio personal:</strong> dos brazos de distancia, sin tocar, sin inclinarte sobre él, sin encerrarlo contra la camilla. Si el paciente retrocede, retrocede tú también.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>No provoques:</strong> manos visibles y relajadas, mirada sin desafío —ni fija ni esquiva—, voz baja y lenta, sin ironía, sin sonrisas, sin discutir con otro miembro del equipo delante del paciente.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Frases cortas, vocabulario simple, repetición paciente.</strong> Un paciente agitado procesa poco: oraciones de menos de diez palabras, una idea por vez, y repetir la misma frase las veces que haga falta sin cambiar el tono.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Identifica lo que quiere y lo que siente.</strong> «¿Qué es lo que más le molesta en este momento?» Muchas agitaciones se resuelven con información, un teléfono, agua, un baño, analgesia o saber cuánto falta.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Escucha y devuelve lo escuchado.</strong> «Entiendo que lleva cuatro horas esperando y nadie le ha explicado nada.» Validar la emoción no es darle la razón en todo: es mostrarle que fue oído.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Acuerda en lo que puedas, con honestidad.</strong> Acepta lo que sea cierto, lo que sea razonable en principio, o conviene en que otras personas opinarían igual. <em>No prometas lo que no puedes cumplir: una promesa rota reinicia la agitación y destruye el vínculo con todo el equipo.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Pon límites claros y sin amenaza.</strong> Di qué conducta no es aceptable y por qué, en términos de seguridad y no de castigo: «aquí nadie puede golpear a nadie; necesito que se siente para poder examinarlo».</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Ofrece opciones reales y optimismo.</strong> Dar a elegir devuelve control: dónde sentarse, qué forma de medicamento prefiere, a quién llamar. <em>El fármaco se ofrece, no se anuncia como castigo.</em> «Tengo algo que lo va a ayudar a sentirse menos así» funciona mucho mejor que «si no se calma lo vamos a inyectar».</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Cierra con el paciente y con el equipo.</strong> Explícale lo que viene ahora y en cuánto tiempo. Después, revisa con el equipo qué funcionó: la de-escalación es una técnica que se entrena, no un rasgo de personalidad.</span>
+        </button>
+      </div>
+
+      <div class="warning-banner" style="margin-top:16px; margin-bottom:0;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Cuándo dejar de hablar.</strong> La de-escalación no se intenta indefinidamente. Pasa a la
+        intervención farmacológica —y a la contención si hace falta— cuando hay <strong>agresión física en
+        curso</strong>, cuando el paciente <strong>escala pese a dos o tres intentos bien hechos</strong>, cuando
+        está <strong>demasiado desorganizado para procesar lenguaje</strong>, o cuando <strong>una condición médica
+        que amenaza la vida necesita tratamiento ahora</strong> y la agitación lo impide. En ese último caso la
+        sedación no es un reemplazo del tratamiento: es lo que lo hace posible.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · CONTENCIÓN FÍSICA -->
+  <div class="section s5" id="s5" style="animation-delay:0.22s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Contención física</div>
+        <div class="section-subtitle">Cinco personas, decúbito supino, nunca prono, y siempre con sedación y plazo</div>
+      </div>
+      <span class="section-check-count" id="count-s5">0/10</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>La contención no es un tratamiento: es una medida de seguridad transitoria mientras hace
+        efecto otra cosa.</strong> Un paciente contenido y <em>no</em> sedado sigue luchando contra las correas
+        durante minutos, y esa lucha isométrica produce acidosis láctica, hipertermia y rabdomiólisis —el mecanismo
+        por el que mueren estos pacientes—. Si decides contener, en la misma decisión va la sedación, el oxígeno y
+        el monitor. <strong>La contención en decúbito prono con presión sobre la espalda es un factor de riesgo
+        establecido de muerte y no debe usarse nunca</strong> (Slocum 2022).</span>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 640 330" role="img" aria-label="Esquema de la contención física: a la izquierda, paciente en decúbito supino sobre camilla con la cabecera elevada treinta grados y las cinco posiciones del equipo —una persona por cada extremidad y una en la cabeza que protege la vía aérea—; a la derecha, la posición en decúbito prono tachada con una cruz roja porque no debe usarse.">
+          <g font-family="DM Mono, monospace" font-size="11" fill="#94a3b8">
+
+            <!-- PANEL IZQUIERDO: supino correcto -->
+            <text x="16" y="20" fill="#6ee7b7" font-size="12">SÍ · Decúbito supino, cabecera 30°</text>
+
+            <!-- camilla -->
+            <rect x="60" y="92" width="300" height="78" rx="8" fill="rgba(99,102,241,0.08)" stroke="#6366f1" stroke-width="1.5"/>
+            <!-- respaldo elevado -->
+            <path d="M60,92 L60,170 L24,170 L52,104 Z" fill="rgba(99,102,241,0.12)" stroke="#6366f1" stroke-width="1.5"/>
+
+            <!-- paciente -->
+            <circle cx="72" cy="118" r="15" fill="rgba(226,232,240,0.14)" stroke="#e2e8f0" stroke-width="1.6"/>
+            <rect x="92" y="104" width="150" height="54" rx="20" fill="rgba(226,232,240,0.10)" stroke="#e2e8f0" stroke-width="1.6"/>
+            <!-- brazos -->
+            <path d="M120,106 L150,74" stroke="#e2e8f0" stroke-width="5" stroke-linecap="round"/>
+            <path d="M120,156 L150,188" stroke="#e2e8f0" stroke-width="5" stroke-linecap="round"/>
+            <!-- piernas -->
+            <path d="M242,116 L320,98" stroke="#e2e8f0" stroke-width="6" stroke-linecap="round"/>
+            <path d="M242,146 L320,164" stroke="#e2e8f0" stroke-width="6" stroke-linecap="round"/>
+
+            <!-- posiciones del equipo -->
+            <circle cx="30" cy="131" r="13" fill="rgba(245,158,11,0.18)" stroke="#fcd34d" stroke-width="1.6"/>
+            <text x="26" y="135" fill="#fcd34d" font-size="11">1</text>
+            <circle cx="162" cy="62" r="13" fill="rgba(20,184,166,0.16)" stroke="#5eead4" stroke-width="1.6"/>
+            <text x="158" y="66" fill="#5eead4" font-size="11">2</text>
+            <circle cx="162" cy="200" r="13" fill="rgba(20,184,166,0.16)" stroke="#5eead4" stroke-width="1.6"/>
+            <text x="158" y="204" fill="#5eead4" font-size="11">3</text>
+            <circle cx="336" cy="88" r="13" fill="rgba(99,102,241,0.18)" stroke="#a5b4fc" stroke-width="1.6"/>
+            <text x="332" y="92" fill="#a5b4fc" font-size="11">4</text>
+            <circle cx="336" cy="174" r="13" fill="rgba(99,102,241,0.18)" stroke="#a5b4fc" stroke-width="1.6"/>
+            <text x="332" y="178" fill="#a5b4fc" font-size="11">5</text>
+
+            <!-- oxígeno -->
+            <path d="M72,103 q14,-16 30,-6" fill="none" stroke="#6ee7b7" stroke-width="1.6" stroke-dasharray="3 3"/>
+            <text x="104" y="92" fill="#6ee7b7" font-size="10.5">O₂ alto flujo</text>
+
+            <text x="16" y="232" fill="#fcd34d" font-size="10.5">1 · cabeza y vía aérea · no comprime cuello ni tórax</text>
+            <text x="16" y="250" fill="#5eead4" font-size="10.5">2 y 3 · un brazo cada uno, sobre hombro y antebrazo</text>
+            <text x="16" y="268" fill="#a5b4fc" font-size="10.5">4 y 5 · una pierna cada uno, sobre rodilla y pelvis</text>
+            <text x="16" y="286" fill="#94a3b8" font-size="10.5">Una sexta persona administra el fármaco y controla el reloj</text>
+            <text x="16" y="304" fill="#94a3b8" font-size="10.5">Un brazo arriba y el contrario abajo · nada cruzado sobre el cuello</text>
+
+            <!-- PANEL DERECHO: prono prohibido -->
+            <line x1="400" y1="10" x2="400" y2="320" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <text x="420" y="20" fill="#fca5a5" font-size="12">NO · Decúbito prono</text>
+
+            <rect x="430" y="92" width="180" height="70" rx="8" fill="rgba(239,68,68,0.05)" stroke="rgba(239,68,68,0.25)" stroke-width="1.5"/>
+            <circle cx="452" cy="112" r="14" fill="rgba(226,232,240,0.10)" stroke="#94a3b8" stroke-width="1.5"/>
+            <rect x="470" y="98" width="110" height="48" rx="18" fill="rgba(226,232,240,0.07)" stroke="#94a3b8" stroke-width="1.5"/>
+            <!-- peso encima -->
+            <path d="M500,70 L500,94" stroke="#fca5a5" stroke-width="3" stroke-linecap="round"/>
+            <path d="M492,86 L500,96 L508,86" fill="none" stroke="#fca5a5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M545,70 L545,94" stroke="#fca5a5" stroke-width="3" stroke-linecap="round"/>
+            <path d="M537,86 L545,96 L553,86" fill="none" stroke="#fca5a5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- tachado -->
+            <line x1="424" y1="80" x2="616" y2="176" stroke="#ef4444" stroke-width="4" stroke-linecap="round"/>
+            <line x1="616" y1="80" x2="424" y2="176" stroke="#ef4444" stroke-width="4" stroke-linecap="round"/>
+
+            <text x="420" y="214" fill="#fca5a5" font-size="10.5">Restringe la expansión torácica y abdominal</text>
+            <text x="420" y="232" fill="#fca5a5" font-size="10.5">Impide ver la cara, la respiración y el vómito</text>
+            <text x="420" y="250" fill="#fca5a5" font-size="10.5">Si llega así desde fuera del hospital: girar de inmediato</text>
+          </g>
+        </svg>
+        <div class="fig-caption">
+          <strong>Disposición del equipo y posición.</strong> La contención se hace con un responsable por extremidad
+          y uno en la cabeza, que es el que vigila la vía aérea y el que da las órdenes. Se inmoviliza sobre
+          articulaciones grandes, nunca sobre el cuello, el tórax ni el abdomen, y <strong>nunca en decúbito
+          prono</strong>. El decúbito supino con la cabecera elevada reduce el riesgo de aspiración; el decúbito
+          lateral de seguridad es la alternativa en el paciente que vomita. <em>El modelo de correas, los puntos de
+          anclaje autorizados y la composición del equipo de contención se verifican con el protocolo
+          institucional.</em>
+        </div>
+      </div>
+
+      <div class="subhead">Checklist de la contención</div>
+      <div class="checklist" id="list-s5">
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Indicación médica explícita y registrada</strong>, con el motivo: riesgo inminente para el paciente o para terceros, o necesidad de un tratamiento vital que la agitación impide. <em>Nunca por conveniencia del equipo, por falta de personal ni como castigo.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Se intentaron y fracasaron las alternativas menos restrictivas</strong>, y eso también queda escrito: de-escalación, cambio de ambiente, acompañante, medicación oral ofrecida.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Cinco personas, roles asignados y una sola voz que dirige.</strong> El que sujeta la cabeza es el jefe de la maniobra porque es el que ve la vía aérea. Se avisa al paciente lo que va a pasar, aunque parezca que no escucha.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Decúbito supino con cabecera elevada</strong> (aproximadamente 30°), un brazo arriba y el contrario abajo. <em>Prohibido el prono, prohibido el peso sobre la espalda, el cuello o el tórax, prohibida cualquier sujeción que cruce el cuello.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Nada que obstruya la boca.</strong> No se tapa la boca ni se pone mascarilla quirúrgica «para que no escupa» en un paciente que puede vomitar: si hay riesgo de escupitajos, se usan protección facial y antiparras <em>del personal</em>, no una obstrucción del paciente.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Sedación administrada en el mismo acto</strong>, no «a ver si se calma solo». La contención sin sedación prolonga la lucha y con ella la acidosis, la hipertermia y la rabdomiólisis.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Oxígeno, saturómetro y monitor apenas termina la maniobra</strong>, y vigilancia visual directa y continua. Un paciente contenido y sedado <em>no se deja solo ni detrás de una cortina</em>.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Revisión periódica de circulación, piel y posición:</strong> pulsos distales, llene capilar, color y temperatura de las manos y los pies, integridad de la piel bajo la correa, y cambio de posición. <em>La frecuencia exacta de la revisión y el plazo máximo de la indicación se verifican con el protocolo institucional.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Plazo y reevaluación.</strong> La indicación es por tiempo limitado y se reevalúa; la contención <strong>se retira apenas deja de ser necesaria</strong>, de forma progresiva y nunca toda de golpe si el paciente sigue inestable.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Registro completo y conversación posterior.</strong> Qué pasó, por qué, quiénes participaron, hora de inicio y de término. Cuando el paciente recupera el control, se le explica lo ocurrido: reduce el trauma del episodio y la probabilidad de que el próximo sea peor.</span>
+        </button>
+      </div>
+
+      <div class="info-banner" style="margin-top:16px; margin-bottom:0;">
+        <span class="warning-icon">⚖️</span>
+        <span><strong>Marco legal en Chile.</strong> La contención física y la medicación involuntaria están
+        reguladas: la <strong>Ley 20.584</strong>, de derechos y deberes del paciente, y la <strong>Ley 21.331</strong>,
+        sobre derechos de las personas en la atención de salud mental, restringen estas medidas a situaciones
+        excepcionales, exigen indicación profesional, registro y la menor duración posible. <em>El texto vigente, los
+        plazos, el formulario de registro, la obligación de notificación y el procedimiento de la hospitalización
+        involuntaria deben verificarse con la normativa actualizada y con el protocolo institucional</em>: esta
+        página no reemplaza esa revisión.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · QUÉ FÁRMACO -->
+  <div class="section s6" id="s6" style="animation-delay:0.26s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Qué fármaco, según la causa probable</div>
+        <div class="section-subtitle">La causa manda sobre la escala · aquí es donde se evitan los errores graves</div>
+      </div>
+      <span class="section-check-count">Decisión</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">🛈</span>
+        <span>El consenso del Project BETA sobre psicofarmacología de la agitación se resume en una frase:
+        <strong>el tratamiento farmacológico debe basarse en la causa más probable de la agitación</strong>, y el
+        objetivo es <strong>calmar sin dormir</strong>, para que el paciente pueda participar en su propia
+        evaluación. Cuando la causa es desconocida, la elección razonable es la que menos daño hace si la hipótesis
+        está equivocada.</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Escenario</th><th>Primera línea razonable</th><th>Lo que hay que evitar, y por qué</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Abstinencia de alcohol o de benzodiazepinas</td>
+              <td><span class="dose-main">Benzodiazepina titulada</span><br><span class="dose-note">diazepam o lorazepam, repitiendo según respuesta</span></td>
+              <td><strong>Antipsicótico como monoterapia:</strong> no trata el déficit gabaérgico, baja el umbral convulsivo y deja al paciente en riesgo de convulsión y <em>delirium tremens</em>. Aquí la benzodiazepina es el tratamiento de la enfermedad, no un sedante</td>
+            </tr>
+            <tr>
+              <td>Intoxicación alcohólica aguda</td>
+              <td><span class="dose-main">Antipsicótico</span><br><span class="dose-note">haloperidol u olanzapina, dosis baja</span></td>
+              <td><strong>Benzodiazepinas:</strong> suman depresión respiratoria a la del alcohol. Y antes de atribuirlo al alcohol: glicemia, traumatismo craneal e hipotermia, que son frecuentes y pasan desapercibidos en el paciente que «solo está curado»</td>
+            </tr>
+            <tr>
+              <td>Simpaticomiméticos: cocaína, metanfetamina, catinonas</td>
+              <td><span class="dose-main">Benzodiazepina</span><br><span class="dose-note">sola o combinada con antipsicótico si no responde</span></td>
+              <td><strong>Antipsicótico solo:</strong> baja el umbral convulsivo y altera la termorregulación en un paciente que ya está hipertérmico. Vigila temperatura, creatinquinasa y potasio. En agitación por metanfetamina, la combinación de midazolam con droperidol logró sedación adecuada a los 10 minutos en el 85 % frente al 47–50 % de cada fármaco solo (Yap 2017)</td>
+            </tr>
+            <tr>
+              <td>Delirium por causa médica</td>
+              <td><span class="dose-main">Tratar la causa</span><br><span class="dose-note">si se requiere sedación: antipsicótico en dosis baja</span></td>
+              <td><strong>Benzodiazepinas:</strong> empeoran y prolongan el delirium —la excepción es la abstinencia—. Y <strong>la sedación no es el tratamiento</strong>: un delirium sedado sigue siendo un delirium sin diagnóstico</td>
+            </tr>
+            <tr>
+              <td>Psicosis primaria conocida</td>
+              <td><span class="dose-main">Antipsicótico, idealmente oral</span><br><span class="dose-note">olanzapina bucodispersable o risperidona, con o sin lorazepam oral</span></td>
+              <td><strong>Pasar directo a la vía parenteral</strong> cuando el paciente aceptaba la oral: la vía forzada daña la alianza terapéutica y aumenta la agitación en la consulta siguiente</td>
+            </tr>
+            <tr>
+              <td>Agitación indiferenciada o de causa múltiple</td>
+              <td><span class="dose-main">Benzodiazepina, antipsicótico o la combinación</span><br><span class="dose-note">según disponibilidad y perfil del paciente</span></td>
+              <td><strong>Dosis repetidas antes del tiempo de acción.</strong> La mayoría de los fármacos intramusculares necesitan 15–30 minutos; apilar dosis a los 5 minutos es la receta de la sobresedación</td>
+            </tr>
+            <tr>
+              <td>Adulto mayor, con o sin demencia</td>
+              <td><span class="dose-main">Medidas no farmacológicas primero</span><br><span class="dose-note">si es imprescindible: antipsicótico a la mitad o un cuarto de la dosis del adulto</span></td>
+              <td><strong>Benzodiazepinas</strong> (reacción paradojal, caídas, delirium) y <strong>dosis de adulto joven</strong>. Los antipsicóticos aumentan la mortalidad en pacientes con demencia: la indicación debe ser excepcional, en la dosis mínima y por el tiempo más corto. Busca primero dolor, retención urinaria, fecaloma, infección y fármacos nuevos</td>
+            </tr>
+            <tr>
+              <td>Enfermedad de Parkinson o demencia por cuerpos de Lewy</td>
+              <td><span class="dose-main">Quetiapina</span><br><span class="dose-note">verificar disponibilidad y vía</span></td>
+              <td><strong>Haloperidol y antipsicóticos típicos:</strong> pueden desencadenar un deterioro extrapiramidal grave. Es uno de los pocos escenarios donde el fármaco habitual está formalmente desaconsejado</td>
+            </tr>
+            <tr>
+              <td>Síndrome serotoninérgico o síndrome neuroléptico maligno</td>
+              <td><span class="dose-main">Benzodiazepina y enfriamiento activo</span><br><span class="dose-note">suspender el agente causal</span></td>
+              <td><strong>Cualquier antipsicótico:</strong> empeora ambos cuadros. La rigidez con hipertermia es una contraindicación formal a seguir antagonizando dopamina</td>
+            </tr>
+            <tr>
+              <td>Toxidrome anticolinérgico</td>
+              <td><span class="dose-main">Benzodiazepina</span><br><span class="dose-note">consultar con toxicología por antídoto</span></td>
+              <td><strong>Antipsicóticos con carga anticolinérgica</strong>, que agravan la retención urinaria, el íleo, la taquicardia y el delirium</td>
+            </tr>
+            <tr>
+              <td>Traumatismo craneal o sospecha de lesión neurológica aguda</td>
+              <td><span class="dose-main">La menor sedación que permita estudiar</span><br><span class="dose-note">fármaco de acción corta, con la imagen ya coordinada</span></td>
+              <td><strong>Sedación profunda sin plan:</strong> borra el examen neurológico que todavía necesitas. Si hay que sedar para obtener la tomografía, que la tomografía esté lista antes de inyectar</td>
+            </tr>
+            <tr>
+              <td>Embarazo</td>
+              <td><span class="dose-main">Haloperidol</span><br><span class="dose-note">es el de mayor experiencia acumulada</span></td>
+              <td><strong>Decúbito supino plano</strong> después del segundo trimestre: inclina a la izquierda o desplaza el útero. Toda indicación farmacológica en embarazo se contrasta con obstetricia y con el protocolo institucional</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-banner" style="margin-top:16px; margin-bottom:0;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Dos combinaciones que conviene mirar dos veces.</strong> La <strong>olanzapina intramuscular
+        junto con una benzodiazepina parenteral</strong> tiene una advertencia de la ficha del producto por riesgo de
+        depresión cardiorrespiratoria e hipotensión: si se usan ambas, se separan en el tiempo y se vigila
+        estrechamente. Y cualquier <strong>benzodiazepina en un paciente ya intoxicado con depresores</strong>
+        —alcohol, opioides, otras benzodiazepinas— suma depresión respiratoria. <em>Verificar con la ficha vigente
+        del producto y el protocolo institucional.</em></span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · DOSIS -->
+  <div class="section s7" id="s7" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Dosis, vías y tiempos de acción</div>
+        <div class="section-subtitle">Orientativas · se confirman con el protocolo institucional y la ficha del producto</div>
+      </div>
+      <span class="section-check-count">Fármacos</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span>Las dosis de esta tabla son <strong>orientativas y corresponden al adulto</strong>. La dosis exacta, la
+        dosis máxima diaria, la disponibilidad de cada presentación y la vía autorizada <strong>varían entre
+        servicios y deben verificarse con el arsenal y el protocolo institucional</strong> antes de administrar.
+        <em>Droperidol y algunas presentaciones intramusculares de olanzapina y lorazepam no están disponibles en
+        todos los servicios del país: confirma con farmacia qué tienes realmente a mano antes de necesitarlo.</em></span>
+      </div>
+
+      <div class="subhead">Vía parenteral</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Fármaco</th><th>Dosis en el adulto</th><th>Inicio de acción</th><th>Lo que hay que tener presente</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Haloperidol</td>
+              <td><span class="dose-main">5 mg IM</span><br><span class="dose-note">rango 2,5–10 mg · adulto mayor 0,5–2,5 mg</span></td>
+              <td>20–30 min IM<br><span class="dose-note">efecto máximo 30–45 min</span></td>
+              <td>El más disponible y el de mayor experiencia. <strong>Más lento que midazolam y olanzapina</strong> (Klein 2018). Vigilar <em>distonía aguda y acatisia</em> —que el paciente puede referir como más angustia— y <em>prolongación del QT</em>. Útil combinado con una benzodiazepina cuando una sola no basta</td>
+            </tr>
+            <tr>
+              <td>Haloperidol + prometazina</td>
+              <td><span class="dose-main">Haloperidol 5–10 mg + prometazina 25–50 mg IM</span></td>
+              <td>20–30 min</td>
+              <td>Esquema validado en ensayos pragmáticos en países de ingresos bajos y medios, donde no hay droperidol ni antipsicóticos de segunda generación inyectables. La prometazina aporta sedación y reduce la distonía. <em>Verificar disponibilidad y compatibilidad con el protocolo local</em></td>
+            </tr>
+            <tr>
+              <td>Midazolam</td>
+              <td><span class="dose-main">5 mg IM</span><br><span class="dose-note">2,5 mg en adulto mayor o frágil · 1–2,5 mg IV titulado</span></td>
+              <td>10–15 min IM<br><span class="dose-note">1–3 min IV</span></td>
+              <td><strong>El más rápido de los intramusculares no disociativos</strong> (Klein 2018), y por eso mismo <strong>el que más sobresedación produce</strong>: en el estudio DORM, los eventos adversos por sobresedación fueron del 28 % con midazolam frente al 6 % con droperidol. Siempre con oxígeno y saturometría</td>
+            </tr>
+            <tr>
+              <td>Lorazepam</td>
+              <td><span class="dose-main">1–2 mg IM o IV</span><br><span class="dose-note">repetible según respuesta</span></td>
+              <td>15–30 min IM</td>
+              <td>De elección cuando se necesita una benzodiazepina sin metabolitos activos (hepatópata, adulto mayor). <em>La presentación parenteral no está disponible en todos los servicios</em></td>
+            </tr>
+            <tr>
+              <td>Diazepam</td>
+              <td><span class="dose-main">5–10 mg IV lento</span><br><span class="dose-note">titular; es el fármaco habitual de la abstinencia alcohólica</span></td>
+              <td>1–5 min IV</td>
+              <td><strong>No usar por vía intramuscular:</strong> la absorción es errática y dolorosa. Requiere una vía venosa, lo que lo hace poco práctico en el paciente que pelea</td>
+            </tr>
+            <tr>
+              <td>Olanzapina</td>
+              <td><span class="dose-main">10 mg IM</span><br><span class="dose-note">5 mg en adulto mayor</span></td>
+              <td>15–30 min IM</td>
+              <td>Más eficaz que haloperidol a los 15 minutos y con perfil de efectos adversos similar (Klein 2018). <strong>Advertencia de la ficha del producto sobre el uso conjunto con benzodiazepina parenteral</strong> por depresión cardiorrespiratoria e hipotensión</td>
+            </tr>
+            <tr>
+              <td>Droperidol</td>
+              <td><span class="dose-main">10 mg IM o IV</span><br><span class="dose-note">5 mg en adulto mayor · repetible a los 15 min</span></td>
+              <td>10–20 min</td>
+              <td>Donde está disponible es uno de los mejores estudiados: mediana de 20 minutos hasta la sedación y 97 % sedados a los 120 minutos, con <strong>QT anormal en 1,3 % de 1009 electrocardiogramas y ningún caso de torsades</strong> (Calver 2015), lo que relativiza la alerta regulatoria histórica. <em>Confirmar disponibilidad local</em></td>
+            </tr>
+            <tr>
+              <td>Ketamina</td>
+              <td><span class="dose-main">4–5 mg/kg IM</span><br><span class="dose-note">1–2 mg/kg IV lento</span></td>
+              <td>3–5 min IM<br><span class="dose-note">&lt; 1 min IV</span></td>
+              <td>Reservada para la agitación peligrosa o refractaria. <strong>Ver la sección 08</strong>, con la calculadora de dosis y las precauciones</td>
+            </tr>
+            <tr>
+              <td>Biperideno</td>
+              <td><span class="dose-main">2–5 mg IM o IV lento</span></td>
+              <td>10–30 min</td>
+              <td>No es un sedante: es el <strong>antídoto de la distonía aguda</strong> por antipsicóticos (crisis oculógira, tortícolis, trismus). Tenerlo identificado antes de usar haloperidol</td>
+            </tr>
+            <tr>
+              <td>Flumazenil</td>
+              <td><span class="dose-main">No usar de rutina</span></td>
+              <td>—</td>
+              <td>Revertir la sedación por benzodiazepinas en este contexto puede desencadenar <strong>convulsiones</strong> —sobre todo en consumo crónico o coingesta de proconvulsivantes— y devolver al paciente a la agitación. La sobresedación se maneja con <em>vía aérea, oxígeno y tiempo</em>, no con antagonista</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Vía oral · se ofrece siempre que el paciente pueda aceptarla</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Fármaco</th><th>Dosis</th><th>Cuándo conviene</th></tr></thead>
+          <tbody>
+            <tr><td>Olanzapina bucodispersable</td><td><span class="dose-main">10 mg</span><br><span class="dose-note">5 mg en adulto mayor</span></td><td>Se disuelve en la boca y no requiere tragar ni vaso de agua. Muy útil en el paciente que acepta pero desconfía</td></tr>
+            <tr><td>Risperidona solución oral</td><td><span class="dose-main">1–2 mg</span></td><td>Sola o con lorazepam oral; combinación clásica y bien tolerada en la agitación de la psicosis</td></tr>
+            <tr><td>Lorazepam</td><td><span class="dose-main">1–2 mg</span></td><td>Ansiedad y agitación leve, y como acompañante del antipsicótico oral</td></tr>
+            <tr><td>Quetiapina</td><td><span class="dose-main">25–100 mg</span></td><td>Opción preferida cuando hay enfermedad de Parkinson o demencia por cuerpos de Lewy</td></tr>
+            <tr><td>Haloperidol gotas</td><td><span class="dose-main">2,5–5 mg</span></td><td>Alternativa disponible en casi todos los servicios; mismo perfil de efectos adversos que la vía parenteral</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="block-label">Lo que muestran los estudios comparativos</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">📊</span><span><strong>Velocidad intramuscular (Klein 2018, 737 pacientes).</strong> A los 15 minutos, <em>midazolam 5 mg</em> logró sedación adecuada en una proporción mayor que ziprasidona 20 mg (diferencia 18 %), haloperidol 5 mg (30 %) y haloperidol 10 mg (28 %); frente a olanzapina 10 mg la diferencia fue de 9 % con intervalo de confianza que cruza el cero. <strong>Olanzapina superó a haloperidol</strong> en 18–20 %. Los eventos adversos fueron infrecuentes y similares entre grupos: ningún paro, 1 % de hipoxemia y 0,5 % de intubación.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📊</span><span><strong>Droperidol frente a midazolam (DORM, Isbister 2010, 91 pacientes aleatorizados).</strong> Duración mediana del episodio similar —20, 24 y 25 minutos—, pero <em>más necesidad de dosis adicional con midazolam</em> (62 % frente a 33 %) y <em>más efectos adversos por sobresedación</em> (28 % frente a 6 %). Sin señal de prolongación del QT atribuible al droperidol.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📊</span><span><strong>Combinar acelera (Yap 2017, subgrupo de 92 pacientes con agitación por metanfetamina).</strong> Midazolam 5 mg + droperidol 5 mg por vía intravenosa logró sedación adecuada a los 10 minutos en el 85 % frente al 47 % de droperidol solo y el 50 % de olanzapina sola; el evento adverso más frecuente en los tres grupos fue la <em>desaturación de oxígeno</em>.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">🎯</span><span><strong>La lectura práctica.</strong> No hay un fármaco que gane en todo: el más rápido es el que más sobreseda, y el más seguro suele ser el más lento. Lo que sí es constante en todos los estudios es que <strong>el evento adverso dominante es respiratorio</strong> —desaturación, sobresedación— y no cardíaco. Eso define dónde hay que poner la atención después de inyectar.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · KETAMINA -->
+  <div class="section s8" id="s8" style="animation-delay:0.34s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Ketamina intramuscular en la agitación peligrosa</div>
+        <div class="section-subtitle">Cuándo sí, a qué precio, y con qué preparado antes de inyectar</div>
+      </div>
+      <span class="section-check-count">Calculadora</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">🛈</span>
+        <span>La ketamina tiene una virtud que ningún otro fármaco de esta página iguala: <strong>actúa en minutos
+        por vía intramuscular, sin necesidad de vía venosa, y casi nunca falla</strong>. En el ensayo aleatorizado
+        de Barbic (2021) la mediana hasta sedación adecuada fue de <strong>5,8 minutos con ketamina 5 mg/kg IM
+        frente a 14,7 minutos</strong> con midazolam 5 mg + haloperidol 5 mg IM. En la serie prospectiva de Cole
+        (2016) fue de <strong>5 minutos frente a 17</strong> con haloperidol 10 mg. Como rescate en pacientes que ya
+        habían fracasado con droperidol, solo el 10 % no se sedó (Isbister 2016).</span>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Y tiene un precio que hay que mirar de frente.</strong> En la misma serie de Cole, las
+        complicaciones aparecieron en el <strong>49 % del grupo ketamina frente al 5 % del grupo haloperidol</strong>:
+        hipersalivación 38 %, reacción de emergencia 10 %, vómitos 9 %, laringoespasmo 5 %. Y la cifra que más se
+        cita: <strong>el 39 % de los pacientes que recibieron ketamina prehospitalaria fue intubado</strong>, frente
+        al 4 % del grupo haloperidol; en otra cohorte del mismo sistema la intubación llegó al 63 %, sin relación con
+        la dosis y con gran variabilidad entre operadores (Olives 2016). El metaanálisis de proporciones de Mankowitz
+        (2018, 650 casos) pone esa cifra en perspectiva: la intubación fue del <strong>30,5 % en el conjunto, del
+        4,9 % en transporte aeromédico y del 1,8 % cuando la ketamina se administró en el servicio de
+        urgencia</strong>. Es decir: <em>buena parte de la intubación es una decisión del entorno y no una
+        consecuencia inevitable del fármaco</em>. Pero eso solo es cierto si el equipo que la administra sabe manejar
+        una vía aérea y tiene todo listo.</span>
+      </div>
+
+      <div class="subhead">Cuándo considerarla</div>
+      <div class="plain-list">
+        <div class="plain-item good"><span class="bullet-icon">✔</span><span><strong>Agitación extrema con peligro inmediato</strong> (BARS 7) en la que esperar 20 minutos a que actúe un intramuscular convencional significa que alguien se va a lesionar.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">✔</span><span><strong>Fracaso de la primera línea:</strong> el paciente no se sedó con dos dosis adecuadas de antipsicótico, benzodiazepina o su combinación. Es la indicación con mejor evidencia de rescate.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">✔</span><span><strong>Necesidad de control inmediato para tratar algo que amenaza la vida:</strong> hemorragia, quemadura, hipoglicemia que no se puede corregir, un politraumatizado que no deja examinarse. Aquí la sedación es lo que habilita el tratamiento.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">✔</span><span><strong>Sin acceso venoso y sin posibilidad de obtenerlo</strong> mientras el paciente pelea. La ketamina intramuscular no necesita colaboración.</span></div>
+      </div>
+
+      <div class="subhead">Precauciones y situaciones donde conviene pensarlo dos veces</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">🚩</span><span><strong>Equipo que no puede manejar una vía aérea.</strong> Es la única contraindicación realmente absoluta en la práctica: si no hay con qué ventilar, aspirar e intubar, no es el momento de usar ketamina.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚩</span><span><strong>Hipertensión grave no controlada, sospecha de disección aórtica o de hemorragia intracraneal:</strong> la ketamina aumenta la frecuencia cardíaca y la presión arterial. <em>El efecto sobre la presión intracraneal ha sido reevaluado y hoy se considera mucho menos problemático de lo que se enseñó, pero el aumento de presión arterial es real y relevante en estos escenarios.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚩</span><span><strong>Psicosis primaria conocida:</strong> clásicamente se la evitaba por el riesgo de agravar los síntomas psicóticos. La evidencia es inconsistente y no justifica negarla en una emergencia, pero sí justifica preferir otra cosa cuando hay alternativa.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚩</span><span><strong>Adulto mayor y comorbilidad cardiovascular:</strong> menos datos, más riesgo. Si se usa, se usa con el extremo bajo del rango y con monitorización desde el minuto cero.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💧</span><span><strong>Hipersalivación:</strong> es el efecto adverso más frecuente y, en un paciente sedado en decúbito, el que más contribuye al compromiso de la vía aérea. Aspiración disponible y paciente posicionado. <em>El uso rutinario de antisialagogo no es práctica estándar: decidirlo con el protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🌀</span><span><strong>Reacción de emergencia</strong> al despertar (disforia, alucinaciones, agitación de rebote) en alrededor del 10 %. Se previene y se trata con ambiente tranquilo y, si hace falta, una benzodiazepina en dosis baja.</span></div>
+      </div>
+
+      <div class="block-label">Calculadora de dosis por peso</div>
+      <div class="calc">
+        <div class="calc-row">
+          <div class="calc-field">
+            <label for="k-peso">Peso estimado (kg)</label>
+            <input type="number" id="k-peso" min="30" max="200" step="1" placeholder="70" inputmode="numeric">
+          </div>
+          <div class="calc-field">
+            <label for="k-dosis">Pauta</label>
+            <select id="k-dosis">
+              <option value="4|IM">4 mg/kg · intramuscular</option>
+              <option value="5|IM" selected>5 mg/kg · intramuscular</option>
+              <option value="1|IV">1 mg/kg · intravenoso lento</option>
+              <option value="2|IV">2 mg/kg · intravenoso lento</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="k-conc">Concentración del vial</label>
+            <select id="k-conc">
+              <option value="50" selected>50 mg/mL</option>
+              <option value="100">100 mg/mL</option>
+              <option value="10">10 mg/mL</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-out" id="k-out"></div>
+        <button type="button" class="calc-reset" id="k-reset">Reiniciar</button>
+      </div>
+
+      <div class="block-label">Antes de inyectar: lo que tiene que estar en la sala</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🫧</span><span><strong>Oxígeno con mascarilla de reservorio</strong> conectado y listo para ponerlo en el segundo siguiente a la inyección.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧯</span><span><strong>Aspiración encendida y probada</strong>, con sonda rígida al alcance de la mano.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🎈</span><span><strong>Bolsa-mascarilla, cánula orofaríngea y carro de vía aérea</strong> en el box, no en el pasillo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📟</span><span><strong>Saturómetro y monitor</strong>, idealmente con capnografía si el servicio dispone de ella.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🙋</span><span><strong>Una persona asignada solo a vigilar la respiración</strong> durante los primeros 15 minutos. No es un lujo: es el rol que evita la mayoría de los desenlaces malos.</span></div>
+      </div>
+
+      <div class="go-banner" style="margin-top:16px; margin-bottom:0;">
+        <span class="warning-icon">💉</span>
+        <span><strong>Sobre la dosis insuficiente.</strong> En la serie de rescate de Isbister, la mediana usada fue
+        de 300 mg y <strong>cuatro de los cinco fracasos habían recibido 200 mg o menos</strong>; los autores
+        sugieren 4–5 mg/kg. Una dosis baja en este contexto no es «más prudente»: deja al paciente agitado, disfórico
+        y obliga a una segunda inyección, que es exactamente la situación que se quería evitar. <em>La dosis, la
+        dilución, el sitio de inyección y el volumen máximo por sitio se confirman con el protocolo
+        institucional.</em></span>
+      </div>
+
+      <div class="link-row" style="margin-top:14px;">
+        <a class="cross-link" href="./checklist-cricotiroidotomia.html">Rescate de vía aérea · cricotiroidotomía →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · DESPUÉS DE SEDAR -->
+  <div class="section s9" id="s9" style="animation-delay:0.38s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Después de sedar: oxígeno, posición y monitor</div>
+        <div class="section-subtitle">El período más peligroso del episodio · cronómetro con hitos</div>
+      </div>
+      <span class="section-check-count" id="count-s9">0/11</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Por qué el oxígeno a alta concentración, y por qué de inmediato.</strong> El paciente que
+        acaba de luchar varios minutos llega a la sedación con <em>acidosis metabólica por lactato, taquicardia,
+        hipertermia y un consumo de oxígeno muy por encima del basal</em>. Esa acidosis la estaba compensando
+        respirando rápido. El sedante le quita precisamente eso: baja la frecuencia respiratoria, relaja la vía
+        aérea superior y, si además está contenido en una posición que limita la expansión torácica, la
+        compensación desaparece de golpe. El resultado es una desaturación rápida en un paciente que ya tiene poca
+        reserva, <strong>sin agitación, sin ruido y sin que nadie lo note</strong>, porque por fin «está
+        tranquilo». Poner oxígeno a alta concentración apenas se administra el fármaco no cuesta nada y compra el
+        margen que hace falta. <em>La concentración y el dispositivo exactos se ajustan al paciente y al protocolo
+        institucional; en el paciente retenedor conocido de CO₂, el objetivo de saturación se individualiza.</em></span>
+      </div>
+
+      <div class="stopwatch">
+        <div class="sw-display" id="swDisplay">00:00</div>
+        <div class="sw-caption" id="swCaption">Detenido · parte el reloj al administrar el fármaco</div>
+        <div class="sw-controls">
+          <button type="button" class="sw-btn primary" id="swToggle" onclick="swToggle()">▶ Iniciar</button>
+          <button type="button" class="sw-btn" onclick="swReset()">↺ Reiniciar</button>
+        </div>
+        <div class="milestones">
+          <button type="button" class="ms" data-goal="60" onclick="markMs(this)"><span>Oxígeno a alta concentración puesto</span><span class="ms-goal">meta ~60 s</span></button>
+          <button type="button" class="ms" data-goal="90" onclick="markMs(this)"><span>Posición segura · supino con cabecera elevada o lateral · prono retirado</span><span class="ms-goal">meta ~90 s</span></button>
+          <button type="button" class="ms" data-goal="120" onclick="markMs(this)"><span>Monitor, saturómetro y presión arterial conectados</span><span class="ms-goal">meta ~2 min</span></button>
+          <button type="button" class="ms" data-goal="180" onclick="markMs(this)"><span>Glicemia capilar y temperatura tomadas</span><span class="ms-goal">meta ~3 min</span></button>
+          <button type="button" class="ms" data-goal="600" onclick="markMs(this)"><span>Primera reevaluación: BARS y signos vitales</span><span class="ms-goal">meta ~10 min</span></button>
+          <button type="button" class="ms" data-goal="900" onclick="markMs(this)"><span>Decisión sobre segunda dosis · electrocardiograma</span><span class="ms-goal">meta ~15 min</span></button>
+          <button type="button" class="ms" data-goal="1800" onclick="markMs(this)"><span>Estudio de la causa en curso y registro escrito</span><span class="ms-goal">meta ~30 min</span></button>
+        </div>
+      </div>
+
+      <div class="info-banner" style="margin-top:16px;">
+        <span class="warning-icon">🛈</span>
+        <span>Las metas de tiempo del cronómetro son <strong>una propuesta de orden de trabajo, no un estándar
+        validado</strong>: no existe evidencia que fije estos plazos. Sirven para una sola cosa, que es la que
+        importa: <em>que nadie se vaya del box antes de que el oxígeno, la posición y el monitor estén
+        puestos</em>. La frecuencia de los controles posteriores se ajusta al protocolo institucional.</span>
+      </div>
+
+      <div class="subhead">Checklist post-sedación</div>
+      <div class="checklist" id="list-s9">
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Minuto 1</span><strong>Oxígeno a alta concentración</strong> con mascarilla de reservorio, puesto apenas se administra el fármaco y antes de ordenar nada más. <em>No se espera a que dessature para ponerlo: para entonces ya se perdió el margen.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Minuto 1–2</span><strong>Posición:</strong> decúbito supino con la cabecera elevada, o decúbito lateral de seguridad si hay riesgo de vómito. <strong>Si llegó en prono —por ejemplo, traído así desde fuera del hospital— se gira de inmediato.</strong> Alinea la vía aérea y aspira si hay secreciones.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Minuto 2</span><strong>Monitorización continua:</strong> saturometría permanente, monitor cardíaco y presión arterial. <em>Capnografía si el servicio dispone de ella: detecta la hipoventilación antes que el saturómetro, sobre todo con oxígeno puesto.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Vigilancia</span><strong>Observación visual directa y continua</strong> durante al menos los primeros 15 minutos, con una persona asignada. <em>«Pasar a mirarlo cada tanto» no es vigilancia.</em> El paciente sedado no se deja detrás de una cortina ni en un pasillo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Minuto 3</span><strong>Glicemia capilar y temperatura</strong>, si no se alcanzaron a tomar antes. La hipertermia en este contexto es una emergencia: se enfría activamente y se buscan rabdomiólisis y acidosis.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Examen</span><strong>Ahora sí, el examen físico completo que antes era imposible:</strong> cabeza, pupilas, cuello, tórax, abdomen, extremidades, piel, espalda y región perineal, con el paciente desvestido y girado. Busca el traumatismo, el sitio de punción, las lesiones de la lucha y el globo vesical.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Exámenes</span><strong>Estudio dirigido por la hipótesis:</strong> electrocardiograma con medición del QT, electrolitos, función renal, creatinquinasa si hubo lucha prolongada, gases venosos con lactato, pruebas hepáticas, alcoholemia o tóxicos según contexto, y neuroimagen si hay sospecha de causa estructural. <em>El panel exacto se ajusta al protocolo institucional.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Minuto 10</span><strong>Reevaluación con BARS</strong> y signos vitales. Objetivo: <strong>BARS 3 o 4</strong>. Si sigue en 6 o 7 y ya pasó el tiempo de acción del fármaco, corresponde una segunda dosis o un cambio de estrategia —no repetir a ciegas el mismo esquema.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Hidratación</span><strong>Vía venosa y volumen</strong> una vez que es seguro instalarla, sobre todo si hubo lucha prolongada, hipertermia o sospecha de rabdomiólisis. <em>El tipo y el ritmo del fluido se ajustan al paciente y al protocolo institucional.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Confort</span><strong>Retira lo que ya no hace falta:</strong> la contención se suelta progresivamente apenas la sedación es efectiva y el paciente deja de estar en riesgo. Mantén al paciente abrigado, con la piel protegida y sin compresión en los puntos de apoyo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Destino</span><strong>Define dónde sigue.</strong> Un paciente sedado no se traslada a un sector sin monitorización ni se deriva a salud mental hasta que esté despierto, con causa médica descartada o tratada y con signos vitales estables. <em>Los criterios de observación, de ingreso y de derivación son institucionales.</em></span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · COMPLICACIONES -->
+  <div class="section s10" id="s10" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Complicaciones: reconocerlas y qué hacer</div>
+        <div class="section-subtitle">La mayoría son respiratorias y aparecen en los primeros 30 minutos</div>
+      </div>
+      <span class="section-check-count">Tabla</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Complicación</th><th>Cómo se reconoce</th><th>Conducta</th></tr></thead>
+          <tbody>
+            <tr><td>Hipoventilación y apnea</td><td>Frecuencia respiratoria baja, excursión torácica mínima, capnografía con onda aplanada o ausente; la saturación cae <strong>tarde</strong> si hay oxígeno puesto</td><td>Estimular, alinear la vía aérea, <strong>cánula orofaríngea y ventilación con bolsa-mascarilla</strong>. No revertir con flumazenil de rutina. Pedir ayuda temprano</td></tr>
+            <tr><td>Obstrucción de la vía aérea superior</td><td>Ronquido, estridor, respiración paradojal en un paciente profundamente sedado</td><td>Extensión cervical y tracción mandibular, cánula orofaríngea o nasofaríngea, aspirar. Reposicionar siempre antes de escalar</td></tr>
+            <tr><td>Aspiración</td><td>Vómito en un paciente sedado, desaturación, crepitaciones, tos</td><td>Lateralizar de inmediato, aspirar, oxígeno. Es la razón por la que la posición y la aspiración lista no son opcionales</td></tr>
+            <tr><td>Sobresedación (BARS 1–2)</td><td>No despertable, no protege la vía aérea</td><td>Vía aérea, oxígeno, monitor y <strong>tiempo</strong>. No administrar más fármaco. Reevaluar si hay otra causa concurrente: hipoglicemia, tóxicos, lesión intracraneal</td></tr>
+            <tr><td>Hipotensión</td><td>Más frecuente con antipsicóticos sedantes y con la combinación de olanzapina con benzodiazepina parenteral</td><td>Posición, volumen, suspender fármacos depresores adicionales. Buscar causa concurrente: sepsis, hemorragia, deshidratación</td></tr>
+            <tr><td>Distonía aguda</td><td>Crisis oculógira, tortícolis, trismus, protrusión de la lengua, en las horas siguientes a un antipsicótico. <em>Muy angustiante y a veces confundida con más agitación</em></td><td><strong>Biperideno 2–5 mg IM o IV lento</strong> (verificar dosis con el protocolo). Explicar al paciente qué está pasando; la respuesta suele ser rápida</td></tr>
+            <tr><td>Acatisia</td><td>Inquietud interna insoportable, el paciente no puede quedarse quieto y pide moverse. <strong>Se parece a la agitación que se intentaba tratar</strong></td><td>Reconocerla es la clave: <em>más antipsicótico la empeora</em>. Reducir o cambiar el fármaco; una benzodiazepina puede aliviarla</td></tr>
+            <tr><td>Prolongación del QT y torsades</td><td>Electrocardiograma tras la sedación, sobre todo con antipsicóticos, dosis repetidas, hipokalemia, hipomagnesemia u otros fármacos que prolongan el QT</td><td>Corregir potasio y magnesio, revisar la lista de fármacos, monitorización. El riesgo real con las dosis habituales de droperidol resultó bajo en la serie de 1009 electrocardiogramas de Calver (2015), sin ningún caso de torsades</td></tr>
+            <tr><td>Síndrome neuroléptico maligno</td><td>Rigidez, hipertermia, compromiso de conciencia, inestabilidad autonómica y creatinquinasa elevada, horas a días después</td><td>Suspender todo antipsicótico, enfriar, volumen, benzodiazepinas, unidad de mayor complejidad</td></tr>
+            <tr><td>Hipertermia y rabdomiólisis</td><td>Temperatura alta tras lucha prolongada, orina oscura, creatinquinasa elevada, potasio alto, acidosis</td><td><strong>Enfriamiento activo</strong>, volumen, control de potasio y de función renal, monitorización. Es la vía final por la que mueren estos pacientes</td></tr>
+            <tr><td>Laringoespasmo (ketamina)</td><td>Estridor o ausencia de ventilación poco después de la inyección; alrededor del 1–5 % de las series</td><td>Oxígeno al 100 %, presión positiva con bolsa-mascarilla y maniobra de tracción mandibular; si no cede, relajación neuromuscular y vía aérea definitiva según el protocolo institucional</td></tr>
+            <tr><td>Reacción de emergencia (ketamina)</td><td>Disforia, alucinaciones o agitación de rebote al despertar, cerca del 10 %</td><td>Ambiente tranquilo, pocos estímulos, acompañamiento; benzodiazepina en dosis baja si es necesario</td></tr>
+            <tr><td>Lesión por contención</td><td>Dolor, palidez o frialdad distal, parestesias, marcas profundas en la piel, lesión del plexo braquial por tracción</td><td>Revisar pulsos y piel de forma periódica, aflojar y reposicionar, documentar. <strong>La asfixia posicional por prono es la complicación letal de este grupo</strong></td></tr>
+            <tr><td>Hipoglicemia no detectada</td><td>El paciente «sedado» que no despierta cuando debería</td><td>Glicemia capilar. Siempre. En cualquier momento del episodio en que algo no cuadre</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 11 · REGISTRO -->
+  <div class="section s11" id="s11" style="animation-delay:0.46s;">
+    <div class="section-header" onclick="toggleSection('s11')">
+      <span class="section-num">11</span>
+      <div>
+        <div class="section-title">Registro en la ficha</div>
+        <div class="section-subtitle">Lo que hay que dejar escrito · plantilla editable para copiar</div>
+      </div>
+      <span class="section-check-count" id="count-s11">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">✍️</span>
+        <span>Una sedación involuntaria y una contención son actos que restringen derechos de una persona. Lo que
+        los hace defendibles no es que hayan sido necesarios, sino que esté escrito <strong>por qué eran
+        necesarios, qué se intentó antes y qué pasó después</strong>. Es también lo que permite que el turno
+        siguiente entienda en qué estado está el paciente.</span>
+      </div>
+
+      <div class="subhead">Qué debe quedar consignado</div>
+      <div class="checklist" id="list-s11">
+        <button type="button" class="check-item" onclick="toggle(this,'s11')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Descripción objetiva de la conducta</strong>, con el nivel de la escala usada y la hora. Hechos observables, no adjetivos: qué hizo, a quién, con qué.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s11')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Riesgo que justifica la intervención:</strong> para sí mismo, para terceros, o tratamiento vital impedido por la agitación.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s11')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Medidas menos restrictivas intentadas</strong> y por qué fracasaron: de-escalación, cambio de ambiente, acompañante, medicación oral ofrecida y rechazada.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s11')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Fármaco, dosis, vía y hora exacta</strong> de cada administración, incluidas las dosis repetidas, y quién las indicó y administró.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s11')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Contención física:</strong> tipo, puntos de sujeción, posición del paciente, hora de inicio, hora de término y personas que participaron.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s11')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Monitorización y controles:</strong> oxígeno administrado, signos vitales seriados, glicemia, reevaluaciones de la escala con su hora.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s11')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Examen físico completo una vez sedado</strong> y estudio solicitado con su justificación. Si no se pudo examinar algo, queda escrito que quedó pendiente.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s11')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><strong>Información a la familia o acompañante</strong> y, cuando el paciente recupera la capacidad, conversación con él sobre lo ocurrido. <em>Los requisitos formales de notificación y de registro de la medida se verifican con la normativa vigente y el protocolo institucional.</em></span>
+        </button>
+      </div>
+
+      <div class="block-label">Plantilla para la ficha</div>
+      <div class="calc note-gen">
+        <div class="calc-row">
+          <div class="calc-field">
+            <label for="n-bars">BARS al inicio</label>
+            <select id="n-bars">
+              <option value="">—</option>
+              <option value="5">5 · se calma con instrucciones</option>
+              <option value="6">6 · continuamente activo</option>
+              <option value="7">7 · violento, requiere contención</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="n-medida">Intervención</label>
+            <select id="n-medida">
+              <option value="verbal">Solo de-escalación verbal</option>
+              <option value="oral">De-escalación + medicación oral aceptada</option>
+              <option value="im" selected>Medicación parenteral</option>
+              <option value="imcont">Medicación parenteral + contención física</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="n-farmaco">Fármaco, dosis y vía</label>
+            <input type="text" id="n-farmaco" placeholder="haloperidol 5 mg IM">
+          </div>
+        </div>
+        <div class="calc-out" style="border-top:none; padding-top:14px;">
+          <textarea id="n-text" aria-label="Nota para la ficha clínica"></textarea>
+          <button type="button" class="copy-btn" id="n-copy">⧉ Copiar nota</button>
+          <span id="n-copied" style="font-family:var(--mono); font-size:11px; color:#6ee7b7; margin-left:10px;"></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 12 · ERRORES -->
+  <div class="section s12" id="s12" style="animation-delay:0.50s;">
+    <div class="section-header" onclick="toggleSection('s12')">
+      <span class="section-num">12</span>
+      <div>
+        <div class="section-title">Los errores que se repiten</div>
+        <div class="section-subtitle">Ninguno es raro · todos aparecen en revisiones de eventos adversos</div>
+      </div>
+      <span class="section-check-count">Revisión</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Sedar sin glicemia capilar.</strong> El error más fácil de evitar y el que peor se ve después.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dejar al paciente en decúbito prono</strong>, o recibirlo así y no girarlo de inmediato. Es el mecanismo de muerte mejor documentado de esta consulta.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Sedar y alejarse.</strong> El paciente tranquilo en el box del fondo, sin oxígeno, sin monitor y sin nadie mirándolo, es el escenario de la mayoría de los desenlaces catastróficos.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Repetir la dosis antes del tiempo de acción.</strong> El haloperidol intramuscular tarda 20–30 minutos: una segunda dosis a los 5 minutos no acelera nada, solo garantiza la sobresedación cuando por fin actúan las dos.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Contener sin sedar.</strong> Prolonga la lucha, la acidosis y la hipertermia; es la peor combinación posible.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Usar antipsicótico en la abstinencia alcohólica</strong> o en la intoxicación por simpaticomiméticos como único fármaco: baja el umbral convulsivo y no trata el problema.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Usar benzodiazepinas en el delirium del adulto mayor</strong> fuera de la abstinencia: lo prolonga y lo empeora.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Confundir acatisia con agitación</strong> y responder con más antipsicótico, que es exactamente lo que la causa.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar por hecho que es «psiquiátrico»</strong> y saltarse el examen físico, la glicemia y la temperatura. La primera agitación de la vida en un adulto mayor casi nunca es psiquiátrica.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Negar analgesia</strong> a un paciente agitado con dolor porque «está alterado». El dolor no tratado es una causa frecuente y reversible de agitación.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Usar la sedación como herramienta de orden</strong>: por falta de personal, por molestia, o como respuesta a una queja. Es una restricción de derechos y debe tener indicación clínica.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Entrar solo.</strong> Está al principio de esta página porque también es el primer error de la cadena.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROGRESO -->
+  <div class="progress-bottom">
+    <span class="progress-label">Avance del checklist</span>
+    <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBar"></div></div>
+    <span class="progress-label"><span id="progress-pct">0%</span></span>
+    <button type="button" class="reset-btn" onclick="resetAll()">Reiniciar</button>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni la normativa legal
+    aplicable. Todas las <strong>dosis son orientativas, corresponden al adulto y deben confirmarse</strong> con el
+    protocolo institucional, el arsenal farmacológico disponible y la ficha vigente de cada producto antes de
+    administrar, ajustadas a peso, edad, función renal y hepática, comorbilidad y situación hemodinámica; la
+    <strong>disponibilidad real de droperidol, olanzapina intramuscular, lorazepam parenteral y ketamina varía entre
+    servicios</strong>. La correspondencia entre el nivel de la escala BARS y la conducta propuesta es una
+    <strong>convención práctica y no forma parte del instrumento validado</strong>. Las <strong>metas de tiempo del
+    cronómetro son referenciales y no constituyen un estándar validado</strong>: no existe evidencia que fije esos
+    plazos. Las <strong>obligaciones legales y administrativas</strong> de la contención física, la medicación
+    involuntaria y la hospitalización involuntaria —incluidos los plazos, el formulario de registro, la
+    notificación y la autoridad que las indica— se rigen por la normativa vigente y <strong>deben verificarse</strong>
+    con ella y con el protocolo institucional. La sedación de un paciente agitado es un procedimiento de riesgo que
+    requiere personal entrenado, capacidad de manejo de vía aérea y monitorización. El cronómetro, las calculadoras
+    y el checklist <strong>no guardan ningún dato</strong>: el registro del episodio se hace en la ficha clínica.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Swift RH, Harrigan EP, Cappelleri JC, Kramer D, Chandler LP. <em>Validation of the behavioural activity rating scale (BARS): a novel measure of activity in agitated patients.</em> J Psychiatr Res. 2002;36(2):87–95. <a href="https://doi.org/10.1016/s0022-3956(01)00052-8" target="_blank" rel="noopener">DOI: 10.1016/s0022-3956(01)00052-8</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/11777497/" target="_blank" rel="noopener">PMID 11777497</a> — Validación de la escala BARS de siete niveles, con concordancia entre observadores prácticamente perfecta y mayor sensibilidad al cambio que la PANSS de agitación y la CGI-S.</div>
+      <div class="ref-item">Richmond JS, Berlin JS, Fishkind AB, et al. <em>Verbal de-escalation of the agitated patient: consensus statement of the American Association for Emergency Psychiatry Project BETA De-escalation Workgroup.</em> West J Emerg Med. 2012;13(1):17–25. <a href="https://doi.org/10.5811/westjem.2011.9.6864" target="_blank" rel="noopener">DOI: 10.5811/westjem.2011.9.6864</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/22461917/" target="_blank" rel="noopener">PMID 22461917</a> — Origen de los cuatro objetivos y de los diez dominios de la de-escalación verbal.</div>
+      <div class="ref-item">Wilson MP, Pepper D, Currier GW, Holloman GH, Feifel D. <em>The psychopharmacology of agitation: consensus statement of the American Association for Emergency Psychiatry Project BETA Psychopharmacology Workgroup.</em> West J Emerg Med. 2012;13(1):26–34. <a href="https://doi.org/10.5811/westjem.2011.9.6866" target="_blank" rel="noopener">DOI: 10.5811/westjem.2011.9.6866</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/22461918/" target="_blank" rel="noopener">PMID 22461918</a> — Base de la tabla de elección de fármaco según la causa probable y del principio de tratar primero la causa médica.</div>
+      <div class="ref-item">Knox DK, Holloman GH. <em>Use and avoidance of seclusion and restraint: consensus statement of the American Association for Emergency Psychiatry Project BETA Seclusion and Restraint Workgroup.</em> West J Emerg Med. 2012;13(1):35–40. <a href="https://doi.org/10.5811/westjem.2011.9.6867" target="_blank" rel="noopener">DOI: 10.5811/westjem.2011.9.6867</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/22461919/" target="_blank" rel="noopener">PMID 22461919</a> — Marco de uso excepcional de la contención y estrategias para reducir su frecuencia.</div>
+      <div class="ref-item">Isbister GK, Calver LA, Page CB, Stokes B, Bryant JL, Downes MA. <em>Randomized controlled trial of intramuscular droperidol versus midazolam for violence and acute behavioral disturbance: the DORM study.</em> Ann Emerg Med. 2010;56(4):392–401.e1. <a href="https://doi.org/10.1016/j.annemergmed.2010.05.037" target="_blank" rel="noopener">DOI: 10.1016/j.annemergmed.2010.05.037</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/20868907/" target="_blank" rel="noopener">PMID 20868907</a> — Duración similar del episodio, más dosis adicionales con midazolam (62 % frente a 33 %) y más efectos adversos por sobresedación (28 % frente a 6 %).</div>
+      <div class="ref-item">Calver L, Page CB, Downes MA, et al. <em>The safety and effectiveness of droperidol for sedation of acute behavioral disturbance in the emergency department.</em> Ann Emerg Med. 2015;66(3):230–238.e1. <a href="https://doi.org/10.1016/j.annemergmed.2015.03.016" target="_blank" rel="noopener">DOI: 10.1016/j.annemergmed.2015.03.016</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/25890395/" target="_blank" rel="noopener">PMID 25890395</a> — QT anormal en 13 de 1009 electrocardiogramas (1,3 %), ningún caso de torsades, mediana de 20 minutos hasta la sedación y 97 % sedados a los 120 minutos.</div>
+      <div class="ref-item">Isbister GK, Calver LA, Downes MA, Page CB. <em>Ketamine as rescue treatment for difficult-to-sedate severe acute behavioral disturbance in the emergency department.</em> Ann Emerg Med. 2016;67(5):581–587.e1. <a href="https://doi.org/10.1016/j.annemergmed.2015.11.028" target="_blank" rel="noopener">DOI: 10.1016/j.annemergmed.2015.11.028</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/26899459/" target="_blank" rel="noopener">PMID 26899459</a> — Origen de la dosis sugerida de 4–5 mg/kg y de la observación de que cuatro de los cinco fracasos habían recibido 200 mg o menos.</div>
+      <div class="ref-item">Cole JB, Moore JC, Nystrom PC, et al. <em>A prospective study of ketamine versus haloperidol for severe prehospital agitation.</em> Clin Toxicol (Phila). 2016;54(7):556–562. <a href="https://doi.org/10.1080/15563650.2016.1177652" target="_blank" rel="noopener">DOI: 10.1080/15563650.2016.1177652</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/27102743/" target="_blank" rel="noopener">PMID 27102743</a> — Mediana de 5 minutos frente a 17 hasta la sedación adecuada, con complicaciones en el 49 % frente al 5 % e intubación en el 39 % frente al 4 %.</div>
+      <div class="ref-item">Olives TD, Nystrom PC, Cole JB, Dodd KW, Ho JD. <em>Intubation of profoundly agitated patients treated with prehospital ketamine.</em> Prehosp Disaster Med. 2016;31(6):593–602. <a href="https://doi.org/10.1017/S1049023X16000819" target="_blank" rel="noopener">DOI: 10.1017/S1049023X16000819</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/27640730/" target="_blank" rel="noopener">PMID 27640730</a> — Intubación en 85 de 135 pacientes (63 %), sin asociación con la dosis de ketamina y con gran variabilidad entre operadores.</div>
+      <div class="ref-item">Mankowitz SL, Regenberg P, Kaldan J, Cole JB. <em>Ketamine for rapid sedation of agitated patients in the prehospital and emergency department settings: a systematic review and proportional meta-analysis.</em> J Emerg Med. 2018;55(5):670–681. <a href="https://doi.org/10.1016/j.jemermed.2018.07.017" target="_blank" rel="noopener">DOI: 10.1016/j.jemermed.2018.07.017</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/30197153/" target="_blank" rel="noopener">PMID 30197153</a> — 650 casos: intubación global del 30,5 %, del 4,9 % en transporte aeromédico y del 1,8 % cuando se administró en el servicio de urgencia; laringoespasmo 1,3 %, hipoxia transitoria 1,8 %, reacción de emergencia 3,5 %.</div>
+      <div class="ref-item">Klein LR, Driver BE, Miner JR, et al. <em>Intramuscular midazolam, olanzapine, ziprasidone, or haloperidol for treating acute agitation in the emergency department.</em> Ann Emerg Med. 2018;72(4):374–385. <a href="https://doi.org/10.1016/j.annemergmed.2018.04.027" target="_blank" rel="noopener">DOI: 10.1016/j.annemergmed.2018.04.027</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/29885904/" target="_blank" rel="noopener">PMID 29885904</a> — 737 pacientes: midazolam 5 mg fue el más rápido a los 15 minutos y olanzapina superó a haloperidol; eventos adversos infrecuentes y similares entre grupos (intubación 0,5 %, hipoxemia 1 %, ningún paro).</div>
+      <div class="ref-item">Barbic D, Andolfatto G, Grunau B, et al. <em>Rapid agitation control with ketamine in the emergency department: a blinded, randomized controlled trial.</em> Ann Emerg Med. 2021;78(6):788–795. <a href="https://doi.org/10.1016/j.annemergmed.2021.05.023" target="_blank" rel="noopener">DOI: 10.1016/j.annemergmed.2021.05.023</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/34353650/" target="_blank" rel="noopener">PMID 34353650</a> — Mediana de 5,8 minutos con ketamina 5 mg/kg IM frente a 14,7 minutos con midazolam 5 mg + haloperidol 5 mg IM; eventos adversos graves en 12,5 % y 5 % respectivamente.</div>
+      <div class="ref-item">Yap CYL, Taylor DM, Knott JC, et al. <em>Intravenous midazolam-droperidol combination, droperidol or olanzapine monotherapy for methamphetamine-related acute agitation: subgroup analysis of a randomized controlled trial.</em> Addiction. 2017;112(7):1262–1269. <a href="https://doi.org/10.1111/add.13780" target="_blank" rel="noopener">DOI: 10.1111/add.13780</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/28160494/" target="_blank" rel="noopener">PMID 28160494</a> — Sedación adecuada a los 10 minutos en 85,3 % con la combinación frente a 46,7 % con droperidol y 50,0 % con olanzapina; el evento adverso más frecuente fue la desaturación.</div>
+      <div class="ref-item">Aghili M, AkhavanHejazi H, Naderpour Z, Vahidi E, Saeedi M. <em>Haloperidol-midazolam vs. haloperidol-ketamine in controlling the agitation of delirious patients; a randomized clinical trial.</em> Arch Acad Emerg Med. 2023;11(1):e61. <a href="https://doi.org/10.22037/aaem.v11i1.2095" target="_blank" rel="noopener">DOI: 10.22037/aaem.v11i1.2095</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/37840867/" target="_blank" rel="noopener">PMID 37840867</a> — 140 pacientes con delirium: control más rápido con haloperidol-ketamina y descenso significativo de la saturación en el grupo con midazolam a los 5 y 10 minutos.</div>
+      <div class="ref-item">Slocum S, Fiorillo M, Harding E, et al. <em>In pursuit of inter-specialty consensus on excited delirium syndrome: a scoping literature review.</em> Forensic Sci Med Pathol. 2023;19(4):573–594. <a href="https://doi.org/10.1007/s12024-022-00548-4" target="_blank" rel="noopener">DOI: 10.1007/s12024-022-00548-4</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/36350497/" target="_blank" rel="noopener">PMID 36350497</a> — 97 estudios sin acuerdo sobre la definición; la contención agresiva en prono aparece como factor de riesgo establecido de muerte y los autores desaconsejan usar el término como diagnóstico.</div>
+      <div class="ref-item">Referencias localizadas mediante PubMed. Las dosis, las presentaciones disponibles, los plazos de reevaluación de la contención, el panel de exámenes y las obligaciones de registro y notificación deben contrastarse con el <strong>protocolo institucional vigente</strong>, con la farmacia del servicio y con la normativa chilena aplicable —<em>Ley 20.584</em> de derechos y deberes del paciente y <em>Ley 21.331</em> sobre derechos de las personas en la atención de salud mental—, cuyo texto actualizado debe revisarse directamente.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Checklist con progreso ────────────────────────────────────────
+  const SECTIONS = ['s1', 's4', 's5', 's9', 's11'];
+  const totals = {};
+  SECTIONS.forEach(s => {
+    const list = document.getElementById('list-' + s);
+    totals[s] = list ? list.querySelectorAll('.check-item').length : 0;
+  });
+  const TOTAL_CHECKS = SECTIONS.reduce((acc, s) => acc + totals[s], 0);
+
+  function countChecked(section) {
+    return document.querySelectorAll('#list-' + section + ' .check-item.checked').length;
+  }
+
+  function toggle(el, section) {
+    el.classList.toggle('checked');
+    updateCount(section);
+    updateProgress();
+  }
+
+  function updateCount(section) {
+    const el = document.getElementById('count-' + section);
+    if (!el) return;
+    const n = countChecked(section);
+    const t = totals[section];
+    el.textContent = n + '/' + t;
+    if (t > 0 && n === t) {
+      el.style.background = 'rgba(16,185,129,0.15)';
+      el.style.borderColor = 'rgba(16,185,129,0.3)';
+      el.style.color = '#6ee7b7';
+    } else {
+      el.style.background = '';
+      el.style.borderColor = '';
+      el.style.color = '';
+    }
+  }
+
+  function updateProgress() {
+    const done = SECTIONS.reduce((acc, s) => acc + countChecked(s), 0);
+    const pct = TOTAL_CHECKS ? Math.round((done / TOTAL_CHECKS) * 100) : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.check-item.checked').forEach(el => el.classList.remove('checked'));
+    SECTIONS.forEach(updateCount);
+    updateProgress();
+  }
+
+  SECTIONS.forEach(updateCount);
+  updateProgress();
+
+  // ── Cronómetro post-sedación (sin persistencia) ───────────────────
+  let swStart = null;
+  let swAccum = 0;
+  let swTick = null;
+
+  function swElapsed() {
+    return swAccum + (swStart !== null ? Date.now() - swStart : 0);
+  }
+
+  function fmt(ms) {
+    const total = Math.floor(ms / 1000);
+    const m = String(Math.floor(total / 60)).padStart(2, '0');
+    const s = String(total % 60).padStart(2, '0');
+    return m + ':' + s;
+  }
+
+  function goalText(goal) {
+    const g = parseInt(goal, 10);
+    return g < 120 ? 'meta ~' + g + ' s' : 'meta ~' + Math.round(g / 60) + ' min';
+  }
+
+  function swRender() {
+    const ms = swElapsed();
+    const disp = document.getElementById('swDisplay');
+    disp.textContent = fmt(ms);
+    disp.classList.toggle('warn', ms >= 600000 && ms < 1200000);
+    disp.classList.toggle('late', ms >= 1200000);
+  }
+
+  function swToggle() {
+    const btn = document.getElementById('swToggle');
+    const cap = document.getElementById('swCaption');
+    if (swStart === null) {
+      swStart = Date.now();
+      swTick = setInterval(swRender, 200);
+      btn.textContent = '⏸ Detener';
+      cap.textContent = 'Corriendo desde la administración del fármaco';
+    } else {
+      swAccum += Date.now() - swStart;
+      swStart = null;
+      clearInterval(swTick);
+      swTick = null;
+      btn.textContent = '▶ Continuar';
+      cap.textContent = 'En pausa';
+      swRender();
+    }
+  }
+
+  function swReset() {
+    if (swTick) clearInterval(swTick);
+    swTick = null;
+    swStart = null;
+    swAccum = 0;
+    document.getElementById('swToggle').textContent = '▶ Iniciar';
+    document.getElementById('swCaption').textContent = 'Detenido · parte el reloj al administrar el fármaco';
+    document.querySelectorAll('.ms').forEach(ms => {
+      ms.classList.remove('done', 'over');
+      ms.querySelector('.ms-goal').textContent = goalText(ms.dataset.goal);
+    });
+    swRender();
+  }
+
+  function markMs(el) {
+    if (el.classList.contains('done')) {
+      el.classList.remove('done', 'over');
+      el.querySelector('.ms-goal').textContent = goalText(el.dataset.goal);
+      return;
+    }
+    if (swStart === null && swAccum === 0) swToggle();
+    const secs = Math.round(swElapsed() / 1000);
+    const goal = parseInt(el.dataset.goal, 10);
+    el.classList.add('done');
+    el.classList.toggle('over', secs > goal);
+    el.querySelector('.ms-goal').textContent = fmt(secs * 1000) + ' · ' + goalText(goal);
+  }
+
+  swRender();
+
+  // ── Calculadora BARS ──────────────────────────────────────────────
+  const BARS = [
+    { n: 1, t: 'Difícil o imposible de despertar', s: 'no responde o responde mínimamente al estímulo', c: 'risk-high',
+      h: 'Esto no es agitación',
+      b: 'Un paciente en BARS 1 tiene <strong>compromiso de conciencia</strong>, y eso es una emergencia distinta. ' +
+         'Si llegó así, el camino es vía aérea, oxígeno, <strong>glicemia capilar</strong>, pupilas, temperatura y ' +
+         'búsqueda de tóxicos, trauma craneal, infección del sistema nervioso central y causa metabólica. ' +
+         'Si está así <em>después</em> de que lo sedaste, es <strong>sobresedación</strong>: no se agrega ningún ' +
+         'fármaco, no se revierte de rutina con flumazenil, y lo que corresponde es sostener la vía aérea, ' +
+         'oxigenar, monitorizar y esperar, con alguien al lado y el carro de vía aérea en la sala.' },
+    { n: 2, t: 'Dormido, pero responde normalmente al contacto verbal o físico', s: 'se despierta y vuelve a dormirse', c: 'risk-mid',
+      h: 'Sedación profunda',
+      b: 'Más profundo de lo necesario. <strong>No corresponde agregar fármaco.</strong> Vigilancia visual continua, ' +
+         'saturometría permanente, posición segura y oxígeno. Reevalúa en 10–15 minutos y aprovecha para completar ' +
+         'el examen físico y el estudio de la causa, que es lo que todavía falta.' },
+    { n: 3, t: 'Somnoliento, parece sedado', s: 'despierta con facilidad y protege su vía aérea', c: 'risk-low',
+      h: 'Meta alcanzada',
+      b: 'Es el objetivo habitual de la sedación en urgencia: <strong>tranquilo y despertable</strong>. No se agrega ' +
+         'nada. Lo que sigue es el trabajo que la agitación impedía: examen físico completo, glicemia, signos ' +
+         'vitales, electrocardiograma y el estudio de la causa. Mantén el oxígeno, el monitor y la vigilancia ' +
+         'mientras dure el efecto.' },
+    { n: 4, t: 'Tranquilo y despierto, actividad normal', s: 'estado basal', c: 'risk-low',
+      h: 'No requiere sedación',
+      b: 'No hay indicación de sedar. Si el paciente llegó agitado y ahora está en 4, la intervención funcionó: ' +
+         'documenta la trayectoria. Si nunca estuvo agitado, la pregunta que queda es por qué se planteó sedarlo.' },
+    { n: 5, t: 'Signos de hiperactividad física o verbal; se calma con instrucciones', s: 'agitación leve', c: 'risk-mid',
+      h: 'Terreno de la palabra',
+      b: '<strong>De-escalación verbal como primera línea</strong> (sección 04): presentarse, respetar el espacio, ' +
+         'frases cortas, identificar qué necesita, acordar lo posible, poner límites sin amenaza. Baja el estímulo ' +
+         'del entorno y resuelve lo banal: dolor, sed, baño, información, un teléfono.<br><br>' +
+         'Si hace falta apoyo farmacológico, <strong>se ofrece por vía oral</strong> —olanzapina bucodispersable, ' +
+         'risperidona en solución, lorazepam—, como ayuda y no como amenaza. En paralelo: <em>glicemia capilar, ' +
+         'saturación, temperatura, presión y pupilas</em>, porque la causa sigue sin estar establecida.' },
+    { n: 6, t: 'Extremada o continuamente activo; no requiere contención', s: 'agitación moderada a grave', c: 'risk-mid',
+      h: 'De-escalación con un plan farmacológico listo',
+      b: 'Sigue valiendo la pena intentar la palabra, pero <strong>con el equipo reunido, los roles asignados y el ' +
+         'fármaco preparado</strong>. Ofrece la vía oral primero: muchos pacientes en este nivel la aceptan si se ' +
+         'les presenta como ayuda.<br><br>Si rechaza, escala o no hay tiempo, pasa a la <strong>vía ' +
+         'parenteral</strong> según la causa probable (sección 06). Recuerda los tiempos de acción: el haloperidol ' +
+         'intramuscular tarda 20–30 minutos y <em>repetir antes solo garantiza sobresedación</em>. Ten oxígeno, ' +
+         'aspiración y monitor listos antes de inyectar.' },
+    { n: 7, t: 'Violento; requiere contención', s: 'peligro inmediato para el paciente o para terceros', c: 'risk-high',
+      h: 'Actuar ahora, con equipo completo',
+      b: '<strong>Equipo de cinco personas</strong>, un responsable por extremidad y uno en la cabeza que vigila la ' +
+         'vía aérea y dirige. Contención en <strong>decúbito supino con cabecera elevada</strong>, nunca en prono, ' +
+         'y <strong>sedación parenteral en el mismo acto</strong>: contener sin sedar prolonga la lucha y con ella ' +
+         'la acidosis, la hipertermia y la rabdomiólisis.<br><br>Elige el fármaco por la causa probable ' +
+         '(sección 06). Si la agitación es extrema, hay peligro inmediato o ya fracasaron dos dosis adecuadas, ' +
+         'considera <strong>ketamina intramuscular 4–5 mg/kg</strong> (sección 08), con el equipo de vía aérea ' +
+         'preparado antes de inyectar.<br><br>Y apenas administres el fármaco: <strong>oxígeno a alta ' +
+         'concentración, posición segura, monitor y una persona asignada a vigilar la respiración</strong> ' +
+         '(sección 09). <em>Ese es el momento de mayor riesgo del episodio.</em>' }
+  ];
+
+  const DISCLAIM_BARS = '<br><br><em>La escala BARS está validada como medida de actividad conductual; la conducta ' +
+    'asociada a cada nivel es una convención práctica basada en recomendaciones de consenso y no forma parte del ' +
+    'instrumento validado. La elección final del fármaco, la dosis y la vía se ajustan a la causa probable, al ' +
+    'paciente y al protocolo institucional.</em>';
+
+  let barsSel = null;
+
+  function renderBarsInputs() {
+    const box = document.getElementById('bars-opts');
+    box.innerHTML = BARS.map(l =>
+      '<button type="button" class="opt' + (barsSel === l.n ? ' on' : '') + '" data-n="' + l.n + '">' +
+      '<span class="lvl">' + l.n + '</span>' + l.t +
+      '<span class="sub">' + l.s + '</span></button>').join('');
+    box.querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => {
+      const n = parseInt(b.dataset.n, 10);
+      barsSel = (barsSel === n) ? null : n;
+      renderBarsInputs(); renderBars(); renderNota();
+    }));
+  }
+
+  function renderBars() {
+    const out = document.getElementById('bars-out');
+    if (barsSel === null) {
+      out.innerHTML = '<span class="big">Sin nivel marcado</span>Elige el nivel que describe la conducta que ' +
+        '<strong>ves ahora</strong>, sin preguntar nada y sin promediar con cómo estaba hace diez minutos. ' +
+        'La escala mide actividad observada en este momento.' + DISCLAIM_BARS;
+      return;
+    }
+    const l = BARS.find(x => x.n === barsSel);
+    out.innerHTML = '<span class="big ' + l.c + '">BARS ' + l.n + ' · ' + l.h + '</span>' + l.b + DISCLAIM_BARS;
+  }
+
+  document.getElementById('bars-reset').addEventListener('click', () => {
+    barsSel = null; renderBarsInputs(); renderBars(); renderNota();
+  });
+  renderBarsInputs(); renderBars();
+
+  // ── Calculadora de ketamina ───────────────────────────────────────
+  const kPeso = document.getElementById('k-peso');
+  const kDosis = document.getElementById('k-dosis');
+  const kConc = document.getElementById('k-conc');
+
+  const DISCLAIM_K = '<br><br><em>Dosis orientativa: verifica la concentración impresa en el vial que tienes en la ' +
+    'mano, la dosis y el volumen máximo por sitio de inyección con el protocolo institucional. La ketamina se ' +
+    'administra solo con equipo capaz de manejar una vía aérea, con oxígeno, aspiración y monitor listos.</em>';
+
+  function renderKet() {
+    const out = document.getElementById('k-out');
+    const peso = parseFloat(kPeso.value);
+    const [mgkgStr, via] = kDosis.value.split('|');
+    const mgkg = parseFloat(mgkgStr);
+    const conc = parseFloat(kConc.value);
+
+    if (!peso || peso <= 0) {
+      out.innerHTML = '<span class="big">Falta el peso</span>Ingresa el peso estimado en kilos. ' +
+        'La pauta intramuscular habitual en la agitación grave es de <strong>4 a 5 mg/kg</strong>; ' +
+        'la intravenosa, de <strong>1 a 2 mg/kg</strong> administrada lento.' + DISCLAIM_K;
+      return;
+    }
+
+    const mg = Math.round(peso * mgkg);
+    const ml = mg / conc;
+    const mlTxt = (Math.round(ml * 10) / 10).toString().replace('.', ',');
+
+    let texto = '<strong>' + mg + ' mg</strong> por vía ' + (via === 'IM' ? 'intramuscular' : 'intravenosa lenta') +
+      ' (' + mgkg.toString().replace('.', ',') + ' mg/kg × ' + peso + ' kg), que con un vial de ' + conc +
+      ' mg/mL equivale a <strong>' + mlTxt + ' mL</strong>.';
+
+    if (via === 'IM') {
+      texto += '<br><br>Sitio habitual: <strong>cara anterolateral del muslo o deltoides</strong>, con aguja ' +
+        'suficientemente larga para alcanzar el músculo. Inicio esperable en <strong>3 a 5 minutos</strong>.';
+      if (ml > 5) {
+        texto += '<br><br><em>Son más de 5 mL: considera repartir el volumen en dos sitios de inyección o usar una ' +
+          'presentación más concentrada, según el protocolo institucional.</em>';
+      }
+      if (mg < 200) {
+        texto += '<br><br><strong>Atención:</strong> la dosis calculada es menor de 200 mg. En la serie de rescate ' +
+          'de Isbister (2016), cuatro de los cinco fracasos de sedación habían recibido 200 mg o menos. Revisa que ' +
+          'el peso estimado sea correcto antes de administrar una dosis que probablemente no alcance.';
+      }
+    } else {
+      texto += '<br><br>Administrar <strong>lento, en uno a dos minutos</strong>: el bolo rápido se asocia a apnea. ' +
+        'Inicio en menos de un minuto.';
+    }
+
+    out.innerHTML = '<span class="big risk-mid">' + mg + ' mg · ' + mlTxt + ' mL</span>' + texto + DISCLAIM_K;
+  }
+
+  [kPeso, kDosis, kConc].forEach(el => el.addEventListener('input', renderKet));
+  document.getElementById('k-reset').addEventListener('click', () => {
+    kPeso.value = ''; kDosis.value = '5|IM'; kConc.value = '50'; renderKet();
+  });
+  renderKet();
+
+  // ── Nota para la ficha ────────────────────────────────────────────
+  const nBars = document.getElementById('n-bars');
+  const nMedida = document.getElementById('n-medida');
+  const nFarmaco = document.getElementById('n-farmaco');
+  const nText = document.getElementById('n-text');
+
+  const MEDIDA_TXT = {
+    verbal: 'Se maneja con de-escalación verbal, sin medicación ni contención.',
+    oral: 'Se ofrece medicación por vía oral, que el paciente acepta. No se requiere contención física.',
+    im: 'Se indica medicación parenteral tras fracaso de las medidas menos restrictivas. No se requiere contención física.',
+    imcont: 'Se indica medicación parenteral y contención física tras fracaso de las medidas menos restrictivas.'
+  };
+
+  function hhmm() {
+    const d = new Date();
+    return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+  }
+
+  function renderNota() {
+    if (!nText) return;
+    const nivel = nBars.value || (barsSel !== null ? String(barsSel) : '__');
+    const farmaco = nFarmaco.value.trim() || '__________ ___ mg vía ___';
+    const medida = MEDIDA_TXT[nMedida.value];
+    const cont = nMedida.value === 'imcont';
+
+    const L = [];
+    L.push('EPISODIO DE AGITACIÓN — ' + hhmm() + ' h');
+    L.push('');
+    L.push('Conducta observada: ______________________________________');
+    L.push('(describir hechos objetivos: qué hace, a quién, con qué).');
+    L.push('Escala BARS al inicio: ' + nivel + '/7.');
+    L.push('');
+    L.push('Riesgo que justifica la intervención: para sí mismo / para terceros /');
+    L.push('tratamiento vital impedido por la agitación (marcar lo que corresponda).');
+    L.push('');
+    L.push('Medidas menos restrictivas intentadas: de-escalación verbal, reducción de');
+    L.push('estímulos, acompañante, medicación oral ofrecida. Resultado: ____________');
+    L.push('');
+    L.push('Intervención: ' + medida);
+    if (nMedida.value !== 'verbal') L.push('Fármaco: ' + farmaco + ', administrado a las ___ h.');
+    if (cont) {
+      L.push('Contención física: ____ puntos, en decúbito supino con cabecera elevada');
+      L.push('(no prono), iniciada a las ___ h, retirada a las ___ h. Participaron ___');
+      L.push('personas. Revisión de pulsos distales, piel y posición cada ___ min.');
+    }
+    L.push('');
+    L.push('Tras la administración: oxígeno a alta concentración, posición segura,');
+    L.push('monitorización continua con saturometría y vigilancia visual directa.');
+    L.push('Glicemia capilar ___ mg/dL. Temperatura ___ °C. PA ___/___ mmHg,');
+    L.push('FC ___ lpm, FR ___ por min, SatO2 ___ %.');
+    L.push('');
+    L.push('Reevaluación a los 15 min: BARS ___/7. Signos vitales: ______________');
+    L.push('');
+    L.push('Examen físico completo una vez sedado: ___________________________');
+    L.push('Estudio solicitado: ______________________________________________');
+    L.push('Hipótesis diagnóstica de la agitación: ___________________________');
+    L.push('');
+    L.push('Se informa a familiar o acompañante: ____________________________');
+    L.push('Destino y plan: __________________________________________________');
+
+    nText.value = L.join('\n');
+  }
+
+  [nBars, nMedida, nFarmaco].forEach(el => el.addEventListener('input', renderNota));
+  document.getElementById('n-copy').addEventListener('click', () => {
+    nText.select();
+    const aviso = document.getElementById('n-copied');
+    const ok = () => { aviso.textContent = 'Copiado'; setTimeout(() => { aviso.textContent = ''; }, 2000); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(nText.value).then(ok).catch(() => {
+        try { document.execCommand('copy'); ok(); } catch (e) { aviso.textContent = 'Copia manual'; }
+      });
+    } else {
+      try { document.execCommand('copy'); ok(); } catch (e) { aviso.textContent = 'Copia manual'; }
+    }
+  });
+  renderNota();
+</script>
+<script>
+(function() {
+  var root = document.documentElement, KEY = 'oc-theme';
+  try { var t = localStorage.getItem(KEY); if (t) root.setAttribute('data-theme', t); } catch (e) {}
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function() {
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>
