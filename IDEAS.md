@@ -1085,12 +1085,64 @@ en su sección temática, porque el agente recorre el archivo en orden.
       derivación a salud mental; y las **obligaciones normativas y no clínicas** —Ley 20.584, Ley 21.331,
       hospitalización involuntaria, notificación y documentación de la medida—, cuyo texto vigente debe revisarse
       directamente y no desde esta página. El contenido es **solo para adultos**.
-- [ ] Parocardiorespiratorio (PCR) traumático. **Nota de cobertura (paso 2):** la sección 08 de
-      `checklist-reanimacion-pediatrica.html` ya cubre el PCR traumático **en el niño** —las cuatro causas
-      mecánicas en paralelo, el algoritmo invertido, el lugar discutido de la adrenalina y el límite de la
-      toracotomía—. Lo que falta es la versión **del adulto**: revisar si corresponde página propia o si se
-      integra con `checklist-politrauma_2.html` y `checklist-toracotomia-reanimacion.html`, y en cualquier caso
-      enlazar con la sección pediátrica en vez de duplicarla.
+- [x] Parocardiorespiratorio (PCR) traumático del adulto — `checklist-pcr-traumatico.html`. **Decisión del
+      paso 2: página propia.** Se revisaron las dos candidatas a absorberlo y ninguna sirve:
+      `checklist-politrauma_2.html` es la secuencia xABCDE del politraumatizado **con pulso** —cinco secciones,
+      roles, e-FAST y destino— y no contiene nada del paro; `checklist-toracotomia-reanimacion.html` es la
+      **técnica** de un procedimiento y solo toca HOTT de pasada en su sección 04 para encuadrar la
+      toracotomía. Lo que faltaba era el **algoritmo completo del paro del adulto**: la decisión de iniciar, el
+      orden de ejecución y la decisión de suspender. Se implementó como **checklist con cronómetro** —lo que se
+      necesita en el box es un orden de ejecución con roles y tiempos, no una rama diagnóstica— y **enlaza** con
+      la sección 08 pediátrica, con politrauma, con toracotomía y con toracostomía en vez de duplicarlas; las
+      tres páginas enlazan de vuelta. La página se ordena sobre tres ideas. La primera es que **el paro
+      traumático no es un paro cardíaco que además tuvo un accidente**: el corazón está vacío, comprimido por
+      aire, comprimido por sangre o sin oxígeno, y por eso **comprimir un corazón vacío no lo llena** —el masaje
+      externo entrega 25–30 % del gasto basal y ~10 % de la perfusión coronaria y cerebral, y en el hipovolémico
+      o taponado no sube la diastólica, de donde sale la regla del ERC 2021 de que tratar las causas reversibles
+      tiene prioridad sobre comprimir, **sin que eso signifique no comprimir**—. La segunda es el **algoritmo
+      invertido**: las cuatro causas HOTT —hipovolemia 48 %, oxigenación 13 %, tensión 13 %, taponamiento
+      10 %— repartidas por nombre y ejecutadas a la vez, con la **descompresión bilateral sin imagen previa**
+      (toracostomía digital preferible a la aguja) y con el **taponamiento como única tarea que sí desplaza a
+      las otras**: ahí la toracotomía va antes que la vía aérea y que las compresiones, y **nunca
+      pericardiocentesis**. La tercera es que **el pesimismo también mata pacientes**: mortalidad de 92,3–100 %,
+      pero 10,6 % de supervivencia a 30 días en la serie sueca y **45,8 % de los sobrevivientes con recuperación
+      neurológica buena o moderada**, en pacientes de mediana 38 años y 60,5 % previamente sanos. Incluye los
+      estados **LOST y NOST** (8,4 % y 0 % de supervivencia) como el rótulo que decide qué le hacen al paciente
+      en los diez minutos siguientes, y **dos herramientas interactivas**: el **cronómetro con ocho hitos** y un
+      **orientador de decisión** (mecanismo × signos de vida × tiempo sin circulación × ecografía) que devuelve
+      el siguiente paso y el rendimiento esperable con las cifras de la guía **EAST 2015** —21,3 % penetrante
+      torácico con signos de vida, 8,3 % sin ellos, 15,6 % y 2,9 % en el penetrante extratorácico, 4,6 % en el
+      cerrado con signos de vida y **0,7 % en el cerrado sin ellos, el único escenario con recomendación en
+      contra**—, advirtiendo que son cifras de rendimiento sin grupo de comparación (nivel III) y que las dos
+      columnas tienen denominadores distintos. La honestidad sobre los fármacos y los dispositivos es parte del
+      contenido: de la **adrenalina** se cita Witt (*Prehosp Emerg Care* 2026; 1631 pacientes: 5 % frente a 16 %
+      de supervivencia, aRR 0,33 [0,23–0,46] y 0,20 [0,11–0,37] en cerrado) **con su confusión por indicación
+      declarada**, usado para sostener la jerarquía y **nunca como indicación de no administrarla**; del
+      **REBOA**, el ensayo **UK-REBOA** (Jansen, *JAMA* 2023; 90 pacientes: mortalidad a 90 días 54 % frente a
+      42 %, OR 1,58 [0,72–3,52], probabilidad posterior de OR > 1 del 86,9 %), que no cierra el tema pero impide
+      presentarlo como conducta esperable de un box general; y del **ácido tranexámico**, CRASH-2 con sus cifras
+      exactas y la advertencia de que en el paro traumático específicamente está poco estudiado. Se incluyen los
+      **desvíos que invierten el algoritmo otra vez** —apnea por impacto cerebral y TEC aislado, asfixia y
+      colgamiento, ahogamiento, hipotermia, lesión eléctrica, *commotio cordis*, embarazo con útero sobre el
+      ombligo y **la causa médica disfrazada de trauma**—, donde las compresiones, la vía aérea precoz y la
+      adrenalina en dosis habituales recuperan su lugar. Sobre suspender se dice lo que se puede sostener:
+      **no existe una regla de término de la reanimación validada para el paro traumático intrahospitalario**, y
+      la página no propone ninguna; lista lo que pesa —incluida la asistolia ecográfica— y lo que obliga a
+      prolongar. Pendiente de validación: **todas las metas de tiempo del cronómetro**, con la única excepción de
+      las dos ventanas de la toracotomía tomadas de la literatura (menos de 10 minutos en el penetrante;
+      contraindicación tras 10–15 minutos de pérdida definitiva de gasto cardíaco); los gatillos, las
+      proporciones, el contenido de las cajas y los volúmenes del protocolo de transfusión masiva y la
+      disponibilidad real de hemocomponentes; el esquema, el plazo y la presentación del ácido tranexámico; las
+      dosis, la sal y la vía del calcio, y el esquema de insulina y glucosa de la hiperkalemia; los dispositivos,
+      los sitios y los calibres de los accesos vasculares y la política de acceso femoral arterial precoz; el
+      sitio, la técnica y el material autorizados de la descompresión torácica; las indicaciones, los plazos, el
+      instrumental, las energías de desfibrilación interna y **quién realiza** la toracotomía de reanimación; la
+      disponibilidad, la indicación, la zona y el entrenamiento del REBOA; los fármacos y las dosis de la
+      sedación posretorno; la existencia y los criterios de la reanimación extracorpórea; los **criterios locales
+      de no iniciar y de suspender**, la autoridad y la documentación de esa decisión; y las obligaciones
+      **normativas y no clínicas** —certificación, muerte por causa externa, aviso al Servicio Médico Legal,
+      custodia de evidencia, denuncia, donación de órganos y profilaxis posexposición del personal—, que se
+      verifican con la normativa vigente. El contenido es **solo para adultos**.
 - [ ] Pancreatitis - Desde el leve al grave con necesidad de UCI. Biliar, Hipercalcemia, por alcohol y trigliceridos. Integrado con calculadora APACHE 
 - [ ] Epistaxis - Taponamiento anterior con "burrito" de algodon empapado con acido tranexamico + lidocaina + adrenalina, taponamiento con merocell y rapidrhino, además de cauterización con nitrato de plata; y taponamiento posterior con Sonda Foley. Con indicaciones de cuando hospitalizar y/o ineicar antibioticos y cuando no.
 - [ ] Malaria en el adulto: sospecha, diagnóstico y manejo en urgencia.

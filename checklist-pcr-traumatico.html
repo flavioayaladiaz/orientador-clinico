@@ -1,0 +1,2359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Checklist · Paro cardiorrespiratorio traumático</title>
+<meta name="description" content="Paro cardiorrespiratorio traumático del adulto en el servicio de urgencia: por qué el algoritmo médico no sirve acá, el periparo y los estados de bajo flujo, a quién no se reanima, el cronómetro y sus hitos, las cuatro causas HOTT tratadas en paralelo —hipovolemia, oxigenación, neumotórax a tensión y taponamiento—, control de la hemorragia y transfusión equilibrada, descompresión torácica bilateral con toracostomía digital, taponamiento y toracotomía de reanimación con los rendimientos de la guía EAST, por qué la adrenalina, las compresiones y la intubación precoz bajan de prioridad, los desvíos que invierten el algoritmo —trauma craneoencefálico aislado, asfixia, ahogamiento, hipotermia, electricidad, embarazo y la causa médica disfrazada de trauma—, hiperkalemia y calcio, cuidados posretorno de circulación, criterios de suspensión y registro listo para copiar.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --surface2: #eef1f5;
+    --border: rgba(15,23,42,0.10);
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --text-dim: #475569;
+  }
+  :root[data-theme="light"] body::before {
+    background-image:
+      linear-gradient(rgba(15,23,42,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99,102,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(16,185,129,0.06) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 36px; animation: fadeUp 0.6s ease both; }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .theme-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+    font-size: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .theme-btn:hover { color: var(--text); border-color: var(--text-muted); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(99,102,241,0.1);
+    border: 1px solid rgba(99,102,241,0.28);
+    color: #a5b4fc;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  .header-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--indigo);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--indigo);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  :root[data-theme="light"] h1 { color: #0f172a; }
+  h1 span {
+    background: linear-gradient(135deg, #6366f1, #10b981);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 62ch;
+  }
+  .header-sub strong { color: #fff; font-weight: 500; }
+  :root[data-theme="light"] .header-sub strong,
+  :root[data-theme="light"] .check-label strong,
+  :root[data-theme="light"] .plain-item strong,
+  :root[data-theme="light"] .step strong,
+  :root[data-theme="light"] td strong,
+  :root[data-theme="light"] .calc-out strong,
+  :root[data-theme="light"] .med-name,
+  :root[data-theme="light"] .section-title { color: #0f172a; }
+  .header-sub em { color: #fcd34d; font-style: normal; }
+  :root[data-theme="light"] em { color: #b45309; }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .section-check-count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 3px 9px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .s1 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s1 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s2 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s2 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s3 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s3 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s4 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s4 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s5 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s5 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s6 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s6 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s7 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s7 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s8 .section-num { background: rgba(59,130,246,0.10); color: #bfdbfe; border: 1px solid rgba(59,130,246,0.18); }
+  .s8 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s9 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s9 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s10 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s10 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s11 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s11 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s12 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s12 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+
+  /* CRONÓMETRO */
+  .stopwatch {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+  .sw-display {
+    font-family: var(--mono);
+    font-size: clamp(40px, 11vw, 60px);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #fff;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  :root[data-theme="light"] .sw-display { color: #0f172a; }
+  .sw-display.warn { color: #fcd34d; }
+  .sw-display.late { color: #fca5a5; }
+  .sw-caption {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+  .sw-controls { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+  .sw-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .sw-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .sw-btn:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
+  .sw-btn.primary {
+    background: rgba(99,102,241,0.14);
+    border-color: rgba(99,102,241,0.45);
+    color: #a5b4fc;
+  }
+  .sw-btn.primary:hover { background: rgba(99,102,241,0.22); color: #c7d2fe; }
+
+  .milestones { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .ms {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .ms:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .ms:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+  .ms.done { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.3); color: #6ee7b7; }
+  .ms-goal {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+  .ms.done .ms-goal { color: #6ee7b7; border-color: rgba(16,185,129,0.4); }
+  .ms.done.over .ms-goal { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  /* CHECKLIST */
+  .checklist { display: flex; flex-direction: column; gap: 10px; }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+  }
+  .check-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent-glow);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .check-item:hover::before { opacity: 1; }
+  .check-item:hover { border-color: rgba(255,255,255,0.12); }
+  .check-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .check-item.checked { border-color: rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); }
+  .check-item.checked::before { opacity: 0.5; }
+
+  .checkbox {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--text-muted);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+    background: transparent;
+  }
+  .check-item.checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .checkmark {
+    opacity: 0;
+    transform: scale(0) rotate(-10deg);
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .check-item.checked .checkmark { opacity: 1; transform: scale(1) rotate(0deg); }
+
+  .check-label {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-dim);
+    transition: color 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+  .check-item.checked .check-label {
+    color: var(--text-muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(100,116,139,0.5);
+  }
+  .check-label strong { color: #fff; font-weight: 500; }
+  .check-label em { color: #fcd34d; font-style: normal; }
+  .check-step {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+
+  /* PROGRESO */
+  .progress-bottom {
+    margin-top: 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .progress-bar-track {
+    flex: 1;
+    min-width: 120px;
+    height: 6px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6366f1, #10b981);
+    border-radius: 100px;
+    width: 0%;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 12px rgba(99,102,241,0.5);
+  }
+  .progress-label { font-family: var(--mono); font-size: 12px; color: var(--text-dim); white-space: nowrap; }
+  #progress-pct { color: var(--indigo); font-weight: 500; }
+  .reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .reset-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+  /* BANNERS */
+  .warning-banner, .info-banner, .go-banner, .amber-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #fca5a5; }
+  .info-banner { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.18); color: #bfdbfe; }
+  .go-banner { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); color: #6ee7b7; }
+  .amber-banner { background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.25); color: #fde68a; }
+  .warning-banner strong, .info-banner strong, .go-banner strong, .amber-banner strong { color: #fff; font-weight: 500; }
+  :root[data-theme="light"] .warning-banner, :root[data-theme="light"] .amber-banner { color: #7c2d12; }
+  :root[data-theme="light"] .info-banner, :root[data-theme="light"] .go-banner { color: #334155; }
+  :root[data-theme="light"] .warning-banner strong, :root[data-theme="light"] .info-banner strong,
+  :root[data-theme="light"] .go-banner strong, :root[data-theme="light"] .amber-banner strong { color: #0f172a; }
+  .warning-banner em, .info-banner em, .go-banner em, .amber-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+  :root[data-theme="light"] .plain-item.flag strong { color: #b91c1c; }
+  .plain-item.good { background: rgba(16,185,129,0.05); border-color: rgba(16,185,129,0.16); }
+  .plain-item.good strong { color: #6ee7b7; }
+  :root[data-theme="light"] .plain-item.good strong { color: #047857; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* PASOS NUMERADOS */
+  .steps { counter-reset: st; display: flex; flex-direction: column; gap: 8px; }
+  .step {
+    counter-increment: st;
+    position: relative;
+    padding: 11px 14px 11px 48px;
+    border-radius: 11px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .step::before {
+    content: counter(st);
+    position: absolute;
+    left: 14px;
+    top: 11px;
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--accent, var(--text-dim));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step strong { color: #fff; font-weight: 500; }
+  .step em { color: #fcd34d; font-style: normal; }
+  .step .hold { display: block; font-family: var(--mono); font-size: 11.5px; color: #93c5fd; margin-top: 4px; }
+
+  /* STOP */
+  .stop {
+    margin-top: 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(239,68,68,0.25);
+    background: rgba(239,68,68,0.05);
+    padding: 14px 16px;
+  }
+  .stop-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fca5a5;
+    margin-bottom: 10px;
+  }
+  .stop ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .stop li {
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--text-dim);
+    padding-left: 18px;
+    position: relative;
+  }
+  .stop li::before { content: '✖'; position: absolute; left: 0; color: #fca5a5; font-size: 11px; top: 2px; }
+  .stop li .cond { display: block; font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .stop .why {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(239,68,68,0.18);
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+  .stop .why strong { color: var(--text); font-weight: 500; }
+  .stop .why em { color: #fcd34d; font-style: normal; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  :root[data-theme="light"] td .dose-main { color: #0f172a; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ESQUEMAS */
+  .figure {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 16px 14px;
+    margin-bottom: 14px;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .fig-caption {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .fig-caption strong { color: var(--text-dim); font-weight: 500; }
+
+  /* CALCULADORAS */
+  .calc {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-top: 6px;
+  }
+  .calc-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; }
+  .calc-field { display: flex; flex-direction: column; gap: 6px; }
+  .calc-field label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .calc-field select, .calc-field input {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 9px 11px;
+    min-width: 150px;
+  }
+  .calc-field select:focus-visible, .calc-field input:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
+  .calc-out {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .calc-out strong { color: #fff; font-weight: 500; }
+  .calc-out em { color: #fcd34d; font-style: normal; }
+  .calc-out .big {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: #93c5fd;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .calc-out .big.risk-low { color: #6ee7b7; }
+  .calc-out .big.risk-mid { color: #fcd34d; }
+  .calc-out .big.risk-high { color: #fca5a5; }
+  .calc-note { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-top: 10px; }
+  .calc-note strong { color: var(--text-dim); font-weight: 500; }
+  .calc-reset {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 8px 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .calc-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+  /* OPCIONES (orientador de inminencia) */
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.4;
+    text-align: left;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 10px 13px;
+    cursor: pointer;
+    transition: all 0.16s;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+  .opt:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+  .opt.on { border-color: var(--blue); background: rgba(59,130,246,0.12); color: #bfdbfe; }
+  .opt .sub { display: block; font-size: 11.5px; color: var(--text-muted); margin-top: 3px; }
+  .block-label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 14px 0 7px;
+  }
+
+  /* COPIADO */
+  .copy-box {
+    border-radius: 14px;
+    border: 1px solid rgba(59,130,246,0.3);
+    background: rgba(59,130,246,0.05);
+    overflow: hidden;
+  }
+  .copy-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 10px 12px 10px 16px;
+    border-bottom: 1px solid rgba(59,130,246,0.2);
+  }
+  .copy-bar span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #93c5fd; }
+  .copy-btn {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    background: var(--blue);
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.12s, background 0.2s;
+    white-space: nowrap;
+  }
+  .copy-btn:hover { background: #2563eb; }
+  .copy-btn:active { transform: scale(0.97); }
+  .copy-btn.done { background: var(--emerald); }
+  .copy-pre {
+    margin: 0;
+    padding: 14px 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 380px;
+    overflow-y: auto;
+  }
+  .copy-hint { font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.5; }
+
+  /* ENLACES INTERNOS */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+  :root[data-theme="light"] .cross-link { color: #0f766e; }
+  .links-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .links-row .cross-link { margin-top: 0; }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--indigo); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+  .ref-item strong { color: var(--text-dim); font-weight: 500; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .ms { align-items: flex-start; flex-wrap: wrap; }
+    .ms-goal { margin-left: 0; }
+    .sw-btn { flex: 1; text-align: center; }
+    .calc-field, .calc-field select, .calc-field input { width: 100%; }
+    .opt { width: 100%; }
+    .copy-bar { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <a class="back-link" href="./index.html">← Volver</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Cambiar tema claro u oscuro">◐</button>
+    </div>
+    <div class="header-badge">Reanimación · Paro cardiorrespiratorio del adulto</div>
+    <h1>Paro <span>traumático</span></h1>
+    <p class="header-sub">
+      Hay una frase que ordena esta página entera: <strong>el paro traumático no es un paro cardíaco que
+      además tuvo un accidente</strong>. El corazón de este paciente casi nunca está eléctricamente enfermo:
+      está <em>vacío</em>, o comprimido por aire, o comprimido por sangre, o sin oxígeno que bombear. De ahí
+      la consecuencia que invierte todo lo aprendido en el algoritmo médico: <strong>lo que salva no es el
+      fármaco ni el masaje, sino deshacer la causa mecánica en los primeros minutos, varias manos a la
+      vez</strong>. <em>Comprimir un corazón vacío no lo llena.</em>
+    </p>
+    <p class="header-sub" style="margin-top:12px;">
+      Y conviene decir de entrada lo que esto rinde, porque el pesimismo también mata pacientes. La
+      mortalidad del paro traumático es altísima —entre <strong>92,3 % y 100 %</strong> según si se cuentan
+      las muertes prehospitalarias y según el sistema de trauma—, pero <strong>sobrevivir es posible y la
+      mayoría de los que sobreviven no quedan en un estado vegetativo</strong>: un estudio epidemiológico
+      sueco reciente documentó <strong>10,6 % de supervivencia a 30 días</strong>, y en una revisión
+      sistemática de desenlaces el <strong>45,8 % de los sobrevivientes tuvo recuperación neurológica buena
+      o moderada</strong> (revisión de Carenzo 2024). Son pacientes <strong>jóvenes —mediana de 38 años— y
+      previamente sanos en el 60,5 %</strong>. <em>No es una reanimación de trámite: es una reanimación
+      distinta.</em>
+    </p>
+    <p class="header-sub" style="margin-top:12px;">
+      El alcance es el <strong>adulto</strong>, en un servicio de urgencia general, en los minutos en que el
+      cirujano y el pabellón todavía no están. El paro traumático <strong>del niño</strong> tiene su propia
+      sección en la página de reanimación pediátrica y no se duplica acá: las causas son las mismas, pero el
+      peso, los calibres, las energías y el límite de la toracotomía no lo son. La <strong>secuencia ABCDE del
+      politraumatizado con pulso</strong> y la <strong>técnica de la toracotomía de reanimación</strong> y de
+      la <strong>toracostomía</strong> también tienen página propia: esta se ocupa de la decisión y del orden,
+      no de repetir la técnica.
+    </p>
+    <div class="links-row" style="margin-top:14px;">
+      <a class="cross-link" href="./checklist-politrauma_2.html">Politrauma · secuencia xABCDE con pulso →</a>
+      <a class="cross-link" href="./checklist-toracotomia-reanimacion.html">Toracotomía de reanimación · técnica →</a>
+      <a class="cross-link" href="./checklist-toracostomia-tubo-pleural.html">Toracostomía y tubo pleural →</a>
+      <a class="cross-link" href="./checklist-reanimacion-pediatrica.html#s8">Paro traumático en el niño →</a>
+      <a class="cross-link" href="./checklist-histerotomia-reanimacion.html">Histerotomía de reanimación →</a>
+      <a class="cross-link" href="./algoritmo-tec-grave.html">TEC grave e hipertensión endocraneal →</a>
+    </div>
+  </div>
+
+  <!-- 01 · ANTES DEL PARO -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">ANTES</span>
+      <div>
+        <div class="section-title">El periparo traumático</div>
+        <div class="section-subtitle">El paciente que todavía tiene pulso es donde se gana · bajo flujo, no «estable»</div>
+      </div>
+      <span class="section-check-count" id="count-s1">0/9</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner" style="margin-top:0;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Esta es la sección con más rendimiento de la página, y la que se lee cuando ya no sirve.</strong>
+        El periparo traumático son los segundos o minutos antes de que se pierda el pulso, y se reconoce al lado
+        de la camilla: <strong>palidez, sudoración, extremidades frías y pegajosas, compromiso de conciencia o
+        síncope, hipotensión</strong>. Intervenir ahí es lo que más cambia el desenlace —después de perder el
+        pulso, todo rinde mucho peor—. <em>Si estás leyendo esto con un politraumatizado que todavía tiene
+        pulso pero se ve mal, estás en el único momento en que casi todo se puede cambiar.</em></span>
+      </div>
+
+      <div class="subhead">Dos palabras que conviene tener: LOST y NOST</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🫀</span><span><strong>LOST — <em>low-output state in trauma</em>, bajo flujo.</strong> Paciente inconsciente, que no respira y <strong>sin pulso palpable</strong> —la definición clásica de paro—, pero con <strong>actividad eléctrica organizada en el monitor y/o algún movimiento cardíaco en la ecografía</strong>. <em>Clínicamente es indistinguible de un paro, y no lo es:</em> todavía hay una bomba a la que se le puede devolver volumen. En la serie epidemiológica que acuñó los términos, la supervivencia del LOST fue de <strong>8,4 %</strong>.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⬛</span><span><strong>NOST — <em>no-output state in trauma</em>, sin flujo.</strong> Bradicardia extrema o ritmo agónico y <strong>probable asistolia ecográfica</strong> (corazón quieto). Supervivencia en esa misma serie: <strong>0 %</strong>. <em>No es una sentencia automática —el dato es de una serie y el corazón quieto se busca bien, no de pasada—, pero es el dato más pesado que entrega la ecografía</em> y es parte de la conversación sobre no iniciar o suspender (sección 10).</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔎</span><span><strong>Por qué importa la distinción.</strong> Porque la palabra «paro» hace que el equipo cambie de algoritmo y empiece a ordenar adrenalina y ciclos, cuando el paciente que tiene actividad eléctrica y algún movimiento cardíaco <strong>necesita sangre y descompresión, no ciclos</strong>. <em>El rótulo que se le pone al paciente en el primer minuto decide qué le hacen en los diez siguientes.</em></span></div>
+      </div>
+
+      <div class="go-banner">
+        <span class="warning-icon">📉</span>
+        <span><strong>Y la trampa de siempre: la presión arterial llega tarde.</strong> El adulto joven
+        vasoconstriñe muy bien y puede perder una fracción grande de la volemia con una presión sistólica
+        todavía «aceptable». Lo que avisa antes es la <strong>taquicardia con pulso radial débil o ausente, la
+        piel fría y pegajosa, el llene capilar lento, la taquipnea y el paciente que se pone angustiado,
+        agresivo o somnoliento</strong>. <em>Esperar la hipotensión para activar la transfusión masiva es
+        esperar el paro.</em></span>
+      </div>
+
+      <div class="subhead">Los nueve gestos antes de que se pierda el pulso</div>
+      <div class="checklist" id="list-s1">
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Avisar</span><strong>Activar el equipo completo y la sangre <em>antes</em> de necesitarlos.</strong> Cirujano, anestesia, pabellón, imagenología y <strong>banco de sangre</strong> avisados con el paciente aún con pulso. <em>Mientras más tarda en activarse el protocolo de transfusión masiva, peor le va al paciente</em>; idealmente lo activa el equipo prehospitalario o, como mínimo, los productos están en el box <strong>antes</strong> de que llegue.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Repartir</span><strong>Asignar los roles por nombre, en una frase, antes de que entre.</strong> Quién lidera y no toca al paciente, quién maneja vía aérea, quién hace los dos hemitórax, quién consigue accesos, quién hace la ecografía, quién administra sangre, quién registra tiempos. <em>En el paro traumático las tareas son simultáneas: sin reparto explícito, tres personas hacen la misma y una queda sin hacer.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Sangrado</span><strong>Detener el sangrado visible con las manos, ahora.</strong> Presión directa sostenida sobre el punto, <strong>empaquetado de la herida</strong> con gasa —hemostática si hay— apretando hasta llenar la cavidad, <strong>torniquete</strong> en la extremidad que no cede, y un segundo torniquete 5 a 7 cm por sobre el primero <em>sin retirar el primero</em> si no basta. El torniquete puesto <strong>no se suelta</strong> hasta que haya control definitivo, y se revisa después de cada movilización del paciente.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Pelvis</span><strong>Cinturón pélvico ante la sospecha, sin confirmarla con imagen.</strong> La fractura de pelvis es frecuente en el trauma cerrado grave y sangra mucho. <em>Si el paciente está en periparo o en paro, no hay tiempo de examinar la pelvis</em>: el cinturón se pone, a la altura de los trocánteres, y se alinean y entablillan los fémures.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Acceso</span><strong>Accesos grandes y <em>por arriba del diafragma</em> si el torso sangra.</strong> En la hemorragia no compresible de torso conviene el acceso <strong>supradiafragmático</strong> —subclavio, yugular— porque una infusión femoral puede no llegar al corazón si la cava está lesionada o si en pabellón se clampea. Los catéteres de trauma son <strong>cortos y gruesos (8,5–9 Fr)</strong>; la <strong>intraósea</strong> se instala rápido pero rinde del orden de <strong>50 mL/min</strong>, de modo que sirve para empezar, no para transfundir masivamente. <em>Verificar con el protocolo institucional los dispositivos y los sitios autorizados.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Sangre</span><strong>Sangre, no cristaloide.</strong> La reposición del exanguinado es con <strong>hemocomponentes en proporción equilibrada (orden de 1:1:1 de glóbulos rojos, plasma y plaquetas)</strong>, con calentador y, si existe, infusor rápido; el cristaloide es lo que se usa cuando no hay sangre a mano, no la primera opción. <em>El esquema, los gatillos y los volúmenes son los del protocolo de transfusión masiva del servicio.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">TXA</span><strong>Ácido tranexámico lo antes posible.</strong> En <strong>CRASH-2</strong> (20 211 pacientes aleatorizados dentro de 8 horas de la lesión) la mortalidad global bajó de <strong>16,0 % a 14,5 %</strong> (RR 0,91 [IC 95 % 0,85–0,97]) y la muerte por sangrado de <strong>5,7 % a 4,9 %</strong> (RR 0,85 [0,76–0,96]); el beneficio es <strong>mayor mientras más precoz</strong>, y el esquema del ensayo fue <strong>1 g en 10 minutos seguido de 1 g en 8 horas</strong> —algunos centros usan hoy <strong>2 g en bolo</strong> por simplicidad—. <em>Verificar el esquema, el plazo máximo y la presentación con el protocolo institucional.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Calor</span><strong>Calentarlo desde el primer minuto.</strong> Ropa mojada fuera, mantas, aire caliente, fluidos y sangre calentados, box a temperatura alta. <em>La hipotermia no es una complicación tardía: empeora la coagulopatía mientras uno transfunde</em>, y es la pata de la tríada letal que depende más del equipo que del paciente.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s1')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Destino</span><strong>Decidir dónde se controla esta hemorragia, y decirlo en voz alta.</strong> Si no se controla en este box, el tratamiento está en el <strong>pabellón o en la angiografía</strong>, y eso se pide ahora. <em>Un paciente «estabilizado» con una hemorragia no controlada es un paciente que va a volver a caer, y la segunda vez con menos margen.</em> Si el servicio no es el centro de trauma, la conversación de traslado empieza acá.</span>
+        </button>
+      </div>
+
+      <div class="amber-banner">
+        <span class="warning-icon">🩻</span>
+        <span><strong>Acceso arterial femoral precoz: una decisión del periparo, no del paro.</strong>
+        Instalar un introductor femoral arterial es <strong>mucho más fácil con perfusión que sin ella</strong>,
+        y deja listo tanto el monitoreo invasivo como la puerta de entrada para un balón de oclusión aórtica si
+        después se decide. Un consenso reciente sugiere considerarlo en todo paciente de trauma con presión
+        sistólica inicial <strong>bajo 60 mmHg</strong>, y en los que llegan bajo <strong>90 mmHg y no responden</strong>
+        a fluidos o sangre. <em>Es una medida que depende por completo de la capacidad y el entrenamiento del
+        servicio: verificar con el protocolo institucional si corresponde y quién lo hace.</em></span>
+      </div>
+
+      <div class="links-row">
+        <a class="cross-link" href="./checklist-politrauma_2.html">Politrauma · roles, xABCDE y e-FAST →</a>
+        <a class="cross-link" href="./sintoma-contusion.html">Contusión y trauma menor →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · LA DECISIÓN DE INICIAR -->
+  <div class="section s2" id="s2" style="animation-delay:0.10s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">¿Se reanima? · y si se reanima, ¿se abre el tórax?</div>
+        <div class="section-subtitle">Signos de vida, mecanismo y tiempo · las tres variables que deciden todo</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner" style="margin-top:0;">
+        <span class="warning-icon">🧭</span>
+        <span><strong>Las tres preguntas que ordenan la decisión, en este orden:</strong>
+        <strong>(1) ¿hay signos de vida —ahora o hace muy poco—?</strong>,
+        <strong>(2) ¿el mecanismo es penetrante o cerrado?</strong> y
+        <strong>(3) ¿cuánto lleva sin circulación?</strong>
+        Las tres se contestan en segundos, con el paciente en la camilla y sin ningún examen. <em>Las tres juntas
+        predicen el rendimiento de lo que viene mejor que cualquier cosa que se pueda medir después.</em></span>
+      </div>
+
+      <div class="subhead">Qué cuenta como «signo de vida»</div>
+      <div class="plain-list">
+        <div class="plain-item good"><span class="bullet-icon">👁️</span><span><strong>Reactividad pupilar</strong> o cualquier movimiento ocular.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">🫁</span><span><strong>Esfuerzo respiratorio espontáneo</strong>, incluido el boqueo agónico.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">🖐️</span><span><strong>Movimiento espontáneo</strong> de extremidades.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">📈</span><span><strong>Actividad eléctrica organizada</strong> en el monitor —no fibrilación ni asistolia—.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">🔊</span><span><strong>Movimiento cardíaco en la ecografía</strong> o cualquier presión arterial medible.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏳</span><span><strong>Y una precisión que cambia conductas:</strong> cuenta el signo de vida <strong>presenciado en los minutos previos</strong>, no solo el que uno ve con sus propios ojos. <em>«Se movía y hablaba cuando lo subimos a la ambulancia» es un signo de vida</em>, y hay que preguntarlo explícitamente al equipo que lo trae, porque nadie lo ofrece de oficio.</span></div>
+      </div>
+
+      <div class="subhead">Cuándo <em>no</em> se inicia la reanimación</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Lesiones evidentemente incompatibles con la vida.</strong> Decapitación, hemicorporectomía, destrucción encefálica masiva. <em>No requiere discusión ni cronómetro.</em></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Evidencia de paro prolongado.</strong> Rigidez cadavérica, livideces declives, descomposición.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Ausencia de signos de vida <em>y</em> ausencia de actividad eléctrica organizada</strong> en un paro traumático no presenciado. El documento conjunto de la <strong>NAEMSP y el Comité de Trauma del Colegio Americano de Cirujanos</strong> sostiene que, en ese escenario, no iniciar la reanimación es razonable. <em>Es un documento escrito para el ámbito prehospitalario</em> —la decisión intrahospitalaria incorpora más información y más recursos—, de modo que acá se cita como marco, no como regla automática.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📋</span><span><strong>En cualquiera de esos casos la decisión se dice en voz alta, se fundamenta y se registra</strong>, y se sigue el procedimiento local de muerte por causa externa. <em>Los criterios locales de no iniciar, quién tiene la autoridad para decidirlo y cómo se documenta deben verificarse con el protocolo institucional y con la normativa vigente.</em></span></div>
+      </div>
+
+      <div class="subhead">Lo que rinde la toracotomía de reanimación, por mecanismo y signos de vida</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Escenario</th><th>Supervivencia al alta</th><th>Supervivencia sin secuela neurológica</th><th>Recomendación EAST 2015</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Penetrante torácico</strong> · con signos de vida</td><td><strong>21,3 %</strong> (182/853)</td><td>11,7 % (53/454)</td><td style="color:#6ee7b7;">Recomendación <strong>fuerte a favor</strong></td></tr>
+            <tr><td><strong>Penetrante torácico</strong> · sin signos de vida</td><td>8,3 % (76/920)</td><td>3,9 % (25/641)</td><td style="color:#fcd34d;">Condicional a favor</td></tr>
+            <tr><td><strong>Penetrante extratorácico</strong> · con signos de vida</td><td>15,6 % (25/160)</td><td>16,5 % (14/85)</td><td style="color:#fcd34d;">Condicional a favor</td></tr>
+            <tr><td><strong>Penetrante extratorácico</strong> · sin signos de vida</td><td>2,9 % (4/139)</td><td>5,0 % (3/60)</td><td style="color:#fcd34d;">Condicional a favor</td></tr>
+            <tr><td><strong>Cerrado (contuso)</strong> · con signos de vida</td><td>4,6 % (21/454)</td><td>2,4 % (7/298)</td><td style="color:#fcd34d;">Condicional a favor</td></tr>
+            <tr><td><strong>Cerrado (contuso)</strong> · sin signos de vida</td><td>0,7 % (7/995)</td><td>0,1 % (1/825)</td><td style="color:#fca5a5;">Condicional <strong>en contra</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="calc-note" style="margin-top:10px;"><strong>Cómo leer esta tabla.</strong> Son los datos de la
+      guía de manejo de la <strong>EAST (Seamon 2015)</strong>: 72 estudios y <strong>10 238 toracotomías de
+      urgencia</strong>, sintetizados sin grupo de comparación —no existe un grupo de pacientes equivalentes sin
+      toracotomía—, de modo que <strong>son cifras de rendimiento, no estimaciones de efecto</strong>. Las dos
+      columnas de supervivencia tienen <strong>denominadores distintos</strong> (no todos los estudios reportaron el
+      desenlace neurológico), razón por la cual en la fila del penetrante extratorácico el porcentaje «sin secuela»
+      resulta mayor que el de supervivencia global: es un artefacto de los denominadores, no un hallazgo. <em>Nivel de
+      evidencia III.</em></div>
+
+      <div class="calc">
+        <div class="block-label">Orientador · ¿qué toca ahora?</div>
+        <div class="calc-row">
+          <div class="calc-field">
+            <label for="orMec">Mecanismo</label>
+            <select id="orMec" onchange="calcOr()">
+              <option value="">— elegir —</option>
+              <option value="penTx">Penetrante torácico (o «caja cardíaca»)</option>
+              <option value="penEx">Penetrante extratorácico</option>
+              <option value="cerrado">Cerrado / contuso</option>
+              <option value="noHemo">No hemorrágico: asfixia, ahogamiento, TEC aislado, hipotermia, eléctrico</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="orSv">Signos de vida <em>(ahora o presenciados hace minutos)</em></label>
+            <select id="orSv" onchange="calcOr()">
+              <option value="">— elegir —</option>
+              <option value="si">Sí · presentes o muy recientes</option>
+              <option value="no">No · ninguno</option>
+              <option value="nd">No se sabe</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="orTiempo">Tiempo sin circulación</label>
+            <select id="orTiempo" onchange="calcOr()">
+              <option value="nd">No se sabe</option>
+              <option value="corto">Menos de 10 minutos</option>
+              <option value="medio">10 a 15 minutos</option>
+              <option value="largo">Más de 15 minutos</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="orEco">Ecografía a pie de cama</label>
+            <select id="orEco" onchange="calcOr()">
+              <option value="nohecha">Aún no se hizo</option>
+              <option value="derrame">Derrame pericárdico / taponamiento</option>
+              <option value="movimiento">Corazón con movimiento, sin derrame</option>
+              <option value="quieto">Corazón quieto (asistolia ecográfica)</option>
+            </select>
+          </div>
+          <button type="button" class="calc-reset" onclick="resetOr()">↺ Limpiar</button>
+        </div>
+        <div class="calc-out" id="orOut">Elige el mecanismo y los signos de vida. El orientador devuelve el <strong>siguiente paso</strong> y el rendimiento esperable, no un diagnóstico ni una autorización.</div>
+        <div class="calc-note"><strong>Advertencia.</strong> Esta herramienta reordena las recomendaciones de la guía
+        EAST 2015 y del algoritmo de paro traumático del <strong>ERC 2021</strong>, y <strong>no es una regla de
+        decisión validada</strong>: no conoce la edad, la comorbilidad, las lesiones asociadas, la calidad de la
+        reanimación previa, la disponibilidad de pabellón ni de sangre, ni la experiencia del equipo. La
+        <strong>toracotomía de reanimación es un procedimiento de altísimo riesgo</strong> que requiere
+        entrenamiento, instrumental y un destino quirúrgico: la indicación, el plazo y quién la realiza se rigen por
+        el <strong>protocolo institucional</strong>. Lo que esta página no puede aportar es lo que más pesa en la
+        decisión real: el juicio del equipo presente.</div>
+      </div>
+
+      <div class="links-row">
+        <a class="cross-link" href="./checklist-toracotomia-reanimacion.html">Toracotomía de reanimación · indicaciones, caja y técnica →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · CRONÓMETRO -->
+  <div class="section s3" id="s3" style="animation-delay:0.14s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Cronómetro e hitos</div>
+        <div class="section-subtitle">Parte el reloj cuando se pierde el pulso · acá el reloj no mide ciclos, mide minutos hasta la causa resuelta</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="stopwatch">
+        <div class="sw-display" id="swDisplay">00:00</div>
+        <div class="sw-caption" id="swCaption">Detenido · parte el reloj en el momento en que se pierde el pulso</div>
+        <div class="sw-controls">
+          <button type="button" class="sw-btn primary" id="swToggle" onclick="swToggle()">▶ Iniciar</button>
+          <button type="button" class="sw-btn" onclick="swReset()">↺ Reiniciar</button>
+        </div>
+        <div class="milestones" id="milestones">
+          <button type="button" class="ms" data-goal="20" data-prefix="meta ~" onclick="markMs(this)"><span><b>Las cuatro tareas repartidas por nombre</b> y la causa probable dicha en voz alta · compresiones andando si hay manos de sobra</span><span class="ms-goal">meta ~20 s</span></button>
+          <button type="button" class="ms" data-goal="60" data-prefix="meta ~" onclick="markMs(this)"><span><b>Los dos hemitórax descomprimidos</b> · vía aérea abierta con oxígeno y pecho que se mueve · hemorragia externa comprimida o con torniquete</span><span class="ms-goal">meta ~60 s</span></button>
+          <button type="button" class="ms" data-goal="90" data-prefix="meta ~" onclick="markMs(this)"><span><b>Ecografía en la pausa</b>: pericardio y movimiento cardíaco · <b>decisión de toracotomía tomada y anunciada</b></span><span class="ms-goal">meta ~90 s</span></button>
+          <button type="button" class="ms" data-goal="120" data-prefix="meta ~" onclick="markMs(this)"><span><b>Sangre corriendo</b> por un acceso grande —supradiafragmático si el torso sangra— y protocolo de transfusión masiva activado</span><span class="ms-goal">meta ~2 min</span></button>
+          <button type="button" class="ms" data-goal="180" data-prefix="meta ~" onclick="markMs(this)"><span><b>Tórax abierto</b> si la toracotomía está indicada · pericardio abierto y corazón evacuado si hay taponamiento</span><span class="ms-goal">meta ~3 min</span></button>
+          <button type="button" class="ms" data-goal="300" data-prefix="meta ~" onclick="markMs(this)"><span>Ácido tranexámico administrado · <b>potasio y calcio pedidos y tratados</b> · cinturón pélvico y férulas puestos · temperatura intervenida</span><span class="ms-goal">meta ~5 min</span></button>
+          <button type="button" class="ms" data-goal="420" data-prefix="meta ~" onclick="markMs(this)"><span><b>Destino confirmado</b>: pabellón, angiografía o traslado, con equipo avisado y camilla lista</span><span class="ms-goal">meta ~7 min</span></button>
+          <button type="button" class="ms" data-goal="600" data-prefix="meta ~" onclick="markMs(this)"><span>Revisión estructurada con el equipo: <b>las cuatro causas deshechas una por una</b> · ¿seguir o suspender? · decisión registrada</span><span class="ms-goal">meta ~10 min</span></button>
+        </div>
+      </div>
+
+      <div class="go-banner" style="margin-top:14px;">
+        <span class="warning-icon">⏱️</span>
+        <span><strong>Todas las metas de este cronómetro son propuestas de esta página</strong>, puestas para ordenar
+        la secuencia y hacer visible la demora, y <strong>deben verificarse con el protocolo institucional</strong>.
+        No son metas validadas: no existe un estudio que fije esos plazos. Las <strong>dos referencias temporales que
+        sí vienen de la literatura</strong> son distintas y están en la sección 07: la toracotomía por trauma
+        <strong>penetrante</strong> se indica en el paciente sin pulso con <strong>menos de 10 minutos</strong> de
+        reanimación desde la lesión, y se considera <strong>contraindicada tras 10 a 15 minutos</strong> de pérdida
+        definitiva de gasto cardíaco. <em>El reloj de esta página corre, en el fondo, contra esa ventana.</em></span>
+      </div>
+
+      <div class="subhead">Los tres relojes que corren a la vez</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>El reloj de la hemorragia.</strong> Es el que manda: la hipovolemia explica alrededor del <strong>48 %</strong> de los paros traumáticos. No se detiene con nada de lo que hay en el carro de paro —se detiene con <strong>manos, torniquete, cinturón, sangre y pabellón</strong>—. <em>Cada minuto acá se paga en coagulopatía, acidosis e hipotermia, que después ya no se pueden deshacer.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🫁</span><span><strong>El reloj de la obstrucción.</strong> Neumotórax a tensión (~13 %) y taponamiento (~10 %) son <strong>la minoría de los casos y la mayoría de los sobrevivientes</strong>: son las causas que se deshacen con un gesto y en segundos. <em>Por eso se descartan siempre y en todos, aunque parezcan improbables.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🧠</span><span><strong>El reloj del oxígeno.</strong> La hipoxia explica alrededor del <strong>13 %</strong> —vía aérea obstruida, lesión pulmonar, y la <em>apnea por impacto cerebral</em>: el paciente con traumatismo craneoencefálico que deja de respirar en el momento del golpe—. <em>Acá la vía aérea abierta y la ventilación con bolsa valen más que cualquier fármaco, y es el escenario donde el algoritmo médico clásico sí aplica.</em></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · EL ALGORITMO INVERTIDO -->
+  <div class="section s4" id="s4" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">El algoritmo invertido · HOTT en paralelo</div>
+        <div class="section-subtitle">Cuatro tareas simultáneas, no una secuencia · se reparten por nombre</div>
+      </div>
+      <span class="section-check-count" id="count-s4">0/8</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner" style="margin-top:0;">
+        <span class="warning-icon">🔄</span>
+        <span><strong>Acá cambia la jerarquía, no los gestos.</strong> En el paro médico la secuencia es comprimir,
+        ventilar, mirar el ritmo, dar adrenalina y buscar causas. En el paro traumático la secuencia es
+        <strong>deshacer las cuatro causas mecánicas, todas a la vez y con varias manos</strong>. La nemotecnia
+        europea es <strong>HOTT</strong>: <strong>H</strong>ipovolemia, <strong>O</strong>xigenación,
+        <strong>T</strong>ensión (neumotórax) y <strong>T</strong>aponamiento. <em>No se recorren en orden: se
+        asignan por nombre y se ejecutan simultáneamente</em>, porque cada una por separado puede ser la causa única
+        y ninguna espera a la anterior.</span>
+      </div>
+
+      <div class="figure">
+        <svg viewBox="0 0 760 330" role="img" aria-label="Esquema de las cuatro causas del paro traumático del adulto, H O T T: hipovolemia, oxigenación, neumotórax a tensión y taponamiento, cada una con su gesto, dispuestas en paralelo y no en secuencia, con una banda inferior de tareas simultáneas.">
+          <text x="26" y="24" font-family="Syne, sans-serif" font-size="13" font-weight="700" fill="#bfdbfe">H · O · T · T — las cuatro, a la vez</text>
+          <text x="26" y="42" font-family="DM Mono, monospace" font-size="10" fill="#94a3b8">no es una secuencia: son cuatro tareas simultáneas que se reparten por nombre · el porcentaje es la frecuencia como causa</text>
+          <!-- H -->
+          <rect x="24" y="56" width="170" height="162" rx="11" fill="rgba(239,68,68,0.09)" stroke="rgba(239,68,68,0.42)" stroke-width="1.2"/>
+          <text x="40" y="80" font-family="Syne, sans-serif" font-size="22" font-weight="800" fill="#fca5a5">H</text>
+          <text x="74" y="80" font-family="Syne, sans-serif" font-size="12" font-weight="700" fill="#fca5a5">HIPOVOLEMIA</text>
+          <text x="74" y="94" font-family="DM Mono, monospace" font-size="9.5" fill="#94a3b8">~48 % de los casos</text>
+          <g font-family="DM Sans, sans-serif" font-size="10.8" fill="#e2e8f0">
+            <text x="40" y="118">Presión directa · empaquetar</text>
+            <text x="40" y="136">Torniquete en extremidad</text>
+            <text x="40" y="154">Cinturón pélvico · férulas</text>
+            <text x="40" y="172"><tspan font-weight="700">SANGRE</tspan> 1:1:1, no cristaloide</text>
+            <text x="40" y="190">Ácido tranexámico</text>
+            <text x="40" y="208" fill="#fcd34d">pabellón o angiografía YA</text>
+          </g>
+          <!-- O -->
+          <rect x="204" y="56" width="170" height="162" rx="11" fill="rgba(20,184,166,0.09)" stroke="rgba(20,184,166,0.42)" stroke-width="1.2"/>
+          <text x="220" y="80" font-family="Syne, sans-serif" font-size="22" font-weight="800" fill="#5eead4">O</text>
+          <text x="254" y="80" font-family="Syne, sans-serif" font-size="12" font-weight="700" fill="#5eead4">OXIGENACIÓN</text>
+          <text x="254" y="94" font-family="DM Mono, monospace" font-size="9.5" fill="#94a3b8">~13 % de los casos</text>
+          <g font-family="DM Sans, sans-serif" font-size="10.8" fill="#e2e8f0">
+            <text x="220" y="118">Abrir y aspirar la vía aérea</text>
+            <text x="220" y="136">Bolsa y mascarilla, dos manos</text>
+            <text x="220" y="154">Supraglótico si no sella</text>
+            <text x="220" y="172">Alineación cervical</text>
+            <text x="220" y="190" fill="#94a3b8">intubar NO es del minuto 1</text>
+            <text x="220" y="208" fill="#94a3b8">sin hiperventilar</text>
+          </g>
+          <!-- T tension -->
+          <rect x="384" y="56" width="170" height="162" rx="11" fill="rgba(245,158,11,0.09)" stroke="rgba(245,158,11,0.42)" stroke-width="1.2"/>
+          <text x="400" y="80" font-family="Syne, sans-serif" font-size="22" font-weight="800" fill="#fcd34d">T</text>
+          <text x="434" y="80" font-family="Syne, sans-serif" font-size="12" font-weight="700" fill="#fcd34d">TENSIÓN</text>
+          <text x="434" y="94" font-family="DM Mono, monospace" font-size="9.5" fill="#94a3b8">~13 % de los casos</text>
+          <g font-family="DM Sans, sans-serif" font-size="10.8" fill="#e2e8f0">
+            <text x="400" y="118">Descomprimir <tspan font-weight="700">los dos</tspan></text>
+            <text x="400" y="136">hemitórax, sin radiografía</text>
+            <text x="400" y="154">y sin ecografía previa</text>
+            <text x="400" y="172"><tspan font-weight="700">Toracostomía digital</tspan></text>
+            <text x="400" y="190">mejor que la aguja</text>
+            <text x="400" y="208" fill="#94a3b8">después, tubo pleural</text>
+          </g>
+          <!-- T taponamiento -->
+          <rect x="564" y="56" width="172" height="162" rx="11" fill="rgba(99,102,241,0.09)" stroke="rgba(99,102,241,0.42)" stroke-width="1.2"/>
+          <text x="580" y="80" font-family="Syne, sans-serif" font-size="22" font-weight="800" fill="#a5b4fc">T</text>
+          <text x="614" y="80" font-family="Syne, sans-serif" font-size="11.5" font-weight="700" fill="#a5b4fc">TAPONAMIENTO</text>
+          <text x="614" y="94" font-family="DM Mono, monospace" font-size="9.5" fill="#94a3b8">~10 % de los casos</text>
+          <g font-family="DM Sans, sans-serif" font-size="10.8" fill="#e2e8f0">
+            <text x="580" y="118">Ecografía en la pausa</text>
+            <text x="580" y="136">Si hay taponamiento:</text>
+            <text x="580" y="154"><tspan font-weight="700">TORACOTOMÍA primero</tspan></text>
+            <text x="580" y="172">antes que todo lo demás</text>
+            <text x="580" y="190" fill="#fca5a5">NO pericardiocentesis</text>
+            <text x="580" y="208" fill="#94a3b8">en el box, no en pabellón</text>
+          </g>
+          <!-- banda inferior -->
+          <rect x="24" y="234" width="712" height="78" rx="11" fill="rgba(226,232,240,0.05)" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+          <text x="44" y="258" font-family="Syne, sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">MIENTRAS TANTO</text>
+          <g font-family="DM Sans, sans-serif" font-size="11" fill="#94a3b8">
+            <text x="44" y="278">Accesos grandes y supradiafragmáticos · transfusión masiva activada · calcio y potasio · calentarlo · pabellón avisado</text>
+            <text x="44" y="296">Las compresiones <tspan font-weight="700" fill="#e2e8f0">no se suspenden, pero no desplazan nada</tspan>; la adrenalina ocupa un lugar <tspan font-weight="700" fill="#fcd34d">secundario y discutido</tspan></text>
+          </g>
+        </svg>
+        <div class="fig-caption"><strong>Esquema 1 · el algoritmo invertido del paro traumático.</strong> Las cuatro casillas no se recorren en orden: se asignan por nombre y se ejecutan a la vez. Las frecuencias como causa provienen de la revisión de Carenzo 2024 y son aproximadas: suman menos de 100 % porque las causas coexisten y porque hay paros traumáticos de otro origen (sección 08). Dibujo orientativo.</div>
+      </div>
+
+      <div class="amber-banner">
+        <span class="warning-icon">🫀</span>
+        <span><strong>Por qué las compresiones bajan de prioridad: la fisiología, no una opinión.</strong>
+        El masaje cardíaco externo bien hecho entrega, en un paciente <em>normovolémico</em>, apenas
+        <strong>25–30 % del gasto cardíaco basal y alrededor del 10 % de la perfusión cerebral y coronaria</strong>.
+        Lo que permite el retorno de circulación es una <strong>presión de perfusión coronaria</strong> suficiente
+        —se cita un umbral del orden de <strong>15 mmHg</strong>—, y esa presión depende del gradiente entre la
+        diastólica aórtica y la presión de llenado del ventrículo. <strong>En el paciente hipovolémico o con
+        taponamiento, comprimir no sube la diastólica</strong>: no hay volumen que mover, o hay un pericardio que
+        no deja llenar. Estudios en animales de shock hemorrágico y obstructivo no encontraron beneficio adicional
+        de las compresiones frente a tratar la causa. <em>De ahí la regla del ERC 2021: tratar las causas
+        reversibles tiene prioridad sobre administrar compresiones.</em>
+        <strong>Y la precisión que evita el malentendido:</strong> eso <em>no</em> significa no comprimir. Si hay
+        manos suficientes, se comprime <strong>en paralelo</strong> y sin estorbar; y hay escenarios en los que las
+        compresiones de calidad son prioritarias de nuevo —duda sobre el origen médico del paro, causas no
+        hipovolémicas ni obstructivas: contusión miocárdica, traumatismo craneoencefálico aislado, asfixia,
+        ahogamiento (sección 08)—.</span>
+      </div>
+
+      <div class="subhead">Los ocho gestos del paro traumático del adulto</div>
+      <div class="checklist" id="list-s4">
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">1 · Repartir</span><strong>Asignar las cuatro tareas por nombre, en una frase.</strong> «Tú la hemorragia, tú la vía aérea, tú los dos hemitórax, yo la ecografía y el mando.» Y la causa probable dicha en voz alta: <em>«esto es un exanguinado», «esto es un taponamiento»</em>. <strong>Es lo único que convierte cuatro tareas simultáneas en cuatro tareas hechas</strong>, y además le dice al equipo por qué no se está siguiendo el algoritmo de siempre.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">2 · Sangrado</span><strong>Detener el sangrado visible con las manos, ahora.</strong> Presión directa, empaquetado de la herida con gasa hasta llenarla, <strong>torniquete</strong> en la extremidad que no cede —y un segundo por encima si el primero no basta—, cinturón pélvico y férulas de fémur. <em>Y una advertencia que se olvida:</em> el paciente en paro puede estar sangrando poco <strong>porque no tiene presión</strong>; en cuanto se repone volumen, <strong>vuelve a sangrar</strong>. El control del sangrado se hace antes y durante la transfusión, no después.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">3 · Tórax</span><strong>Descomprimir los dos hemitórax, sin diagnosticar primero.</strong> En el paro traumático <strong>no se pierde tiempo buscando el neumotórax</strong> —ni clínicamente ni con ecografía—: se descomprime <strong>bilateralmente</strong>, y la <strong>toracostomía digital</strong> es preferible a la aguja (sección 06). <em>Es el gesto con mejor relación entre lo que cuesta y lo que puede devolver.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">4 · Vía aérea</span><strong>Abrir la vía aérea y ventilar con bolsa y oxígeno, sin entrar todavía al rito de la intubación.</strong> Maniobras básicas, aspiración, cánula, bolsa con dos manos o dispositivo supraglótico, con alineación cervical. <strong>La intubación endotraqueal consume manos, tiempo y atención en el minuto en que todo eso vale más en otra parte</strong>, y por eso el ERC 2021 la posterga <em>siempre que la vía aérea esté abierta o se pueda abrir sin cirugía</em>. <em>Las excepciones —asfixia, ahogamiento, traumatismo craneoencefálico aislado— están en la sección 08.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">5 · Pericardio</span><strong>Mirar el pericardio con ecografía en la pausa, y actuar en consecuencia.</strong> Si hay taponamiento, <strong>la toracotomía va primero, antes de la vía aérea y antes de las compresiones</strong>: nada sirve hasta que el pericardio esté descomprimido. <strong>La ecografía no puede retrasar la decisión</strong>: en la herida penetrante central con alta sospecha, se abre. <em>Y nunca pericardiocentesis en el taponamiento traumático</em> (sección 07).</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">6 · Volumen</span><strong>Sangre, por un acceso grande, idealmente sobre el diafragma.</strong> Dos accesos; <strong>hemocomponentes en proporción equilibrada (orden de 1:1:1)</strong> con calentador; cristaloide solo si no hay sangre. En la hemorragia no compresible de torso, el acceso <strong>supradiafragmático</strong> es el que asegura que lo infundido llegue al corazón. <em>El paciente en paro traumático por exanguinación no retorna sin volumen, por mucha adrenalina que se le ponga.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">7 · Metabólico</span><strong>Pensar en potasio y calcio, que son las dos causas que se tratan con una ampolla.</strong> La hiperkalemia precoz del shock hemorrágico es frecuente y grave, y la hipocalcemia del paciente transfundido también (sección 05). <em>Son las dos únicas «causas reversibles» del paro traumático que no requieren manos ni bisturí, y por eso se olvidan.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s4')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">8 · Destino</span><strong>Decir en voz alta dónde se controla esta hemorragia, y mover al equipo hacia allá.</strong> Pabellón, angiografía o traslado: con quién, en cuántos minutos, por qué camilla. <strong>La reanimación del paro traumático no termina en el box</strong>, y el paciente que retorna sin control de la hemorragia vuelve a caer. <em>Verificar con el protocolo institucional el circuito y quién activa el pabellón de urgencia.</em></span>
+        </button>
+      </div>
+
+      <div class="stop">
+        <div class="stop-title">✖ Los cinco reflejos del algoritmo médico que acá hacen daño</div>
+        <ul>
+          <li><strong>Empezar por la adrenalina.</strong><span class="cond">No hay evidencia que la respalde en el paro traumático, y la que hay apunta en contra. En una cohorte multicéntrica de <strong>1631 pacientes</strong> con paro traumático prehospitalario (Witt, <em>Prehosp Emerg Care</em> 2026), la supervivencia al alta fue de <strong>5 % con adrenalina frente a 16 % sin ella</strong> (riesgo relativo ajustado <strong>0,33 [IC 95 % 0,23–0,46]</strong>; en trauma cerrado <strong>0,20 [0,11–0,37]</strong>; en penetrante sin diferencia significativa). <em>Hay que leerlo con su limitación declarada: es retrospectivo y con confusión por indicación</em> —a los peores se les da más adrenalina—, de modo que <strong>no demuestra daño</strong>. Sirve para sostener la jerarquía, no para prohibir el fármaco: la adrenalina <strong>no desplaza el control del sangrado, la descompresión torácica ni la transfusión</strong>. Las excepciones —paro de causa hipóxica o neurológica— y la conducta local se verifican con el protocolo institucional.</span></li>
+          <li><strong>Dedicar el primer minuto a intubar.</strong><span class="cond">Es el reflejo más arraigado y el que más caro sale: tres personas y noventa segundos puestos en el tubo mientras nadie descomprime el tórax ni comprime la hemorragia. Vía aérea abierta, bolsa con dos manos, y la intubación cuando haya manos libres —salvo en las causas asfícticas y neurológicas de la sección 08—.</span></li>
+          <li><strong>Pedir la radiografía o la tomografía antes de descomprimir.</strong><span class="cond">El neumotórax a tensión del paciente en paro se trata sin imagen, en los dos lados. La imagen es para el paciente que ya tiene circulación.</span></li>
+          <li><strong>Puncionar el pericardio.</strong><span class="cond">En el taponamiento <strong>traumático</strong> la sangre está coagulada y la lesión sigue sangrando: la aguja no lo vacía, y el tiempo gastado es el tiempo de la toracotomía. <em>La pericardiocentesis tiene su lugar en el taponamiento médico, no en este.</em></span></li>
+          <li><strong>Llenarlo de cristaloide.</strong><span class="cond">Diluye los factores, enfría al paciente y sube la presión lo justo para que vuelva a sangrar. Si no hay sangre a mano se usa, pero el objetivo es sangre y productos, y el pabellón.</span></li>
+        </ul>
+        <div class="why"><strong>Por qué todos estos errores son el mismo error.</strong> Los cinco consisten en aplicar a un corazón <em>vacío o comprimido</em> un algoritmo diseñado para un corazón <em>lleno y eléctricamente enfermo</em>. <strong>La pregunta que los desarma es siempre la misma: ¿esto que estoy haciendo le devuelve volumen, le saca aire o le saca sangre del pericardio?</strong> Si la respuesta es no, puede esperar.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · HEMORRAGIA, TRANSFUSIÓN Y METABÓLICO -->
+  <div class="section s5" id="s5" style="animation-delay:0.22s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Hipovolemia · sangre, no volumen</div>
+        <div class="section-subtitle">Accesos, transfusión equilibrada, tranexámico, potasio y calcio</div>
+      </div>
+      <span class="section-check-count" id="count-s5">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner" style="margin-top:0;">
+        <span class="warning-icon">🩸</span>
+        <span><strong>La hipovolemia es la causa más frecuente y la de peor rendimiento.</strong> Explica
+        alrededor del <strong>48 %</strong> de los paros traumáticos, y es la que peor responde: la supervivencia
+        del paro por trauma <strong>penetrante</strong> es de orden de <strong>10,6 %</strong> frente a
+        <strong>2,3 %</strong> en el <strong>cerrado</strong>, y los sobrevivientes se concentran en las causas
+        obstructivas —taponamiento y neumotórax— mucho más que en la exanguinación. <em>La razón es metabólica: el
+        exanguinado llega al paro con una acidosis y una coagulopatía que el que tiene un taponamiento no
+        tiene.</em> Lo que sigue es, en el fondo, un solo mensaje: <strong>cerrar la llave y reponer con
+        sangre, mientras alguien ya pide el pabellón</strong>.</span>
+      </div>
+
+      <div class="subhead">El acceso vascular, con criterio anatómico</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Acceso</th><th>Qué rinde</th><th>Cuándo conviene</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Catéter de trauma supradiafragmático</strong><br><span class="dose-note">8,5–9 Fr, corto (≈10 cm): subclavio o yugular</span></td><td>Flujo máximo con resistencia mínima; con infusor rápido se citan ritmos de hasta <strong>750 mL/min</strong> con sangre calentada</td><td><strong>Hemorragia no compresible de torso</strong>: garantiza que lo infundido llegue al corazón aunque la cava esté lesionada o se clampee en pabellón. El subclavio derecho es el que menos colapsa en hipovolemia extrema</td></tr>
+            <tr><td><strong>Periférico grueso</strong><br><span class="dose-note">14 G, dos de ser posible</span></td><td>Buen flujo si se consigue</td><td>Si se consigue rápido, perfecto. <em>Lo que no corresponde es gastar cinco minutos y tres personas buscando venas en un exanguinado</em></td></tr>
+            <tr><td><strong>Intraósea</strong></td><td>Del orden de <strong>50 mL/min</strong>: muy por debajo de lo necesario para transfundir masivamente</td><td>Es lo más rápido de instalar y sirve para <strong>empezar</strong> —fármacos, primeros volúmenes—, no para resolver la reposición de un exanguinado</td></tr>
+            <tr><td><strong>Femoral arterial (introductor)</strong></td><td>Monitoreo invasivo y puerta para oclusión aórtica endovascular</td><td>Se instala mucho mejor <strong>antes</strong> del paro (sección 01). Depende por completo de la capacidad del servicio</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">El paquete hemostático y metabólico</div>
+      <div class="checklist" id="list-s5">
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Activar</span><strong>Protocolo de transfusión masiva activado, con nombre y hora.</strong> <em>Mientras más tarda en activarse, peor el desenlace</em>: idealmente lo activa el equipo prehospitalario, y como mínimo los productos están en el box antes de que el paciente entre. <strong>El protocolo del servicio es el que manda</strong>: gatillos, cajas, proporciones y quién lo autoriza.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Proporción</span><strong>Transfusión equilibrada, no glóbulos rojos solos.</strong> La estrategia habitual es administrar <strong>glóbulos rojos, plasma fresco congelado y plaquetas en proporción equilibrada, del orden de 1:1:1</strong>, con cristaloides y coloides solo cuando no hay productos disponibles. <em>Las pruebas viscoelásticas no guían bien la fase inicial</em> —son análisis <em>ex vivo</em> de un sistema que está cambiando cada minuto—, de modo que en los primeros minutos la proporción fija es lo razonable y la guía fina viene después. La <strong>sangre total de título bajo</strong> está en investigación en el ámbito civil. <em>Verificar la proporción, el contenido de las cajas y la disponibilidad con el protocolo institucional y el banco de sangre.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Calentar</span><strong>Todo lo que entra, calentado; y el paciente, tapado.</strong> Calentador de fluidos o infusor rápido con intercambiador de calor. <em>Transfundir masivamente sangre fría es inducir hipotermia activamente</em>, y la hipotermia es la pata de la tríada letal que depende del equipo.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">TXA</span><strong>Ácido tranexámico, lo más precoz posible y sin desplazar nada.</strong> Esquema del ensayo <strong>CRASH-2</strong>: <strong>1 g en 10 minutos seguido de 1 g en 8 horas</strong>; algunos centros usan <strong>2 g en bolo</strong>, con eficacia comparable y entrega más simple. <strong>El beneficio depende del tiempo</strong> —el tratamiento dentro de la primera hora es el que más reduce la muerte por sangrado—, y en el paro traumático específicamente <strong>está poco estudiado</strong>: un estudio japonés sugirió más retorno de circulación, lo que es una señal, no una prueba. <em>Su administración nunca precede a los gestos que resuelven la causa. Verificar esquema, plazo y presentación con el protocolo institucional.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Potasio</span><strong>Medir el potasio temprano y tratarlo agresivamente si está alto.</strong> La <strong>hiperkalemia precoz del shock hemorrágico grave</strong> está documentada: en la serie de Perkins, <strong>29 % de los pacientes tenía hiperkalemia sin acidosis, y todos los hiperkalémicos murieron</strong>; la transfusión masiva agrega potasio de la sangre almacenada y de la hemólisis. El manejo durante el paro es <strong>proteger el corazón con calcio y revertir la salida celular de potasio con insulina en bolo</strong> —se describe <strong>10 unidades de insulina rápida con 25 g de glucosa por vía intravenosa en inyección rápida</strong>, repetida o seguida de infusión según controles—. <em>Son esquemas citados de la literatura, no una indicación de esta página: verificar dosis, dilución y controles con el protocolo institucional.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Calcio</span><strong>Vigilar el calcio iónico del paciente transfundido.</strong> El rango normal del calcio iónico es de <strong>1,15–1,3 mmol/L</strong>; la hipocalcemia leve (0,9–1,15) está presente en el <strong>64 %</strong> de los pacientes de trauma al ingreso y la grave (&lt; 0,9) en el <strong>10 %</strong>, y esta última es <strong>factor de riesgo independiente de coagulopatía y de transfusión masiva</strong>. Se pierde con la sangre, se consume como cofactor de la coagulación y se quela con el <strong>citrato</strong> de los productos transfundidos. <strong>Se corrige guiado por gases seriados</strong>; si no hay medición disponible, el tratamiento empírico es una opción <em>durante</em> el paro traumático, pero <strong>administrar calcio empíricamente fuera de ese contexto puede ser dañino</strong> —tanto la hipo como la hipercalcemia se asocian a peor desenlace—. <em>Dosis, sal (gluconato o cloruro) y vía: verificar con el protocolo institucional.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s5')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Fuente</span><strong>Y mientras se transfunde, contestar dónde está el agujero.</strong> Los cinco lugares donde se esconde la sangre: <strong>tórax, abdomen, retroperitoneo y pelvis, huesos largos y el exterior</strong> —la calle y las sábanas—. La ecografía mira tórax y abdomen en la pausa; el cinturón pélvico cubre la pelvis sin examinarla. <em>Transfundir sin contestar esta pregunta es llenar un balde roto.</em></span>
+        </button>
+      </div>
+
+      <div class="amber-banner">
+        <span class="warning-icon">🧪</span>
+        <span><strong>Lo que conviene sacar en el mismo pinchazo.</strong> Gases con <strong>potasio, calcio iónico,
+        lactato y hemoglobina</strong>, grupo y pruebas cruzadas, pruebas de coagulación con fibrinógeno, y
+        glicemia. <em>De todo eso, lo que cambia la conducta en el minuto siguiente son el potasio y el calcio</em>
+        —los dos tienen tratamiento inmediato— y por eso son los dos que vale la pena pedir «urgentes» de verdad.
+        La hipoglicemia, en cambio, se mide siempre: es gratis de descartar y en el paciente de trauma puede ser lo
+        que explica el accidente (sección 08).</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · TÓRAX -->
+  <div class="section s6" id="s6" style="animation-delay:0.26s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Tensión · descomprimir los dos lados, sin diagnosticar</div>
+        <div class="section-subtitle">Por qué la aguja falla y el dedo no · y por qué se hace bilateral</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner" style="margin-top:0;">
+        <span class="warning-icon">🫁</span>
+        <span><strong>En el paro traumático el neumotórax a tensión no se busca: se descarta descomprimiendo.</strong>
+        El ERC 2021 lo dice sin matices —la descompresión torácica <strong>bilateral</strong> es sistemática—, y la
+        razón es doble: los signos clínicos no sirven en un paciente sin circulación, y la ecografía gasta segundos
+        para responder algo que el gesto responde y trata a la vez. <em>El paciente que recupera pulso al
+        descomprimir es el caso en que esta página rinde más, y es también el que se pierde si alguien decide
+        esperar la radiografía.</em></span>
+      </div>
+
+      <div class="subhead">Aguja o dedo: lo que dice la evidencia</div>
+      <div class="plain-list">
+        <div class="plain-item good"><span class="bullet-icon">☝️</span><span><strong>La toracostomía digital es preferible</strong> cuando están el entrenamiento y el material. Se asocia a <strong>mayor tasa de acceso real a la cavidad pleural y a mejor recuperación de signos vitales</strong>, aunque <em>no se ha demostrado que cambie la mortalidad global</em>. Es una técnica simple que también se realiza en el ámbito prehospitalario.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">💉</span><span><strong>La aguja falla seguido.</strong> Un porcentaje de las punciones <strong>no alcanza la cavidad pleural</strong>, y las que sí lo hacen pueden <strong>desplazarse, acodarse u obstruirse</strong> con coágulo después de puestas. <em>Una aguja «puesta» no es un neumotórax descomprimido</em>, y eso explica a los pacientes que no mejoran tras una punción aparentemente correcta.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📐</span><span><strong>Y el sitio es un asunto abierto, no un dogma.</strong> El <em>Advanced Trauma Life Support</em> recomienda hoy el <strong>4.º o 5.º espacio intercostal, por delante de la línea axilar media</strong>, pero la evidencia que lo respalda es débil y los datos son heterogéneos. Azizi mostró que en pacientes con sobrepeso y obesidad <strong>la pared es más gruesa en el 4.º–5.º espacio axilar anterior que en el 2.º espacio en la línea medioclavicular</strong>, lo que sugiere teóricamente mayor tasa de éxito de la <em>aguja</em> en el sitio clásico de la línea medioclavicular. <em>Si se va a puncionar, la discusión del sitio es real; si se puede hacer toracostomía digital, la discusión se vuelve secundaria.</em> El sitio, la técnica y el material autorizados en el servicio se verifican con el protocolo institucional.</span></div>
+      </div>
+
+      <div class="subhead">Secuencia, en el paciente en paro</div>
+      <div class="steps">
+        <div class="step"><strong>Los dos lados, sin esperar.</strong> No se descomprime «el lado sospechoso»: en el paro traumático se descomprimen ambos, porque el costo de abrir un hemitórax sano en un paciente sin pulso es despreciable frente al de dejar uno a tensión.</div>
+        <div class="step"><strong>Incisión y disección roma hasta la pleura, y dedo adentro.</strong> La técnica completa —triángulo de seguridad, planos, qué se siente y qué se escucha— está en la página de toracostomía, que es donde corresponde: esta sección decide <em>cuándo</em>, no enseña <em>cómo</em>.<span class="hold">Y nunca se cierra lo que se abrió: la toracostomía queda abierta o se completa con tubo.</span></div>
+        <div class="step"><strong>Si el paciente retorna, el tubo pleural va enseguida.</strong> Una toracostomía digital en un paciente que recuperó circulación y está con presión positiva necesita convertirse en tubo pleural conectado: de lo contrario el neumotórax se reconstituye.<span class="hold">Y el hemitórax que drena gran volumen de sangre de inmediato es una indicación de pabellón, no de observación.</span></div>
+        <div class="step"><strong>Y si se abrió el tórax izquierdo por toracotomía, el derecho sigue cerrado.</strong> Es el error que se repite: la toracotomía izquierda descomprime el lado izquierdo y deja el derecho sin resolver. <em>El hemitórax derecho se descomprime aparte, siempre.</em></div>
+      </div>
+
+      <div class="links-row">
+        <a class="cross-link" href="./checklist-toracostomia-tubo-pleural.html">Toracostomía simple y tubo pleural · técnica paso a paso →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · TAPONAMIENTO, TORACOTOMÍA Y OCLUSIÓN AÓRTICA -->
+  <div class="section s7" id="s7" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Taponamiento · la toracotomía va primero</div>
+        <div class="section-subtitle">Y la oclusión aórtica endovascular, con lo que hoy se sabe de ella</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner" style="margin-top:0;">
+        <span class="warning-icon">🚨</span>
+        <span><strong>Si la causa es taponamiento, la toracotomía precede a todo lo demás.</strong> No a la vía
+        aérea, no a las compresiones, no al acceso venoso: <strong>nada de eso sirve mientras el pericardio esté
+        lleno</strong>, porque el ventrículo no puede llenarse y por lo tanto no hay nada que bombear. Es la única
+        situación de esta página en que una de las cuatro tareas <em>sí</em> desplaza a las otras. <em>La ecografía
+        ayuda a confirmarlo, pero en la herida penetrante central con alta sospecha no se espera la
+        ecografía.</em></span>
+      </div>
+
+      <div class="subhead">Dónde sospechar el taponamiento traumático</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🎯</span><span><strong>Herida penetrante en la «caja cardíaca».</strong> La causa típica es una <strong>herida por arma blanca a la izquierda del esternón</strong>. Es la presentación con mejor rendimiento de toda la página.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚗</span><span><strong>Trauma cerrado con impacto fuerte en el tórax</strong>, a veces con fractura esternal. Es menos frecuente, y hay que recordar que el taponamiento por <strong>rotura de pared libre</strong> tiene un pronóstico distinto del de la herida reparable.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🔇</span><span><strong>Los signos clásicos no sirven acá.</strong> Hipotensión, ingurgitación yugular y ruidos cardíacos apagados <strong>no son confiables en el paro ni en el periparo</strong>: no hay presión que medir, no hay ruidos que auscultar en un box de reanimación y la yugular depende del volumen. <em>Quien decide es la sospecha por mecanismo, apoyada por la ecografía.</em></span></div>
+      </div>
+
+      <div class="subhead">Las ventanas de tiempo, que son lo único temporal con respaldo</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">⏱️</span><span><strong>Trauma penetrante:</strong> la toracotomía de urgencia se indica en el paciente <strong>sin pulso con menos de 10 minutos de reanimación desde la lesión</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏱️</span><span><strong>Trauma cerrado:</strong> se considera en el paciente que <strong>cae en paro al llegar</strong> o que llega sin pulso <strong>pero con signos de vida</strong> —reactividad pupilar, ventilación espontánea, actividad eléctrica—.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⛔</span><span><strong>Y el límite:</strong> se considera <strong>contraindicada cuando hay pérdida definitiva de gasto cardíaco por más de 10 a 15 minutos</strong>. <em>Es una ventana corta, y por eso la decisión se toma en el minuto, no después de agotar otras cosas.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span><strong>Y una condición que no es temporal pero manda igual:</strong> la toracotomía de reanimación es un <strong>puente al pabellón</strong>. Si no existe la posibilidad de llevar al paciente a cirugía en minutos, el rendimiento esperado cae mucho. <em>Verificar con el protocolo institucional la indicación, el plazo, quién la realiza y el circuito a pabellón.</em></span></div>
+      </div>
+
+      <div class="go-banner">
+        <span class="warning-icon">🔪</span>
+        <span><strong>Quién la hace, y qué es «lo mínimo».</strong> El punto decisivo de la toracotomía de
+        reanimación es <strong>la decisión y el momento</strong>, no la elegancia quirúrgica: debe realizarla sin
+        demora <em>cualquier miembro entrenado del equipo de trauma</em>, sea cirujano, anestesista o urgenciólogo,
+        según cómo esté organizado el servicio. Las <strong>cuatro acciones mínimas</strong> son:
+        <strong>abordaje clamshell, apertura del pericardio y liberación del corazón, compresión de la aorta y
+        masaje cardíaco interno</strong>; la reparación de la herida cardíaca, la hemostasia pulmonar y las
+        maniobras finas son de operadores con más experiencia. <strong>El campo estéril y el paño quirúrgico no son
+        esenciales.</strong> Si aparece fibrilación ventricular con el tórax abierto, se describe desfibrilación
+        con palas internas a <strong>10 J</strong>; si no hay palas internas, se retira el separador, se cierra el
+        tórax, se ponen los parches y se desfibrila de forma convencional. <em>La técnica completa, el
+        instrumental, las energías y las maniobras intratorácicas están en la página de toracotomía, y todo ello
+        debe contrastarse con el protocolo institucional.</em></span>
+      </div>
+
+      <div class="stop">
+        <div class="stop-title">✖ Pericardiocentesis en el taponamiento traumático</div>
+        <ul>
+          <li><strong>No vacía lo que hay que vaciar.</strong><span class="cond">La sangre del taponamiento traumático está parcialmente coagulada: una aguja fina no la extrae.</span></li>
+          <li><strong>No detiene la causa.</strong><span class="cond">La herida cardíaca sigue sangrando mientras uno aspira, de modo que el alivio —si lo hay— es transitorio.</span></li>
+          <li><strong>Y gasta el único recurso que no se recupera.</strong><span class="cond">Los minutos usados en puncionar son exactamente los minutos de la ventana de la toracotomía.</span></li>
+        </ul>
+        <div class="why"><strong>Dónde sí tiene lugar la pericardiocentesis.</strong> En el taponamiento <strong>no traumático</strong> —neoplásico, urémico, infeccioso, posprocedimiento— y, con criterio muy acotado y drenaje controlado, en la disección aórtica tipo A. Esa es otra página y otra decisión. <em>Acá, la respuesta al taponamiento traumático es abrir el tórax.</em></div>
+      </div>
+
+      <div class="links-row">
+        <a class="cross-link" href="./checklist-toracotomia-reanimacion.html">Toracotomía de reanimación · clamshell paso a paso →</a>
+        <a class="cross-link" href="./checklist-pericardiocentesis.html">Pericardiocentesis · cuándo sí (y no es acá) →</a>
+      </div>
+
+      <div class="subhead">Oclusión aórtica endovascular (REBOA): qué se sabe hoy</div>
+      <div class="info-banner">
+        <span class="warning-icon">🎈</span>
+        <span>El balón de oclusión aórtica se instala por la femoral común y <strong>ocluye la aorta para contener
+        la hemorragia distal y mejorar la perfusión coronaria y cerebral</strong> hasta el control definitivo. Para
+        el paro traumático la <strong>zona 1</strong> —entre la subclavia izquierda y el tronco celíaco— es la
+        preferida, porque es la que más sube la poscarga; la <strong>zona 3</strong> sirve para la hemorragia
+        pélvica y de extremidad inferior, y la <strong>zona 2 se evita</strong>. <strong>No es un tratamiento
+        definitivo</strong>: cada minuto de oclusión total es isquemia distal, y en cuanto sea fisiológicamente
+        posible se pasa a oclusión parcial. <strong>Está contraindicado —de forma variable según los algoritmos
+        publicados— cuando la hemorragia es torácica</strong>: ocluir la aorta descendente no resuelve una
+        hemorragia proximal y puede empeorarla, y además no permite reparar nada. Si la canulación se vuelve
+        difícil, <strong>hay que considerar convertir a toracotomía</strong> —no existe un plazo establecido;
+        algunos autores, por experiencia, lo deciden dentro de unos 5 minutos—.</span>
+      </div>
+      <div class="amber-banner">
+        <span class="warning-icon">📊</span>
+        <span><strong>Y el dato que obliga a la prudencia.</strong> El ensayo <strong>UK-REBOA</strong> (Jansen,
+        <em>JAMA</em> 2023) aleatorizó <strong>90 pacientes</strong> con hemorragia exanguinante en 16 centros de
+        trauma del Reino Unido a REBOA en urgencias más tratamiento estándar, o tratamiento estándar solo. La
+        mortalidad por cualquier causa a 90 días fue de <strong>54 % (25/46) con REBOA frente a 42 % (18/43)
+        sin él</strong> —<em>odds ratio</em> <strong>1,58 (intervalo de credibilidad 95 % 0,72–3,52)</strong>, con
+        una probabilidad posterior del <strong>86,9 %</strong> de que el <em>odds ratio</em> sea mayor que 1—, y
+        hubo <strong>más muertes por sangrado</strong> en el grupo REBOA (32 % frente a 17 %), la mayoría en las
+        primeras 24 horas. Los autores concluyen que esta estrategia <strong>no reduce la mortalidad y podría
+        aumentarla</strong>. Es un ensayo pequeño y pragmático, en un sistema de trauma concreto y con operadores
+        de experiencia variable, de modo que no cierra el tema; pero sí cambia la conversación: <em>el REBOA no es
+        una alternativa cómoda a resolver la hemorragia, y en este sitio no se presenta como una conducta
+        esperable del box de urgencia general.</em> <strong>Disponibilidad, indicación, zona, entrenamiento y
+        quién lo instala: verificar con el protocolo institucional.</strong></span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · LOS DESVÍOS -->
+  <div class="section s8" id="s8" style="animation-delay:0.34s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Los desvíos que invierten el algoritmo otra vez</div>
+        <div class="section-subtitle">Paros «traumáticos» en que lo que manda es el oxígeno, el fármaco o el tiempo</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner" style="margin-top:0;">
+        <span class="warning-icon">🔀</span>
+        <span><strong>Todo lo anterior supone un paro hemorrágico u obstructivo.</strong> Cuando el paro traumático
+        es de causa <strong>hipóxica o neurológica</strong>, el péndulo vuelve: <strong>las compresiones de calidad
+        y la vía aérea precoz recuperan su prioridad, y la adrenalina en dosis habituales tiene lugar</strong>.
+        <em>Reconocer en qué escenario se está es la decisión que ordena todas las demás.</em></span>
+      </div>
+
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🧠</span><span><strong>Traumatismo craneoencefálico aislado y apnea por impacto cerebral.</strong> Existe el fenómeno de <strong>apnea inmediata tras el golpe en la cabeza</strong>: el paciente deja de respirar en el momento del impacto y, si nadie ventila, el paro que sigue es hipóxico y no hemorrágico. <strong>Acá la vía aérea y la ventilación son el tratamiento</strong>, y las compresiones son prioritarias de nuevo. Si retorna, el manejo pasa a ser el de la hipertensión endocraneal —y el objetivo deja de ser la hipotensión permisiva: <em>el cerebro lesionado no tolera la presión baja</em>—.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🪢</span><span><strong>Asfixia y colgamiento.</strong> Mismo principio: la causa es la falta de oxígeno. <strong>Vía aérea, ventilación y compresiones</strong>, y buscar la lesión cervical asociada. El HOTT no desaparece —puede haber lesiones acompañantes— pero deja de ser lo primero.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🌊</span><span><strong>Ahogamiento.</strong> Paro hipóxico por definición: <strong>la ventilación es la intervención que cambia el desenlace</strong>, y la secuencia se parece más al algoritmo médico que al traumático. <em>Y hay que pensar en por qué se ahogó</em>: trauma de columna cervical por zambullida, convulsión, arritmia, intoxicación.</span></div>
+        <div class="plain-item"><span class="bullet-icon">❄️</span><span><strong>Hipotermia.</strong> Cambia dos cosas a la vez: el paciente <strong>tolera tiempos de paro mucho más largos con buen desenlace</strong>, de modo que <strong>no se suspende con los criterios habituales</strong>; y el corazón hipotérmico responde mal a fármacos y a la desfibrilación. <em>«Nadie está muerto hasta que esté caliente y muerto»</em> es una regla real en este escenario, y el destino puede ser un centro con recalentamiento extracorpóreo. <strong>Umbrales de temperatura, criterios de traslado y conducta: verificar con el protocolo institucional.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">⚡</span><span><strong>Lesión eléctrica y por rayo.</strong> Puede producir <strong>fibrilación ventricular o asistolia primarias</strong> y, además, apnea prolongada por parálisis de la musculatura respiratoria. <strong>Es uno de los pocos paros «traumáticos» donde desfibrilar temprano es la prioridad</strong>, y donde vale la pena reanimar largo. Seguridad de la escena primero, y buscar después las lesiones asociadas: quemaduras de entrada y salida, rabdomiólisis, fracturas por caída o tetania.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🫀</span><span><strong>La causa médica disfrazada de trauma.</strong> Un paciente que choca, se cae de altura o se desvanece y se golpea puede estar en paro por un <strong>infarto, una arritmia, una hemorragia subaracnoidea, una hipoglicemia, una intoxicación o un tromboembolismo</strong>: el trauma es la <em>consecuencia</em>. <strong>Pistas:</strong> trauma de baja energía con un paro desproporcionado, ritmo desfibrilable —que en el trauma es muy infrecuente—, adulto mayor, antecedente cardíaco, testigos que describen que se desvaneció <em>antes</em> del impacto. <em>En esos casos se tratan las dos cosas a la vez, y el algoritmo médico recupera su lugar.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">💥</span><span><strong><em>Commotio cordis</em>.</strong> Impacto directo sobre el precordio en un momento vulnerable del ciclo cardíaco que desencadena <strong>fibrilación ventricular sin lesión estructural</strong>. Es raro, se ve sobre todo en jóvenes y en contexto deportivo, y <strong>el tratamiento es desfibrilación precoz</strong>: es un paro eléctrico con un mecanismo traumático.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🤰</span><span><strong>Embarazada con útero sobre el ombligo.</strong> Se agrega una tarea que compite en prioridad: la <strong>histerotomía de reanimación</strong>, que se hace <em>por la madre</em> —descomprimir la cava y el aorta mejora el retorno venoso— y que forma parte del algoritmo del paro materno, además del desplazamiento uterino manual hacia la izquierda. <em>Cuál se hace primero cuando además hay indicación de toracotomía depende del mecanismo y de los recursos: verificar con el protocolo institucional.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">🧯</span><span><strong>Quemadura y vía aérea.</strong> El paro en el gran quemado o en el intoxicado por humo tiene componentes de hipoxia, de monóxido de carbono y de cianuro, además del trauma. <strong>Oxígeno a alta concentración y vía aérea precoz</strong>, y considerar el antídoto según exposición. <em>Esquemas y disponibilidad: verificar con el protocolo institucional y con el centro de información toxicológica.</em></span></div>
+      </div>
+
+      <div class="links-row">
+        <a class="cross-link" href="./algoritmo-tec-grave.html">TEC grave · intubación neuroprotectora y herniación →</a>
+        <a class="cross-link" href="./checklist-histerotomia-reanimacion.html">Histerotomía de reanimación →</a>
+        <a class="cross-link" href="./checklist-reanimacion-pediatrica.html#s8">Paro traumático en el niño →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · DESPUÉS DEL RETORNO DE CIRCULACIÓN -->
+  <div class="section s9" id="s9" style="animation-delay:0.38s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Retornó · y sigue sangrando</div>
+        <div class="section-subtitle">El retorno de circulación no es el final: es el momento de mover al paciente</div>
+      </div>
+      <span class="section-check-count" id="count-s9">0/7</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner" style="margin-top:0;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>El error más caro de esta página se comete aquí: celebrar el pulso.</strong> El paciente que
+        retorna tras un paro traumático <strong>tiene la misma lesión que tenía hace tres minutos</strong>, ahora
+        con presión para sangrar por ella. <em>Si la hemorragia no se controló, el retorno es una tregua</em>, y la
+        tregua se gasta en el pasillo, en la tomografía o esperando a alguien. <strong>Lo que corresponde después
+        del retorno es moverlo hacia el control definitivo.</strong></span>
+      </div>
+
+      <div class="checklist" id="list-s9">
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Destino</span><strong>Mover al paciente hacia el control definitivo de la hemorragia.</strong> Pabellón, angiografía o traslado a centro de trauma, con la decisión tomada y el equipo avisado. <em>La tomografía solo tiene sentido si el paciente está lo bastante estable para sobrevivir al scanner y si va a cambiar la conducta</em>; en el inestable con hemorragia no controlada, el destino es la mesa.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Sedación</span><strong>Sedación, analgesia y relajación, con fármacos que no tumben la presión.</strong> Se prefieren los de menor impacto hemodinámico —<strong>ketamina o etomidato</strong>, según disponibilidad y práctica local— y bolos pequeños de opioide para la analgesia. <em>Una inducción con dosis «normales» en un paciente que acaba de retornar de un paro hemorrágico puede producir el segundo paro.</em> <strong>Fármacos, dosis y secuencia: verificar con el protocolo institucional.</strong></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Vía aérea</span><strong>Ahora sí, vía aérea definitiva con capnografía.</strong> Lo que se postergó en el minuto uno se hace cuando hay circulación y manos. Ventilación sin hiperventilar, buscando <strong>normoxia y normocapnia</strong>: <em>la hiperoxia sostenida y la hipocapnia no son inocuas</em>, y en el paciente con lesión cerebral la hipocapnia profunda produce isquemia.</span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Coagulación</span><strong>Pasar de la proporción fija a la reposición guiada.</strong> Terminada la fase inicial de proporción 1:1:1, se puede afinar con pruebas viscoelásticas y un protocolo institucional. El paciente que retornó de un paro traumático suele estar <strong>profundamente coagulopático</strong>, y el <strong>fibrinógeno bajo es frecuente</strong> —el plasma fresco congelado aporta poco fibrinógeno—, de modo que el <strong>concentrado de fibrinógeno</strong> puede considerarse como componente adicional. <em>Administrarlo a todo paciente transfundido, en cambio, no ha demostrado reducir la mortalidad a 28 días.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Gases</span><strong>Gases seriados con potasio y calcio iónico, y corregir.</strong> Las dos alteraciones que mataron o casi mataron al paciente durante el paro siguen activas mientras se transfunde: <strong>el potasio sube con cada unidad</strong> y <strong>el calcio baja con cada citrato</strong>. <em>Es el control de laboratorio que más rinde en la hora siguiente.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Calor</span><strong>Normotermia, no enfriamiento.</strong> El paciente de trauma que retorna se mantiene <strong>normotérmico</strong>: la hipotermia aquí no es neuroprotección, es coagulopatía. Mantas, aire caliente, fluidos calentados y box tibio durante todo el traslado. <em>El control de temperatura con fines neurológicos en el paciente de trauma es una decisión de la unidad crítica, no del box, y debe verificarse con el protocolo institucional.</em></span>
+        </button>
+        <button type="button" class="check-item" onclick="toggle(this,'s9')">
+          <span class="checkbox"><svg class="checkmark" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+          <span class="check-label"><span class="check-step">Resumen</span><strong>Un resumen verbalizado antes de mover la camilla.</strong> Mecanismo, hora del paro, hora del retorno, qué se hizo —toracostomías, toracotomía, productos administrados, tranexámico, calcio—, qué está pendiente y qué sangra todavía. <em>Es el único momento en que toda la información está en la misma cabeza</em>, y si no se dice en voz alta se pierde en el camino a pabellón.</span>
+        </button>
+      </div>
+
+      <div class="go-banner">
+        <span class="warning-icon">🩺</span>
+        <span><strong>Y la tensión que hay que nombrar: hipotensión permisiva frente a cerebro lesionado.</strong>
+        En el sangrado no controlado se acepta una presión más baja para no volar los coágulos; en el
+        <strong>traumatismo craneoencefálico grave</strong>, en cambio, la hipotensión es uno de los mecanismos
+        mejor establecidos de lesión secundaria. <strong>Cuando coexisten, el cerebro manda y las metas de presión
+        suben</strong>, lo que obliga a controlar la hemorragia más rápido en lugar de tolerar más hipotensión.
+        <em>Las metas concretas de presión arterial y de presión de perfusión cerebral están en la página de TEC
+        grave y deben verificarse con el protocolo institucional.</em></span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · SUSPENDER -->
+  <div class="section s10" id="s10" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Cuándo suspender · y cómo se hace esa decisión</div>
+        <div class="section-subtitle">No existe una regla validada · lo que hay es un conjunto de cosas que pesan</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner" style="margin-top:0;">
+        <span class="warning-icon">⚖️</span>
+        <span><strong>Hay que ser honesto: no existe una regla de término de la reanimación validada para el paro
+        traumático intrahospitalario</strong>, y esta página no propone ninguna. Lo que sí está formulado es el
+        principio del <strong>ERC 2021</strong>: <em>se considera suspender cuando se han tratado todas las causas
+        reversibles y no hay retorno de circulación, y en particular cuando no hay actividad cardíaca detectable en
+        la ecografía</em>. <strong>Lo que sigue es una lista de lo que pesa, no un algoritmo</strong>, y la decisión
+        es del equipo presente con la autoridad que el servicio defina.</span>
+      </div>
+
+      <div class="subhead">Lo que pesa a favor de suspender</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">▪</span><span><strong>Todas las causas reversibles tratadas y descartadas una por una, en voz alta</strong> —ambos hemitórax descomprimidos, pericardio visto o abierto, hemorragia externa controlada, volumen administrado, potasio y calcio corregidos— sin ningún signo de respuesta.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">▪</span><span><strong>Asistolia ecográfica persistente</strong> (corazón quieto) junto con ausencia de signos de vida. Es el dato pronóstico más pesado de que se dispone a pie de cama, y el que define el <em>no-output state</em> de la sección 01.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">▪</span><span><strong>Trauma cerrado sin signos de vida</strong>, el escenario en que la toracotomía de reanimación tiene rendimiento prácticamente nulo (0,7 % de supervivencia y 0,1 % sin secuela en la síntesis de la EAST, con recomendación en contra).</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">▪</span><span><strong>Tiempo prolongado de pérdida definitiva de gasto cardíaco</strong> —más allá de 10 a 15 minutos— sin ninguna intervención pendiente que pueda cambiar la situación, y sin posibilidad de control quirúrgico de la hemorragia.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">▪</span><span><strong>Capnografía persistentemente muy baja</strong> pese a ventilación y compresiones adecuadas: es un dato coherente, aunque <em>no hay un valor de corte validado en el paro traumático</em> y por sí solo no decide.</span></div>
+      </div>
+
+      <div class="subhead">Lo que obliga a prolongar, aunque todo lo anterior esté presente</div>
+      <div class="plain-list">
+        <div class="plain-item good"><span class="bullet-icon">❄️</span><span><strong>Hipotermia.</strong> Los criterios habituales no aplican; el paciente puede recuperarse tras tiempos de paro muy prolongados y el destino puede ser el recalentamiento extracorpóreo.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">🌊</span><span><strong>Ahogamiento, especialmente en agua fría</strong>, y <strong>sepultamiento por avalancha</strong>: la misma lógica de la hipotermia.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">⚡</span><span><strong>Lesión eléctrica o por rayo</strong>, e <strong>intoxicación con antídoto disponible</strong>: hay un tratamiento específico que puede llegar a tiempo.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">🤰</span><span><strong>Embarazo con feto potencialmente viable</strong>: la histerotomía de reanimación es parte del algoritmo, y además hay un segundo paciente.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">🫀</span><span><strong>Sospecha de que el paro fue médico y el trauma su consecuencia</strong>, sobre todo con ritmo desfibrilable: ahí la reanimación sigue las reglas del paro médico.</span></div>
+        <div class="plain-item good"><span class="bullet-icon">🧊</span><span><strong>Existencia de un programa de reanimación extracorpórea</strong> activable en tiempo real. <em>Criterios, tiempos y vía de activación: verificar con el protocolo institucional</em>; en la mayoría de los servicios no existe, y decirlo es parte de la decisión.</span></div>
+      </div>
+
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🗣️</span><span><strong>Cómo se toma la decisión.</strong> En voz alta, por quien lidera, después de una <strong>revisión estructurada</strong> en la que alguien enumera las causas reversibles y el equipo confirma que cada una se trató. <em>Se pregunta explícitamente si alguien tiene algo más que proponer</em> —es la última oportunidad de que aparezca el dato que faltaba— y después se declara la hora.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📋</span><span><strong>Lo que queda escrito.</strong> Mecanismo, signos de vida al llegar y quién los presenció, hora del paro y hora de la suspensión, causas reversibles tratadas, procedimientos realizados —y <strong>la constancia explícita de que la toracotomía o la toracostomía fueron intervenciones terapéuticas y no lesiones</strong>, para que no se malinterpreten en la autopsia—, y el fundamento de la decisión.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⚖️</span><span><strong>Las obligaciones que no son clínicas.</strong> Certificación de la muerte, procedimiento de <strong>muerte por causa externa</strong>, aviso al Servicio Médico Legal, custodia de evidencia y de muestras, denuncia cuando corresponde, y la conversación con la familia. <em>Son obligaciones normativas y no clínicas: su contenido vigente debe revisarse directamente en la normativa y en el protocolo institucional, no en esta página.</em> Lo mismo vale para la eventual <strong>evaluación de donación de órganos y tejidos</strong>, que tiene su propio circuito y sus propios plazos.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🫂</span><span><strong>Y el equipo.</strong> Un paro traumático —y sobre todo uno con tórax abierto— deja a quienes lo atendieron expuestos a una escena dura y a un <strong>riesgo biológico real</strong>. Revisar el caso en dos minutos, de pie y sin buscar culpables; <strong>chequear cortes de guante y exposiciones y activar la profilaxis posexposición si las hubo</strong>; y dejar dicho a quién recurrir después. <em>Es parte del procedimiento, no un añadido.</em></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 11 · REGISTRO -->
+  <div class="section s11" id="s11" style="animation-delay:0.46s;">
+    <div class="section-header" onclick="toggleSection('s11')">
+      <span class="section-num">11</span>
+      <div>
+        <div class="section-title">Registro para la ficha</div>
+        <div class="section-subtitle">Se copia, se pega y se completa · esta página no guarda nada</div>
+      </div>
+      <span class="section-check-count">Copiar</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner" style="margin-top:0;">
+        <span class="warning-icon">✍️</span>
+        <span><strong>Por qué el registro del paro traumático importa más que el de otros paros.</strong> Porque casi
+        siempre es una <strong>muerte por causa externa</strong> con intervención médico-legal, porque incluye
+        <strong>procedimientos que dejan heridas</strong> que hay que distinguir de las lesiones del trauma, y
+        porque los <strong>signos de vida al llegar y quién los presenció</strong> son el dato que justifica todo
+        lo que se hizo o no se hizo. <em>Lo que no quedó escrito, en este caso, no solo se olvida: se
+        malinterpreta.</em></span>
+      </div>
+
+      <div class="copy-box">
+        <div class="copy-bar">
+          <span>Registro de paro traumático · adulto</span>
+          <button type="button" class="copy-btn" id="copyBtn" onclick="copyRegistro()">Copiar</button>
+        </div>
+        <pre class="copy-pre" id="registroPre">PARO CARDIORRESPIRATORIO TRAUMÁTICO · SERVICIO DE URGENCIA
+
+Nombre / identificación: _______________________________  Edad: ____
+Hora de llegada al servicio: __:__ h    Procedencia: SAMU / particular / otro: ______
+
+MECANISMO
+[ ] Penetrante torácico   [ ] Penetrante extratorácico   [ ] Cerrado / contuso
+[ ] No hemorrágico: asfixia / ahogamiento / TEC aislado / hipotermia / eléctrico / otro
+Descripción: ___________________________________________________________
+Hora estimada de la lesión: __:__ h
+
+SIGNOS DE VIDA
+Al llegar al servicio:        [ ] sí   [ ] no
+Presenciados antes (por quién y a qué hora): ___________________________
+Cuáles: pupilas / esfuerzo respiratorio / movimiento / actividad eléctrica organizada /
+        movimiento cardíaco en ecografía / presión medible
+Ritmo inicial en el monitor: ___________________________________________
+Ecografía: pericardio ______________  movimiento cardíaco: sí / no / no se hizo
+
+TIEMPOS (hora del reloj, no duraciones)
+Pérdida del pulso (presenciada / estimada)          __:__ h
+Inicio de la reanimación en el servicio             __:__ h
+Hemitórax derecho descomprimido                     __:__ h
+Hemitórax izquierdo descomprimido                   __:__ h
+Primer hemocomponente administrado                  __:__ h
+Protocolo de transfusión masiva activado            __:__ h
+Ácido tranexámico                                   __:__ h
+Toracotomía de reanimación (si se realizó)          __:__ h
+Retorno de circulación espontánea                   __:__ h
+Salida a pabellón / angiografía / traslado          __:__ h
+Suspensión de la reanimación                        __:__ h
+
+CAUSAS REVERSIBLES (HOTT) — tratada / descartada / no evaluada
+Hipovolemia  ____________  Fuente identificada: ________________________
+Oxigenación  ____________  Vía aérea: básica / supraglótica / tubo, hora __:__
+Tensión      ____________  Técnica: digital / aguja · lado(s): ___________
+Taponamiento ____________  Conducta: ____________________________________
+Metabólico:  K+ ______ mmol/L   Ca iónico ______ mmol/L   Tratamiento: ______
+
+PROCEDIMIENTOS REALIZADOS
+[ ] Toracostomía digital derecha   [ ] izquierda   [ ] Tubo pleural: ____________
+[ ] Toracotomía de reanimación — abordaje: ______________________________
+    Hallazgos: _________________________________________________________
+    Maniobras: pericardiotomía / masaje interno / clampeo aórtico / reparación
+[ ] Torniquete(s): _______________   [ ] Cinturón pélvico   [ ] Férulas
+[ ] Oclusión aórtica endovascular — zona: ____  hora de inflado: __:__ h
+NOTA: los procedimientos anteriores son INTERVENCIONES TERAPÉUTICAS realizadas
+durante la reanimación y no corresponden a lesiones del mecanismo traumático.
+
+PRODUCTOS Y FÁRMACOS
+Glóbulos rojos ____ U   Plasma ____ U   Plaquetas ____ U   Crioprecipitado ____
+Cristaloide ____ mL   Ácido tranexámico: dosis ______   Calcio: ______
+Adrenalina: sí / no — dosis total ______  Fundamento si se usó: _____________
+Otros: _________________________________________________________________
+
+EQUIPO
+Líder: _______________________  Vía aérea: _______________________
+Tórax: _______________________  Accesos / transfusión: ___________________
+Ecografía: ___________________  Registro de tiempos: ____________________
+Cirujano presente: ___________  Hora de llegada: __:__ h
+
+DESENLACE
+[ ] Retorno de circulación · destino: pabellón / UPC / angiografía / traslado
+[ ] Fallecido en el servicio — hora de la muerte: __:__ h
+Fundamento de la suspensión: ___________________________________________
+Revisión estructurada realizada con el equipo: sí / no
+Familia informada por: _______________________  Hora: __:__ h
+
+OBLIGACIONES ADMINISTRATIVAS (verificar normativa vigente y protocolo local)
+[ ] Certificación   [ ] Muerte por causa externa   [ ] Aviso a Servicio Médico Legal
+[ ] Custodia de evidencia y muestras   [ ] Denuncia   [ ] Evaluación de donación
+[ ] Exposiciones del personal revisadas y profilaxis posexposición si corresponde
+
+Médico responsable: ______________________________  Firma: ______________</pre>
+        <div class="copy-hint">Plantilla orientativa: <strong>no reemplaza el formulario ni la ficha del
+        servicio</strong>, y los campos administrativos y médico-legales deben ajustarse a la normativa vigente y al
+        protocolo institucional. El cronómetro, el orientador y el checklist de esta página <strong>no guardan
+        ningún dato</strong>: se reinician al cerrar o recargar.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 12 · ERRORES -->
+  <div class="section s12" id="s12" style="animation-delay:0.50s;">
+    <div class="section-header" onclick="toggleSection('s12')">
+      <span class="section-num">12</span>
+      <div>
+        <div class="section-title">Los errores que se repiten</div>
+        <div class="section-subtitle">Ninguno es raro · todos se cometen con buena intención</div>
+      </div>
+      <span class="section-check-count">Revisión</span>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Correr el algoritmo médico completo</strong> en un paciente exanguinado: ciclos, adrenalina cada tres a cinco minutos, ritmo, y nadie descomprimiendo el tórax ni comprimiendo la hemorragia.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No preguntar por los signos de vida</strong> al equipo que lo trae. Es el dato que más cambia la conducta y <em>nadie lo ofrece si no se pregunta</em>.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Hacer las cuatro tareas en serie</strong>, una persona a la vez, porque nadie las repartió por nombre.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Descomprimir solo «el lado sospechoso»</strong>, o dar por descomprimido un hemitórax porque se puso una aguja.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Abrir el tórax izquierdo y olvidar el derecho.</strong> La toracotomía izquierda no descomprime el hemitórax derecho.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Puncionar el pericardio</strong> en un taponamiento traumático, gastando los minutos de la toracotomía.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Esperar la ecografía, la radiografía o la tomografía</strong> para hacer algo que se decide por mecanismo y se trata con las manos.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Transfundir sin contestar dónde está el agujero</strong>, y sin que nadie haya pedido el pabellón.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Llenar de cristaloide</strong> al que necesita sangre, y enfriarlo en el proceso.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Olvidar el potasio y el calcio.</strong> Son las dos causas reversibles que se tratan con una ampolla, y las únicas que no requieren manos ni bisturí.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Celebrar el retorno de circulación</strong> y dejar al paciente en el box, o mandarlo a la tomografía con una hemorragia no controlada.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Suspender sin revisión estructurada</strong>, o al contrario: <strong>prolongar indefinidamente</strong> un trauma cerrado sin signos de vida con asistolia ecográfica, sin decirlo y sin decidirlo.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Aplicar los criterios de suspensión al hipotérmico, al ahogado o al electrocutado</strong>, que son justamente las excepciones.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No registrar que la toracotomía fue una intervención terapéutica.</strong> Es una omisión que se paga después, en la autopsia y en el expediente.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROGRESO -->
+  <div class="progress-bottom">
+    <span class="progress-label">Avance del checklist</span>
+    <div class="progress-bar-track"><div class="progress-bar-fill" id="progressBar"></div></div>
+    <span class="progress-label"><span id="progress-pct">0%</span></span>
+    <button type="button" class="reset-btn" onclick="resetAll()">Reiniciar</button>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni la normativa legal
+    aplicable. El contenido es <strong>solo para adultos</strong>: el paro traumático del niño tiene su propia
+    sección en la página de reanimación pediátrica. Todas las <strong>dosis, proporciones de transfusión,
+    esquemas y volúmenes son orientativos y deben confirmarse</strong> con el protocolo institucional, el banco de
+    sangre, el arsenal disponible y la ficha vigente de cada producto antes de administrar, ajustados a peso, edad,
+    función renal y hepática, comorbilidad y situación hemodinámica. Las <strong>metas de tiempo del cronómetro son
+    propuestas de esta página y no un estándar validado</strong>; las únicas referencias temporales tomadas de la
+    literatura son las ventanas de la toracotomía de reanimación (menos de 10 minutos de reanimación en el trauma
+    penetrante; contraindicación tras 10 a 15 minutos de pérdida definitiva de gasto cardíaco). El
+    <strong>orientador de decisión no es una regla validada</strong>: reordena recomendaciones de guía y no
+    incorpora edad, comorbilidad, lesiones asociadas ni recursos disponibles. La <strong>toracotomía de
+    reanimación, la toracostomía y la oclusión aórtica endovascular son procedimientos de altísimo riesgo</strong>
+    que requieren entrenamiento, instrumental y un destino quirúrgico: su indicación, su plazo y quién los realiza
+    se rigen por el protocolo institucional. Los datos de rendimiento citados <strong>provienen de síntesis sin
+    grupo de comparación y de estudios observacionales</strong>, y describen poblaciones de sistemas de trauma que
+    pueden no parecerse al servicio donde se lee esta página. Las <strong>obligaciones normativas y no
+    clínicas</strong> —certificación, muerte por causa externa, aviso al Servicio Médico Legal, custodia de
+    evidencia, denuncia, donación de órganos y profilaxis posexposición del personal— se rigen por la normativa
+    vigente y <strong>deben verificarse</strong> directamente en ella y en el protocolo institucional. El
+    cronómetro, el orientador y el checklist <strong>no guardan ningún dato</strong>: el registro del episodio se
+    hace en la ficha clínica.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Referencias</div>
+    <div class="references-list">
+      <div class="ref-item">Lott C, Truhlář A, Alfonzo A, et al. <em>European Resuscitation Council Guidelines 2021: Cardiac arrest in special circumstances.</em> Resuscitation. 2021;161:152–219. <a href="https://doi.org/10.1016/j.resuscitation.2021.02.011" target="_blank" rel="noopener">DOI: 10.1016/j.resuscitation.2021.02.011</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/33773826/" target="_blank" rel="noopener">PMID 33773826</a> — Algoritmo del paro traumático: tratamiento simultáneo de las causas reversibles con prioridad sobre las compresiones, descompresión torácica bilateral sistemática, lugar secundario de la adrenalina, criterios de consideración de suspensión y conducta en hipotermia, ahogamiento y lesión eléctrica.</div>
+      <div class="ref-item">Carenzo L, Calgaro G, Rehn M, Perkins Z, Qasim ZA, Gamberini L, Ter Avest E. <em>Contemporary management of traumatic cardiac arrest and peri-arrest states: a narrative review.</em> J Anesth Analg Crit Care. 2024;4(1):66. <a href="https://doi.org/10.1186/s44158-024-00197-9" target="_blank" rel="noopener">DOI: 10.1186/s44158-024-00197-9</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/39327636/" target="_blank" rel="noopener">PMID 39327636</a> — Fuente principal de esta página: epidemiología (4 % de los paros extrahospitalarios, mortalidad 92,3–100 %, supervivencia a 30 días de 10,6 % en la serie sueca, 45,8 % de los sobrevivientes con recuperación neurológica buena o moderada, mediana de 38 años y 60,5 % previamente sanos), estados LOST y NOST con supervivencia de 8,4 % y 0 %, frecuencia de las causas (hipovolemia 48 %, hipoxia 13 %, neumotórax 13 %, taponamiento 10 %), supervivencia por mecanismo (penetrante 10,6 % frente a cerrado 2,3 %), rendimiento de las compresiones externas (25–30 % del gasto basal, ~10 % de la perfusión coronaria y cerebral, umbral de presión de perfusión coronaria de 15 mmHg), accesos vasculares y flujos, transfusión equilibrada 1:1:1, toracostomía digital frente a aguja, ventanas e indicaciones de la toracotomía de reanimación con la serie estadounidense (supervivencia global 19,9 %: 26,0 % penetrante y 7,6 % cerrado), desfibrilación interna a 10 J, zonas y límites del REBOA, esquemas de hiperkalemia e hipocalcemia, y cuidados posretorno de circulación.</div>
+      <div class="ref-item">Seamon MJ, Haut ER, Van Arendonk K, et al. <em>An evidence-based approach to patient selection for emergency department thoracotomy: a practice management guideline from the Eastern Association for the Surgery of Trauma.</em> J Trauma Acute Care Surg. 2015;79(1):159–173. <a href="https://doi.org/10.1097/TA.0000000000000648" target="_blank" rel="noopener">DOI: 10.1097/TA.0000000000000648</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/26091330/" target="_blank" rel="noopener">PMID 26091330</a> — Origen de la tabla de rendimiento por mecanismo y signos de vida: 72 estudios y 10 238 toracotomías de urgencia, sin grupo de comparación disponible (nivel III). Recomendación fuerte a favor en el penetrante torácico con signos de vida (supervivencia 21,3 %), condicional a favor en el penetrante sin signos de vida y en el extratorácico, condicional a favor en el cerrado con signos de vida (4,6 %) y condicional en contra en el cerrado sin signos de vida (0,7 %).</div>
+      <div class="ref-item">Millin MG, Galvagno SM, Khandker SR, Malki A, Bulger EM. <em>Withholding and termination of resuscitation of adult cardiopulmonary arrest secondary to trauma: resource document to the joint NAEMSP-ACSCOT position statements.</em> J Trauma Acute Care Surg. 2013;75(3):459–467. <a href="https://doi.org/10.1097/TA.0b013e31829cfaea" target="_blank" rel="noopener">DOI: 10.1097/TA.0b013e31829cfaea</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/24089117/" target="_blank" rel="noopener">PMID 24089117</a> — Criterios de no inicio (ausencia de signos de vida, lesiones evidentemente incompatibles con la vida, evidencia de paro prolongado y ausencia de actividad eléctrica organizada) y de término de la reanimación. <strong>Documento escrito para el ámbito prehospitalario</strong>; los autores señalan además que falta investigación sobre la duración apropiada de la reanimación antes de suspender.</div>
+      <div class="ref-item">CRASH-2 trial collaborators (Shakur H, Roberts I, Bautista R, et al.). <em>Effects of tranexamic acid on death, vascular occlusive events, and blood transfusion in trauma patients with significant haemorrhage (CRASH-2): a randomised, placebo-controlled trial.</em> Lancet. 2010;376(9734):23–32. <a href="https://doi.org/10.1016/S0140-6736(10)60835-5" target="_blank" rel="noopener">DOI: 10.1016/S0140-6736(10)60835-5</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/20554319/" target="_blank" rel="noopener">PMID 20554319</a> — 20 211 pacientes aleatorizados dentro de 8 horas de la lesión: mortalidad global 14,5 % frente a 16,0 % (RR 0,91 [IC 95 % 0,85–0,97]; p = 0,0035) y muerte por sangrado 4,9 % frente a 5,7 % (RR 0,85 [0,76–0,96]; p = 0,0077). Esquema del ensayo: 1 g en 10 minutos y 1 g en 8 horas.</div>
+      <div class="ref-item">Jansen JO, Hudson J, Cochran C, et al. <em>Emergency department resuscitative endovascular balloon occlusion of the aorta in trauma patients with exsanguinating hemorrhage: the UK-REBOA randomized clinical trial.</em> JAMA. 2023;330(19):1862–1871. <a href="https://doi.org/10.1001/jama.2023.20850" target="_blank" rel="noopener">DOI: 10.1001/jama.2023.20850</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/37824132/" target="_blank" rel="noopener">PMID 37824132</a> — 90 pacientes en 16 centros de trauma del Reino Unido: mortalidad a 90 días 54 % (25/46) con REBOA frente a 42 % (18/43) con tratamiento estándar (OR 1,58 [intervalo de credibilidad 95 % 0,72–3,52]; probabilidad posterior de OR &gt; 1 del 86,9 %), con más muertes por sangrado en el grupo REBOA. La estrategia no reduce y podría aumentar la mortalidad.</div>
+      <div class="ref-item">Witt CE, Shatz DV, Robinson BRH, et al. <em>Epinephrine in prehospital traumatic cardiac arrest—life saving or false hope?</em> Prehosp Emerg Care. 2026;30(1):153–161. <a href="https://doi.org/10.1080/10903127.2025.2461283" target="_blank" rel="noopener">DOI: 10.1080/10903127.2025.2461283</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/39889233/" target="_blank" rel="noopener">PMID 39889233</a> — Cohorte retrospectiva multicéntrica de 1631 pacientes con paro traumático prehospitalario en siete centros de trauma: supervivencia al alta 5 % con adrenalina frente a 16 % sin ella; riesgo relativo ajustado 0,33 (IC 95 % 0,23–0,46) global y 0,20 (0,11–0,37) en trauma cerrado, sin diferencia significativa en el penetrante (0,62 [0,30–1,28]). <strong>Estudio retrospectivo con confusión por indicación</strong>: sostiene la jerarquía de intervenciones, no una prohibición del fármaco.</div>
+      <div class="ref-item">Referencias localizadas mediante PubMed. Los aspectos <strong>técnicos</strong> de la toracostomía, de la toracotomía de reanimación y de la oclusión aórtica endovascular no se describen en esta página y están en las páginas correspondientes; corresponden a descripciones convencionales de textos y cursos de manejo quirúrgico del trauma —entre ellos el <em>Advanced Trauma Life Support</em> del American College of Surgeons— y <strong>no están respaldados individualmente por estudios de desenlace</strong>. Las metas de tiempo del cronómetro, los esquemas de transfusión, las dosis de ácido tranexámico, calcio, insulina y glucosa, los criterios locales de no inicio y de suspensión, la disponibilidad de reanimación extracorpórea y las obligaciones médico-legales deben contrastarse con el <strong>protocolo institucional vigente</strong>, con el banco de sangre, con los equipos de cirugía y anestesia de referencia y con la <strong>normativa chilena aplicable</strong>, cuyo texto actualizado debe revisarse directamente.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+<script>
+  // ── Tema claro / oscuro ───────────────────────────────────────────
+  (function() {
+    var root = document.documentElement, KEY = 'oc-theme';
+    try { var t = localStorage.getItem(KEY); if (t) root.setAttribute('data-theme', t); } catch (e) {}
+    var btn = document.getElementById('themeBtn');
+    if (btn) btn.addEventListener('click', function() {
+      var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem(KEY, next); } catch (e) {}
+    });
+  })();
+
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Checklist con progreso ────────────────────────────────────────
+  const SECTIONS = ['s1', 's4', 's5', 's9'];
+  const totals = {};
+  SECTIONS.forEach(s => {
+    const list = document.getElementById('list-' + s);
+    totals[s] = list ? list.querySelectorAll('.check-item').length : 0;
+  });
+  const TOTAL_CHECKS = SECTIONS.reduce((acc, s) => acc + totals[s], 0);
+
+  function countChecked(section) {
+    return document.querySelectorAll('#list-' + section + ' .check-item.checked').length;
+  }
+
+  function toggle(el, section) {
+    el.classList.toggle('checked');
+    updateCount(section);
+    updateProgress();
+  }
+
+  function updateCount(section) {
+    const el = document.getElementById('count-' + section);
+    if (!el) return;
+    const n = countChecked(section);
+    const t = totals[section];
+    el.textContent = n + '/' + t;
+    if (t > 0 && n === t) {
+      el.style.background = 'rgba(16,185,129,0.15)';
+      el.style.borderColor = 'rgba(16,185,129,0.3)';
+      el.style.color = '#6ee7b7';
+    } else {
+      el.style.background = '';
+      el.style.borderColor = '';
+      el.style.color = '';
+    }
+  }
+
+  function updateProgress() {
+    const done = SECTIONS.reduce((acc, s) => acc + countChecked(s), 0);
+    const pct = TOTAL_CHECKS ? Math.round((done / TOTAL_CHECKS) * 100) : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+  }
+
+  function resetAll() {
+    document.querySelectorAll('.check-item.checked').forEach(el => el.classList.remove('checked'));
+    SECTIONS.forEach(updateCount);
+    updateProgress();
+  }
+
+  SECTIONS.forEach(updateCount);
+  updateProgress();
+
+  // ── Cronómetro (sin persistencia) ─────────────────────────────────
+  let swStart = null;
+  let swAccum = 0;
+  let swTick = null;
+
+  function swElapsed() {
+    return swAccum + (swStart !== null ? Date.now() - swStart : 0);
+  }
+
+  function fmt(ms) {
+    const total = Math.floor(ms / 1000);
+    const m = String(Math.floor(total / 60)).padStart(2, '0');
+    const s = String(total % 60).padStart(2, '0');
+    return m + ':' + s;
+  }
+
+  function swRender() {
+    const ms = swElapsed();
+    const disp = document.getElementById('swDisplay');
+    disp.textContent = fmt(ms);
+    // El aviso entra a los 10 minutos —cuando corresponde la revisión
+    // estructurada de seguir o suspender— y la alerta a los 15, el límite
+    // superior de la ventana de la toracotomía de reanimación.
+    disp.classList.toggle('warn', ms >= 600000 && ms < 900000);
+    disp.classList.toggle('late', ms >= 900000);
+  }
+
+  function swToggle() {
+    const btn = document.getElementById('swToggle');
+    const cap = document.getElementById('swCaption');
+    if (swStart === null) {
+      swStart = Date.now();
+      swTick = setInterval(swRender, 200);
+      btn.textContent = '⏸ Detener';
+      cap.textContent = 'Corriendo desde la pérdida del pulso';
+    } else {
+      swAccum += Date.now() - swStart;
+      swStart = null;
+      clearInterval(swTick);
+      swTick = null;
+      btn.textContent = '▶ Continuar';
+      cap.textContent = 'En pausa';
+      swRender();
+    }
+  }
+
+  function msLabel(el) {
+    const goal = parseInt(el.dataset.goal, 10);
+    return el.dataset.prefix + (goal >= 120 ? (goal / 60) + ' min' : goal + ' s');
+  }
+
+  function swReset() {
+    if (swTick) clearInterval(swTick);
+    swTick = null;
+    swStart = null;
+    swAccum = 0;
+    document.getElementById('swToggle').textContent = '▶ Iniciar';
+    document.getElementById('swCaption').textContent = 'Detenido · parte el reloj en el momento en que se pierde el pulso';
+    document.querySelectorAll('.ms').forEach(ms => {
+      ms.classList.remove('done', 'over');
+      ms.querySelector('.ms-goal').textContent = msLabel(ms);
+    });
+    swRender();
+  }
+
+  function markMs(el) {
+    if (el.classList.contains('done')) {
+      el.classList.remove('done', 'over');
+      el.querySelector('.ms-goal').textContent = msLabel(el);
+      return;
+    }
+    if (swStart === null && swAccum === 0) swToggle();
+    const secs = Math.round(swElapsed() / 1000);
+    const goal = parseInt(el.dataset.goal, 10);
+    el.classList.add('done');
+    el.classList.toggle('over', secs > goal);
+    const shown = secs >= 120 ? Math.floor(secs / 60) + ' min ' + (secs % 60) + ' s' : secs + ' s';
+    const goalShown = goal >= 120 ? (goal / 60) + ' min' : goal + ' s';
+    el.querySelector('.ms-goal').textContent = shown + ' · meta ' + goalShown;
+  }
+
+  // Las metas se muestran con la misma regla con que se escribieron en el HTML.
+  document.querySelectorAll('.ms').forEach(ms => {
+    ms.querySelector('.ms-goal').textContent = msLabel(ms);
+  });
+  swRender();
+
+  // ── Orientador de decisión ────────────────────────────────────────
+  const MSG_HOTT =
+    '<div style="margin-top:8px;"><strong>Y en paralelo, siempre, las cuatro de HOTT repartidas por nombre:</strong> ' +
+    '<strong>hipovolemia</strong> (presión directa, empaquetado, torniquete, cinturón pélvico, férulas y ' +
+    '<em>sangre</em> en proporción equilibrada), <strong>oxigenación</strong> (vía aérea abierta y bolsa con ' +
+    'oxígeno, sin gastar el primer minuto en intubar), <strong>tensión</strong> (descomprimir <em>los dos</em> ' +
+    'hemitórax sin imagen previa) y <strong>taponamiento</strong> (ecografía en la pausa). Más accesos grandes ' +
+    'y supradiafragmáticos, transfusión masiva activada, ácido tranexámico, potasio y calcio, calentarlo, y ' +
+    '<strong>pabellón o angiografía pedidos ya</strong>.</div>';
+
+  const MSG_SV_ND =
+    '<div style="margin-top:8px;"><strong>Los signos de vida no están definidos, y son la variable que más pesa.</strong> ' +
+    'Pregúntale explícitamente al equipo que lo trae —<em>«¿se movía, respiraba, tenía pupilas reactivas, tenía ' +
+    'ritmo?»</em>—, porque nadie lo ofrece de oficio, y mira el monitor y la ecografía. <strong>Mientras no se ' +
+    'sepa, conviene actuar como si los hubiera</strong> y revisar la conducta en cuanto haya el dato.</div>';
+
+  const MSG_QUIETO =
+    '<div style="margin-top:8px;"><strong>Corazón quieto en la ecografía:</strong> es el dato pronóstico más pesado ' +
+    'que se obtiene a pie de cama —el <em>no-output state</em>, con 0 % de supervivencia en la serie que acuñó el ' +
+    'término— y alimenta la conversación de suspender (sección 10). <em>No es un criterio automático</em>: la ' +
+    'ventana tiene que estar bien hecha, no interrumpir las compresiones más que la pausa, y si hay taponamiento ' +
+    'la conducta sigue siendo abrir el tórax.</div>';
+
+  const MSG_MOVIMIENTO =
+    '<div style="margin-top:8px;"><strong>Corazón con movimiento:</strong> es un <em>low-output state</em>, no un ' +
+    'corazón detenido —supervivencia de 8,4 % en esa misma serie—. <strong>Hay una bomba a la que se le puede ' +
+    'devolver volumen:</strong> sangre y descompresión, no ciclos de adrenalina.</div>';
+
+  function textoTiempo(t) {
+    if (t === 'corto') {
+      return '<div style="margin-top:8px;"><strong>Tiempo:</strong> menos de 10 minutos, <em>dentro</em> de la ' +
+        'ventana descrita para la toracotomía de reanimación en el trauma penetrante.</div>';
+    }
+    if (t === 'medio') {
+      return '<div style="margin-top:8px;"><strong>Tiempo: 10 a 15 minutos, en el límite.</strong> Es el borde ' +
+        'de lo que la literatura describe como tolerable; si se decide abrir, se decide <em>ahora</em> y no ' +
+        'después de otra ronda de intentos.</div>';
+    }
+    if (t === 'largo') {
+      return '<div style="margin-top:8px;"><strong>Tiempo: más de 15 minutos de pérdida definitiva de gasto ' +
+        'cardíaco.</strong> En ese escenario la toracotomía de reanimación se considera <strong>contraindicada</strong>, ' +
+        'y corresponde la revisión estructurada de seguir o suspender (sección 10) —con las excepciones de ' +
+        'hipotermia, ahogamiento, lesión eléctrica, intoxicación y embarazo—.</div>';
+    }
+    return '<div style="margin-top:8px;"><strong>Tiempo desconocido:</strong> pregúntalo —hora de la lesión, hora ' +
+      'de la pérdida del pulso, si hubo reanimación continua— porque la ventana de la toracotomía se mide desde ' +
+      'ahí y es corta.</div>';
+  }
+
+  function calcOr() {
+    const out = document.getElementById('orOut');
+    const mec = document.getElementById('orMec').value;
+    const sv = document.getElementById('orSv').value;
+    const t = document.getElementById('orTiempo').value;
+    const eco = document.getElementById('orEco').value;
+
+    if (!mec || !sv) {
+      out.innerHTML = 'Elige el mecanismo y los signos de vida. El orientador devuelve el <strong>siguiente paso</strong> y el rendimiento esperable, no un diagnóstico ni una autorización.';
+      return;
+    }
+
+    let clase = 'risk-mid', titulo = '', texto = '';
+
+    // Causa no hemorrágica: el péndulo vuelve al algoritmo médico.
+    if (mec === 'noHemo') {
+      clase = 'risk-mid';
+      titulo = 'Causa hipóxica o neurológica · acá el algoritmo médico sí aplica';
+      texto = '<strong>Compresiones de calidad y vía aérea precoz recuperan la prioridad</strong>, y la ' +
+        '<strong>adrenalina en dosis habituales tiene lugar</strong>: el problema es la falta de oxígeno o la ' +
+        'lesión del sistema nervioso central, no un corazón vacío. Ventilar es el tratamiento.' +
+        '<div style="margin-top:8px;"><strong>Sin abandonar el tamizaje mecánico:</strong> si hubo trauma, la ' +
+        'descompresión torácica bilateral sigue siendo razonable y el pericardio se mira igual —las causas ' +
+        'pueden coexistir—.</div>' +
+        '<div style="margin-top:8px;"><strong>Y las reglas de suspensión cambian:</strong> en hipotermia, ' +
+        'ahogamiento en agua fría, sepultamiento y lesión eléctrica se reanima largo, y el destino puede ser un ' +
+        'centro con recalentamiento extracorpóreo. <em>«Nadie está muerto hasta que esté caliente y muerto.»</em> ' +
+        'En la lesión eléctrica y en el <em>commotio cordis</em>, desfibrilar temprano es la prioridad.</div>';
+      if (eco === 'movimiento') texto += MSG_MOVIMIENTO;
+      if (eco === 'quieto') texto += '<div style="margin-top:8px;"><strong>Corazón quieto en la ecografía:</strong> ' +
+        'en este grupo <em>no</em> se usa como criterio para suspender sin antes corregir la hipoxia y la ' +
+        'temperatura, que son justamente las causas reversibles de esta rama.</div>';
+      out.innerHTML = '<div class="big ' + clase + '">' + titulo + '</div>' + texto;
+      return;
+    }
+
+    // Taponamiento visto en la ecografía: manda sobre todo lo demás.
+    if (eco === 'derrame') {
+      clase = 'risk-high';
+      titulo = 'Taponamiento · la toracotomía va primero, antes que todo lo demás';
+      texto = 'Nada sirve mientras el pericardio esté lleno: <strong>no la vía aérea, no las compresiones, no el ' +
+        'acceso venoso</strong>. Es la única situación en que una de las cuatro tareas desplaza a las otras. ' +
+        '<strong>Y nunca pericardiocentesis en el taponamiento traumático</strong>: la sangre está coagulada, la ' +
+        'lesión sigue sangrando y el tiempo gastado es el de la toracotomía.' +
+        '<div style="margin-top:8px;"><strong>Lo mínimo:</strong> abordaje clamshell, apertura del pericardio y ' +
+        'liberación del corazón, compresión de la aorta y masaje cardíaco interno. Lo realiza sin demora ' +
+        'cualquier miembro entrenado del equipo, <em>según el protocolo institucional</em>, y es un <strong>puente ' +
+        'al pabellón</strong>: si no hay cirugía disponible en minutos, el rendimiento esperado cae mucho.</div>' +
+        (mec === 'penTx'
+          ? '<div style="margin-top:8px;"><strong>Mecanismo penetrante torácico:</strong> es el escenario con mejor ' +
+            'rendimiento de toda la página —21,3 % de supervivencia al alta con signos de vida en la síntesis de la ' +
+            'EAST—. <em>En la herida penetrante central con alta sospecha no se espera la ecografía.</em></div>'
+          : '') +
+        textoTiempo(t) + MSG_HOTT;
+      if (sv === 'nd') texto += MSG_SV_ND;
+      out.innerHTML = '<div class="big ' + clase + '">' + titulo + '</div>' + texto;
+      return;
+    }
+
+    // Resto: hemorrágico u obstructivo, sin taponamiento visto.
+    const svEfectivo = (sv === 'nd') ? 'si' : sv;
+
+    if (mec === 'penTx') {
+      if (svEfectivo === 'si') {
+        clase = 'risk-high';
+        titulo = 'Penetrante torácico con signos de vida · el escenario de mejor rendimiento';
+        texto = '<strong>Toracotomía de reanimación: recomendación fuerte a favor</strong> (EAST 2015), con ' +
+          '<strong>21,3 % de supervivencia al alta</strong> y 11,7 % sin secuela neurológica en esa síntesis. ' +
+          '<em>La decisión es del minuto, no del décimo:</em> anunciarla en voz alta, pedir la caja y activar ' +
+          'pabellón y transfusión masiva en la misma frase.';
+      } else {
+        clase = 'risk-mid';
+        titulo = 'Penetrante torácico sin signos de vida · condicional a favor';
+        texto = '<strong>Toracotomía de reanimación: recomendación condicional a favor</strong> (EAST 2015), con ' +
+          '<strong>8,3 % de supervivencia al alta</strong> y 3,9 % sin secuela. <em>Sigue siendo mejor que ' +
+          'cualquier otro escenario sin signos de vida</em>, y la decisión depende del tiempo, de la ecografía y ' +
+          'de que exista destino quirúrgico.';
+      }
+    } else if (mec === 'penEx') {
+      if (svEfectivo === 'si') {
+        clase = 'risk-mid';
+        titulo = 'Penetrante extratorácico con signos de vida · condicional a favor';
+        texto = '<strong>Toracotomía de reanimación: recomendación condicional a favor</strong> (EAST 2015), con ' +
+          '<strong>15,6 % de supervivencia al alta</strong>. Acá el objetivo de abrir el tórax <em>no</em> es ' +
+          'reparar una herida cardíaca sino <strong>clampear la aorta y hacer masaje interno</strong> mientras se ' +
+          'controla una hemorragia que está en otra parte. <em>Y por eso la pregunta decisiva es si esa ' +
+          'hemorragia tiene control quirúrgico disponible ahora.</em>';
+      } else {
+        clase = 'risk-mid';
+        titulo = 'Penetrante extratorácico sin signos de vida · condicional a favor, con rendimiento bajo';
+        texto = '<strong>Recomendación condicional a favor</strong> (EAST 2015), con <strong>2,9 % de ' +
+          'supervivencia al alta</strong>. <em>Es el límite de lo defendible</em>, y pesa mucho el tiempo, la ' +
+          'ecografía y el destino quirúrgico.';
+      }
+    } else { // cerrado
+      if (svEfectivo === 'si') {
+        clase = 'risk-mid';
+        titulo = 'Trauma cerrado con signos de vida · condicional a favor, rendimiento bajo';
+        texto = '<strong>Toracotomía de reanimación: recomendación condicional a favor</strong> (EAST 2015), con ' +
+          '<strong>4,6 % de supervivencia al alta</strong> y 2,4 % sin secuela. El trauma cerrado grave suele ' +
+          'tener lesiones en varias regiones a la vez, y eso —no el tórax— es lo que limita el resultado. ' +
+          '<em>Lo que más rinde acá no es el bisturí: es la descompresión bilateral, la sangre y el pabellón.</em>';
+      } else {
+        clase = 'risk-high';
+        titulo = 'Trauma cerrado sin signos de vida · recomendación en contra de la toracotomía';
+        texto = '<strong>Es el único escenario en que la guía EAST 2015 recomienda —condicionalmente— <em>no</em> ' +
+          'realizar la toracotomía de reanimación:</strong> <strong>0,7 % de supervivencia al alta y 0,1 % sin ' +
+          'secuela neurológica</strong> en 995 y 825 pacientes respectivamente. <em>Eso no significa no reanimar:</em> ' +
+          'significa que lo que puede cambiar algo son las cuatro tareas de HOTT y la sangre, y que si no responden, ' +
+          'este es el escenario donde corresponde la revisión estructurada de seguir o suspender (sección 10).';
+      }
+    }
+
+    texto += textoTiempo(t);
+    if (eco === 'quieto') texto += MSG_QUIETO;
+    if (eco === 'movimiento') texto += MSG_MOVIMIENTO;
+    if (eco === 'nohecha') texto += '<div style="margin-top:8px;"><strong>La ecografía todavía no se hizo:</strong> ' +
+      'una ventana corta en la pausa de compresiones —pericardio y movimiento cardíaco— es el examen que más ' +
+      'cambia la conducta acá. <em>Pero no puede retrasar la decisión</em>: en la herida penetrante central con ' +
+      'alta sospecha, se abre.</div>';
+    texto += MSG_HOTT;
+    if (sv === 'nd') texto += MSG_SV_ND;
+
+    out.innerHTML = '<div class="big ' + clase + '">' + titulo + '</div>' + texto;
+  }
+
+  function resetOr() {
+    document.getElementById('orMec').value = '';
+    document.getElementById('orSv').value = '';
+    document.getElementById('orTiempo').value = 'nd';
+    document.getElementById('orEco').value = 'nohecha';
+    calcOr();
+  }
+
+  // ── Copiar el registro ────────────────────────────────────────────
+  function copyRegistro() {
+    const txt = document.getElementById('registroPre').textContent;
+    const btn = document.getElementById('copyBtn');
+    const ok = () => {
+      btn.textContent = '✓ Copiado';
+      btn.classList.add('done');
+      setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('done'); }, 2200);
+    };
+    const fallback = () => {
+      const ta = document.createElement('textarea');
+      ta.value = txt;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); ok(); } catch (e) { btn.textContent = 'Copia manual'; }
+      document.body.removeChild(ta);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(ok).catch(fallback);
+    } else {
+      fallback();
+    }
+  }
+</script>
+</body>
+</html>
