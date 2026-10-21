@@ -1143,7 +1143,58 @@ en su sección temática, porque el agente recorre el archivo en orden.
       **normativas y no clínicas** —certificación, muerte por causa externa, aviso al Servicio Médico Legal,
       custodia de evidencia, denuncia, donación de órganos y profilaxis posexposición del personal—, que se
       verifican con la normativa vigente. El contenido es **solo para adultos**.
-- [ ] Pancreatitis - Desde el leve al grave con necesidad de UCI. Biliar, Hipercalcemia, por alcohol y trigliceridos. Integrado con calculadora APACHE 
+- [x] Pancreatitis - Desde el leve al grave con necesidad de UCI. Biliar, Hipercalcemia, por alcohol y trigliceridos. Integrado con calculadora APACHE —
+      `algoritmo-pancreatitis-aguda.html`. Se implementó como **algoritmo de decisión** y no como
+      checklist: el problema de la pancreatitis en el box no es un orden de ejecución con tiempos
+      críticos, sino una secuencia de ramificaciones —qué es, qué la causó, dónde va el paciente—.
+      Se revisó la cobertura previa: `sintoma-dolor-abdominal.html` ya tenía un camino de
+      pancreatitis dentro de su orientador y `guia-dolor-abdominal.html` un párrafo de manejo, pero
+      ambos son **puertas de entrada por síntoma** y ninguno cubre la gravedad, las etiologías con
+      tratamiento propio ni el deterioro tardío; la página nueva los complementa y enlaza con ellos
+      en vez de duplicarlos. La página se ordena sobre tres ideas. La primera es que **el
+      diagnóstico es lo fácil y lo difícil es todo lo demás**: la magnitud de la lipasa no se
+      correlaciona con gravedad, extensión de la necrosis ni etiología, no se repite para seguir la
+      evolución, y la lipasa alta también aparece en la **úlcera perforada, la isquemia mesentérica
+      y la obstrucción intestinal** —pacientes que se operan—. La segunda es que **la causa es
+      tratamiento**: con tres exámenes de la primera muestra (perfil hepático con ALT, triglicéridos
+      y calcio) más la ecografía se identifica la gran mayoría, y dos de esas causas tienen conducta
+      propia que nadie administra si no se buscan. La tercera es que **lo que empeora el pronóstico
+      es casi siempre iatrogénico**: demasiado volumen, demasiado ayuno, antibiótico que no hacía
+      falta y una tomografía que retrasó la ecografía. Incluye **tres herramientas interactivas**:
+      la **calculadora de APACHE II** completa —las doce variables fisiológicas con las tablas de
+      puntos originales de Knaus 1985, puntos por edad y por salud crónica, conmutador de FiO₂ ≥ 0,5
+      para pasar de PaO₂ a gradiente alvéolo-arterial, duplicación de los puntos de creatinina en la
+      falla renal aguda, desglose variable por variable y aviso de puntaje parcial—, el **BISAP** de
+      cinco variables, y una **calculadora de volúmenes por peso** con el esquema moderado de
+      WATERFALL y sus acumulados a 12 y 24 h. El contenido se apoya en cifras verificadas: **WATERFALL**
+      (sobrecarga 20,5 % frente a 6,3 %, riesgo relativo ajustado 2,85 [1,36–5,94], sin diferencia en
+      gravedad), **APEC** (38 % frente a 44 %, riesgo relativo 0,87 [0,64–1,18]: la CPRE urgente es
+      para la colangitis, no para la gravedad predicha), **PONCHO** (17 % a 5 %, riesgo relativo 0,28
+      [0,12–0,66]), **PANTER** (69 % frente a 40 %, riesgo relativo 0,57 [0,38–0,87]), **POINTER**
+      (índice de complicaciones 57 frente a 58, y 39 % resuelto solo con antibióticos), **PYTHON**
+      (30 % frente a 27 %, y 69 % del grupo oral nunca necesitó sonda), el **ensayo PADI** de
+      realimentación inmediata (estadía 3,4 frente a 8,8 días) y la **revisión Cochrane** de
+      profilaxis antibiótica (mortalidad 8,4 % frente a 14,4 %, sin diferencia). La honestidad sobre
+      lo que no está demostrado es parte del contenido y queda explicitada en las referencias: **no
+      existe** un estudio que derive el umbral de triglicéridos de 1000 mg/dL como punto de corte
+      causal —registros prospectivos usan 500 mg/dL—, ni un **umbral de calcio validado** para la
+      hipercalcemia, ni un análisis que derive el **umbral de 8 puntos del APACHE II** en
+      pancreatitis —es una convención heredada del simposio de Atlanta de 1992—, ni un metaanálisis
+      que agrupe la mortalidad por categoría de Atlanta 2012, ni un metaanálisis del hematocrito
+      como predictor de gravedad. De la **plasmaféresis en la pancreatitis hipertrigliceridémica** se
+      dice lo que se puede sostener: baja los triglicéridos más rápido (≈ 70 % frente a ≈ 50 % en
+      24 h) **sin mejorar mortalidad, falla orgánica ni estadía**, los dos ensayos aleatorizados
+      dedicados (Bi-TPAI y PERFORM-R) aún no publican resultados, y una revisión de 2025 titula
+      directamente su futilidad junto con la de la insulina en el normoglicémico y la de la heparina.
+      Pendiente de validación: todas las **dosis, diluciones y velocidades**; el cristaloide y las
+      metas de reposición y de balance; los esquemas, la cobertura de hongos y la duración de los
+      **antibióticos**; el esquema de **insulina** y la indicación de **recambio plasmático** en la
+      hipertrigliceridemia; las dosis y el ajuste del tratamiento de la **hipercalcemia**; la
+      anticoagulación de la **trombosis esplácnica**; la técnica, la frecuencia y los umbrales de
+      intervención de la **presión intraabdominal**; los **criterios locales de ingreso a unidad
+      crítica**; el momento de la **colecistectomía** y de la **CPRE**, y las vías de derivación y
+      traslado. El contenido es **solo para adultos**; de la embarazada se recoge únicamente lo que
+      cambia en el manejo inicial y la derivación.
 - [ ] Epistaxis - Taponamiento anterior con "burrito" de algodon empapado con acido tranexamico + lidocaina + adrenalina, taponamiento con merocell y rapidrhino, además de cauterización con nitrato de plata; y taponamiento posterior con Sonda Foley. Con indicaciones de cuando hospitalizar y/o ineicar antibioticos y cuando no.
 - [ ] Malaria en el adulto: sospecha, diagnóstico y manejo en urgencia.
       **Documento fuente:** `fuentes/malaria-oott-minsal-2026.pdf`
