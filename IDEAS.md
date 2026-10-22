@@ -1195,7 +1195,58 @@ en su sección temática, porque el agente recorre el archivo en orden.
       crítica**; el momento de la **colecistectomía** y de la **CPRE**, y las vías de derivación y
       traslado. El contenido es **solo para adultos**; de la embarazada se recoge únicamente lo que
       cambia en el manejo inicial y la derivación.
-- [ ] Epistaxis - Taponamiento anterior con "burrito" de algodon empapado con acido tranexamico + lidocaina + adrenalina, taponamiento con merocell y rapidrhino, además de cauterización con nitrato de plata; y taponamiento posterior con Sonda Foley. Con indicaciones de cuando hospitalizar y/o ineicar antibioticos y cuando no.
+- [x] Epistaxis - Taponamiento anterior con "burrito" de algodon empapado con acido tranexamico + lidocaina + adrenalina, taponamiento con merocell y rapidrhino, además de cauterización con nitrato de plata; y taponamiento posterior con Sonda Foley. Con indicaciones de cuando hospitalizar y/o ineicar antibioticos y cuando no. —
+      `checklist-epistaxis.html` (checklist con cronómetro e hitos). Se revisó la cobertura previa: ninguna
+      página existente trataba la epistaxis —solo `checklist-balon-taponamiento.html` la menciona de paso—, así
+      que es página nueva, y se enlaza con politrauma (trauma craneofacial), con el balón esofagogástrico (la
+      misma lógica de puente) y con la hemorragia variceal (reanimación del sangrado con shock). Se implementó
+      como **checklist** y no como algoritmo porque el problema de la epistaxis en el box sí es un orden de
+      ejecución: una escalera de cinco escalones que casi siempre se salta hacia abajo. La página se ordena
+      sobre una idea: **la mayoría de los taponamientos nasales son la consecuencia de una compresión mal hecha
+      y de una nariz que nunca se miró** —se aprieta el puente óseo en vez de la parte blanda, se suelta cada
+      treinta segundos, nadie enciende una luz ni aspira el coágulo—, y de ahí que las dos secciones con más
+      rendimiento sean la de la compresión y la de **la mesa** (luz frontal, aspiración rígida, espéculo y
+      bayoneta). La escalera completa: compresión → algodón empapado («burrito») con anestésico, vasoconstrictor
+      y ácido tranexámico → identificación del punto y **cauterización con nitrato de plata** → **taponamiento
+      anterior con Merocel o Rapid Rhino** → **taponamiento posterior con sonda Foley** → otorrino. Incluye
+      **dos orientadores interactivos** —«¿qué toca ahora?», que cruza origen del sangrado, lo que ya se hizo
+      bien y hemodinamia, y «¿se va o se queda?», que cruza taponamiento, sangrado, coagulación y comorbilidad—,
+      **tres esquemas vectoriales** (plexo de Kiesselbach con la zona de compresión correcta frente al puente
+      óseo; dirección de inserción paralela al paladar frente al error de apuntar hacia arriba; y el Foley
+      asentado en la coana con el acolchado bajo el clamp), cronómetro con ocho hitos y registro para copiar.
+      El contenido se apoya en cifras verificadas y **presenta el conflicto de la evidencia sin maquillarlo**:
+      el **ácido tranexámico tópico** tiene a **NoPAC** en contra (Reuben 2021, 496 pacientes, 26 servicios,
+      único ensayo multicéntrico contra placebo: taponamiento en 43,7 % frente a 41,3 %; OR 1,107 [0,769–1,594];
+      p = 0,59) y a **Hosseinialhashemi 2022** a favor con diseño casi idéntico (240 pacientes: 50,0 % frente a
+      64,2 %; OR 0,56 [0,33–0,94]), más **Zahed 2018** (73 % frente a 29 % de cese a los 10 min) y **Amini 2020**,
+      que comparan contra el taponamiento y no contra placebo —por eso la página lo presenta como razonable y
+      barato, no como demostrado—. De **Merocel frente a Rapid Rhino** se usa el metaanálisis de **Duggal 2025**
+      (Laryngoscope, 51 estudios): el Rapid Rhino duele significativamente menos al retirar (2,28 frente a 4,14
+      en epistaxis primaria; p = 0,02) **sin diferencia en resangrado**, y el análisis de costos de Shukla 2025
+      no encuentra diferencia de precio. De los **antibióticos** se dice lo que muestran los datos: la guía
+      AAO-HNS 2020 **no tiene ninguna recomendación de profilaxis**, la revisión de **Lange 2017** (990
+      pacientes) y la serie de **Hu 2020** (275 taponamientos) **no registraron ningún caso de síndrome de shock
+      tóxico** ni diferencia en sinusitis, y la encuesta de **Mallen 2023** muestra que la conducta cambia por
+      región y no por paciente —así que no se indican de rutina y lo que sí se entrega siempre son los signos de
+      alarma por escrito—. El **esqueleto normativo** es la guía de práctica clínica **AAO-HNS 2020** (Tunkel):
+      compresión de 5 minutos o más —única meta temporal de la página con respaldo; los 10–15 min son práctica
+      convencional—, taponamiento solo cuando el sangrado impide ver el punto, **material reabsorbible en el
+      anticoagulado o antiagregado**, anestesiar y restringir la cauterización al punto, endoscopia en el
+      sangrado unilateral o recurrente, y el principio que se viola a diario: **tratar la nariz antes de
+      transfundir, revertir o suspender la anticoagulación**. Del sangrado posterior se dice que el taponamiento
+      es un **puente** y no un tratamiento, con **McDermott 2015** (ligadura de esfenopalatina: 87 % de éxito;
+      operar dentro de 24 h → 3 frente a 6 días de estadía y €5905 frente a €10 001). Pendiente de validación:
+      todas las metas del cronómetro salvo el mínimo de compresión; la **concentración, el volumen y la dosis
+      máxima del anestésico y del vasoconstrictor tópicos**; la **dosis tópica del ácido tranexámico** (uso
+      *off-label*); el **tiempo de aplicación del nitrato de plata** y la conducta local sobre cauterización
+      bilateral; la **preparación, el inflado y el plazo de retiro** de cada taponamiento según su fabricante;
+      el **calibre de la sonda Foley y el volumen del balón**; la **indicación, el fármaco y la duración de los
+      antibióticos**; el manejo de la **hipertensión concomitante**; la conducta sobre **anticoagulación y
+      reversión** y la disponibilidad de agentes específicos; los **criterios locales de observación e
+      ingreso**; y la disponibilidad, el horario y la vía de activación de **endoscopia, ligadura de
+      esfenopalatina y radiología intervencional**. No existe regla de decisión validada para hospitalizar en
+      epistaxis y la página no propone ninguna: el orientador de destino lo dice explícitamente. El contenido es
+      **solo para adultos**; del niño se recoge únicamente lo que cambia el manejo inicial y la derivación.
 - [ ] Malaria en el adulto: sospecha, diagnóstico y manejo en urgencia.
       **Documento fuente:** `fuentes/malaria-oott-minsal-2026.pdf`
       (OOTT MINSAL v2.0, Res. Exenta N°1153, 25/09/2026). El PDF es
