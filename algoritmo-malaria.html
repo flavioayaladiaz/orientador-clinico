@@ -1,0 +1,2284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Algoritmo · Malaria en el adulto</title>
+<meta name="description" content="Algoritmo de malaria importada en el adulto según las Orientaciones Técnicas del MINSAL 2026: sospecha en el febril que viajó, gota gruesa y frotis el mismo día, criterios de malaria grave de la OMS, artesunato intravenoso, esquemas orales por especie y peso, primaquina y G6PD, notificación obligatoria inmediata, dónde están los antimaláricos en Chile y seguimiento hasta el día 28.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --surface2: #eef1f5;
+    --border: rgba(15,23,42,0.10);
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --text-dim: #475569;
+  }
+  :root[data-theme="light"] body::before {
+    background-image:
+      linear-gradient(rgba(15,23,42,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(20,184,166,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(99,102,241,0.07) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 40px; animation: fadeUp 0.6s ease both; }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 0;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .theme-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+    font-size: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .theme-btn:hover { color: var(--text); border-color: var(--text-muted); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(20,184,166,0.1);
+    border: 1px solid rgba(20,184,166,0.28);
+    color: #5eead4;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #14b8a6, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .s1 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s1 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s2 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s2 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s3 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s3 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s4 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s4 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s5 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s5 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s6 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s6 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s7 .section-num { background: rgba(20,184,166,0.12); color: #99f6e4; border: 1px solid rgba(20,184,166,0.18); }
+  .s7 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s8 .section-num { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s8 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s9 .section-num { background: rgba(99,102,241,0.10); color: #c7d2fe; border: 1px solid rgba(99,102,241,0.18); }
+  .s9 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s10 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s10 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s11 .section-num { background: rgba(16,185,129,0.10); color: #a7f3d0; border: 1px solid rgba(16,185,129,0.18); }
+  .s11 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s12 .section-num { background: rgba(255,255,255,0.06); color: var(--text-dim); border: 1px solid var(--border); }
+  .s12 { --accent: var(--text-dim); --accent-glow: rgba(148,163,184,0.08); }
+
+  /* ORIENTADOR INTERACTIVO */
+  .q-block { margin-bottom: 18px; }
+  .q-block:last-of-type { margin-bottom: 0; }
+
+  .q-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt.on {
+    background: rgba(20,184,166,0.12);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .opt:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+  .result {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface2);
+    padding: 18px 20px;
+    border-left: 3px solid var(--accent, var(--teal));
+  }
+  .result.placeholder { color: var(--text-muted); font-size: 13px; font-family: var(--mono); line-height: 1.6; }
+
+  .result-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .result-title {
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .result-row {
+    display: flex;
+    gap: 12px;
+    padding: 9px 0;
+    border-top: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .result-row:first-of-type { border-top: none; padding-top: 2px; }
+  .result-key {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    flex: 0 0 104px;
+    padding-top: 3px;
+  }
+  .result-row strong { color: #fff; font-weight: 500; }
+  .result-row em { color: #fcd34d; font-style: normal; }
+
+  .result.sev-red { border-left-color: var(--red); }
+  .result.sev-amber { border-left-color: var(--amber); }
+  .result.sev-green { border-left-color: var(--emerald); }
+
+  /* CALCULADORA */
+  .calc {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-top: 16px;
+  }
+  .calc-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .calc-label.second { margin-top: 18px; }
+  .score-list { display: flex; flex-direction: column; gap: 8px; }
+  .score-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .score-item:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .score-item.on {
+    background: rgba(20,184,166,0.12);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .score-item:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+  .score-list.gate .score-item.on {
+    background: rgba(245,158,11,0.12);
+    border-color: rgba(245,158,11,0.45);
+    color: #fcd34d;
+  }
+  .score-list.danger .score-item.on {
+    background: rgba(239,68,68,0.12);
+    border-color: rgba(239,68,68,0.45);
+    color: #fca5a5;
+  }
+  .score-pts {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  .score-item.on .score-pts { color: #5eead4; border-color: rgba(20,184,166,0.4); }
+  .score-list.gate .score-item.on .score-pts { color: #fcd34d; border-color: rgba(245,158,11,0.4); }
+  .score-list.danger .score-item.on .score-pts { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  .calc-out {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .calc-out strong { color: #fff; font-weight: 500; }
+  .calc-out em { color: #fcd34d; font-style: normal; }
+  .calc-out .big {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: #93c5fd;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .calc-out .big.risk-low { color: #6ee7b7; }
+  .calc-out .big.risk-mid { color: #fcd34d; }
+  .calc-out .big.risk-high { color: #fca5a5; }
+
+  .calc-reset {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 8px 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .calc-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+  /* ENTRADA NUMÉRICA */
+  .calc-field { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .calc-field + .calc-field { margin-top: 10px; }
+  .calc-field input {
+    font-family: var(--mono);
+    font-size: 15px;
+    color: #fff;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    width: 130px;
+    -moz-appearance: textfield;
+  }
+  .calc-field input:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: rgba(20,184,166,0.45); }
+  .calc-field .unit {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .toggle-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .toggle-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .toggle-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .toggle-btn.on {
+    background: rgba(20,184,166,0.12);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .toggle-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+  /* BANNERS */
+  .warning-banner, .info-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    color: #fca5a5;
+  }
+  .info-banner {
+    background: rgba(59,130,246,0.06);
+    border: 1px solid rgba(59,130,246,0.18);
+    color: #bfdbfe;
+  }
+  .warning-banner strong, .info-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* CRONOLOGÍA */
+  .timeline { display: flex; flex-direction: column; gap: 10px; }
+  .tl-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 13px 15px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .tl-time {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: #fca5a5;
+    flex: 0 0 74px;
+    padding-top: 2px;
+  }
+  .tl-item strong { color: #fff; font-weight: 500; }
+  .tl-item em { color: #fcd34d; font-style: normal; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* ÁRBOL DE DECISIÓN */
+  .flow { display: flex; flex-direction: column; gap: 10px; }
+  .flow-node {
+    position: relative;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--text-muted);
+    background: rgba(255,255,255,0.02);
+    padding: 12px 15px;
+    font-size: 13.5px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .flow-node strong { color: #fff; font-weight: 500; }
+  .flow-node em { color: #fcd34d; font-style: normal; }
+  .flow-q {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .flow-node.stop { border-left-color: var(--red); background: rgba(239,68,68,0.06); }
+  .flow-node.stop .flow-q { color: #fca5a5; }
+  .flow-node.go { border-left-color: var(--emerald); background: rgba(16,185,129,0.05); }
+  .flow-node.go .flow-q { color: #6ee7b7; }
+  .flow-node.hold { border-left-color: var(--amber); background: rgba(245,158,11,0.05); }
+  .flow-node.hold .flow-q { color: #fcd34d; }
+  .flow-node.ask { border-left-color: var(--blue); background: rgba(59,130,246,0.05); }
+  .flow-node.ask .flow-q { color: #93c5fd; }
+  .flow-branch {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 10px;
+    padding-left: 16px;
+    border-left: 2px dashed rgba(255,255,255,0.10);
+  }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--amber); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .opt { width: 100%; }
+    .result-row { flex-direction: column; gap: 4px; }
+    .result-key { flex: none; padding-top: 0; }
+    .tl-item { flex-direction: column; gap: 6px; }
+    .tl-time { flex: none; }
+    .score-item { align-items: flex-start; }
+  }
+  .s13 .section-num { background: rgba(255,255,255,0.06); color: var(--text-dim); border: 1px solid var(--border); }
+  .s13 { --accent: var(--text-dim); --accent-glow: rgba(148,163,184,0.08); }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <a class="back-link" href="./index.html">← Volver</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Cambiar tema claro u oscuro">◐</button>
+    </div>
+    <div class="header-badge">Patología importada · Algoritmo</div>
+    <h1>Malaria en el adulto <span>sospecharla hoy, confirmarla hoy, tratarla hoy</span></h1>
+    <p class="header-sub">
+      En Chile <strong>no hay malaria autóctona desde 1945</strong>: todos los casos son importados, son pocos
+      —dieciocho casos notificados en 2024— y precisamente por eso <strong>el problema no es tratarla, es pensar
+      en ella</strong>. El error clásico no se comete en el tratamiento sino veinte minutos antes, cuando nadie
+      pregunta por el viaje y una fiebre sin foco se rotula como virosis. La malaria por <em>P. falciparum</em> es
+      una <strong>emergencia médica</strong>: puede evolucionar <strong>rápidamente</strong> de formas no complicadas
+      a graves y, sin tratamiento, su forma grave es casi siempre fatal. Esta página está escrita sobre las <strong>Orientaciones Técnicas del
+      MINSAL 2026</strong> y ordena las tres decisiones del box. Primero, <strong>a quién le pido la gota gruesa</strong>
+      —todo febril que estuvo en zona endémica en los últimos doce meses—. Segundo, <strong>si es malaria
+      grave</strong>, porque esa pregunta se contesta antes que la especie y define el fármaco. Y tercero,
+      <strong>qué tengo disponible</strong>, porque salvo la atovacuona-proguanil y la cloroquina los antimaláricos
+      no se comercializan en el país y están en siete u ocho hospitales. Contenido para el <strong>paciente
+      adulto</strong>; de la embarazada se recoge solo lo que cambia el manejo inicial y la derivación.
+    </p>
+  </div>
+
+  <!-- 01 · ÁRBOL DE DECISIÓN -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">Árbol de decisión</div>
+        <div class="section-subtitle">Escenario + estado clínico + contexto epidemiológico</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Marca el <strong>escenario dominante</strong> y el <strong>estado clínico actual</strong>; el contexto
+        es opcional y agrega matices. El resultado orienta qué pedir, con qué tratar, a quién avisar y qué no
+        hacer. No sustituye el protocolo de tu servicio, la consulta con infectología ni la evaluación presencial.</span>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">1 · Escenario dominante</div>
+        <div class="opts" id="q-esc">
+          <button type="button" class="opt" data-v="grave">Malaria confirmada o altamente sospechada <strong>con uno o más criterios de gravedad</strong></button>
+          <button type="button" class="opt" data-v="sospecha">Fiebre sin foco y viaje a zona endémica en los últimos 12 meses, <strong>sin criterios de gravedad</strong></button>
+          <button type="button" class="opt" data-v="falciparum">Confirmada por <strong><em>P. falciparum</em> o especie desconocida</strong>, sin criterios de gravedad</button>
+          <button type="button" class="opt" data-v="nofalciparum">Confirmada por <strong><em>P. vivax</em>, <em>ovale</em>, <em>malariae</em> o <em>knowlesi</em></strong>, sin criterios de gravedad</button>
+          <button type="button" class="opt" data-v="hiper">Parasitemia sobre <strong>2 %</strong> en paciente estable y sin signos de complicación</button>
+          <button type="button" class="opt" data-v="negativa">Primera muestra <strong>negativa</strong> y la sospecha clínica persiste</button>
+          <button type="button" class="opt" data-v="sinartesunato">Malaria grave y <strong>no hay artesunato</strong> en el centro</button>
+          <button type="button" class="opt" data-v="sincentro">Centro <strong>sin microscopía, sin prueba rápida ni antimaláricos</strong></button>
+          <button type="button" class="opt" data-v="recaida">Recaída o recurrencia: ya tratado por <em>P. vivax</em> u <em>ovale</em>, vuelve con fiebre</button>
+          <button type="button" class="opt" data-v="falla">En seguimiento: la parasitemia <strong>no baja o reaparece</strong></button>
+          <button type="button" class="opt" data-v="embarazada">Embarazada con malaria</button>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">2 · Estado clínico ahora</div>
+        <div class="opts" id="q-est">
+          <button type="button" class="opt" data-v="shock">Hipotensión, hipoperfusión, llene capilar lento o lactato alto</button>
+          <button type="button" class="opt" data-v="neuro">Compromiso de conciencia o convulsiones</button>
+          <button type="button" class="opt" data-v="respira">Hipoxemia, taquipnea o requerimiento de oxígeno</button>
+          <button type="button" class="opt" data-v="organo">Ictericia, oliguria, creatinina en ascenso o sangrado</button>
+          <button type="button" class="opt" data-v="vomitos">Estable, pero <strong>no tolera la vía oral</strong></button>
+          <button type="button" class="opt" data-v="estable">Estable, alerta, tolera vía oral</button>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">3 · Contexto (marca los que apliquen)</div>
+        <div class="opts" id="q-ctx">
+          <button type="button" class="opt" data-v="africa">Viaje a <strong>África subsahariana</strong></button>
+          <button type="button" class="opt" data-v="americas">Viaje a <strong>América del Sur o Central</strong></button>
+          <button type="button" class="opt" data-v="asia">Viaje al <strong>Sudeste Asiático u Oceanía</strong></button>
+          <button type="button" class="opt" data-v="profilaxis">Tomó <strong>profilaxis antimalárica</strong></button>
+          <button type="button" class="opt" data-v="tarde">Más de <strong>3 meses</strong> desde el regreso</button>
+          <button type="button" class="opt" data-v="g6pd">Déficit de G6PD conocido o <strong>no evaluado</strong></button>
+          <button type="button" class="opt" data-v="embarazo">Embarazo</button>
+          <button type="button" class="opt" data-v="citopenias">Trombocitopenia o anemia marcadas</button>
+          <button type="button" class="opt" data-v="previa">Episodio previo de malaria</button>
+          <button type="button" class="opt" data-v="ninguno">Ninguno de los anteriores</button>
+        </div>
+      </div>
+
+      <div class="result placeholder" id="result">
+        Selecciona el escenario dominante y el estado clínico para ver qué pedir, con qué tratar, a quién avisar y
+        qué está contraindicado.
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./sintoma-fiebre.html">→ Síntoma: fiebre</a>
+        <a class="cross-link" href="./checklist-sepsis_4.html">→ Checklist: sepsis y shock séptico</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · SOSPECHA -->
+  <div class="section s2" id="s2" style="animation-delay:0.10s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">La sospecha: a quién le pido la gota gruesa</div>
+        <div class="section-subtitle">Fiebre + viaje = malaria hasta demostrar lo contrario</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>La regla que resuelve el 90 % del problema:</strong> se debe considerar el diagnóstico de
+        malaria en <strong>todo paciente febril que haya visitado un país endémico hasta 12 meses después de su
+        regreso</strong>. No hay ninguna combinación de síntomas que distinga la malaria de otras causas de fiebre:
+        en un país sin transmisión local, el diagnóstico <strong>depende por completo de que alguien pregunte por
+        el viaje</strong>.</span>
+      </div>
+
+      <div class="subhead">Períodos de incubación</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Especie</th><th>Incubación</th><th>Lo que importa en el box</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><em>P. falciparum</em></td>
+              <td><span class="dose-main">1 a 3 semanas</span><br><span class="dose-note">mínimo de hasta 7 días</span></td>
+              <td>El <strong>98 % de los viajeros</strong> con <em>P. falciparum</em> desarrolla síntomas <strong>antes de los 3 meses</strong> del regreso. Es la especie que mata y la que obliga a actuar hoy.</td>
+            </tr>
+            <tr>
+              <td><em>P. vivax</em>, <em>P. ovale</em>, <em>P. knowlesi</em></td>
+              <td><span class="dose-main">1 a 3 semanas</span></td>
+              <td>En la malaria <strong>no</strong> causada por <em>P. falciparum</em> solo el <strong>57 %</strong> presenta síntomas dentro de los 3 meses: puede demorar <strong>hasta un año</strong>. <em>P. vivax</em> y <em>P. ovale</em> recaen desde hipnozoítos hepáticos (desde las 12 semanas hasta, raramente, 24 meses).</td>
+            </tr>
+            <tr>
+              <td><em>P. malariae</em></td>
+              <td><span class="dose-main">3 a 6 semanas</span></td>
+              <td>Sin hipnozoítos, pero puede dar <strong>recurrencias clínicas meses o años</strong> después de dejar la región endémica.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note" style="margin-top:10px;">
+        El período común de incubación se estima entre <strong>7 y 40 días</strong>, con un mínimo de hasta 7 días
+        para <em>P. falciparum</em>: una fiebre que comienza en los <strong>primeros días de estadía</strong> en la
+        zona endémica difícilmente corresponde a una infección adquirida en ese viaje, pero <strong>no descarta</strong>
+        una exposición anterior ni las otras causas de fiebre del viajero.
+      </div>
+
+      <div class="subhead">Cómo se presenta</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🌡️</span><span><strong>Fiebre, al inicio irregular</strong>, asociada a malestar general, cefalea y calofríos. La periodicidad clásica —cada dos días en <em>vivax</em> y <em>ovale</em>, cada tres en <em>malariae</em>— es <strong>infrecuente en el viajero no inmune</strong> y queda enmascarada por el uso de antipiréticos: esperarla retrasa el diagnóstico.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🤢</span><span><strong>Síntomas inespecíficos que confunden:</strong> dolor abdominal, náuseas, vómitos, mialgias y artralgias. Se parece a una gastroenteritis, a una influenza o a un cuadro viral cualquiera.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Nunca hay exantema.</strong> Es un dato útil: un exantema apunta a otro diagnóstico, no a malaria.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔎</span><span><strong>Esplenomegalia, hepatomegalia e ictericia</strong> aparecen en etapas posteriores: su ausencia no descarta nada.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>En el laboratorio general</strong>, según la gravedad, es frecuente ver <strong>trombocitopenia, anemia, hipoglicemia, hiperbilirrubinemia, falla renal y desequilibrios ácido-base</strong>. La trombocitopenia en un febril que viajó es un llamado de atención, no un hallazgo menor.</span></div>
+      </div>
+
+      <div class="subhead">Dónde estuvo: qué especie esperar</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Región</th><th>Especie predominante</th></tr></thead>
+          <tbody>
+            <tr><td>África subsahariana</td><td><strong>Asumir <em>P. falciparum</em> con alta probabilidad.</strong> Es la especie única en África occidental y el Caribe. También circulan <em>P. ovale</em> y <em>P. malariae</em>.</td></tr>
+            <tr><td>América del Sur y Central</td><td><em>P. vivax</em> predomina —<strong>73 % de los casos de la región en 2023</strong>—; <em>P. falciparum</em> y las infecciones mixtas, 27 %. <em>P. falciparum</em> causó todos los casos autóctonos de <strong>Haití y República Dominicana</strong> y más del 92 % en Costa Rica. También hay <em>P. malariae</em>.</td></tr>
+            <tr><td>Sudeste Asiático y Pacífico Occidental</td><td><em>P. falciparum</em>, <em>P. vivax</em>, <em>P. ovale</em> y <strong><em>P. knowlesi</em></strong> —esta última solo en el Sudeste Asiático, y se comporta como una especie grave—.</td></tr>
+            <tr><td>Sur de Asia y Mediterráneo Oriental</td><td><em>P. falciparum</em> y <em>P. vivax</em>; <em>P. malariae</em> en Asia.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note" style="margin-top:10px;">
+        <strong>Países endémicos en la Región de las Américas:</strong> Bolivia, Perú, Brasil, Colombia, Ecuador,
+        Venezuela, Costa Rica, República Dominicana, Guayana Francesa, Guyana, Haití, Honduras, México, Nicaragua,
+        Panamá y Surinam. <strong>Argentina, Belice, El Salvador y Paraguay</strong> fueron certificados libres de
+        malaria entre 2018 y 2023. Chile está entre los países sin endemia. <em>La lista cambia: verifica la
+        situación vigente del país de viaje antes de descartar la exposición.</em>
+      </div>
+
+      <div class="subhead">Diagnóstico diferencial</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🦟</span><span><strong>Otras infecciones tropicales:</strong> dengue y otras arbovirosis, leptospirosis, fiebre tifoidea.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🚨</span><span><strong>En el paciente grave con fiebre el diferencial se amplía</strong> e incluye <strong>meningitis bacteriana, neumonía y sepsis</strong>. Estudiar malaria no es motivo para no tratar una sepsis bacteriana en paralelo: en la malaria grave se piden hemocultivos justamente para excluirla.</span></div>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./sintoma-fiebre.html">→ Síntoma: fiebre</a>
+        <a class="cross-link" href="./checklist-sepsis_4.html">→ Checklist: sepsis y shock séptico</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · CONFIRMACIÓN -->
+  <div class="section s3" id="s3" style="animation-delay:0.14s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Confirmación: gota gruesa, frotis, prueba rápida y PCR</div>
+        <div class="section-subtitle">Una muestra negativa no descarta malaria</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>El diagnóstico de malaria es siempre urgente.</strong> Los resultados deberían estar
+        disponibles <strong>en pocas horas</strong> desde la sospecha, para iniciar el tratamiento lo antes posible.
+        Esto no es un examen que se pide «para mañana».</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Método</th><th>Qué aporta</th><th>Límites</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Gota gruesa</td>
+              <td><span class="dose-main">Método <em>gold estándar</em></span> según la OMS, realizado por operador entrenado. Es la de <strong>mayor sensibilidad</strong> y es con la que se hace el <strong>recuento de parásitos</strong>.</td>
+              <td>Depende del operador y del número de campos leídos: <strong>se examinan como mínimo 300 campos</strong> antes de informar una lámina como negativa.</td>
+            </tr>
+            <tr>
+              <td>Frotis</td>
+              <td>Apoyo a la gota gruesa: facilita la <strong>determinación de la especie</strong> y puede prepararse más rápido. Se obtiene de la misma muestra de sangre.</td>
+              <td>Menor sensibilidad que la gota gruesa. No la reemplaza.</td>
+            </tr>
+            <tr>
+              <td>Prueba de diagnóstico rápido (PDR)</td>
+              <td>Inmunocromatografía que detecta antígenos parasitarios. <strong>No requiere operador experimentado</strong>; útil como prueba inicial donde no hay microscopía y como complemento de ella. La mayoría permite detectar y diferenciar <em>P. falciparum</em>.</td>
+              <td><strong>En Chile, por sí solas no constituyen diagnóstico:</strong> son herramientas de orientación clínica. Sensibilidad y especificidad varían entre reactivos.</td>
+            </tr>
+            <tr>
+              <td>PCR y técnicas moleculares</td>
+              <td>Altamente sensibles y específicas. Detectan <strong>infecciones mixtas y densidades parasitarias bajas</strong> no visibles en microscopía ni PDR. Confirman especie si no hay microscopía disponible y son la base de los estudios de resistencia.</td>
+              <td><strong>Los resultados no suelen ser rápidos</strong> para el diagnóstico inicial: no se espera una PCR para tratar.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Si la primera muestra sale negativa</div>
+      <div class="flow">
+        <div class="flow-node stop">
+          <span class="flow-q">Regla</span>
+          <strong>Una sola muestra negativa no descarta el diagnóstico.</strong> Frente a sospecha clínica
+          persistente con exámenes negativos, se repiten las muestras.
+        </div>
+        <div class="flow-node hold">
+          <span class="flow-q">Paciente grave</span>
+          Microscopía <strong>cada 6 a 12 horas</strong>.
+        </div>
+        <div class="flow-node ask">
+          <span class="flow-q">Paciente estable</span>
+          Microscopía <strong>cada 12 a 24 horas</strong>.
+        </div>
+        <div class="flow-node go">
+          <span class="flow-q">En paralelo</span>
+          <strong>Alta sospecha de malaria grave y sin diagnóstico de laboratorio en ese momento:</strong> se toman
+          las muestras de sangre, se envían al centro de referencia y <strong>se inicia tratamiento empírico con
+          artesunato</strong>. No se espera la confirmación para tratar al paciente grave.
+        </div>
+      </div>
+
+      <div class="subhead">Red de confirmación: qué se manda al ISP</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🏛️</span><span><strong>La confirmación diagnóstica la realiza el Instituto de Salud Pública (ISP) y los laboratorios reconocidos.</strong> Frente a una sospecha clínica o de laboratorio, además del diagnóstico parasitológico y la PDR local, las muestras deben derivarse a la <strong>Sección de Parasitología del ISP</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📦</span><span><strong>Laboratorios reconocidos:</strong> envían solo las muestras <strong>dudosas</strong> y las <strong>positivas</strong>, para efectos de vigilancia.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📦</span><span><strong>Los demás laboratorios:</strong> envían <strong>todas las muestras</strong> para una segunda revisión.</span></div>
+        <div class="plain-item"><span class="bullet-icon">✅</span><span>Las muestras con sospecha de malaria <strong>solo pueden ser informadas una vez analizadas</strong> en un laboratorio de la red con reconocimiento vigente o en el Laboratorio de Referencia del ISP, con un algoritmo que combina inmunocromatografía, biología molecular y la observación de gota gruesa y frotis.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · ¿ES MALARIA GRAVE? -->
+  <div class="section s4" id="s4" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">¿Es malaria grave? Criterios de la OMS</div>
+        <div class="section-subtitle">Un solo criterio basta · es la pregunta que se contesta antes que la especie</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Identificar la malaria grave es el primer paso y el más importante.</strong> La identificación
+        de la especie <strong>no es una prioridad inmediata</strong> en el paciente con malaria grave, porque el
+        tratamiento es el mismo para todas: <strong>artesunato intravenoso</strong>. Los criterios cuentan
+        <strong>solo si no se identifica otra causa alternativa</strong> que los explique.</span>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Criterios de malaria grave · marca los presentes</div>
+        <div class="calc-label second" style="margin-top:2px;">Criterios de la OMS adaptados por el MINSAL. Están definidos para <em>P. falciparum</em>; abajo se indica cómo se aplican a las otras especies.</div>
+
+        <div class="calc-label" style="margin-top:14px;">Signos y síntomas</div>
+        <div class="score-list danger" id="sev-clin">
+          <button type="button" class="score-item" data-g="sev" data-p="1">Compromiso de la conciencia: Glasgow &lt; 11<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-g="sev" data-p="1">Convulsiones: más de dos episodios en 24 horas<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-g="sev" data-p="1">Shock: llene capilar ≥ 3 s (compensado) o presión sistólica &lt; 80 mmHg (descompensado)<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-g="sev" data-p="1">Postración: no logra mantenerse de pie, caminar ni permanecer sentado sin asistencia<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-g="sev" data-p="1">Sangrado significativo: nariz, encías, sitios de venopunción, hematemesis o melena<span class="score-pts">1</span></button>
+        </div>
+
+        <div class="calc-label" style="margin-top:14px;">Laboratorio, radiología y parasitología</div>
+        <div class="score-list danger" id="sev-lab">
+          <button type="button" class="score-item" data-g="sev" data-p="1">Acidosis: déficit de bases &gt; 8 mEq/L; si no está disponible, bicarbonato &lt; 15 mEq/L o lactato venoso ≥ 5 mmol/L<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-g="sev" data-p="1">Anemia malárica grave: hemoglobina &lt; 7 g/dL o hematocrito &lt; 20 % <em>con</em> recuento de parásitos &gt; 10.000/µL<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-g="sev" data-p="1">Hipoglicemia: glucosa &lt; 40 mg/dL<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-g="sev" data-p="1">Ictericia: bilirrubina &gt; 3 mg/dL <em>con</em> recuento de parásitos &gt; 100.000/µL<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-g="sev" data-p="1">Insuficiencia renal: creatinina &gt; 3 mg/dL o nitrógeno ureico &gt; 56 mg/dL<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-g="sev" data-p="1">Edema pulmonar: confirmado radiológicamente, o saturación &lt; 92 % en aire ambiente con frecuencia respiratoria &gt; 30/min<span class="score-pts">1</span></button>
+          <button type="button" class="score-item" data-g="sev" data-p="1">Parasitemia &gt; 5 % o &gt; 250.000/µL<span class="score-pts">1</span></button>
+        </div>
+
+        <div class="calc-out" id="sev-out">Marca los criterios presentes. <strong>Uno solo basta</strong> para definir malaria grave.</div>
+        <button type="button" class="calc-reset" id="sev-reset">Limpiar</button>
+      </div>
+
+      <div class="subhead">Cómo se aplican los criterios según la especie</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Especie</th><th>Definición de malaria grave</th></tr></thead>
+          <tbody>
+            <tr><td><em>P. falciparum</em></td><td>Los criterios de la tabla, tal como están. La causa de la gravedad se atribuye a un <strong>extenso secuestro de eritrocitos parasitados en los capilares tisulares</strong>, con obstrucción de la microcirculación y disfunción de órganos vitales.</td></tr>
+            <tr><td><em>P. vivax</em></td><td>Los <strong>mismos criterios</strong> que <em>P. falciparum</em>, pero <strong>sin umbrales de densidad parasitaria</strong>. Durante años se la consideró una forma menos grave; en los últimos años se han descrito complicaciones relevantes.</td></tr>
+            <tr><td><em>P. knowlesi</em></td><td>Criterios de <em>P. falciparum</em>, pero con <strong>densidad parasitaria &gt; 100.000/µL</strong>, o <strong>ictericia con densidad &gt; 20.000/µL</strong>. Después de <em>P. falciparum</em>, es la que más frecuentemente se manifiesta con formas graves y parasitemias altas.</td></tr>
+            <tr><td><em>P. ovale</em> y <em>P. malariae</em></td><td>La malaria grave <strong>rara vez ocurre</strong> y <strong>no existen umbrales de densidad parasitaria</strong>. Se presentan en su forma grave en el 0,03 % y el 3 % de los casos, respectivamente, y se asocian a parasitemias periféricas bajas.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>Grupos de mayor riesgo de malaria grave:</strong> los <strong>viajeros procedentes de zonas
+        no endémicas —como Chile—</strong>, que no tienen inmunidad adquirida, y, en áreas con transmisión estable,
+        la población pediátrica y las gestantes. Además, el viajero no inmune con malaria <strong>no
+        complicada</strong> pero <strong>parasitemia &gt; 2 %</strong> tiene mayor riesgo de evolucionar a malaria
+        grave y <strong>debe monitorizarse de cerca</strong> para cambiar eventualmente a terapia parenteral.</span>
+      </div>
+
+      <div class="subhead">Lo que está en juego</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">☠️</span><span><strong>La mortalidad de la malaria grave no tratada, especialmente la cerebral, se acerca al 100 %.</strong> Con tratamiento antimalárico adecuado desciende a <strong>10–20 %</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📉</span><span>Dentro de la malaria grave, ciertos síndromes como la <strong>anemia grave</strong> tienen mortalidad inferior, mientras que otros, como la <strong>acidosis</strong>, la tienen superior. <strong>El riesgo de muerte aumenta con las complicaciones múltiples.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">🤰</span><span>En la <strong>embarazada con malaria grave</strong> la mortalidad materna alcanza el <strong>50 %</strong>, más alta que en la no embarazada, y la muerte fetal y el parto prematuro son comunes.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · CARGA PARASITARIA -->
+  <div class="section s5" id="s5" style="animation-delay:0.22s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Carga parasitaria: cómo se calcula y qué umbral importa</div>
+        <div class="section-subtitle">Fórmula del ISP · calculadora de densidad por microlitro</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>El recuento lo informa el laboratorio. Esta calculadora sirve para <strong>entender el número que
+        llega</strong>, verificarlo y compararlo con los umbrales que definen gravedad. La fórmula es la del
+        <strong>Formulario de seguimiento del ISP</strong>: asume un recuento de <strong>6.000 leucocitos/µL</strong>,
+        de modo que en el paciente con leucocitosis o leucopenia marcadas la densidad estimada se desvía del valor
+        real. <strong>El porcentaje de parasitemia se informa sobre eritrocitos y no se deriva de esta fórmula:</strong>
+        pídelo explícitamente al laboratorio.</span>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Densidad parasitaria · fórmula del ISP</div>
+        <div class="calc-label second" style="margin-top:2px;">Parásitos/µL = (número de parásitos ÷ número de leucocitos contados) × 6.000</div>
+        <div class="calc-field" style="margin-top:12px;">
+          <input type="number" id="pd-par" min="0" max="100000" step="1" inputmode="numeric" placeholder="180">
+          <span class="unit">parásitos contados</span>
+        </div>
+        <div class="calc-field">
+          <input type="number" id="pd-leu" min="1" max="5000" step="1" inputmode="numeric" placeholder="200">
+          <span class="unit">leucocitos contados · 200 o 500</span>
+        </div>
+        <div class="calc-out" id="pd-out">Ingresa el recuento para ver la densidad estimada y los umbrales que cruza.</div>
+        <button type="button" class="calc-reset" id="pd-reset">Limpiar</button>
+      </div>
+
+      <div class="subhead">Reglas de recuento del ISP</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">1</span><span>Si al contar <strong>200 leucocitos</strong> se observan <strong>100 o más parásitos</strong>, se aplica la fórmula sobre los 200 leucocitos.</span></div>
+        <div class="plain-item"><span class="bullet-icon">2</span><span>Si al contar 200 leucocitos se observan <strong>99 o menos parásitos</strong>, se continúa el recuento hasta <strong>500 leucocitos</strong> y se aplica la fórmula sobre los 500.</span></div>
+        <div class="plain-item"><span class="bullet-icon">3</span><span>Si se cuentan <strong>más de 500 parásitos</strong> sin llegar a los 200 leucocitos, el recuento termina al finalizar la lectura del último campo y la parasitemia se calcula con la misma fórmula.</span></div>
+        <div class="plain-item"><span class="bullet-icon">4</span><span>Se examinan <strong>como mínimo 300 campos</strong> para dar una lámina como negativa.</span></div>
+      </div>
+
+      <div class="subhead">Umbrales que cambian la conducta</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Umbral</th><th>Qué significa</th></tr></thead>
+          <tbody>
+            <tr><td>&gt; 2 %</td><td><strong>Hiperparasitemia.</strong> En paciente estable y sin signos de complicación: <strong>hospitalizar con monitoreo frecuente</strong>. Aumenta el riesgo de evolucionar a malaria grave; el tratamiento de elección es <strong>ACT</strong> por su capacidad de reducir rápidamente la parasitemia.</td></tr>
+            <tr><td>≥ 5 % <span class="dose-note">o &gt; 250.000/µL</span></td><td><strong>Criterio de malaria grave</strong> en <em>P. falciparum</em>: artesunato intravenoso.</td></tr>
+            <tr><td>&gt; 100.000/µL</td><td>Umbral de gravedad en <strong><em>P. knowlesi</em></strong>, y el que acompaña a la <strong>ictericia</strong> en el criterio de <em>P. falciparum</em>.</td></tr>
+            <tr><td>&gt; 20.000/µL</td><td>Con <strong>ictericia</strong>, criterio de gravedad en <em>P. knowlesi</em>.</td></tr>
+            <tr><td>&gt; 10.000/µL</td><td>El que acompaña a la <strong>anemia malárica grave</strong> en el criterio de <em>P. falciparum</em>.</td></tr>
+            <tr><td>≤ 1 %</td><td><strong>Meta esperable de respuesta:</strong> más del 90 % de los pacientes con malaria grave alcanza una parasitemia del 1 % o menos <strong>después de la tercera dosis de artesunato intravenoso</strong>.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · MALARIA GRAVE -->
+  <div class="section s6" id="s6" style="animation-delay:0.26s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Malaria grave: artesunato intravenoso</div>
+        <div class="section-subtitle">Primera línea en cualquier especie y en todos los trimestres del embarazo</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">🚨</span>
+        <span><strong>La malaria grave es una emergencia médica que puede progresar rápidamente hasta un desenlace
+        fatal.</strong> El paciente se <strong>hospitaliza</strong>, recibe tratamiento <strong>intravenoso en forma
+        rápida</strong> y, cuando sea posible, <strong>ingresa a una unidad de cuidados intensivos</strong>. El
+        artesunato intravenoso es la primera línea <strong>independientemente de la especie causante</strong>, y en
+        malaria grave <strong>los beneficios superan los riesgos, por lo que no debe negarse su administración</strong>
+        —tampoco en el embarazo, en ningún trimestre—.</span>
+      </div>
+
+      <div class="subhead">Esquema de las primeras 24 horas</div>
+      <div class="timeline">
+        <div class="tl-item"><span class="tl-time">0 h</span><span><strong>Artesunato 2,4 mg/kg intravenoso</strong>, dosis inicial. <em>En pediatría con peso &lt; 20 kg la dosis es 3 mg/kg; esta página es para adultos.</em></span></div>
+        <div class="tl-item"><span class="tl-time">12 h</span><span><strong>Artesunato 2,4 mg/kg intravenoso</strong>, segunda dosis.</span></div>
+        <div class="tl-item"><span class="tl-time">24 h</span><span><strong>Artesunato 2,4 mg/kg intravenoso</strong>, tercera dosis. <strong>Deben administrarse al menos tres dosis</strong> y después diariamente, hasta que el paciente pueda tomar medicación por vía oral.</span></div>
+        <div class="tl-item"><span class="tl-time">Antes de 24 h</span><span><strong>Si el paciente tolera la medicación oral antes de las 24 horas, se completa igualmente el tratamiento intravenoso por 24 horas.</strong> No se acorta por buena evolución.</span></div>
+        <div class="tl-item"><span class="tl-time">Tras 24 h y 3 dosis</span><span>Si tolera la vía oral, se inicia el <strong>tratamiento de continuación</strong>: un <strong>esquema completo</strong> de ACT o de atovacuona-proguanil, con las mismas dosis de la malaria no complicada (sección 08). El tratamiento intravenoso no reemplaza el curso oral completo.</span></div>
+        <div class="tl-item"><span class="tl-time">Máximo</span><span><strong>La duración máxima de la terapia con artesunato es de 7 días.</strong></span></div>
+        <div class="tl-item"><span class="tl-time">+4 h y seriado</span><span><strong>Control de parasitemia al menos 4 horas después del inicio del artesunato</strong> y, cuando sea posible, <strong>microscopía cada 12 a 24 horas durante los primeros 2 a 3 días</strong> para monitorizar la respuesta. Más del 90 % alcanza parasitemia ≤ 1 % tras la tercera dosis.</span></div>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Artesunato intravenoso · dosis por peso</div>
+        <div class="calc-label second" style="margin-top:2px;">2,4 mg/kg a las 0, 12 y 24 horas. Los viales disponibles en el país contienen <strong>60 mg de artesunato sódico inyectable</strong>.</div>
+        <div class="calc-field" style="margin-top:12px;">
+          <input type="number" id="art-peso" min="25" max="250" step="0.5" inputmode="decimal" placeholder="70">
+          <span class="unit">peso · kg</span>
+        </div>
+        <div class="calc-out" id="art-out">Ingresa el peso para ver la dosis por administración, el total de las primeras 24 horas y el número de viales de 60 mg.</div>
+        <button type="button" class="calc-reset" id="art-reset">Limpiar</button>
+      </div>
+
+      <div class="subhead">Preparación</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💉</span><span>El artesunato se presenta como <strong>polvo de ácido artesúnico</strong>, que se disuelve en <strong>bicarbonato de sodio al 5 %</strong> para obtener artesunato de sodio. La solución resultante se diluye en <strong>aproximadamente 5 mL de suero glucosado al 5 % o cloruro de sodio al 0,9 %</strong> y se administra por <strong>inyección intravenosa o intramuscular</strong>.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">⚠️</span><span><strong>Verifica el inserto del producto recibido y el protocolo institucional</strong> antes de reconstituir: el volumen del diluyente, la estabilidad de la solución y el tiempo de administración dependen del fabricante.</span></div>
+      </div>
+
+      <div class="subhead">Si el artesunato se demora o el paciente no tolera la vía oral</div>
+      <div class="flow">
+        <div class="flow-node hold">
+          <span class="flow-q">Demora en conseguir artesunato</span>
+          <strong>Se inicia el tratamiento oral disponible y se administra durante la espera.</strong> El
+          antimalárico de elección para ese tratamiento oral provisional es el <strong>ACT</strong> si está
+          rápidamente disponible; de no ser ese el caso, <strong>atovacuona-proguanil lo antes posible</strong>.
+        </div>
+        <div class="flow-node ask">
+          <span class="flow-q">No tolera medicamentos orales</span>
+          Se consideran alternativas: <strong>antieméticos</strong> para náuseas y vómitos, o <strong>sonda
+          nasogástrica</strong> en el paciente con alteración de la conciencia.
+        </div>
+        <div class="flow-node go">
+          <span class="flow-q">Cuando llega el artesunato</span>
+          <strong>Se suspende el tratamiento oral y se inicia el intravenoso.</strong>
+        </div>
+        <div class="flow-node stop">
+          <span class="flow-q">Sin laboratorio confirmatorio</span>
+          Con <strong>alta sospecha de malaria grave</strong> según uno o más criterios de la sección 04 y sin
+          diagnóstico de laboratorio en ese momento, se <strong>toman muestras de sangre para enviar al centro de
+          referencia</strong> y se <strong>inicia tratamiento empírico con artesunato</strong>.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · MEDIDAS GENERALES -->
+  <div class="section s7" id="s7" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Medidas generales en malaria grave</div>
+        <div class="section-subtitle">Y la lista larga de lo que no se recomienda</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Lo que sí</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🏥</span><span><strong>Atención de enfermería intensiva en una unidad de cuidados intensivos, cuando sea posible.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Controlar glucosa en sangre, hematocrito, bicarbonato plasmático y función renal.</strong> La hipoglicemia es a la vez criterio de gravedad y causa alternativa de coma.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🔬</span><span><strong>Controlar la parasitemia</strong>, cuando sea posible, al menos <strong>4 horas después del inicio del artesunato</strong>.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">💧</span><span><strong>Manejar cuidadosamente el balance hídrico, evitando la sobrecarga de fluidos intravenosos. La infusión rápida en bolos está contraindicada.</strong> Este es el punto donde el reflejo de la sepsis hace daño en la malaria grave.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Obtener hemocultivos para excluir una infección bacteriana.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">🌡️</span><span><strong>Medidas físicas para la fiebre y paracetamol.</strong></span></div>
+        <div class="plain-item"><span class="bullet-icon">🧠</span><span><strong>Descartar etiologías alternativas del coma</strong>, incluidas la <strong>hipoglicemia</strong> y la <strong>meningitis</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span>Cuando sea posible, en contexto de <strong>anemia grave</strong>, considerar <strong>transfundir sangre completa fresca y sometida a tamizaje</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⚡</span><span><strong>Convulsiones:</strong> mantener permeables las vías respiratorias y utilizar <strong>alternativas intravenosas o, en su defecto, rectales</strong> —diazepam, lorazepam, midazolam—. <em>Dosis y vía: verificar con el protocolo institucional.</em></span></div>
+      </div>
+
+      <div class="subhead">Lo que no</div>
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No usar aspirina ni antiinflamatorios no esteroideos</strong> para tratar la fiebre: aumentan el riesgo de sangrado gastrointestinal y de disfunción renal.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No usar anticonvulsivos profilácticos.</strong></span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No se recomienda el empleo de</strong> heparina, prostaciclina, desferoxamina, pentoxifilina, dextrano de bajo peso molecular, urea, corticoesteroides, anticuerpos anti-TNF, ciclosporina A, dicloroacetato, adrenalina, suero hiperinmune, N-acetilcisteína, ni la administración de albúmina en bolos.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span>El <strong>óxido nítrico inhalado</strong> y la <strong>transfusión de sangre de intercambio</strong> —en la que se extrae la sangre del paciente y se reemplaza por sangre donada— <strong>no han demostrado beneficios</strong>.</span></div>
+      </div>
+
+      <div class="link-row">
+        <a class="cross-link" href="./checklist-sepsis_4.html">→ Checklist: sepsis y shock séptico</a>
+        <a class="cross-link" href="./sintoma-fiebre.html">→ Síntoma: fiebre</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · MALARIA NO COMPLICADA -->
+  <div class="section s8" id="s8" style="animation-delay:0.34s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Malaria no complicada: esquemas por especie</div>
+        <div class="section-subtitle">Tres preguntas · ¿es grave? ¿qué especie? ¿hay riesgo de resistencia?</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>Malaria no complicada</strong> es la infección sintomática con prueba parasitológica positiva
+        <strong>sin signos de gravedad</strong> ni evidencia clínica o de laboratorio de disfunción orgánica: no
+        presenta ninguno de los criterios de la sección 04 y puede tratarse con <strong>fármacos orales</strong>.
+        <strong>Sin un tratamiento adecuado puede progresar rápidamente a enfermedad grave.</strong></span>
+      </div>
+
+      <div class="flow">
+        <div class="flow-node ask">
+          <span class="flow-q">Pregunta 1</span>
+          <strong>¿Es una malaria grave?</strong> Es el primer paso y el más importante (sección 04). Si lo es,
+          el tratamiento es artesunato intravenoso y la especie puede esperar.
+        </div>
+        <div class="flow-node ask">
+          <span class="flow-q">Pregunta 2</span>
+          <strong>¿Cuál es la especie?</strong> La define el examen diagnóstico, pero <strong>el país de viaje
+          orienta</strong> mientras llega la confirmación (sección 02).
+        </div>
+        <div class="flow-node ask">
+          <span class="flow-q">Pregunta 3</span>
+          <strong>¿Existe riesgo de resistencia a antimaláricos?</strong> Depende de la región donde se contrajo
+          la infección.
+        </div>
+        <div class="flow-node go">
+          <span class="flow-q">Mientras tanto</span>
+          <strong>Ante una sospecha alta de malaria, se inicia la terapia lo antes posible con el antimalárico
+          que esté disponible</strong>, ajustándola después, una vez confirmada la especie, para completar el
+          tratamiento según el esquema específico indicado.
+        </div>
+      </div>
+
+      <div class="subhead">Resistencia: dónde importa</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">🌍</span><span><strong>La resistencia de <em>P. falciparum</em> a la cloroquina se ha extendido casi por todo el mundo.</strong> Aún se considera sensible a la cloroquina en <strong>América Central al oeste del Canal de Panamá, Haití y República Dominicana</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🌏</span><span><strong>Resistencia de <em>P. vivax</em> a la cloroquina</strong> documentada en <strong>Oceanía (Papúa Nueva Guinea)</strong> y algunos países del <strong>Sudeste Asiático (Indonesia)</strong>. En regiones con resistencia conocida, o donde la falla al tratamiento con cloroquina excede el 10 % al día 28, se emplea otro medicamento: <strong>ACT o atovacuona-proguanil</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⚠️</span><span>La <strong>resistencia parcial a la artemisinina</strong> reportada en el Sudeste Asiático amenaza el futuro de la terapia combinada, tratamiento de primera línea para <em>P. falciparum</em>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Si el paciente recibió profilaxis antimalárica, se debe utilizar un fármaco diferente para el tratamiento.</strong> En esa situación los ACT son el tratamiento de elección, pero <strong>no debería retrasarse el inicio de la terapia esperando su disponibilidad</strong>: puede iniciarse con atovacuona-proguanil.</span></div>
+      </div>
+
+      <div class="subhead"><em>P. falciparum</em> o especie desconocida</div>
+      <div class="flow">
+        <div class="flow-node stop">
+          <span class="flow-q">Dónde</span>
+          <strong>Con el paciente hospitalizado</strong>, por vía oral.
+        </div>
+        <div class="flow-node go">
+          <span class="flow-q">Opción 1 · ACT</span>
+          <strong>Arteméter/lumefantrina.</strong> Segunda dosis <strong>a las 8 horas</strong> de la inicial y
+          luego <strong>cada 12 horas por dos días</strong>: <strong>seis dosis en total</strong>. En el adulto
+          (≥ 35 kg) con comprimidos de 20/120 mg, <strong>cuatro comprimidos por dosis (80 + 480 mg)</strong>.
+        </div>
+        <div class="flow-node go">
+          <span class="flow-q">Opción 2 · atovacuona-proguanil</span>
+          <strong>Una vez al día durante tres días.</strong> En el adulto, con comprimidos de 250/100 mg,
+          <strong>cuatro comprimidos por dosis</strong>, es decir 1 g de atovacuona y 400 mg de proguanil al día.
+          <strong>En Chile se recomienda el uso de atovacuona-proguanil para todas las especies de <em>Plasmodium</em></strong>,
+          por disponibilidad.
+        </div>
+        <div class="flow-node hold">
+          <span class="flow-q">Siempre</span>
+          <strong>Tanto el arteméter/lumefantrina como la atovacuona-proguanil se administran con alimentos o
+          leche</strong> para optimizar su absorción.
+        </div>
+      </div>
+
+      <div class="subhead"><em>P. vivax</em>, <em>P. ovale</em>, <em>P. malariae</em> o <em>P. knowlesi</em></div>
+      <div class="flow">
+        <div class="flow-node ask">
+          <span class="flow-q">Condición</span>
+          <strong>Solo si hay confirmación de la especie y esta no es <em>P. falciparum</em></strong> puede
+          utilizarse cloroquina o hidroxicloroquina.
+        </div>
+        <div class="flow-node go">
+          <span class="flow-q">Esquema adulto</span>
+          <strong>600 mg base</strong> (4 comprimidos) de inicio, <strong>300 mg base</strong> (2 comprimidos) a
+          las <strong>6, 24 y 48 horas</strong>.
+        </div>
+        <div class="flow-node hold">
+          <span class="flow-q">En Chile</span>
+          Se sugiere <strong>cloroquina o hidroxicloroquina en caso de <em>P. vivax</em> confirmado</strong>,
+          <strong>excepto</strong> en los adquiridos en regiones con resistencia conocida, como
+          <strong>Papúa Nueva Guinea e Indonesia</strong>.
+        </div>
+        <div class="flow-node stop">
+          <span class="flow-q">Duda</span>
+          <strong>En caso de duda sobre la especie involucrada o presencia de resistencia</strong>, el tratamiento
+          puede efectuarse con <strong>ACT o atovacuona-proguanil</strong>, de la misma forma que para
+          <em>P. falciparum</em> o especie desconocida.
+        </div>
+        <div class="flow-node go">
+          <span class="flow-q">Y además</span>
+          En <em>P. vivax</em> y <em>P. ovale</em>, <strong>primaquina</strong> para evitar recaídas (sección 09).
+        </div>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Esquemas orales · dosis por peso</div>
+        <div class="calc-label second" style="margin-top:2px;">Ingresa el peso para ver los tres esquemas orales completos. Las presentaciones son las del documento del MINSAL; <strong>verifica la que tienes en mano</strong>.</div>
+        <div class="calc-field" style="margin-top:12px;">
+          <input type="number" id="or-peso" min="25" max="250" step="0.5" inputmode="decimal" placeholder="70">
+          <span class="unit">peso · kg</span>
+        </div>
+        <div class="calc-out" id="or-out">Ingresa el peso para ver el esquema de arteméter/lumefantrina, de atovacuona-proguanil y de cloroquina.</div>
+        <button type="button" class="calc-reset" id="or-reset">Limpiar</button>
+      </div>
+
+      <div class="subhead">Presentaciones</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Fármaco</th><th>Presentación</th><th>Notas</th></tr></thead>
+          <tbody>
+            <tr><td>Artesunato</td><td><span class="dose-main">Viales de 60 mg</span> de artesunato sódico inyectable</td><td>Polvo de ácido artesúnico; se disuelve en bicarbonato de sodio al 5 % y se diluye en ~5 mL de glucosado 5 % o cloruro de sodio 0,9 %.</td></tr>
+            <tr><td>Arteméter/lumefantrina</td><td><span class="dose-main">20 + 120 mg</span>, estándar o dispersable; también <span class="dose-main">40 + 240 mg</span></td><td>Puede utilizarse <strong>durante todos los trimestres del embarazo</strong>.</td></tr>
+            <tr><td>Atovacuona-proguanil</td><td><span class="dose-main">250 mg + 100 mg</span> de clorhidrato de proguanil</td><td><strong>Contraindicado en el embarazo</strong>, a menos que no haya otras opciones disponibles. Las presentaciones pediátricas de 62,5/25 mg <strong>no están disponibles en Chile</strong>.</td></tr>
+            <tr><td>Cloroquina / hidroxicloroquina</td><td><span class="dose-main">250 mg de cloroquina difosfato = 150 mg base</span>; <span class="dose-main">200 mg de hidroxicloroquina sulfato = 150 mg base</span></td><td>Las dosis se expresan siempre en <strong>miligramos base</strong>: es el error de conversión más fácil de cometer.</td></tr>
+            <tr><td>Primaquina</td><td><span class="dose-main">Comprimidos de 15 mg o 7,5 mg</span></td><td>Requiere evaluación de G6PD antes de prescribir (sección 09).</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">📦</span>
+        <span><strong>Disponibilidad en Chile.</strong> Los antimaláricos señalados, <strong>a excepción de
+        atovacuona-proguanil, cloroquina e hidroxicloroquina, no se comercializan en el país</strong>. Son fármacos
+        importados que se distribuyen en <strong>puntos estratégicos</strong> según análisis epidemiológico y
+        geográfico (sección 11). Averiguar dónde está el artesunato <strong>no es un trámite posterior: es parte
+        del manejo inicial</strong>.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · PRIMAQUINA Y G6PD -->
+  <div class="section s9" id="s9" style="animation-delay:0.38s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Primaquina, hipnozoítos y G6PD</div>
+        <div class="section-subtitle">Tratar el episodio no es tratar la enfermedad en <em>P. vivax</em> y <em>P. ovale</em></div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>En <em>P. vivax</em> y <em>P. ovale</em> algunos esporozoítos quedan latentes en el hepatocito como
+        <strong>hipnozoítos</strong>, desde las doce semanas hasta —raramente— 24 meses, y reactivan la enfermedad.
+        La <strong>primaquina</strong> erradica esos hipnozoítos y previene las recaídas. Se administra
+        <strong>durante o después</strong> del tratamiento de la fase aguda, y <strong>lo antes posible</strong>.</span>
+      </div>
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>La actividad de la glucosa-6-fosfato deshidrogenasa (G6PD) debe ser evaluada antes de
+        prescribir primaquina</strong>, ya que su administración puede inducir hemólisis en individuos con
+        deficiencia. <strong>La primaquina está contraindicada en embarazadas, lactantes menores de 6 meses y
+        personas con deficiencia de G6PD.</strong> La prevalencia de la deficiencia de G6PD en Chile es
+        <strong>muy baja</strong>, aunque los procesos migratorios podrían aumentar los casos.</span>
+      </div>
+
+      <div class="subhead">Esquema en el adulto</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Situación</th><th>Dosis de primaquina</th><th>Duración</th></tr></thead>
+          <tbody>
+            <tr><td><em>P. vivax</em></td><td><span class="dose-main">30 mg base al día</span><br><span class="dose-note">2 comprimidos de 15 mg</span></td><td>14 días</td></tr>
+            <tr><td><em>P. ovale</em></td><td><span class="dose-main">15 mg base al día</span><br><span class="dose-note">1 comprimido de 15 mg</span></td><td>14 días</td></tr>
+            <tr><td><em>P. vivax</em> en paciente <strong>≥ 70 kg</strong></td><td><span class="dose-main">Dosis total de 6 mg/kg</span><br><span class="dose-note">máximo 30 mg al día</span></td><td>La <strong>necesaria para completar la dosis total</strong> —más de 14 días—</td></tr>
+            <tr><td>Deficiencia <strong>intermedia</strong> de G6PD <span class="dose-note">30–70 % de actividad</span></td><td><span class="dose-main">0,5 mg/kg/día</span></td><td>14 días</td></tr>
+            <tr><td>Deficiencia de G6PD <span class="dose-note">&lt; 30 % de actividad</span></td><td><span class="dose-main">0,75 mg/kg una vez por semana</span></td><td>8 semanas</td></tr>
+            <tr><td>Alternativa con deficiencia de G6PD</td><td><span class="dose-main">Cloroquina 2 comprimidos de 250 mg semanalmente</span></td><td>1 año desde la infección aguda</td></tr>
+            <tr><td>Embarazada o en lactancia con G6PD del lactante desconocida</td><td><span class="dose-main">Cloroquina 2 comprimidos de 250 mg una vez por semana</span></td><td>Hasta que se complete el parto y la lactancia; <strong>después</strong>, primaquina para la cura radical</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note" style="margin-top:10px;">
+        <strong>En todos los casos con deficiencia de G6PD</strong> el tratamiento se hace con <strong>control
+        estrecho de la hemólisis y en consulta con un médico parasitólogo o infectólogo</strong>. La decisión de
+        usar primaquina se basa en el equilibrio entre el beneficio de prevenir recaídas y el riesgo de anemia
+        hemolítica, considerando la prevalencia local de la deficiencia, la gravedad del genotipo y la capacidad
+        del servicio para manejar una reacción hemolítica. <strong>La primaquina puede usarse durante la lactancia
+        materna si el lactante tiene actividad normal de G6PD.</strong>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Primaquina · dosis por peso</div>
+        <div class="calc-label second" style="margin-top:2px;">Para el esquema de <em>P. vivax</em> en paciente de 70 kg o más, y para los esquemas ajustados por deficiencia de G6PD.</div>
+        <div class="calc-field" style="margin-top:12px;">
+          <input type="number" id="pq-peso" min="30" max="250" step="0.5" inputmode="decimal" placeholder="82">
+          <span class="unit">peso · kg</span>
+        </div>
+        <div class="calc-out" id="pq-out">Ingresa el peso para ver la dosis total, la duración y los esquemas con deficiencia de G6PD.</div>
+        <button type="button" class="calc-reset" id="pq-reset">Limpiar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10 · SITUACIONES ESPECIALES -->
+  <div class="section s10" id="s10" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s10')">
+      <span class="section-num">10</span>
+      <div>
+        <div class="section-title">Situaciones especiales</div>
+        <div class="section-subtitle">Embarazo, hiperparasitemia y profilaxis previa</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Embarazada</div>
+      <div class="flow">
+        <div class="flow-node stop">
+          <span class="flow-q">Riesgo</span>
+          Las embarazadas del <strong>segundo y tercer trimestre</strong> tienen <strong>mayor riesgo de
+          desarrollar malaria grave</strong> que otros adultos y, en áreas de baja transmisión, el cuadro puede
+          complicarse con <strong>edema pulmonar e hipoglicemia</strong>. La <strong>mortalidad materna alcanza el
+          50 %</strong> y la muerte fetal y el parto prematuro son comunes.
+        </div>
+        <div class="flow-node go">
+          <span class="flow-q">Malaria grave</span>
+          <strong>Artesunato intravenoso es el tratamiento de elección durante todos los trimestres del
+          embarazo.</strong>
+        </div>
+        <div class="flow-node go">
+          <span class="flow-q">No complicada por <em>P. falciparum</em> o especie desconocida</span>
+          <strong>Terapia con ACT</strong>, porque la <strong>atovacuona-proguanil está contraindicada durante el
+          embarazo</strong>. <strong>Si el ACT no está disponible inmediatamente, deberá iniciarse tratamiento con
+          atovacuona-proguanil mientras se espera el ACT</strong>, particularmente porque las embarazadas tienen
+          mayor riesgo de evolucionar hacia una malaria grave. En caso de requerirse, debe ser <strong>indicado y
+          supervisado por un especialista</strong>.
+        </div>
+        <div class="flow-node hold">
+          <span class="flow-q">Prevención de recaídas</span>
+          <strong>La primaquina está contraindicada en el embarazo.</strong> Como alternativa en embarazadas o en
+          período de lactancia con G6PD del lactante desconocida, se puede administrar <strong>cloroquina
+          semanalmente</strong> —2 comprimidos de 250 mg una vez por semana— después del tratamiento agudo y
+          <strong>hasta que se complete el parto y la lactancia</strong>; luego, primaquina para la cura radical.
+        </div>
+      </div>
+
+      <div class="subhead">Hiperparasitemia sin criterios de gravedad</div>
+      <div class="flow">
+        <div class="flow-node hold">
+          <span class="flow-q">&gt; 2 % y clínicamente estable</span>
+          <strong>Se recomienda la hospitalización con monitoreo frecuente.</strong>
+        </div>
+        <div class="flow-node go">
+          <span class="flow-q">Si se mantiene estable</span>
+          Sin criterios de malaria grave, <strong>el tratamiento de elección es ACT</strong>, por su capacidad de
+          reducir rápidamente la parasitemia. <strong>Si no está disponible, iniciar atovacuona-proguanil mientras
+          se espera el ACT</strong>: parasitemias superiores al 2 % aumentan el riesgo de evolucionar a malaria
+          grave.
+        </div>
+        <div class="flow-node ask">
+          <span class="flow-q">Vigilancia</span>
+          El viajero no inmune con parasitemia &gt; 2 % <strong>debe ser monitorizado cercanamente para cambiar
+          eventualmente a terapia parenteral</strong>.
+        </div>
+      </div>
+
+      <div class="subhead">Había tomado profilaxis</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Si el paciente ha recibido profilaxis antimalárica, se debe utilizar un fármaco diferente para el tratamiento.</strong> En esta situación los ACT son el tratamiento de elección, pero <strong>no debería retrasarse el inicio de la terapia</strong> en espera de su disponibilidad: puede iniciarse con atovacuona-proguanil.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Haber tomado profilaxis no descarta la malaria.</strong> La adherencia incompleta y la resistencia explican casos en pacientes que la recibieron: el antecedente cambia el fármaco a usar, no la indicación de estudiar.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 11 · NOTIFICACIÓN Y FÁRMACOS -->
+  <div class="section s11" id="s11" style="animation-delay:0.46s;">
+    <div class="section-header" onclick="toggleSection('s11')">
+      <span class="section-num">11</span>
+      <div>
+        <div class="section-title">Notificación obligatoria y dónde están los antimaláricos</div>
+        <div class="section-subtitle">Dos llamadas que se hacen el mismo día</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">📣</span>
+        <span><strong>La malaria es una enfermedad de notificación obligatoria e inmediata.</strong> Frente a la
+        <strong>sospecha clínica</strong> —no a la confirmación— el médico cirujano que atiende debe notificar de
+        manera inmediata a la <strong>Autoridad Sanitaria Regional (SEREMI)</strong> por la vía de comunicación
+        más expedita de que disponga. La SEREMI lo comunica a su vez de inmediato al Ministerio de Salud y,
+        dentro de un plazo de <strong>24 horas</strong>, se completa la notificación según el reglamento. El
+        Departamento de Epidemiología del MINSAL dispone de un <strong>formulario electrónico</strong> para este
+        registro.</span>
+      </div>
+
+      <div class="note">
+        El marco normativo es el <strong>reglamento sobre notificación de enfermedades transmisibles de declaración
+        obligatoria y su vigilancia, decreto supremo N° 7 del Ministerio de Salud</strong>. <em>El documento fuente
+        cita dos fechas distintas para este decreto —12 de marzo de 2019 en la resolución y 24 de enero de 2020 en
+        el cuerpo técnico—; para efectos de la notificación lo que importa es que es inmediata. Verifica con la
+        SEREMI el canal y el formulario vigentes en tu región.</em>
+      </div>
+
+      <div class="subhead">Establecimientos con disponibilidad de antimaláricos</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Fármaco</th><th>Establecimientos referentes</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Artesunato 60 mg inyectable</td>
+              <td>Arica: Hospital Dr. Juan Noé Crevani · Iquique: Hospital Dr. Ernesto Torres Galdames · Antofagasta: Hospital Dr. Leonardo Guzmán · Rapa Nui: Hospital Hanga Roa · Santiago: <strong>Hospital de Urgencia Asistencia Pública (HUAP)</strong> · Temuco: Hospital Dr. Hernán Henríquez Aravena · Puerto Montt: Hospital Dr. Eduardo Schutz Schroeder</td>
+            </tr>
+            <tr>
+              <td>Arteméter/lumefantrina 20/120 mg comprimido</td>
+              <td>Arica: Hospital Dr. Juan Noé Crevani · Iquique: Hospital Dr. Ernesto Torres Galdames · Antofagasta: Hospital Dr. Leonardo Guzmán · Rapa Nui: Hospital Hanga Roa · Santiago: Hospital de Urgencia Asistencia Pública (HUAP) y <strong>Hospital Dr. Lucio Córdova</strong> · Temuco: Hospital Dr. Hernán Henríquez Aravena · Puerto Montt: Hospital Dr. Eduardo Schutz Schroeder</td>
+            </tr>
+            <tr>
+              <td>Primaquina 15 mg comprimido</td>
+              <td>Arica: Hospital Dr. Juan Noé Crevani · Iquique: Hospital Dr. Ernesto Torres Galdames · Antofagasta: Hospital Dr. Leonardo Guzmán · Santiago: Hospital Dr. Lucio Córdova · Temuco: Hospital Dr. Hernán Henríquez Aravena · Puerto Montt: Hospital Dr. Eduardo Schutz Schroeder</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note" style="margin-top:10px;">
+        <strong>El Anexo 1 del documento fuente incluye, para cada establecimiento, el nombre del contacto de
+        farmacia, su anexo telefónico y su correo institucional</strong>; no se reproducen aquí porque cambian con
+        el tiempo. <em>Antes de necesitarlos, averigua en tu servicio cuál es el establecimiento referente que te
+        corresponde y por qué vía se solicita el fármaco fuera de horario hábil.</em> La atovacuona-proguanil, la
+        cloroquina y la hidroxicloroquina sí se comercializan en el país.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 12 · SEGUIMIENTO -->
+  <div class="section s12" id="s12" style="animation-delay:0.50s;">
+    <div class="section-header" onclick="toggleSection('s12')">
+      <span class="section-num">12</span>
+      <div>
+        <div class="section-title">Seguimiento posterior al tratamiento</div>
+        <div class="section-subtitle">Hasta el día 28 · y cómo se define una falla terapéutica</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>La resistencia a los antimaláricos es un problema de salud pública, y el seguimiento de la eficacia
+        terapéutica es lo que permite detectarla. Implica la evaluación de los resultados <strong>clínicos y
+        parasitológicos</strong> durante <strong>al menos 28 y hasta 42 días</strong> desde el inicio del
+        tratamiento: <strong>diariamente durante los primeros tres días</strong> y luego <strong>semanalmente a
+        partir del séptimo día</strong>. En cada control se registran <strong>recuento de parásitos por µL,
+        síntomas y temperatura</strong>.</span>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item"><span class="tl-time">Día 0</span><span>Confirmación diagnóstica e inicio del tratamiento. <strong>Carga parasitaria basal (T0)</strong>: es el número con el que se comparará todo lo demás.</span></div>
+        <div class="tl-item"><span class="tl-time">Días 2 y 3</span><span>Control <strong>diario</strong> los primeros tres días. Aquí se detecta la <strong>falla temprana del tratamiento</strong>.</span></div>
+        <div class="tl-item"><span class="tl-time">Días 7, 14, 21 y 28</span><span>Control <strong>semanal</strong> a partir del séptimo día. El <strong>día 28</strong> es el punto de corte habitual para declarar la respuesta adecuada.</span></div>
+        <div class="tl-item"><span class="tl-time">Día 42</span><span><strong>Solo en casos de tratamiento con mefloquina, piperaquina y pironaridina</strong>, por su eliminación más lenta.</span></div>
+      </div>
+
+      <div class="subhead">Criterios de la OMS frente a falla terapéutica</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Categoría</th><th>Definición</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Falla temprana de tratamiento <span class="dose-note">FTT</span></td>
+              <td>Signos de peligro o malaria grave en los <strong>días 1 a 3</strong> ante presencia de parasitemia · parasitemia en el <strong>día 2 mayor que en el día 0</strong>, independientemente de la temperatura axilar · parasitemia en el <strong>día 3 con temperatura axilar ≥ 37,5 °C</strong> · parasitemia en el <strong>día 3 ≥ 25 % de la parasitemia del día 0</strong>.</td>
+            </tr>
+            <tr>
+              <td>Falla clínica tardía <span class="dose-note">FCT</span></td>
+              <td>Signos de peligro o malaria grave con parasitemia <strong>entre el día 4 y el 28 [42]</strong>, en pacientes que no cumplieron ningún criterio de FTT · parasitemia en cualquier día entre el 4 y el 28 [42] <strong>con temperatura axilar ≥ 37,5 °C</strong>, sin criterios de FTT.</td>
+            </tr>
+            <tr>
+              <td>Falla parasitológica tardía <span class="dose-note">FPT</span></td>
+              <td>Parasitemia en cualquier día <strong>entre el 7 y el 28 (42)</strong> con <strong>temperatura axilar &lt; 37,5 °C</strong>, en pacientes sin criterios de FTT ni de FCT.</td>
+            </tr>
+            <tr>
+              <td>Respuesta parasitológica y clínica adecuada <span class="dose-note">RPCA</span></td>
+              <td><strong>Ausencia de parasitemia en el día 28 (42)</strong>, independientemente de la temperatura axilar, en pacientes que no cumplieron ningún criterio de FTT, FCT ni FPT.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="plain-list" style="margin-top:14px;">
+        <div class="plain-item"><span class="bullet-icon">🧬</span><span>Frente a la sospecha de falla terapéutica por resistencia, <strong>se deben realizar, de ser posible, estudios de marcadores genéticos asociados a resistencia</strong>. El Laboratorio de Referencia de la Sección de Parasitología del ISP tiene esa capacidad, además del seguimiento de la densidad parasitaria por microscopía.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🤔</span><span><strong>La resistencia no es la única causa de falla.</strong> También hay que considerar la inmunidad adquirida por el paciente, la biomasa inicial del parásito, la <strong>adherencia al tratamiento</strong>, la dosificación, la calidad del fármaco y la farmacocinética.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📊</span><span>La OMS establece que un antimalárico recomendado en la política nacional <strong>debe ser reemplazado si el porcentaje de fracasos terapéuticos es ≥ 10 %</strong> según el seguimiento <em>in vivo</em> de su eficacia.</span></div>
+        <div class="plain-item"><span class="bullet-icon">📄</span><span>El <strong>Formulario de seguimiento posterior al tratamiento de malaria</strong> del ISP (Anexo 2 del documento fuente) recoge datos del paciente, antecedentes epidemiológicos —viaje, malaria previa, profilaxis, tratamiento previo—, confirmación diagnóstica con especie y carga parasitaria basal, fármaco empleado y los siete controles (días 2, 3, 7, 14, 21, 28 y 42).</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 13 · TRAMPAS -->
+  <div class="section s13" id="s13" style="animation-delay:0.54s;">
+    <div class="section-header" onclick="toggleSection('s13')">
+      <span class="section-num">13</span>
+      <div>
+        <div class="section-title">Trampas y errores frecuentes</div>
+        <div class="section-subtitle">Casi todos ocurren antes del tratamiento</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No preguntar por el viaje.</strong> Es el error que origina a casi todos los demás. En un país sin transmisión local, la falta de experiencia diagnóstica es la causa reconocida del retraso en identificar y tratar la enfermedad, y la letalidad en el viajero que regresa a países no endémicos suele ser elevada.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Acotar la pregunta al último mes.</strong> La ventana es de <strong>12 meses</strong>: las especies no falciparum pueden demorar hasta un año en manifestarse y <em>P. vivax</em> y <em>P. ovale</em> recaen desde el hígado.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Descartar malaria con una sola gota gruesa negativa.</strong> Se repite cada 6 a 12 horas en el paciente grave y cada 12 a 24 horas en el estable mientras la sospecha persista.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Tratar una prueba rápida como diagnóstico.</strong> En Chile las PDR son <strong>herramientas de orientación clínica y por sí solas no constituyen diagnóstico</strong>: la muestra igual va al laboratorio reconocido o al ISP.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Esperar la confirmación para tratar al paciente grave.</strong> Con alta sospecha de malaria grave y sin laboratorio disponible, se toman muestras, se envían al centro de referencia y <strong>se inicia artesunato empírico</strong>.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Esperar la especie para tratar la malaria grave.</strong> El tratamiento es el mismo para todas: artesunato intravenoso. La especie importa después, para el esquema oral de continuación y para la primaquina.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Reanimar con bolos rápidos como en una sepsis.</strong> En la malaria grave el balance hídrico se maneja cuidadosamente y <strong>la infusión rápida en bolos está contraindicada</strong>.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Usar antiinflamatorios no esteroideos o aspirina para la fiebre.</strong> Aumentan el riesgo de sangrado gastrointestinal y de disfunción renal: medidas físicas y paracetamol.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Atribuir el coma a la malaria sin descartar hipoglicemia y meningitis</strong>, o no tomar hemocultivos para excluir una infección bacteriana concomitante.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Suspender el artesunato intravenoso apenas el paciente tolera la vía oral.</strong> Se completan <strong>al menos tres dosis y 24 horas</strong> de tratamiento intravenoso, y después un <strong>curso oral completo</strong>: el artesunato solo no cura.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar de alta tras el episodio agudo de <em>P. vivax</em> o <em>P. ovale</em> sin primaquina</strong> —o sin haber evaluado la G6PD—. Sin erradicar los hipnozoítos, el paciente vuelve.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Confundir miligramos de sal con miligramos base</strong> en la cloroquina y la hidroxicloroquina. 250 mg de cloroquina difosfato equivalen a 150 mg base; 200 mg de hidroxicloroquina sulfato, también a 150 mg base.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar atovacuona-proguanil a una embarazada</strong> cuando hay ACT disponible: está contraindicada salvo que no existan otras opciones. Y a la inversa, <strong>no retrasar el tratamiento de una embarazada</strong> esperando el ACT: se inicia con lo disponible.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Tratar y no notificar.</strong> La notificación es <strong>inmediata y por sospecha</strong>, no al alta ni con el informe del ISP en mano.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar de alta sin plan de seguimiento.</strong> El control es diario los primeros tres días y semanal desde el día 7, hasta al menos el día 28: es lo que permite detectar una falla terapéutica.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Buscar la fiebre terciana o cuartana antes de pedir el examen.</strong> Ese patrón es infrecuente en el viajero no inmune y queda enmascarado por los antipiréticos.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
+    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio. El propio documento
+    fuente señala que <strong>no constituye una guía clínica ni una norma técnica</strong>, sino orientaciones de
+    carácter general y voluntario. El contenido está orientado al <strong>paciente adulto</strong>: lo
+    <strong>pediátrico se omite deliberadamente</strong> —los criterios de gravedad, las dosis por peso y los
+    esquemas difieren— y de la <strong>paciente embarazada</strong> solo se recoge lo que cambia el manejo inicial
+    y la derivación, que debe definirse con obstetricia e infectología. Las <strong>dosis, presentaciones,
+    diluciones y umbrales son orientativos</strong>: verifica la presentación disponible, la reconstitución, la
+    dilución y la vía de administración de tu servicio, y el ajuste por peso, función renal y hepática,
+    interacciones y contraindicaciones antes de administrar cualquier fármaco —muy especialmente la
+    <strong>equivalencia entre miligramos de sal y miligramos base</strong> de la cloroquina y la
+    hidroxicloroquina—. La <strong>preparación y el tiempo de administración del artesunato</strong>, las
+    <strong>dosis y la vía de las benzodiacepinas</strong> en las convulsiones, los <strong>umbrales y el momento
+    de la transfusión</strong>, los <strong>criterios locales de ingreso a unidad crítica</strong>, la
+    <strong>indicación y el manejo de la primaquina en la deficiencia de G6PD</strong>, el <strong>canal y el
+    formulario de notificación</strong> vigentes en tu región, y la <strong>vía de solicitud de los antimaláricos
+    fuera de horario hábil</strong> deben contrastarse con el <strong>protocolo institucional vigente</strong> y
+    con infectología, parasitología, cuidados críticos y la SEREMI correspondiente. La <strong>calculadora de
+    densidad parasitaria</strong> realiza una <strong>operación aritmética sobre los datos que ingresas</strong>,
+    reproduce la fórmula del ISP —que asume 6.000 leucocitos/µL— y <strong>no reemplaza el informe del
+    laboratorio</strong>; el <strong>porcentaje de parasitemia no se deriva de ella</strong>. Las calculadoras de
+    dosis por peso son <strong>una ayuda de cálculo, no una indicación</strong>: la prescripción es del médico
+    tratante.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <div class="references-footer">
+    <div class="references-title">Documento fuente</div>
+    <div class="references-list">
+      <div class="ref-item"><strong>Ministerio de Salud de Chile.</strong> <em>Orientaciones Técnicas para el Diagnóstico y Manejo Clínico de Malaria en Chile</em>, versión 2.0, 2ª edición, 2026. Aprobadas por <strong>Resolución Exenta N° 1153, de 25 de septiembre de 2026</strong>, de la Subsecretaría de Salud Pública, que deja sin efecto la Resolución Exenta N° 191, de 26 de febrero de 2016. Elaboradas por la División de Prevención y Control de Enfermedades (DIPRECE). <strong>Esta página se basa íntegramente en ese documento</strong>: los criterios de gravedad, los esquemas, las dosis, los umbrales de parasitemia, las reglas de recuento, los criterios de falla terapéutica, el listado de establecimientos y las obligaciones de notificación provienen de él, y no se han reemplazado por otras guías.</div>
+      <div class="ref-item">El documento fuente, a su vez, declara como referencias principales las <em>WHO guidelines for malaria</em> (Organización Mundial de la Salud, 30 de noviembre de 2024) —origen de la tabla de criterios de malaria grave, del esquema de arteméter/lumefantrina por peso, de las dosis pediátricas de primaquina y del esquema de artesunato intravenoso—, el <em>World malaria report 2024</em> de la OMS —datos epidemiológicos de la Región de las Américas—, las recomendaciones de los <em>Centers for Disease Control and Prevention</em> (CDC, Malaria, 2024) —esquemas de atovacuona-proguanil, de cloroquina y de primaquina en el adulto—, el documento <em>Methods for surveillance of antimalarial drug efficacy</em> (OMS, 2009) —criterios de FTT, FCT, FPT y RPCA— y los registros de la Sección de Parasitología del Instituto de Salud Pública de Chile —casos y tasas de malaria importada, fórmula y reglas de recuento de la carga parasitaria—.</div>
+      <div class="ref-item"><strong>Lo que esta página no afirma, porque el documento fuente no lo precisa:</strong> no se indican el tiempo de infusión ni la estabilidad de la solución reconstituida de artesunato, las dosis ni la vía de las benzodiacepinas para las convulsiones, los umbrales de transfusión, los criterios de ingreso a unidad crítica, la duración del tratamiento oral de continuación tras el artesunato más allá de que sea «un curso completo», ni el intervalo exacto de los controles de glicemia, hematocrito, bicarbonato y función renal en la malaria grave. Tampoco se reproduce el esquema pediátrico de arteméter/lumefantrina, atovacuona-proguanil, cloroquina ni primaquina por tratarse de contenido fuera del alcance de esta página, ni los datos de contacto nominales del Anexo 1. Todo eso debe verificarse con el protocolo institucional y con el documento original.</div>
+    </div>
+  </div>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  // ── Formato numérico ──────────────────────────────────────────────
+  const fmt0 = (n) => Math.round(n).toLocaleString('es-CL');
+  const fmt1 = (n) => n.toLocaleString('es-CL', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  const fmtP = (n) => (Number.isInteger(n) ? n.toLocaleString('es-CL') : fmt1(n));
+
+  // ── Árbol de decisión interactivo ─────────────────────────────────
+  const sel = { esc: null, est: null, ctx: new Set() };
+
+  function bindSingle(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (sel[key] === v) {
+          sel[key] = null;
+          btn.classList.remove('on');
+        } else {
+          sel[key] = v;
+          group.querySelectorAll('.opt').forEach(b => b.classList.toggle('on', b === btn));
+        }
+        render();
+      });
+    });
+  }
+
+  function bindMulti(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (v === 'ninguno') {
+          sel[key].clear();
+          group.querySelectorAll('.opt').forEach(b => b.classList.remove('on'));
+          btn.classList.add('on');
+          sel[key].add('ninguno');
+        } else {
+          const none = group.querySelector('[data-v="ninguno"]');
+          none.classList.remove('on');
+          sel[key].delete('ninguno');
+          if (sel[key].has(v)) { sel[key].delete(v); btn.classList.remove('on'); }
+          else { sel[key].add(v); btn.classList.add('on'); }
+        }
+        render();
+      });
+    });
+  }
+
+  bindSingle('q-esc', 'esc');
+  bindSingle('q-est', 'est');
+  bindMulti('q-ctx', 'ctx');
+
+  const f = (v) => sel.ctx.has(v);
+
+  const ARTESUNATO = '<strong>Artesunato intravenoso 2,4 mg/kg a las 0, 12 y 24 horas</strong>, al menos tres dosis y después diariamente hasta que tolere la vía oral. Es la primera línea <strong>cualquiera sea la especie</strong> y en <strong>todos los trimestres del embarazo</strong>. Duración máxima: 7 días.';
+  const CONTINUA = '<strong>Después de 24 horas y las tres dosis</strong>, si tolera la vía oral, <strong>curso oral completo</strong> de ACT o atovacuona-proguanil. El artesunato intravenoso no reemplaza el esquema oral.';
+  const GOTA = '<strong>Gota gruesa y frotis hoy</strong>, con recuento de parásitos. Si no hay microscopía, prueba de diagnóstico rápido <strong>como orientación</strong> —en Chile no constituye diagnóstico por sí sola— y derivación de la muestra al laboratorio reconocido o al ISP.';
+  const REPETIR = '<strong>Una muestra negativa no descarta:</strong> repite microscopía <strong>cada 6 a 12 h si está grave</strong> y <strong>cada 12 a 24 h si está estable</strong>, mientras la sospecha persista.';
+  const LABS = '<strong>Hemograma con plaquetas, glicemia, creatinina y nitrógeno ureico, bilirrubina y perfil hepático, electrolitos, gases con lactato o bicarbonato, orina</strong>, y <strong>hemocultivos</strong> si hay compromiso sistémico. Test de embarazo en edad fértil.';
+  const NOTIFICA = '<strong>Notificación obligatoria e inmediata a la SEREMI por la vía más expedita, desde la sospecha</strong> —no desde la confirmación—; la notificación se completa dentro de 24 horas.';
+  const FARMACO = '<strong>Averigua dónde está el fármaco ahora.</strong> Salvo atovacuona-proguanil, cloroquina e hidroxicloroquina, los antimaláricos no se comercializan en el país y están en establecimientos referentes (sección 11).';
+  const FLUIDOS = '<strong>Balance hídrico cuidadoso, evitando la sobrecarga. La infusión rápida en bolos está contraindicada.</strong> Fiebre con medidas físicas y paracetamol: <strong>sin aspirina ni antiinflamatorios no esteroideos</strong>.';
+  const UCI = '<strong>Hospitalizar y, cuando sea posible, ingresar a unidad de cuidados intensivos</strong>, con atención de enfermería intensiva. Avisa a infectología.';
+  const SEGUIMIENTO = '<strong>Seguimiento clínico y parasitológico</strong> diario los primeros tres días y semanal desde el día 7, hasta al menos el día 28 (sección 12).';
+  const LINK_FIEBRE = '<a class="cross-link" style="margin-top:6px" href="./sintoma-fiebre.html">→ Síntoma: fiebre</a>';
+  const LINK_SEPSIS = '<a class="cross-link" style="margin-top:6px" href="./checklist-sepsis_4.html">→ Checklist: sepsis y shock séptico</a>';
+
+  function classify() {
+    const { esc, est } = sel;
+    if (!esc || !est) return null;
+    let r = null;
+
+    if (esc === 'grave') {
+      r = {
+        sev: 'red',
+        tag: 'Emergencia médica',
+        title: 'Malaria grave: artesunato ahora, la especie después',
+        rows: [
+          ['Primero', '<strong>La identificación de la especie no es una prioridad inmediata:</strong> el tratamiento es el mismo para todas. Lo que define la conducta es que haya <strong>uno o más criterios de gravedad</strong> sin otra causa que los explique.'],
+          ['Ahora', ARTESUNATO],
+          ['Si no hay laboratorio', '<strong>Toma muestras, envíalas al centro de referencia e inicia artesunato empírico.</strong> No se espera la confirmación para tratar al paciente grave.'],
+          ['Después', CONTINUA],
+          ['Soporte', FLUIDOS + ' Controla <strong>glicemia, hematocrito, bicarbonato y función renal</strong>, y descarta <strong>hipoglicemia y meningitis</strong> como causa alternativa del compromiso de conciencia.'],
+          ['Pide', GOTA + ' ' + LABS],
+          ['Parasitemia', '<strong>Control al menos 4 horas después del inicio del artesunato</strong> y microscopía cada 12 a 24 h los primeros 2 a 3 días. Más del 90 % llega a ≤ 1 % tras la tercera dosis.'],
+          ['Equipo', UCI + ' ' + FARMACO],
+          ['Obligatorio', NOTIFICA],
+          ['Enlaces', LINK_SEPSIS + LINK_FIEBRE]
+        ]
+      };
+    }
+
+    else if (esc === 'sospecha') {
+      r = {
+        sev: 'amber',
+        tag: 'Sospecha activa',
+        title: 'Fiebre + viaje: el examen es hoy, no mañana',
+        rows: [
+          ['La regla', 'Considera malaria en <strong>todo paciente febril que visitó un país endémico hasta 12 meses después de su regreso</strong>. No hay combinación de síntomas que la distinga de otras causas de fiebre; <strong>nunca hay exantema</strong>.'],
+          ['Pide', GOTA + ' ' + LABS],
+          ['Si sale negativa', REPETIR],
+          ['Mientras tanto', '<strong>Ante sospecha alta, inicia la terapia lo antes posible con el antimalárico disponible</strong> y ajústala al confirmar la especie. No se espera el resultado si el paciente se está deteriorando.'],
+          ['Revisa gravedad', 'Recorre los <strong>criterios de la sección 04</strong> antes de decidir destino: uno solo convierte esto en una emergencia con artesunato intravenoso.'],
+          ['Diferencial', '<strong>Dengue y otras arbovirosis, leptospirosis y fiebre tifoidea</strong>; en el paciente grave, además, <strong>meningitis bacteriana, neumonía y sepsis</strong>.'],
+          ['Obligatorio', NOTIFICA],
+          ['Enlaces', LINK_FIEBRE + LINK_SEPSIS]
+        ]
+      };
+    }
+
+    else if (esc === 'falciparum') {
+      r = {
+        sev: 'amber',
+        tag: 'No complicada · falciparum o especie desconocida',
+        title: 'Tratamiento oral, pero con el paciente hospitalizado',
+        rows: [
+          ['Dónde', '<strong>El tratamiento de la malaria no complicada por <em>P. falciparum</em> o especie desconocida se realiza con el paciente hospitalizado</strong>, por vía oral.'],
+          ['Opción 1', '<strong>Arteméter/lumefantrina:</strong> segunda dosis <strong>a las 8 horas</strong> de la inicial y luego <strong>cada 12 horas por dos días</strong> —seis dosis—. Adulto ≥ 35 kg: <strong>4 comprimidos de 20/120 mg por dosis</strong>.'],
+          ['Opción 2', '<strong>Atovacuona-proguanil 250/100 mg: 4 comprimidos una vez al día por tres días.</strong> En Chile se recomienda su uso para todas las especies, por disponibilidad.'],
+          ['Siempre', '<strong>Con alimentos o leche</strong>, para optimizar la absorción. Calculadora de dosis por peso en la sección 08.'],
+          ['Vigila', 'Si la <strong>parasitemia supera el 2 %</strong>, el riesgo de evolucionar a malaria grave aumenta: monitorización estrecha para <strong>cambiar eventualmente a terapia parenteral</strong>.'],
+          ['Reevalúa', 'Repasa los criterios de gravedad <strong>en cada control</strong>: la no complicada puede progresar rápidamente.'],
+          ['Después', SEGUIMIENTO],
+          ['Obligatorio', NOTIFICA]
+        ]
+      };
+    }
+
+    else if (esc === 'nofalciparum') {
+      r = {
+        sev: 'green',
+        tag: 'No complicada · especie confirmada no falciparum',
+        title: 'Cloroquina si la región lo permite, y primaquina para que no vuelva',
+        rows: [
+          ['Condición', '<strong>Solo con confirmación de especie y que esta no sea <em>P. falciparum</em></strong> puede usarse cloroquina o hidroxicloroquina.'],
+          ['Esquema adulto', '<strong>600 mg base de inicio</strong> (4 comprimidos), y <strong>300 mg base</strong> (2 comprimidos) <strong>a las 6, 24 y 48 horas</strong>. Las dosis se expresan en <strong>miligramos base</strong>: 250 mg de cloroquina difosfato = 150 mg base.'],
+          ['Excepción', 'En <em>P. vivax</em> adquirido en <strong>regiones con resistencia conocida —Papúa Nueva Guinea e Indonesia—</strong>, o ante duda de especie o de resistencia: <strong>ACT o atovacuona-proguanil</strong>, igual que para <em>P. falciparum</em>.'],
+          ['No olvides', 'En <em><strong>P. vivax</strong></em> y <em><strong>P. ovale</strong></em>, <strong>primaquina para evitar recaídas, lo antes posible</strong>, además del tratamiento de la fase aguda, y <strong>evaluación previa de G6PD</strong> (sección 09).'],
+          ['Ojo con <em>knowlesi</em>', '<em>P. knowlesi</em> es, después de <em>P. falciparum</em>, la que más frecuentemente se manifiesta con formas graves y parasitemias altas: sus umbrales de gravedad son <strong>&gt; 100.000/µL</strong>, o ictericia con <strong>&gt; 20.000/µL</strong>.'],
+          ['Después', SEGUIMIENTO],
+          ['Obligatorio', NOTIFICA]
+        ]
+      };
+    }
+
+    else if (esc === 'hiper') {
+      r = {
+        sev: 'amber',
+        tag: 'Hiperparasitemia',
+        title: 'Parasitemia > 2 % sin criterios de gravedad: se hospitaliza igual',
+        rows: [
+          ['Conducta', '<strong>Hospitalización con monitoreo frecuente.</strong> Parasitemias superiores al 2 % <strong>aumentan el riesgo de evolucionar a malaria grave</strong>.'],
+          ['Fármaco', 'Si se mantiene estable y sin criterios de gravedad, <strong>el tratamiento de elección es ACT</strong> por su capacidad de reducir rápidamente la parasitemia. <strong>Si no está disponible, inicia atovacuona-proguanil mientras se espera el ACT.</strong>'],
+          ['Umbral siguiente', '<strong>≥ 5 % o &gt; 250.000/µL es criterio de malaria grave</strong> en <em>P. falciparum</em>: a partir de ahí, artesunato intravenoso.'],
+          ['Vigila', 'Monitorización cercana del viajero no inmune <strong>para cambiar eventualmente a terapia parenteral</strong>, y control seriado de parasitemia.'],
+          ['Pide', GOTA + ' ' + LABS],
+          ['Equipo', FARMACO + ' Consulta con infectología.'],
+          ['Obligatorio', NOTIFICA]
+        ]
+      };
+    }
+
+    else if (esc === 'negativa') {
+      r = {
+        sev: 'amber',
+        tag: 'Sospecha persistente, examen negativo',
+        title: 'Una sola muestra negativa no descarta el diagnóstico',
+        rows: [
+          ['Repite', REPETIR],
+          ['Verifica', 'La gota gruesa se informa negativa <strong>tras examinar como mínimo 300 campos</strong>. Si hay dudas sobre la calidad de la lectura, deriva la muestra al laboratorio reconocido o al ISP.'],
+          ['Considera', '<strong>PCR</strong> si está disponible: detecta <strong>infecciones mixtas y densidades parasitarias bajas</strong> no visibles en microscopía ni en prueba rápida, aunque sus resultados no suelen ser rápidos.'],
+          ['No des de alta', 'Con sospecha activa, el paciente <strong>no se va con el estudio pendiente</strong>: define observación, control precoz con resultados en mano y a quién consultar si reaparece la fiebre.'],
+          ['En paralelo', '<strong>Trabaja el diferencial:</strong> dengue y otras arbovirosis, leptospirosis, fiebre tifoidea y, en el grave, meningitis, neumonía y sepsis.'],
+          ['Si se deteriora', '<strong>Con alta sospecha de malaria grave y sin diagnóstico de laboratorio, se inicia artesunato empírico</strong> tras tomar las muestras.'],
+          ['Enlaces', LINK_FIEBRE]
+        ]
+      };
+    }
+
+    else if (esc === 'sinartesunato') {
+      r = {
+        sev: 'red',
+        tag: 'Malaria grave sin el fármaco de primera línea',
+        title: 'Tratamiento oral puente, y el artesunato en camino',
+        rows: [
+          ['Mientras llega', '<strong>Se inicia el tratamiento oral disponible y se administra durante la espera.</strong> De elección, <strong>ACT si está rápidamente disponible</strong>; de no ser el caso, <strong>atovacuona-proguanil lo antes posible</strong>.'],
+          ['Si no tolera oral', '<strong>Antieméticos</strong> para náuseas y vómitos, o <strong>sonda nasogástrica</strong> si hay alteración de la conciencia.'],
+          ['Cuando llegue', '<strong>Se suspende el tratamiento oral y se inicia el artesunato intravenoso.</strong>'],
+          ['En paralelo', FARMACO + ' El artesunato 60 mg inyectable está en los hospitales referentes de <strong>Arica, Iquique, Antofagasta, Rapa Nui, Santiago (HUAP), Temuco y Puerto Montt</strong> (sección 11).'],
+          ['Traslado', 'Si tu centro no puede sostener el soporte de una malaria grave, <strong>activa el traslado ahora</strong>, no cuando el paciente esté demasiado inestable para viajar.'],
+          ['Soporte', FLUIDOS + ' ' + UCI],
+          ['Obligatorio', NOTIFICA]
+        ]
+      };
+    }
+
+    else if (esc === 'sincentro') {
+      r = {
+        sev: 'red',
+        tag: 'Centro sin capacidad diagnóstica ni terapéutica',
+        title: 'Toma la muestra, llama y traslada',
+        rows: [
+          ['Muestra', '<strong>Toma las muestras de sangre y envíalas al centro de referencia</strong>, aunque no puedas procesarlas: la confirmación la realizan el ISP y los laboratorios reconocidos.'],
+          ['Si está grave', '<strong>Con alta sospecha de malaria grave y sin diagnóstico de laboratorio en ese momento, se inicia tratamiento empírico con artesunato</strong>. Si no lo tienes, inicia el oral disponible como puente.'],
+          ['Llama', FARMACO + ' Pregunta por el establecimiento referente que corresponde a tu servicio y por la vía de solicitud fuera de horario hábil.'],
+          ['Traslado', 'Coordina el traslado a un centro con capacidad de microscopía, antimaláricos y cama monitorizada. <strong>Se activa cuando aparece la indicación, no cuando el paciente ya no tolera el viaje.</strong>'],
+          ['Obligatorio', NOTIFICA],
+          ['Enlaces', LINK_SEPSIS]
+        ]
+      };
+    }
+
+    else if (esc === 'recaida') {
+      r = {
+        sev: 'amber',
+        tag: 'Recaída o recurrencia',
+        title: 'Hipnozoítos, falla de tratamiento o reinfección: no son lo mismo',
+        rows: [
+          ['Primero', '<strong>Confirma con gota gruesa y frotis de nuevo</strong>, con recuento. ' + GOTA],
+          ['Hipnozoítos', 'En <em>P. vivax</em> y <em>P. ovale</em> la recaída desde el hígado ocurre <strong>desde las 12 semanas y hasta, raramente, 24 meses</strong>. Pregunta explícitamente <strong>si recibió primaquina, en qué dosis y por cuántos días</strong>: la recaída más frecuente es la del paciente que nunca la recibió o no la completó.'],
+          ['<em>P. malariae</em>', 'No tiene hipnozoítos, pero puede ocasionar <strong>recurrencias clínicas meses o incluso años</strong> después de dejar la región endémica.'],
+          ['Falla terapéutica', 'Si estaba en seguimiento, clasifica según los criterios de la sección 12 (FTT, FCT, FPT). Considera también <strong>adherencia, dosificación, calidad del fármaco y farmacocinética</strong>, no solo resistencia.'],
+          ['Reinfección', 'Pregunta por <strong>nuevos viajes</strong>: en zona endémica, una recurrencia puede ser simplemente una nueva infección.'],
+          ['Después', 'Tratamiento de la fase aguda según especie y gravedad, y <strong>primaquina para la cura radical</strong> con evaluación previa de G6PD (sección 09).'],
+          ['Obligatorio', NOTIFICA]
+        ]
+      };
+    }
+
+    else if (esc === 'falla') {
+      r = {
+        sev: 'amber',
+        tag: 'Seguimiento con mala respuesta',
+        title: 'Clasifica la falla antes de cambiar el fármaco',
+        rows: [
+          ['Clasifica', '<strong>FTT</strong> si hay signos de peligro o malaria grave en los días 1–3 con parasitemia, parasitemia del día 2 mayor que la del día 0, o parasitemia del día 3 con temperatura ≥ 37,5 °C o ≥ 25 % de la del día 0. <strong>FCT</strong> y <strong>FPT</strong> entre los días 4–28 y 7–28 según haya o no fiebre (sección 12).'],
+          ['Investiga', 'Frente a sospecha de falla por resistencia, <strong>realiza, de ser posible, estudios de marcadores genéticos</strong>. El Laboratorio de Referencia de Parasitología del ISP tiene esa capacidad.'],
+          ['No asumas resistencia', 'Considera también <strong>inmunidad adquirida, biomasa inicial del parásito, adherencia, dosificación, calidad del fármaco y farmacocinética</strong>.'],
+          ['Reevalúa gravedad', 'Si aparecen signos de peligro o criterios de gravedad, <strong>esto deja de ser un problema de seguimiento</strong>: artesunato intravenoso y hospitalización.'],
+          ['Avisa', 'Consulta con <strong>infectología o parasitología</strong> antes de cambiar el esquema, e informa al ISP: el seguimiento de eficacia es parte de la vigilancia nacional.'],
+          ['Registra', 'Completa el <strong>Formulario de seguimiento posterior al tratamiento de malaria</strong> del ISP con los controles de los días 2, 3, 7, 14, 21, 28 y 42.']
+        ]
+      };
+    }
+
+    else if (esc === 'embarazada') {
+      r = {
+        sev: 'red',
+        tag: 'Embarazo',
+        title: 'Mayor riesgo de malaria grave y menos fármacos disponibles',
+        rows: [
+          ['Riesgo', 'En el <strong>segundo y tercer trimestre</strong> el riesgo de malaria grave es mayor que en otros adultos; en áreas de baja transmisión puede complicarse con <strong>edema pulmonar e hipoglicemia</strong>. La <strong>mortalidad materna alcanza el 50 %</strong> y la muerte fetal y el parto prematuro son comunes.'],
+          ['Si es grave', '<strong>Artesunato intravenoso, tratamiento de elección en todos los trimestres.</strong> No se posterga ni se sustituye.'],
+          ['Si no es grave', '<strong>Terapia con ACT</strong> —arteméter/lumefantrina puede utilizarse durante todos los trimestres—, porque <strong>la atovacuona-proguanil está contraindicada en el embarazo</strong>. <strong>Si el ACT no está disponible de inmediato, inicia atovacuona-proguanil mientras se espera</strong>: el riesgo de evolucionar a grave pesa más.'],
+          ['Primaquina', '<strong>Contraindicada en el embarazo.</strong> Como alternativa para prevenir recaídas: <strong>cloroquina 2 comprimidos de 250 mg una vez por semana</strong>, hasta completar el parto y la lactancia; después, primaquina para la cura radical —y durante la lactancia solo si el lactante tiene actividad normal de G6PD—.'],
+          ['Equipo', '<strong>Debe ser indicado y supervisado por un especialista.</strong> Avisa a obstetricia desde ahora y coordina con infectología. Evaluación fetal según edad gestacional.'],
+          ['Soporte', FLUIDOS],
+          ['Obligatorio', NOTIFICA + ' ' + FARMACO]
+        ]
+      };
+    }
+
+    if (!r) return null;
+
+    // Un criterio de gravedad reclasifica cualquier escenario
+    const peligro = ['shock', 'neuro', 'respira', 'organo'];
+    if (peligro.includes(est) && r.sev !== 'red') {
+      r.sev = 'red';
+      r.rows = [['Atención', '<strong>Lo que marcaste en «estado clínico» es un criterio de malaria grave</strong> —shock, compromiso de conciencia o convulsiones, edema pulmonar o hipoxemia, ictericia, falla renal o sangrado—. Si no hay otra causa que lo explique, <strong>esto es malaria grave: artesunato intravenoso, hospitalización y unidad crítica</strong>, y la especie deja de ser una prioridad inmediata. Revisa la sección 04.']].concat(r.rows);
+    }
+    if (est === 'vomitos' && esc !== 'sinartesunato') {
+      r.rows = r.rows.concat([['No tolera la vía oral', 'Considera <strong>antieméticos</strong> para náuseas y vómitos o <strong>sonda nasogástrica</strong> si hay alteración de la conciencia. Si el cuadro es grave, la vía es <strong>intravenosa</strong>: artesunato.']]);
+    }
+    return r;
+  }
+
+  function extras() {
+    const out = [];
+    if (f('africa')) out.push(['Viaje a África', 'En el paciente procedente de África, <strong>se debe asumir con alta probabilidad que la especie involucrada será <em>P. falciparum</em></strong>, que se asocia a elevada letalidad: su diagnóstico y tratamiento son una <strong>emergencia médica que requiere intervención inmediata</strong>.']);
+    if (f('americas')) out.push(['Viaje a las Américas', 'Predomina <em>P. vivax</em> —73 % de los casos de la región en 2023—, pero <strong>tanto <em>P. falciparum</em> como <em>P. vivax</em> pueden provocar formas graves</strong>. <em>P. falciparum</em> causó todos los casos autóctonos de <strong>Haití y República Dominicana</strong>.']);
+    if (f('asia')) out.push(['Viaje a Asia u Oceanía', 'Considera <strong><em>P. knowlesi</em></strong> en el Sudeste Asiático: se manifiesta con formas graves y parasitemias altas. Además, <strong>resistencia de <em>P. vivax</em> a la cloroquina</strong> en Papúa Nueva Guinea e Indonesia, y <strong>resistencia parcial a la artemisinina</strong> reportada en el Sudeste Asiático.']);
+    if (f('profilaxis')) out.push(['Tomó profilaxis', '<strong>Usa un fármaco diferente del que recibió como profilaxis.</strong> Los ACT son de elección, pero <strong>no retrases el inicio esperando su disponibilidad</strong>: puede iniciarse con atovacuona-proguanil. Haber tomado profilaxis <strong>no descarta la malaria</strong>.']);
+    if (f('tarde')) out.push(['Más de 3 meses desde el regreso', 'El <strong>98 % de los viajeros con <em>P. falciparum</em> presenta síntomas antes de los 3 meses</strong>; en la malaria no falciparum solo el <strong>57 %</strong>, y puede demorar hasta un año. <strong>La ventana de sospecha es de 12 meses</strong>, y esto hace más probable <em>P. vivax</em>, <em>P. ovale</em> o <em>P. malariae</em>.']);
+    if (f('g6pd')) out.push(['G6PD', '<strong>Evalúa la actividad de G6PD antes de prescribir primaquina:</strong> puede inducir hemólisis. Con deficiencia intermedia (30–70 %), 0,5 mg/kg/día por 14 días; con deficiencia &lt; 30 %, 0,75 mg/kg una vez por semana por 8 semanas, o cloroquina 2 comprimidos de 250 mg semanales por 1 año. <strong>Siempre con control estrecho de la hemólisis y en consulta con parasitología o infectología.</strong>']);
+    if (f('embarazo')) out.push(['Embarazo', '<strong>Artesunato intravenoso en la malaria grave, en todos los trimestres.</strong> En la no complicada, <strong>ACT</strong>: la atovacuona-proguanil está contraindicada —y si no hay ACT de inmediato, se inicia con ella mientras llega—. <strong>Primaquina contraindicada.</strong> Indicación y supervisión por especialista; avisa a obstetricia.']);
+    if (f('citopenias')) out.push(['Trombocitopenia o anemia', 'Son hallazgos frecuentes y <strong>apoyan la sospecha</strong>, no la descartan. Ojo con el criterio de gravedad: <strong>hemoglobina &lt; 7 g/dL o hematocrito &lt; 20 % con recuento de parásitos &gt; 10.000/µL</strong> es anemia malárica grave. En anemia grave, <strong>considerar transfusión de sangre completa fresca y tamizada</strong> cuando sea posible.']);
+    if (f('previa')) out.push(['Episodio previo', 'Pregunta <strong>qué especie, qué fármaco y si recibió primaquina completa</strong>. En <em>P. vivax</em> y <em>P. ovale</em>, la recaída desde hipnozoítos es la explicación más frecuente de un segundo episodio sin nuevo viaje; <em>P. malariae</em> puede recurrir años después. Regístralo en el formulario de seguimiento del ISP.']);
+    return out;
+  }
+
+  function render() {
+    const box = document.getElementById('result');
+    const r = classify();
+    if (!r) {
+      box.className = 'result placeholder';
+      box.innerHTML = 'Selecciona el escenario dominante y el estado clínico para ver qué pedir, con qué tratar, a quién avisar y qué está contraindicado.';
+      return;
+    }
+    const filas = r.rows.concat(extras())
+      .map(row => '<div class="result-row"><span class="result-key">' + row[0] + '</span><span>' + row[1] + '</span></div>')
+      .join('');
+    box.className = 'result sev-' + r.sev;
+    box.innerHTML =
+      '<span class="result-tag">' + r.tag + '</span>' +
+      '<div class="result-title">' + r.title + '</div>' +
+      filas +
+      '<div class="result-row"><span class="result-key">Recuerda</span><span>Este orientador no sustituye el protocolo de tu servicio, la consulta con infectología ni la evaluación presencial. <strong>La malaria no complicada puede progresar rápidamente a grave:</strong> reevalúa los criterios de la sección 04 en cada control.</span></div>';
+  }
+
+  // ── Criterios de malaria grave ────────────────────────────────────
+  const sevBtns = Array.from(document.querySelectorAll('#sev-clin .score-item, #sev-lab .score-item'));
+  const sevOut = document.getElementById('sev-out');
+
+  function renderSev() {
+    const on = sevBtns.filter(b => b.classList.contains('on'));
+    if (on.length === 0) {
+      sevOut.innerHTML = 'Marca los criterios presentes. <strong>Uno solo basta</strong> para definir malaria grave.';
+      return;
+    }
+    const lista = on.map(b => {
+      const c = b.cloneNode(true);
+      const p = c.querySelector('.score-pts');
+      if (p) p.remove();
+      return '<li style="margin-bottom:4px;">' + c.innerHTML.trim() + '</li>';
+    }).join('');
+    sevOut.innerHTML =
+      '<span class="big risk-high">Malaria grave</span>' +
+      '<div style="margin-top:6px;"><strong>' + on.length + ' criterio' + (on.length > 1 ? 's' : '') + ' presente' + (on.length > 1 ? 's' : '') + ':</strong></div>' +
+      '<ul style="margin:6px 0 0 18px; padding:0;">' + lista + '</ul>' +
+      '<div style="margin-top:10px;"><strong>Conducta:</strong> hospitalización y <strong>artesunato intravenoso 2,4 mg/kg a las 0, 12 y 24 horas</strong>, cualquiera sea la especie; ingreso a unidad de cuidados intensivos cuando sea posible. ' +
+      'Si no hay diagnóstico de laboratorio en ese momento, <strong>se toman muestras para el centro de referencia y se inicia artesunato empírico</strong>. ' +
+      '<em>Los criterios cuentan solo si no se identifica otra causa alternativa que los explique; el riesgo de muerte aumenta con las complicaciones múltiples.</em></div>';
+  }
+
+  sevBtns.forEach(b => b.addEventListener('click', () => { b.classList.toggle('on'); renderSev(); }));
+  document.getElementById('sev-reset').addEventListener('click', () => {
+    sevBtns.forEach(b => b.classList.remove('on'));
+    renderSev();
+  });
+
+  // ── Densidad parasitaria ──────────────────────────────────────────
+  const pdPar = document.getElementById('pd-par');
+  const pdLeu = document.getElementById('pd-leu');
+  const pdOut = document.getElementById('pd-out');
+
+  function renderPd() {
+    const par = parseFloat(pdPar.value);
+    const leu = parseFloat(pdLeu.value);
+    if (!(par >= 0) || !(leu > 0)) {
+      pdOut.innerHTML = 'Ingresa el recuento para ver la densidad estimada y los umbrales que cruza.';
+      return;
+    }
+    const d = (par / leu) * 6000;
+    let clase = 'risk-low', nota = '';
+    if (d > 250000) { clase = 'risk-high'; nota = '<strong>Supera 250.000/µL: criterio de malaria grave en <em>P. falciparum</em>.</strong> Artesunato intravenoso.'; }
+    else if (d > 100000) { clase = 'risk-mid'; nota = 'Supera <strong>100.000/µL</strong>: umbral de gravedad en <em>P. knowlesi</em>, y el que acompaña a la <strong>ictericia</strong> en el criterio de <em>P. falciparum</em> —con bilirrubina &gt; 3 mg/dL es malaria grave—.'; }
+    else if (d > 20000) { clase = 'risk-mid'; nota = 'Supera <strong>20.000/µL</strong>: con <strong>ictericia</strong>, criterio de gravedad en <em>P. knowlesi</em>.'; }
+    else if (d > 10000) { clase = 'risk-mid'; nota = 'Supera <strong>10.000/µL</strong>: el umbral que acompaña a la <strong>anemia malárica grave</strong> —hemoglobina &lt; 7 g/dL o hematocrito &lt; 20 %— en el criterio de <em>P. falciparum</em>.'; }
+    else { nota = 'Por debajo de los umbrales de densidad de la tabla de gravedad. <strong>No descarta malaria grave:</strong> los criterios clínicos y de laboratorio pesan por sí solos, y en <em>P. vivax</em>, <em>P. ovale</em> y <em>P. malariae</em> no existen umbrales de densidad parasitaria.'; }
+    const reglas = (leu < 200)
+      ? '<em>El recuento del ISP se hace sobre 200 o 500 leucocitos: con menos de 200 leucocitos contados, la estimación solo es válida si se contaron más de 500 parásitos y se terminó la lectura del último campo.</em>'
+      : (leu < 500 && par < 100)
+        ? '<em>Con menos de 100 parásitos en 200 leucocitos, el ISP indica continuar el recuento hasta 500 leucocitos y recalcular.</em>'
+        : '<em>Recuento consistente con las reglas del ISP.</em>';
+    pdOut.innerHTML =
+      '<span class="big ' + clase + '">' + fmt0(d) + ' parásitos/µL</span>' +
+      '<div style="margin-top:6px;">(' + fmtP(par) + ' ÷ ' + fmtP(leu) + ') × 6.000. ' + reglas + '</div>' +
+      '<div style="margin-top:10px;">' + nota + '</div>' +
+      '<div style="margin-top:10px;"><em>La fórmula asume 6.000 leucocitos/µL: con leucocitosis o leucopenia marcadas se desvía del valor real. El <strong>porcentaje de parasitemia</strong> —que define los umbrales de 2 % y 5 %— se informa sobre eritrocitos y <strong>no se deriva de esta fórmula</strong>: pídelo al laboratorio.</em></div>';
+  }
+
+  pdPar.addEventListener('input', renderPd);
+  pdLeu.addEventListener('input', renderPd);
+  document.getElementById('pd-reset').addEventListener('click', () => { pdPar.value = ''; pdLeu.value = ''; renderPd(); });
+
+  // ── Artesunato por peso ───────────────────────────────────────────
+  const artPeso = document.getElementById('art-peso');
+  const artOut = document.getElementById('art-out');
+
+  function renderArt() {
+    const kg = parseFloat(artPeso.value);
+    if (!kg || kg <= 0 || kg > 250) {
+      artOut.innerHTML = 'Ingresa el peso para ver la dosis por administración, el total de las primeras 24 horas y el número de viales de 60 mg.';
+      return;
+    }
+    const dosis = 2.4 * kg;
+    const viales = Math.ceil(dosis / 60);
+    const filas = [
+      ['Dosis a las 0 h', '2,4 mg/kg', fmt1(dosis) + ' mg', viales + ' vial' + (viales > 1 ? 'es' : '') + ' de 60 mg'],
+      ['Dosis a las 12 h', '2,4 mg/kg', fmt1(dosis) + ' mg', 'Segunda dosis'],
+      ['Dosis a las 24 h', '2,4 mg/kg', fmt1(dosis) + ' mg', 'Tercera dosis: al menos tres se administran siempre'],
+      ['Total primeras 24 h', '3 × 2,4 mg/kg', fmt1(dosis * 3) + ' mg', Math.ceil(dosis * 3 / 60) + ' viales de 60 mg en total'],
+      ['Después', 'Diariamente', fmt1(dosis) + ' mg/día', 'Hasta que tolere la vía oral. Máximo 7 días de terapia']
+    ].map(d =>
+      '<tr><td>' + d[0] + '</td><td><span class="dose-note">' + d[1] + '</span></td>' +
+      '<td><span class="dose-main">' + d[2] + '</span><br><span class="dose-note">' + d[3] + '</span></td></tr>'
+    ).join('');
+    artOut.innerHTML =
+      '<span class="big">Artesunato para ' + fmtP(kg) + ' kg</span>' +
+      '<div class="table-wrap" style="margin-top:8px;"><table><thead><tr><th>Momento</th><th>Regla</th><th>Para este paciente</th></tr></thead><tbody>' + filas + '</tbody></table></div>' +
+      '<div style="margin-top:10px;">El número de viales es el <strong>mínimo entero</strong> que cubre la dosis calculada. ' +
+      'La preparación —bicarbonato de sodio al 5 % y dilución en ~5 mL de glucosado 5 % o cloruro de sodio 0,9 %—, el tiempo de administración y la estabilidad de la solución ' +
+      '<strong>deben verificarse con el inserto del producto y el protocolo institucional</strong>. ' +
+      'Tras el tratamiento intravenoso, el paciente debe recibir un <strong>curso completo de terapia por vía oral</strong>.</div>';
+  }
+
+  artPeso.addEventListener('input', renderArt);
+  document.getElementById('art-reset').addEventListener('click', () => { artPeso.value = ''; renderArt(); });
+
+  // ── Esquemas orales por peso ──────────────────────────────────────
+  const orPeso = document.getElementById('or-peso');
+  const orOut = document.getElementById('or-out');
+
+  function alBanda(kg) {
+    if (kg >= 35) return { comp: 4, mg: '80 + 480' };
+    if (kg >= 25) return { comp: 3, mg: '60 + 360' };
+    if (kg >= 15) return { comp: 2, mg: '40 + 240' };
+    return { comp: 1, mg: '20 + 120' };
+  }
+  function apBanda(kg) {
+    if (kg > 40) return 4;
+    if (kg >= 31) return 3;
+    if (kg >= 21) return 2;
+    return 1;
+  }
+
+  function renderOr() {
+    const kg = parseFloat(orPeso.value);
+    if (!kg || kg <= 0 || kg > 250) {
+      orOut.innerHTML = 'Ingresa el peso para ver el esquema de arteméter/lumefantrina, de atovacuona-proguanil y de cloroquina.';
+      return;
+    }
+    const al = alBanda(kg);
+    const ap = apBanda(kg);
+    const filas = [
+      ['Arteméter/lumefantrina', 'Comprimidos de 20/120 mg', '<span class="dose-main">' + al.comp + ' comprimido' + (al.comp > 1 ? 's' : '') + ' por dosis</span> <span class="dose-note">(' + al.mg + ' mg)</span>', 'Dos veces al día durante tres días: <strong>6 dosis</strong> —la segunda <strong>a las 8 h</strong> de la inicial y luego cada 12 h—. Total: <strong>' + (al.comp * 6) + ' comprimidos</strong>. Con alimentos o leche'],
+      ['Atovacuona-proguanil', 'Comprimidos de 250/100 mg', '<span class="dose-main">' + ap + ' comprimido' + (ap > 1 ? 's' : '') + ' al día</span>', 'Una vez al día durante tres días. Total: <strong>' + (ap * 3) + ' comprimidos</strong>. En el adulto, 4 comprimidos equivalen a 1 g de atovacuona y 400 mg de proguanil al día. Con alimentos o leche'],
+      ['Cloroquina o hidroxicloroquina', 'Dosis fija en el adulto, en mg <strong>base</strong>', '<span class="dose-main">600 → 300 → 300 → 300 mg base</span>', 'Inicial, y luego a las <strong>6, 24 y 48 h</strong>. Con comprimidos de 250 mg de cloroquina difosfato (150 mg base): <strong>4 → 2 → 2 → 2 comprimidos</strong>, 10 en total. <strong>Solo si la especie está confirmada y no es <em>P. falciparum</em></strong>']
+    ].map(d =>
+      '<tr><td>' + d[0] + '</td><td><span class="dose-note">' + d[1] + '</span></td>' +
+      '<td>' + d[2] + '<br><span class="dose-note">' + d[3] + '</span></td></tr>'
+    ).join('');
+    const aviso = (kg < 35)
+      ? '<div style="margin-top:10px;"><em>Con menos de 35 kg la dosis de arteméter/lumefantrina cae en una banda de peso inferior: las bandas provienen de la tabla pediátrica y de adultos del documento. Verifica la presentación y confirma la indicación con infectología.</em></div>'
+      : '';
+    orOut.innerHTML =
+      '<span class="big">Esquemas orales para ' + fmtP(kg) + ' kg</span>' +
+      '<div class="table-wrap" style="margin-top:8px;"><table><thead><tr><th>Esquema</th><th>Presentación</th><th>Para este paciente</th></tr></thead><tbody>' + filas + '</tbody></table></div>' +
+      aviso +
+      '<div style="margin-top:10px;">La cloroquina del adulto es una <strong>dosis fija, no ajustada por peso</strong> —el esquema por kilo (10 mg/kg base y luego 5 mg/kg) es el pediátrico y queda fuera del alcance de esta página—. ' +
+      'En <em>P. vivax</em> y <em>P. ovale</em>, <strong>añade primaquina</strong> tras evaluar la G6PD (sección 09). ' +
+      '<em>Verifica la presentación disponible, las contraindicaciones y las interacciones antes de prescribir.</em></div>';
+  }
+
+  orPeso.addEventListener('input', renderOr);
+  document.getElementById('or-reset').addEventListener('click', () => { orPeso.value = ''; renderOr(); });
+
+  // ── Primaquina por peso ───────────────────────────────────────────
+  const pqPeso = document.getElementById('pq-peso');
+  const pqOut = document.getElementById('pq-out');
+
+  function renderPq() {
+    const kg = parseFloat(pqPeso.value);
+    if (!kg || kg <= 0 || kg > 250) {
+      pqOut.innerHTML = 'Ingresa el peso para ver la dosis total, la duración y los esquemas con deficiencia de G6PD.';
+      return;
+    }
+    const total = 6 * kg;
+    const dias = Math.ceil(total / 30);
+    const inter = 0.5 * kg;
+    const defic = 0.75 * kg;
+    const vivax = (kg >= 70)
+      ? ['<em>P. vivax</em> · paciente ≥ 70 kg', 'Dosis total 6 mg/kg, máximo 30 mg/día', '<span class="dose-main">' + fmt0(total) + ' mg base en total</span>', '<strong>30 mg base al día durante ' + dias + ' días</strong> (2 comprimidos de 15 mg al día) para completar la dosis total']
+      : ['<em>P. vivax</em>', '30 mg base al día', '<span class="dose-main">30 mg base al día · 14 días</span>', '2 comprimidos de 15 mg al día. Total del curso: 420 mg base. <em>El ajuste por dosis total de 6 mg/kg aplica desde los 70 kg</em>'];
+    const filas = [
+      vivax,
+      ['<em>P. ovale</em>', '15 mg base al día', '<span class="dose-main">15 mg base al día · 14 días</span>', '1 comprimido de 15 mg al día'],
+      ['Deficiencia intermedia de G6PD', '0,5 mg/kg/día · 30–70 % de actividad', '<span class="dose-main">' + fmt1(inter) + ' mg base al día</span>', 'Durante 14 días, con <strong>control estrecho de la hemólisis</strong> y en consulta con parasitología o infectología'],
+      ['Deficiencia de G6PD &lt; 30 %', '0,75 mg/kg una vez por semana', '<span class="dose-main">' + fmt1(defic) + ' mg base por semana</span>', 'Durante 8 semanas. Alternativa: <strong>cloroquina 2 comprimidos de 250 mg semanales durante 1 año</strong> desde la infección aguda']
+    ].map(d =>
+      '<tr><td>' + d[0] + '</td><td><span class="dose-note">' + d[1] + '</span></td>' +
+      '<td>' + d[2] + '<br><span class="dose-note">' + d[3] + '</span></td></tr>'
+    ).join('');
+    pqOut.innerHTML =
+      '<span class="big">Primaquina para ' + fmtP(kg) + ' kg</span>' +
+      '<div class="table-wrap" style="margin-top:8px;"><table><thead><tr><th>Situación</th><th>Regla</th><th>Para este paciente</th></tr></thead><tbody>' + filas + '</tbody></table></div>' +
+      '<div style="margin-top:10px;"><strong>Evalúa la G6PD antes de prescribir.</strong> La primaquina está <strong>contraindicada en embarazadas, lactantes menores de 6 meses y personas con deficiencia de G6PD</strong>; ' +
+      'los esquemas ajustados de la tabla se usan solo con control estrecho de la hemólisis y en consulta con un médico parasitólogo o infectólogo. ' +
+      '<em>Las cifras son aritmética sobre el peso ingresado: la indicación, el fraccionamiento con comprimidos de 15 o 7,5 mg y el seguimiento son decisión del médico tratante.</em></div>';
+  }
+
+  pqPeso.addEventListener('input', renderPq);
+  document.getElementById('pq-reset').addEventListener('click', () => { pqPeso.value = ''; renderPq(); });
+
+  renderSev();
+</script>
+<script>
+(function() {
+  var root = document.documentElement, KEY = 'oc-theme';
+  try { var t = localStorage.getItem(KEY); if (t) root.setAttribute('data-theme', t); } catch (e) {}
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function() {
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>

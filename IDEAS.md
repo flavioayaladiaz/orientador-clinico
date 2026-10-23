@@ -1247,7 +1247,8 @@ en su sección temática, porque el agente recorre el archivo en orden.
       esfenopalatina y radiología intervencional**. No existe regla de decisión validada para hospitalizar en
       epistaxis y la página no propone ninguna: el orientador de destino lo dice explícitamente. El contenido es
       **solo para adultos**; del niño se recoge únicamente lo que cambia el manejo inicial y la derivación.
-- [ ] Malaria en el adulto: sospecha, diagnóstico y manejo en urgencia.
+- [x] Malaria en el adulto: sospecha, diagnóstico y manejo en urgencia. —
+      `algoritmo-malaria.html` (algoritmo con orientador interactivo y calculadoras).
       **Documento fuente:** `fuentes/malaria-oott-minsal-2026.pdf`
       (OOTT MINSAL v2.0, Res. Exenta N°1153, 25/09/2026). El PDF es
       escaneado; las primeras páginas son el memo y la resolución, el
@@ -1257,3 +1258,57 @@ en su sección temática, porque el agente recorre el archivo en orden.
       paciente febril con antecedente de viaje a zona endémica, confirmación
       diagnóstica, criterios de malaria grave, tratamiento según especie y
       gravedad, derivación y notificación obligatoria).
+      Se revisó la cobertura previa: la malaria solo aparecía como **sospecha** en
+      `sintoma-fiebre.html` —la rama de viaje a zona endémica, que ya decía «se descarta hoy, no
+      mañana» y «no descartes malaria con una sola muestra negativa»—, sin nada sobre confirmación,
+      criterios de gravedad ni tratamiento, así que es página nueva y la de fiebre pasa a enlazarla
+      desde esa rama y desde los exámenes dirigidos por epidemiología. Se implementó como
+      **algoritmo** y no como checklist porque el problema de la malaria en Chile no es una secuencia
+      de pasos sino una **cadena de decisiones con ramas**: pensar en ella, confirmarla, clasificarla
+      y recién entonces elegir el fármaco. El contenido proviene **íntegramente del documento
+      fuente**, leído completo como imágenes (42 páginas; el cuerpo técnico empieza en la página 11
+      del PDF), sin reemplazar sus definiciones, criterios ni dosis por otras guías. La página se
+      ordena sobre la idea de que **el error no se comete en el tratamiento sino veinte minutos
+      antes**, cuando nadie pregunta por el viaje: en un país sin transmisión local desde 1945 el
+      diagnóstico depende por completo de la anamnesis, y el propio documento señala que la falta de
+      experiencia diagnóstica es la causa del retraso en identificar y tratar. De ahí que las dos
+      secciones con más rendimiento sean la de **la sospecha** —ventana de **12 meses**, no de un
+      mes; 98 % de los viajeros con *P. falciparum* sintomáticos antes de los 3 meses frente a solo
+      57 % en las no falciparum, que pueden demorar un año; **nunca hay exantema**— y la de
+      **confirmación** —gota gruesa como *gold estándar* con mínimo de 300 campos, el frotis para la
+      especie, las PDR que **en Chile por sí solas no constituyen diagnóstico**, y la repetición cada
+      **6–12 h en el grave y 12–24 h en el estable** porque una muestra negativa no descarta—. Las
+      trece secciones: árbol de decisión, sospecha, confirmación, criterios de malaria grave,
+      carga parasitaria, artesunato, medidas generales, esquemas orales, primaquina y G6PD,
+      situaciones especiales, notificación y disponibilidad de fármacos, seguimiento y trampas.
+      Incluye **un orientador interactivo** de once escenarios —entre ellos «no hay artesunato en el
+      centro» y «centro sin microscopía ni antimaláricos»— que cruza escenario, estado clínico y
+      contexto epidemiológico, y que **reclasifica a rojo automáticamente** si el estado clínico
+      marcado es por sí mismo un criterio de gravedad; **un checklist de los 12 criterios de malaria
+      grave de la OMS** (tabla 1 del documento) en el que **uno solo basta**; y **cuatro
+      calculadoras**: densidad parasitaria con la fórmula y las reglas de recuento del ISP
+      —(parásitos ÷ leucocitos) × 6.000, con los umbrales de 250.000, 100.000, 20.000 y 10.000/µL—,
+      artesunato 2,4 mg/kg con el número de viales de 60 mg, los tres esquemas orales por banda de
+      peso y primaquina, incluido el ajuste de dosis total de 6 mg/kg desde los 70 kg y los esquemas
+      por deficiencia de G6PD. Se insiste en lo que el documento dice y la práctica tiende a invertir:
+      **identificar la malaria grave es el primer paso y la especie no es prioridad inmediata**
+      —el tratamiento es el mismo para todas—; **con alta sospecha de malaria grave y sin laboratorio
+      se inicia artesunato empírico** tras tomar las muestras; **la infusión rápida en bolos está
+      contraindicada** (el reflejo de la sepsis hace daño aquí); **sin aspirina ni AINEs**; el
+      artesunato se completa **24 h y tres dosis aunque el paciente tolere antes la vía oral**, y
+      después va un **curso oral completo**; y la **notificación es inmediata y por sospecha**, no
+      por confirmación. Se recogen también los tres hospitales por fármaco del **Anexo 1** —artesunato
+      en Arica, Iquique, Antofagasta, Rapa Nui, HUAP, Temuco y Puerto Montt— **sin reproducir los
+      datos de contacto nominales**, y se deja explícito que el documento cita **dos fechas distintas**
+      para el DS N°7 de notificación obligatoria (12/03/2019 en la resolución y 24/01/2020 en el
+      cuerpo técnico). Pendiente de validación: el **tiempo de infusión, la estabilidad de la solución
+      reconstituida y el inserto del artesunato**; las **dosis y la vía de las benzodiacepinas** en
+      las convulsiones; los **umbrales y el momento de la transfusión**; los **criterios locales de
+      ingreso a unidad crítica**; la **duración del tratamiento oral de continuación** tras el
+      artesunato, que el documento deja en «un curso completo»; el **intervalo de los controles** de
+      glicemia, hematocrito, bicarbonato y función renal en la malaria grave; la **indicación y el
+      manejo de la primaquina en la deficiencia de G6PD**; el **canal y el formulario de notificación**
+      vigentes en cada región, y la **vía de solicitud de los antimaláricos fuera de horario hábil**.
+      El contenido es **solo para adultos**: se omitieron deliberadamente los esquemas pediátricos de
+      arteméter/lumefantrina, atovacuona-proguanil, cloroquina y primaquina y los umbrales pediátricos
+      de gravedad; de la embarazada se recoge solo lo que cambia el manejo inicial y la derivación.
