@@ -683,6 +683,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1334,7 +1339,7 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda de orientación para la atención de urgencia del
-    <strong>adulto</strong>: no reemplaza el juicio clínico ni los protocolos vigentes del servicio.
+    <strong>adulto</strong>: no reemplaza el juicio clínico.
     Las metas de tiempo son referenciales. Los volúmenes de reposición son estimaciones de apoyo y deben
     ajustarse a la respuesta clínica, a la comorbilidad cardíaca y renal y al
     <strong>protocolo institucional</strong>. Los esquemas antimicrobianos dependen del patrón de resistencia
@@ -1344,8 +1349,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Shane AL, et al. <em>2017 Infectious Diseases Society of America Clinical Practice Guidelines for the Diagnosis and Management of Infectious Diarrhea.</em> Clin Infect Dis. 2017;65(12):e45–e80.</div>
       <div class="ref-item">Riddle MS, DuPont HL, Connor BA. <em>ACG Clinical Guideline: Diagnosis, Treatment, and Prevention of Acute Diarrheal Infections in Adults.</em> Am J Gastroenterol. 2016;111(5):602–622.</div>
@@ -1356,7 +1361,7 @@
       <div class="ref-item">Ministerio de Salud de Chile. <em>Decreto N.º 7/2019: Reglamento sobre notificación de enfermedades transmisibles de declaración obligatoria y su vigilancia.</em> Verificar el listado y los plazos vigentes.</div>
       <div class="ref-item">Los volúmenes de rehidratación, la corrección de potasio, los esquemas empíricos y las conductas de notificación deben contrastarse con el protocolo institucional y la normativa sanitaria vigentes.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -1855,5 +1860,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

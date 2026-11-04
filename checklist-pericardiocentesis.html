@@ -593,6 +593,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1621,7 +1626,7 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    <strong>no reemplaza el juicio clínico</strong>, ni el entrenamiento
     presencial en el procedimiento. La <strong>pericardiocentesis de emergencia es un procedimiento de alto riesgo</strong>,
     con complicaciones potencialmente letales (punción miocárdica, lesión coronaria, lesión de la arteria torácica
     interna, neumotórax, arritmias), que requiere competencia demostrada en ecografía en el punto de atención,
@@ -1650,8 +1655,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Osman A, Wan Chuan T, Ab Rahman J, Via G, Tavazzi G. <em>Ultrasound-guided pericardiocentesis: a novel parasternal approach.</em> Eur J Emerg Med. 2018;25(5):322–327. <a href="https://doi.org/10.1097/MEJ.0000000000000471" target="_blank" rel="noopener">DOI: 10.1097/MEJ.0000000000000471</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/28509710/" target="_blank" rel="noopener">PMID 28509710</a> — <strong>Referencia principal de la técnica de esta página.</strong> Serie retrospectiva de 11 pacientes con taponamiento en un servicio de urgencia terciario, tratados con abordaje paraesternal medial-lateral, aguja en plano y transductor lineal de 4–12 MHz (diagnóstico previo con sectorial de 1,7–4 MHz). Umbral de inclusión: derrame &gt; 1 cm en la ventana paraesternal. Procedimiento de ocho pasos en 309 ± 76,4 s; presión sistólica de mediana 53 a 90 mmHg (p = 0,005) y frecuencia de 120 a 98 lpm (p &lt; 0,001); derrame de mediana 20 mm y distancia piel-pericardio de 15 mm (RIC 12–17); primera aspiración de mediana 580 mL y total de 1030 mL; 100 % de éxito y <strong>cero complicaciones</strong>, con mortalidad intrahospitalaria a 30 días de 18 % por causas no relacionadas. Contiene también el test de microburbujas con imagen de «llamarada», las cifras de complicaciones de las técnicas comparadas (estándar ecoguiada 3,5 % menores y 1,2 % mayores; serie subxifoidea 21 %; serie subcostal-apical 1,3 %), el dato de que la aguja no se visualiza de forma continua en 56–75 % de las técnicas ecoguiadas convencionales, y las limitaciones del abordaje (requiere dos transductores; inviable en derrame exclusivamente posterior y en enfisema subcutáneo grave).</div>
       <div class="ref-item">Mohammed NA, Al-Zubairi TA, Al-Soumai MH. <em>A case report on ultrasound-guided pericardiocentesis with a right parasternal approach: a novel in-plane lateral-to-medial technique.</em> Int J Emerg Med. 2024;17(1):15. <a href="https://doi.org/10.1186/s12245-024-00592-7" target="_blank" rel="noopener">DOI: 10.1186/s12245-024-00592-7</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/38302868/" target="_blank" rel="noopener">PMID 38302868</a> — Reporte de un caso (lactante de 14 meses) con la variante paraesternal <em>derecha</em> y trayecto lateral-medial, también en plano y con transductor de alta frecuencia. Describe explícitamente el corredor seguro entre el punto de deslizamiento pleural y los vasos torácicos internos, y sugiere utilidad en derrames loculados alrededor de la aurícula derecha.</div>
@@ -1662,7 +1667,7 @@
       <div class="ref-item">Burlew CC, Moore EE, Moore FA, et al. <em>Western Trauma Association critical decisions in trauma: resuscitative thoracotomy.</em> J Trauma Acute Care Surg. 2012;73(6):1359–1363. <a href="https://doi.org/10.1097/TA.0b013e318270d2df" target="_blank" rel="noopener">DOI: 10.1097/TA.0b013e318270d2df</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/23188227/" target="_blank" rel="noopener">PMID 23188227</a> — Base del desvío del escenario traumático: en el trauma con taponamiento el procedimiento indicado es la toracotomía de reanimación, con indicaciones estratificadas por mecanismo y tiempo de reanimación cardiopulmonar prehospitalaria. No existen ensayos aleatorizados; las recomendaciones se basan en estudios observacionales y opinión experta.</div>
       <div class="ref-item">Referencias localizadas mediante <strong>PubMed</strong>. Los aspectos <strong>convencionales</strong> descritos en esta página y <strong>no respaldados individualmente por estudios de desenlace</strong> son: la prioridad de drenar antes de intubar y el resto de las precauciones para no bajar la precarga (razonamiento fisiológico y consenso de textos de urgencia), la entrada por el borde superior de la costilla inferior, la composición de la caja y del panel de muestras, el drenaje escalonado y el límite de volumen por sesión, el umbral de débito para retirar el catéter, la conducta de no retirar un catéter mal posicionado en el ventrículo fuera de pabellón, y el descrédito de la «corriente de lesión» del electrocardiograma y de la prueba de coagulación de la sangre aspirada como métodos de confirmación. Todos ellos deben contrastarse con el <strong>protocolo institucional vigente</strong>.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -1802,5 +1807,6 @@
 
   swRender();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

@@ -33,15 +33,22 @@ diagnóstica, calculadora, etc).
 5. Toda página nueva debe:
    - Tener una flecha de regreso arriba a la izquierda que lleve a `index.html`
      (convención ya establecida en las páginas existentes).
-   - Agregarse como tarjeta nueva en `index.html`, dentro de la sección
-     correspondiente (crea la sección si no existe todavía).
-   - Incluir el disclaimer de uso clínico (no reemplaza el juicio clínico ni los
-     protocolos vigentes; verificar dosis y contraindicaciones).
+   - Registrarse en `catalogo.js` (entrada nueva en `paginas`), que es la única
+     fuente de la navegación: `index.html` y `area.html` se generan desde ahí y el
+     buscador usa el campo `kw` (sinónimos y nombres coloquiales). **No se agregan
+     tarjetas a mano en `index.html`.** Elige `area`, `grupo` y, si el grupo los
+     tiene, `sub` según la tabla "Dónde va cada página" (más abajo); agrega a
+     `ubic` las entradas adicionales si el tema pertenece a dos lugares. Sube
+     también `nav.css`/`nav.js`/`catalogo.js` en `sw.js` solo si cambian de nombre.
+   - Incluir el disclaimer de uso clínico (no reemplaza el juicio clínico; verificar
+     dosis y contraindicaciones antes de indicar cualquier fármaco). No se
+     menciona «los protocolos vigentes del servicio» ni se usa «administrar».
    - Registrarse en `sw.js` (lista de cache) y subir `CACHE_VERSION`, para que
      funcione sin conexión.
    - Excepción: cuando se crea la página de síntoma de un tema que ya tenía guía,
-     la tarjeta de `index.html` pasa a apuntar a `sintoma-*.html`; la guía sale del
-     index y queda accesible solo desde el enlace "Profundizar →" de esa página.
+     la entrada de `catalogo.js` apunta a `sintoma-*.html`; la guía no se
+     registra en el catálogo y queda accesible solo desde el enlace
+     "Profundizar →" de esa página.
 6. Marca el ítem como hecho (`[x]`) en este archivo, en el mismo commit.
 7. Un commit por día, mensaje claro (ej: `feat: guía de orientación — dolor torácico`).
 8. Push directo a `main` (no se usan PRs en este proyecto).
@@ -52,6 +59,27 @@ diagnóstica, calculadora, etc).
    documento (nombre, institución, número de resolución y fecha) al pie de la
    página creada. Los PDF de `fuentes/` no se agregan a `sw.js`. Si el PDF es
    escaneado (sin texto), léelo como imágenes por tramos de páginas.
+
+### Dónde va cada página (estructura del sitio, rama `giro`)
+
+El landing (`index.html`) tiene un buscador y tres áreas; cada área se abre en
+`area.html?a=<área>`. Clasificación (ids de `catalogo.js`):
+
+| Área | Grupo | Subgrupo | Qué entra |
+|---|---|---|---|
+| `coordinacion` | `respuesta` | — | Plan IMV y organización/respuesta del servicio |
+| `ambulatorio` | `sintomas` | — | Síntomas cardinales (`sintoma-*`) y motivos de consulta frecuentes |
+| `ambulatorio` | `cuadros` | — | Cuadros específicos de manejo ambulatorio (malaria, epistaxis…) |
+| `ambulatorio` | `conductual` | — | Sedación del paciente agitado y urgencias conductuales |
+| `reanimador` | `paro` | `adulto` · `pediatrico` · `neonatal` · `embarazada` | Todo lo de paro y reanimación, por población |
+| `reanimador` | `procedimientos` | — | Procedimientos HALO (todos juntos). Si es además parte del paro, agrega una entrada en `ubic` hacia `paro` |
+| `reanimador` | `patologia` | `cardiovascular` · `respiratorio` · `neurologico` · `endocrino` · `digestivo` · `infeccioso` · `trauma` · `intoxicaciones` | Patología compleja por sistema, más intoxicaciones |
+| `reanimador` | `obstetricia` | — | Urgencias obstétricas (parto, hemorragia posparto, preeclampsia grave…) |
+
+Reanimador navega por botones (categoría → subgrupo → lista; `nav: "botones"` en `catalogo.js`): un grupo nuevo necesita `desc` para su botón.
+
+`tipo` en el catálogo: `procedimiento` (HALO), `algoritmo`, `checklist`, `sintoma`, `plan`.
+Si un grupo o subgrupo nuevo hace falta, se agrega en `areas` de `catalogo.js`.
 
 Puedes agregar ideas nuevas a este archivo en cualquier momento; el agente las
 tomará en orden la próxima vez que corra.
@@ -99,6 +127,15 @@ será reemplazada en el index por su página de la sección "Síntomas cardinale
 - [x] Intoxicaciones graves por bloqueadores de canales de calcio o
       betabloqueadores con shock vasopléjico y cardiogénico —
       `algoritmo-intoxicacion-ccb-betabloqueadores.html`
+- [x] Síndrome de lisis tumoral del adulto (laboratorio y clínico, estratificación de riesgo,
+      prevención, rasburicasa y diálisis) — `algoritmo-lisis-tumoral.html`.
+      Ubicación: Reanimador › Patología compleja › Oncológico. Basado en Howard 2011 (NEJM,
+      PMC3437249), Cairo-Bishop 2004, Cairo 2010, Coiffier 2008 y la ficha técnica de la
+      rasburicasa; solo adultos. Pendiente de validación: la **dosis de alopurinol**
+      (300 mg/día), el **esquema de hiperkalemia** (no detalla dosis), el comentario de
+      seudohiperkalemia, los **umbrales absolutos de la sección 02** frente a la guía
+      institucional, y la **ficha técnica vigente** de la rasburicasa (se consultó la copia
+      de 10/2009).
 
 ## 3. Procedimientos HALO
 

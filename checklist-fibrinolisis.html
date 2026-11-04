@@ -247,6 +247,11 @@
     background: var(--border);
   }
 
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list {
     display: flex;
     flex-direction: column;
@@ -875,8 +880,8 @@
   </div>
 
   <!-- REFERENCES FOOTER -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">O'Gara PT, et al. <em>2013 ACCF/AHA Guideline for the Management of ST-Elevation Myocardial Infarction.</em> J Am Coll Cardiol. 2013;61(4):e78–e140.</div>
       <div class="ref-item">Lawton JS, et al. <em>2025 ACC/AHA/ACEP/NAEMSP/SCAI Guideline for the Management of Patients With Acute Coronary Syndromes.</em> Circulation. 2025. <a href="https://www.ahajournals.org/doi/10.1161/CIR.0000000000001309" target="_blank">DOI: 10.1161/CIR.0000000000001309</a></div>
@@ -886,7 +891,7 @@
       <div class="ref-item">Ministerio de Salud de Chile. <em>Guía Clínica AUGE: Infarto Agudo del Miocardio con Elevación del Segmento ST.</em> MINSAL 2015.</div>
     </div>
 
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -958,5 +963,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

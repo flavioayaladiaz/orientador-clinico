@@ -578,6 +578,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1336,17 +1341,17 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta guía es una ayuda de orientación para la atención de urgencia:
-    no reemplaza el juicio clínico ni los protocolos vigentes del servicio. Las conductas, umbrales de imagen,
+    no reemplaza el juicio clínico. Las conductas, umbrales de imagen,
     esquemas antibióticos y dosis referidas son orientativos para el adulto: verifica el ajuste por función renal
-    y hepática, las interacciones, el embarazo y las contraindicaciones antes de administrar cualquier fármaco,
+    y hepática, las interacciones, el embarazo y las contraindicaciones antes de indicar cualquier fármaco,
     y contrasta las vías de derivación y los criterios quirúrgicos con el protocolo institucional. Los puntajes
     incluidos complementan y no reemplazan la evaluación clínica. El dolor abdominal en el paciente pediátrico
     tiene un diferencial y un enfoque distintos, y se rige por el protocolo correspondiente.
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Alvarado A. <em>A Practical Score for the Early Diagnosis of Acute Appendicitis.</em> Ann Emerg Med. 1986;15(5):557–564.</div>
       <div class="ref-item">Ohle R, et al. <em>The Alvarado Score for Predicting Acute Appendicitis: A Systematic Review.</em> BMC Med. 2011;9:139.</div>
@@ -1364,7 +1369,7 @@
       <div class="ref-item">American College of Radiology. <em>ACR Appropriateness Criteria: Acute Nonlocalized Abdominal Pain; Right Lower Quadrant Pain.</em> Edición vigente. <a href="https://acsearch.acr.org/list" target="_blank" rel="noopener">acsearch.acr.org</a></div>
       <div class="ref-item">Los umbrales de imagen, los esquemas antibióticos, los criterios quirúrgicos y las vías de derivación deben contrastarse con el protocolo institucional vigente.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -1771,5 +1776,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

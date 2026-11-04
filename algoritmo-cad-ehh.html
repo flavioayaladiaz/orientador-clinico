@@ -692,6 +692,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1609,13 +1614,13 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio. Está orientada al
+    <strong>no reemplaza el juicio clínico</strong>. Está orientada al
     <strong>paciente adulto</strong>: la cetoacidosis <strong>pediátrica</strong> tiene velocidades de reposición,
     dosis de insulina, umbrales y un riesgo de edema cerebral distintos, y se rige por sus propias guías (ISPAD),
     igual que la <strong>paciente embarazada</strong> y el paciente en <strong>diálisis</strong>. Las <strong>dosis,
     concentraciones, umbrales y velocidades son orientativas</strong>: verifica la presentación, la dilución y la vía
     de administración de tu servicio, y el ajuste por peso, edad, función renal y hepática, interacciones y
-    contraindicaciones antes de administrar cualquier fármaco. La elección del cristaloide, las velocidades máximas
+    contraindicaciones antes de indicar cualquier fármaco. La elección del cristaloide, las velocidades máximas
     de reposición de potasio por vía periférica y central, la indicación y el esquema de bicarbonato, la reposición
     de fosfato, los criterios de ingreso a unidad crítica, los esquemas de insulina subcutánea y de transición, la
     profilaxis de trombosis y las vías de derivación y traslado deben contrastarse con el <strong>protocolo
@@ -1626,8 +1631,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Umpierrez GE, Davis GM, ElSayed NA, Fadini GP, Galindo RJ, Hirsch IB, Klonoff DC, McCoy RG, Misra S, Gabbay RA, Bannuru RR, Dhatariya KK. <em>Hyperglycemic Crises in Adults With Diabetes: A Consensus Report.</em> Diabetes Care. 2024;47(8):1257–1275. <a href="https://doi.org/10.2337/dci24-0032" target="_blank" rel="noopener">doi:10.2337/dci24-0032</a> — Consenso ADA/EASD/JBDS/AACE/DTS: criterios diagnósticos actualizados, gravedad, fluidos, potasio, insulina, resolución y transición. Publicado también en Diabetologia. 2024;67(8):1455–1479. <a href="https://doi.org/10.1007/s00125-024-06183-8" target="_blank" rel="noopener">doi:10.1007/s00125-024-06183-8</a></div>
       <div class="ref-item">Kitabchi AE, Umpierrez GE, Miles JM, Fisher JN. <em>Hyperglycemic crises in adult patients with diabetes.</em> Diabetes Care. 2009;32(7):1335–1343. <a href="https://doi.org/10.2337/dc09-9032" target="_blank" rel="noopener">doi:10.2337/dc09-9032</a> — Documento ADA previo, base de muchos protocolos institucionales todavía vigentes: umbrales de potasio, esquema de insulina, criterios de resolución y esquema clásico de bicarbonato.</div>
@@ -1637,7 +1642,7 @@
       <div class="ref-item">Agarwal A, Jayashree M, Nallasamy K, Dayal D, Attri SV. <em>0.9% Saline versus Ringer's lactate as initial fluid in children with diabetic ketoacidosis: a double-blind randomized controlled trial.</em> BMJ Open Diabetes Res Care. 2025;13(2):e004623. <a href="https://doi.org/10.1136/bmjdrc-2024-004623" target="_blank" rel="noopener">doi:10.1136/bmjdrc-2024-004623</a> — Menor tiempo de resolución y menos hipercloremia con Ringer lactato en población pediátrica.</div>
       <div class="ref-item">Referencias localizadas mediante PubMed. Las dosis, concentraciones y diluciones de insulina, potasio, fosfato y bicarbonato, las velocidades máximas de reposición, la elección del cristaloide, los criterios de ingreso a unidad crítica, los esquemas de insulina subcutánea y de transición, el manejo de la paciente embarazada, del paciente en diálisis y del paciente pediátrico, y las vías de traslado deben contrastarse con el protocolo institucional vigente y con los equipos de cuidados críticos, endocrinología, nefrología, obstetricia y pediatría de referencia.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -2203,5 +2208,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

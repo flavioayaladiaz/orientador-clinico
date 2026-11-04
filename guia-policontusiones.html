@@ -601,6 +601,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1419,11 +1424,11 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta guía es una ayuda de orientación para la atención de urgencia: no reemplaza el
-    juicio clínico ni los protocolos vigentes del servicio. Está escrita para el <strong>adulto hemodinámicamente
+    juicio clínico. Está escrita para el <strong>adulto hemodinámicamente
     estable</strong> tras un trauma contuso; el paciente inestable, con compromiso fisiológico o con mecanismo de alta
     energía se maneja con la vía de politrauma de la institución. Las conductas, umbrales de imagen y dosis referidas
     son orientativas: verifica el ajuste por función renal y hepática, las interacciones, el embarazo y la lactancia, y
-    las contraindicaciones antes de administrar cualquier fármaco, y contrasta los criterios de imagen, la profilaxis
+    las contraindicaciones antes de indicar cualquier fármaco, y contrasta los criterios de imagen, la profilaxis
     antitetánica, los esquemas de reversión de anticoagulantes y las vías de derivación con el protocolo institucional.
     Las reglas de decisión incluidas complementan y no reemplazan la evaluación clínica: se aplican solo a la población
     en que fueron derivadas y validadas, y no se usan cuando el examen no es confiable. Las obligaciones de
@@ -1432,8 +1437,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">American College of Surgeons Committee on Trauma. <em>Advanced Trauma Life Support (ATLS), Student Course Manual.</em> Edición vigente. — Evaluación primaria y secundaria, examen segmentario y reevaluación.</div>
       <div class="ref-item">Stiell IG, et al. <em>The Canadian CT Head Rule for Patients with Minor Head Injury.</em> Lancet. 2001;357(9266):1391–1396.</div>
@@ -1453,7 +1458,7 @@
       <div class="ref-item">Nogueira-Filho A, et al. y guías vigentes de trauma cervical no penetrante. <em>Screening de lesión cerebrovascular contusa (criterios de Denver y sus modificaciones).</em> — Indicación de angiotomografía de vasos cervicales.</div>
       <div class="ref-item">Los criterios de imagen, los tiempos de observación, los esquemas de reversión de anticoagulantes, la profilaxis antitetánica y las obligaciones de documentación y denuncia deben contrastarse con el protocolo institucional y la normativa local vigente.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -1884,5 +1889,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

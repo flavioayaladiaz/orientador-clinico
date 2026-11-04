@@ -591,6 +591,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1756,7 +1761,7 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    <strong>no reemplaza el juicio clínico</strong>, ni el entrenamiento
     presencial en el procedimiento. La <strong>instalación de un marcapasos transvenoso de emergencia es un
     procedimiento de alto riesgo</strong>, con complicaciones potencialmente mortales —neumotórax, arritmia
     ventricular durante la navegación, perforación del ventrículo derecho con taponamiento, bacteriemia—: leer este
@@ -1778,8 +1783,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Referencias localizadas y verificadas mediante <strong>PubMed</strong>.</div>
       <div class="ref-item">Long B, Bridwell RE, DeVivo A, Gottlieb M. <em>Transvenous Pacemaker Placement: A Review for Emergency Clinicians.</em> J Emerg Med. 2023;66(4):e492–e502. <a href="https://doi.org/10.1016/j.jemermed.2023.11.018" target="_blank" rel="noopener">DOI: 10.1016/j.jemermed.2023.11.018</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/38453595/" target="_blank" rel="noopener">PMID 38453595</a> — <strong>Revisión de referencia de esta página.</strong> Indicaciones (bradicardia sintomática por bloqueo AV y disfunción del nodo sinusal con inestabilidad, sobremarcha en torsades, fracaso del transcutáneo), <strong>yugular interna derecha y subclavia izquierda como sitios óptimos</strong>, avance del catéter con balón hasta obtener captura electromecánica en el ventrículo derecho, <strong>guía ecográfica por ventana subxifoidea o subxifoidea modificada</strong>, <strong>elevación del ST en el registro intracavitario como señal de contacto endocárdico</strong> y enfoque sistemático del fallo de captura.</div>
@@ -1799,7 +1804,7 @@
       <div class="ref-item">Yaqub Y, Perez-Verdia A, Jenkins LA, et al. <em>Temporary Transvenous Cardiac Pacing in Patients With Acute Myocardial Infarction Predicts Increased Mortality.</em> Cardiol Res. 2012;3(1):1–7. <a href="https://doi.org/10.4021/cr111w" target="_blank" rel="noopener">DOI: 10.4021/cr111w</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/28357017/" target="_blank" rel="noopener">PMID 28357017</a> — Setenta y tres marcapasos temporales en cuatro años: solo el <strong>2,46 % de los pacientes con infarto</strong> los requirió, y esos pacientes tuvieron una <strong>mortalidad del 27,6 % frente al 8,9 %</strong> de los infartos que no lo necesitaron. <em>Necesitar un marcapasos temporal en el infarto marca a un grupo de mayor riesgo.</em></div>
       <div class="ref-item">Aspectos <strong>convencionales</strong> descritos aquí y <strong>no respaldados individualmente por estudios de desenlace</strong>: las profundidades de referencia (15–20 cm en aurícula derecha, ~25 cm en la tricúspide, 30–35 cm en el ápex desde la yugular interna derecha, y el ajuste de ~5 cm desde la subclavia izquierda), el avance de 10–15 cm antes de inflar el balón, el volumen de inflado de 1,5 mL, el umbral objetivo de ≤ 1 mA y el límite de ~2 mA para recolocar, el margen de seguridad de 2–3 veces el umbral, la sensibilidad del orden de 2 mV, la frecuencia inicial de 60–80 lpm y la de sobremarcha de 90–110 lpm en torsades, la conexión del electrodo distal a una derivación precordial para el registro intracavitario, el enfriamiento o preformado del catéter, el uso de suero agitado para identificar la punta, el asa de holgura y el objetivo de no superar las 48 horas de permanencia. Provienen de revisiones narrativas, textos de procedimientos, insertos de fabricantes y consenso de expertos, y deben contrastarse con el <strong>kit y el generador disponibles y con el protocolo institucional vigente</strong>.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -1939,5 +1944,6 @@
 
   swRender();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

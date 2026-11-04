@@ -591,6 +591,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1515,7 +1520,7 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    <strong>no reemplaza el juicio clínico</strong>, ni el entrenamiento
     presencial en el procedimiento. La <strong>cantotomía lateral con cantólisis es un procedimiento de alto
     riesgo</strong>, con complicaciones potencialmente irreversibles (lesión del globo ocular, del músculo recto
     lateral y de la glándula lagrimal, hemorragia y malposición palpebral), y está <strong>contraindicada ante
@@ -1541,8 +1546,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Referencias localizadas y verificadas mediante <strong>PubMed</strong>.</div>
       <div class="ref-item">Haubner F, Jägle H, Nunes DP, et al. <em>Orbital compartment: effects of emergent canthotomy and cantholysis.</em> Eur Arch Otorhinolaryngol. 2015;272(2):479–483. <a href="https://doi.org/10.1007/s00405-014-3238-5" target="_blank" rel="noopener">DOI: 10.1007/s00405-014-3238-5</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/25115315/" target="_blank" rel="noopener">PMID 25115315</a> — <strong>Referencia técnica principal de esta página.</strong> Ocho órbitas de 4 cadáveres frescos con síndrome compartimental simulado por inyección de material viscoso y volumetría orbitaria por tomografía. La cantotomía lateral redujo la presión intraocular solo <em>parcialmente</em> en las 8 órbitas; la <strong>cantólisis inferior la bajo de 20 mmHg en 7 de 8</strong>, y en 2 fue necesaria además la cantólisis superior. La septólisis inferior y superior añadidas tras la cantotomía con cantólisis no aportaron beneficio adicional.</div>
@@ -1563,7 +1568,7 @@
       <div class="ref-item">Ujam A, Perry M. <em>Emergency management for orbital compartment syndrome — is decompression mandatory?</em> Int J Oral Maxillofac Surg. 2016;45(11):1435–1437. <a href="https://doi.org/10.1016/j.ijom.2016.08.001" target="_blank" rel="noopener">DOI: 10.1016/j.ijom.2016.08.001</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/27575394/" target="_blank" rel="noopener">PMID 27575394</a> — <strong>Caso discordante, citado por honestidad.</strong> Paciente con proptosis aguda y pérdida visual por aparente hemorragia retrobulbar en su único ojo vidente que no recibió ningún tratamiento y recuperó por completo la visión en 48 horas. Los autores lo usan para señalar que la historia natural del cuadro está mal caracterizada. <em>No modifica la conducta recomendada en esta página.</em></div>
       <div class="ref-item">Aspectos <strong>convencionales</strong> descritos aquí y <strong>no respaldados individualmente por estudios de desenlace</strong>: el clampeo previo del canto con pinza hemostática, la maniobra de «rasgueo» del tendón, el uso de lidocaína con epinefrina y su volumen, dejar la herida abierta con lubricante ocular, la frecuencia de los controles posteriores, el umbral de presión intraocular para dar por exitoso el procedimiento, la preferencia por la cantólisis inferior antes que la superior para proteger la glándula lagrimal, y la contraindicación ante globo abierto. Todos provienen de razonamiento anatómico y consenso de textos de urgencia y oftalmología, y deben contrastarse con el <strong>protocolo institucional vigente</strong>.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -1703,5 +1708,6 @@
 
   swRender();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

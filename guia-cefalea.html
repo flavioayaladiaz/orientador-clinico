@@ -595,6 +595,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1356,9 +1361,9 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta guía es una ayuda de orientación para la atención de urgencia:
-    no reemplaza el juicio clínico ni los protocolos vigentes del servicio. Las conductas, umbrales de imagen y dosis
+    no reemplaza el juicio clínico. Las conductas, umbrales de imagen y dosis
     referidas son orientativas para el adulto: verifica el ajuste por función renal y hepática, las interacciones, el
-    embarazo y la lactancia, y las contraindicaciones antes de administrar cualquier fármaco, y contrasta las
+    embarazo y la lactancia, y las contraindicaciones antes de indicar cualquier fármaco, y contrasta las
     estrategias de estudio de la hemorragia subaracnoidea, los esquemas antimicrobianos y las vías de derivación con
     el protocolo institucional. Las reglas de decisión incluidas complementan y no reemplazan la evaluación clínica:
     se aplican solo a la población en que fueron derivadas y validadas. La cefalea en el paciente pediátrico tiene un
@@ -1366,8 +1371,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Do TP, et al. <em>Red and Orange Flags for Secondary Headaches in Clinical Practice: SNNOOP10 List.</em> Neurology. 2019;92(3):134–144.</div>
       <div class="ref-item">Perry JJ, et al. <em>Clinical Decision Rules to Rule Out Subarachnoid Hemorrhage for Acute Headache.</em> JAMA. 2013;310(12):1248–1255.</div>
@@ -1385,7 +1390,7 @@
       <div class="ref-item">Maguire JL, et al. <em>Giant Cell Arteritis: Diagnosis and Management.</em> Y guías vigentes de reumatología para el inicio precoz de corticoides ante sospecha con compromiso visual.</div>
       <div class="ref-item">Los umbrales de imagen, las estrategias de descarte de hemorragia subaracnoidea, los esquemas farmacológicos y las vías de derivación deben contrastarse con el protocolo institucional vigente.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -1806,5 +1811,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

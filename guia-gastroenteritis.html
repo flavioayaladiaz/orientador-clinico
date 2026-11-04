@@ -511,6 +511,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1225,15 +1230,15 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta guía es una ayuda de orientación para la atención de urgencia:
-    no reemplaza el juicio clínico ni los protocolos vigentes del servicio. Las recomendaciones empíricas
+    no reemplaza el juicio clínico. Las recomendaciones empíricas
     dependen del patrón de resistencia local y de la disponibilidad de fármacos. Verifica dosis, ajuste por
-    función renal y contraindicaciones antes de administrar cualquier fármaco. El manejo pediátrico y el de la
+    función renal y contraindicaciones antes de indicar cualquier fármaco. El manejo pediátrico y el de la
     gestante deben regirse por el protocolo institucional correspondiente.
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Shane AL, et al. <em>2017 Infectious Diseases Society of America Clinical Practice Guidelines for the Diagnosis and Management of Infectious Diarrhea.</em> Clin Infect Dis. 2017;65(12):e45–e80.</div>
       <div class="ref-item">Riddle MS, DuPont HL, Connor BA. <em>ACG Clinical Guideline: Diagnosis, Treatment, and Prevention of Acute Diarrheal Infections in Adults.</em> Am J Gastroenterol. 2016;111(5):602–622.</div>
@@ -1243,7 +1248,7 @@
       <div class="ref-item">Evans L, et al. <em>Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2021.</em> Crit Care Med. 2021;49(11):e1063–e1143.</div>
       <div class="ref-item">Las conductas de notificación, los esquemas empíricos y los volúmenes de rehidratación deben contrastarse con la normativa sanitaria y el protocolo local vigentes.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -1510,5 +1515,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

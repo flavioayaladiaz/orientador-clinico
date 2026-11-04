@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Algoritmo · Síndrome de lisis tumoral</title>
+<meta name="description" content="Árbol de decisión para el síndrome de lisis tumoral del adulto en urgencia: criterios de laboratorio y clínicos de Cairo-Bishop con calculadora, grado de Cairo-Bishop, estratificación de riesgo, prevención según riesgo, hidratación, rasburicasa con calculadora de dosis y metas, manejo de hiperkalemia, hiperfosfatemia e hipocalcemia, criterios de diálisis y seguridad con rasburicasa.">
+<meta name="theme-color" content="#0a0e1a">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2235;
+    --border: rgba(255,255,255,0.07);
+    --teal: #14b8a6;
+    --teal-glow: rgba(20,184,166,0.12);
+    --red: #ef4444;
+    --red-glow: rgba(239,68,68,0.15);
+    --amber: #f59e0b;
+    --amber-glow: rgba(245,158,11,0.12);
+    --emerald: #10b981;
+    --emerald-glow: rgba(16,185,129,0.12);
+    --blue: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.12);
+    --indigo: #6366f1;
+    --indigo-glow: rgba(99,102,241,0.12);
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+    --mono: 'DM Mono', ui-monospace, monospace;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --display: 'Syne', system-ui, sans-serif;
+  }
+
+  :root[data-theme="light"] {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --surface2: #eef1f5;
+    --border: rgba(15,23,42,0.10);
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --text-dim: #475569;
+  }
+  :root[data-theme="light"] body::before {
+    background-image:
+      linear-gradient(rgba(15,23,42,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(20,184,166,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(99,102,241,0.07) 0%, transparent 50%);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* HEADER */
+  .header { margin-bottom: 40px; animation: fadeUp 0.6s ease both; }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 0;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--text); }
+
+  .theme-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+    font-size: 14px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .theme-btn:hover { color: var(--text); border-color: var(--text-muted); }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(20,184,166,0.1);
+    border: 1px solid rgba(20,184,166,0.28);
+    color: #5eead4;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span {
+    background: linear-gradient(135deg, #14b8a6, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .section:hover { box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 40px rgba(0,0,0,0.3); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .section-header:hover { background: rgba(255,255,255,0.02); }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    margin-top: 2px;
+  }
+
+  .section-header > div { flex: 1; min-width: 0; }
+
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
+
+  .section-body { padding: 20px 24px 24px; }
+
+  .s1 .section-num { background: rgba(20,184,166,0.15); color: #5eead4; border: 1px solid rgba(20,184,166,0.2); }
+  .s1 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s2 .section-num { background: rgba(99,102,241,0.12); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.2); }
+  .s2 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s3 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s3 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s4 .section-num { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s4 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s5 .section-num { background: rgba(16,185,129,0.12); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.2); }
+  .s5 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s6 .section-num { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .s6 { --accent: var(--blue); --accent-glow: var(--blue-glow); }
+  .s7 .section-num { background: rgba(20,184,166,0.12); color: #99f6e4; border: 1px solid rgba(20,184,166,0.18); }
+  .s7 { --accent: var(--teal); --accent-glow: var(--teal-glow); }
+  .s8 .section-num { background: rgba(245,158,11,0.12); color: #fcd34d; border: 1px solid rgba(245,158,11,0.2); }
+  .s8 { --accent: var(--amber); --accent-glow: var(--amber-glow); }
+  .s9 .section-num { background: rgba(99,102,241,0.10); color: #c7d2fe; border: 1px solid rgba(99,102,241,0.18); }
+  .s9 { --accent: var(--indigo); --accent-glow: var(--indigo-glow); }
+  .s10 .section-num { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+  .s10 { --accent: var(--red); --accent-glow: var(--red-glow); }
+  .s11 .section-num { background: rgba(16,185,129,0.10); color: #a7f3d0; border: 1px solid rgba(16,185,129,0.18); }
+  .s11 { --accent: var(--emerald); --accent-glow: var(--emerald-glow); }
+  .s12 .section-num { background: rgba(255,255,255,0.06); color: var(--text-dim); border: 1px solid var(--border); }
+  .s12 { --accent: var(--text-dim); --accent-glow: rgba(148,163,184,0.08); }
+
+  /* ORIENTADOR INTERACTIVO */
+  .q-block { margin-bottom: 18px; }
+  .q-block:last-of-type { margin-bottom: 0; }
+
+  .q-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+
+  .opts { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .opt {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-dim);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+  }
+  .opt:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .opt.on {
+    background: rgba(20,184,166,0.12);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .opt:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+  .result {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface2);
+    padding: 18px 20px;
+    border-left: 3px solid var(--accent, var(--teal));
+  }
+  .result.placeholder { color: var(--text-muted); font-size: 13px; font-family: var(--mono); line-height: 1.6; }
+
+  .result-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .result-title {
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .result-row {
+    display: flex;
+    gap: 12px;
+    padding: 9px 0;
+    border-top: 1px solid var(--border);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .result-row:first-of-type { border-top: none; padding-top: 2px; }
+  .result-key {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    flex: 0 0 104px;
+    padding-top: 3px;
+  }
+  .result-row strong { color: #fff; font-weight: 500; }
+  .result-row em { color: #fcd34d; font-style: normal; }
+
+  .result.sev-red { border-left-color: var(--red); }
+  .result.sev-amber { border-left-color: var(--amber); }
+  .result.sev-green { border-left-color: var(--emerald); }
+
+  /* CALCULADORA */
+  .calc {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-top: 16px;
+  }
+  .calc-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .calc-label.second { margin-top: 18px; }
+  .score-list { display: flex; flex-direction: column; gap: 8px; }
+  .score-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    line-height: 1.45;
+  }
+  .score-item:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .score-item.on {
+    background: rgba(20,184,166,0.12);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .score-item:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+  .score-list.gate .score-item.on {
+    background: rgba(245,158,11,0.12);
+    border-color: rgba(245,158,11,0.45);
+    color: #fcd34d;
+  }
+  .score-list.danger .score-item.on {
+    background: rgba(239,68,68,0.12);
+    border-color: rgba(239,68,68,0.45);
+    color: #fca5a5;
+  }
+  .score-pts {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+  .score-item.on .score-pts { color: #5eead4; border-color: rgba(20,184,166,0.4); }
+  .score-list.gate .score-item.on .score-pts { color: #fcd34d; border-color: rgba(245,158,11,0.4); }
+  .score-list.danger .score-item.on .score-pts { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+
+  .calc-out {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+  .calc-out strong { color: #fff; font-weight: 500; }
+  .calc-out em { color: #fcd34d; font-style: normal; }
+  .calc-out .big {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: #93c5fd;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .calc-out .big.risk-low { color: #6ee7b7; }
+  .calc-out .big.risk-mid { color: #fcd34d; }
+  .calc-out .big.risk-high { color: #fca5a5; }
+
+  .calc-reset {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 8px 13px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .calc-reset:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+
+  /* ENTRADA NUMÉRICA */
+  .calc-field { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .calc-field + .calc-field { margin-top: 10px; }
+  .calc-field input {
+    font-family: var(--mono);
+    font-size: 15px;
+    color: #fff;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 11px 14px;
+    width: 130px;
+    -moz-appearance: textfield;
+  }
+  .calc-field input:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: rgba(20,184,166,0.45); }
+  .calc-field .unit {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .toggle-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .toggle-btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .toggle-btn:hover { border-color: rgba(255,255,255,0.18); color: var(--text); }
+  .toggle-btn.on {
+    background: rgba(20,184,166,0.12);
+    border-color: rgba(20,184,166,0.45);
+    color: #5eead4;
+  }
+  .toggle-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+  /* BANNERS */
+  .warning-banner, .info-banner {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .warning-banner {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+    color: #fca5a5;
+  }
+  .info-banner {
+    background: rgba(59,130,246,0.06);
+    border: 1px solid rgba(59,130,246,0.18);
+    color: #bfdbfe;
+  }
+  .warning-banner strong, .info-banner strong { color: #fff; font-weight: 500; }
+  .warning-banner em, .info-banner em { color: #fcd34d; font-style: normal; }
+  .warning-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  /* LISTAS */
+  .plain-list { display: flex; flex-direction: column; gap: 9px; }
+  .plain-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .plain-item strong { color: #fff; font-weight: 500; }
+  .plain-item em { color: #fcd34d; font-style: normal; }
+  .plain-item .bullet-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  .plain-item.flag { background: rgba(239,68,68,0.06); border-color: rgba(239,68,68,0.18); }
+  .plain-item.flag strong { color: #fca5a5; }
+
+  .subhead {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 20px 0 10px;
+  }
+  .subhead:first-child { margin-top: 0; }
+
+  /* CRONOLOGÍA */
+  .timeline { display: flex; flex-direction: column; gap: 10px; }
+  .tl-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 13px 15px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    border-radius: 11px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .tl-time {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: #fca5a5;
+    flex: 0 0 74px;
+    padding-top: 2px;
+  }
+  .tl-item strong { color: #fff; font-weight: 500; }
+  .tl-item em { color: #fcd34d; font-style: normal; }
+
+  /* TABLAS */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dim);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td .dose-main { color: #fff; font-weight: 500; }
+  td .dose-note { color: var(--text-muted); font-size: 12px; font-family: var(--mono); }
+  td em { color: #fcd34d; font-style: normal; }
+  td strong { color: #fff; font-weight: 500; }
+
+  /* ENLACE INTERNO */
+  .cross-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    padding: 11px 16px;
+    border-radius: 11px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.08);
+    color: #5eead4;
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
+
+  .link-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* ÁRBOL DE DECISIÓN */
+  .flow { display: flex; flex-direction: column; gap: 10px; }
+  .flow-node {
+    position: relative;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--text-muted);
+    background: rgba(255,255,255,0.02);
+    padding: 12px 15px;
+    font-size: 13.5px;
+    font-weight: 300;
+    line-height: 1.55;
+    color: var(--text-dim);
+  }
+  .flow-node strong { color: #fff; font-weight: 500; }
+  .flow-node em { color: #fcd34d; font-style: normal; }
+  .flow-q {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .flow-node.stop { border-left-color: var(--red); background: rgba(239,68,68,0.06); }
+  .flow-node.stop .flow-q { color: #fca5a5; }
+  .flow-node.go { border-left-color: var(--emerald); background: rgba(16,185,129,0.05); }
+  .flow-node.go .flow-q { color: #6ee7b7; }
+  .flow-node.hold { border-left-color: var(--amber); background: rgba(245,158,11,0.05); }
+  .flow-node.hold .flow-q { color: #fcd34d; }
+  .flow-node.ask { border-left-color: var(--blue); background: rgba(59,130,246,0.05); }
+  .flow-node.ask .flow-q { color: #93c5fd; }
+  .flow-branch {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 10px;
+    padding-left: 16px;
+    border-left: 2px dashed rgba(255,255,255,0.10);
+  }
+
+  /* DISCLAIMER */
+  .note {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber);
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-dim);
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .note strong { color: var(--text); font-weight: 500; }
+
+  /* REFERENCIAS */
+  .references-footer {
+    margin-top: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 16px 20px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+  .references-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
+  .references-list { display: flex; flex-direction: column; gap: 5px; }
+  .ref-item {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .ref-item::before { content: '·'; position: absolute; left: 0; color: var(--amber); }
+  .ref-item a { color: #60a5fa; text-decoration: none; }
+  .ref-item a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 100px; }
+
+  @media (max-width: 600px) {
+    .wrapper { padding: 32px 16px 60px; }
+    .section-body { padding: 16px; }
+    .section-header { padding: 16px; }
+    th, td { padding: 10px 12px; }
+    .opt { width: 100%; }
+    .result-row { flex-direction: column; gap: 4px; }
+    .result-key { flex: none; padding-top: 0; }
+    .tl-item { flex-direction: column; gap: 6px; }
+    .tl-time { flex: none; }
+    .score-item { align-items: flex-start; }
+  }
+  .q-block.off { opacity: 0.4; }
+  .q-block.off .q-label::after { content: ' · no aplica con ≥ 2 alteraciones'; text-transform: none; letter-spacing: 0; }
+</style>
+</head>
+
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <a class="back-link" href="./index.html">← Volver</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Cambiar tema claro u oscuro">◐</button>
+    </div>
+    <div class="header-badge">Patología compleja · Algoritmo</div>
+    <h1>Síndrome de lisis tumoral <span>del laboratorio al riñón protegido</span></h1>
+    <p class="header-sub">
+      El síndrome de lisis tumoral ocurre cuando las células malignas liberan su contenido a la sangre
+      —<strong>potasio, fósforo y ácidos nucleicos que terminan como ácido úrico</strong>— más rápido de lo que el
+      organismo puede eliminarlo. Aparece sobre todo en las horas o días que siguen al inicio del tratamiento,
+      pero también puede ser espontáneo, y se ve cada vez más en tumores que antes casi no lo causaban. En el box
+      se deciden <strong>tres cosas</strong>. Primero, <strong>si el paciente ya lo tiene</strong>, de laboratorio
+      o clínico. Segundo, <strong>qué riesgo tiene</strong> si todavía no. Tercero, <strong>qué hay que proteger
+      primero</strong>: el riñón, que se pierde despacio y se pierde con ácido úrico y fosfato, y el corazón, porque
+      <strong>lo que mata de forma súbita es el potasio</strong>. Lo que más daño hace es casi siempre lo que no se
+      hizo a tiempo: <strong>no sospecharlo, no hidratar antes del tratamiento y no vigilar</strong>. Esta página está
+      escrita para el adulto.
+    </p>
+  </div>
+
+  <!-- 01 · ÁRBOL DE DECISIÓN -->
+  <div class="section s1" id="s1" style="animation-delay:0.06s;">
+    <div class="section-header" onclick="toggleSection('s1')">
+      <span class="section-num">01</span>
+      <div>
+        <div class="section-title">Árbol de decisión</div>
+        <div class="section-subtitle">Laboratorio → masa tumoral → potencial de lisis → paciente</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>Responde en orden. El resultado entrega el <strong>nivel de riesgo</strong> y lo que corresponde:
+        hidratación, hipouricemiante, monitoreo, frecuencia del laboratorio y destino. Si ya tienes los valores de
+        laboratorio, usa primero la <strong>calculadora de la sección 02</strong> para saber si cumple criterios.
+        No sustituye el protocolo de tu servicio ni la evaluación del hematólogo u oncólogo.</span>
+      </div>
+
+      <div class="q-block">
+        <div class="q-label">1 · Laboratorio ahora (potasio, fósforo, calcio, ácido úrico)</div>
+        <div class="opts" id="q-lab">
+          <button type="button" class="opt" data-v="lab0">Ninguna alteración, o <strong>solo una</strong></button>
+          <button type="button" class="opt" data-v="lab2"><strong>Dos o más</strong> alteraciones simultáneas, sin complicaciones clínicas</button>
+          <button type="button" class="opt" data-v="clin">Dos o más alteraciones <strong>y</strong> creatinina en ascenso, arritmia, convulsión o hipocalcemia sintomática</button>
+        </div>
+      </div>
+
+      <div class="q-block" id="blk-masa">
+        <div class="q-label">2 · Masa tumoral</div>
+        <div class="opts" id="q-masa">
+          <button type="button" class="opt" data-v="peq">Pequeña o resecada: tumor localizado</button>
+          <button type="button" class="opt" data-v="med">Intermedia</button>
+          <button type="button" class="opt" data-v="gra">Grande: tumor voluminoso, infiltración de órganos o médula ósea reemplazada por tumor</button>
+        </div>
+      </div>
+
+      <div class="q-block" id="blk-pot">
+        <div class="q-label">3 · Potencial de lisis (del tumor y del tratamiento)</div>
+        <div class="opts" id="q-pot">
+          <button type="button" class="opt" data-v="bajo">Bajo: tumor indolente o tratamiento de efecto citotóxico limitado</button>
+          <button type="button" class="opt" data-v="medio">Intermedio o desconocido</button>
+          <button type="button" class="opt" data-v="alto">Alto: tumor muy proliferativo y quimiosensible —linfoma de Burkitt, linfoma linfoblástico, leucemia linfoblástica aguda— o terapia de inducción intensiva</button>
+        </div>
+      </div>
+
+      <div class="q-block" id="blk-pac">
+        <div class="q-label">4 · Paciente (marca los que apliquen; solo cuenta con masa intermedia y potencial intermedio)</div>
+        <div class="opts" id="q-pac">
+          <button type="button" class="opt" data-v="nefro">Nefropatía previa o insuficiencia renal</button>
+          <button type="button" class="opt" data-v="deshid">Deshidratación</button>
+          <button type="button" class="opt" data-v="acidosis">Acidosis</button>
+          <button type="button" class="opt" data-v="hipotension">Hipotensión</button>
+          <button type="button" class="opt" data-v="nefrotox">Exposición a nefrotóxicos</button>
+          <button type="button" class="opt" data-v="ninguno">Ninguno de los anteriores</button>
+        </div>
+      </div>
+
+      <div class="result placeholder" id="result">
+        Marca el estado del laboratorio para ver el nivel de riesgo, qué indicar, cada cuánto pedir exámenes y
+        dónde debe estar el paciente.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 02 · ¿TIENE SLT? -->
+  <div class="section s2" id="s2" style="animation-delay:0.12s;">
+    <div class="section-header" onclick="toggleSection('s2')">
+      <span class="section-num">02</span>
+      <div>
+        <div class="section-title">¿Tiene síndrome de lisis tumoral? Calculadora de criterios</div>
+        <div class="section-subtitle">Cairo-Bishop · dos o más alteraciones simultáneas · laboratorio o clínico</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Parámetro</th><th>Criterio de anormalidad (adulto)</th></tr></thead>
+          <tbody>
+            <tr><td>Ácido úrico</td><td><span class="dose-main">≥ 8 mg/dL</span> <span class="dose-note">(476 µmol/L)</span></td></tr>
+            <tr><td>Potasio</td><td><span class="dose-main">≥ 6,0 mmol/L</span></td></tr>
+            <tr><td>Fósforo</td><td><span class="dose-main">≥ 4,5 mg/dL</span> <span class="dose-note">(1,45 mmol/L)</span></td></tr>
+            <tr><td>Calcio</td><td><span class="dose-main">≤ 7,0 mg/dL</span> <span class="dose-note">(1,75 mmol/L) · calcio total; con albúmina baja, corregido o iónico</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-banner" style="margin-top:14px;">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>SLT de laboratorio:</strong> dos o más de estas alteraciones <strong>al mismo tiempo</strong>,
+        entre 3 días antes y 7 días después de iniciar el tratamiento. <strong>SLT clínico:</strong> SLT de
+        laboratorio <strong>más</strong> creatinina ≥ 1,5 veces el límite superior normal, arritmia o muerte súbita,
+        convulsión o <strong>hipocalcemia sintomática</strong>. El criterio original incluye además un cambio de
+        ≥ 25 % respecto del basal; hay autores que lo descartan porque rara vez importa mientras el valor esté
+        dentro del rango normal. <strong>Esta calculadora usa solo los valores absolutos.</strong></span>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Criterios de laboratorio · calculadora</div>
+        <div class="calc-label second" style="margin-top:2px;">Ingresa los valores que tengas; los que dejes en blanco no se cuentan y la calculadora lo avisa.</div>
+
+        <div class="calc-field">
+          <input type="number" id="lt-ua" min="0" max="40" step="0.1" inputmode="decimal" placeholder="9,5">
+          <span class="unit">ácido úrico · mg/dL</span>
+        </div>
+        <div class="calc-field">
+          <input type="number" id="lt-k" min="1" max="10" step="0.1" inputmode="decimal" placeholder="5,8">
+          <span class="unit">potasio · mmol/L</span>
+        </div>
+        <div class="calc-field">
+          <input type="number" id="lt-p" min="0" max="25" step="0.1" inputmode="decimal" placeholder="5,2">
+          <span class="unit">fósforo · mg/dL</span>
+        </div>
+        <div class="calc-field">
+          <input type="number" id="lt-ca" min="2" max="16" step="0.1" inputmode="decimal" placeholder="6,8">
+          <span class="unit">calcio · mg/dL</span>
+        </div>
+
+        <div class="calc-label" style="margin-top:14px;">Criterios clínicos</div>
+        <div class="calc-field">
+          <input type="number" id="lt-cr" min="0.1" max="30" step="0.01" inputmode="decimal" placeholder="1,9">
+          <span class="unit">creatinina actual · mg/dL</span>
+        </div>
+        <div class="calc-field">
+          <input type="number" id="lt-lsn" min="0.3" max="3" step="0.01" inputmode="decimal" placeholder="1,2">
+          <span class="unit">límite superior normal de creatinina de tu laboratorio · mg/dL</span>
+        </div>
+        <div class="toggle-row" style="margin-top:8px;">
+          <button type="button" class="toggle-btn" id="lt-arr">Arritmia o muerte súbita</button>
+          <button type="button" class="toggle-btn" id="lt-conv">Convulsión</button>
+          <button type="button" class="toggle-btn" id="lt-hipoca">Hipocalcemia sintomática (tetania, QT largo, parestesias)</button>
+        </div>
+
+        <div class="calc-out" id="lt-out">Ingresa los parámetros disponibles.</div>
+        <button type="button" class="calc-reset" id="lt-reset">Limpiar</button>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Una sola alteración con arritmia o convulsión no es «SLT» por definición, pero sigue
+        siendo una emergencia metabólica</strong>: trátala igual. Y mide siempre el potasio como si pudiera
+        subir: en este síndrome la hiperkalemia es el componente que puede matar en horas.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 03 · GRADO DE CAIRO-BISHOP -->
+  <div class="section s3" id="s3" style="animation-delay:0.18s;">
+    <div class="section-header" onclick="toggleSection('s3')">
+      <span class="section-num">03</span>
+      <div>
+        <div class="section-title">Gravedad: grado de Cairo-Bishop</div>
+        <div class="section-subtitle">Creatinina · arritmia · convulsión · el peor componente define el grado</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span>El grado se asigna <strong>solo si hay criterios de laboratorio</strong>. Cada componente tiene su
+        escala y <strong>el grado del paciente es el del componente más alto</strong>. El grado V es la muerte.
+        Sirve para comunicar la gravedad y seguir la evolución; <strong>cualquier grado ≥ I es SLT clínico</strong> y
+        se maneja como tal.</span>
+      </div>
+
+      <div class="calc">
+        <div class="calc-label">Grado de Cairo-Bishop · calculadora</div>
+
+        <div class="calc-label second">Criterios de laboratorio</div>
+        <div class="toggle-row">
+          <button type="button" class="toggle-btn" id="gr-lab">Hay criterios de laboratorio (≥ 2 alteraciones)</button>
+        </div>
+
+        <div class="calc-label second">Creatinina, en veces el límite superior normal</div>
+        <div class="opts" id="gr-cr">
+          <button type="button" class="opt" data-v="0">&lt; 1,5</button>
+          <button type="button" class="opt" data-v="1">1,5</button>
+          <button type="button" class="opt" data-v="2">&gt; 1,5 a 3,0</button>
+          <button type="button" class="opt" data-v="3">&gt; 3,0 a 6,0</button>
+          <button type="button" class="opt" data-v="4">&gt; 6,0</button>
+        </div>
+
+        <div class="calc-label second">Arritmia cardíaca</div>
+        <div class="opts" id="gr-arr">
+          <button type="button" class="opt" data-v="0">Ninguna</button>
+          <button type="button" class="opt" data-v="1">No requiere intervención</button>
+          <button type="button" class="opt" data-v="2">Requiere intervención médica no urgente</button>
+          <button type="button" class="opt" data-v="3">Sintomática y no controlada del todo, o controlada con dispositivo (p. ej., desfibrilador)</button>
+          <button type="button" class="opt" data-v="4">Amenaza la vida: con insuficiencia cardíaca, hipotensión, síncope o shock</button>
+        </div>
+
+        <div class="calc-label second">Convulsión</div>
+        <div class="opts" id="gr-conv">
+          <button type="button" class="opt" data-v="0">Ninguna</button>
+          <button type="button" class="opt" data-v="2">Una convulsión generalizada breve bien controlada, o crisis motoras focales infrecuentes</button>
+          <button type="button" class="opt" data-v="3">Con alteración de conciencia, o crisis generalizadas a pesar del tratamiento</button>
+          <button type="button" class="opt" data-v="4">Prolongada, repetitiva o difícil de controlar (estado epiléptico)</button>
+        </div>
+
+        <div class="calc-out" id="gr-out">Marca los componentes para calcular el grado.</div>
+        <button type="button" class="calc-reset" id="gr-reset">Limpiar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 04 · ESTRATIFICACIÓN DE RIESGO -->
+  <div class="section s4" id="s4" style="animation-delay:0.24s;">
+    <div class="section-header" onclick="toggleSection('s4')">
+      <span class="section-num">04</span>
+      <div>
+        <div class="section-title">Estratificación de riesgo</div>
+        <div class="section-subtitle">Masa tumoral · potencial de lisis · características del paciente</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="subhead">Qué define el riesgo</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Factor</th><th>Qué mirar</th></tr></thead>
+          <tbody>
+            <tr><td>Laboratorio</td><td>Si ya hay <strong>dos o más alteraciones</strong>, el paciente pasa directo a <strong>alto riesgo</strong>; si además hay complicación clínica, es un SLT clínico establecido</td></tr>
+            <tr><td>Masa tumoral</td><td>Pequeña o resecada · intermedia · <strong>grande</strong>: tumor voluminoso, infiltración de órganos o médula ósea reemplazada por tumor. A más masa, más contenido celular liberado cuando el tratamiento funciona</td></tr>
+            <tr><td>Potencial de lisis</td><td>Tipo de neoplasia, <strong>velocidad de proliferación</strong>, <strong>sensibilidad al tratamiento</strong> y <strong>tratamiento inicial</strong>. Lo alto: linfomas agresivos, leucemias agudas, terapias de inducción intensivas o muy eficaces. Lo bajo: tumores indolentes y tratamientos de efecto limitado</td></tr>
+            <tr><td>Paciente</td><td><strong>Nefropatía previa</strong>, <strong>deshidratación</strong>, <strong>acidosis</strong>, <strong>hipotensión</strong> y exposición a <strong>nefrotóxicos</strong>. Sin riñón que excrete, la misma carga metabólica produce SLT clínico</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Riesgo con laboratorio sin alteración o con una sola alteración</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Masa tumoral</th><th>Lisis baja</th><th>Lisis intermedia o desconocida</th><th>Lisis alta</th></tr></thead>
+          <tbody>
+            <tr><td>Pequeña o resecada</td><td colspan="3"><strong>Riesgo despreciable</strong> con cualquier potencial de lisis</td></tr>
+            <tr><td>Intermedia</td><td>Bajo</td><td>Bajo si el paciente no tiene factores de la lista · <strong>intermedio</strong> si los tiene</td><td><strong>Alto</strong></td></tr>
+            <tr><td>Grande</td><td>Bajo</td><td><strong>Intermedio</strong></td><td><strong>Alto</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>No es solo un problema de linfomas y leucemias.</strong> El síndrome se describe cada vez más
+        en tumores que casi nunca lo causaban —cáncer de endometrio, hepatocarcinoma, leucemia linfática y mieloide
+        crónicas— cuando reciben un tratamiento eficaz, y se han descrito muertes en pacientes con tumores sólidos
+        a quienes no se hidrató ni se vigiló <strong>porque nadie lo esperaba</strong>. También puede ser
+        <strong>espontáneo</strong>, antes de cualquier tratamiento. La pregunta no es el diagnóstico oncológico:
+        es <strong>qué tratamiento eficaz recibe y qué riñón tiene</strong>.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 05 · PREVENCIÓN SEGÚN RIESGO -->
+  <div class="section s5" id="s5" style="animation-delay:0.30s;">
+    <div class="section-header" onclick="toggleSection('s5')">
+      <span class="section-num">05</span>
+      <div>
+        <div class="section-title">Prevención según riesgo</div>
+        <div class="section-subtitle">Hidratación para todos · rasburicasa en alto riesgo · laboratorio según nivel</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="info-banner">
+        <span class="warning-icon">ℹ️</span>
+        <span><strong>La mejor forma de tratar el síndrome es prevenirlo.</strong> Todo paciente en riesgo recibe
+        hidratación intravenosa para mejorar la perfusión renal, mantener la diuresis y evitar la acidosis. Lo que
+        cambia con el riesgo es el hipouricemiante y la intensidad de la vigilancia.</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Riesgo</th><th>Hidratación</th><th>Ácido úrico</th><th>Vigilancia</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Despreciable</td>
+              <td>Sin medidas especiales</td>
+              <td>Sin profilaxis</td>
+              <td>Sin monitoreo especial; reevalúa si cambia el tratamiento o el cuadro</td>
+            </tr>
+            <tr>
+              <td>Bajo</td>
+              <td>Hidratación intravenosa</td>
+              <td>Alopurinol, o ninguno según protocolo</td>
+              <td>Laboratorio <strong>una vez al día</strong></td>
+            </tr>
+            <tr>
+              <td>Intermedio</td>
+              <td>Hidratación intravenosa</td>
+              <td>Alopurinol <strong>o</strong> rasburicasa. No hay consenso sobre rasburicasa en este grupo; algunos usan dosis pequeñas</td>
+              <td>Hospitalizado; laboratorio <strong>cada 8 a 12 horas</strong></td>
+            </tr>
+            <tr>
+              <td>Alto</td>
+              <td><span class="dose-main">2500 a 3000 mL/m²/día</span></td>
+              <td><strong>Rasburicasa</strong> de primera línea</td>
+              <td>Monitoreo cardíaco continuo; laboratorio <strong>cada 4 a 6 horas</strong> (algunos esquemas aceptan 6 a 8)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subhead">Reglas que valen para todos los niveles</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💧</span><span><strong>La hidratación es la base de la prevención en todos los niveles de riesgo.</strong> Si la diuresis sigue baja con el volumen ya optimizado, se agrega un <strong>diurético de asa</strong> con meta de diuresis de al menos <strong>2 mL/kg/h</strong>. Registra la diuresis y el balance con frecuencia; la diuresis es el parámetro clave para vigilar.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">🚫</span><span><strong>No alcalinices la orina.</strong> Sube la solubilidad del ácido úrico pero baja la del fosfato de calcio, y el fósforo es más difícil de corregir que el ácido úrico. Si se usó, se suspende al aparecer hiperfosfatemia. Con rasburicasa disponible no hay razón para hacerlo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🍽️</span><span><strong>Limita el potasio y el fósforo</strong> de la ingesta durante el período de riesgo, y no agregues potasio a los fluidos mientras dure.</span></div>
+        <div class="plain-item"><span class="bullet-icon">⏱️</span><span><strong>El período de riesgo depende del esquema de tratamiento y puede ser más largo de lo que se cree:</strong> en un protocolo de leucemia linfoblástica con metotrexato inicial, el síndrome apareció en algunos pacientes al día 6 o 7 de la inducción. Mantén la vigilancia durante todo el período de riesgo, no solo las primeras 48 horas.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💊</span><span><strong>Alopurinol: dosis habitual del adulto 300 mg/día (100 mg cada 8 horas) por vía oral</strong>, idealmente desde uno o dos días antes del tratamiento, con ajuste por función renal. <em>Verificar la dosis con el protocolo institucional.</em> Evita que se forme más ácido úrico, pero <strong>no elimina el que ya está</strong>: puede tardar dos días o más en bajarlo, y acumula xantina, de baja solubilidad.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧪</span><span><strong>Prefase de baja intensidad.</strong> En tumores de alto riesgo, el oncólogo puede iniciar un tratamiento suave durante una semana para que la lisis sea más lenta. Es una decisión suya; pregúntala si el paciente llega antes de empezar.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 06 · DOSIS Y METAS -->
+  <div class="section s6" id="s6" style="animation-delay:0.36s;">
+    <div class="section-header" onclick="toggleSection('s6')">
+      <span class="section-num">06</span>
+      <div>
+        <div class="section-title">Hidratación, diuresis y rasburicasa: calculadora de dosis y metas</div>
+        <div class="section-subtitle">Superficie corporal · volumen · diuresis mínima · dosis de rasburicasa</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="calc">
+        <div class="calc-label">Dosis y metas · calculadora</div>
+        <div class="calc-field">
+          <input type="number" id="dm-peso" min="30" max="250" step="0.1" inputmode="decimal" placeholder="72">
+          <span class="unit">peso · kg</span>
+        </div>
+        <div class="calc-field">
+          <input type="number" id="dm-talla" min="100" max="230" step="1" inputmode="decimal" placeholder="170">
+          <span class="unit">talla · cm</span>
+        </div>
+        <div class="calc-out" id="dm-out">Ingresa peso y talla. La superficie corporal se calcula con la fórmula de Mosteller.</div>
+        <button type="button" class="calc-reset" id="dm-reset">Limpiar</button>
+      </div>
+
+      <div class="warning-banner" style="margin-top:14px;">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Verifica estas cifras con tu protocolo y con farmacia antes de indicar.</strong> La dosis de
+        0,2 mg/kg diarios hasta 5 días es la de la ficha técnica; hay estudios de dosis fijas más bajas —por
+        ejemplo, 1,5 mg— en adultos, pero son de un solo centro, sin comparación aleatorizada y <strong>sin
+        consenso</strong>. Si tu servicio usa un esquema distinto, rige el de tu servicio. Con
+        <strong>insuficiencia cardíaca, renal oligúrica o edema pulmonar</strong>, el volumen de hidratación se
+        decide con la unidad crítica y nefrología, no con la fórmula.</span>
+      </div>
+
+      <div class="subhead">Cómo se prepara y se administra la rasburicasa</div>
+      <div class="plain-list">
+        <div class="plain-item"><span class="bullet-icon">💉</span><span>Reconstituir cada vial con su diluyente: <strong>1 mL para el vial de 1,5 mg y 5 mL para el de 7,5 mg</strong>; mezclar girando suavemente, <strong>sin agitar</strong>. Queda a <strong>1,5 mg/mL</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧴</span><span>Inyectar la dosis calculada en una bolsa de <strong>suero fisiológico 0,9 %</strong> hasta un <strong>volumen total de 50 mL</strong> y pasar en <strong>30 minutos</strong>, por una vía aparte o lavando antes y después con al menos 15 mL de suero. <strong>Sin filtros</strong> y <strong>nunca en bolo</strong>.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🧊</span><span>La solución reconstituida o diluida se guarda entre <strong>2 y 8 °C</strong> y se descarta a las <strong>24 horas</strong>. Se usa en <strong>un solo ciclo de tratamiento</strong>.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 07 · TRATAMIENTO ESTABLECIDO -->
+  <div class="section s7" id="s7" style="animation-delay:0.42s;">
+    <div class="section-header" onclick="toggleSection('s7')">
+      <span class="section-num">07</span>
+      <div>
+        <div class="section-title">Síndrome establecido: qué hacer con cada alteración</div>
+        <div class="section-subtitle">Unidad crítica · hiperkalemia primero · calcio solo con síntomas · diálisis temprana</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>El potasio es lo que mata primero.</strong> La hiperkalemia es el componente más peligroso
+        porque produce arritmia y muerte súbita. En el paciente con lesión renal: potasio cada 4 a 6 horas, monitor
+        cardíaco continuo y restricción de potasio. <strong>Si hay cambios en el ECG, se trata sin esperar la
+        diálisis.</strong></span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Problema</th><th>Qué hacer</th><th>Cuidado</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Hidratación y diuresis</td>
+              <td>Hidratación intravenosa intensiva, diuresis registrada, <strong>diurético de asa</strong> si sigue baja con el volumen optimizado; meta ≥ 2 mL/kg/h</td>
+              <td>Con <strong>oliguria establecida y sobrecarga de volumen</strong>, más líquido no resuelve nada: es un criterio para discutir diálisis</td>
+            </tr>
+            <tr>
+              <td>Hiperuricemia</td>
+              <td><strong>Rasburicasa</strong> 0,2 mg/kg IV en 30 minutos, una vez al día, hasta 5 días</td>
+              <td>Descarta <strong>déficit de G6PD</strong> antes (sección 08). El alopurinol no se asocia por costumbre: pregunta a hematología</td>
+            </tr>
+            <tr>
+              <td>Hiperkalemia</td>
+              <td><strong>Monitor y ECG</strong>. Con cambios eléctricos: <strong>gluconato de calcio</strong> para proteger el corazón. Para bajar el potasio de forma transitoria: <strong>insulina con glucosa</strong> o <strong>beta-agonistas</strong>. Resina de intercambio oral según disponibilidad. Definitivo: <strong>hemodiálisis o hemofiltración</strong></td>
+              <td>Dosis según el <em>protocolo institucional de hiperkalemia</em>. Mide el potasio cada 4 a 6 horas; no lo des por resuelto con una sola medición</td>
+            </tr>
+            <tr>
+              <td>Hiperfosfatemia</td>
+              <td>Restringir fósforo y <strong>quelantes de fósforo</strong> (se indican de rutina, aunque no hay estudios que prueben su eficacia en este síndrome)</td>
+              <td>Evita las sales de calcio como quelante mientras el fósforo esté alto: el fosfato de calcio precipita</td>
+            </tr>
+            <tr>
+              <td>Hipocalcemia</td>
+              <td><strong>Solo si hay síntomas</strong> (tetania, arritmia, convulsión): calcio a la <strong>menor dosis</strong> que los alivie. Controlar el fósforo previene la hipocalcemia</td>
+              <td>Sin síntomas <strong>no se trata</strong>. El calcio en exceso eleva el producto calcio-fósforo (riesgo cuando supera 60 mg²/dL²) y favorece la cristalización en el riñón y el corazón</td>
+            </tr>
+            <tr>
+              <td>Lesión renal grave</td>
+              <td><strong>Terapia de reemplazo renal</strong> con umbral más bajo que en otras causas de lesión renal: potasio que se acumula, oliguria, e hipocalcemia sintomática por hiperfosfatemia</td>
+              <td>Las terapias continuas (hemofiltración o hemodiafiltración venovenosa) remueven mejor el fósforo. <strong>Llama a nefrología al principio, no cuando ya es tarde</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="plain-list" style="margin-top:14px;">
+        <div class="plain-item"><span class="bullet-icon">📞</span><span><strong>A quién llamar:</strong> hematología u oncología desde el inicio —definen el tratamiento y la prefase—, la unidad crítica y nefrología. En paralelo, no en secuencia.</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 08 · SEGURIDAD CON RASBURICASA -->
+  <div class="section s8" id="s8" style="animation-delay:0.48s;">
+    <div class="section-header" onclick="toggleSection('s8')">
+      <span class="section-num">08</span>
+      <div>
+        <div class="section-title">Seguridad con rasburicasa</div>
+        <div class="section-subtitle">G6PD antes · muestra en hielo · anafilaxis · hemólisis</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+
+      <div class="warning-banner">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>La rasburicasa tiene advertencia de recuadro negro por cuatro razones:</strong> anafilaxis,
+        hemólisis, metahemoglobinemia e interferencia con la medición del ácido úrico. Las cuatro se previenen
+        <strong>antes</strong> de la primera dosis.</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Riesgo</th><th>Qué hacer</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Déficit de G6PD</td>
+              <td><strong>No se administra a pacientes con déficit de G6PD</strong>: el peróxido de hidrógeno que se forma al degradar el ácido úrico causa metahemoglobinemia y, en casos graves, anemia hemolítica. Se <strong>tamiza a quienes tienen mayor riesgo</strong> —ascendencia africana o mediterránea— antes de empezar. Si no se conoce el estado de G6PD y el paciente necesita el fármaco ya, es una decisión que se toma <strong>con hematología u oncología y farmacia</strong>, no sola</td>
+            </tr>
+            <tr>
+              <td>Muestra de ácido úrico</td>
+              <td>La rasburicasa <strong>degrada el ácido úrico dentro del tubo</strong> a temperatura ambiente y da un valor falsamente bajo. Recoge la muestra en un <strong>tubo con heparina previamente enfriado</strong>, <strong>sumérgela de inmediato en agua con hielo</strong> y procesa el plasma <strong>antes de 4 horas</strong>. Avisa al laboratorio</td>
+            </tr>
+            <tr>
+              <td>Anafilaxis</td>
+              <td>Puede ser grave. Ten adrenalina disponible y al médico presente en la primera dosis. <strong>Si ocurre una reacción de hipersensibilidad grave, se suspende de forma inmediata y definitiva</strong></td>
+            </tr>
+            <tr>
+              <td>Hemólisis y metahemoglobinemia</td>
+              <td>Vigila palidez, orina oscura y saturación que no corrige con oxígeno. <strong>Si aparece cualquiera de las dos, se suspende de forma inmediata y definitiva</strong></td>
+            </tr>
+            <tr>
+              <td>Otros</td>
+              <td><strong>No en bolo</strong>; un solo ciclo de tratamiento; en el <strong>embarazo</strong> puede causar daño fetal y se usa solo si el beneficio para la madre lo justifica</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 09 · TRAMPAS -->
+  <div class="section s9" id="s9" style="animation-delay:0.54s;">
+    <div class="section-header" onclick="toggleSection('s9')">
+      <span class="section-num">09</span>
+      <div>
+        <div class="section-title">Trampas y errores frecuentes</div>
+        <div class="section-subtitle">Lo que más daño hace es lo que no se hizo a tiempo</div>
+      </div>
+      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="section-body">
+      <div class="plain-list">
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>No sospecharlo.</strong> El síndrome aparece en tumores que no se asociaban a él y puede ser espontáneo. Un paciente con cáncer que llega con vómitos, deshidratado y malestar, y recibió un corticoide el día antes, <strong>necesita electrolitos, creatinina y ácido úrico</strong> antes que cualquier otra cosa.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Empezar el tratamiento sin hidratar</strong>, o hidratar solo cuando el riñón ya se deterioró. La hidratación es preventiva: se inicia antes.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Tratar la hipocalcemia asintomática con calcio.</strong> Sube el producto calcio-fósforo y precipita en riñón y corazón. Solo se trata con síntomas, y a la menor dosis.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Alcalinizar la orina</strong> «para el ácido úrico». Empeora el fosfato de calcio, que es más difícil de corregir.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Dar rasburicasa sin pensar en G6PD</strong>, o <strong>mandar el ácido úrico sin hielo</strong> después de dársela: el resultado sale falsamente bajo y se concluye que ya está resuelto.</span></div>
+        <div class="plain-item flag"><span class="bullet-icon">✖</span><span><strong>Esperar que el alopurinol baje rápido el ácido úrico.</strong> Evita formar más, pero el que ya está tarda dos días o más en bajar, y ese retraso es el tiempo en que el riñón se daña.</span></div>
+        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Un potasio alto en un paciente con leucocitosis extrema puede ser falso</strong> (las células lo liberan en el tubo): confírmalo con una gasometría, pero <strong>si hay cambios en el ECG, se trata igual sin esperar</strong>. <em>Dato de práctica clínica general; verificar con el laboratorio.</em></span></div>
+        <div class="plain-item"><span class="bullet-icon">📉</span><span><strong>Dejar de vigilar demasiado pronto.</strong> El riesgo dura todo el período de tratamiento intensivo, que según el esquema puede ser una semana o más.</span></div>
+        <div class="plain-item"><span class="bullet-icon">💧</span><span><strong>Seguir cargando volumen a un paciente oligúrico y sobrecargado.</strong> Más líquido no resuelve la oliguria establecida: es el momento de discutir diálisis, y con umbral bajo.</span></div>
+        <div class="plain-item"><span class="bullet-icon">☣️</span><span><strong>Agregar nefrotóxicos y contraste</strong> a un riñón que ya está en riesgo. Si el estudio con contraste es imprescindible, hazlo hidratado y discútelo con quien lo pide.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Uso clínico.</strong> Esta página es una ayuda memoria para la atención de urgencia de adultos: no reemplaza el juicio clínico. Las cifras de hidratación y de rasburicasa son de referencia y deben verificarse con el protocolo institucional y con farmacia. Verifica dosis y contraindicaciones antes de indicar cualquier fármaco.
+  </div>
+
+  <!-- REFERENCIAS -->
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
+    <div class="references-list">
+      <div class="ref-item">Howard SC, Jones DP, Pui CH. <em>The tumor lysis syndrome.</em> N Engl J Med. 2011;364(19):1844–1854. <a href="https://doi.org/10.1056/NEJMra0904569" target="_blank" rel="noopener">doi:10.1056/NEJMra0904569</a> · PMC3437249 — Referencia principal de esta página: definición de laboratorio y clínico, hidratación de 2500 a 3000 mL/m²/día, diuresis de al menos 2 mL/kg/h, rasburicasa como primera línea en alto riesgo, rechazo de la alcalinización urinaria, G6PD y muestra en hielo, frecuencia del laboratorio por nivel de riesgo, manejo de hiperkalemia, hipocalcemia e hiperfosfatemia, e indicaciones de diálisis con umbral bajo.</div>
+      <div class="ref-item">Cairo MS, Bishop M. <em>Tumour lysis syndrome: new therapeutic strategies and classification.</em> Br J Haematol. 2004;127(1):3–11. <a href="https://doi.org/10.1111/j.1365-2141.2004.05094.x" target="_blank" rel="noopener">doi:10.1111/j.1365-2141.2004.05094.x</a> · PMID 15384972 — Origen de la clasificación en SLT de laboratorio y clínico y de la escala de grados 0 a V.</div>
+      <div class="ref-item">Cairo MS, Coiffier B, Reiter A, Younes A; TLS Expert Panel. <em>Recommendations for the evaluation of risk and prophylaxis of tumour lysis syndrome (TLS) in adults and children with malignant diseases: an expert TLS panel consensus.</em> Br J Haematol. 2010;149(4):578–586. <a href="https://doi.org/10.1111/j.1365-2141.2010.08143.x" target="_blank" rel="noopener">doi:10.1111/j.1365-2141.2010.08143.x</a> · PMID 20331465 — Árbol de decisión de riesgo bajo, intermedio y alto según laboratorio, proliferación, masa y estadio del tumor, y compromiso renal.</div>
+      <div class="ref-item">Coiffier B, Altman A, Pui CH, Younes A, Cairo MS. <em>Guidelines for the management of pediatric and adult tumor lysis syndrome: an evidence-based review.</em> J Clin Oncol. 2008;26(16):2767–2778. <a href="https://doi.org/10.1200/JCO.2007.15.0177" target="_blank" rel="noopener">doi:10.1200/JCO.2007.15.0177</a> · PMID 18509186 — Prevención por nivel de riesgo: hidratación y rasburicasa profiláctica en alto riesgo, hidratación con alopurinol o rasburicasa en riesgo intermedio y vigilancia estrecha en riesgo bajo; la alcalinización no se recomienda.</div>
+      <div class="ref-item">Jones GL, Will A, Jackson GH, Webb NJA, Rule S; British Committee for Standards in Haematology. <em>Guidelines for the management of tumour lysis syndrome in adults and children with haematological malignancies.</em> Br J Haematol. 2015;169(5):661–671. <a href="https://doi.org/10.1111/bjh.13403" target="_blank" rel="noopener">doi:10.1111/bjh.13403</a> · PMID 25876990 — Guía británica de consulta para adultos y niños. <strong>Esta página no reproduce sus dosis</strong>; consúltala para verificar el esquema de tu servicio.</div>
+      <div class="ref-item">Pession A, Masetti R, Gaidano G, Tosi P, Rosti G, Aglietta M, et al. <em>Risk evaluation, prophylaxis, and treatment of tumor lysis syndrome: consensus of an Italian expert panel.</em> Adv Ther. 2011;28(8):684–697. <a href="https://doi.org/10.1007/s12325-011-0041-1" target="_blank" rel="noopener">doi:10.1007/s12325-011-0041-1</a> · PMID 21779956 — Consenso italiano con cinco algoritmos de evaluación de riesgo, para consulta complementaria.</div>
+      <div class="ref-item">Sanofi-aventis U.S. LLC. <em>Elitek (rasburicase): Prescribing Information.</em> Ficha técnica aprobada por la FDA; copia consultada con revisión de 10/2009 — Dosis de 0,2 mg/kg en 30 minutos durante un máximo de 5 días, preparación, contraindicación en déficit de G6PD, advertencia de recuadro negro (anafilaxis, hemólisis, metahemoglobinemia e interferencia con el ácido úrico) y procedimiento de manejo de la muestra. <strong>La ficha vigente puede diferir de esta copia: verifícala.</strong></div>
+      <div class="ref-item">Majumdar S, Sharma N, Sengar M, Thorat J, Nayak L, Bonda A, et al. <em>A phase II study to evaluate the efficacy of low-dose rasburicase (1.5 mg) in adolescent and adult acute leukemia and high-grade lymphomas with tumor lysis syndrome.</em> Leuk Lymphoma. 2023;64(3):628–638. <a href="https://doi.org/10.1080/10428194.2023.2167491" target="_blank" rel="noopener">doi:10.1080/10428194.2023.2167491</a> · PMID 36891578 — Estudio fase II de un solo centro, sin grupo comparador: dosis fija de 1,5 mg redujo el ácido úrico de forma sostenida en alrededor del 52 % de los pacientes. Citado solo para señalar que existen estrategias de dosis menor sin consenso.</div>
+      <div class="ref-item">Referencias localizadas y verificadas mediante PubMed y la ficha técnica citada. <strong>Lo que esta página no respalda en esas fuentes y por eso lo marca para verificar:</strong> la dosis de alopurinol (300 mg/día); las dosis del esquema de hiperkalemia, que no se detallan; el comentario sobre seudohiperkalemia en leucocitosis extrema; y los umbrales absolutos de laboratorio de la sección 02, que son los de la clasificación de Cairo-Bishop. Los valores de hidratación y de rasburicasa son los publicados; el esquema que rige en tu servicio es el de tu protocolo.</div>
+    </div>
+  </details>
+
+  <div class="footer">Solo uso clínico · 2026</div>
+</div>
+
+<script>
+  // ── Secciones plegables ───────────────────────────────────────────
+  function toggleSection(id) {
+    document.getElementById(id).classList.toggle('collapsed');
+  }
+
+  const fmt = (n, d) => n.toLocaleString('es-CL', { maximumFractionDigits: d, minimumFractionDigits: 0 });
+  const num = (id) => { const v = document.getElementById(id).value; return v === '' ? null : parseFloat(v); };
+
+  // ── 01 · Árbol de decisión ────────────────────────────────────────
+  const sel = { lab: null, masa: null, pot: null, pac: new Set() };
+
+  function bindSingle(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (sel[key] === v) { sel[key] = null; btn.classList.remove('on'); }
+        else { sel[key] = v; group.querySelectorAll('.opt').forEach(b => b.classList.toggle('on', b === btn)); }
+        render();
+      });
+    });
+  }
+  function bindMulti(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = btn.dataset.v;
+        if (v === 'ninguno') {
+          sel[key].clear();
+          group.querySelectorAll('.opt').forEach(b => b.classList.remove('on'));
+          btn.classList.add('on'); sel[key].add('ninguno');
+        } else {
+          const none = group.querySelector('[data-v="ninguno"]');
+          none.classList.remove('on'); sel[key].delete('ninguno');
+          if (sel[key].has(v)) { sel[key].delete(v); btn.classList.remove('on'); }
+          else { sel[key].add(v); btn.classList.add('on'); }
+        }
+        render();
+      });
+    });
+  }
+  bindSingle('q-lab', 'lab');
+  bindSingle('q-masa', 'masa');
+  bindSingle('q-pot', 'pot');
+  bindMulti('q-pac', 'pac');
+
+  const NIVELES = {
+    despreciable: {
+      sev: 'green', tag: 'Riesgo despreciable',
+      title: 'Sin profilaxis ni monitoreo especial',
+      rows: [
+        ['Indicar', 'Ninguna medida específica contra el síndrome. El tumor es pequeño o está resecado: la carga de contenido celular es baja.'],
+        ['Vigilar', 'Sin monitoreo especial. <em>Reevalúa si cambia el tratamiento, si aparece un síntoma o si hay una alteración nueva en el laboratorio.</em>']
+      ]
+    },
+    bajo: {
+      sev: 'green', tag: 'Riesgo bajo',
+      title: 'Hidratación intravenosa y laboratorio diario',
+      rows: [
+        ['Hidratación', 'Hidratación intravenosa durante el período de riesgo. Diuresis registrada.'],
+        ['Ácido úrico', 'Alopurinol según el protocolo de tu servicio (dosis habitual del adulto 300 mg/día; <em>verificar</em>).'],
+        ['Laboratorio', 'Electrolitos, creatinina, calcio, fósforo y ácido úrico <strong>una vez al día</strong>.'],
+        ['Destino', 'Puede manejarse en sala. Que el paciente y el equipo sepan qué síntomas obligan a volver o avisar.']
+      ]
+    },
+    intermedio: {
+      sev: 'amber', tag: 'Riesgo intermedio',
+      title: 'Hospitalizar, hidratar y vigilar cada 8 a 12 horas',
+      rows: [
+        ['Hidratación', 'Hidratación intravenosa; diurético de asa si la diuresis cae con el volumen optimizado (meta ≥ 2 mL/kg/h).'],
+        ['Ácido úrico', 'Alopurinol <strong>o</strong> rasburicasa. No hay consenso sobre rasburicasa en este nivel; algunos usan dosis pequeñas, y si el riesgo sube, se considera. Con rasburicasa: <strong>G6PD antes</strong>.'],
+        ['Laboratorio', 'Electrolitos, creatinina, calcio, fósforo y ácido úrico <strong>cada 8 a 12 horas</strong>.'],
+        ['Destino', 'Hospitalizado, con monitoreo del balance hídrico y la diuresis. Consulta a hematología u oncología.']
+      ]
+    },
+    alto: {
+      sev: 'red', tag: 'Riesgo alto',
+      title: 'Rasburicasa, hidratación intensiva y monitoreo cardíaco',
+      rows: [
+        ['Hidratación', 'Hidratación intravenosa intensiva, <strong>2500 a 3000 mL/m²/día</strong> (usa la calculadora de la sección 06). Diurético de asa si la diuresis cae. Sin potasio agregado a los fluidos.'],
+        ['Ácido úrico', '<strong>Rasburicasa</strong> de primera línea: 0,2 mg/kg IV en 30 minutos, tras descartar <strong>déficit de G6PD</strong>. Muestras de ácido úrico <strong>en hielo</strong>.'],
+        ['Corazón', '<strong>Monitoreo cardíaco continuo</strong> y ECG ante cualquier alteración de potasio o calcio.'],
+        ['Laboratorio', 'Electrolitos, creatinina y ácido úrico <strong>cada 4 a 6 horas</strong> (algunos esquemas aceptan 6 a 8) desde el inicio del tratamiento.'],
+        ['Destino', 'Unidad con monitoreo cardíaco y enfermería intensiva. <strong>Avisa a hematología u oncología, a la unidad crítica y a nefrología.</strong>']
+      ]
+    },
+    labtls: {
+      sev: 'red', tag: 'SLT de laboratorio',
+      title: 'Ya cumple criterios: manéjalo como alto riesgo',
+      rows: [
+        ['Prioridad', 'Dos o más alteraciones simultáneas ubican al paciente en <strong>alto riesgo</strong>: todavía no hay complicación clínica, y el objetivo es que no la haya.'],
+        ['Hidratación', 'Hidratación intravenosa intensiva, <strong>2500 a 3000 mL/m²/día</strong>; diurético de asa si la diuresis cae (meta ≥ 2 mL/kg/h). Sin potasio agregado.'],
+        ['Ácido úrico', '<strong>Rasburicasa</strong> 0,2 mg/kg IV en 30 minutos, tras descartar <strong>G6PD</strong>. Muestras de ácido úrico en hielo.'],
+        ['Corazón', '<strong>Monitoreo cardíaco continuo</strong>; ECG si el potasio o el calcio cambian.'],
+        ['Laboratorio', 'Electrolitos, creatinina y ácido úrico <strong>cada 4 a 6 horas</strong>.'],
+        ['Destino', 'Unidad con monitoreo cardíaco y enfermería intensiva, y <strong>aviso a unidad crítica y nefrología</strong>: el paso a SLT clínico puede ser rápido.']
+      ]
+    },
+    clinico: {
+      sev: 'red', tag: 'SLT clínico establecido',
+      title: 'Unidad crítica, rasburicasa y protección del corazón',
+      rows: [
+        ['Prioridad', 'Hay <strong>daño o riesgo de daño inmediato</strong>: lesión renal, arritmia, convulsión o hipocalcemia sintomática. Protege el corazón y el riñón <strong>a la vez</strong>.'],
+        ['Hidratación', 'Hidratación intravenosa intensiva con diuresis registrada; diurético de asa si sigue baja con el volumen optimizado (meta ≥ 2 mL/kg/h). <strong>Con oliguria y sobrecarga, más líquido no sirve: discute diálisis.</strong>'],
+        ['Ácido úrico', '<strong>Rasburicasa</strong> 0,2 mg/kg/día, hasta 5 días, tras descartar <strong>G6PD</strong>. Muestras en hielo.'],
+        ['Corazón', 'Monitor continuo y ECG. <strong>Potasio alto con cambios eléctricos: gluconato de calcio</strong>, insulina con glucosa o beta-agonistas mientras se organiza la diálisis.'],
+        ['Calcio', 'Solo si hay síntomas, a la menor dosis que los alivie; con síntomas por hiperfosfatemia puede ser una indicación de diálisis.'],
+        ['Laboratorio', 'Electrolitos, creatinina y ácido úrico <strong>cada 4 a 6 horas</strong>.'],
+        ['Diálisis', '<strong>Umbral más bajo que en otras lesiones renales</strong>: potasio que se acumula, oliguria, hipocalcemia sintomática. Llama a nefrología <strong>desde el principio</strong>.'],
+        ['Llamar', '<strong>Unidad crítica, nefrología y hematología u oncología</strong> en paralelo.'],
+        ['No hacer', 'No alcalinizar la orina. No tratar la hipocalcemia asintomática. No usar sales de calcio como quelante.']
+      ]
+    }
+  };
+
+  function classify() {
+    if (!sel.lab) return null;
+    if (sel.lab === 'clin') return NIVELES.clinico;
+    if (sel.lab === 'lab2') return NIVELES.labtls;
+    if (!sel.masa) return { pending: 'Falta la masa tumoral (pregunta 2).' };
+    if (sel.masa === 'peq') return NIVELES.despreciable;
+    if (!sel.pot) return { pending: 'Falta el potencial de lisis (pregunta 3).' };
+    if (sel.pot === 'alto') return NIVELES.alto;
+    if (sel.pot === 'bajo') return NIVELES.bajo;
+    // potencial intermedio o desconocido
+    if (sel.masa === 'gra') return NIVELES.intermedio;
+    if (sel.pac.size === 0) return { pending: 'Falta el estado del paciente (pregunta 4): marca los factores que apliquen o «Ninguno».' };
+    return sel.pac.has('ninguno') ? NIVELES.bajo : NIVELES.intermedio;
+  }
+
+  function render() {
+    const off = sel.lab === 'lab2' || sel.lab === 'clin';
+    ['blk-masa', 'blk-pot', 'blk-pac'].forEach(id => document.getElementById(id).classList.toggle('off', off));
+    const box = document.getElementById('result');
+    const r = classify();
+    if (!r) {
+      box.className = 'result placeholder';
+      box.innerHTML = 'Marca el estado del laboratorio para ver el nivel de riesgo, qué indicar, cada cuánto pedir exámenes y dónde debe estar el paciente.';
+      return;
+    }
+    if (r.pending) {
+      box.className = 'result placeholder';
+      box.innerHTML = r.pending;
+      return;
+    }
+    const filas = r.rows.map(row => '<div class="result-row"><span class="result-key">' + row[0] + '</span><span>' + row[1] + '</span></div>').join('');
+    box.className = 'result sev-' + r.sev;
+    box.innerHTML = '<span class="result-tag">' + r.tag + '</span><div class="result-title">' + r.title + '</div>' + filas;
+  }
+  render();
+
+  // ── 02 · Calculadora de criterios ─────────────────────────────────
+  const ltIds = ['lt-ua', 'lt-k', 'lt-p', 'lt-ca', 'lt-cr', 'lt-lsn'];
+  const ltTog = { arr: false, conv: false, hipoca: false };
+  const ltOut = document.getElementById('lt-out');
+
+  function bindToggle(btnId, obj, key, fn) {
+    document.getElementById(btnId).addEventListener('click', e => {
+      obj[key] = !obj[key];
+      e.currentTarget.classList.toggle('on', obj[key]);
+      fn();
+    });
+  }
+
+  function calcCriterios() {
+    const ua = num('lt-ua'), k = num('lt-k'), p = num('lt-p'), ca = num('lt-ca');
+    const cr = num('lt-cr'), lsn = num('lt-lsn');
+    const labs = [
+      { v: ua, bad: ua !== null && ua >= 8, txt: 'ácido úrico ' + (ua !== null ? fmt(ua, 1) : '') + ' mg/dL' },
+      { v: k, bad: k !== null && k >= 6, txt: 'potasio ' + (k !== null ? fmt(k, 1) : '') + ' mmol/L' },
+      { v: p, bad: p !== null && p >= 4.5, txt: 'fósforo ' + (p !== null ? fmt(p, 1) : '') + ' mg/dL' },
+      { v: ca, bad: ca !== null && ca <= 7, txt: 'calcio ' + (ca !== null ? fmt(ca, 1) : '') + ' mg/dL' }
+    ];
+    const ingresados = labs.filter(l => l.v !== null).length;
+    const alterados = labs.filter(l => l.bad);
+    const ratio = (cr !== null && lsn !== null && lsn > 0) ? cr / lsn : null;
+    const crAlta = ratio !== null && ratio >= 1.5;
+    const clinicos = [];
+    if (crAlta) clinicos.push('creatinina ' + fmt(ratio, 1) + ' veces el límite superior normal');
+    if (ltTog.arr) clinicos.push('arritmia o muerte súbita');
+    if (ltTog.conv) clinicos.push('convulsión');
+    if (ltTog.hipoca) clinicos.push('hipocalcemia sintomática');
+
+    if (ingresados === 0 && clinicos.length === 0) {
+      ltOut.innerHTML = 'Ingresa los parámetros disponibles.';
+      return;
+    }
+    const lab = alterados.length >= 2;
+    let html = '';
+    if (lab && clinicos.length) {
+      html += '<span class="big risk-high">SLT clínico</span>';
+      html += 'Laboratorio con <strong>' + alterados.length + ' alteraciones</strong> (' + alterados.map(a => a.txt).join(', ') + ') y criterio clínico: <strong>' + clinicos.join(', ') + '</strong>.<br>';
+      html += '→ Sigue la ruta de <em>SLT clínico establecido</em> del árbol (sección 01) y calcula el grado en la sección 03.';
+    } else if (lab) {
+      html += '<span class="big risk-high">SLT de laboratorio</span>';
+      html += '<strong>' + alterados.length + ' alteraciones</strong> simultáneas: ' + alterados.map(a => a.txt).join(', ') + '. Sin criterio clínico por ahora.<br>';
+      html += '→ Manéjalo como <em>alto riesgo</em>: hidratación intensiva, rasburicasa (G6PD antes), monitoreo cardíaco y laboratorio cada 4 a 6 horas. El paso a SLT clínico puede ser rápido.';
+    } else {
+      const n = alterados.length;
+      html += '<span class="big risk-low">No cumple criterios de laboratorio</span>';
+      html += n === 1 ? '<strong>Una</strong> alteración (' + alterados[0].txt + '): no basta, se requieren dos simultáneas.' :
+        'Ninguna alteración entre los valores ingresados.';
+      html += '<br>→ Estratifica el riesgo con el árbol (sección 01): el paciente puede ser de riesgo bajo, intermedio o alto aunque hoy no cumpla criterios.';
+      if (clinicos.length) html += '<br><em>Hay manifestaciones (' + clinicos.join(', ') + ') sin criterios de laboratorio: busca otra causa, pero no esperes para tratar una arritmia o una convulsión.</em>';
+    }
+    if (ingresados < 4) html += '<br><em>Parcial: faltan ' + (4 - ingresados) + ' de 4 valores de laboratorio. Un valor que falta puede cambiar el resultado.</em>';
+    if (ratio === null && (cr !== null || lsn !== null)) html += '<br><em>Para evaluar la creatinina ingresa el valor actual y el límite superior normal de tu laboratorio.</em>';
+    ltOut.innerHTML = html;
+  }
+  ltIds.forEach(id => document.getElementById(id).addEventListener('input', calcCriterios));
+  bindToggle('lt-arr', ltTog, 'arr', calcCriterios);
+  bindToggle('lt-conv', ltTog, 'conv', calcCriterios);
+  bindToggle('lt-hipoca', ltTog, 'hipoca', calcCriterios);
+  document.getElementById('lt-reset').addEventListener('click', () => {
+    ltIds.forEach(id => document.getElementById(id).value = '');
+    Object.keys(ltTog).forEach(k => ltTog[k] = false);
+    ['lt-arr', 'lt-conv', 'lt-hipoca'].forEach(id => document.getElementById(id).classList.remove('on'));
+    calcCriterios();
+  });
+
+  // ── 03 · Grado de Cairo-Bishop ────────────────────────────────────
+  const gr = { lab: false, cr: null, arr: null, conv: null };
+  const grOut = document.getElementById('gr-out');
+
+  function bindGr(groupId, key) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const v = parseInt(btn.dataset.v, 10);
+        if (gr[key] === v) { gr[key] = null; btn.classList.remove('on'); }
+        else { gr[key] = v; group.querySelectorAll('.opt').forEach(b => b.classList.toggle('on', b === btn)); }
+        calcGrado();
+      });
+    });
+  }
+  bindGr('gr-cr', 'cr'); bindGr('gr-arr', 'arr'); bindGr('gr-conv', 'conv');
+  document.getElementById('gr-lab').addEventListener('click', e => {
+    gr.lab = !gr.lab; e.currentTarget.classList.toggle('on', gr.lab); calcGrado();
+  });
+
+  const ROMANO = ['0', 'I', 'II', 'III', 'IV'];
+  function calcGrado() {
+    const marcados = [gr.cr, gr.arr, gr.conv].filter(v => v !== null);
+    if (!gr.lab && marcados.length === 0) { grOut.innerHTML = 'Marca los componentes para calcular el grado.'; return; }
+    if (!gr.lab) {
+      grOut.innerHTML = '<span class="big risk-low">Grado 0</span>Sin criterios de laboratorio no hay síndrome de lisis tumoral por definición. ' +
+        (marcados.some(v => v > 0) ? '<em>Hay manifestaciones clínicas: busca otra causa, sin retrasar su tratamiento.</em>' : '');
+      return;
+    }
+    const peor = marcados.length ? Math.max.apply(null, marcados) : 0;
+    const faltan = [gr.cr, gr.arr, gr.conv].filter(v => v === null).length;
+    let html;
+    if (peor === 0) {
+      html = '<span class="big risk-mid">SLT de laboratorio</span>Hay criterios de laboratorio y ningún componente clínico alterado: <strong>no corresponde un grado</strong>. Manéjalo como alto riesgo (sección 01).';
+    } else {
+      const cls = peor >= 3 ? 'risk-high' : 'risk-mid';
+      html = '<span class="big ' + cls + '">Grado ' + ROMANO[peor] + '</span>' +
+        'Es un <strong>SLT clínico</strong> y el componente más alto define el grado.' +
+        (peor >= 3 ? '<br>→ Unidad crítica, nefrología y hematología u oncología en paralelo. Recuerda: el grado V es la muerte.' :
+                     '<br>→ Sigue la ruta de <em>SLT clínico establecido</em> (sección 01) y repite el cálculo si el paciente cambia.');
+    }
+    if (faltan > 0) html += '<br><em>Faltan ' + faltan + ' componente(s) sin marcar: un componente sin marcar no se cuenta.</em>';
+    grOut.innerHTML = html;
+  }
+  document.getElementById('gr-reset').addEventListener('click', () => {
+    gr.lab = false; gr.cr = gr.arr = gr.conv = null;
+    document.getElementById('gr-lab').classList.remove('on');
+    ['gr-cr', 'gr-arr', 'gr-conv'].forEach(id => document.querySelectorAll('#' + id + ' .opt').forEach(b => b.classList.remove('on')));
+    calcGrado();
+  });
+
+  // ── 06 · Dosis y metas ────────────────────────────────────────────
+  const dmOut = document.getElementById('dm-out');
+  function calcDosis() {
+    const peso = num('dm-peso'), talla = num('dm-talla');
+    if (peso === null || talla === null) { dmOut.innerHTML = 'Ingresa peso y talla. La superficie corporal se calcula con la fórmula de Mosteller.'; return; }
+    if (peso < 30 || peso > 250 || talla < 100 || talla > 230) {
+      dmOut.innerHTML = '<em>Valores fuera de rango para un adulto (peso 30–250 kg, talla 100–230 cm). Revisa lo ingresado.</em>';
+      return;
+    }
+    const sc = Math.sqrt(peso * talla / 3600);
+    const hMin = 2500 * sc, hMax = 3000 * sc;
+    const diuresis = 2 * peso;
+    const rasb = 0.2 * peso;
+    dmOut.innerHTML =
+      '<span class="big risk-low">' + fmt(sc, 2) + ' m²</span>' +
+      '<strong>Hidratación de alto riesgo (2500 a 3000 mL/m²/día):</strong> ' + fmt(hMin, 0) + ' a ' + fmt(hMax, 0) + ' mL/día, es decir, unos <strong>' + fmt(hMin / 24, 0) + ' a ' + fmt(hMax / 24, 0) + ' mL/h</strong>.<br>' +
+      '<strong>Diuresis mínima (2 mL/kg/h):</strong> <strong>' + fmt(diuresis, 0) + ' mL/h</strong> (' + fmt(diuresis * 24, 0) + ' mL/día). Si la diuresis queda por debajo con el volumen optimizado, agrega diurético de asa.<br>' +
+      '<strong>Rasburicasa 0,2 mg/kg:</strong> <strong>' + fmt(rasb, 1) + ' mg</strong>, que equivale a <strong>' + fmt(rasb / 1.5, 1) + ' mL</strong> de solución reconstituida (1,5 mg/mL). Llevar a 50 mL totales con suero fisiológico 0,9 % y pasar en 30 minutos.<br>' +
+      '<em>Antes de indicar: descarta déficit de G6PD y verifica la dosis y el redondeo al vial con farmacia. Con insuficiencia cardíaca o renal oligúrica, el volumen se decide con la unidad crítica y nefrología.</em>';
+  }
+  ['dm-peso', 'dm-talla'].forEach(id => document.getElementById(id).addEventListener('input', calcDosis));
+  document.getElementById('dm-reset').addEventListener('click', () => {
+    ['dm-peso', 'dm-talla'].forEach(id => document.getElementById(id).value = '');
+    calcDosis();
+  });
+</script>
+<script>
+(function() {
+  var root = document.documentElement, KEY = 'oc-theme';
+  try { var t = localStorage.getItem(KEY); if (t) root.setAttribute('data-theme', t); } catch (e) {}
+  var btn = document.getElementById('themeBtn');
+  if (btn) btn.addEventListener('click', function() {
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+  });
+})();
+</script>
+<script src="./volver.js"></script>
+</body>
+</html>

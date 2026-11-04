@@ -591,6 +591,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -2010,7 +2015,7 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    <strong>no reemplaza el juicio clínico</strong>, ni el entrenamiento
     presencial en el procedimiento ni en ecografía en el punto de atención. La <strong>cistostomía suprapúbica por
     punción es un procedimiento invasivo que atraviesa la pared abdominal a ciegas o guiado por imagen, con riesgo
     reconocido de lesión intestinal, de hemorragia y de muerte</strong>: la propia guía de la BAUS pide que ese riesgo se
@@ -2033,8 +2038,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Referencias localizadas y verificadas mediante <strong>PubMed</strong>.</div>
       <div class="ref-item">Harrison SCW, Lawrence WT, Morley R, Pearce I, Taylor J. <em>British Association of Urological Surgeons' suprapubic catheter practice guidelines.</em> BJU Int. 2011;107(1):77–85. <a href="https://doi.org/10.1111/j.1464-410X.2010.09762.x" target="_blank" rel="noopener">DOI: 10.1111/j.1464-410X.2010.09762.x</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/21054755/" target="_blank" rel="noopener">PMID 21054755</a> — <strong>Guía de referencia de esta página.</strong> Primera guía de sociedad sobre indicaciones, inserción segura y cuidado posterior de la cistostomía suprapúbica, elaborada por un grupo de desarrollo tras revisión de la literatura y, donde faltaba evidencia, por <strong>consenso de expertos</strong>. Reconoce el procedimiento como ampliamente usado y generalmente seguro, pero con <strong>riesgo pequeño de complicaciones graves</strong>, y recomienda el uso de ecografía <em>siempre que sea posible</em> para identificar asas intestinales. <em>Los propios autores señalan que la base de evidencia es escasa.</em></div>
@@ -2055,7 +2060,7 @@
       <div class="ref-item">Morey AF, Broghammer JA, Hollowell CMP, McKibben MJ, Souter L. <em>Urotrauma Guideline 2020: AUA Guideline.</em> J Urol. 2021;205(1):30–35. <a href="https://doi.org/10.1097/JU.0000000000001408" target="_blank" rel="noopener">DOI: 10.1097/JU.0000000000001408</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/33053308/" target="_blank" rel="noopener">PMID 33053308</a> — <strong>Fuente del escenario de trauma.</strong> Enmienda 2020 de la guía de urotrauma, que <strong>añade un enunciado específico sobre la colocación de tubo suprapúbico percutáneo o abierto tras la lesión uretral por fractura de pelvis</strong>. La versión original (Morey 2014, J Urol 192(2):327–335, <a href="https://doi.org/10.1016/j.juro.2014.05.004" target="_blank" rel="noopener">DOI: 10.1016/j.juro.2014.05.004</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/24857651/" target="_blank" rel="noopener">PMID 24857651</a>) contiene el marco completo de evaluación y manejo de la lesión uretral. <em>La conducta concreta en el politraumatizado con fractura de pelvis la define el equipo quirúrgico y el protocolo local.</em></div>
       <div class="ref-item">Aspectos <strong>convencionales</strong> descritos aquí y <strong>no respaldados individualmente por estudios de desenlace</strong>: todas las metas de tiempo del cronómetro; el punto de entrada en la línea media y su distancia de ≈ 2 cm sobre la sínfisis; la angulación de inserción y la profundidad de avance tras la aparición de orina; el uso de la aguja buscadora como ensayo del trayecto; el tope manual de profundidad; el Trendelenburg ligero; el recorte del vello; el antiséptico y su tiempo de contacto; la concentración, el volumen y la dosis máxima del anestésico local; los calibres, el largo del catéter y el sistema de fijación; la secuencia de confirmación ecográfica y la prueba de inyección de suero; el número aceptable de intentos; la conducta de no retirar un catéter sospechoso de estar en intestino; el esquema de profilaxis antibiótica; la fracción de las pérdidas a reponer en la diuresis postobstructiva y la frecuencia de sus controles; y los plazos de maduración del trayecto y de recambio del catéter. Provienen de guías basadas en consenso, descripciones de técnica, textos de procedimientos e instrucciones de fabricante, y deben contrastarse con el <strong>set realmente disponible, el programa local de antimicrobianos y el protocolo institucional vigente</strong>.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -2194,5 +2199,6 @@
 
   swRender();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

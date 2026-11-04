@@ -774,6 +774,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1924,7 +1929,7 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni la normativa legal
+    <strong>no reemplaza el juicio clínico</strong>, ni la normativa legal
     aplicable. Todas las <strong>dosis son orientativas, corresponden al adulto y deben confirmarse</strong> con el
     protocolo institucional, el arsenal farmacológico disponible y la ficha vigente de cada producto antes de
     administrar, ajustadas a peso, edad, función renal y hepática, comorbilidad y situación hemodinámica; la
@@ -1941,8 +1946,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Swift RH, Harrigan EP, Cappelleri JC, Kramer D, Chandler LP. <em>Validation of the behavioural activity rating scale (BARS): a novel measure of activity in agitated patients.</em> J Psychiatr Res. 2002;36(2):87–95. <a href="https://doi.org/10.1016/s0022-3956(01)00052-8" target="_blank" rel="noopener">DOI: 10.1016/s0022-3956(01)00052-8</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/11777497/" target="_blank" rel="noopener">PMID 11777497</a> — Validación de la escala BARS de siete niveles, con concordancia entre observadores prácticamente perfecta y mayor sensibilidad al cambio que la PANSS de agitación y la CGI-S.</div>
       <div class="ref-item">Richmond JS, Berlin JS, Fishkind AB, et al. <em>Verbal de-escalation of the agitated patient: consensus statement of the American Association for Emergency Psychiatry Project BETA De-escalation Workgroup.</em> West J Emerg Med. 2012;13(1):17–25. <a href="https://doi.org/10.5811/westjem.2011.9.6864" target="_blank" rel="noopener">DOI: 10.5811/westjem.2011.9.6864</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/22461917/" target="_blank" rel="noopener">PMID 22461917</a> — Origen de los cuatro objetivos y de los diez dominios de la de-escalación verbal.</div>
@@ -1961,7 +1966,7 @@
       <div class="ref-item">Slocum S, Fiorillo M, Harding E, et al. <em>In pursuit of inter-specialty consensus on excited delirium syndrome: a scoping literature review.</em> Forensic Sci Med Pathol. 2023;19(4):573–594. <a href="https://doi.org/10.1007/s12024-022-00548-4" target="_blank" rel="noopener">DOI: 10.1007/s12024-022-00548-4</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/36350497/" target="_blank" rel="noopener">PMID 36350497</a> — 97 estudios sin acuerdo sobre la definición; la contención agresiva en prono aparece como factor de riesgo establecido de muerte y los autores desaconsejan usar el término como diagnóstico.</div>
       <div class="ref-item">Referencias localizadas mediante PubMed. Las dosis, las presentaciones disponibles, los plazos de reevaluación de la contención, el panel de exámenes y las obligaciones de registro y notificación deben contrastarse con el <strong>protocolo institucional vigente</strong>, con la farmacia del servicio y con la normativa chilena aplicable —<em>Ley 20.584</em> de derechos y deberes del paciente y <em>Ley 21.331</em> sobre derechos de las personas en la atención de salud mental—, cuyo texto actualizado debe revisarse directamente.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -2340,5 +2345,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

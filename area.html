@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Orientador Clínico · Área</title>
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#0a0e1a">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./nav.css">
+</head>
+<body>
+<div class="wrapper" id="wrap">
+
+  <div class="header">
+    <a class="back-link" id="back" href="./index.html">← Volver</a>
+    <h1 id="titulo">Orientador <span>Clínico</span></h1>
+    <p class="tagline" id="desc"></p>
+  </div>
+
+  <div class="statusbar">
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Cambiar entre modo claro y modo oscuro">◐</button>
+    <span class="theme-label">Cambiar a modo claro / oscuro</span>
+  </div>
+
+  <div class="filters" id="fgrupos" aria-label="Grupos"></div>
+  <div class="filters types" id="ftipos" aria-label="Tipo de página"></div>
+
+  <div id="out"></div>
+
+  <div class="note">
+    <strong>Uso clínico.</strong> Orientador Clínico es una ayuda memoria de apoyo a la atención de urgencia: no reemplaza el juicio clínico. Verifica dosis y contraindicaciones antes de indicar cualquier fármaco.
+  </div>
+
+  <footer>
+    <span>Orientador Clínico</span>
+    <span id="lastUpdate"></span>
+  </footer>
+
+</div>
+
+<script src="./catalogo.js"></script>
+<script src="./nav.js"></script>
+<script src="./news2.js"></script>
+<script>
+  (function () {
+    var OC = window.OC, C = OC.C, esc = OC.esc;
+    var aid = new URLSearchParams(location.search).get('a');
+    var A = OC.area(aid);
+    if (!A) { location.replace('./index.html'); return; }
+
+    document.title = A.nombre + ' · Orientador Clínico';
+    document.getElementById('titulo').textContent = A.nombre;
+    document.getElementById('desc').textContent = A.desc;
+    if (!A.desc) document.getElementById('desc').style.display = 'none';
+    document.getElementById('wrap').style.setProperty('--accent', 'var(--' + A.color + ')');
+
+    var pages = C.paginas.filter(function (p) { return OC.enArea(p, A.id); });
+    var tiposEnArea = [];
+    pages.forEach(function (p) { if (tiposEnArea.indexOf(p.tipo) < 0) tiposEnArea.push(p.tipo); });
+
+    var st = { grupo: (location.hash || '').slice(1), tipo: '' };
+    if (st.grupo && !OC.grupo(A, st.grupo)) st.grupo = '';
+
+    // páginas de un grupo (y subgrupo) en esta área, con el filtro de tipo aplicado
+    function listar(g, sub) {
+      return pages.filter(function (p) {
+        if (st.tipo && p.tipo !== st.tipo) return false;
+        return p.ubic.some(function (u) {
+          return u.area === A.id && u.grupo === g.id && (!sub || u.sub === sub.id);
+        });
+      });
+    }
+    function alsoText(p, g, sub) {
+      var u = p.ubic[0];
+      if (u.area === A.id && u.grupo === g.id && (!sub || u.sub === sub.id)) return '';
+      var pg = OC.grupo(OC.area(u.area), u.grupo);
+      return pg.nombre;
+    }
+
+    function chips() {
+      var f = document.getElementById('fgrupos');
+      if (A.grupos.length < 2) { f.style.display = 'none'; }
+      else {
+        var h = '<button class="fchip" type="button" data-g="" aria-pressed="' + (!st.grupo) + '">Todo<span class="n">' + pages.length + '</span></button>';
+        A.grupos.forEach(function (g) {
+          var n = pages.filter(function (p) { return p.ubic.some(function (u) { return u.area === A.id && u.grupo === g.id; }); }).length;
+          h += '<button class="fchip" type="button" data-g="' + esc(g.id) + '" aria-pressed="' + (st.grupo === g.id) +
+            '">' + esc(g.nombre) + '<span class="n">' + n + '</span></button>';
+        });
+        f.innerHTML = h;
+      }
+      var t = document.getElementById('ftipos');
+      if (tiposEnArea.length < 2) { t.style.display = 'none'; return; }
+      var th = '<span class="filters-label">Tipo</span><button class="fchip" type="button" data-t="" aria-pressed="' + (!st.tipo) + '">Todos</button>';
+      tiposEnArea.forEach(function (k) {
+        th += '<button class="fchip" type="button" data-t="' + esc(k) + '" aria-pressed="' + (st.tipo === k) + '">' + esc(C.tipos[k]) + '</button>';
+      });
+      t.innerHTML = th;
+    }
+
+    function render() {
+      chips();
+      var h = '', total = 0, i = 0;
+      A.grupos.forEach(function (g) {
+        if (st.grupo && st.grupo !== g.id) return;
+        var cuerpo = '', n = 0;
+        if (g.subs) {
+          g.subs.forEach(function (s) {
+            var l = listar(g, s);
+            if (!l.length) return;
+            n += l.length;
+            cuerpo += '<div class="subgroup"><div class="subgroup-title">' + esc(s.nombre) + '</div><div class="cards">' +
+              l.map(function (p) { return OC.cardHTML(p, i++, { also: alsoText(p, g, s) }); }).join('') + '</div></div>';
+          });
+        } else {
+          var l = listar(g);
+          n = l.length;
+          cuerpo = l.length ? '<div class="cards">' + l.map(function (p) { return OC.cardHTML(p, i++, { also: alsoText(p, g) }); }).join('') + '</div>' : '';
+        }
+        if (!n) return;
+        total += n;
+        h += '<section class="group">' + (A.grupos.length > 1 ? '<h2 class="group-title">' + esc(g.nombre) + '<small>' + n + '</small></h2>' : '') + cuerpo + '</section>';
+      });
+      document.getElementById('out').innerHTML = total ? h : '<div class="empty">No hay páginas con ese filtro.</div>';
+    }
+
+    // ── Modo «botones»: se baja por niveles (grupo → subgrupo → lista) ──
+    function initBotones() {
+      document.getElementById('fgrupos').style.display = 'none';
+      document.getElementById('ftipos').style.display = 'none';
+      var back = document.getElementById('back'), desc = document.getElementById('desc'), titulo = document.getElementById('titulo');
+
+      function boton(href, titulo, n, d, i) {
+        return '<a class="area sm" href="' + esc(href) + '" style="--accent:var(--' + esc(A.color) +
+          '); animation-delay:' + Math.min(i * 0.05, 0.4).toFixed(2) + 's;"><div class="area-inner"><div class="area-main">' +
+          (n == null ? '' : '<div class="area-count">' + n + (n === 1 ? ' página' : ' páginas') + '</div>') +
+          '<div class="area-title">' + esc(titulo) + '</div>' +
+          (d ? '<div class="area-desc">' + esc(d) + '</div>' : '') +
+          '</div></div></a>';
+      }
+      function contar(g, s) { return listar(g, s).length; }
+
+      function vista() {
+        var h = (location.hash || '').slice(1).split('/');
+        var g = OC.grupo(A, h[0]);
+        var s = g && g.subs ? g.subs.filter(function (x) { return x.id === h[1]; })[0] : null;
+        var out = document.getElementById('out'), html = '';
+        window.scrollTo(0, 0);
+        titulo.textContent = g ? g.nombre : A.nombre;   // dentro de un grupo, el título pasa a ser el del grupo
+
+        if (!g) {                                   // nivel 1: categorías
+          back.href = './index.html'; back.textContent = '← Volver';
+          desc.textContent = '';
+          html = '<div class="areas">' +
+            A.grupos.map(function (x, i) {
+              var l = x.subs ? [] : listar(x);
+              // un grupo con una sola página no necesita un nivel intermedio: el botón abre la página
+              if (l.length === 1) return boton('./' + l[0].href, l[0].etiqueta || l[0].titulo, null, '', i);
+              return boton('#' + x.id, x.nombre, null, '', i);
+            }).join('') + '</div>';
+        } else if (g.subs && !s) {                  // nivel 2: subgrupos
+          back.href = '#'; back.textContent = '← ' + A.nombre;
+          desc.textContent = '';
+          var bs = g.subs.filter(function (x) { return contar(g, x) > 0; });
+          html = '<div class="areas">' +
+            bs.map(function (x, i) {
+              // subgrupo «directo» con una sola página: el botón abre la página
+              var l = x.directo ? listar(g, x) : [];
+              if (l.length === 1) return boton('./' + l[0].href, l[0].etiqueta || x.nombre, null, '', i);
+              return boton('#' + g.id + '/' + x.id, x.nombre, null, '', i);
+            }).join('') + '</div>';
+        } else {                                    // nivel 3: lista de páginas
+          var l = listar(g, s), n = 0;
+          back.href = g.subs ? '#' + g.id : '#'; back.textContent = '← ' + (g.subs ? g.nombre : A.nombre);
+          desc.textContent = '';
+          html = (s ? '<div class="section-label">' + esc(s.nombre) + '</div>' : '') + '<div class="cards">' +
+            l.map(function (p, i) { return OC.cardHTML(p, i, { also: alsoText(p, g, s) }); }).join('') + '</div>';
+        }
+        desc.style.display = desc.textContent ? '' : 'none';
+        out.innerHTML = html;
+      }
+      window.addEventListener('hashchange', vista);
+      vista();
+    }
+    if (A.nav === 'botones') { initBotones(); return; }
+
+    // ── Entrada «news2»: NEWS2 → (≥5: ¿infección?) | (<5: motivo de consulta) ──
+    function initTriage() {
+      var N = window.NEWS2, out = document.getElementById('out');
+      var resp = {}, infec = null, filtro = '';
+      document.getElementById('fgrupos').style.display = 'none';
+      document.getElementById('ftipos').style.display = 'none';
+      var porId = {};
+      C.paginas.forEach(function (p) { porId[p.id] = p; });
+
+      function motivosHTML(lista) {
+        if (!lista.length) return '<div class="empty">Ningún motivo coincide. Prueba con otra palabra.</div>';
+        return '<div class="motivos">' + lista.map(function (p) {
+          return '<a class="motivo" href="./' + esc(p.href) + '" style="--accent:var(--' + esc(p.accent) + ')">' +
+            esc(p.titulo) + '<span>→</span></a>';
+        }).join('') + '</div>';
+      }
+      function filtrados() {
+        var hit = filtro ? OC.buscar(filtro) : null;
+        var l = pages.filter(function (p) { return !hit || hit.indexOf(p) >= 0; });
+        return {
+          sint: l.filter(function (p) { return p.ubic[0].grupo === 'sintomas'; }),
+          otros: l.filter(function (p) { return p.ubic[0].grupo !== 'sintomas'; })
+        };
+      }
+      function motivosTodo() {
+        var f = filtrados();
+        return motivosHTML(f.sint) + (f.otros.length ? '<div class="motivos-label">Otro cuadro</div>' + motivosHTML(f.otros) : '');
+      }
+
+      function calcHTML(r) {
+        var cls = r.llenos === 0 ? '' : r.nivel === 'bajo' ? 'ok' : r.nivel === 'alto' ? 'warn' : 'alert';
+        var rows = N.PARAMS.map(function (p) {
+          return '<div class="n2-row"><div class="n2-name">' + esc(p.nombre) + '</div><div class="n2-opts">' +
+            p.op.map(function (o, i) {
+              var sel = resp[p.id] === i ? ' s' + o[1] : '';
+              return '<button type="button" class="n2-btn' + sel + '" data-p="' + p.id + '" data-i="' + i + '">' + esc(o[0]) + '</button>';
+            }).join('') + '</div></div>';
+        }).join('');
+        return '<div class="step-title">Signos vitales</div>' +
+          '<div class="n2">' + rows + '<div class="n2-foot"><span class="n2-sub">Score NEWS2 =</span>' +
+          '<span class="n2-total ' + cls + '">' + r.total + '</span></div></div>';
+      }
+
+      function siguienteHTML(r) {
+        if (!r.completo) return '';
+        if (r.total >= N.UMBRAL) {
+          var h = '<div class="callout red"><div class="callout-title">NEWS2 ' + r.total + ' · requiere respuesta urgente</div>' +
+            '<p>No sigas con el motivo de consulta: primero define si el cuadro es infeccioso.</p></div>' +
+            '<div class="step-title">¿Se sospecha que el cuadro se debe a una infección?</div>' +
+            '<div class="choice"><button type="button" data-inf="1" aria-pressed="' + (infec === true) + '">Sí</button>' +
+            '<button type="button" data-inf="0" aria-pressed="' + (infec === false) + '">No</button></div>';
+          if (infec === true) {
+            h += '<div class="callout red" style="margin-top:16px"><div class="callout-title">Abriendo código sepsis…</div>' +
+              '<p>Los signos vitales ya ingresados se cargan solos en el checklist. Si no se abre, usa el botón.</p></div>' +
+              '<div class="cards">' + OC.cardHTML(porId['checklist-sepsis_4'], 0).replace('checklist-sepsis_4.html"', urlSepsis() + '"') + '</div>';
+          } else if (infec === false) {
+            h += '<div class="callout amber" style="margin-top:16px"><div class="callout-title">Avisar al coordinador de turno</div>' +
+              '<p>Paciente con NEWS2 ≥ ' + N.UMBRAL + ' sin sospecha de infección: avisa ahora al coordinador de turno. No continúes con el motivo de consulta.</p></div>';
+          }
+          return h;
+        }
+        var aviso = r.rojo
+          ? '<div class="callout amber"><div class="callout-title">Parámetro aislado en 3</div><p>Aunque el total es menor de ' + N.UMBRAL +
+            ', un parámetro en 3 requiere revisión médica urgente. Considera avisar igualmente.</p></div>' : '';
+        return aviso + '<div class="step-title">¿Cuál es el motivo de consulta?</div>' +
+          '<input class="mini-search" id="motivoQ" type="search" placeholder="Filtrar: dolor, mareo, fiebre…" autocomplete="off" value="' + esc(filtro) + '" aria-label="Filtrar motivos de consulta">' +
+          '<div id="motivosOut">' + motivosTodo() + '</div>' +
+          '<div style="margin-top:14px"><button type="button" class="linkish" data-listado="1">Ver listado completo →</button></div>';
+      }
+
+      function urlSepsis() { return 'checklist-sepsis_4.html#n2=' + N.codificar(resp); }
+      function guardar() { try { sessionStorage.setItem('oc-triage', JSON.stringify(resp)); } catch (e) {} }
+
+      function vista() {
+        var r = N.evaluar(resp), y = window.scrollY;
+        out.innerHTML = calcHTML(r) + siguienteHTML(r);
+        window.scrollTo(0, y);
+      }
+
+      out.addEventListener('click', function (e) {
+        var b = e.target.closest('button'); if (!b) return;
+        if (b.dataset.p) {
+          resp[b.dataset.p] = parseInt(b.dataset.i, 10); infec = null; vista();
+        } else if (b.dataset.inf) {
+          infec = b.dataset.inf === '1'; vista();
+          if (infec) { guardar(); location.href = './' + urlSepsis(); }
+        } else if (b.dataset.listado) {
+          out.parentNode.replaceChild(out.cloneNode(false), out);   // quita los listeners de la entrada
+          out = document.getElementById('out');
+          document.getElementById('fgrupos').style.display = '';
+          document.getElementById('ftipos').style.display = '';
+          render();
+        }
+      });
+      out.addEventListener('click', function (e) { if (e.target.closest('a.motivo')) guardar(); });
+      out.addEventListener('input', function (e) {
+        if (e.target.id !== 'motivoQ') return;
+        filtro = e.target.value.trim();
+        document.getElementById('motivosOut').innerHTML = motivosTodo();
+      });
+      document.getElementById('desc').style.display = 'none';
+      // Al volver atrás desde el checklist se recuperan los signos vitales; en una entrada nueva, nunca
+      // (sería otro paciente): por eso solo se restaura en navegación atrás/adelante.
+      try {
+        var nav = performance.getEntriesByType('navigation')[0], g = sessionStorage.getItem('oc-triage');
+        sessionStorage.removeItem('oc-triage');
+        if (g && nav && nav.type === 'back_forward') { resp = JSON.parse(g) || {}; }
+      } catch (e) {}
+      vista();
+    }
+
+    document.getElementById('fgrupos').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-g]'); if (!b) return;
+      st.grupo = b.getAttribute('data-g');
+      history.replaceState(null, '', st.grupo ? '#' + st.grupo : location.pathname + location.search);
+      render();
+    });
+    document.getElementById('ftipos').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-t]'); if (!b) return;
+      st.tipo = b.getAttribute('data-t');
+      render();
+    });
+    window.addEventListener('hashchange', function () {
+      var g = (location.hash || '').slice(1);
+      st.grupo = OC.grupo(A, g) ? g : '';
+      render();
+    });
+    if (A.entrada === 'news2' && !location.hash) initTriage(); else render();
+  })();
+</script>
+</body>
+</html>

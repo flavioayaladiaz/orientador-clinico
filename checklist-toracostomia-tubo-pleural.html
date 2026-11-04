@@ -591,6 +591,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1775,7 +1780,7 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    <strong>no reemplaza el juicio clínico</strong>, ni el entrenamiento
     presencial en el procedimiento. La <strong>toracostomía y la instalación de un tubo pleural son procedimientos
     invasivos de alto riesgo</strong>, con complicaciones potencialmente mortales —lesión de pulmón, corazón, grandes
     vasos, diafragma, hígado o bazo, hemorragia del paquete intercostal, empiema—: leer este checklist no sustituye
@@ -1797,8 +1802,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Referencias localizadas y verificadas mediante <strong>PubMed</strong>.</div>
       <div class="ref-item">Laan DV, Vu TDN, Thiels CA, et al. <em>Chest wall thickness and decompression failure: A systematic review and meta-analysis comparing anatomic locations in needle thoracostomy.</em> Injury. 2016;47(4):797–804. <a href="https://doi.org/10.1016/j.injury.2015.11.045" target="_blank" rel="noopener">DOI: 10.1016/j.injury.2015.11.045</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/26724173/" target="_blank" rel="noopener">PMID 26724173</a> — <strong>Fuente de la tabla de grosor y fracaso por sitio.</strong> Quince estudios para grosor y trece para efectividad: pared de <strong>42,79 mm</strong> en el 2.º EIC línea medioclavicular, <strong>39,85 mm</strong> en línea axilar media y <strong>34,33 mm</strong> en línea axilar anterior; fracaso con aguja de 5 cm de <strong>38 %, 31 % y 13 %</strong> respectivamente (p = 0,01). <em>Metaanálisis de estudios observacionales.</em></div>
@@ -1831,7 +1836,7 @@
       <div class="ref-item">Shinjo T, Tanaka Y, Izawa Y, et al. <em>The need to suspect tension gastrothorax as a cause of obstructive shock in trauma care: A case report.</em> Int J Surg Case Rep. 2024;118:109612. <a href="https://doi.org/10.1016/j.ijscr.2024.109612" target="_blank" rel="noopener">DOI: 10.1016/j.ijscr.2024.109612</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/38581944/" target="_blank" rel="noopener">PMID 38581944</a> — <em>Reporte de un caso</em> que ilustra el gastrotórax a tensión por rotura diafragmática como diagnóstico que imita el neumotórax a tensión, con la advertencia de la contaminación pleural si se punciona un estómago herniado.</div>
       <div class="ref-item">Aspectos <strong>convencionales</strong> descritos aquí y <strong>no respaldados individualmente por estudios de desenlace</strong>: todas las metas de tiempo del cronómetro; el calibre 28–32 Fr para el paciente inestable (población excluida de los ensayos de calibre); los umbrales de aproximadamente 1500 mL de salida inmediata y de 200 mL/hora como gatillo quirúrgico; el nivel de aspiración; los criterios, la maniobra respiratoria y la técnica de retiro del tubo; el esquema y la duración de los antibióticos; la técnica concreta de fijación y de cierre; la frecuencia con que se revisa una toracostomía abierta y el plazo máximo para convertirla en tubo; el tamaño exacto de la incisión; el uso de autotransfusión; y la conducta ante contraindicaciones relativas. Provienen de textos y cursos de trauma, revisiones narrativas, insertos de fabricantes y consenso de expertos, y deben contrastarse con el <strong>material realmente disponible y con el protocolo institucional vigente</strong>.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -1971,5 +1976,6 @@
 
   swRender();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

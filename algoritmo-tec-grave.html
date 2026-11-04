@@ -689,6 +689,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1537,13 +1542,13 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio. Está orientada al
+    <strong>no reemplaza el juicio clínico</strong>. Está orientada al
     <strong>adulto</strong> con traumatismo craneoencefálico grave; el <strong>paciente pediátrico</strong> tiene
     umbrales de presión arterial, de presión intracraneana y dosis distintas, y se rige por sus propias guías, igual
     que la paciente embarazada y el paciente con lesión medular asociada. Las <strong>dosis, umbrales y secuencias
     son orientativos</strong>: verifica la presentación, la concentración, la dilución y la vía de administración de
     tu servicio, y el ajuste por peso, edad, función renal y hepática, interacciones y contraindicaciones antes de
-    administrar cualquier fármaco. La indicación y el momento de la cirugía, la instalación y los umbrales del
+    indicar cualquier fármaco. La indicación y el momento de la cirugía, la instalación y los umbrales del
     monitor de presión intracraneana, la elección y los límites de la osmoterapia, el uso de relajantes musculares,
     barbitúricos, hipotermia y craniectomía descompresiva, la reversión de anticoagulantes, el umbral transfusional,
     el inicio de la tromboprofilaxis farmacológica y las vías de derivación y traslado deben contrastarse con el
@@ -1554,8 +1559,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Carney N, Totten AM, O'Reilly C, et al. <em>Guidelines for the Management of Severe Traumatic Brain Injury, Fourth Edition.</em> Neurosurgery. 2017;80(1):6–15. — Umbrales de presión intracraneana (&gt; 22 mmHg), presión de perfusión cerebral (60–70 mmHg), presión arterial sistólica por edad, osmoterapia, hiperventilación, barbitúricos, hipotermia, corticoides y profilaxis de convulsiones.</div>
       <div class="ref-item">Hawryluk GWJ, Aguilera S, Buki A, et al. <em>A management algorithm for patients with intracranial pressure monitoring: the Seattle International Severe Traumatic Brain Injury Consensus Conference (SIBICC).</em> Intensive Care Med. 2019;45(12):1783–1794. — Escalonamiento por niveles del tratamiento de la hipertensión endocraneal.</div>
@@ -1571,7 +1576,7 @@
       <div class="ref-item">American College of Surgeons Committee on Trauma. <em>ATLS: Advanced Trauma Life Support, 10.ª edición.</em> Chicago, 2018. — Evaluación inicial, prioridades en el politraumatizado y manejo del TEC en el contexto del trauma.</div>
       <div class="ref-item">Las dosis y diluciones de la osmoterapia, los fármacos de inducción y sedación, los umbrales de natremia y osmolalidad, el umbral transfusional, la elección y dosis de la profilaxis de convulsiones, la estrategia de reversión de anticoagulantes, el momento de la tromboprofilaxis farmacológica y las vías de traslado deben contrastarse con el protocolo institucional vigente y con los equipos de neurocirugía y cuidados críticos de referencia.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -2142,5 +2147,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

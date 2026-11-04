@@ -651,6 +651,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1585,7 +1590,7 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda de orientación para la atención de urgencia:
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes del servicio</strong>. Las metas de tiempo son
+    <strong>no reemplaza el juicio clínico</strong>. Las metas de tiempo son
     referenciales y <strong>están propuestas, no validadas</strong>. Los umbrales de residuo postmiccional, los plazos
     quirúrgicos y de resonancia, las vías de derivación a columna, los esquemas de corticoides en la compresión medular,
     el antibiótico empírico de la infección espinal, los agentes de reversión de la anticoagulación, el esquema
@@ -1598,8 +1603,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Qaseem A, et al. <em>Noninvasive Treatments for Acute, Subacute, and Chronic Low Back Pain: A Clinical Practice Guideline From the American College of Physicians.</em> Ann Intern Med. 2017;166(7):514–530.</div>
       <div class="ref-item">National Institute for Health and Care Excellence. <em>Low Back Pain and Sciatica in Over 16s: Assessment and Management.</em> NICE guideline NG59, 2016 (actualizada 2020).</div>
@@ -1617,7 +1622,7 @@
       <div class="ref-item">Deyo RA, Diehl AK. <em>Cancer as a Cause of Back Pain: Frequency, Clinical Presentation, and Diagnostic Strategies.</em> J Gen Intern Med. 1988;3(3):230–238.</div>
       <div class="ref-item">Los plazos quirúrgicos y de imagen, los umbrales de residuo postmiccional, los esquemas de corticoides y de antibióticos, y las vías de derivación deben contrastarse con el protocolo institucional vigente.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -2288,5 +2293,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

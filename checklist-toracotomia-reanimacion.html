@@ -595,6 +595,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1591,7 +1596,7 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    <strong>no reemplaza el juicio clínico</strong>, ni el entrenamiento
     presencial en el procedimiento. La <strong>toracotomía de reanimación es un procedimiento de altísimo riesgo,
     irreversible y de indicación estrecha</strong>, que requiere operador entrenado, respaldo institucional y acceso
     inmediato a pabellón; leer este checklist no sustituye la práctica supervisada ni la capacitación formal en
@@ -1611,8 +1616,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Seamon MJ, Haut ER, Van Arendonk K, et al. <em>An evidence-based approach to patient selection for emergency department thoracotomy: A practice management guideline from the Eastern Association for the Surgery of Trauma.</em> J Trauma Acute Care Surg. 2015;79(1):159–173. <a href="https://doi.org/10.1097/TA.0000000000000648" target="_blank" rel="noopener">DOI: 10.1097/TA.0000000000000648</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/26091330/" target="_blank" rel="noopener">PMID 26091330</a> — Origen de la tabla de sobrevida por escenario (72 estudios, 10.238 pacientes) y de las recomendaciones GRADE, incluida la recomendación en contra en el trauma contuso sin signos de vida.</div>
       <div class="ref-item">Burlew CC, Moore EE, Moore FA, et al. <em>Western Trauma Association critical decisions in trauma: resuscitative thoracotomy.</em> J Trauma Acute Care Surg. 2012;73(6):1359–1363. <a href="https://doi.org/10.1097/TA.0b013e318270d2df" target="_blank" rel="noopener">DOI: 10.1097/TA.0b013e318270d2df</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/23188227/" target="_blank" rel="noopener">PMID 23188227</a> — Ventanas de tiempo de RCP por mecanismo, criterio de salvabilidad (PAS &gt; 70 mmHg con clampeo aórtico) y conducta ante asistolia con y sin taponamiento.</div>
@@ -1625,7 +1630,7 @@
       <div class="ref-item">Vreeswijk SJM, Mommers LPW, Bergmans DCJJ, van Wageningen B. <em>Clamshell in a Heartbeat.</em> Air Med J. 2020;39(6):509–511. <a href="https://doi.org/10.1016/j.amj.2020.08.001" target="_blank" rel="noopener">DOI: 10.1016/j.amj.2020.08.001</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/33228905/" target="_blank" rel="noopener">PMID 33228905</a> — Caso con recuperación neurológica completa tras clamshell prehospitalaria; fundamenta la recomendación de ecocardiografía de seguimiento en la revisión terciaria por lesiones intracardíacas no evidentes al momento de la reparación.</div>
       <div class="ref-item">Referencias localizadas mediante PubMed. Los aspectos <strong>técnicos</strong> descritos (espacio intercostal, manejo del separador, pericardiotomía anterior al frénico, técnicas de cierre de la herida cardíaca, torsión hiliar, manejo de la embolia aérea, aislamiento pulmonar e instrumental de la caja) corresponden a descripciones convencionales de textos y cursos de manejo quirúrgico del trauma —entre ellos el <em>Advanced Trauma Life Support</em> (ATLS) del American College of Surgeons— y <strong>no están respaldados individualmente por estudios de desenlace</strong>. El contenido de la caja de toracotomía, las energías de desfibrilación interna, los calibres, las dosis y los criterios de suspensión deben contrastarse con el <strong>protocolo institucional vigente</strong> y con los equipos de cirugía y anestesia de referencia.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -1765,5 +1770,6 @@
 
   swRender();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

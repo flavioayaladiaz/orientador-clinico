@@ -309,6 +309,7 @@
 
   .news2-params { padding: 4px 0; }
 
+
   .news2-row {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -495,6 +496,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -621,7 +627,7 @@
             <div class="news2-param-name">🫁 Frec. Respiratoria (rpm)</div>
             <div class="news2-options" data-param="fr">
               <button class="news2-btn" data-score="3" onclick="selectParam(this,'fr')">≤ 8</button>
-              <button class="news2-btn" data-score="0" onclick="selectParam(this,'fr')">9–11</button>
+              <button class="news2-btn" data-score="1" onclick="selectParam(this,'fr')">9–11</button>
               <button class="news2-btn" data-score="0" onclick="selectParam(this,'fr')">12–20 ✓</button>
               <button class="news2-btn" data-score="2" onclick="selectParam(this,'fr')">21–24</button>
               <button class="news2-btn" data-score="3" onclick="selectParam(this,'fr')">≥ 25</button>
@@ -630,7 +636,7 @@
 
           <!-- SpO2 -->
           <div class="news2-row">
-            <div class="news2-param-name">🩺 SpO₂ — Escala 1 (sin EPOC)</div>
+            <div class="news2-param-name">🩺 SpO₂</div>
             <div class="news2-options" data-param="spo2">
               <button class="news2-btn" data-score="3" onclick="selectParam(this,'spo2')">≤ 91%</button>
               <button class="news2-btn" data-score="2" onclick="selectParam(this,'spo2')">92–93%</button>
@@ -904,8 +910,8 @@
   </div>
 
   <!-- REFERENCES -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Evans L, et al. <em>Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2021.</em> Crit Care Med. 2021;49(11):e1063–e1143. <a href="https://www.sccm.org/clinical-resources/guidelines/guidelines/surviving-sepsis-guidelines-2021" target="_blank">sccm.org</a></div>
       <div class="ref-item">Royal College of Physicians. <em>National Early Warning Score (NEWS) 2: Standardising the Assessment of Acute-Illness Severity in the NHS.</em> RCP London, 2017. — Umbral NEWS2 ≥ 5 para activación de respuesta clínica urgente.</div>
@@ -915,13 +921,14 @@
       <div class="ref-item">Lakhal K, et al. <em>Dynamic Monitoring Tools for ED Patients with Circulatory Failure: Narrative Review with Panel-Based Recommendations.</em> Eur J Emerg Med. 2024. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11232941/" target="_blank">PMC11232941</a></div>
       <div class="ref-item">Ministerio de Salud de Chile. <em>Orientación Técnica: Manejo de Sepsis y Shock Séptico en Servicio de Urgencia.</em> MINSAL 2023.</div>
     </div>
-  </div>
+  </details>
 
   </div><!-- /protocolo-content -->
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
 
+<script src="./news2.js"></script>
 <script>
   // ─── CHECKLIST ───
   const state = { s0: 0, s1: 0, s2: 0 };
@@ -1033,6 +1040,19 @@
       unlockProtocol();
     }
   }
+
+  // NEWS2 precargado desde el triage de Ambulatorio: #n2=<i0>.<i1>… (ver news2.js)
+  (function precargarNews2() {
+    const m = /[#&]n2=([^&]+)/.exec(location.hash);
+    const d = m && NEWS2.decodificar(decodeURIComponent(m[1]));
+    if (!d) return;
+    NEWS2.PARAMS.forEach(p => {
+      if (d[p.id] == null) return;
+      const box = document.querySelector('.news2-options[data-param="' + p.id + '"]');
+      const btn = box && box.children[d[p.id]];
+      if (btn) selectParam(btn, p.id);
+    });
+  })();
 </script>
 <script>
 (function() {
@@ -1046,5 +1066,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

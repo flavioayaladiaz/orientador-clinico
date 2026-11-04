@@ -591,6 +591,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1900,7 +1905,7 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    <strong>no reemplaza el juicio clínico</strong>, ni el entrenamiento
     presencial en el procedimiento. La <strong>aspiración e irrigación intracavernosa con inyección de un
     simpaticomimético es un procedimiento invasivo sobre un órgano pequeño y muy vascularizado</strong>, con
     complicaciones posibles —hematoma, lesión uretral, lesión del paquete neurovascular dorsal, infección y
@@ -1929,8 +1934,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Referencias localizadas y verificadas mediante <strong>PubMed</strong>.</div>
       <div class="ref-item">Bivalacqua TJ, Allen BK, Brock G, et al. <em>Acute Ischemic Priapism: An AUA/SMSNA Guideline.</em> J Urol. 2021;206(5):1114–1121. <a href="https://doi.org/10.1097/JU.0000000000002236" target="_blank" rel="noopener">DOI: 10.1097/JU.0000000000002236</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/34495686/" target="_blank" rel="noopener">PMID 34495686</a> — <strong>Fuente principal de esta página.</strong> Búsqueda de 1960 a mayo de 2020, 137 artículos incluidos. Define el priapismo isquémico agudo por el flujo cavernoso ausente o mínimo y la gasometría anormal (hipóxica, hipercápnica, acidótica); recomienda <strong>fenilefrina intracavernosa con aspiración, con o sin irrigación, como primera línea y antes de las intervenciones quirúrgicas</strong>; exige <strong>monitorizar presión arterial y frecuencia cardíaca</strong> en quien recibe fenilefrina; aborda el involucramiento precoz del urólogo, la consejería sobre riesgo de disfunción eréctil, la tunelización y la <strong>prótesis de pene precoz</strong>.</div>
@@ -1957,7 +1962,7 @@
       <div class="ref-item">Siegel JF, Rich MA, Brock WA. <em>Association of sickle cell disease, priapism, exchange transfusion and neurological events: ASPEN syndrome.</em> J Urol. 1993;150(5 Pt 1):1480–1482. <a href="https://doi.org/10.1016/s0022-5347(17)35817-2" target="_blank" rel="noopener">DOI: 10.1016/s0022-5347(17)35817-2</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/8411432/" target="_blank" rel="noopener">PMID 8411432</a> — <strong>Origen de la advertencia sobre la transfusión de intercambio.</strong> Descripción del síndrome ASPEN: eventos neurológicos significativos tras transfusión de intercambio parcial para tratar el priapismo en pacientes con enfermedad falciforme, desde <strong>cefalea intensa como síntoma inicial</strong> hasta convulsiones y compromiso de conciencia con necesidad de ventilación, atribuidos a isquemia cerebral por el alza aguda de hemoglobina total y la caída de la fracción S. <strong>Reversible con reconocimiento precoz y manejo agresivo.</strong> <em>Reporte de casos con revisión de la literatura.</em></div>
       <div class="ref-item">Aspectos <strong>convencionales</strong> descritos aquí y <strong>no respaldados individualmente por estudios de desenlace</strong>: todas las metas de tiempo del cronómetro y el «techo de 60 minutos» de la fase farmacológica; el calibre y el tipo de aguja; la elección entre bloqueo del nervio dorsal y bloqueo en anillo, la concentración, el volumen y la dosis máxima del anestésico local; el volumen por alícuota de aspiración y de irrigación y el uso de suero a temperatura ambiente; el tiempo de compresión y el tipo de vendaje; el período mínimo de observación antes del alta; la política de imagen posprocedimiento; el panel exacto de exámenes para buscar la causa; los esquemas de analgesia y de antibióticos; la conducta ante coagulopatía o anticoagulación plena; los umbrales de suspensión de la fenilefrina por cambios hemodinámicos; y la disponibilidad, presentación y dilución de alternativas como la etilefrina o la adrenalina intracavernosa. Provienen de textos, revisiones narrativas, insertos de fabricantes y consenso de expertos, y deben contrastarse con el <strong>material realmente disponible y con el protocolo institucional vigente</strong>.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -2097,5 +2102,6 @@
 
   swRender();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

@@ -601,6 +601,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1418,12 +1423,12 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Este algoritmo es una ayuda de orientación para la atención de urgencia: no reemplaza
-    el juicio clínico ni los protocolos vigentes del servicio, y no sustituye la evaluación por cirugía cardíaca o
+    el juicio clínico, y no sustituye la evaluación por cirugía cardíaca o
     vascular, que es quien define la estrategia definitiva. Está escrito para el <strong>adulto</strong> con sospecha
     de síndrome aórtico agudo no traumático; la lesión aórtica traumática, el paciente pediátrico y el embarazo tienen
     consideraciones adicionales y se rigen por sus protocolos específicos. Las <strong>dosis, objetivos hemodinámicos y
     umbrales referidos son orientativos</strong>: verifica el ajuste por peso, edad, función renal y hepática,
-    interacciones, embarazo y lactancia, y las contraindicaciones antes de administrar cualquier fármaco. Las
+    interacciones, embarazo y lactancia, y las contraindicaciones antes de indicar cualquier fármaco. Las
     indicaciones quirúrgicas y endovasculares, los protocolos de imagen, las estrategias de reperfusión en malperfusión,
     el manejo del hemopericardio y las vías de derivación y traslado deben contrastarse con el
     <strong>protocolo institucional vigente</strong>. El puntaje ADD-RS y la estrategia con dímero D complementan y no
@@ -1432,8 +1437,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Isselbacher EM, et al. <em>2022 ACC/AHA Guideline for the Diagnosis and Management of Aortic Disease.</em> Circulation. 2022;146(24):e334–e482. — Clasificación, objetivos hemodinámicos, indicaciones quirúrgicas y endovasculares.</div>
       <div class="ref-item">Nazerian P, et al. <em>Diagnostic Accuracy of the Aortic Dissection Detection Risk Score Plus D-Dimer for Acute Aortic Syndromes: The ADvISED Prospective Multicenter Study.</em> Circulation. 2018;137(3):250–258. — Tasas de falla y eficiencia de ADD-RS con dímero D. <a href="https://doi.org/10.1161/CIRCULATIONAHA.117.029457">doi:10.1161/CIRCULATIONAHA.117.029457</a></div>
@@ -1444,7 +1449,7 @@
       <div class="ref-item">Lombardi JV, et al. <em>SVS/STS Reporting Standards for Type B Aortic Dissections.</em> J Vasc Surg. 2020;71(3):723–747. — Definiciones de fase temporal, complicación y malperfusión.</div>
       <div class="ref-item">Las indicaciones quirúrgicas, los protocolos de imagen y de traslado, las dosis y el manejo del hemopericardio en la disección deben contrastarse con el protocolo institucional vigente y con el equipo de cirugía cardiovascular de referencia.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -1856,5 +1861,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

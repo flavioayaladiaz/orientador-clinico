@@ -461,6 +461,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1016,14 +1021,14 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta guía es una ayuda de orientación para la atención de urgencia:
-    no reemplaza el juicio clínico ni los protocolos vigentes del servicio. Las recomendaciones empíricas
+    no reemplaza el juicio clínico. Las recomendaciones empíricas
     dependen del patrón de resistencia local. Verifica dosis, ajuste por función renal y contraindicaciones
-    antes de administrar cualquier fármaco.
+    antes de indicar cualquier fármaco.
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Gupta K, et al. <em>International Clinical Practice Guidelines for the Treatment of Acute Uncomplicated Cystitis and Pyelonephritis in Women (IDSA / ESCMID).</em> Clin Infect Dis. 2011;52(5):e103–e120.</div>
       <div class="ref-item">Nicolle LE, et al. <em>Clinical Practice Guideline for the Management of Asymptomatic Bacteriuria: 2019 Update by the IDSA.</em> Clin Infect Dis. 2019;68(10):e83–e110.</div>
@@ -1033,7 +1038,7 @@
       <div class="ref-item">Evans L, et al. <em>Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2021.</em> Crit Care Med. 2021;49(11):e1063–e1143.</div>
       <div class="ref-item">La elección empírica y los ajustes de dosis deben contrastarse con el mapa de resistencia y el protocolo antimicrobiano local.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -1274,5 +1279,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

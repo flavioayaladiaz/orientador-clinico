@@ -692,6 +692,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1473,12 +1478,12 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio. Está orientada al
+    <strong>no reemplaza el juicio clínico</strong>. Está orientada al
     <strong>paciente adulto</strong>: la hemorragia variceal <strong>pediátrica</strong> y la de la
     <strong>paciente embarazada</strong> tienen umbrales, dosis y consideraciones propias. Las <strong>dosis,
     concentraciones, umbrales y tiempos son orientativos</strong>: verifica la presentación, la dilución y la vía de
     administración de tu servicio, y el ajuste por peso, edad, función renal y hepática, interacciones y
-    contraindicaciones antes de administrar cualquier fármaco. La elección y la duración del vasoactivo esplácnico,
+    contraindicaciones antes de indicar cualquier fármaco. La elección y la duración del vasoactivo esplácnico,
     el esquema antibiótico según la resistencia local, los umbrales de transfusión de hemoderivados y de corrección
     de plaquetas y fibrinógeno, la reversión de anticoagulantes, la política de intubación previa a la endoscopia,
     la técnica, los volúmenes de inflado y el tiempo máximo del balón de taponamiento, y los criterios de indicación
@@ -1492,8 +1497,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">de Franchis R, Bosch J, Garcia-Tsao G, Reiberger T, Ripoll C; Baveno VII Faculty. <em>Baveno VII — Renewing consensus in portal hypertension.</em> J Hepatol. 2022;76(4):959–974. <a href="https://pubmed.ncbi.nlm.nih.gov/35120736/" target="_blank" rel="noopener">PMID 35120736</a> — Consenso de referencia: vasoactivo precoz, profilaxis antibiótica, endoscopia dentro de 12 h, umbral transfusional restrictivo, no corrección rutinaria de la coagulación, TIPS preventivo y de rescate, profilaxis secundaria.</div>
       <div class="ref-item">Garcia-Tsao G, Abraldes JG, Berzigotti A, Bosch J. <em>Portal hypertensive bleeding in cirrhosis: Risk stratification, diagnosis, and management — 2016 practice guidance by the AASLD.</em> Hepatology. 2017;65(1):310–335. <a href="https://pubmed.ncbi.nlm.nih.gov/27786365/" target="_blank" rel="noopener">PMID 27786365</a> — Guía de manejo con esquemas de fármacos vasoactivos, antibióticos y terapia endoscópica.</div>
@@ -1508,7 +1513,7 @@
       <div class="ref-item">Wong F, Pappas SC, Curry MP, et al. <em>Terlipressin plus albumin for the treatment of type 1 hepatorenal syndrome (CONFIRM).</em> N Engl J Med. 2021;384(9):818–828. <a href="https://pubmed.ncbi.nlm.nih.gov/33657294/" target="_blank" rel="noopener">PMID 33657294</a> — Eficacia de terlipresina en síndrome hepatorrenal y señal de insuficiencia respiratoria como efecto adverso.</div>
       <div class="ref-item">Referencias localizadas mediante PubMed. Las dosis, diluciones y duraciones del vasoactivo esplácnico, el esquema y la duración del antibiótico según resistencia local, los umbrales de transfusión y de corrección de hemoderivados, la reversión de anticoagulantes, la política de intubación previa a la endoscopia, la técnica y los tiempos del balón de taponamiento y del <em>stent</em> esofágico, y los criterios de TIPS preventivo y de rescate deben contrastarse con el protocolo institucional vigente y con los equipos de gastroenterología, hepatología, radiología intervencional, cuidados críticos, hematología y banco de sangre de referencia.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -2060,5 +2065,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

@@ -689,6 +689,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1451,12 +1456,12 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio. Está orientada al
+    <strong>no reemplaza el juicio clínico</strong>. Está orientada al
     <strong>adulto</strong> con crisis asmática grave; el paciente pediátrico, la reagudización de EPOC y la
     obstrucción de la vía aérea alta tienen criterios, dosis y objetivos distintos, y se rigen por sus protocolos
     específicos. Las <strong>dosis, umbrales y parámetros ventilatorios son orientativos</strong>: verifica el ajuste
     por peso, edad, función renal y hepática, interacciones, embarazo y lactancia, y las contraindicaciones antes de
-    administrar cualquier fármaco, así como la presentación y dilución estandarizadas de tu servicio. Las indicaciones
+    indicar cualquier fármaco, así como la presentación y dilución estandarizadas de tu servicio. Las indicaciones
     de ventilación no invasiva, los parámetros de ventilación mecánica, el umbral de pH tolerado, las terapias de
     rescate, la descompresión torácica y las vías de derivación y traslado deben contrastarse con el
     <strong>protocolo institucional vigente</strong>. Las calculadoras de esta página describen la gravedad y convierten
@@ -1464,8 +1469,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Global Initiative for Asthma (GINA). <em>Global Strategy for Asthma Management and Prevention.</em> Informe anual actualizado. — Manejo de la exacerbación en urgencia, objetivos de saturación, corticoides sistémicos y magnesio.</div>
       <div class="ref-item">British Thoracic Society / Scottish Intercollegiate Guidelines Network. <em>British Guideline on the Management of Asthma (SIGN 158).</em> 2019. — Criterios de crisis moderada, grave, con riesgo vital y casi fatal, y factores de riesgo de asma fatal.</div>
@@ -1478,7 +1483,7 @@
       <div class="ref-item">Lott C, et al. <em>European Resuscitation Council Guidelines 2021: Cardiac arrest in special circumstances.</em> Resuscitation. 2021;161:152–219. — Paro en el asma: desconexión del ventilador, ventilación de baja frecuencia y descompresión torácica.</div>
       <div class="ref-item">Las dosis, la preparación de infusiones, los parámetros ventilatorios, el umbral de pH tolerado, la indicación de ventilación no invasiva, de terapias de rescate y de soporte extracorpóreo, y las vías de traslado deben contrastarse con el protocolo institucional vigente y con el equipo de cuidados críticos de referencia.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -1899,5 +1904,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

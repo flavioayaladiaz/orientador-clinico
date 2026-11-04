@@ -595,6 +595,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1638,7 +1643,7 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    <strong>no reemplaza el juicio clínico</strong>, ni el entrenamiento
     presencial en el procedimiento. La <strong>histerotomía de reanimación es un procedimiento de altísimo riesgo,
     irreversible y de indicación estrecha</strong>, que requiere decisión institucional previa, operador respaldado y
     equipo de reanimación neonatal disponible; leer este checklist no sustituye la práctica supervisada, la simulación
@@ -1664,8 +1669,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Jeejeebhoy FM, Zelop CM, Lipman S, et al. <em>Cardiac Arrest in Pregnancy: A Scientific Statement From the American Heart Association.</em> Circulation. 2015;132(18):1747–1773. <a href="https://doi.org/10.1161/CIR.0000000000000300" target="_blank" rel="noopener">DOI: 10.1161/CIR.0000000000000300</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/26443610/" target="_blank" rel="noopener">PMID 26443610</a> — Documento de referencia del escenario: umbral de fondo uterino a la altura del ombligo, desplazamiento uterino manual izquierdo en lugar de inclinación lateral, accesos por encima del diafragma, ausencia de modificaciones en dosis y energías, y la lista A–H de causas del paro materno.</div>
       <div class="ref-item">Lipman S, Cohen S, Einav S, et al. <em>The Society for Obstetric Anesthesia and Perinatology consensus statement on the management of cardiac arrest in pregnancy.</em> Anesth Analg. 2014;118(5):1003–1016. <a href="https://doi.org/10.1213/ANE.0000000000000171" target="_blank" rel="noopener">DOI: 10.1213/ANE.0000000000000171</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/24781570/" target="_blank" rel="noopener">PMID 24781570</a> — Organización del equipo, listas de verificación de bolsillo, manejo de la vía aérea de la embarazada y toxicidad por anestésicos locales.</div>
@@ -1678,7 +1683,7 @@
       <div class="ref-item">Rajendran G, Mahalingam S, Ramkumar A, et al. <em>Resuscitative Hysterotomy and Maternal and Neonatal Mortality in Maternal Cardiac Arrest Patients — A Systematic Review and Meta-analysis.</em> Can J Cardiol. 2026;42(4):850–860 (publicación en línea: 30 de septiembre de 2025). <a href="https://doi.org/10.1016/j.cjca.2025.09.025" target="_blank" rel="noopener">DOI: 10.1016/j.cjca.2025.09.025</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/41038532/" target="_blank" rel="noopener">PMID 41038532</a> — 12 estudios, 507 pacientes: las sobrevivientes fueron operadas a un tiempo medio de 12,55 ± 4,85 minutos, significativamente menor que las no sobrevivientes, y la sobrevida neonatal se asoció a un tiempo medio de 10,25 ± 5,5 minutos. Heterogeneidad alta y certeza muy baja: los autores <strong>no proponen cambiar la meta de tiempo de las guías</strong>, pero documentan sobrevida más allá de los 5 minutos clásicos.</div>
       <div class="ref-item">Referencias localizadas mediante <strong>PubMed</strong>. Los aspectos <strong>técnicos</strong> descritos (incisión vertical media de la pared, apertura del peritoneo, histerotomía vertical clásica iniciada en el cuerpo y ampliada con los dedos, manejo de la placenta anterior, extracción de la placenta, empaquetamiento, retracción del panículo en la paciente obesa y contenido de la caja) corresponden a <strong>descripciones convencionales de textos y cursos de reanimación materna y urgencia obstétrica</strong>, y <strong>no están respaldados individualmente por estudios de desenlace</strong>. Los esquemas de uterotónicos y antibióticos, el umbral de viabilidad neonatal, los criterios de hipotermia terapéutica neonatal y los criterios de suspensión deben contrastarse con el <strong>protocolo institucional vigente</strong>.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -1818,5 +1823,6 @@
 
   swRender();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

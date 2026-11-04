@@ -692,6 +692,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1730,7 +1735,7 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio. El propio documento
+    <strong>no reemplaza el juicio clínico</strong>. El propio documento
     fuente señala que <strong>no constituye una guía clínica ni una norma técnica</strong>, sino orientaciones de
     carácter general y voluntario. El contenido está orientado al <strong>paciente adulto</strong>: lo
     <strong>pediátrico se omite deliberadamente</strong> —los criterios de gravedad, las dosis por peso y los
@@ -1738,7 +1743,7 @@
     y la derivación, que debe definirse con obstetricia e infectología. Las <strong>dosis, presentaciones,
     diluciones y umbrales son orientativos</strong>: verifica la presentación disponible, la reconstitución, la
     dilución y la vía de administración de tu servicio, y el ajuste por peso, función renal y hepática,
-    interacciones y contraindicaciones antes de administrar cualquier fármaco —muy especialmente la
+    interacciones y contraindicaciones antes de indicar cualquier fármaco —muy especialmente la
     <strong>equivalencia entre miligramos de sal y miligramos base</strong> de la cloroquina y la
     hidroxicloroquina—. La <strong>preparación y el tiempo de administración del artesunato</strong>, las
     <strong>dosis y la vía de las benzodiacepinas</strong> en las convulsiones, los <strong>umbrales y el momento
@@ -1755,14 +1760,14 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Documento fuente</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item"><strong>Ministerio de Salud de Chile.</strong> <em>Orientaciones Técnicas para el Diagnóstico y Manejo Clínico de Malaria en Chile</em>, versión 2.0, 2ª edición, 2026. Aprobadas por <strong>Resolución Exenta N° 1153, de 25 de septiembre de 2026</strong>, de la Subsecretaría de Salud Pública, que deja sin efecto la Resolución Exenta N° 191, de 26 de febrero de 2016. Elaboradas por la División de Prevención y Control de Enfermedades (DIPRECE). <strong>Esta página se basa íntegramente en ese documento</strong>: los criterios de gravedad, los esquemas, las dosis, los umbrales de parasitemia, las reglas de recuento, los criterios de falla terapéutica, el listado de establecimientos y las obligaciones de notificación provienen de él, y no se han reemplazado por otras guías.</div>
       <div class="ref-item">El documento fuente, a su vez, declara como referencias principales las <em>WHO guidelines for malaria</em> (Organización Mundial de la Salud, 30 de noviembre de 2024) —origen de la tabla de criterios de malaria grave, del esquema de arteméter/lumefantrina por peso, de las dosis pediátricas de primaquina y del esquema de artesunato intravenoso—, el <em>World malaria report 2024</em> de la OMS —datos epidemiológicos de la Región de las Américas—, las recomendaciones de los <em>Centers for Disease Control and Prevention</em> (CDC, Malaria, 2024) —esquemas de atovacuona-proguanil, de cloroquina y de primaquina en el adulto—, el documento <em>Methods for surveillance of antimalarial drug efficacy</em> (OMS, 2009) —criterios de FTT, FCT, FPT y RPCA— y los registros de la Sección de Parasitología del Instituto de Salud Pública de Chile —casos y tasas de malaria importada, fórmula y reglas de recuento de la carga parasitaria—.</div>
       <div class="ref-item"><strong>Lo que esta página no afirma, porque el documento fuente no lo precisa:</strong> no se indican el tiempo de infusión ni la estabilidad de la solución reconstituida de artesunato, las dosis ni la vía de las benzodiacepinas para las convulsiones, los umbrales de transfusión, los criterios de ingreso a unidad crítica, la duración del tratamiento oral de continuación tras el artesunato más allá de que sea «un curso completo», ni el intervalo exacto de los controles de glicemia, hematocrito, bicarbonato y función renal en la malaria grave. Tampoco se reproduce el esquema pediátrico de arteméter/lumefantrina, atovacuona-proguanil, cloroquina ni primaquina por tratarse de contenido fuera del alcance de esta página, ni los datos de contacto nominales del Anexo 1. Todo eso debe verificarse con el protocolo institucional y con el documento original.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -2280,5 +2285,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

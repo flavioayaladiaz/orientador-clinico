@@ -692,6 +692,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1955,13 +1960,13 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio. Está orientada al
+    <strong>no reemplaza el juicio clínico</strong>. Está orientada al
     <strong>paciente adulto</strong>: la pancreatitis aguda <strong>pediátrica</strong> tiene etiologías, umbrales
     y manejo distintos y se rige por sus propias guías, y en la <strong>paciente embarazada</strong> solo se
     recogen aquí los elementos del manejo inicial, que debe definirse con obstetricia. Las <strong>dosis,
     concentraciones, umbrales y velocidades son orientativas</strong>: verifica la presentación, la dilución y la
     vía de administración de tu servicio, y el ajuste por peso, edad, función renal y hepática, interacciones y
-    contraindicaciones antes de administrar cualquier fármaco. Los esquemas de analgesia, el cristaloide y las
+    contraindicaciones antes de indicar cualquier fármaco. Los esquemas de analgesia, el cristaloide y las
     metas de reposición, los esquemas y la duración de los antibióticos, el tratamiento de la hipercalcemia, el
     esquema de insulina y la indicación de recambio plasmático en la hipertrigliceridemia, la anticoagulación de
     la trombosis esplácnica, la técnica y los umbrales de medición de la presión intraabdominal, los criterios de
@@ -1978,8 +1983,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Banks PA, Bollen TL, Dervenis C, Gooszen HG, Johnson CD, Sarr MG, Tsiotos GG, Vege SS; Acute Pancreatitis Classification Working Group. <em>Classification of acute pancreatitis — 2012: revision of the Atlanta classification and definitions by international consensus.</em> Gut. 2013;62(1):102–111. <a href="https://doi.org/10.1136/gutjnl-2012-302779" target="_blank" rel="noopener">doi:10.1136/gutjnl-2012-302779</a> — Criterios diagnósticos, las tres categorías de gravedad, las dos fases, el puntaje de Marshall modificado y la nomenclatura de las colecciones.</div>
       <div class="ref-item">Tenner S, Vege SS, Sheth SG, Sauer B, Yang A, Conwell DL, Yadlapati RH, Gardner TB. <em>American College of Gastroenterology Guidelines: Management of Acute Pancreatitis.</em> Am J Gastroenterol. 2024;119(3):419–437. <a href="https://doi.org/10.14309/ajg.0000000000002645" target="_blank" rel="noopener">doi:10.14309/ajg.0000000000002645</a> — Guía de referencia de esta página: fluidos, realimentación precoz, antibióticos, CPRE y colecistectomía.</div>
@@ -2014,7 +2019,7 @@
       <div class="ref-item">Kiriyama S, Kozaka K, Takada T, Strasberg SM, Pitt HA, Gabata T, et al. <em>Tokyo Guidelines 2018: diagnostic criteria and severity grading of acute cholangitis.</em> J Hepatobiliary Pancreat Sci. 2018;25(1):17–30. <a href="https://doi.org/10.1002/jhbp.512" target="_blank" rel="noopener">doi:10.1002/jhbp.512</a> — Criterios diagnósticos y de gravedad de la colangitis aguda citados en la sección 08.</div>
       <div class="ref-item">Referencias localizadas y verificadas mediante PubMed. <strong>Lo que esta página no afirma, porque no encontró respaldo primario:</strong> no existe un estudio que derive el umbral de triglicéridos de 1000 mg/dL como punto de corte causal, ni un umbral de calcio validado para atribuir la pancreatitis a la hipercalcemia, ni un análisis que derive el umbral de 8 puntos del APACHE II en pancreatitis —es una convención de consenso heredada del simposio de Atlanta de 1992—, ni un metaanálisis que agrupe la mortalidad por categoría de Atlanta 2012, ni un metaanálisis del hematocrito como predictor de gravedad; los dos ensayos aleatorizados dedicados a la plasmaféresis en la pancreatitis hipertrigliceridémica (Bi-TPAI y PERFORM-R) aún no han publicado resultados. Las dosis, diluciones y velocidades de todos los fármacos, los esquemas y la duración de los antibióticos, el tratamiento de la hipercalcemia, la indicación de recambio plasmático, la anticoagulación de la trombosis esplácnica, la técnica y los umbrales de la presión intraabdominal, los criterios de ingreso a unidad crítica, el momento de la colecistectomía y de la CPRE, y las vías de derivación y traslado deben contrastarse con el protocolo institucional vigente y con los equipos de cuidados críticos, cirugía, gastroenterología, radiología intervencional, endocrinología, infectología y obstetricia de referencia.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -2655,5 +2660,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

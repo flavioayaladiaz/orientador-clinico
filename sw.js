@@ -3,11 +3,18 @@
    Al subir una nueva versión, cambia CACHE_VERSION y todos los
    dispositivos se actualizarán en su próxima conexión. */
 
-const CACHE_VERSION = "orientador-clinico-v0.51.0";
+const CACHE_VERSION = "orientador-clinico-v0.57.14";
 const ASSETS = [
   "./",
   "./index.html",
   "./manifest.json",
+  "./area.html",
+  "./nav.css",
+  "./nav.js",
+  "./news2.js",
+  "./volver.js",
+  "./catalogo.js",
+  "./plan-imv.html",
   "./sintoma-disuria.html",
   "./sintoma-diarrea-vomitos.html",
   "./sintoma-dolor-toracico.html",
@@ -57,6 +64,7 @@ const ASSETS = [
   "./algoritmo-intoxicacion-ccb-betabloqueadores.html",
   "./algoritmo-pancreatitis-aguda.html",
   "./algoritmo-malaria.html",
+  "./algoritmo-lisis-tumoral.html",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/icon-512-maskable.png"

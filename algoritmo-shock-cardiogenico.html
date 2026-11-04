@@ -666,6 +666,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1408,12 +1413,12 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio. Está orientada al adulto
+    <strong>no reemplaza el juicio clínico</strong>. Está orientada al adulto
     con shock cardiogénico y falla ventricular derecha o biventricular aguda no traumática; el paciente pediátrico, el
     trauma, el embarazo y el shock posoperatorio de cirugía cardíaca tienen consideraciones adicionales y se rigen por
     sus protocolos específicos. Las <strong>dosis, objetivos hemodinámicos y umbrales referidos son orientativos</strong>:
     verifica el ajuste por peso, edad, función renal y hepática, interacciones, embarazo y lactancia, y las
-    contraindicaciones antes de administrar cualquier fármaco, así como la dilución y presentación estandarizada de tu
+    contraindicaciones antes de indicar cualquier fármaco, así como la dilución y presentación estandarizada de tu
     servicio. Las indicaciones de reperfusión, trombólisis, marcapasos transitorio, soporte mecánico circulatorio,
     parámetros ventilatorios y vías de derivación y traslado deben contrastarse con el <strong>protocolo institucional
     vigente</strong>. La clasificación SCAI y los ensayos citados complementan y no reemplazan la evaluación clínica: se
@@ -1421,8 +1426,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Naidu SS, et al. <em>SCAI SHOCK Stage Classification Expert Consensus Update: A Review and Incorporation of Validation Studies.</em> J Am Coll Cardiol. 2022;79(9):933–946. — Estadios A a E y su uso clínico.</div>
       <div class="ref-item">Baran DA, et al. <em>SCAI Clinical Expert Consensus Statement on the Classification of Cardiogenic Shock.</em> Catheter Cardiovasc Interv. 2019;94(1):29–37. — Propuesta original de la clasificación.</div>
@@ -1439,7 +1444,7 @@
       <div class="ref-item">Konstantinides SV, et al. <em>2019 ESC Guidelines for the Diagnosis and Management of Acute Pulmonary Embolism.</em> Eur Heart J. 2020;41(4):543–603. — Tromboembolismo de alto riesgo y trombólisis.</div>
       <div class="ref-item">Las dosis, la preparación de infusiones, los parámetros ventilatorios, la indicación de marcapasos transitorio y de soporte mecánico circulatorio, y las vías de traslado deben contrastarse con el protocolo institucional vigente y con el equipo de cardiología y cuidados críticos de referencia.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -1886,5 +1891,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

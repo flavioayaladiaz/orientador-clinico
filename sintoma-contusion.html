@@ -651,6 +651,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1898,7 +1903,7 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda de orientación para la atención de urgencia:
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes del servicio</strong>. Está escrita para el
+    <strong>no reemplaza el juicio clínico</strong>. Está escrita para el
     <strong>adulto hemodinámicamente estable</strong> tras un trauma contuso; el paciente inestable, con compromiso
     fisiológico o con mecanismo de alta energía se maneja con la vía de politrauma de la institución. Las metas de
     tiempo son referenciales y <strong>están propuestas, no validadas</strong>. El esquema escalonado de analgesia y su
@@ -1918,8 +1923,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">American College of Surgeons Committee on Trauma. <em>Advanced Trauma Life Support (ATLS), Student Course Manual.</em> Edición vigente. — Evaluación primaria y secundaria, examen segmentario y reevaluación.</div>
       <div class="ref-item">Stiell IG, et al. <em>The Canadian CT Head Rule for Patients with Minor Head Injury.</em> Lancet. 2001;357(9266):1391–1396.</div>
@@ -1939,7 +1944,7 @@
       <div class="ref-item">Criterios de Denver y sus modificaciones. <em>Screening de lesión cerebrovascular contusa.</em> Guías vigentes de trauma cervical no penetrante — indicación de angiotomografía de vasos cervicales.</div>
       <div class="ref-item">Los criterios de imagen, los tiempos de observación, los esquemas de reversión de anticoagulantes, la profilaxis antitetánica, las dosis de analgesia y las obligaciones de documentación y denuncia deben contrastarse con el protocolo institucional vigente y con la normativa y las normas del Ministerio de Salud de Chile.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -3162,5 +3167,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

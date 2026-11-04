@@ -633,6 +633,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1384,7 +1389,7 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    <strong>no reemplaza el juicio clínico</strong>, ni el entrenamiento
     presencial en el procedimiento. La <strong>cricotiroidotomía es un procedimiento de alto riesgo</strong> que
     requiere operador entrenado y el respaldo institucional correspondiente; leer este checklist no sustituye la
     práctica con el kit real del servicio. Los <strong>calibres, tamaños de cánula, contenidos del kit y ángulos
@@ -1400,8 +1405,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Frerk C, Mitchell VS, McNarry AF, et al. <em>Difficult Airway Society 2015 guidelines for management of unanticipated difficult intubation in adults.</em> Br J Anaesth. 2015;115(6):827–848. <a href="https://doi.org/10.1093/bja/aev371" target="_blank" rel="noopener">DOI: 10.1093/bja/aev371</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/26556848/" target="_blank" rel="noopener">PMID 26556848</a> — Plan D: la cricotiroidotomía con bisturí es la técnica de rescate recomendada, con relajación neuromuscular asegurada y límite en el número de intentos previos.</div>
       <div class="ref-item">Cook TM, Woodall N, Frerk C, et al. <em>Major complications of airway management in the UK: results of the Fourth National Audit Project (NAP4). Part 1: anaesthesia.</em> Br J Anaesth. 2011;106(5):617–631. <a href="https://doi.org/10.1093/bja/aer058" target="_blank" rel="noopener">DOI: 10.1093/bja/aer058</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/21447488/" target="_blank" rel="noopener">PMID 21447488</a> — Origen de la observación sobre el fracaso de las técnicas con cánula y la demora en el acceso frontal del cuello.</div>
@@ -1419,7 +1424,7 @@
       <div class="ref-item">Watanabe H, Nakazawa H, Tokumine J, et al. <em>Development of a novel ultrasound-guided needle cricothyroidotomy device.</em> J Clin Med. 2025;14(16):5871. <a href="https://doi.org/10.3390/jcm14165871" target="_blank" rel="noopener">DOI: 10.3390/jcm14165871</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/40869699/" target="_blank" rel="noopener">PMID 40869699</a> — Origen de los tiempos comparativos de identificación ecográfica (mediana 80 s) frente a palpación (22 s).</div>
       <div class="ref-item">Referencias localizadas mediante PubMed. El umbral de edad pediátrica, el calibre y el sistema de oxigenación de las cánulas finas, los tamaños y el contenido exacto del kit disponible, las dosis de bloqueo neuromuscular y sedación, y el plazo de conversión a vía aérea definitiva deben contrastarse con el <strong>protocolo institucional vigente</strong> y con los equipos de anestesia, otorrinolaringología y cirugía de referencia. Los criterios de manejo del trauma cervical y la edad de indicación pediátrica citados corresponden a las recomendaciones del <em>Advanced Trauma Life Support</em> (ATLS) del American College of Surgeons.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -1569,5 +1574,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

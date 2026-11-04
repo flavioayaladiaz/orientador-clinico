@@ -653,6 +653,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1897,7 +1902,7 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda de orientación para la atención de urgencia:
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes del servicio</strong>. Las metas de tiempo son
+    <strong>no reemplaza el juicio clínico</strong>. Las metas de tiempo son
     referenciales y están propuestas, no validadas. Los objetivos de saturación, los parámetros de ventilación no
     invasiva y de cánula nasal de alto flujo, los esquemas de broncodilatador, corticoide, diurético, vasodilatador y
     antimicrobiano, los umbrales del dímero D y del péptido natriurético de cada laboratorio, la disponibilidad de azul
@@ -1913,8 +1918,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">O'Driscoll BR, et al. <em>BTS Guideline for Oxygen Use in Adults in Healthcare and Emergency Settings.</em> Thorax. 2017;72(Suppl 1):ii1–ii90.</div>
       <div class="ref-item">McDonagh TA, et al. <em>2021 ESC Guidelines for the Diagnosis and Treatment of Acute and Chronic Heart Failure.</em> Eur Heart J. 2021;42(36):3599–3726.</div>
@@ -1939,7 +1944,7 @@
       <div class="ref-item">Cardoso Barbosa H, et al. <em>Anaphylaxis: Diagnosis and Management.</em> En línea con World Allergy Organization Anaphylaxis Guidance 2020 (adrenalina intramuscular como primera línea).</div>
       <div class="ref-item">Ministerio de Salud de Chile. <em>Guías de práctica clínica GES: Asma del adulto, Enfermedad pulmonar obstructiva crónica y Neumonía adquirida en la comunidad del adulto de 65 años y más.</em> MINSAL (esquemas, plazos y red de derivación local: verificar con protocolo institucional).</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -2978,5 +2983,6 @@
   });
 })();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>

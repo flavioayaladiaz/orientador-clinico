@@ -591,6 +591,11 @@
     gap: 8px;
   }
   .references-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  summary.references-title { cursor: pointer; list-style: none; margin-bottom: 0; }
+  summary.references-title::-webkit-details-marker { display: none; }
+  summary.references-title::before { content: '▸'; font-size: 11px; }
+  details[open] > summary.references-title { margin-bottom: 10px; }
+  details[open] > summary.references-title::before { content: '▾'; }
   .references-list { display: flex; flex-direction: column; gap: 5px; }
   .ref-item {
     font-family: var(--mono);
@@ -1600,7 +1605,7 @@
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda memoria de apoyo a la atención de urgencia y
-    <strong>no reemplaza el juicio clínico ni los protocolos vigentes</strong> del servicio, ni el entrenamiento
+    <strong>no reemplaza el juicio clínico</strong>, ni el entrenamiento
     presencial en el procedimiento. La <strong>instalación de una sonda de taponamiento esofagogástrico es un
     procedimiento de alto riesgo</strong>, con complicaciones potencialmente mortales —rotura esofágica, aspiración
     pulmonar, migración con obstrucción de la vía aérea, necrosis de la mucosa—: leer este checklist no sustituye la
@@ -1622,8 +1627,8 @@
   </div>
 
   <!-- REFERENCIAS -->
-  <div class="references-footer">
-    <div class="references-title">Referencias</div>
+  <details class="references-footer">
+    <summary class="references-title">Referencias</summary>
     <div class="references-list">
       <div class="ref-item">Referencias localizadas y verificadas mediante <strong>PubMed</strong>.</div>
       <div class="ref-item">Rodrigues SG, Cárdenas A, Escorsell À, Bosch J. <em>Balloon Tamponade and Esophageal Stenting for Esophageal Variceal Bleeding in Cirrhosis: A Systematic Review and Meta-analysis.</em> Semin Liver Dis. 2019;39(2):178–194. <a href="https://doi.org/10.1055/s-0039-1678726" target="_blank" rel="noopener">DOI: 10.1055/s-0039-1678726</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/30912098/" target="_blank" rel="noopener">PMID 30912098</a> — <strong>Fuente de las cifras modernas de esta página.</strong> El taponamiento con balón tuvo un <strong>fracaso agrupado en el control del sangrado a corto plazo de 35,5 %</strong>, eventos adversos en más del 20 % de los casos y <strong>9,7 % de ellos mortales</strong>. Los <em>stents</em> fallaron en 12,7 % (corto plazo) y 21,5 % (mediano plazo), con migración en 23,8 %. Mortalidad a mediano plazo similar entre ambas terapias.</div>
@@ -1640,7 +1645,7 @@
       <div class="ref-item">Zuckerman MJ, Elhanafi S, Mendoza Ladd A. <em>Endoscopic Treatment of Esophageal Varices.</em> Clin Liver Dis. 2022;26(1):21–37. <a href="https://doi.org/10.1016/j.cld.2021.08.003" target="_blank" rel="noopener">DOI: 10.1016/j.cld.2021.08.003</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/34802661/" target="_blank" rel="noopener">PMID 34802661</a> — Contexto endoscópico: la ligadura con bandas es el tratamiento de elección del sangrado variceal agudo, y la sonda de Sengstaken-Blakemore o el <em>stent</em> metálico cubierto quedan para el sangrado refractario al tratamiento farmacológico y endoscópico estándar.</div>
       <div class="ref-item">Aspectos <strong>convencionales</strong> descritos aquí y <strong>no respaldados individualmente por estudios de desenlace</strong>: la profundidad de referencia de ~50 cm en la arcada dentaria, el inflado inicial de 50 mL antes de la radiografía, los escalones de ~100 mL, el rango de 30–45 mmHg del balón esofágico, la tracción de ~0,5–1 kg y su método, el desinflado intermitente cada 6–8 h, el orden y los tiempos del retiro, el enfriamiento previo de la sonda, la preferencia por la vía oral sobre la nasal, el uso de aire en lugar de líquido, la sonda nasogástrica accesoria por encima del balón esofágico y la tijera en la cabecera. Provienen de textos de procedimientos, insertos de fabricantes y consenso, y deben contrastarse con el <strong>kit disponible y el protocolo institucional vigente</strong>.</div>
     </div>
-  </div>
+  </details>
 
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
@@ -1780,5 +1785,6 @@
 
   swRender();
 </script>
+<script src="./volver.js"></script>
 </body>
 </html>
