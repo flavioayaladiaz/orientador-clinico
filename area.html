@@ -9,6 +9,7 @@
 <link rel="apple-touch-icon" href="./icons/icon-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./nav.css">
+<script src="./tema.js"></script>
 </head>
 <body>
 <div class="wrapper" id="wrap">
@@ -257,7 +258,6 @@
       }
 
       function urlSepsis() { return 'checklist-sepsis_4.html#n2=' + N.codificar(resp); }
-      function guardar() { try { sessionStorage.setItem('oc-triage', JSON.stringify(resp)); } catch (e) {} }
 
       function vista() {
         var r = N.evaluar(resp), y = window.scrollY;
@@ -271,7 +271,7 @@
           resp[b.dataset.p] = parseInt(b.dataset.i, 10); infec = null; vista();
         } else if (b.dataset.inf) {
           infec = b.dataset.inf === '1'; vista();
-          if (infec) { guardar(); location.href = './' + urlSepsis(); }
+          if (infec) location.href = './' + urlSepsis();
         } else if (b.dataset.listado) {
           out.parentNode.replaceChild(out.cloneNode(false), out);   // quita los listeners de la entrada
           out = document.getElementById('out');
@@ -280,20 +280,15 @@
           render();
         }
       });
-      out.addEventListener('click', function (e) { if (e.target.closest('a.motivo')) guardar(); });
       out.addEventListener('input', function (e) {
         if (e.target.id !== 'motivoQ') return;
         filtro = e.target.value.trim();
         document.getElementById('motivosOut').innerHTML = motivosTodo();
       });
       document.getElementById('desc').style.display = 'none';
-      // Al volver atrás desde el checklist se recuperan los signos vitales; en una entrada nueva, nunca
-      // (sería otro paciente): por eso solo se restaura en navegación atrás/adelante.
-      try {
-        var nav = performance.getEntriesByType('navigation')[0], g = sessionStorage.getItem('oc-triage');
-        sessionStorage.removeItem('oc-triage');
-        if (g && nav && nav.type === 'back_forward') { resp = JSON.parse(g) || {}; }
-      } catch (e) {}
+      // Cada vez que se vuelve a la calculadora debe estar en blanco (es otro paciente): nada se
+      // guarda, y si el navegador la restaura desde su memoria al volver atrás, se recarga limpia.
+      window.addEventListener('pageshow', function (e) { if (e.persisted) location.reload(); });
       vista();
     }
 

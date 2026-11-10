@@ -650,6 +650,7 @@
     .copy-bar { flex-wrap: wrap; }
   }
 </style>
+<script src="./tema.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -854,7 +855,7 @@
         <thead><tr><th>Situación</th><th>Esquema</th></tr></thead>
         <tbody>
           <tr><td>ITU alta sin riesgo de BLEE</td><td><span class="dose-main">Amikacina 15 mg/kg/día EV</span><br><span class="dose-note">5 días. Ajustar a las 48 h según el urocultivo.</span></td></tr>
-          <tr><td>ITU alta con riesgo de BLEE</td><td><span class="dose-main">Ertapenem 1 g EV c/24 h, infundido en 3 h</span><br><span class="dose-note">5 días. Ajustar a las 48 h según el urocultivo.</span></td></tr>
+          <tr><td>ITU alta con riesgo de BLEE</td><td><span class="dose-main">Amikacina 15 mg/kg/día EV</span><br><span class="dose-note">5 días. Ajustar a las 48 h según el urocultivo. Alternativa, especialmente en shock séptico: ertapenem 1 g EV c/24 h, infundido en 3 h.</span></td></tr>
           <tr><td>Asociada a atención de salud o portador de sonda</td><td><span class="dose-main">Amikacina 15 mg/kg/día EV</span><br><span class="dose-note">Si la sonda lleva más de 14 días, recambiarla y cultivar la sonda nueva. 5 días.</span></td></tr>
           <tr><td>Embarazada con pielonefritis</td><td><span class="dose-main">Ceftriaxona 1–2 g EV c/24 h</span><br><span class="dose-note">Sin quinolonas ni aminoglucósidos. Evaluación obstétrica.</span></td></tr>
           <tr><td>Prostatitis aguda</td><td><span class="dose-main">Ceftriaxona 2 g EV c/24 h, infundida en ≥ 30 min</span><br><span class="dose-note">Con instrumentación urológica previa: meropenem 1 g EV c/8 h, infundido en 3 h. 3 semanas, con paso a vía oral según evolución.</span></td></tr>
@@ -899,7 +900,6 @@
             <tr><td>Vulvovaginitis</td><td>Flujo, prurito, disuria «externa» al pasar la orina por la piel</td><td>Especuloscopía y tratamiento según el agente probable. No indicar antibiótico urinario</td></tr>
             <tr><td>Herpes genital</td><td>Disuria muy intensa, vesículas o úlceras</td><td>Tratamiento antiviral; puede causar retención urinaria</td></tr>
             <tr><td>Cólico renal sin fiebre</td><td>Dolor cólico, hematuria, sin fiebre</td><td>Manejo de litiasis. <strong>Si aparece fiebre, hospitalizar</strong></td></tr>
-            <tr><td>Prostatitis</td><td>Hombre con fiebre, dolor perineal, próstata dolorosa</td><td>Ambulatoria si está estable; hospitalizar si hay compromiso sistémico</td></tr>
             <tr><td><em>S. aureus</em> en el urocultivo</td><td>Sin procedimiento urológico previo</td><td>Probable siembra hematógena: hemocultivos y búsqueda de un foco a distancia</td></tr>
           </tbody>
         </table>
@@ -911,9 +911,7 @@
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda de orientación para la atención de urgencia:
     no reemplaza el juicio clínico. Las metas de tiempo son referenciales.
-    Los esquemas antimicrobianos siguen el <strong>Protocolo clínico del manejo empírico de infecciones urinarias
-    del HUAP (PROA, 12/2024)</strong>. Verifica dosis, ajuste por función renal,
-    alergias y contraindicaciones antes de indicar cualquier fármaco.
+    Verifica dosis, ajuste por función renal, alergias y contraindicaciones antes de indicar cualquier fármaco.
   </div>
 
   <!-- EPIDEMIOLOGÍA LOCAL -->
@@ -940,7 +938,7 @@
         <div class="plain-item"><span class="bullet-icon">🚫</span><span><strong>Sin quinolonas empíricas:</strong> la mitad de los <em>E. coli</em> y <em>K. pneumoniae</em> son resistentes.</span></div>
         <div class="plain-item"><span class="bullet-icon">💉</span><span><strong>La amikacina es la base del esquema hospitalizado:</strong> mantiene sensibilidad ≥ 85 % en todos los agentes.</span></div>
       </div>
-      <div class="copy-hint">Fuente: Informe de susceptibilidad antimicrobiana 2023 del HUAP, citado en el Protocolo PROA 12/2024.</div>
+      <div class="copy-hint">Fuente: Informe de susceptibilidad antimicrobiana 2023 del HUAP.</div>
     </div>
   </div>
 
@@ -948,7 +946,6 @@
   <details class="references-footer">
     <summary class="references-title">Referencias</summary>
     <div class="references-list">
-      <div class="ref-item">Hospital de Urgencia Asistencia Pública. <em>Protocolo clínico del manejo empírico de infecciones urinarias.</em> Código PROA, versión 01. Unidad de Infectología; diciembre 2024.</div>
       <div class="ref-item">Trautner BW, et al. <em>IDSA 2025 Guidelines on Management and Treatment of Complicated Urinary Tract Infections — Duration of Antibiotics.</em> Clin Infect Dis. 2026;82(Suppl 3):i79–i88.</div>
       <div class="ref-item">Gupta K, et al. <em>International Clinical Practice Guidelines for the Treatment of Acute Uncomplicated Cystitis and Pyelonephritis in Women (IDSA / ESCMID).</em> Clin Infect Dis. 2011;52(5):e103–e120.</div>
       <div class="ref-item">Bonkat G, et al. <em>EAU Guidelines on Urological Infections.</em> European Association of Urology.</div>
@@ -960,15 +957,6 @@
       <div class="ref-item">Gupta K, Trautner B. <em>Infecciones de vías urinarias, pielonefritis y prostatitis.</em> En: Harrison. Principios de medicina interna. 18.ª ed. McGraw-Hill; 2012.</div>
     </div>
   </details>
-
-  <!-- PROFUNDIZAR -->
-  <a class="deep-link" href="./guia-infeccion-urinaria.html">
-    <div>
-      <strong>Profundizar · Guía de infección urinaria</strong>
-      <span>Clasificación completa, interpretación de la orina y del urocultivo, diferencial ampliado y situaciones especiales.</span>
-    </div>
-    <span class="arr">→</span>
-  </a>
 
   <!-- AGRADECIMIENTOS -->
   <div class="thanks">
@@ -996,29 +984,33 @@
 
   // ── Datos: fármacos (dosis para ficha + texto para el paciente) ───
   const MEDS = {
-    nitro3:   { name: 'Nitrofurantoína', dose: '100 mg c/12 h VO × 3 días', note: 'Primera línea (protocolo HUAP). No usar con ClCr < 30 ni si se sospecha pielonefritis.',
-                pt: 'Nitrofurantoína 100 mg: 1 cápsula cada 12 horas por 3 días, junto con las comidas.' },
+    nitro3:   { name: 'Nitrofurantoína', dose: '100 mg c/8 h VO × 3 días', note: 'No usar con ClCr < 30 ni si se sospecha pielonefritis.',
+                pt: 'Nitrofurantoína 100 mg: 1 cápsula cada 8 horas por 3 días, junto con las comidas.' },
+    cotri3:   { name: 'Cotrimoxazol forte', dose: '800/160 mg c/12 h VO × 3 días', note: 'No usar con alergia a sulfas.',
+                pt: 'Cotrimoxazol forte 800/160 mg: 1 comprimido cada 12 horas por 3 días. Beba abundante agua.' },
     fosfo:    { name: 'Fosfomicina trometamol', dose: '3 g VO dosis única', note: 'Primera línea. Buena adherencia.',
                 pt: 'Fosfomicina 3 g: disolver 1 sobre en medio vaso de agua y tomarlo UNA sola vez, idealmente en la noche, después de orinar y con el estómago vacío.' },
     cefa5:    { name: 'Cefadroxilo', dose: '500 mg c/12 h VO × 5 días', note: 'Alternativa.',
                 pt: 'Cefadroxilo 500 mg: 1 cápsula cada 12 horas por 5 días.' },
-    pnaCro:   { name: 'Ceftriaxona · alta asistida', dose: '2 g EV c/24 h × 5 días', note: 'Sin riesgo de BLEE. Ajustar con el urocultivo y evaluar alternativa oral.',
-                pt: 'Ceftriaxona 2 g inyectable: debe volver a este servicio UNA vez al día, durante 5 días, para recibir el antibiótico por vena.', box: 'Hoy recibió la primera dosis en este servicio.' },
-    pnaAmk:   { name: 'Amikacina · alta asistida', dose: '15 mg/kg/día EV × 5 días', note: 'Con riesgo de BLEE. Pedir creatinina; si hay falla renal aguda, considerar hospitalizar.',
-                pt: 'Amikacina inyectable: debe volver a este servicio UNA vez al día, durante 5 días, para recibir el antibiótico por vena.', box: 'Hoy recibió la primera dosis en este servicio.' },
-    nitro7:   { name: 'Nitrofurantoína macrocristales', dose: '100 mg c/12 h VO × 7 días', note: '',
-                pt: 'Nitrofurantoína 100 mg: 1 cápsula cada 12 horas por 7 días, junto con las comidas.' },
+    pnaCef:   { name: 'Cefpodoxima', dose: 'Dosis inicial EV: ceftriaxona 2 g (amikacina 15 mg/kg si hay riesgo de BLEE) + cefpodoxima 200 mg c/12 h VO × 7 días', note: 'Ajustar con el urocultivo.',
+                pt: 'Cefpodoxima 200 mg: 1 comprimido cada 12 horas por 7 días.', box: 'Hoy recibió la primera dosis del antibiótico por vena en este servicio.' },
+    pnaCotri: { name: 'Cotrimoxazol forte', dose: 'Dosis inicial EV: ceftriaxona 2 g (amikacina 15 mg/kg si hay riesgo de BLEE) + cotrimoxazol forte 800/160 mg c/12 h VO × 7 días', note: 'No usar con alergia a sulfas. Ajustar con el urocultivo.',
+                pt: 'Cotrimoxazol forte 800/160 mg: 1 comprimido cada 12 horas por 7 días. No suspender antes aunque se sienta bien. Beba abundante agua.', box: 'Hoy recibió la primera dosis del antibiótico por vena en este servicio.' },
+    nitro7:   { name: 'Nitrofurantoína macrocristales', dose: '100 mg c/8 h VO × 7 días', note: '',
+                pt: 'Nitrofurantoína 100 mg: 1 cápsula cada 8 horas por 7 días, junto con las comidas.' },
     cefa7:    { name: 'Cefadroxilo', dose: '500 mg c/12 h VO × 7 días', note: '',
                 pt: 'Cefadroxilo 500 mg: 1 cápsula cada 12 horas por 7 días.' },
-    cotri21:  { name: 'Cotrimoxazol forte', dose: '800/160 mg c/12 h VO × 21 días', note: 'Protocolo HUAP para cistitis y prostatitis en el hombre. No usar con alergia a sulfas.',
-                pt: 'Cotrimoxazol forte 800/160 mg: 1 comprimido cada 12 horas por 21 días. No suspender antes aunque se sienta bien. Beba abundante agua.' },
-    cotriITS: { name: 'Cotrimoxazol forte + tratamiento de ITS', dose: 'Cotrimoxazol forte c/12 h × 21 días + ceftriaxona 2 g EV dosis única + doxiciclina 100 mg c/12 h VO × 7 días', note: 'Hombre joven. Derivar a UNACESS.',
-                pt: 'Cotrimoxazol forte 800/160 mg: 1 comprimido cada 12 horas por 21 días. No suspender antes aunque se sienta bien. Beba abundante agua.',
+    cotri7:   { name: 'Cotrimoxazol forte · cistitis en el hombre', dose: '800/160 mg c/12 h VO × 7 días', note: 'No usar con alergia a sulfas.',
+                pt: 'Cotrimoxazol forte 800/160 mg: 1 comprimido cada 12 horas por 7 días. No suspender antes aunque se sienta bien. Beba abundante agua.' },
+    cotri14:  { name: 'Cotrimoxazol forte · prostatitis no complicada', dose: '800/160 mg c/12 h VO × 14 días', note: 'No usar con alergia a sulfas.',
+                pt: 'Cotrimoxazol forte 800/160 mg: 1 comprimido cada 12 horas por 14 días. No suspender antes aunque se sienta bien. Beba abundante agua.' },
+    cotriITS: { name: 'Cotrimoxazol forte + tratamiento de ITS', dose: 'Cotrimoxazol forte c/12 h × 7 días + ceftriaxona 2 g EV dosis única + doxiciclina 100 mg c/12 h VO × 7 días', note: 'Hombre joven. Derivar a UNACESS.',
+                pt: 'Cotrimoxazol forte 800/160 mg: 1 comprimido cada 12 horas por 7 días. No suspender antes aunque se sienta bien. Beba abundante agua.',
                 box: 'Hoy recibió en este servicio una dosis única de ceftriaxona inyectable y receta de doxiciclina 100 mg cada 12 horas por 7 días, para tratar una posible infección de transmisión sexual. Debe acudir a UNACESS para completar su estudio; su pareja también debe consultar.' },
     embCefa:  { name: 'Cefadroxilo', dose: '500 mg c/12 h VO × 7 días', note: 'Seguro en todo el embarazo.',
                 pt: 'Cefadroxilo 500 mg: 1 cápsula cada 12 horas por 7 días.' },
-    embNitro: { name: 'Nitrofurantoína macrocristales', dose: '100 mg c/12 h VO × 7 días', note: 'Evitar desde las 37 semanas y en el déficit de G6PD.',
-                pt: 'Nitrofurantoína 100 mg: 1 cápsula cada 12 horas por 7 días, junto con las comidas.' }
+    embNitro: { name: 'Nitrofurantoína macrocristales', dose: '100 mg c/8 h VO × 7 días', note: 'Evitar desde las 37 semanas y en el déficit de G6PD.',
+                pt: 'Nitrofurantoína 100 mg: 1 cápsula cada 8 horas por 7 días, junto con las comidas.' }
   };
 
   const ANALG = {
@@ -1032,21 +1024,21 @@
   const B1 = {
     pna: {
       label: 'Pielonefritis estable',
-      meds: ['pnaCro', 'pnaAmk'], analg: ['para', 'ibu'],
+      meds: ['pnaCef', 'pnaCotri'], analg: ['para', 'ibu'],
       orders: ['Orina completa + urocultivo', 'Test de embarazo en mujer en edad fértil', 'Creatinina si se usará amikacina'],
       avoid: '<strong>No usar nitrofurantoína ni fosfomicina</strong> (no alcanzan concentraciones útiles en el riñón) <strong>ni quinolonas</strong> (sensibilidad local ~50 %).',
       dx: 'Infección urinaria alta (pielonefritis)',
       extraAlarm: [],
-      control: 'Vuelva cada día durante 5 días para recibir el antibiótico (alta asistida). En esas visitas se revisará el resultado del urocultivo y se ajustará el tratamiento si es necesario.'
+      control: 'Control en 48 a 72 horas para revisar el resultado del urocultivo y ajustar el antibiótico si es necesario.'
     },
     hombre: {
       label: 'Hombre: cistitis o prostatitis',
-      meds: ['cotri21', 'cotriITS'], analg: ['para', 'ibu'],
+      meds: ['cotri7', 'fosfo', 'cotri14', 'cotriITS'], analg: ['para', 'ibu'],
       orders: ['Orina completa + urocultivo', 'Estudio de ITS en hombre joven'],
       avoid: '',
       dx: 'Infección urinaria en el hombre (vejiga o próstata)',
       extraAlarm: ['Imposibilidad de orinar o dolor intenso en la zona entre los testículos y el ano.'],
-      control: 'Control en 48 a 72 horas para revisar el resultado del urocultivo. Complete los 21 días de tratamiento.'
+      control: 'Control en 48 a 72 horas para revisar el resultado del urocultivo. Complete el tratamiento indicado.'
     },
     embarazo: {
       label: 'Cistitis en embarazada',
@@ -1059,7 +1051,7 @@
     },
     falla: {
       label: 'Cistitis complicada (falla, recurrencia, instrumentación)',
-      meds: ['cefa7', 'nitro7', 'fosfo'], analg: ['para', 'ibu'],
+      meds: ['nitro7', 'fosfo', 'cefa7'], analg: ['para', 'ibu'],
       orders: ['Orina completa + urocultivo'],
       avoid: 'Elige una <strong>familia distinta</strong> de la que falló. Ajusta según el urocultivo.',
       dx: 'Infección urinaria baja complicada',
@@ -1074,7 +1066,7 @@
     noFlags: false,
     path: null,
     scen: 'pna',
-    med: { A: 'nitro3', B1: null },
+    med: { A: 'fosfo', B1: null },
     analg: { A: new Set(), B1: new Set() }
   };
 
@@ -1143,7 +1135,7 @@
   }
 
   function renderMeds(path) {
-    const ids = path === 'A' ? ['nitro3', 'fosfo', 'cefa5'] : B1[state.scen].meds;
+    const ids = path === 'A' ? ['fosfo', 'cotri3', 'nitro3', 'cefa5'] : B1[state.scen].meds;
     if (!ids.includes(state.med[path])) state.med[path] = ids[0];
     const box = document.querySelector(`[data-meds="${path}"]`);
     box.innerHTML = ids.map(id => medButton(MEDS[id], id, false, state.med[path] === id)).join('');

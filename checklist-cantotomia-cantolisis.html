@@ -639,7 +639,43 @@
     .ms-goal { margin-left: 0; }
     .sw-btn { flex: 1; text-align: center; }
   }
+
+  /* TEMA CLARO */
+  :root[data-theme="light"] {
+      --bg: #f6f7f9;
+      --surface: #ffffff;
+      --surface2: #eef1f5;
+      --border: rgba(15,23,42,0.10);
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --text-dim: #475569;
+    }
+  :root[data-theme="light"] body::before {
+      background-image:
+        linear-gradient(rgba(15,23,42,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15,23,42,0.035) 1px, transparent 1px);
+    }
+  :root[data-theme="light"] h1 { color: #0f172a; }
+  :root[data-theme="light"] .header-sub strong,
+    :root[data-theme="light"] .check-label strong,
+    :root[data-theme="light"] .plain-item strong,
+    :root[data-theme="light"] .step strong,
+    :root[data-theme="light"] td strong,
+    :root[data-theme="light"] .calc-out strong,
+    :root[data-theme="light"] .med-name,
+    :root[data-theme="light"] .section-title { color: #0f172a; }
+  :root[data-theme="light"] em { color: #b45309; }
+  :root[data-theme="light"] .sw-display { color: #0f172a; }
+  :root[data-theme="light"] .warning-banner, :root[data-theme="light"] .amber-banner { color: #7c2d12; }
+  :root[data-theme="light"] .info-banner, :root[data-theme="light"] .go-banner { color: #334155; }
+  :root[data-theme="light"] .warning-banner strong, :root[data-theme="light"] .info-banner strong,
+    :root[data-theme="light"] .go-banner strong, :root[data-theme="light"] .amber-banner strong { color: #0f172a; }
+  :root[data-theme="light"] .plain-item.flag strong { color: #b91c1c; }
+  :root[data-theme="light"] .plain-item.good strong { color: #047857; }
+  :root[data-theme="light"] td .dose-main { color: #0f172a; }
+  :root[data-theme="light"] .cross-link { color: #0f766e; }
 </style>
+<script src="./tema.js"></script>
 </head>
 <body>
 <div class="wrapper">
