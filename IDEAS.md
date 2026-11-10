@@ -10,7 +10,8 @@ diagnóstica, calculadora, etc).
 
 1. Toma el **primer ítem sin marcar** de este archivo, en el orden en que aparece
    (primero "Rebranding", luego "Motivos de consulta", luego "Patologías complejas",
-   luego "Procedimientos HALO", luego "Síntomas cardinales" y al final la "Cola final").
+   luego "Procedimientos HALO", luego "Síntomas cardinales", luego la "Cola final" y por último
+   la sección 6, "Rediseño minimalista de las páginas de síntomas").
 2. Antes de crear contenido nuevo, revisa si el tema ya está cubierto (total o
    parcialmente) por una página existente (`checklist-*`, `guia-*`, `algoritmo-*`,
    `sintoma-*.html`). Si ya existe,
@@ -51,7 +52,9 @@ diagnóstica, calculadora, etc).
      "Profundizar →" de esa página.
 6. Marca el ítem como hecho (`[x]`) en este archivo, en el mismo commit.
 7. Un commit por día, mensaje claro (ej: `feat: guía de orientación — dolor torácico`).
-8. Push directo a `main` (no se usan PRs en este proyecto).
+8. Push directo a `main` para el contenido nuevo (secciones 0 a 5). **Los ítems de la
+   sección 6 (rediseño de páginas que ya existen) nunca van a `main`: siempre rama + PR**,
+   según el procedimiento de esa sección.
 9. Si un ítem indica un **documento fuente** (`fuentes/...`), el contenido
    debe basarse en ese documento: léelo completo antes de escribir y respeta
    sus definiciones, criterios, dosis y flujos, sin reemplazarlos por otras
@@ -1349,3 +1352,90 @@ en su sección temática, porque el agente recorre el archivo en orden.
       El contenido es **solo para adultos**: se omitieron deliberadamente los esquemas pediátricos de
       arteméter/lumefantrina, atovacuona-proguanil, cloroquina y primaquina y los umbrales pediátricos
       de gravedad; de la embarazada se recoge solo lo que cambia el manejo inicial y la derivación.
+
+
+---
+
+## 6. Rediseño minimalista de las páginas de síntomas
+
+Las páginas de síntoma cardinal (`sintoma-*.html`) tienen entre 4.000 y 9.000 palabras visibles;
+en el box nadie las lee. Se rediseñan **una por día** para que queden como la página de
+**disuria** (`sintoma-disuria.html` en `main`): limpias, minimalistas y con poco texto. Estas
+páginas ya funcionan y están en uso: **este trabajo reescribe, no agrega**, y por eso **cada
+página va por su propia rama y un PR que revisa una persona. Nunca se hace push a `main`.**
+
+### Estilo disuria: qué debe tener la página
+
+- **Encabezado:** flecha de regreso, botón de tema y el nombre del síntoma. Sin insignia, sin párrafo
+  introductorio, sin subtítulos y sin numerar las secciones.
+- **Primer bloque, «¿Tiene banderas rojas?»:** botones agrupados por camino, sin párrafos
+  explicativos y con un botón «Ninguna» de una sola línea. **Se abre solo el camino que
+  corresponde** a lo marcado; sin selección no se muestra ninguno. Sin cuadro de «camino sugerido»
+  ni pestañas de camino.
+- **Cada camino:** código corto, título, metas de tiempo en chips, órdenes en listas cortas, tabla de
+  fármacos (dosis y una nota breve), indicaciones al alta listas para copiar si corresponde y
+  derivación en una o dos líneas.
+- **«Puede que no sea [el síntoma]»:** sección plegada con una tabla corta de diferenciales.
+- **Al final, en este orden:** aviso de uso clínico, referencias plegadas (cerradas por defecto),
+  «Profundizar → guía» si existe la guía (`guia-*.html`) y agradecimientos si los había.
+
+### Qué se corta y qué se conserva
+
+- **Se corta:** párrafos de contexto, epidemiología, fisiopatología y razonamiento, el detalle de
+  los estudios (n, intervalos de confianza, riesgos relativos), explicaciones largas dentro de las
+  tablas, subtítulos, numeración y todo texto que repita lo que ya dice una tabla o un botón.
+- **Se conserva, aunque se acorte:** dosis y esquemas, criterios de alta y de hospitalización,
+  **banderas rojas propias del síntoma**, indicaciones de control y de alarma, derivaciones, y las
+  calculadoras o puntajes que son la herramienta de decisión (se recorta su texto, no la herramienta).
+- **Banderas de signos vitales:** se eliminan las que ya cubre el NEWS2 que va antes en Ambulatorio
+  (presión arterial, frecuencia respiratoria y cardíaca, saturación, temperatura, conciencia y
+  perfusión) y el camino de «sepsis / shock»: el triage envía el NEWS2 ≥ 5 con sospecha de infección
+  directo al checklist de sepsis. **No se eliminan las banderas propias del síntoma** (por ejemplo,
+  las características del dolor o el ECG en el dolor torácico).
+- **No se inventa ni se cambia ningún dato clínico.** Si algo no está claro, se conserva tal cual y se
+  marca «verificar con protocolo institucional».
+- **No se borra contenido sin dejar constancia:** lo que se retira y tiene valor clínico va a la guía
+  correspondiente si existe, o queda listado en el PR para que la persona que revisa decida.
+- **Meta orientativa:** no más de ~2.000 palabras visibles, sin contar las referencias.
+
+### Procedimiento de cada ítem (siempre por PR)
+
+1. `git fetch`. Cuenta las ramas `origin/rediseno/*` que aún no están fusionadas en `origin/main`
+   (`git branch -r --no-merged origin/main | grep rediseno/`). **Si hay 3 o más, termina sin
+   cambios**: ya hay revisiones pendientes.
+2. Toma el **primer ítem sin marcar de esta sección cuya rama `rediseno/<síntoma>` no exista** en
+   `origin`. Así un PR abierto no se vuelve a rehacer al día siguiente.
+3. Crea la rama `rediseno/<síntoma>` desde `main` actualizado (ej: `rediseno/dolor-toracico`).
+4. Cuenta las palabras visibles **antes** y **después** (comando más abajo).
+5. Reescribe **solo la página del síntoma**. No toques `sw.js` (el service worker refresca las
+   páginas ya cacheadas) ni `catalogo.js` (salvo que cambie el título o la descripción).
+6. Verifica que siga funcionando: los scripts en línea sin errores de sintaxis
+   (`node --check` sobre cada `<script>` extraído), todos los caminos y calculadoras operativos,
+   el botón de tema, la flecha de regreso y las referencias plegadas y cerradas.
+7. Marca el ítem como hecho (`[x]`) en este archivo, en el mismo commit, y haz **un solo commit**
+   (ej: `refactor: dolor torácico — versión minimalista estilo disuria`).
+8. Sube la **rama** (nunca `main`) y abre el PR con `gh pr create`. Si `gh` no está disponible, deja
+   la rama subida y escribe en el mensaje final el nombre de la rama y el enlace de comparación.
+   El cuerpo del PR debe incluir: palabras antes y después; lo que se conservó; **la lista de
+   contenido retirado, por sección**; y los puntos que conviene validar.
+9. Si todos los ítems ya están hechos, termina sin cambios.
+
+Palabras visibles de una página (sin scripts, estilos ni referencias):
+
+```
+python -I -c "import re,sys;s=open(sys.argv[1],encoding='utf-8').read();s=re.sub(r'(?is)<script.*?</script>|<style.*?</style>|<details class=\"references-footer\".*?</details>',' ',s);print(len(re.findall(r'\w+',re.sub(r'<[^>]+>',' ',s))))" sintoma-XXXX.html
+```
+
+### Ítems (del más corto al más largo; palabras visibles al inicio de este trabajo)
+
+- [ ] Diarrea y vómitos — `sintoma-diarrea-vomitos.html` (~4.100; guía: `guia-gastroenteritis.html`)
+- [ ] Dolor torácico — `sintoma-dolor-toracico.html` (~4.200; guía: `guia-dolor-toracico.html`)
+- [ ] Dolor lumbar — `sintoma-dolor-lumbar.html` (~5.000; guía: `guia-lumbago-agudo.html`)
+- [ ] Dolor abdominal — `sintoma-dolor-abdominal.html` (~6.800; guía: `guia-dolor-abdominal.html`)
+- [ ] Cefalea — `sintoma-cefalea.html` (~6.900; guía: `guia-cefalea.html`)
+- [ ] Disnea — `sintoma-disnea.html` (~7.000; sin guía)
+- [ ] Fiebre — `sintoma-fiebre.html` (~8.900; sin guía)
+- [ ] Contusión y trauma menor — `sintoma-contusion.html` (~9.200; guía: `guia-policontusiones.html`)
+- [ ] Síncope — `sintoma-sincope.html` (~7.700; sin guía)
+- [ ] Dolor y trauma de extremidades — `sintoma-dolor-extremidades.html` (~7.200; sin guía)
+- [ ] Mareo y vértigo — `sintoma-mareo-vertigo.html` (~6.600; sin guía)
