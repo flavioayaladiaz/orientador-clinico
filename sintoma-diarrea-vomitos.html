@@ -161,6 +161,10 @@
   }
   .section-header:hover { background: rgba(255,255,255,0.02); }
   .section-header > div { flex: 1; min-width: 0; }
+  .section-title { font-family: var(--display); font-size: 15px; font-weight: 700; color: #fff; }
+  .section-chevron { color: var(--text-muted); transition: transform 0.3s; flex-shrink: 0; }
+  .section.collapsed .section-chevron { transform: rotate(-90deg); }
+  .section.collapsed .section-body { display: none; }
 
   /* TRIAGE */
   .q-label {
