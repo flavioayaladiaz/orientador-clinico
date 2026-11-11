@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Síntoma cardinal · Diarrea y vómitos</title>
-<meta name="description" content="Diarrea y vómitos en el adulto: banderas rojas que abren el camino de manejo, criterios para no pedir exámenes, estimador de reposición e indicaciones al alta listas para copiar.">
+<meta name="description" content="Diarrea y vómitos en el adulto: banderas rojas que abren el camino de manejo, criterios para no pedir exámenes e indicaciones al alta listas para copiar.">
 <meta name="theme-color" content="#0a0e1a">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -364,39 +364,6 @@
   }
   .avoid strong { color: #fca5a5; font-weight: 500; }
 
-  /* ESTIMADOR DE REPOSICIÓN */
-  .calc-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; }
-  .calc-field { display: flex; flex-direction: column; gap: 6px; }
-  .calc-field label {
-    font-family: var(--mono);
-    font-size: 10.5px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-  .calc-field input, .calc-field select {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--text);
-    font-family: var(--mono);
-    font-size: 14px;
-    padding: 10px 12px;
-    min-width: 150px;
-  }
-  .calc-field input:focus-visible, .calc-field select:focus-visible { outline: 2px solid var(--amber); outline-offset: 1px; }
-  .calc-out { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; margin-top: 14px; }
-  .calc-cell {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 12px 14px;
-  }
-  .calc-cell .k { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
-  .calc-cell .v { font-family: var(--mono); font-size: 19px; color: #fff; margin-top: 5px; }
-  .calc-cell .u { font-size: 12px; color: var(--text-dim); margin-top: 4px; line-height: 1.45; }
-  .calc-empty { font-family: var(--mono); font-size: 12.5px; color: var(--text-muted); margin-top: 14px; line-height: 1.6; }
-
   /* TABLA COMPACTA */
   .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -525,25 +492,6 @@
     transition: background 0.2s, transform 0.15s;
   }
   .cross-link:hover { background: rgba(20,184,166,0.16); transform: translateX(2px); }
-
-  .deep-link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-    padding: 16px 20px;
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    text-decoration: none;
-    color: var(--text-dim);
-    margin-bottom: 20px;
-    transition: border-color 0.2s, transform 0.15s;
-  }
-  .deep-link:hover { border-color: rgba(20,184,166,0.4); transform: translateX(2px); }
-  .deep-link strong { display: block; font-family: var(--display); font-size: 15px; color: #fff; margin-bottom: 3px; }
-  .deep-link span { font-size: 12.5px; line-height: 1.5; }
-  .deep-link .arr { font-family: var(--mono); color: var(--teal); font-size: 18px; flex-shrink: 0; }
 
   /* DISCLAIMER Y PIE */
   .note {
@@ -749,7 +697,7 @@
         <li><strong>5–10 mL cada 2–5 min</strong> al inicio, para vencer los vómitos</li>
         <li>Reponer lo que se mantenga: <strong>10 mL/kg por deposición líquida</strong> y <strong>2 mL/kg por vómito</strong></li>
         <li>Realimentación precoz con la dieta habitual, sin dietas restrictivas</li>
-        <li>Entregar la cantidad en litros por día, por escrito <button type="button" class="link-btn" onclick="openCalc()">estimador →</button></li>
+        <li>Entregar la cantidad en litros por día, por escrito</li>
       </ul>
     </div>
     <div class="avoid">
@@ -817,7 +765,7 @@
       <div class="order-title">Vía oral primero</div>
       <ul>
         <li>En deshidratación leve a moderada la <strong>SRO es tan eficaz como la vía intravenosa</strong></li>
-        <li>Antiemético primero y <strong>SRO en volúmenes pequeños y frecuentes</strong> (5–10 mL cada 2–5 min) <button type="button" class="link-btn" onclick="openCalc()">estimador →</button></li>
+        <li>Antiemético primero y <strong>SRO en volúmenes pequeños y frecuentes</strong> (5–10 mL cada 2–5 min)</li>
         <li>Cristaloide isotónico <span class="cond">solo si fracasa la vía oral, hay íleo o vómitos incoercibles</span></li>
         <li>Comprobar la tolerancia oral <strong>antes</strong> del alta, aunque se haya hidratado por vena</li>
       </ul>
@@ -901,7 +849,8 @@
       <div class="order-title">Esquema</div>
       <ul>
         <li><strong>Suero fisiológico o Ringer lactato</strong> <span class="cond">Ringer lactato si hay acidosis hiperclorémica</span></li>
-        <li>Deshidratación grave: reponer el déficit estimado (<strong>≥ 10 % del peso</strong>) más las pérdidas mantenidas <button type="button" class="link-btn" onclick="openCalc()">estimador →</button></li>
+        <li>Deshidratación grave: reponer el déficit estimado (<strong>≥ 10 % del peso</strong>) más las pérdidas mantenidas</li>
+        <li><strong>Cardiópata, ERC o adulto mayor frágil:</strong> los volúmenes son una referencia; fracciona, reevalúa y ajusta</li>
         <li>Esquema OMS plan C de referencia: <strong>100 mL/kg de Ringer lactato</strong>, 30 mL/kg en los primeros 30 min y 70 mL/kg en las 2,5 h siguientes <span class="cond">verificar con protocolo institucional</span></li>
         <li><strong>Hipokalemia:</strong> corregirla junto con el volumen <span class="cond">velocidad, vía y concentración máxima según protocolo institucional</span></li>
         <li><strong>Acidosis hiperclorémica:</strong> se corrige con el volumen, no con bicarbonato</li>
@@ -1007,46 +956,6 @@
     </div>
   </div>
 
-  <!-- ESTIMADOR DE REPOSICIÓN -->
-  <div class="section s2 collapsed" id="s-calc">
-    <div class="section-header" onclick="toggleSection('s-calc')">
-      <div>
-        <div class="section-title">Estimador de reposición</div>
-      </div>
-      <svg class="section-chevron" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-    </div>
-    <div class="section-body">
-      <div class="calc-row">
-        <div class="calc-field">
-          <label for="calcPeso">Peso (kg)</label>
-          <input type="number" id="calcPeso" min="30" max="200" step="1" inputmode="numeric" placeholder="70">
-        </div>
-        <div class="calc-field">
-          <label for="calcGrado">Grado de deshidratación</label>
-          <select id="calcGrado">
-            <option value="3">Leve · &lt; 5 % (≈ 3 %)</option>
-            <option value="7" selected>Moderada · 5–9 % (≈ 7 %)</option>
-            <option value="10">Grave · ≥ 10 %</option>
-          </select>
-        </div>
-        <div class="calc-field">
-          <label for="calcDep">Deposiciones líquidas / día</label>
-          <input type="number" id="calcDep" min="0" max="40" step="1" inputmode="numeric" placeholder="6">
-        </div>
-        <div class="calc-field">
-          <label for="calcVom">Vómitos / día</label>
-          <input type="number" id="calcVom" min="0" max="40" step="1" inputmode="numeric" placeholder="3">
-        </div>
-      </div>
-      <div id="calcOut"><div class="calc-empty">Ingresa el peso para estimar el déficit y el volumen de reposición. No se guarda ningún dato.</div></div>
-      <div class="plain-list" style="margin-top:18px;">
-        <div class="plain-item"><span class="bullet-icon">🥤</span><span><strong>Vía oral siempre que sea posible,</strong> en volúmenes pequeños y frecuentes.</span></div>
-        <div class="plain-item"><span class="bullet-icon">🩸</span><span><strong>Vía intravenosa</strong> con shock, compromiso de conciencia, íleo, vómitos incoercibles o fracaso de la vía oral: cristaloide isotónico, bolo de 20 mL/kg y reevaluación tras cada bolo.</span></div>
-        <div class="plain-item"><span class="bullet-icon">⚠️</span><span><strong>Cardiópata, ERC o adulto mayor frágil:</strong> el volumen calculado es una referencia. Fracciona, reevalúa y ajusta.</span></div>
-      </div>
-    </div>
-  </div>
-
   <!-- DISCLAIMER -->
   <div class="note">
     <strong>Uso clínico.</strong> Esta página es una ayuda de orientación para la atención de urgencia del
@@ -1073,15 +982,6 @@
     </div>
   </details>
 
-  <!-- PROFUNDIZAR -->
-  <a class="deep-link" href="./guia-gastroenteritis.html">
-    <div>
-      <strong>Profundizar · Guía de gastroenteritis aguda</strong>
-      <span>Clasificación por duración y mecanismo, incubación y agente probable, interpretación del estudio de deposiciones, diferencial ampliado y esquemas en detalle.</span>
-    </div>
-    <span class="arr">→</span>
-  </a>
-
   <div class="footer">Solo uso clínico · 2026</div>
 </div>
 
@@ -1095,7 +995,6 @@
     s.classList.remove('collapsed');
     s.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
-  function openCalc() { openSection('s-calc'); }
   function openDiff() { openSection('s-diff'); }
 
   // ── Datos: tratamiento específico (dosis para ficha + texto para el paciente) ──
@@ -1480,57 +1379,9 @@
     upd();
   });
 
-  // ── Estimador de reposición ───────────────────────────────────────
-  const r50 = (x) => Math.round(x / 50) * 50;
-  const fmt = (ml) => ml >= 1000 ? `${(ml / 1000).toFixed(1).replace('.', ',')} L` : `${ml} mL`;
-
-  function cell(k, v, u) {
-    return `<div class="calc-cell"><div class="k">${k}</div><div class="v">${v}</div><div class="u">${u}</div></div>`;
-  }
-
-  function renderCalc() {
-    const out = document.getElementById('calcOut');
-    const peso = parseFloat(document.getElementById('calcPeso').value);
-    const pct = parseFloat(document.getElementById('calcGrado').value);
-    if (!peso || peso < 30 || peso > 200) {
-      out.innerHTML = '<div class="calc-empty">Ingresa el peso (30–200 kg) para estimar el déficit y el volumen de reposición. No se guarda ningún dato.</div>';
-      return;
-    }
-    const dep = Math.max(0, parseFloat(document.getElementById('calcDep').value) || 0);
-    const vom = Math.max(0, parseFloat(document.getElementById('calcVom').value) || 0);
-
-    const deficit = r50(peso * pct * 10);
-    const perdidas = r50(dep * 10 * peso + vom * 2 * peso);
-    const basal = r50(peso * 30);
-    const cells = [];
-
-    cells.push(cell('Déficit estimado', fmt(deficit), `${pct} % del peso · ${peso} kg`));
-
-    if (pct <= 3) {
-      cells.push(cell('SRO en las primeras 4 h', fmt(deficit), 'Reponer el déficit estimado. En la deshidratación leve el esquema OMS es a libre demanda (plan A): SRO tras cada pérdida, sin volumen fijo'));
-    } else if (pct < 10) {
-      const planB = r50(peso * 75);
-      cells.push(cell('SRO en las primeras 4 h', fmt(planB), 'Esquema OMS plan B: 75 mL/kg. Otros protocolos reponen el déficit estimado o usan ≈ 50 mL/kg en 4 h: verificar con protocolo institucional'));
-    } else {
-      const planC = r50(peso * 100);
-      cells.push(cell('Plan C (referencia)', fmt(planC), `Ringer lactato 100 mL/kg EV: ${fmt(r50(peso * 30))} en los primeros 30 min y ${fmt(r50(peso * 70))} en las 2,5 h siguientes. Verificar con protocolo institucional`));
-      cells.push(cell('Bolo inicial', fmt(r50(peso * 20)), '20 mL/kg de cristaloide isotónico, con reevaluación clínica tras cada bolo'));
-    }
-
-    cells.push(cell('Pérdidas mantenidas (24 h)', perdidas ? fmt(perdidas) : '—',
-      perdidas ? `${dep} deposición(es) × 10 mL/kg + ${vom} vómito(s) × 2 mL/kg` : 'Ingresa el número de deposiciones y vómitos del día'));
-    cells.push(cell('Aporte basal (24 h)', fmt(basal), '≈ 30 mL/kg/día, además del déficit y de las pérdidas'));
-
-    out.innerHTML = `<div class="calc-out">${cells.join('')}</div>`;
-  }
-  ['calcPeso', 'calcGrado', 'calcDep', 'calcVom'].forEach(id =>
-    document.getElementById(id).addEventListener('input', renderCalc));
-  document.getElementById('calcGrado').addEventListener('change', renderCalc);
-
   // ── Inicio ────────────────────────────────────────────────────────
   renderMeds('A');
   setScenario('hidratacion');
-  renderCalc();
 </script>
 <script>
 (function() {
