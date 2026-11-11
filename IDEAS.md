@@ -1472,7 +1472,7 @@ python -I -c "import re,sys;s=open(sys.argv[1],encoding='utf-8').read();s=re.sub
 
 ### Ítems (del más corto al más largo; palabras visibles al inicio de este trabajo)
 
-- [ ] Diarrea y vómitos — `sintoma-diarrea-vomitos.html` (~4.100; guía: `guia-gastroenteritis.html`)
+- [x] Diarrea y vómitos — `sintoma-diarrea-vomitos.html` (~4.100; guía: `guia-gastroenteritis.html`)
 - [ ] Dolor torácico — `sintoma-dolor-toracico.html` (~4.200; guía: `guia-dolor-toracico.html`)
 - [ ] Dolor lumbar — `sintoma-dolor-lumbar.html` (~5.000; guía: `guia-lumbago-agudo.html`)
 - [ ] Dolor abdominal — `sintoma-dolor-abdominal.html` (~6.800; guía: `guia-dolor-abdominal.html`)
