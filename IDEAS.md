@@ -1372,9 +1372,11 @@ página va por su propia rama y un PR que revisa una persona. Nunca se hace push
   explicativos y con un botón «Ninguna» de una sola línea. **Se abre solo el camino que
   corresponde** a lo marcado; sin selección no se muestra ninguno. Sin cuadro de «camino sugerido»
   ni pestañas de camino.
-- **Cada camino:** código corto, título, metas de tiempo en chips, órdenes en listas cortas, tabla de
-  fármacos (dosis y una nota breve), indicaciones al alta listas para copiar si corresponde y
-  derivación en una o dos líneas.
+- **Cada camino:** código corto, título, órdenes en listas cortas, tabla de fármacos (dosis y una
+  nota breve), indicaciones al alta listas para copiar si corresponde y derivación en una o dos
+  líneas. Los cuadros de **metas de tiempo** (chips) solo se mantienen si ya existían y son
+  críticos: la revisión del PR #1 los retiró de los caminos de diarrea y vómitos; no los agregues
+  donde no hay y, si existen, propón en el PR cuáles retirar.
 - **«Puede que no sea [el síntoma]»:** sección plegada con una tabla corta de diferenciales.
 - **Al final, en este orden:** aviso de uso clínico, referencias plegadas (cerradas por defecto),
   «Profundizar → guía» si existe la guía (`guia-*.html`) y agradecimientos si los había.
@@ -1398,6 +1400,46 @@ página va por su propia rama y un PR que revisa una persona. Nunca se hace push
   correspondiente si existe, o queda listado en el PR para que la persona que revisa decida.
 - **Meta orientativa:** no más de ~2.000 palabras visibles, sin contar las referencias.
 
+### Criterios que fijó la revisión del PR #1 (diarrea y vómitos)
+
+Aplícalos desde el inicio en las demás páginas:
+
+- **Nunca muestres letras internas** (A, B1, B2, C, D) como texto de botones, enlaces o rótulos:
+  usa el nombre del camino («hospitalización», «ITU alta · ambulatoria»…).
+- **Disponibilidad en Chile y en el HUAP.** No recomiendes fármacos ni exámenes que no existan en el
+  servicio (en el PR #1 se retiraron la fidaxomicina y el antígeno de *Giardia* y *Cryptosporidium*).
+  Si el contenido original los trae, usa la alternativa que ya está en la página (la vancomicina oral
+  pasó a primera línea); si no hay alternativa clara, déjalo como «verificar con protocolo
+  institucional» y lístalo en el PR.
+- **Un factor de riesgo no abre solo un camino de alarma.** Si una bandera mezcla el síntoma con
+  factores de riesgo (adulto mayor, fibrilación auricular, vasculopatía), los factores van en la
+  bandera de comorbilidad («≥ 65 años o comorbilidad relevante»), no en la que desvía el diagnóstico.
+- **No cambies el significado clínico de una palabra.** «Antimotílicos» (la loperamida) no es lo
+  mismo que «antiespasmódicos»; ante la duda, conserva el término y consúltalo en el PR.
+
+### Comprobaciones obligatorias antes de abrir el PR (lo que falló en el PR #1)
+
+El rediseño borró por error reglas de estilo que la página aún usaba, y las pruebas solo miraban las
+clases del HTML. Comprueba **lo que se ve**, no solo lo que está escrito:
+
+1. **Las secciones plegadas se ocultan de verdad.** Mide con estilos calculados
+   (`getComputedStyle(cuerpo).display === 'none'` al cargar y visible al tocar el título); que la
+   clase `collapsed` esté puesta no basta.
+2. **Al limpiar el CSS no se pierden reglas en uso.** Compara las reglas base de la versión de `main`
+   con las de la nueva y revisa una por una las que desaparecen: en el PR #1 se perdieron
+   `.section-body` (el margen interior), `.section-title`, `.section-chevron` y
+   `.section.collapsed .section-body`. Si quitas un bloque de CSS por rangos, confirma que no se llevó
+   reglas vecinas.
+3. **Sin desborde horizontal** a 390 px y a 360 px: en la página y en cada `.table-wrap`,
+   `scrollWidth` no debe superar a `clientWidth`. Las tablas de tres o más columnas se apilan por
+   debajo de 600 px (una tarjeta por fila, con la etiqueta de cada columna; ver la clase
+   `tabla-apilada` de `sintoma-diarrea-vomitos.html`).
+4. **Espaciado a 390 px y a 900 px.** Las opciones no pueden quedar pegadas al borde de la caja ni la
+   última cortada abajo (margen interior de las secciones: 20 px arriba y 24 px a los lados y abajo).
+5. **La rutina comparte rama con quien revisa.** La sesión que abre el PR queda suscrita a sus
+   comentarios y puede empujar commits a la misma rama. Antes de cada `push`, haz `git fetch` y, si
+   hay commits nuevos, intégralos (y no repitas una corrección que ya está).
+
 ### Procedimiento de cada ítem (siempre por PR)
 
 1. `git fetch`. Cuenta las ramas `origin/rediseno/*` que aún no están fusionadas en `origin/main`
@@ -1411,7 +1453,9 @@ página va por su propia rama y un PR que revisa una persona. Nunca se hace push
    páginas ya cacheadas) ni `catalogo.js` (salvo que cambie el título o la descripción).
 6. Verifica que siga funcionando: los scripts en línea sin errores de sintaxis
    (`node --check` sobre cada `<script>` extraído), todos los caminos y calculadoras operativos,
-   el botón de tema, la flecha de regreso y las referencias plegadas y cerradas.
+   el botón de tema, la flecha de regreso y las referencias plegadas y cerradas. Haz además las
+   **cinco comprobaciones obligatorias** de la sección anterior (secciones plegadas, CSS perdido,
+   desborde horizontal, espaciado y rama compartida).
 7. Marca el ítem como hecho (`[x]`) en este archivo, en el mismo commit, y haz **un solo commit**
    (ej: `refactor: dolor torácico — versión minimalista estilo disuria`).
 8. Sube la **rama** (nunca `main`) y abre el PR con `gh pr create`. Si `gh` no está disponible, deja
