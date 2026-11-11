@@ -864,9 +864,9 @@
         <thead><tr><th>Situación</th><th>Esquema</th></tr></thead>
         <tbody>
           <tr><td>Diarrea acuosa sin foco, estable</td><td><span class="dose-main">Sin antibiótico</span><br><span class="dose-note">Hidratación, corrección electrolítica y observación.</span></td></tr>
-          <tr><td>Disentería febril grave o sin tolerancia oral<br><span class="dose-note"><em>Shigella</em> o <em>Campylobacter</em></span></td><td><span class="dose-main">Ceftriaxona 1–2 g EV c/24 h</span><br><span class="dose-note">Si tolera la vía oral: azitromicina 500 mg/día × 3 días. Ajustar al coprocultivo y a la resistencia local.</span></td></tr>
+          <tr><td>Disentería febril grave o sin tolerancia oral<br><span class="dose-note"><em>Shigella</em> o <em>Campylobacter</em></span></td><td><span class="dose-main">Ceftriaxona 1–2 g EV c/24 h</span><br><span class="dose-note">Si tolera la vía oral: azitromicina 500 mg/día × 3 días. Ajustar al coprocultivo.</span></td></tr>
           <tr><td>Sospecha de STEC (<em>E. coli</em> O157:H7)<br><span class="dose-note">sangre, dolor intenso, poca o ninguna fiebre</span></td><td><span class="dose-main">Sin antibiótico y sin antimotílicos</span><br><span class="dose-note">Aumentan el riesgo de SHU. Vigilar hemograma, plaquetas y función renal.</span></td></tr>
-          <tr><td><em>C. difficile</em> · episodio inicial</td><td><span class="dose-main">Fidaxomicina 200 mg VO c/12 h × 10 días</span><br><span class="dose-note">Alternativa: vancomicina 125 mg VO c/6 h × 10 días. Metronidazol 500 mg VO c/8 h × 10 días solo si las anteriores no están disponibles y el cuadro no es grave.</span></td></tr>
+          <tr><td><em>C. difficile</em> · episodio inicial</td><td><span class="dose-main">Vancomicina 125 mg VO c/6 h × 10 días</span><br><span class="dose-note">Metronidazol 500 mg VO c/8 h × 10 días solo si la vancomicina no está disponible y el cuadro no es grave.</span></td></tr>
           <tr><td><em>C. difficile</em> fulminante<br><span class="dose-note">hipotensión, íleo o megacolon</span></td><td><span class="dose-main">Vancomicina 500 mg VO o por sonda c/6 h + metronidazol 500 mg EV c/8 h</span><br><span class="dose-note">Con íleo, agregar vancomicina rectal (500 mg en 100 mL de suero fisiológico c/6 h). Evaluación quirúrgica precoz.</span></td></tr>
           <tr><td>Embarazada con fiebre · listeriosis</td><td><span class="dose-main">Ampicilina en dosis altas EV</span><br><span class="dose-note"><strong>Verificar dosis y duración con protocolo institucional.</strong> Hemocultivos antes de la primera dosis. Obstetricia e infectología.</span></td></tr>
           <tr><td>Sospecha de sepsis de origen digestivo</td><td><span class="dose-main">Antibiótico de amplio espectro precoz</span><br><span class="dose-note">Junto con la reanimación. <a href="./checklist-sepsis_4.html" style="color:#93c5fd">Checklist de sepsis →</a></span></td></tr>
@@ -875,7 +875,7 @@
       </table>
     </div>
     <div class="avoid">
-      <strong>Antimotílicos contraindicados</strong> con sangre, fiebre alta, sospecha de STEC, de <em>C. difficile</em> o de megacolon tóxico.
+      <strong>Antiespasmódicos contraindicados</strong> con sangre, fiebre alta, sospecha de STEC, de <em>C. difficile</em> o de megacolon tóxico.
       En <em>C. difficile</em>: suspende el antibiótico desencadenante, aislamiento de contacto e <strong>higiene de manos con agua y jabón</strong> —el alcohol gel no elimina las esporas.
     </div>
 
@@ -1007,11 +1007,9 @@
                 pt: 'Azitromicina 1 g: tomar la dosis completa UNA sola vez, con un vaso de agua.' },
     cipro:    { name: 'Ciprofloxacino', dose: '500 mg c/12 h VO × 1–3 días', note: 'Alternativa en la diarrea del viajero. Alta resistencia de Campylobacter: en el sudeste asiático preferir azitromicina.',
                 pt: 'Ciprofloxacino 500 mg: 1 comprimido cada 12 horas por 3 días.' },
-    fidaxo:   { name: 'Fidaxomicina', dose: '200 mg VO c/12 h × 10 días', note: 'Preferida en el episodio inicial de C. difficile si está disponible.',
-                pt: 'Fidaxomicina 200 mg: 1 comprimido cada 12 horas por 10 días. Complete los 10 días aunque se sienta bien antes.' },
-    vanco:    { name: 'Vancomicina oral', dose: '125 mg VO c/6 h × 10 días', note: 'Alternativa de primera línea. No usar la presentación endovenosa por vía oral sin confirmar con farmacia.',
+    vanco:    { name: 'Vancomicina oral', dose: '125 mg VO c/6 h × 10 días', note: 'Primera línea. No usar la presentación endovenosa por vía oral sin confirmar con farmacia.',
                 pt: 'Vancomicina 125 mg en cápsulas: 1 cápsula cada 6 horas por 10 días. Complete los 10 días aunque se sienta bien antes.' },
-    metroCd:  { name: 'Metronidazol', dose: '500 mg VO c/8 h × 10 días', note: 'Solo si fidaxomicina y vancomicina no están disponibles y el cuadro no es grave.',
+    metroCd:  { name: 'Metronidazol', dose: '500 mg VO c/8 h × 10 días', note: 'Solo si la vancomicina no está disponible y el cuadro no es grave.',
                 pt: 'Metronidazol 500 mg: 1 comprimido cada 8 horas por 10 días. No beba alcohol durante el tratamiento ni los 3 días siguientes.' },
     tinidazol:{ name: 'Tinidazol', dose: '2 g VO por una vez', note: 'Giardia confirmada o con alta sospecha. Alternativa: metronidazol 250 mg VO c/8 h × 5–7 días.',
                 pt: 'Tinidazol 2 g: tomar la dosis completa UNA sola vez, con comida. No beba alcohol durante el tratamiento ni los 3 días siguientes.' },
@@ -1064,7 +1062,7 @@
     },
     cdiff: {
       label: 'Antibiótico reciente: sospecha de C. difficile',
-      meds: ['fidaxo', 'vanco', 'metroCd'], sint: ['para'],
+      meds: ['vanco', 'metroCd'], sint: ['para'],
       orders: [
         'Estudio de <em>C. difficile</em> <strong>en deposición líquida</strong> <span class="cond">verificar el algoritmo de tu laboratorio</span>',
         'Hemograma, PCR, función renal y electrolitos, lactato',
