@@ -688,15 +688,8 @@
   <!-- ═══ CAMINO A ═══ -->
   <div class="path-panel t-A" id="panel-A" role="tabpanel">
     <div class="panel-head">
-      <div class="panel-code">Fast-track</div>
       <div class="panel-title">Gastroenteritis aguda no complicada</div>
     </div>
-    <div class="targets">
-      <span class="target">⏱ Alta en <b>&lt; 45 min</b></span>
-      <span class="target">🧪 Exámenes: <b>ninguno</b></span>
-      <span class="target">🥤 Tolerancia oral en el box: <b>15–30 min</b></span>
-    </div>
-
     <div class="stop">
       <div class="stop-title">NO pedir</div>
       <ul>
@@ -1047,8 +1040,6 @@
             pt: 'Metoclopramida 10 mg: 1 comprimido cada 8 horas solo si tiene náuseas, por un máximo de 5 días. Si aparecen movimientos raros del cuello o la cara, suspenda y consulte.' },
     lope: { name: 'Loperamida', dose: '4 mg VO inicial, luego 2 mg tras cada deposición líquida · máx. 16 mg/día', note: 'Solo en diarrea acuosa sin fiebre alta ni sangre. Contraindicada con sospecha de STEC, de C. difficile o de megacolon tóxico.',
             pt: 'Loperamida 2 mg: tome 2 cápsulas al inicio y luego 1 cápsula después de cada deposición líquida, sin pasar de 8 cápsulas al día. SUSPÉNDALA si aparece fiebre alta, sangre en las deposiciones o dolor abdominal que aumenta.' },
-    race: { name: 'Racecadotrilo', dose: '100 mg VO c/8 h', note: 'Antisecretor. Según disponibilidad local. No sustituye la hidratación.',
-            pt: 'Racecadotrilo 100 mg: 1 cápsula cada 8 horas antes de las comidas mientras persista la diarrea, por un máximo de 7 días.' },
     para: { name: 'Paracetamol', dose: '1 g c/8 h VO si hay dolor o fiebre', note: 'De elección: en el paciente deshidratado se evitan los AINE por el riesgo renal.',
             pt: 'Paracetamol 1 g: cada 8 horas solo si tiene dolor o fiebre (máximo 3 g al día).' }
   };
@@ -1057,7 +1048,7 @@
   const B1 = {
     hidratacion: {
       label: 'Deshidratación o vómitos',
-      meds: ['sinAtb'], sint: ['onda', 'meto', 'race', 'lope', 'para'],
+      meds: ['sinAtb'], sint: ['onda', 'meto', 'lope', 'para'],
       orders: [
         'Función renal y electrolitos <span class="cond">deshidratación moderada · ≥ 65 años · comorbilidad · vómitos prolongados · fármacos de riesgo</span>',
         'Glicemia capilar <span class="cond">si hay diabetes</span>',
@@ -1105,7 +1096,7 @@
     },
     viajero: {
       label: 'Diarrea del viajero',
-      meds: ['aziU', 'cipro', 'sinAtb'], sint: ['onda', 'lope', 'race', 'para'],
+      meds: ['aziU', 'cipro', 'sinAtb'], sint: ['onda', 'lope', 'para'],
       orders: [
         'Coprocultivo o panel molecular <span class="cond">sangre, fiebre alta, cuadro grave o sospecha de brote</span>',
         'Parasitológico seriado o antígeno de <em>Giardia</em> y <em>Cryptosporidium</em> <span class="cond">más de 7 a 14 días o agua no tratada</span>',
@@ -1119,7 +1110,7 @@
     },
     persistente: {
       label: 'Diarrea de ≥ 14 días',
-      meds: ['esperar', 'tinidazol'], sint: ['race', 'para'],
+      meds: ['esperar', 'tinidazol'], sint: ['para'],
       orders: [
         'Parasitológico seriado (3 muestras) o antígeno de <em>Giardia</em> y <em>Cryptosporidium</em>',
         'Coprocultivo o panel molecular',
@@ -1135,7 +1126,7 @@
     },
     riesgo: {
       label: '≥ 65 años o comorbilidad',
-      meds: ['sinAtb'], sint: ['onda', 'race', 'para'],
+      meds: ['sinAtb'], sint: ['onda', 'para'],
       orders: [
         'Función renal, electrolitos (potasio) y gases venosos',
         'Hemograma, PCR, glicemia',
@@ -1180,7 +1171,7 @@
     sint: { A: new Set(), B1: new Set() }
   };
 
-  const A_SINT = ['onda', 'lope', 'race', 'para'];
+  const A_SINT = ['onda', 'lope', 'para'];
 
   // ── Triage ────────────────────────────────────────────────────────
   // Camino según lo marcado: A = alta rápida, B1 = estudio dirigido con alta,
