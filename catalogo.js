@@ -63,55 +63,66 @@ window.CATALOGO = {
      "desc": "Procedimientos de alto riesgo y baja frecuencia (HALO), paso a paso y con control de tiempos."
     },
     {
-     "id": "patologia",
-     "nombre": "Patología compleja",
-     "subs": [
-      {
-       "id": "cardiovascular",
-       "nombre": "Cardiovascular"
-      },
-      {
-       "id": "respiratorio",
-       "nombre": "Respiratorio"
-      },
-      {
-       "id": "neurologico",
-       "nombre": "Neurológico"
-      },
-      {
-       "id": "endocrino",
-       "nombre": "Endocrino y metabólico"
-      },
-      {
-       "id": "digestivo",
-       "nombre": "Digestivo"
-      },
-      {
-       "id": "infeccioso",
-       "nombre": "Infeccioso"
-      },
-      {
-       "id": "oncologico",
-       "nombre": "Oncológico"
-      },
-      {
-       "id": "trauma",
-       "nombre": "Trauma"
-      },
-      {
-       "id": "intoxicaciones",
-       "nombre": "Intoxicaciones"
-      }
-     ],
-     "desc": "Cuadros críticos complejos, ordenados por sistema, más intoxicaciones."
-    },
-    {
      "id": "obstetricia",
      "nombre": "Obstetricia",
      "desc": "Urgencias obstétricas: trabajo de parto de término y pretérmino."
     }
    ],
    "nav": "botones"
+  },
+  {
+   "id": "paciente-critico",
+   "nombre": "Paciente Crítico",
+   "color": "amber",
+   "nav": "botones",
+   "desc": "Cuadros críticos complejos, ordenados por sistema, más intoxicaciones.",
+   "grupos": [
+    {
+     "id": "cardiovascular",
+     "nombre": "Cardiovascular",
+     "directo": false
+    },
+    {
+     "id": "respiratorio",
+     "nombre": "Respiratorio",
+     "directo": false
+    },
+    {
+     "id": "neurologico",
+     "nombre": "Neurológico",
+     "directo": false
+    },
+    {
+     "id": "endocrino",
+     "nombre": "Endocrino y metabólico",
+     "directo": false
+    },
+    {
+     "id": "digestivo",
+     "nombre": "Digestivo",
+     "directo": false
+    },
+    {
+     "id": "infeccioso",
+     "nombre": "Infeccioso",
+     "directo": false
+    },
+    {
+     "id": "oncologico",
+     "nombre": "Oncológico",
+     "directo": false
+    },
+    {
+     "id": "trauma",
+     "nombre": "Trauma",
+     "directo": false
+    },
+    {
+     "id": "intoxicaciones",
+     "nombre": "Intoxicaciones",
+     "directo": false
+    }
+   ]
   },
   {
    "id": "coordinacion",
@@ -799,9 +810,8 @@ window.CATALOGO = {
    "kw": "aorta dolor torácico desgarro Stanford",
    "ubic": [
     {
-     "area": "reanimador",
-     "grupo": "patologia",
-     "sub": "cardiovascular"
+     "area": "paciente-critico",
+     "grupo": "cardiovascular"
     }
    ]
   },
@@ -821,9 +831,8 @@ window.CATALOGO = {
    "kw": "falla cardíaca bomba infarto hipotensión ventrículo derecho",
    "ubic": [
     {
-     "area": "reanimador",
-     "grupo": "patologia",
-     "sub": "cardiovascular"
+     "area": "paciente-critico",
+     "grupo": "cardiovascular"
     }
    ]
   },
@@ -843,9 +852,8 @@ window.CATALOGO = {
    "kw": "IAMCEST infarto trombólisis tenecteplase reperfusión SCACEST",
    "ubic": [
     {
-     "area": "reanimador",
-     "grupo": "patologia",
-     "sub": "cardiovascular"
+     "area": "paciente-critico",
+     "grupo": "cardiovascular"
     }
    ]
   },
@@ -865,9 +873,8 @@ window.CATALOGO = {
    "kw": "asma crisis broncoespasmo salbutamol broncodilatador",
    "ubic": [
     {
-     "area": "reanimador",
-     "grupo": "patologia",
-     "sub": "respiratorio"
+     "area": "paciente-critico",
+     "grupo": "respiratorio"
     }
    ]
   },
@@ -887,9 +894,8 @@ window.CATALOGO = {
    "kw": "traumatismo encéfalo craneano hipertensión intracraneana HIC cabeza",
    "ubic": [
     {
-     "area": "reanimador",
-     "grupo": "patologia",
-     "sub": "neurologico"
+     "area": "paciente-critico",
+     "grupo": "neurologico"
     }
    ]
   },
@@ -909,9 +915,8 @@ window.CATALOGO = {
    "kw": "diabetes cetoacidosis hiperosmolar hiperglicemia insulina",
    "ubic": [
     {
-     "area": "reanimador",
-     "grupo": "patologia",
-     "sub": "endocrino"
+     "area": "paciente-critico",
+     "grupo": "endocrino"
     }
    ]
   },
@@ -931,9 +936,8 @@ window.CATALOGO = {
    "kw": "tirotoxicosis hipertiroidismo Burch Wartofsky",
    "ubic": [
     {
-     "area": "reanimador",
-     "grupo": "patologia",
-     "sub": "endocrino"
+     "area": "paciente-critico",
+     "grupo": "endocrino"
     }
    ]
   },
@@ -953,9 +957,8 @@ window.CATALOGO = {
    "kw": "hemorragia digestiva alta várices cirrosis hematemesis",
    "ubic": [
     {
-     "area": "reanimador",
-     "grupo": "patologia",
-     "sub": "digestivo"
+     "area": "paciente-critico",
+     "grupo": "digestivo"
     }
    ]
   },
@@ -975,9 +978,8 @@ window.CATALOGO = {
    "kw": "páncreas lipasa dolor epigástrico",
    "ubic": [
     {
-     "area": "reanimador",
-     "grupo": "patologia",
-     "sub": "digestivo"
+     "area": "paciente-critico",
+     "grupo": "digestivo"
     }
    ]
   },
@@ -997,9 +999,8 @@ window.CATALOGO = {
    "kw": "shock séptico NEWS2 qSOFA bundle antibiótico código sepsis",
    "ubic": [
     {
-     "area": "reanimador",
-     "grupo": "patologia",
-     "sub": "infeccioso"
+     "area": "paciente-critico",
+     "grupo": "infeccioso"
     }
    ]
   },
@@ -1019,9 +1020,8 @@ window.CATALOGO = {
    "kw": "accidente trauma ABCDE hemorragia box de reanimación",
    "ubic": [
     {
-     "area": "reanimador",
-     "grupo": "patologia",
-     "sub": "trauma"
+     "area": "paciente-critico",
+     "grupo": "trauma"
     }
    ]
   },
@@ -1041,9 +1041,8 @@ window.CATALOGO = {
    "kw": "envenenamiento sobredosis verapamilo amlodipino propranolol calcio insulina",
    "ubic": [
     {
-     "area": "reanimador",
-     "grupo": "patologia",
-     "sub": "intoxicaciones"
+     "area": "paciente-critico",
+     "grupo": "intoxicaciones"
     }
    ]
   },
@@ -1113,9 +1112,8 @@ window.CATALOGO = {
    "kw": "SLT lisis tumoral quimioterapia leucemia linfoma Burkitt hiperuricemia hiperkalemia hiperfosfatemia hipocalcemia rasburicasa alopurinol G6PD Cairo-Bishop oncológica urgencia oncohematológica",
    "ubic": [
     {
-     "area": "reanimador",
-     "grupo": "patologia",
-     "sub": "oncologico"
+     "area": "paciente-critico",
+     "grupo": "oncologico"
     }
    ]
   },

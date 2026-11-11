@@ -158,7 +158,7 @@
             A.grupos.map(function (x, i) {
               var l = x.subs ? [] : listar(x);
               // un grupo con una sola página no necesita un nivel intermedio: el botón abre la página
-              if (l.length === 1) return boton('./' + l[0].href, l[0].etiqueta || l[0].titulo, null, '', i);
+              if (l.length === 1 && x.directo !== false) return boton('./' + l[0].href, l[0].etiqueta || l[0].titulo, null, '', i);
               return boton('#' + x.id, x.nombre, null, '', i);
             }).join('') + '</div>';
         } else if (g.subs && !s) {                  // nivel 2: subgrupos

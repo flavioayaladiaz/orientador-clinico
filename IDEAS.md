@@ -65,7 +65,7 @@ diagnóstica, calculadora, etc).
 
 ### Dónde va cada página (estructura del sitio, rama `giro`)
 
-El landing (`index.html`) tiene un buscador y tres áreas; cada área se abre en
+El landing (`index.html`) tiene un buscador y cuatro áreas (Ambulatorio, Reanimador, Paciente Crítico y Coordinación); cada área se abre en
 `area.html?a=<área>`. Clasificación (ids de `catalogo.js`):
 
 | Área | Grupo | Subgrupo | Qué entra |
@@ -76,10 +76,10 @@ El landing (`index.html`) tiene un buscador y tres áreas; cada área se abre en
 | `ambulatorio` | `conductual` | — | Sedación del paciente agitado y urgencias conductuales |
 | `reanimador` | `paro` | `adulto` · `pediatrico` · `neonatal` · `embarazada` | Todo lo de paro y reanimación, por población |
 | `reanimador` | `procedimientos` | — | Procedimientos HALO (todos juntos). Si es además parte del paro, agrega una entrada en `ubic` hacia `paro` |
-| `reanimador` | `patologia` | `cardiovascular` · `respiratorio` · `neurologico` · `endocrino` · `digestivo` · `infeccioso` · `trauma` · `intoxicaciones` | Patología compleja por sistema, más intoxicaciones |
+| `paciente-critico` | `cardiovascular` · `respiratorio` · `neurologico` · `endocrino` · `digestivo` · `infeccioso` · `oncologico` · `trauma` · `intoxicaciones` | — | Patología compleja por sistema, más intoxicaciones (cada sistema es un grupo del área) |
 | `reanimador` | `obstetricia` | — | Urgencias obstétricas (parto, hemorragia posparto, preeclampsia grave…) |
 
-Reanimador navega por botones (categoría → subgrupo → lista; `nav: "botones"` en `catalogo.js`): un grupo nuevo necesita `desc` para su botón.
+Reanimador y Paciente Crítico navegan por botones (categoría → subgrupo → lista; `nav: "botones"` en `catalogo.js`). En Paciente Crítico los grupos llevan `directo: false` para que el botón muestre el nombre del sistema y no el de la única página que contenga.
 
 `tipo` en el catálogo: `procedimiento` (HALO), `algoritmo`, `checklist`, `sintoma`, `plan`.
 Si un grupo o subgrupo nuevo hace falta, se agrega en `areas` de `catalogo.js`.
@@ -132,7 +132,7 @@ será reemplazada en el index por su página de la sección "Síntomas cardinale
       `algoritmo-intoxicacion-ccb-betabloqueadores.html`
 - [x] Síndrome de lisis tumoral del adulto (laboratorio y clínico, estratificación de riesgo,
       prevención, rasburicasa y diálisis) — `algoritmo-lisis-tumoral.html`.
-      Ubicación: Reanimador › Patología compleja › Oncológico. Basado en Howard 2011 (NEJM,
+      Ubicación: Paciente Crítico › Oncológico. Basado en Howard 2011 (NEJM,
       PMC3437249), Cairo-Bishop 2004, Cairo 2010, Coiffier 2008 y la ficha técnica de la
       rasburicasa; solo adultos. Pendiente de validación: la **dosis de alopurinol**
       (300 mg/día), el **esquema de hiperkalemia** (no detalla dosis), el comentario de
