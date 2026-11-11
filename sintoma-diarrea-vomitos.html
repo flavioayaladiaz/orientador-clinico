@@ -588,6 +588,21 @@
     th, td { padding: 10px 12px; }
     .copy-bar { flex-wrap: wrap; }
   }
+
+  /* Tabla de diferenciales en pantallas angostas: cada fila pasa a una tarjeta apilada */
+  @media (max-width: 600px) {
+    .tabla-apilada, .tabla-apilada tbody, .tabla-apilada tr, .tabla-apilada td { display: block; width: 100%; }
+    .tabla-apilada thead { display: none; }
+    .tabla-apilada tr { padding: 12px 0; border-bottom: 1px solid var(--border); }
+    .tabla-apilada tr:last-child { border-bottom: none; }
+    .tabla-apilada td { border-bottom: none; padding: 3px 14px; overflow-wrap: anywhere; }
+    .tabla-apilada td:first-child { font-size: 14px; padding-bottom: 5px; }
+    .tabla-apilada td:nth-child(2)::before, .tabla-apilada td:nth-child(3)::before {
+      display: block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted); margin: 6px 0 2px; }
+    .tabla-apilada td:nth-child(2)::before { content: 'Pistas'; }
+    .tabla-apilada td:nth-child(3)::before { content: 'Conducta'; }
+  }
 </style>
 <script src="./tema.js"></script>
 </head>
@@ -935,7 +950,7 @@
     </div>
     <div class="section-body">
       <div class="table-wrap">
-        <table>
+        <table class="tabla-apilada">
           <thead><tr><th>Sospecha</th><th>Pistas</th><th>Conducta</th></tr></thead>
           <tbody>
             <tr><td>Isquemia mesentérica</td><td>Adulto mayor, fibrilación auricular o vasculopatía, dolor desproporcionado al examen, acidosis láctica</td><td>Angio-TAC y cirugía desde la sospecha</td></tr>
